@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carte de guerre</title>
+  <meta name="description" content="Suivi du conflit entre la Confédération des Cendres et les Cultistes.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <h1 id="titre">Carte de guerre</h1>
+    </div>
+    <button id="tension-badge" class="tension-badge" type="button" title="Horloge de Tension">
+      <span class="tb-label">Tension</span>
+      <span class="tb-value" id="tb-value">–</span>
+      <span class="tb-palier" id="tb-palier"></span>
+    </button>
+  </header>
+
+  <main class="layout">
+    <section class="map-wrap" aria-label="Carte">
+      <svg id="map" role="img" aria-label="Carte du conflit"></svg>
+      <div class="map-controls">
+        <button id="btn-monde" type="button" hidden>← Vue mondiale</button>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="tooltip" id="tooltip" hidden></div>
+      <div class="loading" id="loading">Chargement de la carte…</div>
+    </section>
+
+    <aside class="panel">
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-tab="zones" class="active">Zones</button>
+        <button role="tab" data-tab="events">Événements</button>
+        <button role="tab" data-tab="tension">Tension</button>
+      </nav>
+      <div class="panel-body">
+        <div class="tab-pane active" data-pane="zones" id="pane-zones"></div>
+        <div class="tab-pane" data-pane="events" id="pane-events"></div>
+        <div class="tab-pane" data-pane="tension" id="pane-tension"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="timeline">
+    <button id="btn-play" type="button" title="Rejouer la chronologie">▶</button>
+    <div class="timeline-track">
+      <input type="range" id="timeline" min="0" max="0" value="0" aria-label="Chronologie">
+      <div class="timeline-label"><span id="timeline-date">–</span> <span id="timeline-live" class="live">EN DIRECT</span></div>
+    </div>
+    <button id="btn-live" type="button" title="Revenir à aujourd'hui">Aujourd'hui</button>
+  </footer>
+
+  <script src="lib/d3.min.js"></script>
+  <script src="lib/topojson-client.min.js"></script>
+  <script src="common.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

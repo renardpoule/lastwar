@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Administration</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <h1>Administration</h1>
+    </div>
+    <div class="admin-actions">
+      <span id="draft-status" class="draft-status"></span>
+      <a href="index.html" target="_blank" class="small-btn">Voir la carte ↗</a>
+    </div>
+  </header>
+
+  <nav class="tabs admin-tabs" role="tablist">
+    <button data-tab="tension" class="active">Tension</button>
+    <button data-tab="districts">Districts</button>
+    <button data-tab="events">Événements</button>
+    <button data-tab="secteurs">Secteurs</button>
+    <button data-tab="publier">Publier</button>
+    <button data-tab="json">JSON brut</button>
+  </nav>
+
+  <main class="admin-main">
+    <section class="tab-pane active" data-pane="tension" id="pane-tension"></section>
+    <section class="tab-pane" data-pane="districts" id="pane-districts"></section>
+    <section class="tab-pane" data-pane="events" id="pane-events"></section>
+    <section class="tab-pane" data-pane="secteurs" id="pane-secteurs"></section>
+    <section class="tab-pane" data-pane="publier" id="pane-publier"></section>
+    <section class="tab-pane" data-pane="json" id="pane-json"></section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="common.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

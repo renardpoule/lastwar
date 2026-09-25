@@ -1,0 +1,1567 @@
+{
+ "meta": {
+  "titre": "Carte de guerre — Confédération des Cendres",
+  "derniere_maj": "2026-06-05"
+ },
+ "factions": {
+  "confederation": {
+   "nom": "Confédération des Cendres",
+   "couleur": "#3b82c4"
+  },
+  "cultistes": {
+   "nom": "Les Cultistes",
+   "couleur": "#c0392b"
+  },
+  "conteste": {
+   "nom": "Zone contestée",
+   "couleur": "#e0a526"
+  }
+ },
+ "secteurs": [
+  {
+   "id": "europe",
+   "nom": "Secteur Europe",
+   "description": "Cœur administratif de la Confédération.",
+   "cadrage": [
+    [
+     -25,
+     34
+    ],
+    [
+     60,
+     72
+    ]
+   ],
+   "districts": [
+    {
+     "id": "eu-ouest",
+     "nom": "Europe de l'Ouest",
+     "pays": [
+      "250",
+      "056",
+      "528",
+      "442",
+      "826",
+      "372",
+      "724",
+      "620",
+      "756"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 351000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 5000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 6000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 54000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "eu-centre",
+     "nom": "Europe centrale",
+     "pays": [
+      "276",
+      "040",
+      "616",
+      "203",
+      "703",
+      "348",
+      "208"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 568000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 5000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 60000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 34000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "eu-nord",
+     "nom": "Europe du Nord",
+     "pays": [
+      "578",
+      "752",
+      "246",
+      "352",
+      "233",
+      "428",
+      "440"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 239000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 28000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 6000
+       },
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 17000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "eu-sud",
+     "nom": "Méditerranée & Balkans",
+     "pays": [
+      "380",
+      "300",
+      "191",
+      "705",
+      "070",
+      "688",
+      "499",
+      "008",
+      "807",
+      "100",
+      "642",
+      "196",
+      "470"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 112000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 54000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 38000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 9000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "eu-est",
+     "nom": "Marches de l'Est",
+     "pays": [
+      "643",
+      "804",
+      "112",
+      "498"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-02-14",
+       "controle": "conteste",
+       "intensite": 3
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "conteste",
+       "intensite": 2
+      }
+     ],
+     "civils": {
+      "population": 610000000,
+      "deplaces": null,
+      "victimes": null
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 11000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 36000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 9000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Avatars mineurs",
+        "nombre": 36000
+       },
+       {
+        "unite": "Nuée",
+        "nombre": null
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 19217,
+      "cultistes": "~13000"
+     },
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "ameriques",
+   "nom": "Secteur Amériques",
+   "description": "Arsenaux et chantiers orbitaux de la Confédération.",
+   "cadrage": [
+    [
+     -170,
+     -56
+    ],
+    [
+     -30,
+     78
+    ]
+   ],
+   "districts": [
+    {
+     "id": "am-nord",
+     "nom": "Amérique du Nord",
+     "pays": [
+      "840",
+      "124",
+      "304"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 580000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 15000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 33000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 45000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "am-centre",
+     "nom": "Méso-Amérique & Caraïbes",
+     "pays": [
+      "484",
+      "320",
+      "084",
+      "340",
+      "222",
+      "558",
+      "188",
+      "591",
+      "192",
+      "388",
+      "332",
+      "214",
+      "044",
+      "630",
+      "780"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 564000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Garde technocratique",
+        "nombre": 39000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 31000
+       },
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 25000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "am-andes",
+     "nom": "Cordillère des Andes",
+     "pays": [
+      "170",
+      "862",
+      "218",
+      "604",
+      "068",
+      "328",
+      "740"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-03-21",
+       "controle": "conteste",
+       "intensite": 1
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "conteste",
+       "intensite": 3
+      }
+     ],
+     "civils": {
+      "population": 735000000,
+      "deplaces": null,
+      "victimes": 41354
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 40000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 6000
+       },
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 9000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Avatars mineurs",
+        "nombre": 11000
+       },
+       {
+        "unite": "Prêtres-guerriers",
+        "nombre": 10000
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 14318,
+      "cultistes": 3069
+     },
+     "notes": ""
+    },
+    {
+     "id": "am-bresil",
+     "nom": "Bassin amazonien",
+     "pays": [
+      "076"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 99000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 46000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 24000
+       },
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 40000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "am-sud",
+     "nom": "Cône Sud",
+     "pays": [
+      "032",
+      "152",
+      "858",
+      "600",
+      "238"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 528000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 55000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 7000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 19000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "afrique",
+   "nom": "Secteur Afrique",
+   "description": "Réserves minières et centrales solaires du Sahara.",
+   "cadrage": [
+    [
+     -20,
+     -36
+    ],
+    [
+     55,
+     38
+    ]
+   ],
+   "districts": [
+    {
+     "id": "af-nord",
+     "nom": "Maghreb & Nil",
+     "pays": [
+      "504",
+      "012",
+      "788",
+      "434",
+      "818",
+      "732"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 505000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 46000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 21000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 43000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "af-ouest",
+     "nom": "Sahel & Afrique de l'Ouest",
+     "pays": [
+      "478",
+      "466",
+      "562",
+      "148",
+      "686",
+      "270",
+      "324",
+      "624",
+      "694",
+      "430",
+      "384",
+      "854",
+      "288",
+      "768",
+      "204",
+      "566"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-03-21",
+       "controle": "conteste",
+       "intensite": 2
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "conteste",
+       "intensite": 5
+      }
+     ],
+     "civils": {
+      "population": 704000000,
+      "deplaces": 41240838,
+      "victimes": "~49000"
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 15000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 51000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 20000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Possédés",
+        "nombre": "~26000"
+       },
+       {
+        "unite": "Avatars mineurs",
+        "nombre": null
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 15218,
+      "cultistes": 26822
+     },
+     "notes": ""
+    },
+    {
+     "id": "af-centre",
+     "nom": "Afrique centrale",
+     "pays": [
+      "120",
+      "140",
+      "266",
+      "178",
+      "180",
+      "226",
+      "728",
+      "729"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-02-14",
+       "controle": "conteste",
+       "intensite": 2
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "conteste",
+       "intensite": 4
+      }
+     ],
+     "civils": {
+      "population": 743000000,
+      "deplaces": "~50629000",
+      "victimes": 51865
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 11000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 16000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 44000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Possédés",
+        "nombre": 32000
+       },
+       {
+        "unite": "Fidèles",
+        "nombre": "~12000"
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 634,
+      "cultistes": 10047
+     },
+     "notes": ""
+    },
+    {
+     "id": "af-est",
+     "nom": "Corne & Grands Lacs",
+     "pays": [
+      "231",
+      "232",
+      "262",
+      "706",
+      "404",
+      "800",
+      "646",
+      "108",
+      "834"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 398000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 46000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 56000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 34000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "af-sud",
+     "nom": "Afrique australe",
+     "pays": [
+      "024",
+      "894",
+      "454",
+      "508",
+      "716",
+      "072",
+      "516",
+      "710",
+      "426",
+      "748",
+      "450"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 652000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 53000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 37000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 27000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "orient",
+   "nom": "Secteur Orient",
+   "description": "Carrefour énergétique, fortement infiltré par les Cultistes.",
+   "cadrage": [
+    [
+     25,
+     10
+    ],
+    [
+     120,
+     56
+    ]
+   ],
+   "districts": [
+    {
+     "id": "or-levant",
+     "nom": "Levant & Anatolie",
+     "pays": [
+      "792",
+      "760",
+      "422",
+      "376",
+      "275",
+      "400",
+      "368"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-03-21",
+       "controle": "conteste",
+       "intensite": 2
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "cultistes",
+       "intensite": 4
+      }
+     ],
+     "civils": {
+      "population": 423000000,
+      "deplaces": 10361466,
+      "victimes": "~10000"
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 9000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 23000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 40000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Fidèles",
+        "nombre": 1000
+       },
+       {
+        "unite": "Avatars mineurs",
+        "nombre": null
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 12414,
+      "cultistes": null
+     },
+     "notes": ""
+    },
+    {
+     "id": "or-arabie",
+     "nom": "Péninsule arabique",
+     "pays": [
+      "682",
+      "887",
+      "512",
+      "784",
+      "634",
+      "414",
+      "048"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 232000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 42000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 18000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 24000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "or-iran",
+     "nom": "Plateau iranien",
+     "pays": [
+      "364",
+      "004",
+      "586"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-03-21",
+       "controle": "conteste",
+       "intensite": 2
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "cultistes",
+       "intensite": 4
+      }
+     ],
+     "civils": {
+      "population": 145000000,
+      "deplaces": 3791676,
+      "victimes": 63078
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 8000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 49000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 23000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Nuée",
+        "nombre": 11000
+       },
+       {
+        "unite": "Prêtres-guerriers",
+        "nombre": 14000
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 17809,
+      "cultistes": null
+     },
+     "notes": ""
+    },
+    {
+     "id": "or-caucase",
+     "nom": "Caucase",
+     "pays": [
+      "268",
+      "051",
+      "031"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 576000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Légion d'acier",
+        "nombre": 57000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 7000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 46000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "or-steppes",
+     "nom": "Steppes d'Asie centrale",
+     "pays": [
+      "398",
+      "860",
+      "795",
+      "417",
+      "762",
+      "496"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 885000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 24000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 51000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 16000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "asie",
+   "nom": "Secteur Asie-Pacifique",
+   "description": "Mégalopoles et centres de calcul de la Confédération.",
+   "cadrage": [
+    [
+     65,
+     -48
+    ],
+    [
+     180,
+     55
+    ]
+   ],
+   "districts": [
+    {
+     "id": "as-inde",
+     "nom": "Sous-continent indien",
+     "pays": [
+      "356",
+      "050",
+      "144",
+      "524",
+      "064",
+      "104"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 565000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 16000
+       },
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 41000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 53000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "as-chine",
+     "nom": "Chine",
+     "pays": [
+      "156",
+      "158"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 827000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 49000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 53000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 16000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "as-extreme",
+     "nom": "Extrême-Orient",
+     "pays": [
+      "392",
+      "410",
+      "408"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 224000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 48000
+       },
+       {
+        "unite": "Garde technocratique",
+        "nombre": 3000
+       },
+       {
+        "unite": "Escadrille de drones",
+        "nombre": 3000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    },
+    {
+     "id": "as-sudest",
+     "nom": "Asie du Sud-Est",
+     "pays": [
+      "764",
+      "418",
+      "704",
+      "116",
+      "458",
+      "702",
+      "360",
+      "608",
+      "096",
+      "626",
+      "598"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      },
+      {
+       "date": "2026-03-21",
+       "controle": "conteste",
+       "intensite": 2
+      },
+      {
+       "date": "2026-06-05",
+       "controle": "conteste",
+       "intensite": 4
+      }
+     ],
+     "civils": {
+      "population": 218000000,
+      "deplaces": 23315769,
+      "victimes": 60619
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 16000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 8000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 16000
+       }
+      ],
+      "cultistes": [
+       {
+        "unite": "Prêtres-guerriers",
+        "nombre": "~22000"
+       },
+       {
+        "unite": "Possédés",
+        "nombre": 40000
+       }
+      ]
+     },
+     "pertes": {
+      "confederation": 20497,
+      "cultistes": 625
+     },
+     "notes": ""
+    },
+    {
+     "id": "as-oceanie",
+     "nom": "Océanie",
+     "pays": [
+      "036",
+      "554",
+      "242",
+      "090",
+      "548",
+      "540"
+     ],
+     "historique": [
+      {
+       "date": "2026-01-10",
+       "controle": "confederation",
+       "intensite": 0
+      }
+     ],
+     "civils": {
+      "population": 688000000,
+      "deplaces": 0,
+      "victimes": 0
+     },
+     "effectifs": {
+      "confederation": [
+       {
+        "unite": "Brigade mécanisée",
+        "nombre": 9000
+       },
+       {
+        "unite": "Légion d'acier",
+        "nombre": 60000
+       },
+       {
+        "unite": "Batterie orbitale",
+        "nombre": 26000
+       }
+      ],
+      "cultistes": []
+     },
+     "pertes": {
+      "confederation": 0,
+      "cultistes": 0
+     },
+     "notes": ""
+    }
+   ]
+  }
+ ],
+ "dieux": [
+  "[Dieu provisoire 1]",
+  "[Dieu provisoire 2]",
+  "[Dieu provisoire 3]"
+ ],
+ "tension": {
+  "paliers": [
+   {
+    "seuil": 0,
+    "nom": "Veille",
+    "description": "Incidents isolés, maintien de l'ordre.",
+    "armes": [
+     "Armes légères",
+     "Forces de police"
+    ]
+   },
+   {
+    "seuil": 20,
+    "nom": "Alerte",
+    "description": "Affrontements localisés.",
+    "armes": [
+     "Armes légères",
+     "Blindés légers",
+     "Drones de reconnaissance"
+    ]
+   },
+   {
+    "seuil": 40,
+    "nom": "Guerre ouverte",
+    "description": "Front déclaré dans plusieurs secteurs.",
+    "armes": [
+     "Artillerie",
+     "Blindés lourds",
+     "Drones armés",
+     "Aviation"
+    ]
+   },
+   {
+    "seuil": 60,
+    "nom": "Guerre totale",
+    "description": "Mobilisation générale.",
+    "armes": [
+     "Armes thermobariques",
+     "Batteries orbitales (restreintes)",
+     "Contre-mesures anomales"
+    ]
+   },
+   {
+    "seuil": 80,
+    "nom": "Minuit",
+    "description": "Survie de l'espèce en jeu.",
+    "armes": [
+     "Armes nucléaires",
+     "Batteries orbitales (sans restriction)",
+     "Protocoles de dernier recours"
+    ]
+   }
+  ],
+  "historique": [
+   {
+    "date": "2026-01-10",
+    "valeur": 8,
+    "note": "Premiers signalements de cultes."
+   },
+   {
+    "date": "2026-02-14",
+    "valeur": 22,
+    "note": "Attaque de [lieu provisoire]."
+   },
+   {
+    "date": "2026-03-21",
+    "valeur": 37,
+    "note": "Soulèvement dans le Levant."
+   },
+   {
+    "date": "2026-04-30",
+    "valeur": 48,
+    "note": "Déclaration d'état de guerre."
+   },
+   {
+    "date": "2026-06-05",
+    "valeur": 56,
+    "note": "Chute du plateau iranien."
+   }
+  ]
+ },
+ "evenements": [
+  {
+   "id": "e1",
+   "date": "2026-01-10",
+   "titre": "Premiers signalements",
+   "description": "Des rassemblements cultistes sont signalés dans le Levant.",
+   "district": "or-levant",
+   "gravite": "info"
+  },
+  {
+   "id": "e2",
+   "date": "2026-02-14",
+   "titre": "Attaque de [lieu provisoire]",
+   "description": "Une cellule cultiste frappe un centre de calcul.",
+   "district": "af-centre",
+   "gravite": "important"
+  },
+  {
+   "id": "e3",
+   "date": "2026-03-21",
+   "titre": "Soulèvement du Levant",
+   "description": "Les milices de [Dieu provisoire 1] prennent plusieurs villes.",
+   "district": "or-levant",
+   "gravite": "critique"
+  },
+  {
+   "id": "e4",
+   "date": "2026-03-21",
+   "titre": "Troubles aux Marches de l'Est",
+   "description": "Sabotage de lignes d'approvisionnement.",
+   "district": "eu-est",
+   "gravite": "important"
+  },
+  {
+   "id": "e5",
+   "date": "2026-04-30",
+   "titre": "État de guerre déclaré",
+   "description": "Le Conseil technocratique déclare l'état de guerre.",
+   "district": null,
+   "gravite": "critique"
+  },
+  {
+   "id": "e6",
+   "date": "2026-04-30",
+   "titre": "Front andin",
+   "description": "Des Possédés sont aperçus dans la Cordillère.",
+   "district": "am-andes",
+   "gravite": "important"
+  },
+  {
+   "id": "e7",
+   "date": "2026-06-05",
+   "titre": "Chute du plateau iranien",
+   "description": "La Confédération perd le contrôle du district.",
+   "district": "or-iran",
+   "gravite": "critique"
+  },
+  {
+   "id": "e8",
+   "date": "2026-06-05",
+   "titre": "Offensive en Asie du Sud-Est",
+   "description": "Contre-offensive des Légions d'acier.",
+   "district": "as-sudest",
+   "gravite": "info"
+  }
+ ]
+}
