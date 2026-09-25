@@ -1,455 +1,573 @@
-// Carte publique : affichage, navigation, fiches, chronologie.
+// Carte du front — affichage public
 (async function () {
-  const { esc, fmt, sum, fmtDate, districtState, tensionAt, palierFor, findDistrict, allDates, couleur, CONTROLES } = WC;
+  const $ = s => document.querySelector(s);
+  const esc = C.esc;
 
-  const state = {
-    data: null,
-    dates: [],
-    date: null,        // null = en direct
-    secteur: null,     // id du secteur zoomé
-    district: null,    // id du district ouvert
-    playing: null,
+  let data, topo, districts, parId, secteurParId;
+  const etat = { niveau: 'monde', secteur: null, district: null, replay: null, filtre: 'tous' };
+
+  const COUL_STATUT = {
+    controle: '#3f8f6b', conteste: '#e3a33b', reconquete: '#3f93cf', quarantaine: '#e2cf3a', perdu: '#d8284f'
   };
+  const COUL_GRAV = { mineur: '#5d8fb8', majeur: '#e3a33b', critique: '#ff3b5c' };
+  const RANG_GRAV = { mineur: 0, majeur: 1, critique: 2 };
 
-  const $ = sel => document.querySelector(sel);
-  const svg = d3.select("#map");
-  const W = 960, H = 500;
-  svg.attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid meet");
-  const projection = d3.geoNaturalEarth1().fitExtent([[5, 5], [W - 5, H - 5]], { type: "Sphere" });
-  const path = d3.geoPath(projection);
-  const root = svg.append("g");
-  const zoom = d3.zoom().scaleExtent([1, 40]).translateExtent([[-200, -100], [W + 200, H + 100]])
-    .on("zoom", e => {
-      root.attr("transform", e.transform);
-      root.selectAll(".district-label").attr("font-size", 11 / e.transform.k).attr("stroke-width", 3 / e.transform.k);
-      root.selectAll(".country, .district-outline").attr("stroke-width", function () { return (+this.dataset.sw || 0.3) / e.transform.k; });
-    });
-  svg.call(zoom).on("dblclick.zoom", null);
-
-  // ---------- Chargement ----------
-  let data, world;
+  $('#map').innerHTML = '<div class="chargement">CONNEXION AU RÉSEAU TACTIQUE…</div>';
   try {
-    [data, world] = await Promise.all([WC.loadData(), fetch("countries-50m.json").then(r => r.json())]);
-  } catch (err) {
-    $("#loading").textContent = "Erreur de chargement : " + err.message;
+    [data, topo] = await Promise.all([
+      fetch('data.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json()),
+      fetch('countries-50m.json').then(r => r.json())
+    ]);
+  } catch (e) {
+    $('#map').innerHTML = '<div class="chargement">ÉCHEC DE CONNEXION — data.json illisible</div>';
+    console.error(e);
     return;
   }
-  state.data = data;
-  state.dates = allDates(data);
-  $("#loading").remove();
-  $("#titre").textContent = data.meta.titre || "Carte de guerre";
-  document.title = data.meta.titre || "Carte de guerre";
+  $('#map').innerHTML = '';
 
-  const countries = topojson.feature(world, world.objects.countries).features;
-  const geomById = new Map(world.objects.countries.geometries.filter(g => g.id).map(g => [g.id, g]));
-  const districtOfCountry = new Map();
-  for (const s of data.secteurs) for (const d of s.districts) for (const p of d.pays || []) districtOfCountry.set(p, { d, s });
+  districts = C.tousDistricts(data);
+  parId = Object.fromEntries(districts.map(d => [d.id, d]));
+  secteurParId = Object.fromEntries(data.secteurs.map(s => [s.id, s]));
 
-  // ---------- Dessin ----------
-  const defs = svg.append("defs");
-  defs.append("pattern").attr("id", "hatch").attr("patternUnits", "userSpaceOnUse").attr("width", 4).attr("height", 4)
-    .attr("patternTransform", "rotate(45)")
-    .append("rect").attr("width", 2).attr("height", 4).attr("fill", "rgba(0,0,0,.35)");
-
-  root.append("path").attr("class", "sphere").attr("d", path({ type: "Sphere" }));
-  root.append("path").attr("class", "graticule").attr("d", path(d3.geoGraticule10()));
-
-  const countryPaths = root.append("g").selectAll("path").data(countries).join("path")
-    .attr("class", d => "country" + (districtOfCountry.has(d.id) ? " assigned" : ""))
-    .attr("d", path)
-    .attr("data-sw", 0.3);
-
-  const hatchPaths = root.append("g").attr("pointer-events", "none").selectAll("path").data(countries.filter(c => districtOfCountry.has(c.id))).join("path")
-    .attr("d", path).attr("fill", "url(#hatch)");
-
-  const mapDistricts = data.secteurs.flatMap(s => s.districts.filter(d => (d.pays || []).some(p => geomById.has(p))).map(d => ({ d, s })));
-  const merged = new Map(mapDistricts.map(({ d }) => [d.id, topojson.merge(world, d.pays.map(p => geomById.get(p)).filter(Boolean))]));
-
-  root.append("g").attr("pointer-events", "none").selectAll("path").data(mapDistricts).join("path")
-    .attr("class", "district-outline").attr("data-sw", 0.9)
-    .attr("d", x => path(merged.get(x.d.id)));
-
-  const sectorOutlines = root.append("g").attr("pointer-events", "none").selectAll("path").data(data.secteurs.filter(s => s.districts.some(d => merged.has(d.id)))).join("path")
-    .attr("class", "district-outline sector-outline").attr("data-sw", 1.8)
-    .attr("d", s => path(topojson.merge(world, s.districts.flatMap(d => (d.pays || []).map(p => geomById.get(p)).filter(Boolean)))));
-
-  const labels = root.append("g").attr("pointer-events", "none").selectAll("text").data(mapDistricts).join("text")
-    .attr("class", "district-label")
-    .attr("transform", x => {
-      const c = path.centroid(largestPolygon(merged.get(x.d.id)));
-      return `translate(${c[0]},${c[1]})`;
-    })
-    .text(x => x.d.nom);
-
-  function largestPolygon(feature) {
-    if (feature.type !== "MultiPolygon") return feature;
-    let best = null, area = -1;
-    for (const coords of feature.coordinates) {
-      const poly = { type: "Polygon", coordinates: coords };
-      const a = d3.geoArea(poly);
-      if (a > area) { area = a; best = poly; }
-    }
-    return best;
+  // ---------- Géométrie : pays → districts → secteurs ----------
+  const geoms = topo.objects.countries.geometries;
+  const districtDuPays = new Map();
+  for (const d of districts) for (const p of d.pays || []) districtDuPays.set(p, d);
+  const distDe = g => districtDuPays.get(g.properties.name);
+  const sectDe = g => (distDe(g) || {})._secteur;
+  for (const d of districts) {
+    const gs = geoms.filter(g => distDe(g) === d);
+    d._geo = gs.length ? topojson.merge(topo, gs) : null;
   }
+  for (const s of data.secteurs) {
+    const gs = geoms.filter(g => sectDe(g) === s.id);
+    s._geo = gs.length ? topojson.merge(topo, gs) : null;
+  }
+  const meshPays = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b);
+  const meshDist = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && distDe(a) !== distDe(b));
+  const meshSect = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && sectDe(a) !== sectDe(b));
+  const meshCote = topojson.mesh(topo, topo.objects.countries, (a, b) => a === b);
 
-  // ---------- Interaction carte ----------
-  const tip = $("#tooltip");
-  countryPaths
-    .on("mousemove", (e, c) => {
-      const x = districtOfCountry.get(c.id);
-      if (!x) { tip.hidden = true; return; }
-      const st = districtState(x.d, state.date);
-      tip.innerHTML = `<strong>${esc(x.d.nom)}</strong><br><span class="muted">${esc(x.s.nom)} · ${esc(c.properties.name)}</span><br>${badge(st.controle)}`;
-      const r = $(".map-wrap").getBoundingClientRect();
-      tip.style.left = Math.min(e.clientX - r.left + 12, r.width - 200) + "px";
-      tip.style.top = (e.clientY - r.top + 12) + "px";
-      tip.hidden = false;
-    })
-    .on("mouseleave", () => { tip.hidden = true; })
-    .on("click", (e, c) => {
-      const x = districtOfCountry.get(c.id);
-      if (!x) return;
-      if (state.secteur !== x.s.id) selectSecteur(x.s.id);
-      else selectDistrict(x.d.id);
+  // ---------- Construction SVG ----------
+  const svg = d3.select('#map').append('svg');
+  const defs = svg.append('defs');
+  defs.html(`
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="hachures" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="1.6" height="5" fill="#e2cf3a" fill-opacity=".55"/>
+    </pattern>`);
+  const gZoom = svg.append('g');
+  const L = {};
+  for (const n of ['fond', 'dist', 'corr', 'hatch', 'bords', 'sel', 'mark', 'lab']) L[n] = gZoom.append('g');
+
+  const projection = d3.geoNaturalEarth1();
+  const path = d3.geoPath(projection);
+  let W = 0, H = 0, k = 1;
+
+  const zoom = d3.zoom().scaleExtent([1, 16]).on('zoom', e => {
+    gZoom.attr('transform', e.transform);
+    k = e.transform.k;
+    echelleLabels();
+  });
+  svg.call(zoom).on('dblclick.zoom', null);
+  svg.on('click', e => { if (e.target.tagName === 'svg' || e.target.classList.contains('sphere')) remonter(); });
+
+  function construire() {
+    const box = $('#map').getBoundingClientRect();
+    W = box.width; H = box.height;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const haut = W < 700 ? 52 : 56, bas = 56;
+    projection.fitExtent([[10, haut], [W - 10, H - bas]], {
+      type: 'MultiPoint', coordinates: [[-180, 0], [180, 0], [0, 84], [0, -57], [-170, 70], [170, 70], [-170, -57], [170, -57]]
     });
 
-  $("#btn-monde").onclick = () => { state.district = null; selectSecteur(null); };
+    L.fond.selectAll('*').remove();
+    L.fond.append('path').attr('class', 'sphere').attr('d', path({ type: 'Sphere' }));
+    L.fond.append('path').attr('class', 'ocean-grid').attr('d', path(d3.geoGraticule10()));
 
-  function zoomToSecteur(s, animate = true) {
+    const avecGeo = districts.filter(d => d._geo);
+    L.dist.selectAll('path').data(avecGeo, d => d.id).join('path')
+      .attr('class', 'district cliquable').attr('d', d => path(d._geo))
+      .on('mousemove', survol).on('mouseleave', finSurvol).on('click', clicDistrict);
+    L.corr.selectAll('path').data(avecGeo, d => d.id).join('path')
+      .attr('class', 'corruption').attr('d', d => path(d._geo));
+    L.hatch.selectAll('path').data(avecGeo, d => d.id).join('path')
+      .attr('class', 'hatch-over').attr('d', d => path(d._geo));
+
+    L.bords.selectAll('*').remove();
+    L.bords.append('path').attr('class', 'b-pays').attr('d', path(meshPays));
+    L.bords.append('path').attr('class', 'b-pays').attr('d', path(meshCote)).style('stroke', '#39424e').style('stroke-opacity', .9);
+    L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
+    L.bords.append('path').attr('class', 'b-secteur').attr('d', path(meshSect));
+
+    rendre(false);
+  }
+
+  // Point d'ancrage (label / marqueur) d'un district ou secteur
+  function ancre(o) {
+    if (o.label) return projection(o.label);
+    return o._geo ? path.centroid(o._geo) : null;
+  }
+
+  // Cadre en pixels d'un secteur ou district
+  function cadre(o) {
+    if (o.cadre) {
+      const [[w, s], [e, n]] = o.cadre, pts = [];
+      for (let i = 0; i <= 10; i++) {
+        const lon = w + (e - w) * i / 10, lat = s + (n - s) * i / 10;
+        pts.push(projection([lon, s]), projection([lon, n]), projection([w, lat]), projection([e, lat]));
+      }
+      return [[d3.min(pts, p => p[0]), d3.min(pts, p => p[1])], [d3.max(pts, p => p[0]), d3.max(pts, p => p[1])]];
+    }
+    return o._geo ? path.bounds(o._geo) : null;
+  }
+
+  function zoomSur(b, anime = true) {
     let t = d3.zoomIdentity;
-    if (s) {
-      let [[x0, y0], [x1, y1]] = [[Infinity, Infinity], [-Infinity, -Infinity]];
-      if (s.cadrage) {
-        const [[lo0, la0], [lo1, la1]] = s.cadrage;
-        for (let i = 0; i <= 10; i++) for (let j = 0; j <= 10; j++) {
-          const p = projection([lo0 + (lo1 - lo0) * i / 10, la0 + (la1 - la0) * j / 10]);
-          if (!p) continue;
-          x0 = Math.min(x0, p[0]); y0 = Math.min(y0, p[1]); x1 = Math.max(x1, p[0]); y1 = Math.max(y1, p[1]);
-        }
-      } else {
-        const feats = s.districts.map(d => merged.get(d.id)).filter(Boolean);
-        if (!feats.length) return;
-        [[x0, y0], [x1, y1]] = path.bounds({ type: "FeatureCollection", features: feats.map(g => ({ type: "Feature", geometry: g })) });
-      }
-      if (isFinite(x0)) {
-        const k = Math.min(40, 0.92 / Math.max((x1 - x0) / W, (y1 - y0) / H));
-        t = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
-      }
+    if (b) {
+      const [[x0, y0], [x1, y1]] = b;
+      const haut = 60, bas = 60, dispoH = H - haut - bas;
+      const kk = Math.max(1, Math.min(16, 0.88 / Math.max((x1 - x0) / W, (y1 - y0) / dispoH)));
+      t = d3.zoomIdentity.translate(W / 2, haut + dispoH / 2).scale(kk).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
     }
-    (animate ? svg.transition().duration(750) : svg).call(zoom.transform, t);
+    (anime ? svg.transition().duration(850).ease(d3.easeCubicInOut) : svg).call(zoom.transform, t);
   }
 
-  // ---------- Rendu ----------
-  function badge(controle) {
-    return `<span class="badge badge-${esc(controle)}">${esc(CONTROLES[controle] || controle)}</span>`;
-  }
-
-  function intensityBars(n) {
-    n = Math.max(0, Math.min(5, +n || 0));
-    return `<span class="intensity" title="Intensité des combats : ${n}/5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
-  }
-
-  function paintMap() {
-    countryPaths.style("fill", c => {
-      const x = districtOfCountry.get(c.id);
-      if (!x) return null;
-      return couleur(data, districtState(x.d, state.date).controle);
-    }).classed("active", c => {
-      const x = districtOfCountry.get(c.id);
-      return !!x && (x.d.id === state.district);
-    }).classed("dim", c => {
-      const x = districtOfCountry.get(c.id);
-      return sectorOnMap() && (!x || x.s.id !== state.secteur);
-    });
-    hatchPaths.attr("opacity", c => {
-      const x = districtOfCountry.get(c.id);
-      const st = districtState(x.d, state.date);
-      const dim = sectorOnMap() && x.s.id !== state.secteur ? 0.3 : 1;
-      return st.controle === "conteste" ? dim * Math.min(1, 0.3 + (st.intensite || 0) * 0.15) : 0;
-    });
-    labels.attr("display", x => state.secteur === x.s.id ? null : "none");
-    sectorOutlines.classed("current", s => s.id === state.secteur);
-  }
-
-  // Le secteur sélectionné a-t-il au moins un district visible sur la carte ?
-  function sectorOnMap() {
-    const s = state.secteur && data.secteurs.find(x => x.id === state.secteur);
-    return !!s && s.districts.some(d => merged.has(d.id));
-  }
-
-  function renderLegend() {
-    $("#legend").innerHTML = ["confederation", "conteste", "cultistes"].map(k =>
-      `<span><i style="background:${esc(couleur(data, k))}"></i>${esc(CONTROLES[k])}</span>`).join("");
-  }
-
-  function countByControle(districts) {
-    const c = { confederation: 0, conteste: 0, cultistes: 0 };
-    districts.forEach(d => { const k = districtState(d, state.date).controle; c[k] = (c[k] || 0) + 1; });
-    return c;
-  }
-
-  function controlBar(c) {
-    const total = c.confederation + c.conteste + c.cultistes || 1;
-    return `<div class="ctrl-bar">${["confederation", "conteste", "cultistes"].map(k =>
-      c[k] ? `<span style="flex:${c[k]};background:${esc(couleur(data, k))}" title="${esc(CONTROLES[k])} : ${c[k]}"></span>` : "").join("")}</div>
-      <div class="ctrl-legend muted">${c.confederation} tenus · ${c.conteste} contestés · ${c.cultistes} perdus</div>`;
-  }
-
-  function renderZones() {
-    const pane = $("#pane-zones");
-    if (state.district) return renderFiche(pane);
-    if (state.secteur) {
-      const s = data.secteurs.find(x => x.id === state.secteur);
-      pane.innerHTML = `
-        <div class="crumbs"><a href="#" data-go="monde">Monde</a> › ${esc(s.nom)}</div>
-        <h2>${esc(s.nom)}</h2>
-        ${s.description ? `<p class="muted">${esc(s.description)}</p>` : ""}
-        ${controlBar(countByControle(s.districts))}
-        <ul class="list">${s.districts.map(d => {
-          const st = districtState(d, state.date);
-          return `<li><button data-district="${esc(d.id)}"><i class="dot" style="background:${esc(couleur(data, st.controle))}"></i>
-            <span class="grow">${esc(d.nom)}${(d.pays || []).length ? "" : ' <span class="tag">hors carte</span>'}</span>${intensityBars(st.intensite)}</button></li>`;
-        }).join("")}</ul>`;
-      return;
+  function cadreVue() {
+    if (etat.niveau === 'monde') return null;
+    const s = secteurParId[etat.secteur];
+    if (etat.niveau === 'district') {
+      const d = parId[etat.district];
+      const b = d.cadre ? cadre(d) : (d._geo ? path.bounds(d._geo) : null);
+      if (b && (b[1][0] - b[0][0]) < W * 0.6) return b;
     }
-    const all = data.secteurs.flatMap(s => s.districts);
-    pane.innerHTML = `
-      <h2>Situation mondiale</h2>
-      ${controlBar(countByControle(all))}
-      <p class="muted small">Cliquez sur un secteur pour zoomer, puis sur un district pour ouvrir sa fiche.</p>
-      <ul class="list">${data.secteurs.map(s => {
-        const c = countByControle(s.districts);
-        const onMap = s.districts.some(d => merged.has(d.id));
-        return `<li><button data-secteur="${esc(s.id)}"><span class="grow"><strong>${esc(s.nom)}</strong>${onMap ? "" : ' <span class="tag">hors carte</span>'}<br>
-          <span class="muted small">${s.districts.length} districts · ${c.conteste} contestés · ${c.cultistes} perdus</span></span>›</button></li>`;
-      }).join("")}</ul>`;
+    return cadre(s);
   }
 
-  function effectifsBlock(nomFaction, color, list) {
-    const total = sum((list || []).map(u => u.nombre));
-    return `<details class="effectifs">
-      <summary><i class="dot" style="background:${esc(color)}"></i><span class="grow">${esc(nomFaction)}</span><strong>${list && list.length ? fmt(total) : "—"}</strong></summary>
-      ${list && list.length ? `<table>${list.map(u => `<tr><td>${esc(u.unite)}</td><td class="num">${fmt(u.nombre)}</td></tr>`).join("")}</table>` : '<p class="muted small">Aucune unité signalée.</p>'}
-    </details>`;
+  // ---------- État affiché (direct ou archive) ----------
+  function statutDe(d) {
+    if (etat.replay !== null) {
+      const s = data.historique[etat.replay].districts[d.id];
+      return s || { statut: 'controle', influence: 0 };
+    }
+    return { statut: d.statut, influence: d.influence };
+  }
+  const tensionAff = () => etat.replay !== null ? data.historique[etat.replay].tension : data.tension.valeur;
+  const evenementsAff = () => etat.replay !== null ? data.evenements.slice(0, data.historique[etat.replay].evenements) : data.evenements;
+
+  function influenceMoy(list) {
+    let num = 0, den = 0;
+    for (const d of list) {
+      const pop = C.parse(d.civils && d.civils.population).n || 1;
+      num += statutDe(d).influence * pop; den += pop;
+    }
+    return den ? num / den : 0;
   }
 
-  function renderFiche(pane) {
-    const f = findDistrict(data, state.district);
-    if (!f) { state.district = null; return renderZones(); }
-    const { district: d, secteur: s } = f;
-    const st = districtState(d, state.date);
-    const hist = [...(d.historique || [])].filter(h => !state.date || h.date <= state.date).sort((a, b) => b.date.localeCompare(a.date));
-    const evts = data.evenements.filter(e => e.district === d.id && (!state.date || e.date <= state.date)).sort((a, b) => b.date.localeCompare(a.date));
-    const c = d.civils || {}, p = d.pertes || {}, e = d.effectifs || {};
-    pane.innerHTML = `
-      <div class="crumbs"><a href="#" data-go="monde">Monde</a> › <a href="#" data-secteur="${esc(s.id)}">${esc(s.nom)}</a> › ${esc(d.nom)}</div>
-      <div class="fiche-head">
-        <h2>${esc(d.nom)}</h2>
-        <button class="small-btn" id="btn-share" type="button" title="Copier le lien vers cette fiche">🔗 Partager</button>
-      </div>
-      <div class="status-row">${badge(st.controle)} ${intensityBars(st.intensite)}</div>
+  // ---------- Rendu carte ----------
+  function rendre(anime = true) {
+    const sel = etat.niveau === 'monde' ? null : etat.secteur;
+    L.dist.selectAll('path')
+      .attr('fill', d => {
+        const s = statutDe(d);
+        return d3.color(COUL_STATUT[s.statut] || '#555').darker(s.statut === 'perdu' ? 1.6 : 2);
+      })
+      .classed('dim', d => sel && d._secteur !== sel)
+      .classed('sel', d => etat.niveau === 'district' && d.id === etat.district);
+    L.corr.selectAll('path').each(function (d) {
+      const inf = statutDe(d).influence / 100;
+      const o1 = inf * 0.45, o2 = Math.min(0.75, inf * 0.75);
+      d3.select(this).style('--o1', o1).style('--o2', o2).style('opacity', o1)
+        .classed('pulse', inf >= 0.3)
+        .style('display', sel && d._secteur !== sel ? 'none' : null);
+    });
+    L.hatch.selectAll('path').style('display', d => statutDe(d).statut === 'quarantaine' && !(sel && d._secteur !== sel) ? null : 'none');
 
-      <h3>Population civile</h3>
-      <table class="stats">
-        <tr><td>Population</td><td class="num">${fmt(c.population)}</td></tr>
-        <tr><td>Déplacés</td><td class="num">${fmt(c.deplaces)}</td></tr>
-        <tr><td>Victimes civiles</td><td class="num">${fmt(c.victimes)}</td></tr>
-      </table>
+    // Contour de sélection
+    const cible = etat.niveau === 'district' ? parId[etat.district] : etat.niveau === 'secteur' ? secteurParId[etat.secteur] : null;
+    L.sel.selectAll('path').data(cible && cible._geo ? [cible] : []).join('path').attr('class', 'contour-sel').attr('d', o => path(o._geo));
 
-      <h3>Effectifs engagés</h3>
-      ${effectifsBlock(data.factions.confederation.nom, couleur(data, "confederation"), e.confederation)}
-      ${effectifsBlock(data.factions.cultistes.nom, couleur(data, "cultistes"), e.cultistes)}
+    // Labels
+    let labs;
+    if (etat.niveau === 'monde') {
+      labs = data.secteurs.filter(s => s._geo).map(s => ({ id: s.id, l1: s.nom, p: ancre(s), taille: 15 }));
+    } else {
+      labs = secteurParId[etat.secteur].districts.filter(d => d._geo).map(d => {
+        const m = d.nom.match(/^(District)\s+(.*)$/i);
+        return { id: d.id, l0: m ? m[1] : null, l1: m ? m[2] : d.nom, p: ancre(d), taille: 12 };
+      });
+    }
+    L.lab.selectAll('text').data(labs.filter(l => l.p), l => l.id).join('text')
+      .attr('class', 'label').attr('x', l => l.p[0]).attr('y', l => l.p[1])
+      .each(function (l) {
+        const t = d3.select(this).text('');
+        if (l.l0) t.append('tspan').attr('class', 'l0').attr('x', l.p[0]).attr('dy', '-0.5em').text(l.l0);
+        t.append('tspan').attr('class', 'l1').attr('x', l.p[0]).attr('dy', l.l0 ? '1.15em' : '0.35em').text(l.l1);
+      })
+      .datum(l => l);
 
-      <h3>Pertes militaires</h3>
-      <table class="stats">
-        <tr><td>${esc(data.factions.confederation.nom)}</td><td class="num">${fmt(p.confederation)}</td></tr>
-        <tr><td>${esc(data.factions.cultistes.nom)}</td><td class="num">${fmt(p.cultistes)}</td></tr>
-      </table>
+    // Marqueurs d'événements récents
+    const recents = evenementsAff().slice(-6);
+    const pts = new Map();
+    for (const ev of recents) {
+      const o = ev.portee.type === 'district' ? parId[ev.portee.id] : ev.portee.type === 'secteur' ? secteurParId[ev.portee.id] : null;
+      if (!o) continue;
+      const p = ancre(o);
+      if (!p) continue;
+      const off = ev.portee.type === 'secteur' ? -24 : 22;
+      const cle = ev.portee.type + ev.portee.id;
+      const prev = pts.get(cle);
+      if (!prev || RANG_GRAV[ev.gravite] >= RANG_GRAV[prev.ev.gravite]) pts.set(cle, { cle, ev, p, off });
+    }
+    L.mark.selectAll('g.marker').data([...pts.values()], m => m.cle).join(
+      en => {
+        const g = en.append('g').attr('class', 'marker').style('cursor', 'pointer');
+        g.append('circle').attr('class', 'ring');
+        g.append('circle').attr('class', 'dot');
+        g.append('title');
+        return g;
+      })
+      .on('click', (e, m) => { e.stopPropagation(); allerPortee(m.ev.portee); })
+      .each(function (m) {
+        const g = d3.select(this), c = COUL_GRAV[m.ev.gravite];
+        g.select('.ring').attr('stroke', c);
+        g.select('.dot').attr('fill', c);
+        g.select('title').text(`${m.ev.date} — ${m.ev.titre}`);
+      });
 
-      ${d.notes ? `<h3>Rapport</h3><p class="notes">${esc(d.notes)}</p>` : ""}
+    echelleLabels();
+    const b = cadreVue();
+    zoomSur(b, anime);
+    rendreTension();
+    rendrePanel();
+    rendreFil();
+    rendreAlerte();
+    rendreArchive();
+  }
 
-      <h3>Événements</h3>
-      ${evts.length ? `<ul class="events">${evts.map(eventItem).join("")}</ul>` : '<p class="muted small">Aucun événement enregistré.</p>'}
+  function echelleLabels() {
+    L.lab.selectAll('text').style('font-size', l => (l.taille / k) + 'px').style('stroke-width', (3.2 / k) + 'px');
+    L.lab.selectAll('.l0').style('font-size', l => (l.taille * 0.62 / k) + 'px').attr('class', 'l0').style('fill', '#9aa5b3');
+    L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
+    L.mark.selectAll('.ring').attr('r', 7 / k);
+    L.mark.selectAll('.dot').attr('r', 4 / k);
+  }
 
-      <h3>Historique du contrôle</h3>
-      <ul class="history">${hist.map(h => `<li><span class="muted small">${fmtDate(h.date)}</span> ${badge(h.controle)} ${intensityBars(h.intensite)}</li>`).join("")}</ul>`;
-    $("#btn-share").onclick = async () => {
-      const url = location.href;
-      try { await navigator.clipboard.writeText(url); $("#btn-share").textContent = "✓ Lien copié"; }
-      catch { prompt("Copiez ce lien :", url); }
+  // ---------- Survol / clics ----------
+  const tip = $('#tip');
+  function survol(e, d) {
+    const monde = etat.niveau === 'monde';
+    const autreSecteur = !monde && d._secteur !== etat.secteur;
+    L.dist.selectAll('path').classed('hover', x => (monde || autreSecteur) ? x._secteur === d._secteur : x.id === d.id);
+    let html;
+    if (monde || autreSecteur) {
+      const s = secteurParId[d._secteur];
+      const touches = s.districts.filter(x => statutDe(x).statut !== 'controle').length;
+      html = `<b>Secteur ${esc(s.nom)}</b>Influence cultiste : ${Math.round(influenceMoy(s.districts))} %<br>${touches} / ${s.districts.length} districts touchés`;
+    } else {
+      const s = statutDe(d);
+      html = `<b>${esc(d.nom)}</b><span class="chip ${s.statut}">${esc(data.statuts[s.statut])}</span><br>Influence cultiste : ${s.influence} %`;
+    }
+    tip.innerHTML = html;
+    tip.hidden = false;
+    const zb = $('.mapzone').getBoundingClientRect();
+    let x = e.clientX - zb.left + 14, y = e.clientY - zb.top + 14;
+    if (x + tip.offsetWidth > zb.width - 8) x = e.clientX - zb.left - tip.offsetWidth - 14;
+    if (y + tip.offsetHeight > zb.height - 60) y = e.clientY - zb.top - tip.offsetHeight - 14;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  }
+  function finSurvol() {
+    L.dist.selectAll('path').classed('hover', false);
+    tip.hidden = true;
+  }
+  function clicDistrict(e, d) {
+    e.stopPropagation();
+    tip.hidden = true;
+    if (etat.niveau === 'monde' || d._secteur !== etat.secteur) naviguer(d._secteur);
+    else naviguer(d._secteur, d.id);
+  }
+  function remonter() {
+    if (etat.niveau === 'district') naviguer(etat.secteur);
+    else if (etat.niveau === 'secteur') naviguer();
+  }
+  function allerPortee(p) {
+    if (p.type === 'district' && parId[p.id]) naviguer(parId[p.id]._secteur, p.id);
+    else if (p.type === 'secteur' && secteurParId[p.id]) naviguer(p.id);
+    else naviguer();
+  }
+
+  // Navigation via l'URL (#europe/eu-est) — les liens sont partageables sur Discord
+  function naviguer(secteur, district) {
+    const h = secteur ? '#' + secteur + (district ? '/' + district : '') : '#';
+    if (location.hash === h || (h === '#' && !location.hash)) lireHash();
+    else location.hash = h;
+  }
+  function lireHash() {
+    const [s, d] = decodeURIComponent(location.hash.slice(1)).split('/');
+    if (s && secteurParId[s]) {
+      etat.secteur = s;
+      if (d && parId[d] && parId[d]._secteur === s) { etat.niveau = 'district'; etat.district = d; }
+      else { etat.niveau = 'secteur'; etat.district = null; }
+    } else { etat.niveau = 'monde'; etat.secteur = null; etat.district = null; }
+    rendre();
+    if (window.innerWidth <= 900 && etat.niveau !== 'monde') { /* reste sur la carte en mobile */ }
+    $('#panel').scrollTop = 0;
+  }
+  window.addEventListener('hashchange', lireHash);
+
+  // ---------- Fil d'Ariane ----------
+  function rendreFil() {
+    const parts = [`<button data-nav="" class="${etat.niveau === 'monde' ? 'cur' : ''}">Monde</button>`];
+    if (etat.secteur) parts.push('<span class="sep">›</span>', `<button data-nav="${etat.secteur}" class="${etat.niveau === 'secteur' ? 'cur' : ''}">${esc(secteurParId[etat.secteur].nom)}</button>`);
+    if (etat.district) parts.push('<span class="sep">›</span>', `<button class="cur" data-nav="${etat.secteur}/${etat.district}">${esc(parId[etat.district].nom)}</button>`);
+    $('#fil').innerHTML = parts.join('');
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-nav]');
+    if (!b) return;
+    const [s, d] = b.dataset.nav.split('/');
+    naviguer(s || undefined, d || undefined);
+  });
+
+  // ---------- Panneau latéral ----------
+  function barre(inf) {
+    const i = Math.round(inf);
+    return `<div class="bar"><div class="track"><div class="fill" style="width:${i}%"></div></div>
+      <div class="legend"><span class="c">Confédération ${100 - i} %</span><span class="x">Influence cultiste ${i} %</span></div></div>`;
+  }
+
+  function blocCivils(a) {
+    const c = a.civils;
+    return `<section class="bloc"><h3>Population civile</h3><div class="stats">
+      <div class="stat big"><span class="lbl">Population</span><span class="v">${C.fmt(c.population)}</span></div>
+      <div class="stat"><span class="lbl">Civils impliqués</span><span class="v">${C.fmt(c.impliques)}</span></div>
+      <div class="stat"><span class="lbl">Déplacés</span><span class="v">${C.fmt(c.deplaces)}</span></div>
+      <div class="stat"><span class="lbl">Disparus</span><span class="v">${C.fmt(c.disparus)}</span></div>
+      <div class="stat rouge"><span class="lbl">Décès</span><span class="v">${C.fmt(c.deces)}</span></div>
+    </div></section>`;
+  }
+
+  function blocForces(a) {
+    const f = a.forces;
+    const carte = cle => {
+      const fa = f[cle];
+      const max = Math.max(1, ...fa.unites.map(u => u.v.n));
+      const lignes = fa.unites.length ? fa.unites.map(u => `
+        <div class="unite"><span>${esc(u.nom)}</span><span class="n">${C.fmt(u.v)}</span>
+        <span class="ub"><i style="width:${(u.v.n / max * 100).toFixed(1)}%"></i></span></div>`).join('')
+        : '<div class="vide">Aucune force signalée.</div>';
+      return `<details class="faction ${cle}" ${fa.unites.length ? 'open' : ''}>
+        <summary><span class="nom">${esc(data.factions[cle].court)}</span><span class="tot">${C.fmt(fa.total)}</span></summary>
+        <div class="unites">${lignes}</div></details>`;
     };
+    const a1 = f.confederation.total.n, a2 = f.cultistes.total.n;
+    let rapport = '';
+    if (a1 && a2) {
+      const r = a1 >= a2 ? `${(a1 / a2).toFixed(1).replace('.', ',')} : 1 en faveur de la Confédération` : `1 : ${(a2 / a1).toFixed(1).replace('.', ',')} en faveur des Cultistes`;
+      rapport = `<p class="muted small" style="margin:10px 0 0">Rapport de force : <strong style="color:var(--text)">${rapport = r}</strong></p>`;
+    }
+    return `<section class="bloc"><h3>Effectifs engagés</h3>${carte('confederation')}${carte('cultistes')}${rapport}</section>`;
   }
 
-  function eventItem(e) {
-    const f = e.district ? findDistrict(data, e.district) : null;
-    return `<li class="event grav-${esc(e.gravite)}">
-      <div class="event-meta"><span class="grav">${esc({ info: "Info", important: "Important", critique: "Critique" }[e.gravite] || e.gravite)}</span>
-      <span class="muted small">${fmtDate(e.date)}</span></div>
-      <strong>${esc(e.titre)}</strong>
-      ${e.description ? `<p>${esc(e.description)}</p>` : ""}
-      ${f ? `<a href="#" class="small" data-district="${esc(f.district.id)}">📍 ${esc(f.district.nom)}</a>` : ""}
-    </li>`;
+  function blocPertes(a) {
+    const ligne = cle => `<tr><td>${esc(data.factions[cle].court)}</td>${C.PERTES.map(([k2]) => `<td>${C.fmt(a.pertes[cle][k2])}</td>`).join('')}</tr>`;
+    return `<section class="bloc"><h3>Pertes militaires</h3><table class="pertes">
+      <tr><th>Faction</th>${C.PERTES.map(([, l]) => `<th>${l}</th>`).join('')}</tr>
+      ${ligne('confederation')}${ligne('cultistes')}</table></section>`;
   }
 
-  function renderEvents() {
-    const evts = data.evenements.filter(e => !state.date || e.date <= state.date).sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
-    $("#pane-events").innerHTML = `<h2>Événements récents</h2>` +
-      (evts.length ? `<ul class="events">${evts.map(eventItem).join("")}</ul>` : '<p class="muted">Aucun événement à cette date.</p>');
+  function nomPortee(p) {
+    if (p.type === 'district' && parId[p.id]) return parId[p.id].nom + ' · ' + secteurParId[parId[p.id]._secteur].nom;
+    if (p.type === 'secteur' && secteurParId[p.id]) return 'Secteur ' + secteurParId[p.id].nom;
+    return 'Mondial';
   }
 
-  function renderTension() {
-    const v = tensionAt(data, state.date);
-    const pal = palierFor(data, v);
-    const paliers = [...data.tension.paliers].sort((a, b) => a.seuil - b.seuil);
-    const colors = ["#3f9a5b", "#b6b33a", "#e0a526", "#d9622b", "#b3202a"];
-    const minutes = Math.max(0, Math.round((100 - v) * 0.6));
-    $("#tb-value").textContent = v;
-    $("#tb-palier").textContent = pal.nom;
-    $("#tension-badge").style.setProperty("--tc", colors[Math.min(4, paliers.indexOf(pal))]);
-
-    // Jauge en demi-cercle
-    const cx = 120, cy = 110, r = 90;
-    const ang = x => Math.PI * (1 - x / 100);
-    const pt = (x, rr) => [cx + rr * Math.cos(ang(x)), cy - rr * Math.sin(ang(x))];
-    const arcs = paliers.map((p, i) => {
-      const a = p.seuil, b = i + 1 < paliers.length ? paliers[i + 1].seuil : 100;
-      const [x0, y0] = pt(a, r), [x1, y1] = pt(b, r);
-      return `<path d="M${x0},${y0} A${r},${r} 0 0 1 ${x1},${y1}" stroke="${colors[Math.min(4, i)]}" stroke-width="18" fill="none" opacity="${p === pal ? 1 : 0.35}"/>`;
-    }).join("");
-    const [nx, ny] = pt(v, r - 22);
-    const hist = [...data.tension.historique].filter(h => !state.date || h.date <= state.date).sort((a, b) => b.date.localeCompare(a.date));
-
-    $("#pane-tension").innerHTML = `
-      <h2>Horloge de Tension</h2>
-      <svg class="gauge" viewBox="0 0 240 130">
-        ${arcs}
-        <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" class="needle"/>
-        <circle cx="${cx}" cy="${cy}" r="6" class="needle-hub"/>
-      </svg>
-      <p class="gauge-value">${v}<span class="muted"> / 100</span></p>
-      <p class="clock">${minutes === 0 ? "MINUIT" : `${minutes} min avant minuit`}</p>
-      <div class="palier" style="border-color:${colors[Math.min(4, paliers.indexOf(pal))]}">
-        <strong>Palier ${paliers.indexOf(pal) + 1} — ${esc(pal.nom)}</strong>
-        <p class="muted">${esc(pal.description || "")}</p>
-        <h3>Armes autorisées</h3>
-        <ul class="armes">${paliers.filter(p => p.seuil <= pal.seuil).flatMap(p => p.armes || []).filter((a, i, arr) => arr.indexOf(a) === i).map(a => `<li>${esc(a)}</li>`).join("")}</ul>
-      </div>
-      <h3>Paliers</h3>
-      <ol class="paliers">${paliers.map((p, i) => `<li class="${p === pal ? "current" : ""}"><i class="dot" style="background:${colors[Math.min(4, i)]}"></i><span class="grow">${esc(p.nom)}</span><span class="muted small">≥ ${p.seuil}</span></li>`).join("")}</ol>
-      <h3>Évolution</h3>
-      <ul class="history">${hist.map(h => `<li><span class="muted small">${fmtDate(h.date)}</span> <strong>${h.valeur}</strong> ${esc(h.note || "")}</li>`).join("")}</ul>`;
+  function blocEvenements(filtreFn, titre) {
+    let evs = evenementsAff().filter(filtreFn).slice().reverse();
+    const filtres = { tous: 'Tous', majeur: 'Majeurs +', critique: 'Critiques' };
+    if (etat.filtre === 'majeur') evs = evs.filter(e => e.gravite !== 'mineur');
+    if (etat.filtre === 'critique') evs = evs.filter(e => e.gravite === 'critique');
+    const html = evs.length ? evs.map(ev => `
+      <article class="ev ${ev.gravite}">
+        <div class="meta"><span class="grav">${esc(C.GRAVITES[ev.gravite])}</span><span class="date">${esc(ev.date)}</span>
+          <button class="portee" data-portee='${esc(JSON.stringify(ev.portee))}'>${esc(nomPortee(ev.portee))}</button></div>
+        <h4>${esc(ev.titre)}</h4>
+        <p>${esc(ev.description)}</p>
+        ${ev.consequences && ev.consequences.length ? `<ul>${ev.consequences.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
+        ${ev.tension ? `<span class="dt ${ev.tension > 0 ? 'up' : 'down'}">Tension ${ev.tension > 0 ? '+' : ''}${ev.tension}</span>` : ''}
+      </article>`).join('') : '<div class="vide">Aucun événement.</div>';
+    return `<section class="bloc"><h3>${titre}</h3>
+      <div class="filtres">${Object.entries(filtres).map(([k2, l]) => `<button data-filtre="${k2}" class="${etat.filtre === k2 ? 'on' : ''}">${l}</button>`).join('')}</div>
+      ${html}</section>`;
   }
 
-  function renderTimeline() {
-    const r = $("#timeline");
-    r.max = Math.max(0, state.dates.length - 1);
-    const idx = state.date ? state.dates.indexOf(state.date) : state.dates.length - 1;
-    r.value = idx;
-    const shown = state.date || state.dates[state.dates.length - 1];
-    $("#timeline-date").textContent = shown ? fmtDate(shown).replace(/<[^>]+>/g, "") : "–";
-    $("#timeline-live").hidden = !!state.date;
+  function itemListe(o, navCle, sousDistricts) {
+    const inf = sousDistricts ? influenceMoy(sousDistricts) : statutDe(o).influence;
+    let droite;
+    if (sousDistricts) {
+      const touches = sousDistricts.filter(x => statutDe(x).statut !== 'controle').length;
+      droite = o.geographique === false ? '<span class="chip horscarte">Hors carte</span>' : `<span class="muted small">${touches}/${sousDistricts.length} touchés</span>`;
+    } else {
+      const s = statutDe(o);
+      droite = `<span class="chip ${s.statut}">${esc(data.statuts[s.statut])}</span>`;
+    }
+    return `<button class="item" data-nav="${navCle}"><span class="t">${esc(o.nom)}</span>${droite}
+      <span class="mini"><i style="width:${Math.round(inf)}%"></i></span></button>`;
   }
 
-  function render() {
-    paintMap();
-    renderZones();
-    renderEvents();
-    renderTension();
-    renderTimeline();
-    $("#btn-monde").hidden = !state.secteur;
-    writeHash();
+  function rendrePanel() {
+    let html;
+    if (etat.niveau === 'monde') {
+      const compte = {};
+      districts.forEach(d => { const s = statutDe(d).statut; compte[s] = (compte[s] || 0) + 1; });
+      html = `<div class="p-head"><span class="lbl">Vue globale · ${districts.length} districts</span><h2>${esc(data.meta.titre)}</h2>
+        <div class="row compte">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="chip ${s}">${compte[s]} · ${esc(data.statuts[s])}</span>`).join('')}</div>
+        ${barre(influenceMoy(districts))}</div>
+        <section class="bloc"><h3>Secteurs</h3><div class="liste">${data.secteurs.map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
+        ${blocCivils(C.agrege(districts))}${blocForces(C.agrege(districts))}${blocPertes(C.agrege(districts))}
+        ${blocEvenements(() => true, 'Événements mondiaux')}`;
+    } else if (etat.niveau === 'secteur') {
+      const s = secteurParId[etat.secteur];
+      const a = C.agrege(s.districts);
+      const ids = new Set(s.districts.map(d => d.id));
+      html = `<div class="p-head"><span class="lbl">Secteur${s.geographique === false ? ' · hors carte' : ''}</span><h2>${esc(s.nom)}</h2>${barre(influenceMoy(s.districts))}</div>
+        ${s.note ? `<div class="note">${esc(s.note)}</div>` : ''}
+        <section class="bloc"><h3>Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<div class="vide">Aucun district.</div>'}</div></section>
+        ${blocCivils(a)}${blocForces(a)}${blocPertes(a)}
+        ${blocEvenements(e => (e.portee.type === 'secteur' && e.portee.id === s.id) || (e.portee.type === 'district' && ids.has(e.portee.id)), 'Événements du secteur')}`;
+    } else {
+      const d = parId[etat.district], s = secteurParId[d._secteur], st = statutDe(d);
+      const a = C.agrege([d]);
+      html = `<div class="p-head"><span class="lbl">Secteur ${esc(s.nom)} · District</span><h2>${esc(d.nom)}</h2>
+        <div class="row"><span class="chip ${st.statut}">${esc(data.statuts[st.statut])}</span>
+        ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}">${d.tendance === 'hausse' ? '▲' : d.tendance === 'baisse' ? '▼' : '■'} ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
+        ${barre(st.influence)}</div>
+        ${d.note ? `<div class="note">${esc(d.note)}</div>` : ''}
+        ${blocCivils(a)}${blocForces(a)}${blocPertes(a)}
+        ${blocEvenements(e => (e.portee.type === 'district' && e.portee.id === d.id) || (e.portee.type === 'secteur' && e.portee.id === s.id), 'Événements récents')}`;
+    }
+    $('#panel').innerHTML = html;
   }
-
-  // ---------- Navigation ----------
-  function selectSecteur(id, animate = true) {
-    state.secteur = id;
-    if (!id) state.district = null;
-    const s = data.secteurs.find(x => x.id === id);
-    zoomToSecteur(s, animate);
-    showTab("zones");
-    render();
-  }
-
-  function selectDistrict(id) {
-    const f = findDistrict(data, id);
-    if (!f) return;
-    state.district = id;
-    if (state.secteur !== f.secteur.id) { state.secteur = f.secteur.id; zoomToSecteur(f.secteur); }
-    showTab("zones");
-    render();
-    $(".panel-body").scrollTop = 0;
-    if (window.matchMedia("(max-width: 800px)").matches) $(".panel").scrollIntoView({ behavior: "smooth" });
-  }
-
-  function showTab(name) {
-    document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
-    document.querySelectorAll(".tab-pane").forEach(p => p.classList.toggle("active", p.dataset.pane === name));
-  }
-
-  document.querySelector(".tabs").addEventListener("click", e => {
-    const b = e.target.closest("button[data-tab]");
-    if (b) showTab(b.dataset.tab);
+  $('#panel').addEventListener('click', e => {
+    const f = e.target.closest('[data-filtre]');
+    if (f) { etat.filtre = f.dataset.filtre; rendrePanel(); return; }
+    const p = e.target.closest('[data-portee]');
+    if (p) allerPortee(JSON.parse(p.dataset.portee));
   });
-  $("#tension-badge").onclick = () => showTab("tension");
 
-  document.querySelector(".panel").addEventListener("click", e => {
-    const a = e.target.closest("[data-district],[data-secteur],[data-go]");
-    if (!a) return;
-    e.preventDefault();
-    if (a.dataset.district) selectDistrict(a.dataset.district);
-    else if (a.dataset.secteur) { state.district = null; selectSecteur(a.dataset.secteur); }
-    else if (a.dataset.go === "monde") selectSecteur(null);
-  });
+  // ---------- Tension mondiale ----------
+  function horloge(el, min, grand) {
+    const P = (a, r) => [50 + r * Math.sin(a * Math.PI / 180), 50 - r * Math.cos(a * Math.PI / 180)];
+    const aMin = 360 - min * 6, aH = 360 - min * 0.5;
+    const ticks = d3.range(60).map(i => {
+      const a = i * 6, long = i % 5 === 0, [x1, y1] = P(a, 44), [x2, y2] = P(a, long ? 37 : 41);
+      if (!grand && !long) return '';
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${a >= 270 || a === 0 ? '#d8284f' : '#4a5563'}" stroke-width="${long ? 2 : 1}"/>`;
+    }).join('');
+    const [ax, ay] = P(270, 46), [bx, by] = P(359.9, 46);
+    const [mx, my] = P(aMin, 40), [hx, hy] = P(aH, 26);
+    el.innerHTML = `<svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="48" fill="#0b0e12" stroke="#2c3440" stroke-width="2"/>
+      <path d="M50 50 L${ax} ${ay} A46 46 0 0 1 ${bx} ${by} Z" fill="#d8284f" fill-opacity=".14"/>
+      ${ticks}
+      <line x1="50" y1="50" x2="${hx}" y2="${hy}" stroke="#dde1e7" stroke-width="4" stroke-linecap="round"/>
+      <line x1="50" y1="50" x2="${mx}" y2="${my}" stroke="#ff3b5c" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="3.5" fill="#ff3b5c"/>
+    </svg>`.replace(/^<svg[^>]*>|<\/svg>$/g, '');
+    el.setAttribute('viewBox', '0 0 100 100');
+  }
+
+  function rendreTension() {
+    const t = tensionAff(), P = data.tension.paliers;
+    const i = C.palier(t, P), min = C.minutes(t, P);
+    const coul = d3.interpolateRgb('#e3a33b', '#ff3b5c')(i / Math.max(1, P.length - 1));
+    horloge($('#miniClock'), min, false);
+    $('#tensionVal').textContent = `${Math.round(t)} / 100`;
+    $('#tensionPalier').textContent = `${['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][i] || i + 1} · ${P[i].nom}`;
+    $('#tensionPalier').style.color = coul;
+
+    const romain = n => ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][n] || n + 1;
+    $('#tensionDetail').innerHTML = `
+      <div class="t-top"><svg id="bigClock"></svg>
+        <div><span class="lbl">Tension mondiale${etat.replay !== null ? ' · archive' : ''}</span>
+        <h2 style="color:${coul}">Palier ${romain(i)} · ${esc(P[i].nom)}</h2>
+        <div class="heure">${C.heure(min)}</div>
+        <p class="muted small" style="margin:4px 0 0">${min > 0 ? `${min.toFixed(1).replace('.', ',')} minutes avant minuit` : 'Minuit atteint'} · Tension ${Math.round(t)} / 100</p></div></div>
+      <div class="t-jauge"><div class="cur" style="left:calc(${t}% - 1px)"></div>
+        ${P.map(p => `<span class="tick" style="left:${p.min}%">${p.min}</span>`).join('')}</div>
+      <div class="paliers">${P.map((p, j) => `
+        <div class="pal ${j < i ? 'passe' : j === i ? 'actuel' : ''}">
+          <span class="num">${romain(j)}</span>
+          <span class="nm">${esc(p.nom)} ${j === i ? '<span class="badge">· ACTUEL</span>' : ''}</span>
+          <span class="seuil">≥ ${p.min} · ${p.minutes} min</span>
+          <span class="ar">${esc(p.armes)}</span></div>`).join('')}</div>`;
+    horloge($('#bigClock'), min, true);
+  }
+  $('#tensionBtn').addEventListener('click', () => $('#tensionDlg').showModal());
+
+  // ---------- Alerte / archive / en-tête ----------
+  function rendreAlerte() {
+    const el = $('#alerte');
+    const dernier = data.evenements[data.evenements.length - 1];
+    if (etat.replay !== null || !dernier || dernier.gravite !== 'critique') { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = `<span class="tag">ALERTE</span><span><strong>${esc(dernier.titre)}</strong> — ${esc(nomPortee(dernier.portee))}</span><span class="quand">${esc(dernier.date)}</span>`;
+    el.onclick = () => allerPortee(dernier.portee);
+  }
+  function rendreArchive() {
+    const el = $('#archive');
+    if (etat.replay === null) { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = `<b>ARCHIVE — ${esc(data.historique[etat.replay].date)}</b><br>Carte, statuts et tension à cette date. Les chiffres détaillés sont ceux d'aujourd'hui.`;
+  }
+
+  $('#titre').textContent = data.meta.titre;
+  $('#soustitre').textContent = data.meta.sousTitre || '';
+  $('#daterp').textContent = data.meta.dateRP;
+  if (data.meta.derniereMaj) {
+    const dt = new Date(data.meta.derniereMaj);
+    $('#maj').textContent = 'Mis à jour le ' + dt.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) + ' à ' + dt.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
 
   // ---------- Chronologie ----------
-  $("#timeline").addEventListener("input", e => {
-    stopPlay();
-    const i = +e.target.value;
-    state.date = i >= state.dates.length - 1 ? null : state.dates[i];
-    render();
-  });
-  $("#btn-live").onclick = () => { stopPlay(); state.date = null; render(); };
-  $("#btn-play").onclick = () => {
-    if (state.playing) return stopPlay();
-    let i = 0;
-    state.date = state.dates[0];
-    render();
-    $("#btn-play").textContent = "❚❚";
-    state.playing = setInterval(() => {
-      i++;
-      if (i >= state.dates.length - 1) { state.date = null; render(); return stopPlay(); }
-      state.date = state.dates[i];
-      render();
+  const slider = $('#slider'), sLbl = $('#sliderLbl');
+  const nH = data.historique.length;
+  if (!nH) $('.timeline').hidden = true;
+  slider.max = nH; slider.value = nH;
+  function majSlider() {
+    const v = +slider.value;
+    etat.replay = v >= nH ? null : v;
+    sLbl.textContent = etat.replay === null ? 'EN DIRECT' : data.historique[v].date;
+    sLbl.classList.toggle('live', etat.replay === null);
+    rendre(false);
+  }
+  slider.addEventListener('input', () => { arreterLecture(); majSlider(); });
+  let lecture = null;
+  function arreterLecture() { clearInterval(lecture); lecture = null; $('#play').textContent = '▶'; }
+  $('#play').addEventListener('click', () => {
+    if (lecture) return arreterLecture();
+    $('#play').textContent = '❚❚';
+    slider.value = 0; majSlider();
+    lecture = setInterval(() => {
+      slider.value = +slider.value + 1; majSlider();
+      if (+slider.value >= nH) arreterLecture();
     }, 1400);
-  };
-  function stopPlay() {
-    if (state.playing) clearInterval(state.playing);
-    state.playing = null;
-    $("#btn-play").textContent = "▶";
-  }
+  });
+  sLbl.classList.add('live');
 
-  // ---------- Liens partageables ----------
-  function writeHash() {
-    const p = new URLSearchParams();
-    if (state.secteur) p.set("secteur", state.secteur);
-    if (state.district) p.set("district", state.district);
-    if (state.date) p.set("date", state.date);
-    const h = p.toString();
-    history.replaceState(null, "", h ? "#" + h : location.pathname + location.search);
-  }
+  // ---------- Démarrage ----------
+  construire();
+  lireHash();
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(construire, 200); });
 
-  function readHash() {
-    const p = new URLSearchParams(location.hash.slice(1));
-    const date = p.get("date");
-    state.date = date && state.dates.includes(date) ? date : null;
-    const d = p.get("district"), s = p.get("secteur");
-    const f = d && findDistrict(data, d);
-    if (f) { state.district = d; state.secteur = f.secteur.id; }
-    else if (s && data.secteurs.some(x => x.id === s)) state.secteur = s;
-    zoomToSecteur(data.secteurs.find(x => x.id === state.secteur), false);
-  }
-
-  renderLegend();
-  readHash();
-  render();
+  // Rechargement automatique si une mise à jour est publiée
+  setInterval(async () => {
+    try {
+      const d = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+      if (d.meta.derniereMaj !== data.meta.derniereMaj) location.reload();
+    } catch (e) { /* hors ligne */ }
+  }, 5 * 60 * 1000);
 })();

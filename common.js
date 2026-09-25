@@ -1,108 +1,108 @@
-// Fonctions partagées entre la carte (app.js) et l'administration (admin.js).
-const WC = (() => {
-  const CONTROLES = {
-    confederation: "Confédération",
-    conteste: "Contesté",
-    cultistes: "Cultistes",
-  };
-
-  async function loadData(url = "data.json") {
-    const res = await fetch(url + "?v=" + Date.now());
-    if (!res.ok) throw new Error("Impossible de charger " + url);
-    return res.json();
+// Outils partagés entre la carte (app.js) et le panneau d'administration (admin.js)
+const C = (() => {
+  // Une valeur chiffrée peut être : 12000 · "~12000" (estimation) · "?" ou "CLASSIFIÉ" (inconnue)
+  function parse(v) {
+    if (v === null || v === undefined || v === '') return { n: 0, est: false, cls: false, vide: true };
+    if (typeof v === 'number') return { n: v, est: false, cls: false };
+    const s = String(v).trim();
+    if (s === '?' || /^classifi/i.test(s)) return { n: 0, est: false, cls: true };
+    const est = s.startsWith('~');
+    const n = Number(s.replace(/[~\s ]/g, '').replace(',', '.'));
+    return isNaN(n) ? { n: 0, est: false, cls: true } : { n, est, cls: false };
   }
 
-  function esc(s) {
-    return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const nf = new Intl.NumberFormat('fr-FR');
+  function num(n) { return nf.format(Math.round(n)); }
+
+  // Format court : 1,2 M · 340 k
+  function court(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(n >= 1e10 ? 0 : 1).replace('.', ',') + ' Md';
+    if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace('.', ',') + ' M';
+    if (n >= 1e4) return Math.round(n / 1e3) + ' k';
+    return num(n);
   }
 
-  // Brouillard de guerre : null = classifié, "~1234" = estimation, "?" = inconnu.
-  function fmt(v) {
-    if (v === null || v === undefined || v === "") return '<span class="fog">Classifié</span>';
-    if (v === "?") return '<span class="fog">Inconnu</span>';
-    if (typeof v === "string" && v.startsWith("~")) {
-      const n = Number(v.slice(1));
-      return '<span class="estimate" title="Estimation">≈ ' + (isNaN(n) ? esc(v.slice(1)) : n.toLocaleString("fr-FR")) + "</span>";
+  // Affiche une valeur brute ou agrégée
+  function fmt(v, compact) {
+    const p = (v && v.hasOwnProperty && v.hasOwnProperty('n')) ? v : parse(v);
+    if (p.cls && !p.n) return '<span class="cls">CLASSIFIÉ</span>';
+    const s = compact ? court(p.n) : num(p.n);
+    return (p.est ? '~' : '') + s + (p.cls ? '<span class="plus">+</span>' : '');
+  }
+
+  function somme(list) {
+    const r = { n: 0, est: false, cls: false };
+    for (const v of list) {
+      const p = parse(v);
+      r.n += p.n; r.est = r.est || p.est; r.cls = r.cls || p.cls;
     }
-    const n = Number(v);
-    return isNaN(n) ? esc(v) : n.toLocaleString("fr-FR");
+    return r;
+  }
+  // Somme d'agrégats déjà calculés
+  function combine(list) {
+    const r = { n: 0, est: false, cls: false };
+    for (const p of list) { r.n += p.n; r.est = r.est || p.est; r.cls = r.cls || p.cls; }
+    return r;
   }
 
-  // Valeur numérique approximative (pour les totaux), null si inconnue.
-  function num(v) {
-    if (v === null || v === undefined || v === "" || v === "?") return null;
-    const n = Number(typeof v === "string" && v.startsWith("~") ? v.slice(1) : v);
-    return isNaN(n) ? null : n;
-  }
+  const CIVILS = [
+    ['population', 'Population'],
+    ['impliques', 'Civils impliqués'],
+    ['deplaces', 'Déplacés'],
+    ['disparus', 'Disparus'],
+    ['deces', 'Décès']
+  ];
+  const PERTES = [['tues', 'Tués'], ['blesses', 'Blessés'], ['disparus', 'Disparus']];
+  const FACTIONS = ['confederation', 'cultistes'];
 
-  function sum(list) {
-    let total = 0, approx = false, missing = false;
-    for (const x of list) {
-      const n = num(x);
-      if (n === null) { missing = true; continue; }
-      if (typeof x === "string") approx = true;
-      total += n;
+  // Agrège une liste de districts
+  function agrege(districts) {
+    const civils = {};
+    for (const [k] of CIVILS) civils[k] = somme(districts.map(d => d.civils && d.civils[k]));
+    const forces = {}, pertes = {};
+    for (const f of FACTIONS) {
+      const unites = new Map();
+      for (const d of districts) for (const u of (d.forces && d.forces[f]) || []) {
+        if (!unites.has(u.nom)) unites.set(u.nom, []);
+        unites.get(u.nom).push(u.effectif);
+      }
+      const list = [...unites].map(([nom, vals]) => ({ nom, v: somme(vals) })).sort((a, b) => b.v.n - a.v.n);
+      forces[f] = { total: combine(list.map(u => u.v)), unites: list };
+      pertes[f] = {};
+      for (const [k] of PERTES) pertes[f][k] = somme(districts.map(d => d.pertes && d.pertes[f] && d.pertes[f][k]));
     }
-    if (missing && total === 0) return null;
-    return approx || missing ? "~" + total : total;
+    return { civils, forces, pertes };
   }
 
-  function fmtDate(d) {
-    if (!d) return "";
-    const t = new Date(d + "T12:00:00");
-    return isNaN(t) ? esc(d) : t.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  function palier(tension, paliers) {
+    let idx = 0;
+    paliers.forEach((p, i) => { if (tension >= p.min) idx = i; });
+    return idx;
+  }
+  // Minutes avant minuit, interpolées entre les paliers
+  function minutes(tension, paliers) {
+    const i = palier(tension, paliers);
+    const p = paliers[i], n = paliers[i + 1];
+    if (!n) return p.minutes;
+    const t = (tension - p.min) / (n.min - p.min);
+    return p.minutes + (n.minutes - p.minutes) * t;
+  }
+  function heure(min) {
+    const s = Math.round(min * 60);
+    if (s <= 0) return '00:00:00';
+    const t = 24 * 3600 - s;
+    const h = Math.floor(t / 3600), m = Math.floor((t % 3600) / 60), sec = t % 60;
+    return [h, m, sec].map(x => String(x).padStart(2, '0')).join(':');
   }
 
-  // Dernière entrée d'historique à la date donnée (ou la plus récente si date absente).
-  function atDate(hist, date) {
-    const sorted = [...(hist || [])].sort((a, b) => a.date.localeCompare(b.date));
-    let cur = null;
-    for (const h of sorted) {
-      if (!date || h.date <= date) cur = h;
-    }
-    return cur;
+  function tousDistricts(data) {
+    return data.secteurs.flatMap(s => s.districts.map(d => Object.assign(d, { _secteur: s.id })));
   }
 
-  function districtState(d, date) {
-    return atDate(d.historique, date) || { controle: "confederation", intensite: 0 };
-  }
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  function tensionAt(data, date) {
-    const h = atDate(data.tension.historique, date);
-    return h ? h.valeur : 0;
-  }
+  const GRAVITES = { mineur: 'Mineur', majeur: 'Majeur', critique: 'Critique' };
+  const TENDANCES = { hausse: 'Progression cultiste', stable: 'Front stable', baisse: 'Recul cultiste' };
 
-  function palierFor(data, v) {
-    const ps = [...data.tension.paliers].sort((a, b) => a.seuil - b.seuil);
-    let p = ps[0];
-    for (const x of ps) if (v >= x.seuil) p = x;
-    return p;
-  }
-
-  function allDistricts(data) {
-    return data.secteurs.flatMap(s => s.districts.map(d => ({ ...d, secteur: s })));
-  }
-
-  function findDistrict(data, id) {
-    for (const s of data.secteurs) {
-      const d = s.districts.find(x => x.id === id);
-      if (d) return { district: d, secteur: s };
-    }
-    return null;
-  }
-
-  // Toutes les dates connues (historiques + événements), triées.
-  function allDates(data) {
-    const set = new Set();
-    data.tension.historique.forEach(h => set.add(h.date));
-    data.evenements.forEach(e => set.add(e.date));
-    data.secteurs.forEach(s => s.districts.forEach(d => (d.historique || []).forEach(h => set.add(h.date))));
-    return [...set].filter(Boolean).sort();
-  }
-
-  function couleur(data, controle) {
-    return (data.factions[controle] || data.factions.confederation).couleur;
-  }
-
-  return { CONTROLES, loadData, esc, fmt, num, sum, fmtDate, atDate, districtState, tensionAt, palierFor, allDistricts, findDistrict, allDates, couleur };
+  return { parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, GRAVITES, TENDANCES };
 })();

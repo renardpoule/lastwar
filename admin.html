@@ -1,46 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>Administration</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="admin.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Poste de commandement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
 </head>
 <body class="admin">
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-mark">◆</span>
-      <h1>Administration</h1>
+<header class="topbar">
+  <div class="brand">
+    <svg class="sigle" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L29 9 V23 L16 30 L3 23 V9 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8 L22 19 H10 Z" fill="currentColor"/></svg>
+    <div>
+      <h1>Poste de commandement</h1>
+      <p class="muted" id="etatPub">Chargement…</p>
     </div>
-    <div class="admin-actions">
-      <span id="draft-status" class="draft-status"></span>
-      <a href="index.html" target="_blank" class="small-btn">Voir la carte ↗</a>
-    </div>
-  </header>
+  </div>
+  <div class="actions">
+    <a class="btn" href="./" target="_blank">Voir la carte ↗</a>
+    <button class="btn" id="btnTelecharger">Télécharger data.json</button>
+    <button class="btn primaire" id="btnPublier">Publier</button>
+  </div>
+</header>
 
-  <nav class="tabs admin-tabs" role="tablist">
-    <button data-tab="tension" class="active">Tension</button>
-    <button data-tab="districts">Districts</button>
-    <button data-tab="events">Événements</button>
-    <button data-tab="secteurs">Secteurs</button>
-    <button data-tab="publier">Publier</button>
-    <button data-tab="json">JSON brut</button>
-  </nav>
+<div id="avis" class="avis" hidden></div>
 
-  <main class="admin-main">
-    <section class="tab-pane active" data-pane="tension" id="pane-tension"></section>
-    <section class="tab-pane" data-pane="districts" id="pane-districts"></section>
-    <section class="tab-pane" data-pane="events" id="pane-events"></section>
-    <section class="tab-pane" data-pane="secteurs" id="pane-secteurs"></section>
-    <section class="tab-pane" data-pane="publier" id="pane-publier"></section>
-    <section class="tab-pane" data-pane="json" id="pane-json"></section>
-  </main>
+<nav class="onglets" id="onglets">
+  <button data-onglet="situation" class="on">1 · Situation</button>
+  <button data-onglet="evenements">2 · Événements</button>
+  <button data-onglet="districts">3 · Districts</button>
+  <button data-onglet="secteurs">Secteurs</button>
+  <button data-onglet="reglages">Réglages</button>
+</nav>
 
-  <div id="toast" class="toast" hidden></div>
+<main id="contenu" class="contenu"></main>
 
-  <script src="common.js"></script>
-  <script src="admin.js"></script>
+<dialog id="dlgPublier" class="dlg"></dialog>
+<div id="toast" class="toast" hidden></div>
+
+<script src="common.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>

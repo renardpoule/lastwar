@@ -1,1567 +1,2177 @@
 {
- "meta": {
-  "titre": "Carte de guerre — Confédération des Cendres",
-  "derniere_maj": "2026-06-05"
- },
- "factions": {
-  "confederation": {
-   "nom": "Confédération des Cendres",
-   "couleur": "#3b82c4"
+  "meta": {
+    "titre": "Confédération des Cendres",
+    "sousTitre": "Réseau tactique confédéré — Accès niveau 3",
+    "dateRP": "14 Brumaire, An 12",
+    "derniereMaj": "2026-09-25T22:13:45.424Z"
   },
-  "cultistes": {
-   "nom": "Les Cultistes",
-   "couleur": "#c0392b"
-  },
-  "conteste": {
-   "nom": "Zone contestée",
-   "couleur": "#e0a526"
-  }
- },
- "secteurs": [
-  {
-   "id": "europe",
-   "nom": "Secteur Europe",
-   "description": "Cœur administratif de la Confédération.",
-   "cadrage": [
-    [
-     -25,
-     34
-    ],
-    [
-     60,
-     72
+  "tension": {
+    "valeur": 47,
+    "paliers": [
+      {
+        "min": 0,
+        "nom": "Vigilance",
+        "minutes": 15,
+        "armes": "Armement conventionnel uniquement."
+      },
+      {
+        "min": 20,
+        "nom": "Alerte",
+        "minutes": 10,
+        "armes": "Armes lourdes, frappes orbitales limitées."
+      },
+      {
+        "min": 40,
+        "nom": "Escalade",
+        "minutes": 5,
+        "armes": "Armes anomaliques sous contrôle du Conseil."
+      },
+      {
+        "min": 60,
+        "nom": "Crise",
+        "minutes": 2,
+        "armes": "Armes de destruction de zone autorisées."
+      },
+      {
+        "min": 80,
+        "nom": "Minuit",
+        "minutes": 0,
+        "armes": "Protocoles d'extinction. Plus aucune restriction."
+      }
     ]
-   ],
-   "districts": [
-    {
-     "id": "eu-ouest",
-     "nom": "Europe de l'Ouest",
-     "pays": [
-      "250",
-      "056",
-      "528",
-      "442",
-      "826",
-      "372",
-      "724",
-      "620",
-      "756"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 351000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 5000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 6000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 54000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
+  },
+  "factions": {
+    "confederation": {
+      "nom": "Confédération des Cendres",
+      "court": "Confédérés"
     },
-    {
-     "id": "eu-centre",
-     "nom": "Europe centrale",
-     "pays": [
-      "276",
-      "040",
-      "616",
-      "203",
-      "703",
-      "348",
-      "208"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 568000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 5000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 60000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 34000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "eu-nord",
-     "nom": "Europe du Nord",
-     "pays": [
-      "578",
-      "752",
-      "246",
-      "352",
-      "233",
-      "428",
-      "440"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 239000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 28000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 6000
-       },
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 17000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "eu-sud",
-     "nom": "Méditerranée & Balkans",
-     "pays": [
-      "380",
-      "300",
-      "191",
-      "705",
-      "070",
-      "688",
-      "499",
-      "008",
-      "807",
-      "100",
-      "642",
-      "196",
-      "470"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 112000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 54000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 38000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 9000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "eu-est",
-     "nom": "Marches de l'Est",
-     "pays": [
-      "643",
-      "804",
-      "112",
-      "498"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      },
-      {
-       "date": "2026-02-14",
-       "controle": "conteste",
-       "intensite": 3
-      },
-      {
-       "date": "2026-06-05",
-       "controle": "conteste",
-       "intensite": 2
-      }
-     ],
-     "civils": {
-      "population": 610000000,
-      "deplaces": null,
-      "victimes": null
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 11000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 36000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 9000
-       }
-      ],
-      "cultistes": [
-       {
-        "unite": "Avatars mineurs",
-        "nombre": 36000
-       },
-       {
-        "unite": "Nuée",
-        "nombre": null
-       }
-      ]
-     },
-     "pertes": {
-      "confederation": 19217,
-      "cultistes": "~13000"
-     },
-     "notes": ""
+    "cultistes": {
+      "nom": "Cultistes",
+      "court": "Cultistes"
     }
-   ]
   },
-  {
-   "id": "ameriques",
-   "nom": "Secteur Amériques",
-   "description": "Arsenaux et chantiers orbitaux de la Confédération.",
-   "cadrage": [
-    [
-     -170,
-     -56
-    ],
-    [
-     -30,
-     78
-    ]
-   ],
-   "districts": [
-    {
-     "id": "am-nord",
-     "nom": "Amérique du Nord",
-     "pays": [
-      "840",
-      "124",
-      "304"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 580000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 15000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 33000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 45000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "am-centre",
-     "nom": "Méso-Amérique & Caraïbes",
-     "pays": [
-      "484",
-      "320",
-      "084",
-      "340",
-      "222",
-      "558",
-      "188",
-      "591",
-      "192",
-      "388",
-      "332",
-      "214",
-      "044",
-      "630",
-      "780"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 564000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Garde technocratique",
-        "nombre": 39000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 31000
-       },
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 25000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "am-andes",
-     "nom": "Cordillère des Andes",
-     "pays": [
-      "170",
-      "862",
-      "218",
-      "604",
-      "068",
-      "328",
-      "740"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      },
-      {
-       "date": "2026-03-21",
-       "controle": "conteste",
-       "intensite": 1
-      },
-      {
-       "date": "2026-06-05",
-       "controle": "conteste",
-       "intensite": 3
-      }
-     ],
-     "civils": {
-      "population": 735000000,
-      "deplaces": null,
-      "victimes": 41354
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 40000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 6000
-       },
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 9000
-       }
-      ],
-      "cultistes": [
-       {
-        "unite": "Avatars mineurs",
-        "nombre": 11000
-       },
-       {
-        "unite": "Prêtres-guerriers",
-        "nombre": 10000
-       }
-      ]
-     },
-     "pertes": {
-      "confederation": 14318,
-      "cultistes": 3069
-     },
-     "notes": ""
-    },
-    {
-     "id": "am-bresil",
-     "nom": "Bassin amazonien",
-     "pays": [
-      "076"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 99000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 46000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 24000
-       },
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 40000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "am-sud",
-     "nom": "Cône Sud",
-     "pays": [
-      "032",
-      "152",
-      "858",
-      "600",
-      "238"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 528000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 55000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 7000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 19000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    }
-   ]
+  "statuts": {
+    "controle": "Sous contrôle",
+    "conteste": "Contesté",
+    "reconquete": "En reconquête",
+    "quarantaine": "Quarantaine",
+    "perdu": "Perdu"
   },
-  {
-   "id": "afrique",
-   "nom": "Secteur Afrique",
-   "description": "Réserves minières et centrales solaires du Sahara.",
-   "cadrage": [
-    [
-     -20,
-     -36
-    ],
-    [
-     55,
-     38
-    ]
-   ],
-   "districts": [
+  "secteurs": [
     {
-     "id": "af-nord",
-     "nom": "Maghreb & Nil",
-     "pays": [
-      "504",
-      "012",
-      "788",
-      "434",
-      "818",
-      "732"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 505000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 46000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 21000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 43000
-       }
+      "id": "europe",
+      "nom": "Europe",
+      "geographique": true,
+      "districts": [
+        {
+          "id": "eu-nord",
+          "nom": "District du Nord",
+          "pays": [
+            "Norway",
+            "Sweden",
+            "Finland",
+            "Iceland",
+            "Åland",
+            "Faeroe Is."
+          ],
+          "statut": "quarantaine",
+          "influence": 45,
+          "tendance": "hausse",
+          "civils": {
+            "population": 28000000,
+            "impliques": 5040000,
+            "deplaces": 1764000,
+            "disparus": 100800,
+            "deces": 75600
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 60000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 12000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 8000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Engeances de l'Œil Pâle",
+                "effectif": 40000
+              },
+              {
+                "nom": "Possédés",
+                "effectif": "~15000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 4000,
+              "blesses": 9000,
+              "disparus": 1200
+            },
+            "cultistes": {
+              "tues": 4800,
+              "blesses": "~8000",
+              "disparus": "?"
+            }
+          },
+          "note": "Quarantaine décrétée sur la Laponie après la chute de Rovaniemi.",
+          "label": [
+            18,
+            64
+          ]
+        },
+        {
+          "id": "eu-est",
+          "nom": "District de l'Est",
+          "pays": [
+            "Russia",
+            "Ukraine",
+            "Belarus",
+            "Moldova",
+            "Estonia",
+            "Latvia",
+            "Lithuania",
+            "Turkey",
+            "Georgia",
+            "Armenia",
+            "Azerbaijan"
+          ],
+          "statut": "perdu",
+          "influence": 78,
+          "tendance": "hausse",
+          "civils": {
+            "population": 290000000,
+            "impliques": 90480000,
+            "deplaces": 31668000,
+            "disparus": 1809600,
+            "deces": 1357200
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 180000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 30000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 20000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Fidèles du Dieu Écarlate",
+                "effectif": 400000
+              },
+              {
+                "nom": "Engeances de l'Œil Pâle",
+                "effectif": 120000
+              },
+              {
+                "nom": "Chœur Sans Nom",
+                "effectif": "CLASSIFIÉ"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 19933,
+              "blesses": 44850,
+              "disparus": 5980
+            },
+            "cultistes": {
+              "tues": 62400,
+              "blesses": "~104000",
+              "disparus": "?"
+            }
+          },
+          "note": "Point d'origine de l'invasion. Moscou ne répond plus depuis le 2 Brumaire.",
+          "label": [
+            42,
+            55
+          ]
+        },
+        {
+          "id": "eu-central",
+          "nom": "District Central",
+          "pays": [
+            "Germany",
+            "Poland",
+            "Czechia",
+            "Slovakia",
+            "Austria",
+            "Switzerland",
+            "Denmark",
+            "Liechtenstein"
+          ],
+          "statut": "conteste",
+          "influence": 31,
+          "tendance": "hausse",
+          "civils": {
+            "population": 190000000,
+            "impliques": 23560000,
+            "deplaces": 8246000,
+            "disparus": 471200,
+            "deces": 353400
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 220000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 40000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 25000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Fidèles du Dieu Écarlate",
+                "effectif": 90000
+              },
+              {
+                "nom": "Possédés",
+                "effectif": "~30000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 9817,
+              "blesses": 22088,
+              "disparus": 2945
+            },
+            "cultistes": {
+              "tues": 10800,
+              "blesses": "~18000",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "eu-sud",
+          "nom": "District du Sud",
+          "pays": [
+            "Hungary",
+            "Romania",
+            "Bulgaria",
+            "Serbia",
+            "Croatia",
+            "Slovenia",
+            "Bosnia and Herz.",
+            "Montenegro",
+            "Kosovo",
+            "Albania",
+            "Macedonia",
+            "Greece",
+            "Cyprus",
+            "N. Cyprus"
+          ],
+          "statut": "reconquete",
+          "influence": 18,
+          "tendance": "baisse",
+          "civils": {
+            "population": 75000000,
+            "impliques": 5400000,
+            "deplaces": 1890000,
+            "disparus": 108000,
+            "deces": 81000
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 90000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 15000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 10000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Fidèles du Dieu Écarlate",
+                "effectif": 25000
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 2300,
+              "blesses": 5175,
+              "disparus": 690
+            },
+            "cultistes": {
+              "tues": 3000,
+              "blesses": "~5000",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "eu-ouest",
+          "nom": "District de l'Ouest",
+          "pays": [
+            "United Kingdom",
+            "Ireland",
+            "France",
+            "Belgium",
+            "Netherlands",
+            "Luxembourg",
+            "Spain",
+            "Portugal",
+            "Italy",
+            "Andorra",
+            "Monaco",
+            "San Marino",
+            "Vatican",
+            "Malta",
+            "Jersey",
+            "Guernsey",
+            "Isle of Man"
+          ],
+          "statut": "controle",
+          "influence": 4,
+          "tendance": "stable",
+          "civils": {
+            "population": 330000000,
+            "impliques": 5280000,
+            "deplaces": 1848000,
+            "disparus": 105600,
+            "deces": 79200
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 250000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 30000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 80000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Cellules dormantes",
+                "effectif": "~2000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 1600,
+              "blesses": 3600,
+              "disparus": 480
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        }
       ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "af-ouest",
-     "nom": "Sahel & Afrique de l'Ouest",
-     "pays": [
-      "478",
-      "466",
-      "562",
-      "148",
-      "686",
-      "270",
-      "324",
-      "624",
-      "694",
-      "430",
-      "384",
-      "854",
-      "288",
-      "768",
-      "204",
-      "566"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      },
-      {
-       "date": "2026-03-21",
-       "controle": "conteste",
-       "intensite": 2
-      },
-      {
-       "date": "2026-06-05",
-       "controle": "conteste",
-       "intensite": 5
-      }
-     ],
-     "civils": {
-      "population": 704000000,
-      "deplaces": 41240838,
-      "victimes": "~49000"
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 15000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 51000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 20000
-       }
+      "label": [
+        15,
+        54
       ],
-      "cultistes": [
-       {
-        "unite": "Possédés",
-        "nombre": "~26000"
-       },
-       {
-        "unite": "Avatars mineurs",
-        "nombre": null
-       }
+      "cadre": [
+        [
+          -25,
+          34
+        ],
+        [
+          60,
+          72
+        ]
       ]
-     },
-     "pertes": {
-      "confederation": 15218,
-      "cultistes": 26822
-     },
-     "notes": ""
     },
     {
-     "id": "af-centre",
-     "nom": "Afrique centrale",
-     "pays": [
-      "120",
-      "140",
-      "266",
-      "178",
-      "180",
-      "226",
-      "728",
-      "729"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      },
-      {
-       "date": "2026-02-14",
-       "controle": "conteste",
-       "intensite": 2
-      },
-      {
-       "date": "2026-06-05",
-       "controle": "conteste",
-       "intensite": 4
-      }
-     ],
-     "civils": {
-      "population": 743000000,
-      "deplaces": "~50629000",
-      "victimes": 51865
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 11000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 16000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 44000
-       }
+      "id": "asie",
+      "nom": "Asie",
+      "geographique": true,
+      "districts": [
+        {
+          "id": "as-ouest",
+          "nom": "District de l'Ouest",
+          "pays": [
+            "Saudi Arabia",
+            "Yemen",
+            "Oman",
+            "United Arab Emirates",
+            "Qatar",
+            "Bahrain",
+            "Kuwait",
+            "Iraq",
+            "Iran",
+            "Syria",
+            "Lebanon",
+            "Israel",
+            "Palestine",
+            "Jordan"
+          ],
+          "statut": "controle",
+          "influence": 6,
+          "tendance": "hausse",
+          "civils": {
+            "population": 300000000,
+            "impliques": 7200000,
+            "deplaces": 2520000,
+            "disparus": 144000,
+            "deces": 108000
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 150000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 50000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Cellules dormantes",
+                "effectif": "~5000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 1333,
+              "blesses": 3000,
+              "disparus": 400
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "as-central",
+          "nom": "District Central",
+          "pays": [
+            "Kazakhstan",
+            "Uzbekistan",
+            "Turkmenistan",
+            "Kyrgyzstan",
+            "Tajikistan",
+            "Afghanistan",
+            "Mongolia"
+          ],
+          "statut": "conteste",
+          "influence": 52,
+          "tendance": "hausse",
+          "civils": {
+            "population": 120000000,
+            "impliques": 24960000,
+            "deplaces": 8736000,
+            "disparus": 499200,
+            "deces": 374400
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 70000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 10000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Fidèles du Dieu Écarlate",
+                "effectif": 110000
+              },
+              {
+                "nom": "Chœur Sans Nom",
+                "effectif": "~20000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 4622,
+              "blesses": 10400,
+              "disparus": 1387
+            },
+            "cultistes": {
+              "tues": 13200,
+              "blesses": "~22000",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "as-sud",
+          "nom": "District du Sud",
+          "pays": [
+            "India",
+            "Pakistan",
+            "Bangladesh",
+            "Nepal",
+            "Bhutan",
+            "Sri Lanka",
+            "Maldives",
+            "Siachen Glacier",
+            "Br. Indian Ocean Ter."
+          ],
+          "statut": "controle",
+          "influence": 2,
+          "tendance": "stable",
+          "civils": {
+            "population": 1900000000,
+            "impliques": 15200000,
+            "deplaces": 5320000,
+            "disparus": 304000,
+            "deces": 228000
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 600000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 200000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 1778,
+              "blesses": 4000,
+              "disparus": 533
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": "",
+          "label": [
+            79,
+            22
+          ]
+        },
+        {
+          "id": "as-est",
+          "nom": "District de l'Est",
+          "pays": [
+            "China",
+            "Taiwan",
+            "Japan",
+            "North Korea",
+            "South Korea",
+            "Hong Kong",
+            "Macao"
+          ],
+          "statut": "controle",
+          "influence": 9,
+          "tendance": "hausse",
+          "civils": {
+            "population": 1650000000,
+            "impliques": 59400000,
+            "deplaces": 20790000,
+            "disparus": 1188000,
+            "deces": 891000
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 800000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 90000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 40000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Cellules dormantes",
+                "effectif": "~12000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 9300,
+              "blesses": 20925,
+              "disparus": 2790
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "as-sudest",
+          "nom": "District du Sud-Est",
+          "pays": [
+            "Myanmar",
+            "Thailand",
+            "Laos",
+            "Cambodia",
+            "Vietnam",
+            "Malaysia",
+            "Singapore",
+            "Indonesia",
+            "Philippines",
+            "Brunei",
+            "Timor-Leste",
+            "Indian Ocean Ter."
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 680000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 300000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 100000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        }
       ],
-      "cultistes": [
-       {
-        "unite": "Possédés",
-        "nombre": 32000
-       },
-       {
-        "unite": "Fidèles",
-        "nombre": "~12000"
-       }
+      "label": [
+        92,
+        42
+      ],
+      "cadre": [
+        [
+          30,
+          -11
+        ],
+        [
+          150,
+          56
+        ]
       ]
-     },
-     "pertes": {
-      "confederation": 634,
-      "cultistes": 10047
-     },
-     "notes": ""
     },
     {
-     "id": "af-est",
-     "nom": "Corne & Grands Lacs",
-     "pays": [
-      "231",
-      "232",
-      "262",
-      "706",
-      "404",
-      "800",
-      "646",
-      "108",
-      "834"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 398000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 46000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 56000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 34000
-       }
+      "id": "oceanie",
+      "nom": "Océanie",
+      "geographique": true,
+      "districts": [
+        {
+          "id": "oc-continental",
+          "nom": "District Continental",
+          "pays": [
+            "Australia",
+            "Ashmore and Cartier Is.",
+            "Norfolk Island",
+            "Heard I. and McDonald Is."
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 27000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 60000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 20000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "oc-melanesie",
+          "nom": "District Mélanésien",
+          "pays": [
+            "Papua New Guinea",
+            "Solomon Is.",
+            "Vanuatu",
+            "New Caledonia",
+            "Fiji"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 13000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 15000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 5000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": "",
+          "label": [
+            152,
+            -7
+          ]
+        },
+        {
+          "id": "oc-pacifique",
+          "nom": "District du Pacifique",
+          "pays": [
+            "Micronesia",
+            "Marshall Is.",
+            "N. Mariana Is.",
+            "Guam",
+            "Palau",
+            "Nauru",
+            "Kiribati",
+            "Samoa",
+            "American Samoa",
+            "Tonga",
+            "Fr. Polynesia",
+            "Wallis and Futuna Is.",
+            "Cook Is.",
+            "Niue",
+            "Pitcairn Is."
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 2500000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 5000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 1667
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": "",
+          "label": [
+            166,
+            8
+          ]
+        },
+        {
+          "id": "oc-austral",
+          "nom": "District Austral",
+          "pays": [
+            "New Zealand",
+            "Antarctica",
+            "Fr. S. Antarctic Lands",
+            "S. Geo. and the Is."
+          ],
+          "statut": "quarantaine",
+          "influence": 12,
+          "tendance": "stable",
+          "civils": {
+            "population": 5200000,
+            "impliques": 249600,
+            "deplaces": 87360,
+            "disparus": 4992,
+            "deces": 3744
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces spéciales",
+                "effectif": 6000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 3000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Inconnu",
+                "effectif": "?"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 120,
+              "blesses": 270,
+              "disparus": 36
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": "Signal anormal détecté sous la plateforme de Ross. Zone fermée par ordre du Conseil.",
+          "label": [
+            172,
+            -42
+          ]
+        }
       ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
+      "label": [
+        135,
+        -26
+      ],
+      "cadre": [
+        [
+          110,
+          -50
+        ],
+        [
+          180,
+          5
+        ]
+      ]
     },
     {
-     "id": "af-sud",
-     "nom": "Afrique australe",
-     "pays": [
-      "024",
-      "894",
-      "454",
-      "508",
-      "716",
-      "072",
-      "516",
-      "710",
-      "426",
-      "748",
-      "450"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 652000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 53000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 37000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 27000
-       }
+      "id": "afrique",
+      "nom": "Afrique",
+      "geographique": true,
+      "districts": [
+        {
+          "id": "af-nord",
+          "nom": "District du Nord",
+          "pays": [
+            "Morocco",
+            "W. Sahara",
+            "Algeria",
+            "Tunisia",
+            "Libya",
+            "Egypt"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 210000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 180000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 60000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "af-ouest",
+          "nom": "District de l'Ouest",
+          "pays": [
+            "Mauritania",
+            "Mali",
+            "Niger",
+            "Senegal",
+            "Gambia",
+            "Guinea-Bissau",
+            "Guinea",
+            "Sierra Leone",
+            "Liberia",
+            "Côte d'Ivoire",
+            "Burkina Faso",
+            "Ghana",
+            "Togo",
+            "Benin",
+            "Nigeria",
+            "Cabo Verde",
+            "Saint Helena"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 450000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 250000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 83333
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "af-central",
+          "nom": "District Central",
+          "pays": [
+            "Chad",
+            "Central African Rep.",
+            "Cameroon",
+            "Eq. Guinea",
+            "Gabon",
+            "Congo",
+            "Dem. Rep. Congo",
+            "São Tomé and Principe"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 190000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 120000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 40000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "af-est",
+          "nom": "District de l'Est",
+          "pays": [
+            "Sudan",
+            "S. Sudan",
+            "Ethiopia",
+            "Eritrea",
+            "Djibouti",
+            "Somalia",
+            "Somaliland",
+            "Kenya",
+            "Uganda",
+            "Rwanda",
+            "Burundi",
+            "Tanzania",
+            "Seychelles"
+          ],
+          "statut": "conteste",
+          "influence": 22,
+          "tendance": "hausse",
+          "civils": {
+            "population": 400000000,
+            "impliques": 35200000,
+            "deplaces": 12320000,
+            "disparus": 704000,
+            "deces": 528000
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 140000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 20000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Chœur Sans Nom",
+                "effectif": "~35000"
+              },
+              {
+                "nom": "Possédés",
+                "effectif": "~10000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 3911,
+              "blesses": 8800,
+              "disparus": 1173
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "af-sud",
+          "nom": "District du Sud",
+          "pays": [
+            "Angola",
+            "Zambia",
+            "Malawi",
+            "Mozambique",
+            "Zimbabwe",
+            "Botswana",
+            "Namibia",
+            "South Africa",
+            "Lesotho",
+            "eSwatini",
+            "Madagascar",
+            "Comoros",
+            "Mauritius"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 200000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 150000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 50000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        }
       ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
+      "label": [
+        18,
+        5
+      ],
+      "cadre": [
+        [
+          -20,
+          -36
+        ],
+        [
+          55,
+          38
+        ]
+      ]
+    },
+    {
+      "id": "amerique",
+      "nom": "Amérique",
+      "geographique": true,
+      "districts": [
+        {
+          "id": "am-nord",
+          "nom": "District du Nord",
+          "pays": [
+            "Canada",
+            "Greenland",
+            "St. Pierre and Miquelon"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 40000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 90000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 30000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": "",
+          "label": [
+            -100,
+            60
+          ]
+        },
+        {
+          "id": "am-central",
+          "nom": "District Central",
+          "pays": [
+            "United States of America",
+            "Bermuda"
+          ],
+          "statut": "controle",
+          "influence": 3,
+          "tendance": "stable",
+          "civils": {
+            "population": 335000000,
+            "impliques": 4020000,
+            "deplaces": 1407000,
+            "disparus": 80400,
+            "deces": 60300
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 900000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 120000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 60000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Cellules dormantes",
+                "effectif": "~4000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 3600,
+              "blesses": 8100,
+              "disparus": 1080
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": "",
+          "label": [
+            -99,
+            39
+          ]
+        },
+        {
+          "id": "am-caraibe",
+          "nom": "District Caraïbe",
+          "pays": [
+            "Mexico",
+            "Guatemala",
+            "Belize",
+            "Honduras",
+            "El Salvador",
+            "Nicaragua",
+            "Costa Rica",
+            "Panama",
+            "Cuba",
+            "Jamaica",
+            "Haiti",
+            "Dominican Rep.",
+            "Puerto Rico",
+            "Bahamas",
+            "Trinidad and Tobago",
+            "Barbados",
+            "Grenada",
+            "St. Vin. and Gren.",
+            "Saint Lucia",
+            "Dominica",
+            "Antigua and Barb.",
+            "St. Kitts and Nevis",
+            "Montserrat",
+            "Anguilla",
+            "British Virgin Is.",
+            "U.S. Virgin Is.",
+            "Cayman Is.",
+            "Turks and Caicos Is.",
+            "Aruba",
+            "Curaçao",
+            "Sint Maarten",
+            "St-Martin",
+            "St-Barthélemy"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 220000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 160000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 53333
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "am-andin",
+          "nom": "District Andin",
+          "pays": [
+            "Colombia",
+            "Ecuador",
+            "Peru",
+            "Bolivia",
+            "Chile"
+          ],
+          "statut": "conteste",
+          "influence": 15,
+          "tendance": "hausse",
+          "civils": {
+            "population": 130000000,
+            "impliques": 7800000,
+            "deplaces": 2730000,
+            "disparus": 156000,
+            "deces": 117000
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 80000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 9000
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Fidèles du Dieu Écarlate",
+                "effectif": "~18000"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 1483,
+              "blesses": 3338,
+              "disparus": 445
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "am-amazonien",
+          "nom": "District Amazonien",
+          "pays": [
+            "Brazil",
+            "Venezuela",
+            "Guyana",
+            "Suriname"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 250000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 200000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 66667
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        },
+        {
+          "id": "am-austral",
+          "nom": "District Austral",
+          "pays": [
+            "Argentina",
+            "Uruguay",
+            "Paraguay",
+            "Falkland Is."
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 55000000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 70000
+              },
+              {
+                "nom": "Garde civile",
+                "effectif": 23333
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": "~0",
+              "disparus": "?"
+            }
+          },
+          "note": ""
+        }
+      ],
+      "label": [
+        -85,
+        18
+      ],
+      "cadre": [
+        [
+          -170,
+          -56
+        ],
+        [
+          -30,
+          78
+        ]
+      ]
     }
-   ]
-  },
-  {
-   "id": "orient",
-   "nom": "Secteur Orient",
-   "description": "Carrefour énergétique, fortement infiltré par les Cultistes.",
-   "cadrage": [
-    [
-     25,
-     10
-    ],
-    [
-     120,
-     56
-    ]
-   ],
-   "districts": [
+  ],
+  "evenements": [
     {
-     "id": "or-levant",
-     "nom": "Levant & Anatolie",
-     "pays": [
-      "792",
-      "760",
-      "422",
-      "376",
-      "275",
-      "400",
-      "368"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
+      "id": "ev1",
+      "date": "2 Brumaire, An 12",
+      "portee": {
+        "type": "district",
+        "id": "eu-est"
       },
-      {
-       "date": "2026-03-21",
-       "controle": "conteste",
-       "intensite": 2
-      },
-      {
-       "date": "2026-06-05",
-       "controle": "cultistes",
-       "intensite": 4
-      }
-     ],
-     "civils": {
-      "population": 423000000,
-      "deplaces": 10361466,
-      "victimes": "~10000"
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 9000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 23000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 40000
-       }
+      "gravite": "critique",
+      "titre": "Chute de Moscou",
+      "description": "Le réseau de la capitale orientale cesse d'émettre à 03h14. Les premières images satellites montrent une structure organique de plusieurs kilomètres au-dessus du Kremlin.",
+      "consequences": [
+        "District de l'Est passé en « Contesté »",
+        "Contact perdu avec 4 millions de civils",
+        "Tension +15"
       ],
-      "cultistes": [
-       {
-        "unite": "Fidèles",
-        "nombre": 1000
-       },
-       {
-        "unite": "Avatars mineurs",
-        "nombre": null
-       }
-      ]
-     },
-     "pertes": {
-      "confederation": 12414,
-      "cultistes": null
-     },
-     "notes": ""
+      "tension": 15
     },
     {
-     "id": "or-arabie",
-     "nom": "Péninsule arabique",
-     "pays": [
-      "682",
-      "887",
-      "512",
-      "784",
-      "634",
-      "414",
-      "048"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 232000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 42000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 18000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 24000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "or-iran",
-     "nom": "Plateau iranien",
-     "pays": [
-      "364",
-      "004",
-      "586"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
+      "id": "ev2",
+      "date": "4 Brumaire, An 12",
+      "portee": {
+        "type": "monde"
       },
-      {
-       "date": "2026-03-21",
-       "controle": "conteste",
-       "intensite": 2
+      "gravite": "majeur",
+      "titre": "Mobilisation générale",
+      "description": "Le Conseil Technocratique décrète la mobilisation générale dans les onze secteurs. La Division Phoenix est placée en alerte maximale.",
+      "consequences": [
+        "+1,2 million de soldats mobilisés",
+        "Couvre-feu dans les zones frontalières"
+      ],
+      "tension": 5
+    },
+    {
+      "id": "ev3",
+      "date": "6 Brumaire, An 12",
+      "portee": {
+        "type": "district",
+        "id": "as-central"
       },
-      {
-       "date": "2026-06-05",
-       "controle": "cultistes",
-       "intensite": 4
-      }
-     ],
-     "civils": {
-      "population": 145000000,
-      "deplaces": 3791676,
-      "victimes": 63078
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 8000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 49000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 23000
-       }
+      "gravite": "majeur",
+      "titre": "Percée dans les steppes",
+      "description": "Des colonnes cultistes franchissent l'Oural et progressent vers Astana. Les garnisons régulières se replient sur Almaty.",
+      "consequences": [
+        "District Central (Asie) passé en « Contesté »",
+        "~600 000 déplacés"
       ],
-      "cultistes": [
-       {
-        "unite": "Nuée",
-        "nombre": 11000
-       },
-       {
-        "unite": "Prêtres-guerriers",
-        "nombre": 14000
-       }
-      ]
-     },
-     "pertes": {
-      "confederation": 17809,
-      "cultistes": null
-     },
-     "notes": ""
+      "tension": 6
     },
     {
-     "id": "or-caucase",
-     "nom": "Caucase",
-     "pays": [
-      "268",
-      "051",
-      "031"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 576000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Légion d'acier",
-        "nombre": 57000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 7000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 46000
-       }
+      "id": "ev4",
+      "date": "8 Brumaire, An 12",
+      "portee": {
+        "type": "district",
+        "id": "eu-sud"
+      },
+      "gravite": "mineur",
+      "titre": "Contre-offensive des Carpates",
+      "description": "Les forces spéciales reprennent trois cols stratégiques. Le front se stabilise au nord de Bucarest.",
+      "consequences": [
+        "District du Sud en « Reconquête »",
+        "Influence cultiste −10 %"
       ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
+      "tension": -3
     },
     {
-     "id": "or-steppes",
-     "nom": "Steppes d'Asie centrale",
-     "pays": [
-      "398",
-      "860",
-      "795",
-      "417",
-      "762",
-      "496"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 885000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 24000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 51000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 16000
-       }
+      "id": "ev5",
+      "date": "9 Brumaire, An 12",
+      "portee": {
+        "type": "district",
+        "id": "oc-austral"
+      },
+      "gravite": "majeur",
+      "titre": "Signal sous la plateforme de Ross",
+      "description": "Une station de recherche antarctique signale un « chant » capté par tous ses instruments. Plus aucune nouvelle depuis.",
+      "consequences": [
+        "District Austral placé en quarantaine",
+        "Déploiement de la Division Phoenix"
       ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
+      "tension": 4
+    },
+    {
+      "id": "ev6",
+      "date": "10 Brumaire, An 12",
+      "portee": {
+        "type": "district",
+        "id": "eu-nord"
+      },
+      "gravite": "critique",
+      "titre": "Chute de Rovaniemi",
+      "description": "Les Engeances de l'Œil Pâle submergent la ligne de défense laponne. La ville est rasée en moins de six heures.",
+      "consequences": [
+        "District du Nord placé en quarantaine",
+        "3 200 décès civils confirmés",
+        "Tension +6"
+      ],
+      "tension": 6
+    },
+    {
+      "id": "ev7",
+      "date": "12 Brumaire, An 12",
+      "portee": {
+        "type": "secteur",
+        "id": "afrique"
+      },
+      "gravite": "majeur",
+      "titre": "Émergence du Chœur Sans Nom",
+      "description": "Des rassemblements massifs sont signalés autour du lac Victoria. Les participants chantent à l'unisson dans une langue inconnue.",
+      "consequences": [
+        "District de l'Est (Afrique) passé en « Contesté »",
+        "Évacuation de Kampala en cours"
+      ],
+      "tension": 4
+    },
+    {
+      "id": "ev8",
+      "date": "13 Brumaire, An 12",
+      "portee": {
+        "type": "district",
+        "id": "am-andin"
+      },
+      "gravite": "mineur",
+      "titre": "Cellules actives à Lima",
+      "description": "Les services de renseignement démantèlent un réseau cultiste implanté dans l'administration locale. Plusieurs cellules restent actives.",
+      "consequences": [
+        "District Andin passé en « Contesté »"
+      ],
+      "tension": 1
+    },
+    {
+      "id": "ev9",
+      "date": "14 Brumaire, An 12",
+      "portee": {
+        "type": "monde"
+      },
+      "gravite": "critique",
+      "titre": "Autorisation des armes anomaliques",
+      "description": "La tension franchit le palier « Escalade ». Le Conseil autorise l'emploi d'armes anomaliques sous supervision directe.",
+      "consequences": [
+        "Palier III atteint",
+        "Premier emploi prévu sur le front oriental"
+      ],
+      "tension": 0
     }
-   ]
-  },
-  {
-   "id": "asie",
-   "nom": "Secteur Asie-Pacifique",
-   "description": "Mégalopoles et centres de calcul de la Confédération.",
-   "cadrage": [
-    [
-     65,
-     -48
-    ],
-    [
-     180,
-     55
-    ]
-   ],
-   "districts": [
-    {
-     "id": "as-inde",
-     "nom": "Sous-continent indien",
-     "pays": [
-      "356",
-      "050",
-      "144",
-      "524",
-      "064",
-      "104"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 565000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 16000
-       },
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 41000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 53000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "as-chine",
-     "nom": "Chine",
-     "pays": [
-      "156",
-      "158"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 827000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 49000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 53000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 16000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "as-extreme",
-     "nom": "Extrême-Orient",
-     "pays": [
-      "392",
-      "410",
-      "408"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 224000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 48000
-       },
-       {
-        "unite": "Garde technocratique",
-        "nombre": 3000
-       },
-       {
-        "unite": "Escadrille de drones",
-        "nombre": 3000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    },
-    {
-     "id": "as-sudest",
-     "nom": "Asie du Sud-Est",
-     "pays": [
-      "764",
-      "418",
-      "704",
-      "116",
-      "458",
-      "702",
-      "360",
-      "608",
-      "096",
-      "626",
-      "598"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      },
-      {
-       "date": "2026-03-21",
-       "controle": "conteste",
-       "intensite": 2
-      },
-      {
-       "date": "2026-06-05",
-       "controle": "conteste",
-       "intensite": 4
-      }
-     ],
-     "civils": {
-      "population": 218000000,
-      "deplaces": 23315769,
-      "victimes": 60619
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 16000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 8000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 16000
-       }
-      ],
-      "cultistes": [
-       {
-        "unite": "Prêtres-guerriers",
-        "nombre": "~22000"
-       },
-       {
-        "unite": "Possédés",
-        "nombre": 40000
-       }
-      ]
-     },
-     "pertes": {
-      "confederation": 20497,
-      "cultistes": 625
-     },
-     "notes": ""
-    },
-    {
-     "id": "as-oceanie",
-     "nom": "Océanie",
-     "pays": [
-      "036",
-      "554",
-      "242",
-      "090",
-      "548",
-      "540"
-     ],
-     "historique": [
-      {
-       "date": "2026-01-10",
-       "controle": "confederation",
-       "intensite": 0
-      }
-     ],
-     "civils": {
-      "population": 688000000,
-      "deplaces": 0,
-      "victimes": 0
-     },
-     "effectifs": {
-      "confederation": [
-       {
-        "unite": "Brigade mécanisée",
-        "nombre": 9000
-       },
-       {
-        "unite": "Légion d'acier",
-        "nombre": 60000
-       },
-       {
-        "unite": "Batterie orbitale",
-        "nombre": 26000
-       }
-      ],
-      "cultistes": []
-     },
-     "pertes": {
-      "confederation": 0,
-      "cultistes": 0
-     },
-     "notes": ""
-    }
-   ]
-  }
- ],
- "dieux": [
-  "[Dieu provisoire 1]",
-  "[Dieu provisoire 2]",
-  "[Dieu provisoire 3]"
- ],
- "tension": {
-  "paliers": [
-   {
-    "seuil": 0,
-    "nom": "Veille",
-    "description": "Incidents isolés, maintien de l'ordre.",
-    "armes": [
-     "Armes légères",
-     "Forces de police"
-    ]
-   },
-   {
-    "seuil": 20,
-    "nom": "Alerte",
-    "description": "Affrontements localisés.",
-    "armes": [
-     "Armes légères",
-     "Blindés légers",
-     "Drones de reconnaissance"
-    ]
-   },
-   {
-    "seuil": 40,
-    "nom": "Guerre ouverte",
-    "description": "Front déclaré dans plusieurs secteurs.",
-    "armes": [
-     "Artillerie",
-     "Blindés lourds",
-     "Drones armés",
-     "Aviation"
-    ]
-   },
-   {
-    "seuil": 60,
-    "nom": "Guerre totale",
-    "description": "Mobilisation générale.",
-    "armes": [
-     "Armes thermobariques",
-     "Batteries orbitales (restreintes)",
-     "Contre-mesures anomales"
-    ]
-   },
-   {
-    "seuil": 80,
-    "nom": "Minuit",
-    "description": "Survie de l'espèce en jeu.",
-    "armes": [
-     "Armes nucléaires",
-     "Batteries orbitales (sans restriction)",
-     "Protocoles de dernier recours"
-    ]
-   }
   ],
   "historique": [
-   {
-    "date": "2026-01-10",
-    "valeur": 8,
-    "note": "Premiers signalements de cultes."
-   },
-   {
-    "date": "2026-02-14",
-    "valeur": 22,
-    "note": "Attaque de [lieu provisoire]."
-   },
-   {
-    "date": "2026-03-21",
-    "valeur": 37,
-    "note": "Soulèvement dans le Levant."
-   },
-   {
-    "date": "2026-04-30",
-    "valeur": 48,
-    "note": "Déclaration d'état de guerre."
-   },
-   {
-    "date": "2026-06-05",
-    "valeur": 56,
-    "note": "Chute du plateau iranien."
-   }
+    {
+      "date": "2 Brumaire",
+      "tension": 22,
+      "evenements": 1,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "eu-est": {
+          "statut": "conteste",
+          "influence": 35
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-est": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-sudest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-continental": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-pacifique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-austral": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-est": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-caraibe": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-andin": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-amazonien": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-austral": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    },
+    {
+      "date": "6 Brumaire",
+      "tension": 33,
+      "evenements": 3,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "eu-est": {
+          "statut": "perdu",
+          "influence": 60
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 8
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-central": {
+          "statut": "conteste",
+          "influence": 25
+        },
+        "as-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-est": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-sudest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-continental": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-pacifique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-austral": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-est": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-caraibe": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-andin": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-amazonien": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-austral": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    },
+    {
+      "date": "10 Brumaire",
+      "tension": 41,
+      "evenements": 6,
+      "districts": {
+        "eu-nord": {
+          "statut": "quarantaine",
+          "influence": 30
+        },
+        "eu-est": {
+          "statut": "perdu",
+          "influence": 72
+        },
+        "eu-central": {
+          "statut": "conteste",
+          "influence": 20
+        },
+        "eu-sud": {
+          "statut": "reconquete",
+          "influence": 22
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-central": {
+          "statut": "conteste",
+          "influence": 44
+        },
+        "as-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-est": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-sudest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-continental": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-pacifique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-austral": {
+          "statut": "quarantaine",
+          "influence": 8
+        },
+        "af-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-est": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-caraibe": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-andin": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-amazonien": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-austral": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    },
+    {
+      "date": "14 Brumaire",
+      "tension": 47,
+      "evenements": 9,
+      "districts": {
+        "eu-nord": {
+          "statut": "quarantaine",
+          "influence": 45
+        },
+        "eu-est": {
+          "statut": "perdu",
+          "influence": 78
+        },
+        "eu-central": {
+          "statut": "conteste",
+          "influence": 31
+        },
+        "eu-sud": {
+          "statut": "reconquete",
+          "influence": 18
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 4
+        },
+        "as-ouest": {
+          "statut": "controle",
+          "influence": 6
+        },
+        "as-central": {
+          "statut": "conteste",
+          "influence": 52
+        },
+        "as-sud": {
+          "statut": "controle",
+          "influence": 2
+        },
+        "as-est": {
+          "statut": "controle",
+          "influence": 9
+        },
+        "as-sudest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-continental": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-pacifique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-austral": {
+          "statut": "quarantaine",
+          "influence": 12
+        },
+        "af-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-ouest": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-central": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-est": {
+          "statut": "conteste",
+          "influence": 22
+        },
+        "af-sud": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-nord": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-central": {
+          "statut": "controle",
+          "influence": 3
+        },
+        "am-caraibe": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 15
+        },
+        "am-amazonien": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-austral": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    }
   ]
- },
- "evenements": [
-  {
-   "id": "e1",
-   "date": "2026-01-10",
-   "titre": "Premiers signalements",
-   "description": "Des rassemblements cultistes sont signalés dans le Levant.",
-   "district": "or-levant",
-   "gravite": "info"
-  },
-  {
-   "id": "e2",
-   "date": "2026-02-14",
-   "titre": "Attaque de [lieu provisoire]",
-   "description": "Une cellule cultiste frappe un centre de calcul.",
-   "district": "af-centre",
-   "gravite": "important"
-  },
-  {
-   "id": "e3",
-   "date": "2026-03-21",
-   "titre": "Soulèvement du Levant",
-   "description": "Les milices de [Dieu provisoire 1] prennent plusieurs villes.",
-   "district": "or-levant",
-   "gravite": "critique"
-  },
-  {
-   "id": "e4",
-   "date": "2026-03-21",
-   "titre": "Troubles aux Marches de l'Est",
-   "description": "Sabotage de lignes d'approvisionnement.",
-   "district": "eu-est",
-   "gravite": "important"
-  },
-  {
-   "id": "e5",
-   "date": "2026-04-30",
-   "titre": "État de guerre déclaré",
-   "description": "Le Conseil technocratique déclare l'état de guerre.",
-   "district": null,
-   "gravite": "critique"
-  },
-  {
-   "id": "e6",
-   "date": "2026-04-30",
-   "titre": "Front andin",
-   "description": "Des Possédés sont aperçus dans la Cordillère.",
-   "district": "am-andes",
-   "gravite": "important"
-  },
-  {
-   "id": "e7",
-   "date": "2026-06-05",
-   "titre": "Chute du plateau iranien",
-   "description": "La Confédération perd le contrôle du district.",
-   "district": "or-iran",
-   "gravite": "critique"
-  },
-  {
-   "id": "e8",
-   "date": "2026-06-05",
-   "titre": "Offensive en Asie du Sud-Est",
-   "description": "Contre-offensive des Légions d'acier.",
-   "district": "as-sudest",
-   "gravite": "info"
-  }
- ]
 }

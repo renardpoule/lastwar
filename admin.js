@@ -1,633 +1,640 @@
-// Panneau d'administration : édition des données, brouillon local, publication GitHub, annonces Discord.
+// Poste de commandement — édition et publication de data.json
 (async function () {
-  const { esc, fmtDate, CONTROLES, districtState, tensionAt, palierFor, findDistrict } = WC;
   const $ = s => document.querySelector(s);
-  const DRAFT_KEY = "wc-brouillon";
-  const SETTINGS_KEY = "wc-reglages";
+  const esc = C.esc;
+  const CLE_BROUILLON = 'cendres-brouillon', CLE_CONFIG = 'cendres-config', CLE_ANNONCES = 'cendres-annonces';
 
-  const store = {
-    get(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch { return def; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* stockage indisponible */ } },
-    del(k) { try { localStorage.removeItem(k); } catch { /* idem */ } },
-  };
+  const lire = (k, def) => { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } };
+  const ecrire = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* stockage indisponible */ } };
+  const effacer = k => { try { localStorage.removeItem(k); } catch (e) { /* idem */ } };
 
-  let published, data, countryNames = new Map();
+  // Sérialisation sans les champs internes (_secteur…)
+  const versJSON = d => JSON.stringify(d, (k, v) => k.startsWith('_') ? undefined : v, 2);
+
+  let data, publie, publieTension;
+  let onglet = 'situation', districtSel = null, evEdite = null;
+  let config = lire(CLE_CONFIG, {});
+  let annonces = lire(CLE_ANNONCES, []);
+
+  // Devine le dépôt quand la page est servie par GitHub Pages (pseudo.github.io/depot)
+  if (!config.owner && location.hostname.endsWith('.github.io')) {
+    config.owner = location.hostname.split('.')[0];
+    config.repo = location.pathname.split('/').filter(Boolean)[0] || location.hostname;
+    config.site = location.origin + location.pathname.replace(/admin\.html$/, '');
+  }
+
+  // ---------- Chargement ----------
   try {
-    published = await WC.loadData();
-  } catch (err) {
-    document.querySelector(".admin-main").innerHTML = `<p class="error">Impossible de charger data.json : ${esc(err.message)}</p>`;
+    const txt = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); });
+    publie = versJSON(JSON.parse(txt));
+  } catch (e) {
+    avis('Impossible de lire data.json : ' + e.message, true);
     return;
   }
-  data = store.get(DRAFT_KEY, null) || structuredClone(published);
-  try {
-    const w = await fetch("countries-50m.json").then(r => r.json());
-    w.objects.countries.geometries.forEach(g => g.id && countryNames.set(g.id, g.properties.name));
-  } catch { /* noms de pays facultatifs */ }
+  const brouillon = lire(CLE_BROUILLON, null);
+  if (brouillon && versJSON(brouillon) !== publie) {
+    data = brouillon;
+    avis(`Brouillon local restauré (modifications non publiées). <button class="btn petit" id="abandon">Abandonner le brouillon</button>`);
+    $('#abandon').onclick = () => { if (confirm('Abandonner toutes les modifications non publiées ?')) { effacer(CLE_BROUILLON); location.reload(); } };
+  } else {
+    data = JSON.parse(publie);
+  }
+  publieTension = JSON.parse(publie).tension.valeur;
 
-  const settings = Object.assign({ owner: "", repo: "", branch: "", path: "data.json", token: "", webhook: "" }, store.get(SETTINGS_KEY, {}));
-  guessRepo();
-  let currentDistrict = data.secteurs[0]?.districts[0]?.id || null;
-  let editingEvent = null;
-
-  // ---------- Utilitaires ----------
-  const today = () => new Date().toISOString().slice(0, 10);
-
-  function toast(msg, isError = false) {
-    const t = $("#toast");
-    t.textContent = msg;
-    t.className = "toast" + (isError ? " error" : "");
-    t.hidden = false;
-    clearTimeout(toast.timer);
-    toast.timer = setTimeout(() => (t.hidden = true), 3500);
+  function avis(html, erreur) {
+    const el = $('#avis');
+    el.hidden = false; el.className = 'avis' + (erreur ? ' erreur' : '');
+    el.innerHTML = html;
+  }
+  let tt;
+  function toast(msg) {
+    const el = $('#toast');
+    el.textContent = msg; el.hidden = false;
+    clearTimeout(tt); tt = setTimeout(() => el.hidden = true, 2600);
   }
 
-  function save() {
-    store.set(DRAFT_KEY, data);
-    updateDraftStatus();
+  // ---------- Suivi des modifications ----------
+  let ts;
+  function modifie() {
+    clearTimeout(ts);
+    ts = setTimeout(() => {
+      const diff = versJSON(data) !== publie;
+      if (diff) ecrire(CLE_BROUILLON, JSON.parse(versJSON(data))); else effacer(CLE_BROUILLON);
+      majEtat();
+    }, 250);
+  }
+  function majEtat() {
+    const diff = versJSON(data) !== publie;
+    $('#etatPub').textContent = diff ? '● Modifications non publiées' : 'À jour avec la version publiée';
+    $('#etatPub').style.color = diff ? 'var(--confed)' : '';
+    $('#btnPublier').classList.toggle('modifie', diff);
   }
 
-  function updateDraftStatus() {
-    const dirty = JSON.stringify(data) !== JSON.stringify(published);
-    $("#draft-status").innerHTML = dirty
-      ? '<span class="dirty">● Modifications non publiées</span>'
-      : '<span class="clean">✓ À jour avec le site</span>';
+  // ---------- Liaison champs ↔ données ----------
+  // <input data-bind="meta.dateRP" data-type="texte|nombre|valeur">
+  function getPath(p) { return p.split('.').reduce((o, k) => o == null ? o : o[k], data); }
+  function setPath(p, v) {
+    const ks = p.split('.'); const last = ks.pop();
+    const o = ks.reduce((o, k) => o[k] ?? (o[k] = {}), data);
+    o[last] = v;
+  }
+  // "12 000" → 12000 · "~12000" et "CLASSIFIÉ" restent du texte
+  function valeurChamp(s) {
+    s = String(s).trim();
+    if (s === '') return 0;
+    if (/^-?[\d\s  ]+([.,]\d+)?$/.test(s)) return Number(s.replace(/[\s  ]/g, '').replace(',', '.'));
+    return s;
+  }
+  function afficheValeur(v) {
+    if (typeof v === 'number') return C.num(v);
+    return v ?? '';
+  }
+  function lier(racine) {
+    racine.querySelectorAll('[data-bind]').forEach(el => {
+      const p = el.dataset.bind, t = el.dataset.type || 'texte';
+      const v = getPath(p);
+      if (el.type === 'checkbox') el.checked = !!v;
+      else if (t === 'lignes') el.value = (v || []).join('\n');
+      else el.value = t === 'valeur' ? afficheValeur(v) : (v ?? '');
+    });
+  }
+  $('#contenu').addEventListener('input', e => {
+    const el = e.target.closest('[data-bind]');
+    if (!el) return;
+    const t = el.dataset.type || 'texte';
+    let v = el.type === 'checkbox' ? el.checked : el.value;
+    if (t === 'nombre') v = Number(v) || 0;
+    if (t === 'valeur') v = valeurChamp(v);
+    if (t === 'lignes') v = el.value.split('\n').map(x => x.trim()).filter(Boolean);
+    setPath(el.dataset.bind, v);
+    // Champs liés entre eux (curseur + nombre)
+    document.querySelectorAll(`[data-bind="${el.dataset.bind}"]`).forEach(o => { if (o !== el && o.type !== 'checkbox') o.value = v; });
+    if (el.dataset.bind.startsWith('tension')) apercuTension();
+    if (el.dataset.maj === 'nav') majNavDistricts();
+    modifie();
+  });
+  $('#contenu').addEventListener('change', e => {
+    const el = e.target.closest('[data-bind][data-type="valeur"]');
+    if (el) el.value = afficheValeur(getPath(el.dataset.bind));
+  });
+
+  // ---------- Onglets ----------
+  $('#onglets').addEventListener('click', e => {
+    const b = e.target.closest('[data-onglet]');
+    if (!b) return;
+    onglet = b.dataset.onglet;
+    document.querySelectorAll('#onglets button').forEach(x => x.classList.toggle('on', x === b));
+    rendre();
+  });
+
+  function rendre() {
+    const vues = { situation: vueSituation, evenements: vueEvenements, districts: vueDistricts, secteurs: vueSecteurs, reglages: vueReglages };
+    $('#contenu').innerHTML = vues[onglet]();
+    lier($('#contenu'));
+    if (onglet === 'situation') apercuTension();
+    majEtat();
   }
 
-  // Saisie avec brouillard de guerre : vide = classifié, "?" = inconnu, "~1200" = estimation.
-  function parseFog(v) {
-    v = String(v).trim().replace(/\s/g, "");
-    if (v === "") return null;
-    if (v === "?") return "?";
-    if (v.startsWith("~") || v.startsWith("≈")) return "~" + v.slice(1).replace(",", ".");
-    const n = Number(v.replace(",", "."));
-    return isNaN(n) ? v : n;
+  // ---------- 1. Situation ----------
+  function vueSituation() {
+    return `
+    <section class="carte"><h2>Date du RP</h2>
+      <p class="aide">La date affichée en haut de la carte. Changez-la à chaque nouveau « tour » du conflit : elle sert aussi de repère dans la chronologie.</p>
+      <div class="grille"><label class="champ"><span>Date actuelle</span><input data-bind="meta.dateRP"></label></div>
+    </section>
+    <section class="carte"><h2>Tension mondiale</h2>
+      <p class="aide">Réglée à la main, de 0 à 100. Les paliers et les armes autorisées se modifient dans l'onglet Réglages.</p>
+      <div class="ligne"><input type="range" min="0" max="100" data-bind="tension.valeur" data-type="nombre" style="flex:1">
+        <input type="number" min="0" max="100" data-bind="tension.valeur" data-type="nombre" class="num" style="width:90px"></div>
+      <div class="apercu-tension" id="apercuT"></div>
+    </section>
+    <section class="carte"><h2>En-tête</h2>
+      <div class="grille">
+        <label class="champ"><span>Titre</span><input data-bind="meta.titre"></label>
+        <label class="champ large"><span>Sous-titre</span><input data-bind="meta.sousTitre"></label>
+      </div>
+    </section>
+    <section class="carte"><h2>Mise à jour type</h2>
+      <p class="aide" style="margin:0">1. Changer la date du RP ici → 2. Ajouter les événements du tour → 3. Ajuster les districts touchés (statut, influence, effectifs, pertes) → 4. Régler la tension → 5. <strong>Publier</strong>.</p>
+    </section>`;
   }
-  const showFog = v => (v === null || v === undefined ? "" : String(v));
+  function apercuTension() {
+    const el = $('#apercuT');
+    if (!el) return;
+    const t = data.tension.valeur, P = data.tension.paliers;
+    const i = C.palier(t, P), m = C.minutes(t, P);
+    const change = C.palier(publieTension, P) !== i;
+    el.innerHTML = `<span class="h">${C.heure(m)}</span><div><div class="p">Palier ${i + 1} · ${esc(P[i].nom)}</div>
+      <div class="muted small">${esc(P[i].armes)}</div>
+      ${change ? `<div class="small" style="color:var(--g-critique);margin-top:4px">Changement de palier depuis la dernière publication (${esc(P[C.palier(publieTension, P)].nom)} → ${esc(P[i].nom)})</div>` : ''}</div>`;
+  }
+
+  // ---------- 2. Événements ----------
+  function optionsPortee(sel) {
+    const s = sel ? sel.type + ':' + sel.id : 'monde:';
+    let h = `<option value="monde:" ${s === 'monde:' ? 'selected' : ''}>🌐 Mondial</option>`;
+    for (const sec of data.secteurs) {
+      h += `<optgroup label="${esc(sec.nom)}"><option value="secteur:${sec.id}" ${s === 'secteur:' + sec.id ? 'selected' : ''}>Secteur ${esc(sec.nom)} (entier)</option>`;
+      for (const d of sec.districts) h += `<option value="district:${d.id}" ${s === 'district:' + d.id ? 'selected' : ''}>${esc(d.nom)}</option>`;
+      h += '</optgroup>';
+    }
+    return h;
+  }
+  function nomPortee(p) {
+    if (p.type === 'monde') return 'Mondial';
+    for (const s of data.secteurs) {
+      if (p.type === 'secteur' && s.id === p.id) return 'Secteur ' + s.nom;
+      for (const d of s.districts) if (p.type === 'district' && d.id === p.id) return d.nom + ' · ' + s.nom;
+    }
+    return '(portée supprimée)';
+  }
+
+  function vueEvenements() {
+    const ev = evEdite !== null ? data.evenements[evEdite] : null;
+    const g = ev ? ev.gravite : 'majeur';
+    const liste = data.evenements.map((e, i) => ({ e, i })).reverse().map(({ e, i }) => `
+      <article class="ev ${e.gravite} ${i === evEdite ? 'edite' : ''}">
+        <div class="meta"><span class="grav">${esc(C.GRAVITES[e.gravite])}</span><span class="date">${esc(e.date)}</span><span>${esc(nomPortee(e.portee))}</span>
+          ${annonces.includes(e.id) ? '<span class="ann">DISCORD EN ATTENTE</span>' : ''}</div>
+        <div class="outils">
+          <button class="btn petit" data-ev-haut="${i}" title="Plus ancien" ${i === 0 ? 'disabled' : ''}>↓</button>
+          <button class="btn petit" data-ev-bas="${i}" title="Plus récent" ${i === data.evenements.length - 1 ? 'disabled' : ''}>↑</button>
+          <button class="btn petit" data-ev-edit="${i}">Modifier</button>
+          <button class="btn petit danger" data-ev-suppr="${i}">✕</button>
+        </div>
+        <h4>${esc(e.titre)}</h4><p>${esc(e.description)}</p>
+        ${e.consequences && e.consequences.length ? `<ul>${e.consequences.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
+      </article>`).join('');
+    return `
+    <section class="carte"><h2>${ev ? 'Modifier l\'événement' : 'Nouvel événement'}</h2>
+      <p class="aide">${ev ? 'Les changements s\'appliquent dès que vous enregistrez.' : 'Il apparaîtra en tête du fil, avec un marqueur sur la carte. Les événements critiques s\'affichent aussi en bandeau d\'alerte.'}</p>
+      <form id="formEv" class="grille">
+        <label class="champ"><span>Date</span><input name="date" value="${esc(ev ? ev.date : data.meta.dateRP)}" required></label>
+        <label class="champ" style="grid-column:span 2"><span>Portée</span><select name="portee">${optionsPortee(ev && ev.portee)}</select></label>
+        <div class="champ large"><span>Gravité</span><div class="gravites">
+          ${Object.entries(C.GRAVITES).map(([k, l]) => `<label class="${k}"><input type="radio" name="gravite" value="${k}" ${g === k ? 'checked' : ''}>${l}</label>`).join('')}</div></div>
+        <label class="champ large"><span>Titre</span><input name="titre" value="${esc(ev ? ev.titre : '')}" required></label>
+        <label class="champ large"><span>Description</span><textarea name="description" rows="3">${esc(ev ? ev.description : '')}</textarea></label>
+        <label class="champ large"><span>Conséquences — une par ligne</span><textarea name="consequences" rows="3">${esc(ev ? (ev.consequences || []).join('\n') : '')}</textarea></label>
+        <label class="champ"><span>Effet sur la tension</span><input name="tension" type="number" class="num" value="${ev ? ev.tension || 0 : 0}"><small>Affiché sur l'événement (ex. +8)</small></label>
+        <div class="champ" style="grid-column:span 2;justify-content:flex-end;gap:8px">
+          ${ev ? '' : '<label class="case"><input type="checkbox" name="appliquer" checked> Ajouter cette valeur à la jauge de tension</label>'}
+          <label class="case"><input type="checkbox" name="annoncer" ${ev ? (annonces.includes(ev.id) ? 'checked' : '') : (g !== 'mineur' ? 'checked' : '')}> Annoncer sur Discord à la prochaine publication</label>
+        </div>
+        <div class="champ large"><div class="ligne">
+          <button class="btn primaire" type="submit">${ev ? 'Enregistrer' : 'Ajouter l\'événement'}</button>
+          ${ev ? '<button class="btn" type="button" id="annulerEv">Annuler</button>' : ''}</div></div>
+      </form>
+    </section>
+    <section class="carte ev-liste"><h2>Fil des événements (${data.evenements.length})</h2>
+      <p class="aide">Du plus récent au plus ancien. Les flèches corrigent l'ordre si besoin.</p>
+      ${liste || '<div class="vide">Aucun événement.</div>'}
+    </section>`;
+  }
+
+  $('#contenu').addEventListener('submit', e => {
+    if (e.target.id !== 'formEv') return;
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const [type, id] = f.get('portee').split(':');
+    const ev = {
+      id: evEdite !== null ? data.evenements[evEdite].id : 'ev' + Date.now().toString(36),
+      date: f.get('date').trim(),
+      portee: type === 'monde' ? { type: 'monde' } : { type, id },
+      gravite: f.get('gravite'),
+      titre: f.get('titre').trim(),
+      description: f.get('description').trim(),
+      consequences: f.get('consequences').split('\n').map(x => x.trim()).filter(Boolean),
+      tension: Number(f.get('tension')) || 0
+    };
+    if (evEdite !== null) {
+      data.evenements[evEdite] = ev;
+      toast('Événement modifié');
+    } else {
+      data.evenements.push(ev);
+      if (f.get('appliquer') && ev.tension) {
+        data.tension.valeur = Math.max(0, Math.min(100, data.tension.valeur + ev.tension));
+        toast(`Événement ajouté — tension ${ev.tension > 0 ? '+' : ''}${ev.tension} → ${data.tension.valeur}`);
+      } else toast('Événement ajouté');
+    }
+    annonces = annonces.filter(x => x !== ev.id);
+    if (f.get('annoncer')) annonces.push(ev.id);
+    ecrire(CLE_ANNONCES, annonces);
+    evEdite = null;
+    modifie(); rendre();
+  });
+
+  $('#contenu').addEventListener('click', e => {
+    const t = e.target.closest('button');
+    if (!t) return;
+    const ds = t.dataset;
+    if (ds.evEdit !== undefined) { evEdite = +ds.evEdit; rendre(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    else if (t.id === 'annulerEv') { evEdite = null; rendre(); }
+    else if (ds.evSuppr !== undefined) {
+      const ev = data.evenements[+ds.evSuppr];
+      if (!confirm(`Supprimer « ${ev.titre} » ?`)) return;
+      data.evenements.splice(+ds.evSuppr, 1);
+      // Garde la chronologie cohérente
+      data.historique.forEach(h => { if (h.evenements > +ds.evSuppr) h.evenements--; });
+      annonces = annonces.filter(x => x !== ev.id); ecrire(CLE_ANNONCES, annonces);
+      evEdite = null; modifie(); rendre();
+    }
+    else if (ds.evHaut !== undefined || ds.evBas !== undefined) {
+      const i = +(ds.evHaut ?? ds.evBas), j = ds.evHaut !== undefined ? i - 1 : i + 1;
+      [data.evenements[i], data.evenements[j]] = [data.evenements[j], data.evenements[i]];
+      modifie(); rendre();
+    }
+    // Districts
+    else if (ds.district) { districtSel = ds.district; rendre(); }
+    else if (ds.ajoutUnite) {
+      const d = trouverDistrict(districtSel).d;
+      (d.forces[ds.ajoutUnite] ||= []).push({ nom: '', effectif: 0 });
+      modifie(); rendre();
+    }
+    else if (ds.supprUnite) {
+      const [f, i] = ds.supprUnite.split(':');
+      trouverDistrict(districtSel).d.forces[f].splice(+i, 1);
+      modifie(); rendre();
+    }
+    else if (ds.supprDistrict) {
+      const { s, i, d } = trouverDistrict(ds.supprDistrict);
+      if (!confirm(`Supprimer définitivement le ${d.nom} (${s.nom}) ?`)) return;
+      s.districts.splice(i, 1); districtSel = null; modifie(); rendre();
+    }
+    // Secteurs
+    else if (ds.ajoutDistrict) {
+      const s = data.secteurs.find(x => x.id === ds.ajoutDistrict);
+      const nom = prompt('Nom du nouveau district :', 'District ');
+      if (!nom) return;
+      const d = nouveauDistrict(s.id, nom);
+      s.districts.push(d); districtSel = d.id;
+      onglet = 'districts'; document.querySelectorAll('#onglets button').forEach(x => x.classList.toggle('on', x.dataset.onglet === 'districts'));
+      modifie(); rendre();
+    }
+    else if (t.id === 'ajoutSecteur') {
+      const nom = prompt('Nom du nouveau secteur :');
+      if (!nom) return;
+      data.secteurs.push({ id: slug(nom), nom, geographique: false, note: '', districts: [] });
+      modifie(); rendre();
+    }
+    else if (ds.supprSecteur) {
+      const i = data.secteurs.findIndex(x => x.id === ds.supprSecteur);
+      if (!confirm(`Supprimer le secteur ${data.secteurs[i].nom} et tous ses districts ?`)) return;
+      data.secteurs.splice(i, 1); modifie(); rendre();
+    }
+    // Réglages
+    else if (ds.supprPalier !== undefined) { data.tension.paliers.splice(+ds.supprPalier, 1); modifie(); rendre(); }
+    else if (t.id === 'ajoutPalier') { data.tension.paliers.push({ min: 100, nom: 'Nouveau palier', minutes: 0, armes: '' }); modifie(); rendre(); }
+    else if (ds.supprHist !== undefined) { data.historique.splice(+ds.supprHist, 1); modifie(); rendre(); }
+    else if (t.id === 'testGithub') testGithub();
+    else if (t.id === 'testDiscord') testDiscord();
+    else if (t.id === 'importer') $('#fichierImport').click();
+  });
+
+  // ---------- 3. Districts ----------
+  function trouverDistrict(id) {
+    for (const s of data.secteurs) {
+      const i = s.districts.findIndex(d => d.id === id);
+      if (i >= 0) return { s, i, d: s.districts[i], si: data.secteurs.indexOf(s) };
+    }
+    return {};
+  }
+  const COUL = { controle: '#3f8f6b', conteste: '#e3a33b', reconquete: '#3f93cf', quarantaine: '#e2cf3a', perdu: '#d8284f' };
+  function navDistricts() {
+    return data.secteurs.map(s => `<h4>${esc(s.nom)}</h4>` + s.districts.map(d => `
+      <button data-district="${d.id}" class="${d.id === districtSel ? 'on' : ''}"><span>${esc(d.nom)}</span>
+      <span class="muted small">${d.influence} % <i class="pt" style="display:inline-block;background:${COUL[d.statut]}"></i></span></button>`).join('')).join('');
+  }
+  function majNavDistricts() { const n = $('.nav-districts'); if (n) n.innerHTML = navDistricts(); }
+
+  function vueDistricts() {
+    if (!districtSel) districtSel = data.secteurs[0] && data.secteurs[0].districts[0] && data.secteurs[0].districts[0].id;
+    const { s, i, d, si } = trouverDistrict(districtSel);
+    if (!d) return `<div class="deux"><nav class="nav-districts">${navDistricts()}</nav><div class="carte">Aucun district.</div></div>`;
+    const P = `secteurs.${si}.districts.${i}`;
+    d.forces ||= { confederation: [], cultistes: [] };
+    d.pertes ||= { confederation: {}, cultistes: {} };
+    d.civils ||= {};
+    const nomsUnites = [...new Set(data.secteurs.flatMap(x => x.districts.flatMap(y => C.FACTIONS.flatMap(f => ((y.forces || {})[f] || []).map(u => u.nom)))))].filter(Boolean);
+
+    const forces = f => `<div style="--c:var(--${f === 'confederation' ? 'confed' : 'cult'})">
+      <h3 style="margin-top:0">${esc(data.factions[f].court)}</h3>
+      <div class="unites-ed">${(d.forces[f] || []).map((u, j) => `
+        <div class="unite-ed"><input data-bind="${P}.forces.${f}.${j}.nom" list="unitesConnues" placeholder="Nom de l'unité">
+        <input class="num" data-bind="${P}.forces.${f}.${j}.effectif" data-type="valeur" placeholder="0">
+        <button data-suppr-unite="${f}:${j}" title="Retirer">✕</button></div>`).join('') || '<div class="vide">Aucune unité.</div>'}</div>
+      <button class="btn petit" style="margin-top:8px" data-ajout-unite="${f}">+ Ajouter une unité</button></div>`;
+
+    return `<div class="deux"><nav class="nav-districts">${navDistricts()}</nav><div>
+    <section class="carte"><h2>${esc(d.nom)}</h2><p class="aide">Secteur ${esc(s.nom)} · Les modifications sont enregistrées automatiquement dans le brouillon.</p>
+      <div class="grille">
+        <label class="champ"><span>Statut</span><select data-bind="${P}.statut" data-maj="nav">${Object.entries(data.statuts).map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
+        <label class="champ"><span>Tendance</span><select data-bind="${P}.tendance">${Object.entries(C.TENDANCES).map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
+        <div class="champ" style="grid-column:span 2"><span>Influence cultiste (%)</span><div class="ligne">
+          <input type="range" min="0" max="100" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="flex:1">
+          <input type="number" min="0" max="100" class="num" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="width:80px"></div></div>
+        <label class="champ large"><span>Note de situation (optionnelle)</span><textarea data-bind="${P}.note" rows="2"></textarea></label>
+      </div>
+      <p class="muted small" style="margin:14px 0 0">Pour tous les chiffres : <code>12000</code> · <code>~12000</code> pour une estimation · <code>?</code> ou <code>CLASSIFIÉ</code> pour une donnée inconnue.</p>
+    </section>
+    <section class="carte"><h2>Population civile</h2><div class="grille">
+      ${C.CIVILS.map(([k, l]) => `<label class="champ"><span>${l}</span><input class="num" data-bind="${P}.civils.${k}" data-type="valeur"></label>`).join('')}</div></section>
+    <section class="carte"><h2>Effectifs</h2><p class="aide">Le total de chaque faction est calculé automatiquement. Côté cultiste, vous pouvez classer les forces par Dieu.</p>
+      <div class="factions-ed">${forces('confederation')}${forces('cultistes')}</div>
+      <datalist id="unitesConnues">${nomsUnites.map(n => `<option value="${esc(n)}">`).join('')}</datalist></section>
+    <section class="carte"><h2>Pertes militaires</h2><div class="pertes-ed"><span></span>${C.PERTES.map(([, l]) => `<span>${l}</span>`).join('')}
+      ${C.FACTIONS.map(f => `<span>${esc(data.factions[f].court)}</span>${C.PERTES.map(([k]) => `<input class="num" data-bind="${P}.pertes.${f}.${k}" data-type="valeur">`).join('')}`).join('')}</div></section>
+    <details class="carte"><summary style="cursor:pointer;font:600 12px var(--f-titre);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Avancé : nom, pays couverts, suppression</summary>
+      <div class="grille" style="margin-top:14px">
+        <label class="champ"><span>Nom du district</span><input data-bind="${P}.nom" data-maj="nav"></label>
+        <label class="champ large"><span>Pays couverts — un par ligne, noms anglais de la carte</span><textarea data-bind="${P}.pays" data-type="lignes" rows="5">${esc((d.pays || []).join('\n'))}</textarea>
+          <small>Un district sans pays n'apparaît pas sur la carte, mais reste consultable dans les listes.</small></label>
+        <div class="champ large"><button class="btn danger" data-suppr-district="${d.id}" style="align-self:flex-start">Supprimer ce district</button></div>
+      </div></details>
+    </div></div>`;
+  }
 
   function slug(s) {
-    return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "x";
+    return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now().toString(36).slice(-3);
   }
-  function uniqueId(base, exists) {
-    let id = base, i = 2;
-    while (exists(id)) id = base + "-" + i++;
-    return id;
-  }
-  const districtExists = id => !!findDistrict(data, id);
-
-  function getPath(obj, path) { return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj); }
-  function setPath(obj, path, value) {
-    const keys = path.split(".");
-    let o = obj;
-    keys.slice(0, -1).forEach(k => { if (o[k] == null || typeof o[k] !== "object") o[k] = {}; o = o[k]; });
-    o[keys[keys.length - 1]] = value;
-  }
-
-  // Champs liés : data-path="a.b" data-kind="text|num|fog" sur un objet cible.
-  function bindInputs(container, target, onChange) {
-    container.querySelectorAll("[data-path]").forEach(el => {
-      el.addEventListener("change", () => {
-        const kind = el.dataset.kind || "text";
-        let v = el.value;
-        if (kind === "num") v = v === "" ? 0 : Number(v);
-        else if (kind === "fog") v = parseFog(v);
-        setPath(target(), el.dataset.path, v);
-        save();
-        onChange && onChange(el);
-      });
-    });
-  }
-
-  function districtOptions(selected, allowNone) {
-    return (allowNone ? `<option value="">— Aucun (global) —</option>` : "") +
-      data.secteurs.map(s => `<optgroup label="${esc(s.nom)}">${s.districts.map(d =>
-        `<option value="${esc(d.id)}" ${d.id === selected ? "selected" : ""}>${esc(d.nom)}</option>`).join("")}</optgroup>`).join("");
-  }
-
-  const controleOptions = sel => Object.entries(CONTROLES).map(([k, v]) => `<option value="${k}" ${k === sel ? "selected" : ""}>${v}</option>`).join("");
-
-  // ---------- Tension ----------
-  function renderTension() {
-    const t = data.tension;
-    const v = tensionAt(data, null);
-    const pal = palierFor(data, v);
-    const hist = [...t.historique].sort((a, b) => b.date.localeCompare(a.date));
-    const pane = $("#pane-tension");
-    pane.innerHTML = `
-      <div class="card">
-        <h2>Niveau actuel : ${v} — ${esc(pal.nom)}</h2>
-        <p class="muted">Chaque réglage est daté : la chronologie de la carte rejoue ces valeurs.</p>
-        <div class="form-row">
-          <label>Date <input type="date" id="t-date" value="${today()}"></label>
-          <label class="grow">Valeur : <strong id="t-val-out">${v}</strong>
-            <input type="range" id="t-val" min="0" max="100" value="${v}"></label>
-        </div>
-        <label>Note (raison du changement) <input type="text" id="t-note" placeholder="ex. Chute du plateau iranien"></label>
-        <div class="form-row">
-          <label class="check"><input type="checkbox" id="t-discord" ${settings.webhook ? "" : "disabled"}> Annoncer sur Discord</label>
-          <button class="primary" id="t-add">Enregistrer ce niveau</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Historique</h2>
-        <table class="grid">
-          <tr><th>Date</th><th>Valeur</th><th>Note</th><th></th></tr>
-          ${hist.map(h => `<tr><td>${fmtDate(h.date)}</td><td>${h.valeur}</td><td>${esc(h.note || "")}</td>
-            <td><button class="icon-btn" data-del-t="${esc(h.date)}" title="Supprimer">✕</button></td></tr>`).join("")}
-        </table>
-      </div>
-
-      <div class="card">
-        <h2>Paliers</h2>
-        <p class="muted">Seuil minimal (0–100), nom, description et armes autorisées (une par ligne). Les armes des paliers inférieurs restent autorisées.</p>
-        ${t.paliers.map((p, i) => `
-          <fieldset class="palier-edit">
-            <legend>Palier ${i + 1}</legend>
-            <div class="form-row">
-              <label>Seuil <input type="number" min="0" max="100" data-path="${i}.seuil" data-kind="num" value="${p.seuil}"></label>
-              <label class="grow">Nom <input type="text" data-path="${i}.nom" value="${esc(p.nom)}"></label>
-            </div>
-            <label>Description <input type="text" data-path="${i}.description" value="${esc(p.description || "")}"></label>
-            <label>Armes autorisées <textarea rows="3" data-armes="${i}">${esc((p.armes || []).join("\n"))}</textarea></label>
-          </fieldset>`).join("")}
-      </div>`;
-
-    $("#t-val").oninput = e => ($("#t-val-out").textContent = e.target.value);
-    $("#t-add").onclick = () => {
-      const date = $("#t-date").value || today();
-      const entry = { date, valeur: +$("#t-val").value, note: $("#t-note").value.trim() };
-      const before = palierFor(data, tensionAt(data, null));
-      t.historique = t.historique.filter(h => h.date !== date).concat(entry);
-      save();
-      const after = palierFor(data, tensionAt(data, null));
-      if ($("#t-discord").checked) {
-        discord({
-          title: `Horloge de Tension : ${entry.valeur}/100 — ${after.nom}`,
-          description: (before !== after ? `**Changement de palier** : ${before.nom} → ${after.nom}\n` : "") + (entry.note || ""),
-          color: 0xd9a441,
-        });
-      }
-      toast("Niveau de tension enregistré.");
-      renderTension();
+  function nouveauDistrict(secteurId, nom) {
+    return {
+      id: slug(nom), nom, pays: [], statut: 'controle', influence: 0, tendance: 'stable',
+      civils: { population: 0, impliques: 0, deplaces: 0, disparus: 0, deces: 0 },
+      forces: { confederation: [], cultistes: [] },
+      pertes: { confederation: { tues: 0, blesses: 0, disparus: 0 }, cultistes: { tues: 0, blesses: 0, disparus: 0 } },
+      note: ''
     };
-    pane.querySelectorAll("[data-del-t]").forEach(b => b.onclick = () => {
-      if (!confirm("Supprimer cette entrée ?")) return;
-      t.historique = t.historique.filter(h => h.date !== b.dataset.delT);
-      save(); renderTension();
-    });
-    bindInputs(pane.querySelector(".card:last-child"), () => t.paliers);
-    pane.querySelectorAll("[data-armes]").forEach(el => el.onchange = () => {
-      t.paliers[+el.dataset.armes].armes = el.value.split("\n").map(s => s.trim()).filter(Boolean);
-      save();
-    });
-  }
-
-  // ---------- Districts ----------
-  function renderDistricts() {
-    const pane = $("#pane-districts");
-    const f = currentDistrict && findDistrict(data, currentDistrict);
-    if (!f) {
-      pane.innerHTML = `<div class="card"><p>Aucun district. Créez-en un dans l'onglet <strong>Secteurs</strong>.</p></div>`;
-      return;
-    }
-    const { district: d, secteur: s } = f;
-    d.civils ||= {}; d.pertes ||= {}; d.effectifs ||= {}; d.historique ||= [];
-    const st = districtState(d, null);
-    const hist = [...d.historique].sort((a, b) => b.date.localeCompare(a.date));
-    const unitRows = faction => (d.effectifs[faction] || []).map((u, i) => `
-      <tr><td><input type="text" data-path="effectifs.${faction}.${i}.unite" value="${esc(u.unite)}"></td>
-      <td><input type="text" inputmode="numeric" data-path="effectifs.${faction}.${i}.nombre" data-kind="fog" value="${esc(showFog(u.nombre))}"></td>
-      <td><button class="icon-btn" data-del-unit="${faction}:${i}" title="Retirer">✕</button></td></tr>`).join("");
-
-    pane.innerHTML = `
-      <div class="card sticky-select">
-        <label>District à modifier <select id="d-select">${districtOptions(d.id)}</select></label>
-      </div>
-
-      <div class="card">
-        <h2>${esc(d.nom)} <span class="muted small">· ${esc(s.nom)} · id : ${esc(d.id)}</span></h2>
-        <label>Nom <input type="text" data-path="nom" value="${esc(d.nom)}"></label>
-        <label>Pays couverts (codes ISO numériques, séparés par des espaces)
-          <input type="text" id="d-pays" value="${esc((d.pays || []).join(" "))}" placeholder="Vide = district hors carte (orbital, sous-marin…)"></label>
-        <p class="muted small">${(d.pays || []).map(p => esc(countryNames.get(p) || "? " + p)).join(", ") || "District hors carte."}</p>
-        <div class="form-row">
-          <label class="grow">Ajouter un pays <input type="text" id="d-add-pays" list="pays-list" placeholder="Tapez un nom de pays (en anglais)…"></label>
-          <button id="d-add-pays-btn">Ajouter</button>
-        </div>
-        <datalist id="pays-list">${[...countryNames].sort((a, b) => a[1].localeCompare(b[1])).map(([id, n]) => `<option value="${esc(n)}" data-id="${id}">`).join("")}</datalist>
-      </div>
-
-      <div class="card">
-        <h2>Contrôle — actuellement ${esc(CONTROLES[st.controle])}, intensité ${st.intensite || 0}/5</h2>
-        <div class="form-row">
-          <label>Date <input type="date" id="h-date" value="${today()}"></label>
-          <label>Contrôle <select id="h-ctrl">${controleOptions(st.controle)}</select></label>
-          <label>Intensité (0–5) <input type="number" id="h-int" min="0" max="5" value="${st.intensite || 0}"></label>
-          <button class="primary" id="h-add">Enregistrer</button>
-        </div>
-        <table class="grid">
-          <tr><th>Date</th><th>Contrôle</th><th>Intensité</th><th></th></tr>
-          ${hist.map(h => `<tr><td>${fmtDate(h.date)}</td><td>${esc(CONTROLES[h.controle] || h.controle)}</td><td>${h.intensite || 0}</td>
-            <td><button class="icon-btn" data-del-h="${esc(h.date)}" title="Supprimer">✕</button></td></tr>`).join("")}
-        </table>
-      </div>
-
-      <div class="card">
-        <h2>Chiffres</h2>
-        <p class="hint">Brouillard de guerre : laisser <strong>vide</strong> = « Classifié », <strong>?</strong> = « Inconnu », <strong>~12000</strong> = estimation (≈).</p>
-        <div class="form-grid">
-          <label>Population <input type="text" data-path="civils.population" data-kind="fog" value="${esc(showFog(d.civils.population))}"></label>
-          <label>Déplacés <input type="text" data-path="civils.deplaces" data-kind="fog" value="${esc(showFog(d.civils.deplaces))}"></label>
-          <label>Victimes civiles <input type="text" data-path="civils.victimes" data-kind="fog" value="${esc(showFog(d.civils.victimes))}"></label>
-          <label>Pertes ${esc(data.factions.confederation.nom)} <input type="text" data-path="pertes.confederation" data-kind="fog" value="${esc(showFog(d.pertes.confederation))}"></label>
-          <label>Pertes ${esc(data.factions.cultistes.nom)} <input type="text" data-path="pertes.cultistes" data-kind="fog" value="${esc(showFog(d.pertes.cultistes))}"></label>
-        </div>
-      </div>
-
-      ${["confederation", "cultistes"].map(fac => `
-      <div class="card">
-        <h2>Effectifs — ${esc(data.factions[fac].nom)}</h2>
-        <table class="grid units"><tr><th>Unité</th><th>Nombre</th><th></th></tr>${unitRows(fac)}</table>
-        <button data-add-unit="${fac}">+ Ajouter une unité</button>
-      </div>`).join("")}
-
-      <div class="card">
-        <h2>Rapport / notes</h2>
-        <textarea rows="4" data-path="notes" placeholder="Texte libre affiché dans la fiche.">${esc(d.notes || "")}</textarea>
-      </div>
-
-      <div class="card danger-zone">
-        <button class="danger" id="d-delete">Supprimer ce district</button>
-      </div>`;
-
-    $("#d-select").onchange = e => { currentDistrict = e.target.value; renderDistricts(); };
-    bindInputs(pane, () => d, el => { if (el.dataset.path === "nom") renderDistricts(); });
-    $("#d-pays").onchange = e => {
-      d.pays = e.target.value.split(/[\s,;]+/).filter(Boolean).map(x => /^\d+$/.test(x) ? x.padStart(3, "0") : x);
-      save(); renderDistricts();
-    };
-    $("#d-add-pays-btn").onclick = () => {
-      const name = $("#d-add-pays").value.trim().toLowerCase();
-      const hit = [...countryNames].find(([, n]) => n.toLowerCase() === name);
-      if (!hit) return toast("Pays introuvable. Choisissez un nom dans la liste.", true);
-      const owner = data.secteurs.flatMap(x => x.districts).find(x => (x.pays || []).includes(hit[0]));
-      if (owner && owner !== d && !confirm(`${hit[1]} appartient déjà à « ${owner.nom} ». Le déplacer ici ?`)) return;
-      if (owner && owner !== d) owner.pays = owner.pays.filter(p => p !== hit[0]);
-      d.pays = [...new Set([...(d.pays || []), hit[0]])];
-      save(); renderDistricts();
-    };
-    $("#h-add").onclick = () => {
-      const date = $("#h-date").value || today();
-      d.historique = d.historique.filter(h => h.date !== date).concat({
-        date, controle: $("#h-ctrl").value, intensite: Math.max(0, Math.min(5, +$("#h-int").value || 0)),
-      });
-      save(); toast("Statut enregistré."); renderDistricts();
-    };
-    pane.querySelectorAll("[data-del-h]").forEach(b => b.onclick = () => {
-      d.historique = d.historique.filter(h => h.date !== b.dataset.delH);
-      save(); renderDistricts();
-    });
-    pane.querySelectorAll("[data-add-unit]").forEach(b => b.onclick = () => {
-      (d.effectifs[b.dataset.addUnit] ||= []).push({ unite: "Nouvelle unité", nombre: 0 });
-      save(); renderDistricts();
-    });
-    pane.querySelectorAll("[data-del-unit]").forEach(b => b.onclick = () => {
-      const [fac, i] = b.dataset.delUnit.split(":");
-      d.effectifs[fac].splice(+i, 1);
-      save(); renderDistricts();
-    });
-    $("#d-delete").onclick = () => {
-      if (!confirm(`Supprimer définitivement le district « ${d.nom} » ?`)) return;
-      s.districts = s.districts.filter(x => x !== d);
-      data.evenements.forEach(e => { if (e.district === d.id) e.district = null; });
-      currentDistrict = data.secteurs.flatMap(x => x.districts)[0]?.id || null;
-      save(); renderDistricts();
-    };
-  }
-
-  // ---------- Événements ----------
-  function renderEvents() {
-    const pane = $("#pane-events");
-    const e = editingEvent ? data.evenements.find(x => x.id === editingEvent) : null;
-    const v = e || { date: today(), titre: "", description: "", district: "", gravite: "info" };
-    const list = [...data.evenements].sort((a, b) => b.date.localeCompare(a.date));
-    pane.innerHTML = `
-      <div class="card">
-        <h2>${e ? "Modifier l'événement" : "Nouvel événement"}</h2>
-        <div class="form-row">
-          <label>Date <input type="date" id="e-date" value="${esc(v.date)}"></label>
-          <label>Gravité <select id="e-grav">
-            ${["info", "important", "critique"].map(g => `<option value="${g}" ${g === v.gravite ? "selected" : ""}>${{ info: "Info", important: "Important", critique: "Critique" }[g]}</option>`).join("")}
-          </select></label>
-          <label class="grow">District <select id="e-district">${districtOptions(v.district, true)}</select></label>
-        </div>
-        <label>Titre <input type="text" id="e-titre" value="${esc(v.titre)}"></label>
-        <label>Description <textarea id="e-desc" rows="3">${esc(v.description || "")}</textarea></label>
-        <div class="form-row">
-          <label class="check"><input type="checkbox" id="e-discord" ${settings.webhook ? "" : "disabled"}> Annoncer sur Discord ${settings.webhook ? "" : '<span class="muted small">(webhook non configuré)</span>'}</label>
-          ${e ? '<button id="e-cancel">Annuler</button>' : ""}
-          <button class="primary" id="e-save">${e ? "Enregistrer" : "Ajouter"}</button>
-        </div>
-      </div>
-      <div class="card">
-        <h2>Tous les événements (${list.length})</h2>
-        <ul class="admin-events">${list.map(x => {
-          const f = x.district && findDistrict(data, x.district);
-          return `<li class="event grav-${esc(x.gravite)}">
-            <div class="event-meta"><span class="grav">${esc(x.gravite)}</span><span class="muted small">${fmtDate(x.date)}${f ? " · " + esc(f.district.nom) : ""}</span></div>
-            <strong>${esc(x.titre)}</strong>
-            <div class="row-actions"><button data-edit-e="${esc(x.id)}">Modifier</button>
-            <button data-discord-e="${esc(x.id)}" ${settings.webhook ? "" : "disabled"}>Annoncer</button>
-            <button class="danger" data-del-e="${esc(x.id)}">Supprimer</button></div>
-          </li>`;
-        }).join("")}</ul>
-      </div>`;
-
-    $("#e-save").onclick = () => {
-      const titre = $("#e-titre").value.trim();
-      if (!titre) return toast("Le titre est obligatoire.", true);
-      const obj = e || { id: uniqueId("e" + Date.now().toString(36), id => data.evenements.some(x => x.id === id)) };
-      Object.assign(obj, {
-        date: $("#e-date").value || today(), titre, description: $("#e-desc").value.trim(),
-        district: $("#e-district").value || null, gravite: $("#e-grav").value,
-      });
-      if (!e) data.evenements.push(obj);
-      save();
-      if ($("#e-discord").checked) announceEvent(obj);
-      editingEvent = null;
-      toast(e ? "Événement modifié." : "Événement ajouté.");
-      renderEvents();
-    };
-    if (e) $("#e-cancel").onclick = () => { editingEvent = null; renderEvents(); };
-    pane.querySelectorAll("[data-edit-e]").forEach(b => b.onclick = () => { editingEvent = b.dataset.editE; renderEvents(); window.scrollTo(0, 0); });
-    pane.querySelectorAll("[data-discord-e]").forEach(b => b.onclick = () => announceEvent(data.evenements.find(x => x.id === b.dataset.discordE)));
-    pane.querySelectorAll("[data-del-e]").forEach(b => b.onclick = () => {
-      if (!confirm("Supprimer cet événement ?")) return;
-      data.evenements = data.evenements.filter(x => x.id !== b.dataset.delE);
-      save(); renderEvents();
-    });
   }
 
   // ---------- Secteurs ----------
-  function renderSecteurs() {
-    const pane = $("#pane-secteurs");
-    pane.innerHTML = `
-      <div class="card">
-        <h2>Titre du site</h2>
-        <input type="text" id="meta-titre" value="${esc(data.meta.titre || "")}">
-      </div>
-      <p class="hint">Un secteur dont les districts n'ont aucun pays est affiché comme <strong>« hors carte »</strong> (territoires orbitaux, sous-marins, dimensions…) : il reste consultable depuis la liste.</p>
-      ${data.secteurs.map((s, i) => `
-        <div class="card" data-sec="${i}">
-          <div class="form-row">
-            <label class="grow">Nom <input type="text" data-path="nom" value="${esc(s.nom)}"></label>
-            <span class="muted small">id : ${esc(s.id)}</span>
-          </div>
-          <label>Description <input type="text" data-path="description" value="${esc(s.description || "")}"></label>
-          <label>Cadrage de la carte (longitude/latitude min puis max, facultatif)
-            <input type="text" data-cadrage value="${esc(s.cadrage ? s.cadrage.flat().join(" ") : "")}" placeholder="ex. -25 34 60 72"></label>
-          <p class="small"><strong>${s.districts.length} districts :</strong> ${s.districts.map(d => `<a href="#" data-goto="${esc(d.id)}">${esc(d.nom)}</a>`).join(", ") || "aucun"}</p>
-          <div class="form-row">
-            <input type="text" class="grow" data-new-district placeholder="Nom du nouveau district">
-            <button data-add-district>+ Ajouter le district</button>
-            <button data-up ${i === 0 ? "disabled" : ""} title="Monter">↑</button>
-            <button data-down ${i === data.secteurs.length - 1 ? "disabled" : ""} title="Descendre">↓</button>
-            <button class="danger" data-del-sec>Supprimer le secteur</button>
-          </div>
-        </div>`).join("")}
-      <div class="card">
-        <h2>Nouveau secteur</h2>
-        <div class="form-row">
-          <input type="text" class="grow" id="new-sec" placeholder="ex. Secteur Orbital">
-          <button class="primary" id="add-sec">Créer le secteur</button>
+  function vueSecteurs() {
+    return `<section class="carte"><h2>Secteurs</h2>
+      <p class="aide">Un secteur « hors carte » (non géographique) apparaît dans les listes de la carte avec ses districts, sans zone dessinée.</p>
+      <button class="btn" id="ajoutSecteur">+ Nouveau secteur</button></section>
+      ${data.secteurs.map((s, i) => `<section class="carte">
+        <div class="grille">
+          <label class="champ"><span>Nom</span><input data-bind="secteurs.${i}.nom"></label>
+          <div class="champ"><span>Type</span><div class="muted" style="padding:8px 0">${s.geographique === false ? 'Hors carte' : 'Géographique'} · ${s.districts.length} districts</div></div>
+          <label class="champ large"><span>Note du secteur (optionnelle)</span><textarea data-bind="secteurs.${i}.note" rows="2"></textarea></label>
         </div>
-      </div>`;
+        <div class="ligne" style="margin-top:12px">
+          <button class="btn petit" data-ajout-district="${s.id}">+ Ajouter un district</button>
+          <button class="btn petit danger" data-suppr-secteur="${s.id}">Supprimer le secteur</button>
+        </div></section>`).join('')}`;
+  }
 
-    $("#meta-titre").onchange = e => { data.meta.titre = e.target.value; save(); };
-    pane.querySelectorAll("[data-sec]").forEach(card => {
-      const i = +card.dataset.sec, s = data.secteurs[i];
-      bindInputs(card, () => s);
-      card.querySelector("[data-cadrage]").onchange = e => {
-        const n = e.target.value.split(/[\s,;]+/).filter(Boolean).map(Number);
-        if (n.length === 0) delete s.cadrage;
-        else if (n.length === 4 && n.every(x => !isNaN(x))) s.cadrage = [[n[0], n[1]], [n[2], n[3]]];
-        else return toast("Le cadrage doit contenir 4 nombres.", true);
-        save();
-      };
-      card.querySelector("[data-add-district]").onclick = () => {
-        const nom = card.querySelector("[data-new-district]").value.trim();
-        if (!nom) return toast("Indiquez un nom de district.", true);
-        const id = uniqueId(slug(nom), districtExists);
-        s.districts.push({
-          id, nom, pays: [], historique: [{ date: today(), controle: "confederation", intensite: 0 }],
-          civils: { population: null, deplaces: 0, victimes: 0 }, effectifs: { confederation: [], cultistes: [] },
-          pertes: { confederation: 0, cultistes: 0 }, notes: "",
-        });
-        save();
-        currentDistrict = id;
-        showTab("districts");
-        toast(`District « ${nom} » créé.`);
-      };
-      card.querySelector("[data-up]").onclick = () => { data.secteurs.splice(i - 1, 0, data.secteurs.splice(i, 1)[0]); save(); renderSecteurs(); };
-      card.querySelector("[data-down]").onclick = () => { data.secteurs.splice(i + 1, 0, data.secteurs.splice(i, 1)[0]); save(); renderSecteurs(); };
-      card.querySelector("[data-del-sec]").onclick = () => {
-        if (!confirm(`Supprimer « ${s.nom} » et ses ${s.districts.length} districts ?`)) return;
-        const ids = new Set(s.districts.map(d => d.id));
-        data.evenements.forEach(e => { if (ids.has(e.district)) e.district = null; });
-        data.secteurs.splice(i, 1);
-        save(); renderSecteurs();
-      };
+  // ---------- Réglages ----------
+  function vueReglages() {
+    const P = data.tension.paliers;
+    return `
+    <section class="carte"><h2>Publication GitHub</h2>
+      <p class="aide">Le bouton « Publier » envoie data.json sur votre dépôt GitHub : la carte se met à jour pour tout le monde en une à deux minutes. Ces informations restent dans <strong>ce navigateur uniquement</strong>.</p>
+      <div class="grille">
+        <label class="champ"><span>Compte GitHub</span><input id="cfgOwner" value="${esc(config.owner || '')}"></label>
+        <label class="champ"><span>Dépôt</span><input id="cfgRepo" value="${esc(config.repo || '')}"></label>
+        <label class="champ"><span>Branche</span><input id="cfgBranch" value="${esc(config.branch || '')}" placeholder="(branche par défaut)"></label>
+        <label class="champ large"><span>Jeton d'accès (fine-grained token)</span><input id="cfgToken" type="password" value="${esc(config.token || '')}" autocomplete="off"><small>Droit requis : Contents → Read and write, sur ce dépôt uniquement. Voir LISEZMOI.</small></label>
+      </div>
+      <div class="ligne" style="margin-top:12px"><button class="btn" id="testGithub">Tester la connexion</button></div>
+    </section>
+    <section class="carte"><h2>Annonces Discord</h2>
+      <p class="aide">Webhook d'un salon Discord (Paramètres du salon → Intégrations → Webhooks). Les événements cochés « Annoncer » y sont postés à la publication, ainsi que les changements de palier de tension.</p>
+      <div class="grille">
+        <label class="champ large"><span>URL du webhook</span><input id="cfgWebhook" type="password" value="${esc(config.webhook || '')}" autocomplete="off"></label>
+        <label class="champ large"><span>Adresse publique de la carte</span><input id="cfgSite" value="${esc(config.site || '')}" placeholder="https://pseudo.github.io/front-des-cendres/"><small>Pour les liens dans les messages Discord.</small></label>
+      </div>
+      <div class="ligne" style="margin-top:12px"><button class="btn" id="testDiscord">Envoyer un message de test</button></div>
+    </section>
+    <section class="carte"><h2>Paliers de tension</h2>
+      <p class="aide">« Seuil » = tension à partir de laquelle le palier s'active. « Minutes » = temps avant minuit affiché sur l'horloge.</p>
+      ${P.map((p, i) => `<div class="grille" style="grid-template-columns:70px 1fr 90px 90px 40px;margin-bottom:8px;align-items:end">
+        <div class="champ"><span>Palier</span><div style="padding:8px 0;font:700 16px var(--f-titre)">${i + 1}</div></div>
+        <label class="champ"><span>Nom</span><input data-bind="tension.paliers.${i}.nom"></label>
+        <label class="champ"><span>Seuil</span><input type="number" class="num" data-bind="tension.paliers.${i}.min" data-type="nombre"></label>
+        <label class="champ"><span>Minutes</span><input type="number" step="0.5" class="num" data-bind="tension.paliers.${i}.minutes" data-type="nombre"></label>
+        <button class="btn petit danger" data-suppr-palier="${i}" ${P.length <= 1 ? 'disabled' : ''}>✕</button>
+        <label class="champ" style="grid-column:2 / -1"><span>Armement autorisé</span><input data-bind="tension.paliers.${i}.armes"></label></div>`).join('')}
+      <button class="btn petit" id="ajoutPalier">+ Ajouter un palier</button>
+    </section>
+    <section class="carte"><h2>Factions et statuts</h2><div class="grille">
+      ${C.FACTIONS.map(f => `<label class="champ"><span>Nom court · ${f}</span><input data-bind="factions.${f}.court"></label>`).join('')}
+      ${Object.keys(data.statuts).map(k => `<label class="champ"><span>Statut · ${k}</span><input data-bind="statuts.${k}"></label>`).join('')}
+    </div></section>
+    <section class="carte"><h2>Chronologie (${data.historique.length} points)</h2>
+      <p class="aide">Chaque publication peut enregistrer un point : la carte peut ensuite « rejouer » le conflit avec le curseur du bas.</p>
+      <div class="hist">${data.historique.map((h, i) => `<div><span class="d">${esc(h.date)}</span><span class="muted">Tension ${h.tension} · ${h.evenements} év.</span>
+        <button class="btn petit danger" data-suppr-hist="${i}">✕</button></div>`).reverse().join('') || '<div class="vide">Aucun point.</div>'}</div>
+    </section>
+    <section class="carte"><h2>Fichier</h2>
+      <p class="aide">Secours : importer un data.json remplace le brouillon (rien n'est publié tant que vous ne cliquez pas sur Publier).</p>
+      <button class="btn" id="importer">Importer un data.json</button><input type="file" id="fichierImport" accept=".json,application/json" hidden>
+    </section>`;
+  }
+  // Champs de configuration (hors data.json)
+  $('#contenu').addEventListener('input', e => {
+    const map = { cfgOwner: 'owner', cfgRepo: 'repo', cfgBranch: 'branch', cfgToken: 'token', cfgWebhook: 'webhook', cfgSite: 'site' };
+    if (map[e.target.id]) { config[map[e.target.id]] = e.target.value.trim(); ecrire(CLE_CONFIG, config); }
+  });
+  $('#contenu').addEventListener('change', async e => {
+    if (e.target.id !== 'fichierImport' || !e.target.files[0]) return;
+    try {
+      const d = JSON.parse(await e.target.files[0].text());
+      if (!d.secteurs || !d.tension) throw new Error('structure inattendue');
+      data = d; modifie(); rendre(); toast('Fichier importé dans le brouillon');
+    } catch (err) { alert('Fichier invalide : ' + err.message); }
+  });
+
+  // ---------- GitHub ----------
+  function b64(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+  async function gh(methode, chemin, corps) {
+    if (!config.owner || !config.repo || !config.token) throw new Error('Réglages GitHub incomplets (onglet Réglages).');
+    const r = await fetch(`https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}${chemin}`, {
+      method: methode,
+      headers: { Authorization: 'Bearer ' + config.token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      body: corps ? JSON.stringify(corps) : undefined
     });
-    pane.querySelectorAll("[data-goto]").forEach(a => a.onclick = ev => { ev.preventDefault(); currentDistrict = a.dataset.goto; showTab("districts"); });
-    $("#add-sec").onclick = () => {
-      const nom = $("#new-sec").value.trim();
-      if (!nom) return toast("Indiquez un nom de secteur.", true);
-      data.secteurs.push({ id: uniqueId(slug(nom), id => data.secteurs.some(s => s.id === id)), nom, description: "", districts: [] });
-      save(); renderSecteurs();
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      const msg = { 401: 'Jeton invalide ou expiré.', 403: 'Le jeton n\'a pas le droit d\'écrire sur ce dépôt.', 404: 'Dépôt ou fichier introuvable (vérifiez le compte, le dépôt, la branche et les droits du jeton).', 409: 'Conflit de version, réessayez.', 422: 'Requête refusée par GitHub.' }[r.status];
+      throw new Error((msg || 'Erreur GitHub ' + r.status) + (j.message ? ` (${j.message})` : ''));
+    }
+    return j;
+  }
+  async function testGithub() {
+    try {
+      const f = await gh('GET', '/contents/data.json' + refBranche());
+      toast('Connexion OK — data.json trouvé (' + Math.round(f.size / 1024) + ' ko)');
+    } catch (e) { alert(e.message); }
+  }
+  async function envoyerGithub(contenu, message) {
+    const f = await gh('GET', '/contents/data.json' + refBranche());
+    const corps = { message, content: b64(contenu), sha: f.sha };
+    if (config.branch) corps.branch = config.branch;
+    return gh('PUT', '/contents/data.json', corps);
+  }
+  // Sans branche indiquée, GitHub utilise la branche par défaut du dépôt
+  const refBranche = () => config.branch ? '?ref=' + encodeURIComponent(config.branch) : '';
+
+  // ---------- Discord ----------
+  const COUL_G = { mineur: 0x5d8fb8, majeur: 0xe3a33b, critique: 0xff3b5c };
+  const ICONE_G = { mineur: '🔹', majeur: '🔶', critique: '🚨' };
+  function lienPortee(p) {
+    if (!config.site) return undefined;
+    const base = config.site.replace(/#.*$/, '');
+    if (p.type === 'district') { const t = trouverDistrict(p.id); return t.s ? `${base}#${t.s.id}/${p.id}` : base; }
+    if (p.type === 'secteur') return `${base}#${p.id}`;
+    return base;
+  }
+  async function discord(payload) {
+    if (!config.webhook) throw new Error('Aucun webhook Discord configuré.');
+    const r = await fetch(config.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'Réseau tactique confédéré', ...payload }) });
+    if (!r.ok) throw new Error('Discord a refusé le message (' + r.status + ')');
+  }
+  function embedEvenement(ev) {
+    const fields = [{ name: 'Portée', value: nomPortee(ev.portee), inline: true }];
+    if (ev.tension) fields.push({ name: 'Tension', value: `${ev.tension > 0 ? '+' : ''}${ev.tension}`, inline: true });
+    if (ev.consequences && ev.consequences.length) fields.push({ name: 'Conséquences', value: ev.consequences.map(c => '• ' + c).join('\n').slice(0, 1000) });
+    return {
+      title: `${ICONE_G[ev.gravite]} ${ev.titre}`.slice(0, 250), url: lienPortee(ev.portee),
+      description: ev.description.slice(0, 3500), color: COUL_G[ev.gravite], fields,
+      footer: { text: `${C.GRAVITES[ev.gravite]} · ${ev.date}` }
     };
+  }
+  function embedPalier() {
+    const P = data.tension.paliers, i = C.palier(data.tension.valeur, P);
+    return {
+      title: `⏱️ Tension mondiale : palier ${i + 1} · ${P[i].nom}`, url: config.site || undefined,
+      description: `**${C.heure(C.minutes(data.tension.valeur, P))}** — tension ${data.tension.valeur} / 100\n\n${P[i].armes}`,
+      color: i > C.palier(publieTension, P) ? 0xff3b5c : 0x3f8f6b, footer: { text: data.meta.dateRP }
+    };
+  }
+  async function testDiscord() {
+    try { await discord({ content: '✅ Test de connexion du Poste de commandement.' }); toast('Message de test envoyé'); }
+    catch (e) { alert(e.message); }
   }
 
   // ---------- Publication ----------
-  function guessRepo() {
-    // Sur GitHub Pages (utilisateur.github.io/depot), on devine le dépôt.
-    const m = location.hostname.match(/^([^.]+)\.github\.io$/);
-    if (m && !settings.owner) {
-      settings.owner = m[1];
-      settings.repo = location.pathname.split("/").filter(Boolean)[0] || m[1] + ".github.io";
-    }
-  }
+  $('#btnTelecharger').onclick = () => {
+    const blob = new Blob([versJSON(data)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'data.json'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
 
-  function renderPublier() {
-    const pane = $("#pane-publier");
-    pane.innerHTML = `
-      <div class="card">
-        <h2>Publier sur le site</h2>
-        <p class="muted">Envoie le brouillon dans <code>data.json</code> du dépôt GitHub. Le site se met à jour en 1 à 2 minutes.</p>
-        <div class="form-grid">
-          <label>Propriétaire <input type="text" data-set="owner" value="${esc(settings.owner)}" placeholder="renardpoule"></label>
-          <label>Dépôt <input type="text" data-set="repo" value="${esc(settings.repo)}" placeholder="lastwar"></label>
-          <label>Branche <input type="text" data-set="branch" value="${esc(settings.branch)}" placeholder="vide = branche par défaut"></label>
-          <label>Fichier <input type="text" data-set="path" value="${esc(settings.path)}"></label>
-        </div>
-        <label>Jeton GitHub (fine-grained, permission « Contents : Read and write » sur ce dépôt uniquement)
-          <input type="password" data-set="token" value="${esc(settings.token)}" autocomplete="off"></label>
-        <p class="hint">Le jeton est gardé uniquement dans ce navigateur. N'utilisez pas cette page sur un ordinateur partagé.</p>
-        <div class="form-row">
-          <label class="grow">Message de publication <input type="text" id="p-msg" value="Mise à jour de la carte"></label>
-          <button class="primary" id="p-publish">Publier</button>
-        </div>
+  $('#btnPublier').onclick = () => {
+    const dlg = $('#dlgPublier');
+    const h = data.historique, dernier = h[h.length - 1];
+    const memeDate = dernier && dernier.date === data.meta.dateRP;
+    const aAnnoncer = data.evenements.filter(e => annonces.includes(e.id));
+    const P = data.tension.paliers;
+    const changePalier = C.palier(publieTension, P) !== C.palier(data.tension.valeur, P);
+    dlg.innerHTML = `<button class="close" onclick="this.closest('dialog').close()" aria-label="Fermer">✕</button>
+      <h2 style="margin:0 0 6px;font:700 20px var(--f-titre);letter-spacing:.08em;text-transform:uppercase">Publier la mise à jour</h2>
+      <p class="muted" style="margin:0 0 18px">La carte sera à jour pour tous les joueurs d'ici une à deux minutes.</p>
+      <label class="case"><input type="checkbox" id="pSnap" checked> ${memeDate ? `Mettre à jour le point de chronologie « ${esc(data.meta.dateRP)} »` : `Ajouter un point de chronologie « ${esc(data.meta.dateRP)} »`}</label>
+      <h3 class="lbl" style="margin:18px 0 6px">Annonces Discord ${config.webhook ? '' : '<span class="muted">(aucun webhook configuré)</span>'}</h3>
+      <div class="pub-liste">
+        ${aAnnoncer.map(e => `<label class="case"><input type="checkbox" class="pAnn" value="${e.id}" ${config.webhook ? 'checked' : 'disabled'}> ${ICONE_G[e.gravite]} ${esc(e.titre)}</label>`).join('')}
+        ${changePalier ? `<label class="case"><input type="checkbox" id="pPalier" ${config.webhook ? 'checked' : 'disabled'}> ⏱️ Changement de palier : ${esc(P[C.palier(data.tension.valeur, P)].nom)}</label>` : ''}
+        ${!aAnnoncer.length && !changePalier ? '<span class="muted small">Rien à annoncer.</span>' : ''}
       </div>
+      <div class="ligne"><button class="btn primaire" id="pGo">Publier maintenant</button><button class="btn" onclick="this.closest('dialog').close()">Annuler</button></div>
+      <div class="pub-journal" id="pLog" hidden></div>`;
+    dlg.showModal();
+    $('#pGo').onclick = async () => {
+      const log = $('#pLog'); log.hidden = false; log.innerHTML = '';
+      const note = (t, ok = true) => { log.innerHTML += `<span class="${ok ? 'ok' : 'ko'}">${ok ? '✓' : '✗'}</span> ${esc(t)}\n`; };
+      $('#pGo').disabled = true;
+      const choisis = [...document.querySelectorAll('.pAnn:checked')].map(x => x.value);
+      const annoncerPalier = $('#pPalier') && $('#pPalier').checked;
 
-      <div class="card">
-        <h2>Sans GitHub</h2>
-        <p class="muted">Téléchargez le fichier puis remplacez <code>data.json</code> à la main sur le dépôt.</p>
-        <div class="form-row">
-          <button id="p-download">Télécharger data.json</button>
-          <button class="danger" id="p-reset">Abandonner le brouillon</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Discord</h2>
-        <p class="muted">URL du webhook du salon (Paramètres du salon → Intégrations → Webhooks). Permet d'annoncer les événements et les changements de Tension.</p>
-        <label>Webhook <input type="password" data-set="webhook" value="${esc(settings.webhook)}" placeholder="https://discord.com/api/webhooks/…" autocomplete="off"></label>
-        <button id="p-test">Envoyer un message de test</button>
-      </div>`;
-
-    pane.querySelectorAll("[data-set]").forEach(el => el.onchange = () => {
-      settings[el.dataset.set] = el.value.trim();
-      store.set(SETTINGS_KEY, settings);
-    });
-    $("#p-publish").onclick = publish;
-    $("#p-download").onclick = () => {
-      const blob = new Blob([JSON.stringify(stamp(), null, 1)], { type: "application/json" });
-      const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "data.json" });
-      a.click();
-      URL.revokeObjectURL(a.href);
-    };
-    $("#p-reset").onclick = () => {
-      if (!confirm("Effacer toutes les modifications non publiées ?")) return;
-      store.del(DRAFT_KEY);
-      data = structuredClone(published);
-      renderAll();
-      toast("Brouillon abandonné.");
-    };
-    $("#p-test").onclick = () => discord({ title: "Test de la carte de guerre", description: "Le webhook fonctionne.", color: 0x3b82c4 });
-  }
-
-  function stamp() {
-    data.meta.derniere_maj = today();
-    return data;
-  }
-
-  async function publish() {
-    const { owner, repo, branch, path, token } = settings;
-    if (!owner || !repo || !token) return toast("Renseignez le propriétaire, le dépôt et le jeton.", true);
-    const btn = $("#p-publish");
-    btn.disabled = true; btn.textContent = "Publication…";
-    const api = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${path.split("/").map(encodeURIComponent).join("/")}`;
-    const headers = { Authorization: "Bearer " + token, Accept: "application/vnd.github+json" };
-    try {
-      let sha;
-      const cur = await fetch(api + (branch ? "?ref=" + encodeURIComponent(branch) : ""), { headers });
-      if (cur.ok) sha = (await cur.json()).sha;
-      else if (cur.status !== 404) throw new Error(await errMsg(cur));
-      const json = JSON.stringify(stamp(), null, 1) + "\n";
-      const bytes = new TextEncoder().encode(json);
-      let bin = "";
-      bytes.forEach(b => (bin += String.fromCharCode(b)));
-      const res = await fetch(api, {
-        method: "PUT", headers,
-        body: JSON.stringify({ message: $("#p-msg").value || "Mise à jour de la carte", content: btoa(bin), branch: branch || undefined, sha }),
-      });
-      if (!res.ok) throw new Error(await errMsg(res));
-      published = structuredClone(data);
-      save();
-      toast("Publié ! Le site sera à jour d'ici 1 à 2 minutes.");
-    } catch (err) {
-      toast("Échec de la publication : " + err.message, true);
-    } finally {
-      btn.disabled = false; btn.textContent = "Publier";
-    }
-  }
-
-  async function errMsg(res) {
-    try { const j = await res.json(); return `${res.status} ${j.message || ""}`; } catch { return String(res.status); }
-  }
-
-  // ---------- Discord ----------
-  async function discord(embed) {
-    if (!settings.webhook) return toast("Aucun webhook Discord configuré (onglet Publier).", true);
-    try {
-      const res = await fetch(settings.webhook, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: data.meta.titre || "Carte de guerre", embeds: [embed] }),
-      });
-      if (!res.ok) throw new Error(res.status);
-      toast("Message envoyé sur Discord.");
-    } catch (err) {
-      toast("Échec de l'envoi Discord : " + err.message, true);
-    }
-  }
-
-  function announceEvent(e) {
-    const f = e.district && findDistrict(data, e.district);
-    const siteUrl = new URL("index.html", location.href);
-    if (f) siteUrl.hash = "district=" + f.district.id;
-    discord({
-      title: `${{ info: "ℹ️", important: "⚠️", critique: "🚨" }[e.gravite] || ""} ${e.titre}`,
-      description: (e.description || "") + (f ? `\n\n📍 **${f.district.nom}** (${f.secteur.nom})` : ""),
-      url: siteUrl.href,
-      color: { info: 0x3b82c4, important: 0xe0a526, critique: 0xc0392b }[e.gravite] || 0x888888,
-      footer: { text: fmtDate(e.date) },
-    });
-  }
-
-  // ---------- JSON brut ----------
-  function renderJson() {
-    const pane = $("#pane-json");
-    pane.innerHTML = `
-      <div class="card">
-        <h2>Édition directe</h2>
-        <p class="hint">Pour les modifications en masse. Une erreur de syntaxe est refusée sans rien casser.</p>
-        <textarea id="raw" rows="28" spellcheck="false" class="mono">${esc(JSON.stringify(data, null, 1))}</textarea>
-        <button class="primary" id="raw-apply">Appliquer</button>
-      </div>`;
-    $("#raw-apply").onclick = () => {
-      try {
-        const next = JSON.parse($("#raw").value);
-        if (!Array.isArray(next.secteurs) || !next.tension || !Array.isArray(next.evenements)) throw new Error("il manque secteurs, tension ou evenements");
-        data = next;
-        save(); renderAll();
-        toast("JSON appliqué.");
-      } catch (err) {
-        toast("JSON invalide : " + err.message, true);
+      // Copie à publier (le brouillon n'est remplacé qu'en cas de succès)
+      const pub = JSON.parse(versJSON(data));
+      if ($('#pSnap').checked) {
+        const districts = {};
+        for (const s of pub.secteurs) for (const d of s.districts) districts[d.id] = { statut: d.statut, influence: d.influence };
+        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, evenements: pub.evenements.length, districts };
+        const ph = pub.historique;
+        if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }
+      pub.meta.derniereMaj = new Date().toISOString();
+      const contenu = versJSON(pub);
+      try {
+        await envoyerGithub(contenu, `Mise à jour du front — ${pub.meta.dateRP}`);
+        note('data.json publié sur GitHub');
+      } catch (e) {
+        note(e.message, false);
+        note('Rien n\'a été publié. Vous pouvez aussi « Télécharger data.json » et le déposer vous-même sur GitHub.', false);
+        $('#pGo').disabled = false;
+        return;
+      }
+      data = pub;
+      const ancienneTension = publieTension;
+      publie = contenu;
+      publieTension = data.tension.valeur;
+      effacer(CLE_BROUILLON);
+
+      // Annonces
+      const embeds = [];
+      if (annoncerPalier) { publieTension = ancienneTension; embeds.push(embedPalier()); publieTension = data.tension.valeur; }
+      for (const id of choisis) { const ev = data.evenements.find(e => e.id === id); if (ev) embeds.push(embedEvenement(ev)); }
+      for (let i = 0; i < embeds.length; i += 10) {
+        try { await discord({ embeds: embeds.slice(i, i + 10) }); note(`${Math.min(10, embeds.length - i)} annonce(s) envoyée(s) sur Discord`); }
+        catch (e) { note(e.message, false); }
+      }
+      annonces = annonces.filter(id => !choisis.includes(id));
+      ecrire(CLE_ANNONCES, annonces);
+      note('Terminé. La carte se met à jour d\'ici une à deux minutes.');
+      $('#avis').hidden = true;
+      rendre();
     };
-  }
+  };
 
-  // ---------- Onglets ----------
-  const renderers = { tension: renderTension, districts: renderDistricts, events: renderEvents, secteurs: renderSecteurs, publier: renderPublier, json: renderJson };
-  let activeTab = "tension";
-
-  function showTab(name) {
-    activeTab = name;
-    document.querySelectorAll(".admin-tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
-    document.querySelectorAll(".tab-pane").forEach(p => p.classList.toggle("active", p.dataset.pane === name));
-    renderers[name]();
-  }
-
-  function renderAll() {
-    if (!findDistrict(data, currentDistrict)) currentDistrict = data.secteurs.flatMap(s => s.districts)[0]?.id || null;
-    renderers[activeTab]();
-    updateDraftStatus();
-  }
-
-  document.querySelector(".admin-tabs").addEventListener("click", e => {
-    const b = e.target.closest("button[data-tab]");
-    if (b) showTab(b.dataset.tab);
-  });
-
-  showTab("tension");
-  updateDraftStatus();
+  rendre();
 })();

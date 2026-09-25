@@ -1,62 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carte de guerre</title>
-  <meta name="description" content="Suivi du conflit entre la Confédération des Cendres et les Cultistes.">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Front des Cendres</title>
+<meta name="description" content="Situation du conflit entre la Confédération des Cendres et les Cultistes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-mark">◆</span>
-      <h1 id="titre">Carte de guerre</h1>
+<header class="topbar">
+  <div class="brand">
+    <svg class="sigle" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L29 9 V23 L16 30 L3 23 V9 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8 L22 19 H10 Z" fill="currentColor"/></svg>
+    <div>
+      <h1 id="titre">Confédération des Cendres</h1>
+      <p id="soustitre" class="muted"></p>
     </div>
-    <button id="tension-badge" class="tension-badge" type="button" title="Horloge de Tension">
-      <span class="tb-label">Tension</span>
-      <span class="tb-value" id="tb-value">–</span>
-      <span class="tb-palier" id="tb-palier"></span>
-    </button>
-  </header>
+  </div>
+  <div class="daterp">
+    <span class="lbl">Date</span>
+    <strong id="daterp">—</strong>
+    <span id="maj" class="muted small"></span>
+  </div>
+  <button id="tensionBtn" class="tension-mini" aria-label="Détails de la tension mondiale">
+    <svg id="miniClock" viewBox="0 0 60 60" aria-hidden="true"></svg>
+    <span class="tm-txt">
+      <span class="lbl">Tension mondiale</span>
+      <strong id="tensionVal">—</strong>
+      <span id="tensionPalier" class="palier"></span>
+    </span>
+  </button>
+</header>
 
-  <main class="layout">
-    <section class="map-wrap" aria-label="Carte">
-      <svg id="map" role="img" aria-label="Carte du conflit"></svg>
-      <div class="map-controls">
-        <button id="btn-monde" type="button" hidden>← Vue mondiale</button>
+<div id="alerte" class="alerte" hidden></div>
+
+<main class="layout">
+  <section class="mapzone">
+    <div id="archive" class="archive" hidden></div>
+    <div id="map" class="map" aria-label="Carte de la Confédération"></div>
+    <div class="map-ui">
+      <nav id="fil" class="fil" aria-label="Navigation"></nav>
+      <div class="legende">
+        <span><i class="sw" style="--c:var(--ok)"></i>Sous contrôle</span>
+        <span><i class="sw" style="--c:var(--st-conteste)"></i>Contesté</span>
+        <span><i class="sw" style="--c:var(--st-reconquete)"></i>Reconquête</span>
+        <span><i class="sw hatch"></i>Quarantaine</span>
+        <span><i class="sw" style="--c:var(--cult)"></i>Perdu</span>
       </div>
-      <div class="legend" id="legend"></div>
-      <div class="tooltip" id="tooltip" hidden></div>
-      <div class="loading" id="loading">Chargement de la carte…</div>
-    </section>
-
-    <aside class="panel">
-      <nav class="tabs" role="tablist">
-        <button role="tab" data-tab="zones" class="active">Zones</button>
-        <button role="tab" data-tab="events">Événements</button>
-        <button role="tab" data-tab="tension">Tension</button>
-      </nav>
-      <div class="panel-body">
-        <div class="tab-pane active" data-pane="zones" id="pane-zones"></div>
-        <div class="tab-pane" data-pane="events" id="pane-events"></div>
-        <div class="tab-pane" data-pane="tension" id="pane-tension"></div>
-      </div>
-    </aside>
-  </main>
-
-  <footer class="timeline">
-    <button id="btn-play" type="button" title="Rejouer la chronologie">▶</button>
-    <div class="timeline-track">
-      <input type="range" id="timeline" min="0" max="0" value="0" aria-label="Chronologie">
-      <div class="timeline-label"><span id="timeline-date">–</span> <span id="timeline-live" class="live">EN DIRECT</span></div>
     </div>
-    <button id="btn-live" type="button" title="Revenir à aujourd'hui">Aujourd'hui</button>
-  </footer>
+    <div class="timeline">
+      <button id="play" class="play" aria-label="Rejouer le conflit">▶</button>
+      <input id="slider" type="range" min="0" max="0" value="0" aria-label="Chronologie du conflit">
+      <span id="sliderLbl" class="slider-lbl">EN DIRECT</span>
+    </div>
+    <div id="tip" class="tip" hidden></div>
+  </section>
 
-  <script src="lib/d3.min.js"></script>
-  <script src="lib/topojson-client.min.js"></script>
-  <script src="common.js"></script>
-  <script src="app.js"></script>
+  <aside id="panel" class="panel" aria-live="polite"></aside>
+</main>
+
+<dialog id="tensionDlg" class="dlg">
+  <button class="close" onclick="this.closest('dialog').close()" aria-label="Fermer">✕</button>
+  <div id="tensionDetail"></div>
+</dialog>
+
+<script src="lib/d3.min.js"></script>
+<script src="lib/topojson-client.min.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

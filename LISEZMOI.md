@@ -1,67 +1,54 @@
-# Carte de guerre — mode d'emploi
+# Front des Cendres — carte du conflit
 
-Carte interactive du conflit entre la **Confédération des Cendres** et les **Cultistes**.
+Carte interactive du conflit entre la Confédération des Cendres et les Cultistes.
 
-- `index.html` : la carte publique (à partager aux joueurs).
-- `admin.html` : le panneau d'administration (pour mettre à jour sans toucher au code).
-- `data.json` : toutes les données (secteurs, districts, événements, Tension).
+- `index.html` : la carte publique (lien à partager sur Discord)
+- `admin.html` : le poste de commandement, pour faire les mises à jour
+- `data.json` : toutes les données (modifiées par `admin.html`)
+- `app.js`, `admin.js`, `common.js`, `style.css`, `admin.css` : le code
+- `countries-50m.json`, `lib/` : fond de carte et bibliothèques (inclus, aucun service extérieur requis)
 
-## 1. Mettre le site en ligne (une seule fois, ~5 min)
+---
 
-1. Sur GitHub, ouvrez le dépôt **lastwar** → **Settings** → **Pages**.
-2. Dans **Build and deployment** : Source = *Deploy from a branch*, choisissez la branche qui contient ces fichiers et le dossier `/ (root)`, puis **Save**.
-3. Après 1 à 2 minutes, le site est disponible à l'adresse :
-   `https://renardpoule.github.io/lastwar/`
-   L'administration se trouve à : `https://renardpoule.github.io/lastwar/admin.html`
+## Mise en ligne (une seule fois, environ 2 minutes)
 
-> La page d'administration est visible par tout le monde, mais personne ne peut **publier** sans votre jeton GitHub.
+Les fichiers sont déjà sur le dépôt GitHub `renardpoule/lastwar`.
 
-## 2. Autoriser la publication depuis l'administration (une seule fois)
+1. Dans le dépôt : **Settings → Pages**.
+2. *Source* : **Deploy from a branch**. *Branch* : la branche par défaut du dépôt (`claude/intelligent-wozniak-z9wmmf`), dossier **/ (root)**. Cliquez sur **Save**.
+3. Une à deux minutes plus tard, la carte est en ligne à l'adresse
+   `https://renardpoule.github.io/lastwar/`.
 
-1. Allez sur <https://github.com/settings/personal-access-tokens/new> (jeton *fine-grained*).
-2. **Repository access** : *Only select repositories* → `lastwar`.
-3. **Permissions** → *Repository permissions* → **Contents : Read and write**.
-4. Générez le jeton, copiez-le, puis collez-le dans l'onglet **Publier** de l'administration.
+### 3. Créer le jeton de publication (pour le bouton « Publier »)
+1. GitHub → photo de profil → **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
+2. Nom : `carte`. Expiration : au choix (un an, par exemple).
+3. *Repository access* : **Only select repositories**, puis choisissez `lastwar`.
+4. *Permissions → Repository permissions → Contents* : **Read and write**.
+5. Cliquez sur **Generate token** et copiez le jeton.
+6. Ouvrez `https://renardpoule.github.io/lastwar/admin.html`, onglet **Réglages**, collez le jeton, puis cliquez sur **Tester la connexion**.
 
-Le jeton reste uniquement dans votre navigateur. Ne l'utilisez pas sur un ordinateur partagé.
+Le jeton reste uniquement dans votre navigateur. Ne le partagez pas : quelqu'un qui l'a peut modifier la carte.
+La page `admin.html` est publique, mais sans jeton elle ne peut rien publier.
 
-## 3. Mettre à jour la carte
+### 4. (Optionnel) Annonces Discord
+Salon Discord → **Modifier le salon → Intégrations → Webhooks → Nouveau webhook → Copier l'URL**.
+Collez l'URL dans **Réglages → Annonces Discord** et cliquez sur « Envoyer un message de test ».
 
-Toutes les modifications sont d'abord gardées comme **brouillon** dans votre navigateur (indicateur orange en haut à droite). Rien n'est visible des joueurs tant que vous n'avez pas cliqué sur **Publier**.
+---
 
-| Onglet | Ce qu'on y fait |
-|---|---|
-| **Tension** | Régler l'horloge (0–100) à une date donnée, modifier les paliers et les armes autorisées. |
-| **Districts** | Contrôle (Confédération / Contesté / Cultistes) et intensité des combats, population, pertes, unités, notes, pays couverts. |
-| **Événements** | Ajouter, modifier ou supprimer un événement et l'annoncer sur Discord. |
-| **Secteurs** | Créer des secteurs et des districts, modifier le cadrage de la carte, le titre du site. |
-| **Publier** | Envoyer sur GitHub, télécharger `data.json`, configurer le webhook Discord. |
-| **JSON brut** | Modifier toutes les données d'un coup (pour les utilisateurs avancés). |
+## Faire une mise à jour
+1. Ouvrez `admin.html`.
+2. **Situation** : changez la date du RP.
+3. **Événements** : ajoutez ce qui s'est passé (portée, gravité, conséquences, effet sur la tension).
+4. **Districts** : ajustez statut, influence cultiste, effectifs et pertes des zones touchées.
+5. **Situation** : réglez la tension si besoin.
+6. Cliquez sur **Publier**. La carte se met à jour pour tout le monde en une à deux minutes.
 
-### Brouillard de guerre
+Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans le navigateur.
 
-Dans les champs chiffrés :
+**Chiffres** : `12000` · `~12000` (estimation, affichée « ~12 000 ») · `?` ou `CLASSIFIÉ` (donnée masquée).
 
-- laisser **vide** → affiché « Classifié » ;
-- `?` → affiché « Inconnu » ;
-- `~12000` → affiché « ≈ 12 000 » (estimation).
+**Liens partageables** : chaque zone a sa propre adresse, par exemple
+`…/lastwar/#europe/eu-est` ouvre directement le District de l'Est.
 
-### Secteurs hors carte
-
-Un district sans aucun pays (station orbitale, base sous-marine, autre dimension…) n'apparaît pas sur la carte, mais reste accessible depuis la liste des secteurs, avec une fiche complète.
-
-### Chronologie
-
-Chaque changement de contrôle, niveau de Tension et événement est daté. Le curseur en bas de la carte permet de revenir à n'importe quelle date, et le bouton ▶ rejoue toute l'évolution du conflit.
-
-## 4. Discord (facultatif)
-
-Dans le salon Discord : **Paramètres du salon → Intégrations → Webhooks → Nouveau webhook**, copiez l'URL et collez-la dans l'onglet **Publier**. Vous pourrez alors cocher « Annoncer sur Discord » en ajoutant un événement ou en réglant la Tension.
-
-## 5. Liens partageables
-
-Le bouton **🔗 Partager** d'une fiche copie un lien qui ouvre directement ce district (et la date affichée, si vous remontez la chronologie).
-
-## Détails techniques
-
-Site statique, sans serveur. Bibliothèques incluses dans `lib/` (d3 v7, topojson-client v3). Fond de carte : `countries-50m.json` (Natural Earth via world-atlas). Pour tester en local : `python3 -m http.server` dans ce dossier, puis ouvrir <http://localhost:8000>.
+**Sans jeton GitHub** : cliquez sur « Télécharger data.json » dans l'admin, puis dans le dépôt GitHub utilisez **Add file → Upload files** pour remplacer `data.json`.
