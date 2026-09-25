@@ -349,6 +349,15 @@
     </div></section>`;
   }
 
+  // Un bloc entièrement à zéro (secteurs organisationnels) n'apprend rien : on le masque
+  const vide = vals => vals.every(v => !v.n && !v.cls);
+  function blocs(a) {
+    const civils = vide(Object.values(a.civils)) ? '' : blocCivils(a);
+    const forces = a.forces.confederation.unites.length || a.forces.cultistes.unites.length ? blocForces(a) : '';
+    const pertes = vide(C.FACTIONS.flatMap(f => Object.values(a.pertes[f]))) ? '' : blocPertes(a);
+    return civils + forces + pertes;
+  }
+
   function blocForces(a) {
     const f = a.forces;
     const carte = cle => {
@@ -359,7 +368,7 @@
         <span class="ub"><i style="width:${(u.v.n / max * 100).toFixed(1)}%"></i></span></div>`).join('')
         : '<div class="vide">Aucune force signalée.</div>';
       return `<details class="faction ${cle}" ${fa.unites.length ? 'open' : ''}>
-        <summary><span class="nom">${esc(data.factions[cle].court)}</span><span class="tot">${C.fmt(fa.total)}</span></summary>
+        <summary><span class="nom">${esc(data.factions[cle].court)}</span><span class="tot">${C.fmt(fa.total, fa.total.n >= 1e7)}</span></summary>
         <div class="unites">${lignes}</div></details>`;
     };
     const a1 = f.confederation.total.n, a2 = f.cultistes.total.n;
@@ -389,15 +398,21 @@
     const filtres = { tous: 'Tous', majeur: 'Majeurs +', critique: 'Critiques' };
     if (etat.filtre === 'majeur') evs = evs.filter(e => e.gravite !== 'mineur');
     if (etat.filtre === 'critique') evs = evs.filter(e => e.gravite === 'critique');
-    const html = evs.length ? evs.map(ev => `
+    // Regroupe les événements par date : on cherche d'abord « quand », puis « quoi »
+    let dernierJour = null;
+    const html = evs.length ? evs.map(ev => {
+      const entete = ev.date !== dernierJour ? `<h4 class="ev-jour">${esc(ev.date)}</h4>` : '';
+      dernierJour = ev.date;
+      return entete + `
       <article class="ev ${ev.gravite}">
-        <div class="meta"><span class="grav">${esc(C.GRAVITES[ev.gravite])}</span><span class="date">${esc(ev.date)}</span>
+        <div class="meta"><span class="grav">${esc(C.GRAVITES[ev.gravite])}</span>
           <button class="portee" data-portee='${esc(JSON.stringify(ev.portee))}'>${esc(nomPortee(ev.portee))}</button></div>
         <h4>${esc(ev.titre)}</h4>
         <p>${esc(ev.description)}</p>
         ${ev.consequences && ev.consequences.length ? `<ul>${ev.consequences.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
         ${ev.tension ? `<span class="dt ${ev.tension > 0 ? 'up' : 'down'}">Tension ${ev.tension > 0 ? '+' : ''}${ev.tension}</span>` : ''}
-      </article>`).join('') : '<div class="vide">Aucun événement.</div>';
+      </article>`;
+    }).join('') : '<div class="vide">Aucun événement.</div>';
     return `<section class="bloc"><h3>${titre}</h3>
       <div class="filtres">${Object.entries(filtres).map(([k2, l]) => `<button data-filtre="${k2}" class="${etat.filtre === k2 ? 'on' : ''}">${l}</button>`).join('')}</div>
       ${html}</section>`;
@@ -413,8 +428,16 @@
       const s = statutDe(o);
       droite = `<span class="chip ${s.statut}">${esc(data.statuts[s.statut])}</span>`;
     }
-    return `<button class="item" data-nav="${navCle}"><span class="t">${esc(o.nom)}</span>${droite}
+    return `<button class="item" data-nav="${navCle}"><span class="t">${esc(o.nom)}${o._sous ? `<small>${esc(o._sous)}</small>` : ''}</span>${droite}
       <span class="mini"><i style="width:${Math.round(inf)}%"></i></span></button>`;
+  }
+
+  // Districts où la Confédération ne tient plus, du plus menacé au moins menacé
+  function blocFronts() {
+    const fronts = districts.filter(d => statutDe(d).statut !== 'controle')
+      .sort((a, b) => statutDe(b).influence - statutDe(a).influence);
+    if (!fronts.length) return '';
+    return `<section class="bloc"><h3>Fronts actifs</h3><div class="liste">${fronts.map(d => itemListe({ ...d, _sous: secteurParId[d._secteur].nom }, d._secteur + '/' + d.id)).join('')}</div></section>`;
   }
 
   function rendrePanel() {
@@ -425,8 +448,10 @@
       html = `<div class="p-head"><span class="lbl">Vue globale · ${districts.length} districts</span><h2>${esc(data.meta.titre)}</h2>
         <div class="row compte">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="chip ${s}">${compte[s]} · ${esc(data.statuts[s])}</span>`).join('')}</div>
         ${barre(influenceMoy(districts))}</div>
-        <section class="bloc"><h3>Secteurs</h3><div class="liste">${data.secteurs.map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
-        ${blocCivils(C.agrege(districts))}${blocForces(C.agrege(districts))}${blocPertes(C.agrege(districts))}
+        ${blocFronts()}
+        <section class="bloc"><h3>Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
+        ${data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3>Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : ''}
+        ${blocs(C.agrege(districts))}
         ${blocEvenements(() => true, 'Événements mondiaux')}`;
     } else if (etat.niveau === 'secteur') {
       const s = secteurParId[etat.secteur];
@@ -435,7 +460,7 @@
       html = `<div class="p-head"><span class="lbl">Secteur${s.geographique === false ? ' · hors carte' : ''}</span><h2>${esc(s.nom)}</h2>${barre(influenceMoy(s.districts))}</div>
         ${s.note ? `<div class="note">${esc(s.note)}</div>` : ''}
         <section class="bloc"><h3>Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<div class="vide">Aucun district.</div>'}</div></section>
-        ${blocCivils(a)}${blocForces(a)}${blocPertes(a)}
+        ${blocs(a)}
         ${blocEvenements(e => (e.portee.type === 'secteur' && e.portee.id === s.id) || (e.portee.type === 'district' && ids.has(e.portee.id)), 'Événements du secteur')}`;
     } else {
       const d = parId[etat.district], s = secteurParId[d._secteur], st = statutDe(d);
@@ -445,7 +470,7 @@
         ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}">${d.tendance === 'hausse' ? '▲' : d.tendance === 'baisse' ? '▼' : '■'} ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
         ${barre(st.influence)}</div>
         ${d.note ? `<div class="note">${esc(d.note)}</div>` : ''}
-        ${blocCivils(a)}${blocForces(a)}${blocPertes(a)}
+        ${blocs(a)}
         ${blocEvenements(e => (e.portee.type === 'district' && e.portee.id === d.id) || (e.portee.type === 'secteur' && e.portee.id === s.id), 'Événements récents')}`;
     }
     $('#panel').innerHTML = html;
@@ -485,7 +510,7 @@
     const coul = d3.interpolateRgb('#e3a33b', '#ff3b5c')(i / Math.max(1, P.length - 1));
     horloge($('#miniClock'), min, false);
     $('#tensionVal').textContent = `${Math.round(t)} / 100`;
-    $('#tensionPalier').textContent = `${['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][i] || i + 1} · ${P[i].nom}`;
+    $('#tensionPalier').textContent = `Palier ${i + 1} · ${P[i].nom}`;
     $('#tensionPalier').style.color = coul;
 
     const romain = n => ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][n] || n + 1;

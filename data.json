@@ -1,12 +1,12 @@
 {
   "meta": {
     "titre": "Confédération des Cendres",
-    "sousTitre": "Réseau tactique confédéré — Accès niveau 3",
-    "dateRP": "14 Brumaire, An 12",
-    "derniereMaj": "2026-09-25T22:13:45.424Z"
+    "sousTitre": "Réseau tactique confédéré · Alea jacta est",
+    "dateRP": "20 sept. 2075",
+    "derniereMaj": "2026-09-25T23:43:14.000Z"
   },
   "tension": {
-    "valeur": 47,
+    "valeur": 75,
     "paliers": [
       {
         "min": 0,
@@ -46,7 +46,7 @@
       "court": "Confédérés"
     },
     "cultistes": {
-      "nom": "Cultistes",
+      "nom": "Culte de la Vérité Primordiale",
       "court": "Cultistes"
     }
   },
@@ -62,10 +62,11 @@
       "id": "europe",
       "nom": "Europe",
       "geographique": true,
+      "note": "Directrice adjointe : Sally Weirman. Situation réglée depuis le 19 septembre, au prix d'environ 10 millions de morts.",
       "districts": [
         {
           "id": "eu-nord",
-          "nom": "District du Nord",
+          "nom": "District Nordique",
           "pays": [
             "Norway",
             "Sweden",
@@ -74,15 +75,15 @@
             "Åland",
             "Faeroe Is."
           ],
-          "statut": "quarantaine",
-          "influence": 45,
-          "tendance": "hausse",
+          "statut": "controle",
+          "influence": 2,
+          "tendance": "baisse",
           "civils": {
             "population": 28000000,
-            "impliques": 5040000,
-            "deplaces": 1764000,
-            "disparus": 100800,
-            "deces": 75600
+            "impliques": "~2400000",
+            "deplaces": "~300000",
+            "disparus": "~40000",
+            "deces": "~800000"
           },
           "forces": {
             "confederation": [
@@ -91,38 +92,29 @@
                 "effectif": 60000
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 12000
+                "nom": "Ligue Noire",
+                "effectif": "CLASSIFIÉ"
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 8000
+                "nom": "Milices citoyennes",
+                "effectif": "~3000000"
               }
             ],
-            "cultistes": [
-              {
-                "nom": "Engeances de l'Œil Pâle",
-                "effectif": 40000
-              },
-              {
-                "nom": "Possédés",
-                "effectif": "~15000"
-              }
-            ]
+            "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 4000,
-              "blesses": 9000,
-              "disparus": 1200
+              "tues": 2100,
+              "blesses": 5400,
+              "disparus": "~600"
             },
             "cultistes": {
-              "tues": 4800,
-              "blesses": "~8000",
+              "tues": 4000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Quarantaine décrétée sur la Laponie après la chute de Rovaniemi.",
+          "note": "Gotland, capitale du secteur Recherche & Développement, n'a pas été touchée.",
           "label": [
             18,
             64
@@ -144,15 +136,15 @@
             "Armenia",
             "Azerbaijan"
           ],
-          "statut": "perdu",
-          "influence": 78,
-          "tendance": "hausse",
+          "statut": "controle",
+          "influence": 3,
+          "tendance": "baisse",
           "civils": {
             "population": 290000000,
-            "impliques": 90480000,
-            "deplaces": 31668000,
-            "disparus": 1809600,
-            "deces": 1357200
+            "impliques": "~31000000",
+            "deplaces": "~6000000",
+            "disparus": "~400000",
+            "deces": "~3500000"
           },
           "forces": {
             "confederation": [
@@ -161,42 +153,29 @@
                 "effectif": 180000
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 30000
+                "nom": "Unités sous commandement HCP",
+                "effectif": "CLASSIFIÉ"
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 20000
+                "nom": "Milices citoyennes",
+                "effectif": "~40000000"
               }
             ],
-            "cultistes": [
-              {
-                "nom": "Fidèles du Dieu Écarlate",
-                "effectif": 400000
-              },
-              {
-                "nom": "Engeances de l'Œil Pâle",
-                "effectif": 120000
-              },
-              {
-                "nom": "Chœur Sans Nom",
-                "effectif": "CLASSIFIÉ"
-              }
-            ]
+            "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 19933,
-              "blesses": 44850,
-              "disparus": 5980
+              "tues": 9800,
+              "blesses": "~21000",
+              "disparus": "~2300"
             },
             "cultistes": {
-              "tues": 62400,
-              "blesses": "~104000",
+              "tues": 18000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Point d'origine de l'invasion. Moscou ne répond plus depuis le 2 Brumaire.",
+          "note": "Kazan reste la seule grande ville debout près de l'Oural.",
           "label": [
             42,
             55
@@ -215,15 +194,15 @@
             "Denmark",
             "Liechtenstein"
           ],
-          "statut": "conteste",
-          "influence": 31,
-          "tendance": "hausse",
+          "statut": "controle",
+          "influence": 4,
+          "tendance": "baisse",
           "civils": {
             "population": 190000000,
-            "impliques": 23560000,
-            "deplaces": 8246000,
-            "disparus": 471200,
-            "deces": 353400
+            "impliques": "~22000000",
+            "deplaces": "~4500000",
+            "disparus": "~300000",
+            "deces": "~2500000"
           },
           "forces": {
             "confederation": [
@@ -232,38 +211,29 @@
                 "effectif": 220000
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 40000
+                "nom": "Escouade Phoenix",
+                "effectif": "CLASSIFIÉ"
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 25000
+                "nom": "Milices citoyennes",
+                "effectif": "~25000000"
               }
             ],
-            "cultistes": [
-              {
-                "nom": "Fidèles du Dieu Écarlate",
-                "effectif": 90000
-              },
-              {
-                "nom": "Possédés",
-                "effectif": "~30000"
-              }
-            ]
+            "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 9817,
-              "blesses": 22088,
-              "disparus": 2945
+              "tues": 7300,
+              "blesses": "~16000",
+              "disparus": "~1900"
             },
             "cultistes": {
-              "tues": 10800,
-              "blesses": "~18000",
+              "tues": 12000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Zurich : la milice populaire du quartier résidentiel a tenu le contact quarante minutes aux côtés de l'armée. Dix-neuf cultistes tués, quatre miliciens morts. Les districts Rhénan et Alpin n'ont signalé aucun cultiste."
         },
         {
           "id": "eu-sud",
@@ -284,15 +254,15 @@
             "Cyprus",
             "N. Cyprus"
           ],
-          "statut": "reconquete",
-          "influence": 18,
+          "statut": "controle",
+          "influence": 3,
           "tendance": "baisse",
           "civils": {
             "population": 75000000,
-            "impliques": 5400000,
-            "deplaces": 1890000,
-            "disparus": 108000,
-            "deces": 81000
+            "impliques": "~9000000",
+            "deplaces": "~2100000",
+            "disparus": "~150000",
+            "deces": "~2000000"
           },
           "forces": {
             "confederation": [
@@ -301,30 +271,21 @@
                 "effectif": 90000
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 15000
-              },
-              {
-                "nom": "Division Phoenix",
-                "effectif": 10000
+                "nom": "Milices citoyennes",
+                "effectif": "~9000000"
               }
             ],
-            "cultistes": [
-              {
-                "nom": "Fidèles du Dieu Écarlate",
-                "effectif": 25000
-              }
-            ]
+            "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 2300,
-              "blesses": 5175,
-              "disparus": 690
+              "tues": 4400,
+              "blesses": "~9800",
+              "disparus": "~1100"
             },
             "cultistes": {
-              "tues": 3000,
-              "blesses": "~5000",
+              "tues": 9000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
@@ -353,14 +314,14 @@
             "Isle of Man"
           ],
           "statut": "controle",
-          "influence": 4,
-          "tendance": "stable",
+          "influence": 1,
+          "tendance": "baisse",
           "civils": {
             "population": 330000000,
-            "impliques": 5280000,
-            "deplaces": 1848000,
-            "disparus": 105600,
-            "deces": 79200
+            "impliques": "~12000000",
+            "deplaces": "~1500000",
+            "disparus": "~90000",
+            "deces": "~1200000"
           },
           "forces": {
             "confederation": [
@@ -369,34 +330,33 @@
                 "effectif": 250000
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 30000
+                "nom": "Unités sous commandement HCP",
+                "effectif": "CLASSIFIÉ"
               },
               {
                 "nom": "Garde civile",
                 "effectif": 80000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~35000000"
               }
             ],
-            "cultistes": [
-              {
-                "nom": "Cellules dormantes",
-                "effectif": "~2000"
-              }
-            ]
+            "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 1600,
-              "blesses": 3600,
-              "disparus": 480
+              "tues": 2600,
+              "blesses": "~5800",
+              "disparus": "~700"
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": 7000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Ibérie : le groupement cultiste a été neutralisé par HCP sans perte civile."
         }
       ],
       "label": [
@@ -418,10 +378,11 @@
       "id": "asie",
       "nom": "Asie",
       "geographique": true,
+      "note": "Conseillère : Mlle Mori « Kodo » Kumano. Capitale : Yokohama. Front le plus critique avec l'Amérique du Sud.",
       "districts": [
         {
-          "id": "as-ouest",
-          "nom": "District de l'Ouest",
+          "id": "as-moyen-orient",
+          "nom": "District Moyen-Oriental",
           "pays": [
             "Saudi Arabia",
             "Yemen",
@@ -439,14 +400,14 @@
             "Jordan"
           ],
           "statut": "controle",
-          "influence": 6,
-          "tendance": "hausse",
+          "influence": 4,
+          "tendance": "stable",
           "civils": {
             "population": 300000000,
-            "impliques": 7200000,
-            "deplaces": 2520000,
-            "disparus": 144000,
-            "deces": 108000
+            "impliques": "~4000000",
+            "deplaces": "~900000",
+            "disparus": "~60000",
+            "deces": "~70000"
           },
           "forces": {
             "confederation": [
@@ -461,28 +422,28 @@
             ],
             "cultistes": [
               {
-                "nom": "Cellules dormantes",
-                "effectif": "~5000"
+                "nom": "Cellules cultistes",
+                "effectif": "~500000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 1333,
+              "tues": 1300,
               "blesses": 3000,
               "disparus": 400
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~3000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Capitales économiques : Dubaï, Riyad (ressources militaires), Téhéran (recherche)."
         },
         {
-          "id": "as-central",
-          "nom": "District Central",
+          "id": "as-centre",
+          "nom": "District Centre-asiatique",
           "pays": [
             "Kazakhstan",
             "Uzbekistan",
@@ -493,14 +454,14 @@
             "Mongolia"
           ],
           "statut": "conteste",
-          "influence": 52,
+          "influence": 41,
           "tendance": "hausse",
           "civils": {
             "population": 120000000,
-            "impliques": 24960000,
-            "deplaces": 8736000,
-            "disparus": 499200,
-            "deces": 374400
+            "impliques": "~45000000",
+            "deplaces": "~14000000",
+            "disparus": "~1800000",
+            "deces": "~2600000"
           },
           "forces": {
             "confederation": [
@@ -515,32 +476,32 @@
             ],
             "cultistes": [
               {
-                "nom": "Fidèles du Dieu Écarlate",
-                "effectif": 110000
+                "nom": "Cultistes convertis",
+                "effectif": "~7000000"
               },
               {
-                "nom": "Chœur Sans Nom",
-                "effectif": "~20000"
+                "nom": "Entités",
+                "effectif": "?"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 4622,
-              "blesses": 10400,
-              "disparus": 1387
+              "tues": 5200,
+              "blesses": "~11000",
+              "disparus": "~1600"
             },
             "cultistes": {
-              "tues": 13200,
-              "blesses": "~22000",
+              "tues": 25000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Bichkek abrite la principale école de formation militaire du secteur."
         },
         {
-          "id": "as-sud",
-          "nom": "District du Sud",
+          "id": "as-indopak",
+          "nom": "District Indo-Pakistanais",
           "pays": [
             "India",
             "Pakistan",
@@ -553,14 +514,14 @@
             "Br. Indian Ocean Ter."
           ],
           "statut": "controle",
-          "influence": 2,
-          "tendance": "stable",
+          "influence": 9,
+          "tendance": "hausse",
           "civils": {
             "population": 1900000000,
-            "impliques": 15200000,
-            "deplaces": 5320000,
-            "disparus": 304000,
-            "deces": 228000
+            "impliques": "~60000000",
+            "deplaces": "~9000000",
+            "disparus": "~500000",
+            "deces": "~700000"
           },
           "forces": {
             "confederation": [
@@ -571,89 +532,165 @@
               {
                 "nom": "Garde civile",
                 "effectif": 200000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~120000000"
               }
             ],
-            "cultistes": []
+            "cultistes": [
+              {
+                "nom": "Cultistes convertis",
+                "effectif": "~3000000"
+              }
+            ]
           },
           "pertes": {
             "confederation": {
-              "tues": 1778,
-              "blesses": 4000,
-              "disparus": 533
+              "tues": 2400,
+              "blesses": "~5200",
+              "disparus": 700
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~5000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "",
-          "label": [
-            79,
-            22
-          ]
+          "note": "Mumbai, Lahore, Chennai."
         },
         {
-          "id": "as-est",
-          "nom": "District de l'Est",
+          "id": "as-sinorusse",
+          "nom": "District Sino-Russe",
           "pays": [
             "China",
-            "Taiwan",
-            "Japan",
-            "North Korea",
-            "South Korea",
             "Hong Kong",
             "Macao"
           ],
-          "statut": "controle",
-          "influence": 9,
+          "statut": "perdu",
+          "influence": 81,
           "tendance": "hausse",
           "civils": {
-            "population": 1650000000,
-            "impliques": 59400000,
-            "deplaces": 20790000,
-            "disparus": 1188000,
-            "deces": 891000
+            "population": 1450000000,
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "~180000000",
+            "disparus": "CLASSIFIÉ",
+            "deces": "CLASSIFIÉ"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 800000
+                "effectif": "~300000"
+              },
+              {
+                "nom": "Ligue Noire",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Cultistes d'Izala",
+                "effectif": "~30000000"
+              },
+              {
+                "nom": "Soldats organisés",
+                "effectif": 30000
+              },
+              {
+                "nom": "Exosquelettes",
+                "effectif": 5000
+              },
+              {
+                "nom": "Garde d'entités",
+                "effectif": "?"
+              },
+              {
+                "nom": "Izala « la Déesse » (plieuse de réalité)",
+                "effectif": 1
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": "~61000",
+              "blesses": "~140000",
+              "disparus": "~38000"
+            },
+            "cultistes": {
+              "tues": 60000,
+              "blesses": "?",
+              "disparus": "?"
+            }
+          },
+          "note": "Les cultistes retranchés dans une ville chinoise en sont ressortis après le rituel, menés par Izala. Enlèvements, tortures et cas de cannibalisme rapportés par les témoins. Harbin et Vladivostok ne répondent plus régulièrement.",
+          "label": [
+            108,
+            33
+          ]
+        },
+        {
+          "id": "as-japon",
+          "nom": "District Japonais",
+          "pays": [
+            "Japan",
+            "South Korea",
+            "North Korea",
+            "Taiwan"
+          ],
+          "statut": "controle",
+          "influence": 11,
+          "tendance": "hausse",
+          "civils": {
+            "population": 200000000,
+            "impliques": "~6000000",
+            "deplaces": "~1200000",
+            "disparus": "~40000",
+            "deces": "~90000"
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 500000
               },
               {
                 "nom": "Forces spéciales",
                 "effectif": 90000
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 40000
+                "nom": "Ligue Noire",
+                "effectif": "CLASSIFIÉ"
               }
             ],
             "cultistes": [
               {
-                "nom": "Cellules dormantes",
-                "effectif": "~12000"
+                "nom": "Cultistes convertis",
+                "effectif": "~1500000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 9300,
-              "blesses": 20925,
-              "disparus": 2790
+              "tues": 3100,
+              "blesses": "~7000",
+              "disparus": 900
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~4000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Capitale du secteur : Yokohama. Le Site-45 reconverti y protège la recherche en IA et robotique.",
+          "label": [
+            137,
+            37
+          ]
         },
         {
           "id": "as-sudest",
-          "nom": "District du Sud-Est",
+          "nom": "District Sud-Est asiatique",
           "pays": [
             "Myanmar",
             "Thailand",
@@ -668,15 +705,15 @@
             "Timor-Leste",
             "Indian Ocean Ter."
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "conteste",
+          "influence": 33,
+          "tendance": "hausse",
           "civils": {
             "population": 680000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "impliques": "~40000000",
+            "deplaces": "~11000000",
+            "disparus": "~900000",
+            "deces": "~1500000"
           },
           "forces": {
             "confederation": [
@@ -689,21 +726,30 @@
                 "effectif": 100000
               }
             ],
-            "cultistes": []
+            "cultistes": [
+              {
+                "nom": "Cultistes convertis",
+                "effectif": "~8000000"
+              },
+              {
+                "nom": "Commando des lignes arrières",
+                "effectif": "?"
+              }
+            ]
           },
           "pertes": {
             "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
+              "tues": 4600,
+              "blesses": "~10000",
+              "disparus": "~1300"
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": 15000,
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Manille, siège d'espionnage du secteur, reste tenue. Baguio, où tout a commencé en mai, est à 250 km au nord."
         }
       ],
       "label": [
@@ -725,10 +771,11 @@
       "id": "oceanie",
       "nom": "Océanie",
       "geographique": true,
+      "note": "Environ 75,5 millions d'habitants. Aucun cultiste signalé.",
       "districts": [
         {
-          "id": "oc-continental",
-          "nom": "District Continental",
+          "id": "oc-australasie",
+          "nom": "District Australasie",
           "pays": [
             "Australia",
             "Ashmore and Cartier Is.",
@@ -766,15 +813,61 @@
             },
             "cultistes": {
               "tues": 0,
-              "blesses": "~0",
-              "disparus": "?"
+              "blesses": 0,
+              "disparus": 0
             }
           },
-          "note": ""
+          "note": "Capitale : Canberra. Le QG du secteur Santé se trouve à Sydney."
+        },
+        {
+          "id": "oc-nz",
+          "nom": "District de Nouvelle-Zélande",
+          "pays": [
+            "New Zealand",
+            "Antarctica",
+            "Fr. S. Antarctic Lands",
+            "S. Geo. and the Is."
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 5200000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 9000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "District spécial : armée, trafic économique, prisons. Capitale : Wellington.",
+          "label": [
+            172,
+            -42
+          ]
         },
         {
           "id": "oc-melanesie",
-          "nom": "District Mélanésien",
+          "nom": "District Mélanésie",
           "pays": [
             "Papua New Guinea",
             "Solomon Is.",
@@ -797,10 +890,6 @@
               {
                 "nom": "Forces régulières",
                 "effectif": 15000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 5000
               }
             ],
             "cultistes": []
@@ -813,19 +902,19 @@
             },
             "cultistes": {
               "tues": 0,
-              "blesses": "~0",
-              "disparus": "?"
+              "blesses": 0,
+              "disparus": 0
             }
           },
-          "note": "",
+          "note": "Capitale : Suva. Le réacteur à eau lourde de Port Moresby fournit plus de 20 % de l'électricité du secteur.",
           "label": [
             152,
             -7
           ]
         },
         {
-          "id": "oc-pacifique",
-          "nom": "District du Pacifique",
+          "id": "oc-micronesie",
+          "nom": "District Micronésie",
           "pays": [
             "Micronesia",
             "Marshall Is.",
@@ -833,7 +922,49 @@
             "Guam",
             "Palau",
             "Nauru",
-            "Kiribati",
+            "Kiribati"
+          ],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 600000,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 3000
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Capitale : Agana. Alimentation.",
+          "label": [
+            150,
+            10
+          ]
+        },
+        {
+          "id": "oc-polynesie",
+          "nom": "District Polynésie",
+          "pays": [
             "Samoa",
             "American Samoa",
             "Tonga",
@@ -847,7 +978,7 @@
           "influence": 0,
           "tendance": "stable",
           "civils": {
-            "population": 2500000,
+            "population": 700000,
             "impliques": 0,
             "deplaces": 0,
             "disparus": 0,
@@ -857,11 +988,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 5000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 1667
+                "effectif": 2000
               }
             ],
             "cultistes": []
@@ -874,69 +1001,14 @@
             },
             "cultistes": {
               "tues": 0,
-              "blesses": "~0",
-              "disparus": "?"
+              "blesses": 0,
+              "disparus": 0
             }
           },
-          "note": "",
+          "note": "Capitale : Apia. Matières premières.",
           "label": [
-            166,
-            8
-          ]
-        },
-        {
-          "id": "oc-austral",
-          "nom": "District Austral",
-          "pays": [
-            "New Zealand",
-            "Antarctica",
-            "Fr. S. Antarctic Lands",
-            "S. Geo. and the Is."
-          ],
-          "statut": "quarantaine",
-          "influence": 12,
-          "tendance": "stable",
-          "civils": {
-            "population": 5200000,
-            "impliques": 249600,
-            "deplaces": 87360,
-            "disparus": 4992,
-            "deces": 3744
-          },
-          "forces": {
-            "confederation": [
-              {
-                "nom": "Forces spéciales",
-                "effectif": 6000
-              },
-              {
-                "nom": "Division Phoenix",
-                "effectif": 3000
-              }
-            ],
-            "cultistes": [
-              {
-                "nom": "Inconnu",
-                "effectif": "?"
-              }
-            ]
-          },
-          "pertes": {
-            "confederation": {
-              "tues": 120,
-              "blesses": 270,
-              "disparus": 36
-            },
-            "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
-              "disparus": "?"
-            }
-          },
-          "note": "Signal anormal détecté sous la plateforme de Ross. Zone fermée par ordre du Conseil.",
-          "label": [
-            172,
-            -42
+            -160,
+            -15
           ]
         }
       ],
@@ -959,6 +1031,7 @@
       "id": "afrique",
       "nom": "Afrique",
       "geographique": true,
+      "note": "Secteur sans conseiller. Rasé le 11 septembre : les cultistes y ont été anéantis avant d'avoir vu la menace venir du ciel.",
       "districts": [
         {
           "id": "af-nord",
@@ -971,28 +1044,24 @@
             "Libya",
             "Egypt"
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "quarantaine",
+          "influence": 1,
+          "tendance": "baisse",
           "civils": {
-            "population": 210000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "population": "CLASSIFIÉ",
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "CLASSIFIÉ",
+            "disparus": "CLASSIFIÉ",
+            "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
+            "confederation": [],
+            "cultistes": [
               {
-                "nom": "Forces régulières",
-                "effectif": 180000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 60000
+                "nom": "Survivants irradiés",
+                "effectif": "~120"
               }
-            ],
-            "cultistes": []
+            ]
           },
           "pertes": {
             "confederation": {
@@ -1001,12 +1070,12 @@
               "disparus": 0
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~9000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
         },
         {
           "id": "af-ouest",
@@ -1030,28 +1099,24 @@
             "Cabo Verde",
             "Saint Helena"
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "quarantaine",
+          "influence": 1,
+          "tendance": "baisse",
           "civils": {
-            "population": 450000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "population": "CLASSIFIÉ",
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "CLASSIFIÉ",
+            "disparus": "CLASSIFIÉ",
+            "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
+            "confederation": [],
+            "cultistes": [
               {
-                "nom": "Forces régulières",
-                "effectif": 250000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 83333
+                "nom": "Survivants irradiés",
+                "effectif": "~120"
               }
-            ],
-            "cultistes": []
+            ]
           },
           "pertes": {
             "confederation": {
@@ -1060,12 +1125,12 @@
               "disparus": 0
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~16000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
         },
         {
           "id": "af-central",
@@ -1080,28 +1145,24 @@
             "Dem. Rep. Congo",
             "São Tomé and Principe"
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "quarantaine",
+          "influence": 1,
+          "tendance": "baisse",
           "civils": {
-            "population": 190000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "population": "CLASSIFIÉ",
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "CLASSIFIÉ",
+            "disparus": "CLASSIFIÉ",
+            "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
+            "confederation": [],
+            "cultistes": [
               {
-                "nom": "Forces régulières",
-                "effectif": 120000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 40000
+                "nom": "Survivants irradiés",
+                "effectif": "~120"
               }
-            ],
-            "cultistes": []
+            ]
           },
           "pertes": {
             "confederation": {
@@ -1110,12 +1171,12 @@
               "disparus": 0
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~14000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
         },
         {
           "id": "af-est",
@@ -1135,51 +1196,38 @@
             "Tanzania",
             "Seychelles"
           ],
-          "statut": "conteste",
-          "influence": 22,
-          "tendance": "hausse",
+          "statut": "quarantaine",
+          "influence": 1,
+          "tendance": "baisse",
           "civils": {
-            "population": 400000000,
-            "impliques": 35200000,
-            "deplaces": 12320000,
-            "disparus": 704000,
-            "deces": 528000
+            "population": "CLASSIFIÉ",
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "CLASSIFIÉ",
+            "disparus": "CLASSIFIÉ",
+            "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
-              {
-                "nom": "Forces régulières",
-                "effectif": 140000
-              },
-              {
-                "nom": "Forces spéciales",
-                "effectif": 20000
-              }
-            ],
+            "confederation": [],
             "cultistes": [
               {
-                "nom": "Chœur Sans Nom",
-                "effectif": "~35000"
-              },
-              {
-                "nom": "Possédés",
-                "effectif": "~10000"
+                "nom": "Survivants irradiés",
+                "effectif": "~120"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 3911,
-              "blesses": 8800,
-              "disparus": 1173
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~13000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
         },
         {
           "id": "af-sud",
@@ -1199,28 +1247,24 @@
             "Comoros",
             "Mauritius"
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "quarantaine",
+          "influence": 1,
+          "tendance": "baisse",
           "civils": {
-            "population": 200000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "population": "CLASSIFIÉ",
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "CLASSIFIÉ",
+            "disparus": "CLASSIFIÉ",
+            "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
+            "confederation": [],
+            "cultistes": [
               {
-                "nom": "Forces régulières",
-                "effectif": 150000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 50000
+                "nom": "Survivants irradiés",
+                "effectif": "~120"
               }
-            ],
-            "cultistes": []
+            ]
           },
           "pertes": {
             "confederation": {
@@ -1229,12 +1273,12 @@
               "disparus": 0
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~7400",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
         }
       ],
       "label": [
@@ -1256,17 +1300,18 @@
       "id": "amerique",
       "nom": "Amérique",
       "geographique": true,
+      "note": "Conseiller : Mr Mark Saddler. Diplomate : Karl Saddler. Capitale : Washington.",
       "districts": [
         {
-          "id": "am-nord",
-          "nom": "District du Nord",
+          "id": "am-canada",
+          "nom": "District Canadien",
           "pays": [
             "Canada",
             "Greenland",
             "St. Pierre and Miquelon"
           ],
           "statut": "controle",
-          "influence": 0,
+          "influence": 1,
           "tendance": "stable",
           "civils": {
             "population": 40000000,
@@ -1296,32 +1341,32 @@
             },
             "cultistes": {
               "tues": 0,
-              "blesses": "~0",
-              "disparus": "?"
+              "blesses": 0,
+              "disparus": 0
             }
           },
-          "note": "",
+          "note": "Représentante : Mme Cindy Tremblay. Capitale : Ottawa. Production de véhicules militaires.",
           "label": [
             -100,
             60
           ]
         },
         {
-          "id": "am-central",
-          "nom": "District Central",
+          "id": "am-usa",
+          "nom": "District des États-Unis",
           "pays": [
             "United States of America",
             "Bermuda"
           ],
           "statut": "controle",
-          "influence": 3,
-          "tendance": "stable",
+          "influence": 5,
+          "tendance": "hausse",
           "civils": {
             "population": 335000000,
-            "impliques": 4020000,
-            "deplaces": 1407000,
-            "disparus": 80400,
-            "deces": 60300
+            "impliques": "~9000000",
+            "deplaces": "~400000",
+            "disparus": "~30000",
+            "deces": "~45000"
           },
           "forces": {
             "confederation": [
@@ -1330,42 +1375,46 @@
                 "effectif": 900000
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 120000
+                "nom": "Unités sous commandement HCP",
+                "effectif": "CLASSIFIÉ"
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 60000
+                "nom": "3rd Liberty division (robots)",
+                "effectif": 100
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~60000000"
               }
             ],
             "cultistes": [
               {
-                "nom": "Cellules dormantes",
-                "effectif": "~4000"
+                "nom": "Cellules cultistes",
+                "effectif": "~1000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 3600,
-              "blesses": 8100,
-              "disparus": 1080
+              "tues": 1900,
+              "blesses": "~4100",
+              "disparus": 500
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~14000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "",
+          "note": "Psychose : rumeurs d'agents mémétiques dans l'eau, officiers accusés d'être cultistes. La plupart des personnes lynchées l'ont été sur simple soupçon.",
           "label": [
             -99,
             39
           ]
         },
         {
-          "id": "am-caraibe",
-          "nom": "District Caraïbe",
+          "id": "am-mexicain",
+          "nom": "District Mexicain",
           "pays": [
             "Mexico",
             "Guatemala",
@@ -1401,15 +1450,15 @@
             "St-Martin",
             "St-Barthélemy"
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "conteste",
+          "influence": 14,
+          "tendance": "hausse",
           "civils": {
             "population": 220000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "impliques": "~3000000",
+            "deplaces": "~800000",
+            "disparus": "~70000",
+            "deces": "~160000"
           },
           "forces": {
             "confederation": [
@@ -1422,21 +1471,26 @@
                 "effectif": 53333
               }
             ],
-            "cultistes": []
+            "cultistes": [
+              {
+                "nom": "Infectés",
+                "effectif": "~400000"
+              }
+            ]
           },
           "pertes": {
             "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
+              "tues": 2200,
+              "blesses": "~4800",
+              "disparus": 600
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~3000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme."
         },
         {
           "id": "am-andin",
@@ -1449,46 +1503,50 @@
             "Chile"
           ],
           "statut": "conteste",
-          "influence": 15,
+          "influence": 58,
           "tendance": "hausse",
           "civils": {
             "population": 130000000,
-            "impliques": 7800000,
-            "deplaces": 2730000,
-            "disparus": 156000,
-            "deces": 117000
+            "impliques": "~70000000",
+            "deplaces": "~20000000",
+            "disparus": "~4000000",
+            "deces": "~6000000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 80000
+                "effectif": "~40000"
               },
               {
-                "nom": "Forces spéciales",
-                "effectif": 9000
+                "nom": "Brigade exotique",
+                "effectif": 45000
               }
             ],
             "cultistes": [
               {
-                "nom": "Fidèles du Dieu Écarlate",
-                "effectif": "~18000"
+                "nom": "Infectés",
+                "effectif": "~10000000"
+              },
+              {
+                "nom": "Faune mutée",
+                "effectif": "?"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 1483,
-              "blesses": 3338,
-              "disparus": 445
+              "tues": "~31000",
+              "blesses": "~52000",
+              "disparus": "~9000"
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~40000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "96 % de la brigade exotique a reçu des drogues de performance et une armure Exo-3."
         },
         {
           "id": "am-amazonien",
@@ -1499,42 +1557,59 @@
             "Guyana",
             "Suriname"
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "perdu",
+          "influence": 86,
+          "tendance": "hausse",
           "civils": {
             "population": 250000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "impliques": "CLASSIFIÉ",
+            "deplaces": "~60000000",
+            "disparus": "CLASSIFIÉ",
+            "deces": "~15000000"
           },
           "forces": {
             "confederation": [
               {
-                "nom": "Forces régulières",
-                "effectif": 200000
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 66667
+                "nom": "Garnisons en repli",
+                "effectif": "~20000"
               }
             ],
-            "cultistes": []
+            "cultistes": [
+              {
+                "nom": "Infectés",
+                "effectif": "~26000000"
+              },
+              {
+                "nom": "Chimères",
+                "effectif": 35000
+              },
+              {
+                "nom": "Faune mutée",
+                "effectif": "?"
+              },
+              {
+                "nom": "Entités",
+                "effectif": "?"
+              },
+              {
+                "nom": "Arthur « le Bon » (plieur de réalité)",
+                "effectif": 1
+              }
+            ]
           },
           "pertes": {
             "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
+              "tues": "~88000",
+              "blesses": "~120000",
+              "disparus": "~60000"
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~25000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "La jungle vire au marécage sous l'effet des pathogènes. Des aérodromes sont tombés : les cultistes volent nos propres appareils."
         },
         {
           "id": "am-austral",
@@ -1545,15 +1620,15 @@
             "Paraguay",
             "Falkland Is."
           ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
+          "statut": "conteste",
+          "influence": 37,
+          "tendance": "hausse",
           "civils": {
             "population": 55000000,
-            "impliques": 0,
-            "deplaces": 0,
-            "disparus": 0,
-            "deces": 0
+            "impliques": "~14000000",
+            "deplaces": "~5000000",
+            "disparus": "~600000",
+            "deces": "~2000000"
           },
           "forces": {
             "confederation": [
@@ -1566,21 +1641,26 @@
                 "effectif": 23333
               }
             ],
-            "cultistes": []
+            "cultistes": [
+              {
+                "nom": "Infectés",
+                "effectif": "~4000000"
+              }
+            ]
           },
           "pertes": {
             "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
+              "tues": "~9000",
+              "blesses": "~15000",
+              "disparus": "~2000"
             },
             "cultistes": {
-              "tues": 0,
-              "blesses": "~0",
+              "tues": "~8000",
+              "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "L'infection remonte les cours d'eau depuis le bassin amazonien."
         }
       ],
       "label": [
@@ -1597,577 +1677,1718 @@
           78
         ]
       ]
+    },
+    {
+      "id": "rd",
+      "nom": "Recherche & Développement",
+      "geographique": false,
+      "note": "Conseillère : Mlle Sally Weirman. Dirigé depuis Gotland.",
+      "districts": [
+        {
+          "id": "rd-civil",
+          "nom": "District Recherches civiles",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Responsable : M. Marco Tanaka. Dirigé depuis Zurich."
+        },
+        {
+          "id": "rd-anormal",
+          "nom": "District Recherches anormales",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Responsable : Mme Nora Lang. Dirigé depuis l'île d'Okinotori-shima."
+        },
+        {
+          "id": "rd-hcp",
+          "nom": "Station HCP",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Unités sous commandement HCP",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "À 2 500 m sous la mer du Nord. Opérateur : Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération. Il a prédit 85 % des mouvements cultistes. Personne ne doit l'approcher."
+        },
+        {
+          "id": "rd-bismarck",
+          "nom": "Flotte Bismarck",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Équipages",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Sous le Commandant Heir. Position secrète, maintenance à Zeebrugge."
+        }
+      ]
+    },
+    {
+      "id": "renseignement",
+      "nom": "Renseignement",
+      "geographique": false,
+      "note": "Conseiller : Miroslav Mikhaïl Perković, dit « Rosenrad ». Coordonne les opérations de Phoenix depuis 2075.",
+      "districts": [
+        {
+          "id": "re-smc",
+          "nom": "Service du Maintien de la Confédération",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Siège : Nouvelle-Luxembourg. Ne répond qu'au Conseil."
+        },
+        {
+          "id": "re-commandos",
+          "nom": "1er Bataillon de Commandos d'Infanterie",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Commandos",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Commandé par le Colonel « Zyiag ». Dépend à la fois de l'Armée et du Renseignement."
+        }
+      ]
+    },
+    {
+      "id": "justice",
+      "nom": "Justice & Droit",
+      "geographique": false,
+      "note": "Conseillère : Euphyllia Anisphia Celest.",
+      "districts": [
+        {
+          "id": "ju-d2cl",
+          "nom": "D2CL",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "District de Contestation et de Conformité Législative. Comprend le Comité Phénix."
+        },
+        {
+          "id": "ju-judiciaire",
+          "nom": "District Judiciaire",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Divisions pénale et familiale. Les prisonniers de guerre passent devant un tribunal militaire."
+        },
+        {
+          "id": "ju-economique",
+          "nom": "District Économique",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Divisions commerciale et du travail."
+        },
+        {
+          "id": "ju-administratif",
+          "nom": "District Administratif",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Tribunal administratif."
+        }
+      ]
+    },
+    {
+      "id": "armee",
+      "nom": "Armée",
+      "geographique": false,
+      "note": "Conseiller : Mr Harvey A. Houtson. Siège aussi : Larco « Bull » Skripović.",
+      "districts": [
+        {
+          "id": "ar-ganzir",
+          "nom": "Ganzir",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Garnison",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Forteresse et centre d'entraînement dans l'Atlantique. C'est de Ganzir qu'est parti l'ordre de raser l'Afrique."
+        },
+        {
+          "id": "ar-phoenix",
+          "nom": "Escouade Phoenix",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "hausse",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Plieurs de réalité",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "« La force de frappe contre les dieux. » Commandante : Aupox. Ses plieurs de réalité sont engagés contre les entités."
+        },
+        {
+          "id": "ar-ligue",
+          "nom": "Ligue Noire",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Ligue Noire",
+                "effectif": "CLASSIFIÉ"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Protège les centres de recherche d'Europe et d'Asie."
+        },
+        {
+          "id": "ar-ordre",
+          "nom": "L'Ordre",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Thaumaturges",
+                "effectif": "~1000"
+              }
+            ],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Thaumaturges combattants. Base : le Haut-Château, en Islande."
+        }
+      ]
+    },
+    {
+      "id": "sante",
+      "nom": "Santé & Prévention",
+      "geographique": false,
+      "note": "Conseiller : Dr James Llewellyn-Ford. QG : Llewellyn-Ford Memorial Hospital, Sydney.",
+      "districts": [
+        {
+          "id": "sa-sydney",
+          "nom": "Llewellyn-Ford Memorial Hospital",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Sydney. Coordonne la réponse aux épidémies d'Amérique du Sud."
+        },
+        {
+          "id": "sa-mush",
+          "nom": "Campus MUSH",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Kiel / Lübeck. Formation, start-up médicales, hôpital de pointe."
+        },
+        {
+          "id": "sa-krasnoiarsk",
+          "nom": "Hôpital militaire de Krasnoïarsk",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "hausse",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Psychiatrie (Dr Warren Burke). Traitement du Syndrome de la Perception Déchue."
+        }
+      ]
+    },
+    {
+      "id": "administration",
+      "nom": "Administration",
+      "geographique": false,
+      "note": "Conseiller : Unité 007 « Gamma ».",
+      "districts": [
+        {
+          "id": "ad-detroit",
+          "nom": "Nouvelle-Détroit",
+          "pays": [],
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
+          "civils": {
+            "population": 0,
+            "impliques": 0,
+            "deplaces": 0,
+            "disparus": 0,
+            "deces": 0
+          },
+          "forces": {
+            "confederation": [],
+            "cultistes": []
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            },
+            "cultistes": {
+              "tues": 0,
+              "blesses": 0,
+              "disparus": 0
+            }
+          },
+          "note": "Centre administratif de la Confédération. La Citadelle abrite le conseiller."
+        }
+      ]
     }
   ],
   "evenements": [
     {
       "id": "ev1",
-      "date": "2 Brumaire, An 12",
-      "portee": {
-        "type": "district",
-        "id": "eu-est"
-      },
-      "gravite": "critique",
-      "titre": "Chute de Moscou",
-      "description": "Le réseau de la capitale orientale cesse d'émettre à 03h14. Les premières images satellites montrent une structure organique de plusieurs kilomètres au-dessus du Kremlin.",
-      "consequences": [
-        "District de l'Est passé en « Contesté »",
-        "Contact perdu avec 4 millions de civils",
-        "Tension +15"
-      ],
-      "tension": 15
-    },
-    {
-      "id": "ev2",
-      "date": "4 Brumaire, An 12",
+      "date": "8 sept. 2075",
       "portee": {
         "type": "monde"
       },
-      "gravite": "majeur",
-      "titre": "Mobilisation générale",
-      "description": "Le Conseil Technocratique décrète la mobilisation générale dans les onze secteurs. La Division Phoenix est placée en alerte maximale.",
+      "gravite": "critique",
+      "titre": "Perturbations électromagnétiques",
+      "description": "21 h. Les capteurs de la Confédération s'affolent sur tout le globe, surtout en Asie, en Amérique du Sud et en Afrique. Au même moment, des cellules cultistes restées discrètes passent à la guérilla.",
       "consequences": [
-        "+1,2 million de soldats mobilisés",
-        "Couvre-feu dans les zones frontalières"
+        "Invasion cultiste sur trois continents",
+        "Signaux plus faibles en Europe et en Amérique du Nord"
+      ],
+      "tension": 20
+    },
+    {
+      "id": "ev2",
+      "date": "8 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "rd-hcp"
+      },
+      "gravite": "majeur",
+      "titre": "HCP : « Vous arrivez tard. »",
+      "description": "22 h 31. L'opérateur Merrick réveille HCP à 2 500 m sous la mer du Nord. La machine avait tout vu depuis trois heures et une minute. Elle identifie le Culte de la Vérité Primordiale.",
+      "consequences": [
+        "200 000 cultistes en Asie, 260 000 en Amérique du Sud",
+        "60 000 en Afrique, 50 000 en Europe et en Amérique du Nord",
+        "Armement biochimique en Amérique du Sud"
       ],
       "tension": 5
     },
     {
       "id": "ev3",
-      "date": "6 Brumaire, An 12",
+      "date": "8 sept. 2075",
       "portee": {
-        "type": "district",
-        "id": "as-central"
+        "type": "secteur",
+        "id": "europe"
       },
       "gravite": "majeur",
-      "titre": "Percée dans les steppes",
-      "description": "Des colonnes cultistes franchissent l'Oural et progressent vers Astana. Les garnisons régulières se replient sur Almaty.",
+      "titre": "Un commando frappe les centres névralgiques",
+      "description": "Une trentaine d'hommes très bien armés attaquent des points stratégiques puis disparaissent. Ils tirent aussi sur les cultistes qu'ils croisent. HCP parle d'un leurre. Sur un corps : un injecteur d'ichoria frappé du symbole de la Fondation SCP.",
       "consequences": [
-        "District Central (Asie) passé en « Contesté »",
-        "~600 000 déplacés"
+        "HCP prend le commandement des unités d'Europe et d'Amérique du Nord",
+        "Le Conseil ne répond plus"
       ],
-      "tension": 6
+      "tension": 5
     },
     {
       "id": "ev4",
-      "date": "8 Brumaire, An 12",
+      "date": "8 sept. 2075",
       "portee": {
-        "type": "district",
-        "id": "eu-sud"
+        "type": "monde"
       },
-      "gravite": "mineur",
-      "titre": "Contre-offensive des Carpates",
-      "description": "Les forces spéciales reprennent trois cols stratégiques. Le front se stabilise au nord de Bucarest.",
+      "gravite": "majeur",
+      "titre": "Confinement général",
+      "description": "Villes closes, frontières verrouillées. L'Humanité attend derrière des portes fermées.",
       "consequences": [
-        "District du Sud en « Reconquête »",
-        "Influence cultiste −10 %"
+        "Loi martiale"
       ],
-      "tension": -3
+      "tension": 5
     },
     {
       "id": "ev5",
-      "date": "9 Brumaire, An 12",
+      "date": "9 sept. 2075",
       "portee": {
         "type": "district",
-        "id": "oc-austral"
+        "id": "eu-ouest"
       },
-      "gravite": "majeur",
-      "titre": "Signal sous la plateforme de Ross",
-      "description": "Une station de recherche antarctique signale un « chant » capté par tous ses instruments. Plus aucune nouvelle depuis.",
+      "gravite": "mineur",
+      "titre": "Ibérie nettoyée par HCP",
+      "description": "HCP neutralise le groupement cultiste d'Ibérie sans une seule perte civile. Les soldats ont trouvé ses ordres étranges.",
       "consequences": [
-        "District Austral placé en quarantaine",
-        "Déploiement de la Division Phoenix"
+        "Première utilisation d'HCP sur un front terrestre"
       ],
-      "tension": 4
+      "tension": -2
     },
     {
       "id": "ev6",
-      "date": "10 Brumaire, An 12",
-      "portee": {
-        "type": "district",
-        "id": "eu-nord"
-      },
-      "gravite": "critique",
-      "titre": "Chute de Rovaniemi",
-      "description": "Les Engeances de l'Œil Pâle submergent la ligne de défense laponne. La ville est rasée en moins de six heures.",
-      "consequences": [
-        "District du Nord placé en quarantaine",
-        "3 200 décès civils confirmés",
-        "Tension +6"
-      ],
-      "tension": 6
-    },
-    {
-      "id": "ev7",
-      "date": "12 Brumaire, An 12",
+      "date": "10 sept. 2075",
       "portee": {
         "type": "secteur",
-        "id": "afrique"
+        "id": "europe"
       },
       "gravite": "majeur",
-      "titre": "Émergence du Chœur Sans Nom",
-      "description": "Des rassemblements massifs sont signalés autour du lac Victoria. Les participants chantent à l'unisson dans une langue inconnue.",
+      "titre": "Entité détectée : Phoenix engagée",
+      "description": "3 h 30. HCP : « Entité détectée. Menace élevée. 2 145 effectifs perdus. Ganzir requis. » À 13 h 30, l'Escouade Phoenix prend le relais. HCP retire ses troupes des fronts anormaux.",
       "consequences": [
-        "District de l'Est (Afrique) passé en « Contesté »",
-        "Évacuation de Kampala en cours"
+        "2 145 soldats perdus",
+        "Phoenix engagée contre les entités"
       ],
       "tension": 4
     },
     {
-      "id": "ev8",
-      "date": "13 Brumaire, An 12",
-      "portee": {
-        "type": "district",
-        "id": "am-andin"
-      },
-      "gravite": "mineur",
-      "titre": "Cellules actives à Lima",
-      "description": "Les services de renseignement démantèlent un réseau cultiste implanté dans l'administration locale. Plusieurs cellules restent actives.",
-      "consequences": [
-        "District Andin passé en « Contesté »"
-      ],
-      "tension": 1
-    },
-    {
-      "id": "ev9",
-      "date": "14 Brumaire, An 12",
+      "id": "ev7",
+      "date": "10 sept. 2075",
       "portee": {
         "type": "monde"
       },
       "gravite": "critique",
-      "titre": "Autorisation des armes anomaliques",
-      "description": "La tension franchit le palier « Escalade ». Le Conseil autorise l'emploi d'armes anomaliques sous supervision directe.",
+      "titre": "« Ouvrez vos portes. Prenez les armes. »",
+      "description": "Depuis le bunker, une voix d'homme prend tous les canaux. « Nous avons tué Dieu il y a quatre-vingts ans. Et nous le tuerons à nouveau. » Le confinement tombe. Des milliards de civils sortent armés, et le Phénix apparaît sur les murs, les casques et les fuselages.",
       "consequences": [
-        "Palier III atteint",
-        "Premier emploi prévu sur le front oriental"
+        "Fin du confinement et de la loi martiale",
+        "Mobilisation générale",
+        "Palier IV · Crise atteint"
+      ],
+      "tension": 15
+    },
+    {
+      "id": "ev8",
+      "date": "11 sept. 2075",
+      "portee": {
+        "type": "secteur",
+        "id": "afrique"
+      },
+      "gravite": "critique",
+      "titre": "Le berceau devenu désert",
+      "description": "Ganzir ordonne de se débarrasser de la menace. Une dizaine d'appareils portant l'insigne du Phoenix suffisent. « Rasez ce qu'il reste des êtres vivants de ce continent. » Personne ne demande de répéter l'ordre. Feu nucléaire.",
+      "consequences": [
+        "99 % des 60 000 cultistes tués",
+        "Survivants lourdement irradiés",
+        "Afrique entière en quarantaine"
+      ],
+      "tension": 4
+    },
+    {
+      "id": "ev9",
+      "date": "11 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "majeur",
+      "titre": "Les foules d'Asie",
+      "description": "Les citoyens prennent les cultistes de court et en tuent 100 000. Les 30 000 soldats organisés, eux, massacrent les foules puis se replient. 70 000 cultistes se retranchent dans une ville chinoise et y enlèvent des civils.",
+      "consequences": [
+        "100 000 cultistes tués",
+        "Lourdes pertes civiles face aux soldats organisés"
       ],
       "tension": 0
+    },
+    {
+      "id": "ev10",
+      "date": "11 sept. 2075",
+      "portee": {
+        "type": "secteur",
+        "id": "europe"
+      },
+      "gravite": "critique",
+      "titre": "La foule devient bête",
+      "description": "Une foule tente de submerger des cultistes qui la massacrent au corps à corps. Le bain de sang fait apparaître une entité. Les citoyens perdent la raison et s'entretuent dans la ville, incapables de savoir qui est touché.",
+      "consequences": [
+        "30 000 cultistes éliminés en Europe",
+        "20 000 survivants passent à la guérilla",
+        "Certains officiers craignent que la rage se propage"
+      ],
+      "tension": 3
+    },
+    {
+      "id": "ev11",
+      "date": "11 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "critique",
+      "titre": "L'eau qui fait rire",
+      "description": "Une maladie se répand par les cours d'eau. Toux, nausées, agonie sans la mort. Puis les voix promettent la fin des souffrances. Ceux qui acceptent deviennent hilares et cherchent à contaminer.",
+      "consequences": [
+        "La jungle vire au marécage, la faune mute",
+        "Temps d'incubation long : risque hors du continent"
+      ],
+      "tension": 3
+    },
+    {
+      "id": "ev12",
+      "date": "12 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-andin"
+      },
+      "gravite": "majeur",
+      "titre": "La brigade exotique",
+      "description": "45 000 soldats de la brigade exotique sont déployés sur le front sud-américain. À T+80 h, armes électriques et combinaisons. À T+81 h, 96 % ont reçu des drogues de performance et une armure Exo-3. « Mes chers amis cultistes ! Vous voyez ? C'est moins drôle quand ça ne se passe pas chez soi. »",
+      "consequences": [
+        "45 000 effectifs engagés",
+        "« Maman, je n'ai plus peur. »"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev13",
+      "date": "12 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "rd-hcp"
+      },
+      "gravite": "mineur",
+      "titre": "HCP a vu juste à 85 %",
+      "description": "Merrick fait ses calculs : HCP a prédit 85 % des mouvements cultistes, déplacements civils compris. En accord avec Ganzir, il obtient tous les capteurs de la Confédération. Il a demandé un psychoactif pour son unité.",
+      "consequences": [
+        "Personne ne doit approcher HCP",
+        "Merrick ignore d'où vient cette directive"
+      ],
+      "tension": 0
+    },
+    {
+      "id": "ev14",
+      "date": "15 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "critique",
+      "titre": "Arthur « le Bon »",
+      "description": "Un ancien plieur de réalité de la Confédération, perdu au combat, revient à moitié insecte, corrompu par Nargal. Il écrase les garnisons à la tête d'une horde d'infectés et d'entités. Des aérodromes tombent : l'aviation doit affronter nos propres appareils modifiés.",
+      "consequences": [
+        "Environ 40 millions de cultistes en Amérique du Sud",
+        "Des dizaines de millions de morts",
+        "Poches d'infection dans le reste du continent"
+      ],
+      "tension": 4
+    },
+    {
+      "id": "ev15",
+      "date": "16 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "Izala « la Déesse »",
+      "description": "Un rituel dérègle la météo et les capteurs pendant une journée. Au soir, les cultistes sortent plus nombreux, menés par Izala, une autre plieuse de réalité égarée. Elle met l'armée en déroute et exige que la Confédération la vénère. La transmission est coupée. Aucune réponse n'est donnée.",
+      "consequences": [
+        "Environ 50 millions de cultistes en Asie",
+        "Recrutement par la torture et la séduction"
+      ],
+      "tension": 4
+    },
+    {
+      "id": "ev16",
+      "date": "19 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "eu-central"
+      },
+      "gravite": "mineur",
+      "titre": "Zurich, un jeudi à l'aube",
+      "description": "Six jours de guet, puis quarante minutes de contact entre deux rangées d'immeubles. La milice populaire tient la rue avec l'armée. Le soir, la diffusion annonce que le District Central est sécurisé. (Déposition n° 4 412, Pietro Shat.)",
+      "consequences": [
+        "19 cultistes tués",
+        "4 miliciens morts, tous du quartier"
+      ],
+      "tension": 0
+    },
+    {
+      "id": "ev17",
+      "date": "19 sept. 2075",
+      "portee": {
+        "type": "secteur",
+        "id": "europe"
+      },
+      "gravite": "majeur",
+      "titre": "Europe : dernières poches écrasées",
+      "description": "Après une semaine de combat, les forces spéciales neutralisent plusieurs entités et brisent l'expansion cultiste. Hors des zones touchées, l'Europe a été relativement épargnée.",
+      "consequences": [
+        "Environ 10 millions de morts",
+        "Plusieurs centres urbains ravagés",
+        "Situation réglée"
+      ],
+      "tension": -4
+    },
+    {
+      "id": "ev18",
+      "date": "20 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-usa"
+      },
+      "gravite": "majeur",
+      "titre": "Chasses aux cultistes",
+      "description": "Les foyers de maladie venus du sud sont vite maîtrisés. La psychose, elle, s'installe : agents mémétiques dans l'eau, officiers cultistes. Des meutes se font justice. La plupart des personnes attrapées l'ont été sur simple soupçon.",
+      "consequences": [
+        "Rumeurs contre le gouvernement",
+        "Lynchages en hausse"
+      ],
+      "tension": 1
+    },
+    {
+      "id": "ev19",
+      "date": "20 sept. 2075",
+      "portee": {
+        "type": "monde"
+      },
+      "gravite": "majeur",
+      "titre": "Le prix de la mobilisation",
+      "description": "Les civils ont tué une grande partie des cultistes, mais face aux entités ils perdent pied, deviennent fous ou rejoignent l'ennemi. Suicides, vandalisme et crimes augmentent : beaucoup n'ont plus peur de mourir.",
+      "consequences": [
+        "Apparitions d'entités en hausse",
+        "Perturbations électromagnétiques persistantes",
+        "Des psychologues s'inquiètent pour l'ordre public"
+      ],
+      "tension": 1
     }
   ],
   "historique": [
     {
-      "date": "2 Brumaire",
-      "tension": 22,
-      "evenements": 1,
+      "date": "8 sept. 2075",
+      "tension": 43,
+      "evenements": 4,
       "districts": {
         "eu-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "eu-est": {
           "statut": "conteste",
-          "influence": 35
-        },
-        "eu-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "eu-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "eu-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-est": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-sudest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-continental": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-melanesie": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-pacifique": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-austral": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-est": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-caraibe": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-andin": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-amazonien": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-austral": {
-          "statut": "controle",
-          "influence": 0
-        }
-      }
-    },
-    {
-      "date": "6 Brumaire",
-      "tension": 33,
-      "evenements": 3,
-      "districts": {
-        "eu-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "eu-est": {
-          "statut": "perdu",
-          "influence": 60
-        },
-        "eu-central": {
-          "statut": "controle",
-          "influence": 8
-        },
-        "eu-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "eu-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-central": {
-          "statut": "conteste",
-          "influence": 25
-        },
-        "as-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-est": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-sudest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-continental": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-melanesie": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-pacifique": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-austral": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-est": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-caraibe": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-andin": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-amazonien": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-austral": {
-          "statut": "controle",
-          "influence": 0
-        }
-      }
-    },
-    {
-      "date": "10 Brumaire",
-      "tension": 41,
-      "evenements": 6,
-      "districts": {
-        "eu-nord": {
-          "statut": "quarantaine",
-          "influence": 30
-        },
-        "eu-est": {
-          "statut": "perdu",
-          "influence": 72
-        },
-        "eu-central": {
-          "statut": "conteste",
-          "influence": 20
-        },
-        "eu-sud": {
-          "statut": "reconquete",
-          "influence": 22
-        },
-        "eu-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-central": {
-          "statut": "conteste",
-          "influence": 44
-        },
-        "as-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-est": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "as-sudest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-continental": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-melanesie": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-pacifique": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-austral": {
-          "statut": "quarantaine",
-          "influence": 8
-        },
-        "af-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-est": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-sud": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-caraibe": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-andin": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-amazonien": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "am-austral": {
-          "statut": "controle",
-          "influence": 0
-        }
-      }
-    },
-    {
-      "date": "14 Brumaire",
-      "tension": 47,
-      "evenements": 9,
-      "districts": {
-        "eu-nord": {
-          "statut": "quarantaine",
-          "influence": 45
-        },
-        "eu-est": {
-          "statut": "perdu",
-          "influence": 78
-        },
-        "eu-central": {
-          "statut": "conteste",
-          "influence": 31
-        },
-        "eu-sud": {
-          "statut": "reconquete",
-          "influence": 18
-        },
-        "eu-ouest": {
-          "statut": "controle",
-          "influence": 4
-        },
-        "as-ouest": {
-          "statut": "controle",
-          "influence": 6
-        },
-        "as-central": {
-          "statut": "conteste",
-          "influence": 52
-        },
-        "as-sud": {
-          "statut": "controle",
           "influence": 2
         },
-        "as-est": {
-          "statut": "controle",
-          "influence": 9
-        },
-        "as-sudest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-continental": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-melanesie": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-pacifique": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "oc-austral": {
-          "statut": "quarantaine",
-          "influence": 12
-        },
-        "af-nord": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-ouest": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-central": {
-          "statut": "controle",
-          "influence": 0
-        },
-        "af-est": {
+        "eu-est": {
           "statut": "conteste",
-          "influence": 22
+          "influence": 5
         },
-        "af-sud": {
+        "eu-central": {
+          "statut": "conteste",
+          "influence": 6
+        },
+        "eu-sud": {
+          "statut": "conteste",
+          "influence": 3
+        },
+        "eu-ouest": {
+          "statut": "conteste",
+          "influence": 4
+        },
+        "as-moyen-orient": {
           "statut": "controle",
           "influence": 0
         },
-        "am-nord": {
-          "statut": "controle",
-          "influence": 0
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 10
         },
-        "am-central": {
+        "as-indopak": {
           "statut": "controle",
           "influence": 3
         },
-        "am-caraibe": {
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 18
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 12
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-nord": {
+          "statut": "conteste",
+          "influence": 12
+        },
+        "af-ouest": {
+          "statut": "conteste",
+          "influence": 15
+        },
+        "af-central": {
+          "statut": "conteste",
+          "influence": 18
+        },
+        "af-est": {
+          "statut": "conteste",
+          "influence": 14
+        },
+        "af-sud": {
+          "statut": "conteste",
+          "influence": 8
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-usa": {
+          "statut": "conteste",
+          "influence": 3
+        },
+        "am-mexicain": {
           "statut": "controle",
           "influence": 0
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 15
+          "influence": 22
         },
         "am-amazonien": {
+          "statut": "conteste",
+          "influence": 30
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 10
+        },
+        "rd-civil": {
           "statut": "controle",
           "influence": 0
         },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    },
+    {
+      "date": "10 sept. 2075",
+      "tension": 60,
+      "evenements": 7,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2
+        },
+        "eu-est": {
+          "statut": "reconquete",
+          "influence": 4
+        },
+        "eu-central": {
+          "statut": "reconquete",
+          "influence": 5
+        },
+        "eu-sud": {
+          "statut": "reconquete",
+          "influence": 3
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 14
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 4
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 25
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 15
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-nord": {
+          "statut": "conteste",
+          "influence": 14
+        },
+        "af-ouest": {
+          "statut": "conteste",
+          "influence": 17
+        },
+        "af-central": {
+          "statut": "conteste",
+          "influence": 20
+        },
+        "af-est": {
+          "statut": "conteste",
+          "influence": 16
+        },
+        "af-sud": {
+          "statut": "conteste",
+          "influence": 9
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 3
+        },
+        "am-mexicain": {
+          "statut": "controle",
+          "influence": 2
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 30
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 45
+        },
         "am-austral": {
+          "statut": "conteste",
+          "influence": 14
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    },
+    {
+      "date": "12 sept. 2075",
+      "tension": 69,
+      "evenements": 13,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2
+        },
+        "eu-est": {
+          "statut": "conteste",
+          "influence": 9
+        },
+        "eu-central": {
+          "statut": "conteste",
+          "influence": 14
+        },
+        "eu-sud": {
+          "statut": "reconquete",
+          "influence": 6
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 2
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 20
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 5
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 38
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 3
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 18
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-nord": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-ouest": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-central": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-est": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-sud": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 3
+        },
+        "am-mexicain": {
+          "statut": "controle",
+          "influence": 4
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 42
+        },
+        "am-amazonien": {
+          "statut": "perdu",
+          "influence": 66
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 20
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0
+        }
+      }
+    },
+    {
+      "date": "20 sept. 2075",
+      "tension": 75,
+      "evenements": 19,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 41
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9
+        },
+        "as-sinorusse": {
+          "statut": "perdu",
+          "influence": 81
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 33
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "af-nord": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-ouest": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-central": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-est": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "af-sud": {
+          "statut": "quarantaine",
+          "influence": 1
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5
+        },
+        "am-mexicain": {
+          "statut": "conteste",
+          "influence": 14
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 58
+        },
+        "am-amazonien": {
+          "statut": "perdu",
+          "influence": 86
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 37
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0
+        },
+        "ad-detroit": {
           "statut": "controle",
           "influence": 0
         }

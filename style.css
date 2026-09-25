@@ -154,7 +154,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .bar .legend .c { color: var(--confed); }
 .bar .legend .x { color: #ff6f8a; }
 
-.note { margin: 14px 20px 0; padding: 10px 12px; border-left: 2px solid var(--confed); background: rgba(227, 163, 59, .06); font-size: 13px; color: #d7cdbb; }
+.note { margin: 14px 20px 0; padding: 10px 12px; border: 1px solid var(--line2); background: var(--panel2); font-size: 13px; color: #d7cdbb; }
 
 .bloc { padding: 16px 20px; border-bottom: 1px solid var(--line); }
 .bloc > h3 { margin: 0 0 12px; font: 600 12px var(--f-titre); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
@@ -191,12 +191,13 @@ table.pertes td { padding: 7px 6px; border-top: 1px solid var(--line); text-alig
 table.pertes td:first-child { text-align: left; font-family: var(--f-texte); font-weight: 600; }
 
 .liste { display: flex; flex-direction: column; gap: 6px; }
-.item { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; text-align: left; background: var(--panel2); border: 1px solid var(--line); padding: 9px 11px; }
+.item { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center; text-align: left; background: var(--panel2); border: 1px solid var(--line); padding: 8px 12px; }
 .item:hover { border-color: var(--line2); background: #1a2029; }
+.item .t small { display: block; margin-top: 4px; font: 500 11px var(--f-texte); letter-spacing: 0; text-transform: none; color: var(--muted); }
 .item .t { font: 600 13px var(--f-titre); letter-spacing: .06em; text-transform: uppercase; }
 .item .mini { grid-column: span 2; height: 4px; background: var(--confed); position: relative; }
 .item .mini i { position: absolute; right: 0; top: 0; bottom: 0; background: var(--cult); }
-.item .chip { font-size: 10px; padding: 2px 6px; }
+.item .chip { font-size: 10px; padding: 4px 8px; }
 
 .compte { display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -218,6 +219,8 @@ table.pertes td:first-child { text-align: left; font-family: var(--f-texte); fon
 .ev .dt { display: inline-block; margin-top: 8px; font: 500 11px var(--f-num); padding: 1px 6px; border: 1px solid; }
 .ev .dt.up { color: #ff6f8a; }
 .ev .dt.down { color: #6cc9a0; }
+.ev-jour { margin: 14px 0 6px; font: 600 11px var(--f-titre); letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.ev-jour:first-of-type { margin-top: 0; }
 .filtres { display: flex; gap: 4px; margin-bottom: 10px; }
 .filtres button { background: none; border: 1px solid var(--line2); padding: 3px 9px; font-size: 11px; color: var(--muted); }
 .filtres button.on { color: var(--text); border-color: var(--confed); }
