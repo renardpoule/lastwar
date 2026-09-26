@@ -67,5 +67,6 @@ Puis des scripts Playwright (Chromium est préinstallé, `NODE_PATH=$(npm root -
 ## Git
 
 - Commits en français, sans identifiant de modèle dans les messages.
+- Foxy veut que chaque modification soit publiée : pousser à la fois sur la branche de travail et sur `claude/intelligent-wozniak-z9wmmf`, sans redemander.
 - Ne jamais committer d'identifiant, de mot de passe ou de jeton : `acces.json` ne contient que le hash PBKDF2. Foxy détient les identifiants admin.
 - Après un push, le déploiement Pages prend une à deux minutes (github.io n'est pas joignable depuis le conteneur ; vérifier via l'API des Actions si besoin).
