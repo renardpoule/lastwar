@@ -2,58 +2,57 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Front des Cendres</title>
 <meta name="description" content="Situation du conflit entre la Confédération des Cendres et les Cultistes.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#16131f">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preload" href="countries.json" as="fetch" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="ds">
 <header class="topbar">
-  <div class="brand">
-    <svg class="sigle" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L29 9 V23 L16 30 L3 23 V9 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8 L22 19 H10 Z" fill="currentColor"/></svg>
+  <div class="identite">
+    <img class="logo" src="logo.png" width="44" height="44" alt="Sceau de la Confédération des Cendres">
     <div>
       <h1 id="titre">Confédération des Cendres</h1>
-      <p id="soustitre" class="muted"></p>
+      <p id="soustitre" class="ds-supporting"></p>
     </div>
   </div>
   <div class="daterp">
-    <span class="lbl">Date</span>
     <strong id="daterp">—</strong>
-    <span id="maj" class="muted small"></span>
+    <span id="maj" class="ds-supporting"></span>
   </div>
-  <button id="tensionBtn" class="tension-mini" aria-label="Détails de la tension mondiale">
-    <svg id="miniClock" viewBox="0 0 60 60" aria-hidden="true"></svg>
+  <button id="tensionBtn" class="tension-mini" type="button" aria-haspopup="dialog">
+    <svg id="miniClock" viewBox="0 0 100 100" aria-hidden="true"></svg>
     <span class="tm-txt">
-      <span class="lbl">Tension mondiale</span>
-      <strong id="tensionVal">—</strong>
-      <span id="tensionPalier" class="palier"></span>
+      <span class="tm-val"><strong id="tensionVal">—</strong> <span class="ds-supporting">Tension</span></span>
+      <span id="tensionPalier" class="ds-badge"></span>
     </span>
   </button>
 </header>
 
-<div id="alerte" class="alerte" hidden></div>
+<div id="alerte" class="alerte" role="status" hidden></div>
 
 <main class="layout">
-  <section class="mapzone">
-    <div id="archive" class="archive" hidden></div>
-    <div id="map" class="map" aria-label="Carte de la Confédération"></div>
+  <section class="mapzone" aria-label="Carte du conflit">
+    <div id="map" class="map"></div>
     <div class="map-ui">
-      <nav id="fil" class="fil" aria-label="Navigation"></nav>
-      <div class="legende">
-        <span><i class="sw" style="--c:var(--ok)"></i>Sous contrôle</span>
-        <span><i class="sw" style="--c:var(--st-conteste)"></i>Contesté</span>
-        <span><i class="sw" style="--c:var(--st-reconquete)"></i>Reconquête</span>
-        <span><i class="sw hatch"></i>Quarantaine</span>
-        <span><i class="sw" style="--c:var(--cult)"></i>Perdu</span>
-      </div>
+      <nav id="fil" class="fil" aria-label="Fil d'Ariane"></nav>
+      <ul class="legende" aria-label="Légende">
+        <li><i class="sw controle"></i>Sous contrôle</li>
+        <li><i class="sw conteste"></i>Contesté</li>
+        <li><i class="sw reconquete"></i>Reconquête</li>
+        <li><i class="sw quarantaine"></i>Quarantaine</li>
+        <li><i class="sw perdu"></i>Perdu</li>
+      </ul>
     </div>
+    <div id="archive" class="archive" role="status" hidden></div>
     <div class="timeline">
-      <button id="play" class="play" aria-label="Rejouer le conflit">▶</button>
-      <input id="slider" type="range" min="0" max="0" value="0" aria-label="Chronologie du conflit">
-      <span id="sliderLbl" class="slider-lbl">EN DIRECT</span>
+      <button id="play" class="ds-btn ds-btn-secondary ds-btn-sm" type="button" aria-label="Rejouer le conflit"></button>
+      <label class="sr" for="slider">Chronologie du conflit</label>
+      <input id="slider" type="range" min="0" max="0" value="0">
+      <span id="sliderLbl" class="slider-lbl">En direct</span>
     </div>
     <div id="tip" class="tip" hidden></div>
   </section>
@@ -61,8 +60,8 @@
   <aside id="panel" class="panel" aria-live="polite"></aside>
 </main>
 
-<dialog id="tensionDlg" class="dlg">
-  <button class="close" onclick="this.closest('dialog').close()" aria-label="Fermer">✕</button>
+<dialog id="tensionDlg" class="dlg" aria-labelledby="tensionTitre">
+  <button class="ds-btn ds-btn-ghost ds-btn-sm fermer" type="button" aria-label="Fermer" onclick="this.closest('dialog').close()"></button>
   <div id="tensionDetail"></div>
 </dialog>
 

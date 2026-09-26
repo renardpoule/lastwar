@@ -101,8 +101,21 @@ const C = (() => {
 
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+
+  // Icônes MingCute (ligne), fournies par Better Design — intégrées pour éviter tout chargement réseau
+  const ICONES = {
+    play: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M6.661 4.88a.47.47 0 0 1 .656-.378c1.032.441 3.375 1.502 6.354 3.222s5.071 3.22 5.97 3.893a.468.468 0 0 1 0 .755c-.889.667-2.954 2.148-5.97 3.89c-3.019 1.742-5.334 2.79-6.356 3.226a.468.468 0 0 1-.653-.378c-.135-1.11-.389-3.662-.389-7.116c0-3.452.254-6.003.388-7.115Z"/></svg>',
+    pause: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 5v14m8-14v14"/></svg>',
+    close: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m5.636 5.637l12.728 12.728m-12.728 0L18.364 5.637"/></svg>',
+    warning: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 7v6m0 3h.002M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z"/></svg>',
+    location: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M15 11a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"/><path fill="none" stroke="currentColor" stroke-width="2" d="M20 11c0 5.396-5.896 9.108-7.565 10.05a.87.87 0 0 1-.87 0C9.895 20.108 4 16.396 4 11a8 8 0 1 1 16 0Z"/></svg>',
+    download: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 3a1 1 0 1 0-2 0zm-2 13a1 1 0 1 0 2 0zm-1.828-4a1 1 0 1 0-1.415 1.414l.707-.707zM12 16.243l-.707.707a1 1 0 0 0 1.414 0zm4.243-2.829A1 1 0 1 0 14.828 12l.708.707zM20 7h-1v13h2V7zm-1 14v-1H5v2h14zM4 20h1V7H3v13zM5 6v1h3V5H5zm11 0v1h3V5h-3zm-4-3h-1v13h2V3zm-3.536 9.707l-.707.707l3.536 3.536l.707-.707l.707-.707L9.172 12zM12 16.243l.707.707l3.536-3.536l-.707-.707l-.708-.707l-3.535 3.536zM4 7h1V5a2 2 0 0 0-2 2zm1 14v-1H3a2 2 0 0 0 2 2zm15-1h-1v2a2 2 0 0 0 2-2zm0-13h1a2 2 0 0 0-2-2v2z"/></svg>',
+    upload: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9H6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10a1 1 0 0 0-1-1h-2m-4-6v11m2.5-8.5L12 3L9.5 5.5"/></svg>',
+    externe: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h6m9 2V4h-5m-5 10l9.5-9.5"/></svg>'
+  };
+
   const GRAVITES = { mineur: 'Mineur', majeur: 'Majeur', critique: 'Critique' };
   const TENDANCES = { hausse: 'Progression cultiste', stable: 'Front stable', baisse: 'Recul cultiste' };
 
-  return { parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, GRAVITES, TENDANCES };
+  return { ICONES, parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, GRAVITES, TENDANCES };
 })();

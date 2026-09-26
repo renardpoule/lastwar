@@ -6,7 +6,7 @@ Carte interactive du conflit entre la Confédération des Cendres et les Cultist
 - `admin.html` : le poste de commandement, pour faire les mises à jour
 - `data.json` : toutes les données (modifiées par `admin.html`)
 - `app.js`, `admin.js`, `common.js`, `style.css`, `admin.css` : le code
-- `countries-50m.json`, `lib/` : fond de carte et bibliothèques (inclus, aucun service extérieur requis)
+- `countries.json`, `lib/`, `logo.png` : fond de carte simplifié, bibliothèques et sceau de la CC (inclus, aucun service extérieur requis)
 
 ---
 

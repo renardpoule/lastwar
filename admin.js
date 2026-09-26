@@ -34,7 +34,7 @@
   const brouillon = lire(CLE_BROUILLON, null);
   if (brouillon && versJSON(brouillon) !== publie) {
     data = brouillon;
-    avis(`Brouillon local restauré (modifications non publiées). <button class="btn petit" id="abandon">Abandonner le brouillon</button>`);
+    avis(`Brouillon local restauré (modifications non publiées). <button class="ds-btn ds-btn-outline ds-btn-sm" id="abandon">Abandonner le brouillon</button>`);
     $('#abandon').onclick = () => { if (confirm('Abandonner toutes les modifications non publiées ?')) { effacer(CLE_BROUILLON); location.reload(); } };
   } else {
     data = JSON.parse(publie);
@@ -123,13 +123,22 @@
     const b = e.target.closest('[data-onglet]');
     if (!b) return;
     onglet = b.dataset.onglet;
-    document.querySelectorAll('#onglets button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('#onglets button').forEach(x => { x.classList.toggle('active', x === b); x.setAttribute('aria-selected', x === b); });
     rendre();
   });
+
+  // Applique les composants du système de design aux champs générés
+  function habiller(racine) {
+    racine.querySelectorAll('input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file])').forEach(e => e.classList.add('ds-input'));
+    racine.querySelectorAll('select').forEach(e => e.classList.add('ds-select'));
+    racine.querySelectorAll('textarea').forEach(e => e.classList.add('ds-textarea'));
+    racine.querySelectorAll('.champ > span').forEach(e => e.classList.add('ds-label'));
+  }
 
   function rendre() {
     const vues = { situation: vueSituation, evenements: vueEvenements, districts: vueDistricts, secteurs: vueSecteurs, reglages: vueReglages };
     $('#contenu').innerHTML = vues[onglet]();
+    habiller($('#contenu'));
     lier($('#contenu'));
     if (onglet === 'situation') apercuTension();
     majEtat();
@@ -138,24 +147,24 @@
   // ---------- 1. Situation ----------
   function vueSituation() {
     return `
-    <section class="carte"><h2>Date du RP</h2>
-      <p class="aide">La date affichée en haut de la carte. Changez-la à chaque nouveau « tour » du conflit : elle sert aussi de repère dans la chronologie.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Date du RP</h2>
+      <p class="ds-supporting aide">La date affichée en haut de la carte. Changez-la à chaque nouveau « tour » du conflit : elle sert aussi de repère dans la chronologie.</p>
       <div class="grille"><label class="champ"><span>Date actuelle</span><input data-bind="meta.dateRP"></label></div>
     </section>
-    <section class="carte"><h2>Tension mondiale</h2>
-      <p class="aide">Réglée à la main, de 0 à 100. Les paliers et les armes autorisées se modifient dans l'onglet Réglages.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Tension mondiale</h2>
+      <p class="ds-supporting aide">Réglée à la main, de 0 à 100. Les paliers et les armes autorisées se modifient dans l'onglet Réglages.</p>
       <div class="ligne"><input type="range" min="0" max="100" data-bind="tension.valeur" data-type="nombre" style="flex:1">
         <input type="number" min="0" max="100" data-bind="tension.valeur" data-type="nombre" class="num" style="width:90px"></div>
       <div class="apercu-tension" id="apercuT"></div>
     </section>
-    <section class="carte"><h2>En-tête</h2>
+    <section class="ds-card carte"><h2 class="ds-section-title">En-tête</h2>
       <div class="grille">
         <label class="champ"><span>Titre</span><input data-bind="meta.titre"></label>
         <label class="champ large"><span>Sous-titre</span><input data-bind="meta.sousTitre"></label>
       </div>
     </section>
-    <section class="carte"><h2>Mise à jour type</h2>
-      <p class="aide" style="margin:0">1. Changer la date du RP ici → 2. Ajouter les événements du tour → 3. Ajuster les districts touchés (statut, influence, effectifs, pertes) → 4. Régler la tension → 5. <strong>Publier</strong>.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Mise à jour type</h2>
+      <p class="ds-supporting aide" style="margin:0">1. Changer la date du RP ici → 2. Ajouter les événements du tour → 3. Ajuster les districts touchés (statut, influence, effectifs, pertes) → 4. Régler la tension → 5. <strong>Publier</strong>.</p>
     </section>`;
   }
   function apercuTension() {
@@ -165,14 +174,14 @@
     const i = C.palier(t, P), m = C.minutes(t, P);
     const change = C.palier(publieTension, P) !== i;
     el.innerHTML = `<span class="h">${C.heure(m)}</span><div><div class="p">Palier ${i + 1} · ${esc(P[i].nom)}</div>
-      <div class="muted small">${esc(P[i].armes)}</div>
+      <div class="ds-supporting">${esc(P[i].armes)}</div>
       ${change ? `<div class="small" style="color:var(--g-critique);margin-top:4px">Changement de palier depuis la dernière publication (${esc(P[C.palier(publieTension, P)].nom)} → ${esc(P[i].nom)})</div>` : ''}</div>`;
   }
 
   // ---------- 2. Événements ----------
   function optionsPortee(sel) {
     const s = sel ? sel.type + ':' + sel.id : 'monde:';
-    let h = `<option value="monde:" ${s === 'monde:' ? 'selected' : ''}>🌐 Mondial</option>`;
+    let h = `<option value="monde:" ${s === 'monde:' ? 'selected' : ''}>Mondial</option>`;
     for (const sec of data.secteurs) {
       h += `<optgroup label="${esc(sec.nom)}"><option value="secteur:${sec.id}" ${s === 'secteur:' + sec.id ? 'selected' : ''}>Secteur ${esc(sec.nom)} (entier)</option>`;
       for (const d of sec.districts) h += `<option value="district:${d.id}" ${s === 'district:' + d.id ? 'selected' : ''}>${esc(d.nom)}</option>`;
@@ -194,20 +203,20 @@
     const g = ev ? ev.gravite : 'majeur';
     const liste = data.evenements.map((e, i) => ({ e, i })).reverse().map(({ e, i }) => `
       <article class="ev ${e.gravite} ${i === evEdite ? 'edite' : ''}">
-        <div class="meta"><span class="grav">${esc(C.GRAVITES[e.gravite])}</span><span class="date">${esc(e.date)}</span><span>${esc(nomPortee(e.portee))}</span>
-          ${annonces.includes(e.id) ? '<span class="ann">DISCORD EN ATTENTE</span>' : ''}</div>
+        <div class="meta"><span class="ds-badge grav ${e.gravite}">${esc(C.GRAVITES[e.gravite])}</span><span class="date">${esc(e.date)}</span><span>${esc(nomPortee(e.portee))}</span>
+          ${annonces.includes(e.id) ? '<span class="ds-badge ann">Annonce Discord en attente</span>' : ''}</div>
         <div class="outils">
-          <button class="btn petit" data-ev-haut="${i}" title="Plus ancien" ${i === 0 ? 'disabled' : ''}>↓</button>
-          <button class="btn petit" data-ev-bas="${i}" title="Plus récent" ${i === data.evenements.length - 1 ? 'disabled' : ''}>↑</button>
-          <button class="btn petit" data-ev-edit="${i}">Modifier</button>
-          <button class="btn petit danger" data-ev-suppr="${i}">✕</button>
+          <button class="ds-btn ds-btn-outline ds-btn-sm" data-ev-haut="${i}" title="Plus ancien" ${i === 0 ? 'disabled' : ''}>↓</button>
+          <button class="ds-btn ds-btn-outline ds-btn-sm" data-ev-bas="${i}" title="Plus récent" ${i === data.evenements.length - 1 ? 'disabled' : ''}>↑</button>
+          <button class="ds-btn ds-btn-outline ds-btn-sm" data-ev-edit="${i}">Modifier</button>
+          <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-ev-suppr="${i}">✕</button>
         </div>
         <h4>${esc(e.titre)}</h4><p>${esc(e.description)}</p>
         ${e.consequences && e.consequences.length ? `<ul>${e.consequences.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
       </article>`).join('');
     return `
-    <section class="carte"><h2>${ev ? 'Modifier l\'événement' : 'Nouvel événement'}</h2>
-      <p class="aide">${ev ? 'Les changements s\'appliquent dès que vous enregistrez.' : 'Il apparaîtra en tête du fil, avec un marqueur sur la carte. Les événements critiques s\'affichent aussi en bandeau d\'alerte.'}</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">${ev ? 'Modifier l\'événement' : 'Nouvel événement'}</h2>
+      <p class="ds-supporting aide">${ev ? 'Les changements s\'appliquent dès que vous enregistrez.' : 'Il apparaîtra en tête du fil, avec un marqueur sur la carte. Les événements critiques s\'affichent aussi en bandeau d\'alerte.'}</p>
       <form id="formEv" class="grille">
         <label class="champ"><span>Date</span><input name="date" value="${esc(ev ? ev.date : data.meta.dateRP)}" required></label>
         <label class="champ" style="grid-column:span 2"><span>Portée</span><select name="portee">${optionsPortee(ev && ev.portee)}</select></label>
@@ -222,12 +231,12 @@
           <label class="case"><input type="checkbox" name="annoncer" ${ev ? (annonces.includes(ev.id) ? 'checked' : '') : (g !== 'mineur' ? 'checked' : '')}> Annoncer sur Discord à la prochaine publication</label>
         </div>
         <div class="champ large"><div class="ligne">
-          <button class="btn primaire" type="submit">${ev ? 'Enregistrer' : 'Ajouter l\'événement'}</button>
-          ${ev ? '<button class="btn" type="button" id="annulerEv">Annuler</button>' : ''}</div></div>
+          <button class="ds-btn ds-btn-primary" type="submit">${ev ? 'Enregistrer' : 'Ajouter l\'événement'}</button>
+          ${ev ? '<button class="ds-btn ds-btn-outline" type="button" id="annulerEv">Annuler</button>' : ''}</div></div>
       </form>
     </section>
-    <section class="carte ev-liste"><h2>Fil des événements (${data.evenements.length})</h2>
-      <p class="aide">Du plus récent au plus ancien. Les flèches corrigent l'ordre si besoin.</p>
+    <section class="ds-card carte ev-liste"><h2 class="ds-section-title">Fil des événements (${data.evenements.length})</h2>
+      <p class="ds-supporting aide">Du plus récent au plus ancien. Les flèches corrigent l'ordre si besoin.</p>
       ${liste || '<div class="vide">Aucun événement.</div>'}
     </section>`;
   }
@@ -308,7 +317,7 @@
       if (!nom) return;
       const d = nouveauDistrict(s.id, nom);
       s.districts.push(d); districtSel = d.id;
-      onglet = 'districts'; document.querySelectorAll('#onglets button').forEach(x => x.classList.toggle('on', x.dataset.onglet === 'districts'));
+      onglet = 'districts'; document.querySelectorAll('#onglets button').forEach(x => { x.classList.toggle('active', x.dataset.onglet === 'districts'); x.setAttribute('aria-selected', x.dataset.onglet === 'districts'); });
       modifie(); rendre();
     }
     else if (t.id === 'ajoutSecteur') {
@@ -339,18 +348,18 @@
     }
     return {};
   }
-  const COUL = { controle: '#3f8f6b', conteste: '#e3a33b', reconquete: '#3f93cf', quarantaine: '#e2cf3a', perdu: '#d8284f' };
+  const COUL = { controle: 'var(--st-controle)', conteste: 'var(--st-conteste)', reconquete: 'var(--st-reconquete)', quarantaine: 'var(--st-quarantaine)', perdu: 'var(--st-perdu)' };
   function navDistricts() {
     return data.secteurs.map(s => `<h4>${esc(s.nom)}</h4>` + s.districts.map(d => `
       <button data-district="${d.id}" class="${d.id === districtSel ? 'on' : ''}"><span>${esc(d.nom)}</span>
-      <span class="muted small">${d.influence} % <i class="pt" style="display:inline-block;background:${COUL[d.statut]}"></i></span></button>`).join('')).join('');
+      <span class="ds-supporting">${d.influence} % <i class="pt" style="display:inline-block;background:${COUL[d.statut]}"></i></span></button>`).join('')).join('');
   }
   function majNavDistricts() { const n = $('.nav-districts'); if (n) n.innerHTML = navDistricts(); }
 
   function vueDistricts() {
     if (!districtSel) districtSel = data.secteurs[0] && data.secteurs[0].districts[0] && data.secteurs[0].districts[0].id;
     const { s, i, d, si } = trouverDistrict(districtSel);
-    if (!d) return `<div class="deux"><nav class="nav-districts">${navDistricts()}</nav><div class="carte">Aucun district.</div></div>`;
+    if (!d) return `<div class="deux"><nav class="nav-districts">${navDistricts()}</nav><div class="ds-card carte">Aucun district.</div></div>`;
     const P = `secteurs.${si}.districts.${i}`;
     d.forces ||= { confederation: [], cultistes: [] };
     d.pertes ||= { confederation: {}, cultistes: {} };
@@ -363,10 +372,10 @@
         <div class="unite-ed"><input data-bind="${P}.forces.${f}.${j}.nom" list="unitesConnues" placeholder="Nom de l'unité">
         <input class="num" data-bind="${P}.forces.${f}.${j}.effectif" data-type="valeur" placeholder="0">
         <button data-suppr-unite="${f}:${j}" title="Retirer">✕</button></div>`).join('') || '<div class="vide">Aucune unité.</div>'}</div>
-      <button class="btn petit" style="margin-top:8px" data-ajout-unite="${f}">+ Ajouter une unité</button></div>`;
+      <button class="ds-btn ds-btn-outline ds-btn-sm" style="margin-top:8px" data-ajout-unite="${f}">+ Ajouter une unité</button></div>`;
 
     return `<div class="deux"><nav class="nav-districts">${navDistricts()}</nav><div>
-    <section class="carte"><h2>${esc(d.nom)}</h2><p class="aide">Secteur ${esc(s.nom)} · Les modifications sont enregistrées automatiquement dans le brouillon.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">${esc(d.nom)}</h2><p class="ds-supporting aide">Secteur ${esc(s.nom)}. Les modifications sont enregistrées automatiquement dans le brouillon.</p>
       <div class="grille">
         <label class="champ"><span>Statut</span><select data-bind="${P}.statut" data-maj="nav">${Object.entries(data.statuts).map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
         <label class="champ"><span>Tendance</span><select data-bind="${P}.tendance">${Object.entries(C.TENDANCES).map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
@@ -375,21 +384,21 @@
           <input type="number" min="0" max="100" class="num" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="width:80px"></div></div>
         <label class="champ large"><span>Note de situation (optionnelle)</span><textarea data-bind="${P}.note" rows="2"></textarea></label>
       </div>
-      <p class="muted small" style="margin:14px 0 0">Pour tous les chiffres : <code>12000</code> · <code>~12000</code> pour une estimation · <code>?</code> ou <code>CLASSIFIÉ</code> pour une donnée inconnue.</p>
+      <p class="ds-supporting" style="margin:14px 0 0">Pour tous les chiffres : <code>12000</code> · <code>~12000</code> pour une estimation · <code>?</code> ou <code>CLASSIFIÉ</code> pour une donnée inconnue.</p>
     </section>
-    <section class="carte"><h2>Population civile</h2><div class="grille">
+    <section class="ds-card carte"><h2 class="ds-section-title">Population civile</h2><div class="grille">
       ${C.CIVILS.map(([k, l]) => `<label class="champ"><span>${l}</span><input class="num" data-bind="${P}.civils.${k}" data-type="valeur"></label>`).join('')}</div></section>
-    <section class="carte"><h2>Effectifs</h2><p class="aide">Le total de chaque faction est calculé automatiquement. Côté cultiste, vous pouvez classer les forces par Dieu.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Effectifs</h2><p class="ds-supporting aide">Le total de chaque faction est calculé automatiquement. Côté cultiste, vous pouvez classer les forces par Dieu.</p>
       <div class="factions-ed">${forces('confederation')}${forces('cultistes')}</div>
       <datalist id="unitesConnues">${nomsUnites.map(n => `<option value="${esc(n)}">`).join('')}</datalist></section>
-    <section class="carte"><h2>Pertes militaires</h2><div class="pertes-ed"><span></span>${C.PERTES.map(([, l]) => `<span>${l}</span>`).join('')}
+    <section class="ds-card carte"><h2 class="ds-section-title">Pertes militaires</h2><div class="pertes-ed"><span></span>${C.PERTES.map(([, l]) => `<span>${l}</span>`).join('')}
       ${C.FACTIONS.map(f => `<span>${esc(data.factions[f].court)}</span>${C.PERTES.map(([k]) => `<input class="num" data-bind="${P}.pertes.${f}.${k}" data-type="valeur">`).join('')}`).join('')}</div></section>
-    <details class="carte"><summary style="cursor:pointer;font:600 12px var(--f-titre);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Avancé : nom, pays couverts, suppression</summary>
+    <details class="ds-card carte"><summary class="avance">Avancé : nom, pays couverts, suppression</summary>
       <div class="grille" style="margin-top:14px">
         <label class="champ"><span>Nom du district</span><input data-bind="${P}.nom" data-maj="nav"></label>
         <label class="champ large"><span>Pays couverts — un par ligne, noms anglais de la carte</span><textarea data-bind="${P}.pays" data-type="lignes" rows="5">${esc((d.pays || []).join('\n'))}</textarea>
           <small>Un district sans pays n'apparaît pas sur la carte, mais reste consultable dans les listes.</small></label>
-        <div class="champ large"><button class="btn danger" data-suppr-district="${d.id}" style="align-self:flex-start">Supprimer ce district</button></div>
+        <div class="champ large"><button class="ds-btn ds-btn-outline danger" data-suppr-district="${d.id}" style="align-self:flex-start">Supprimer ce district</button></div>
       </div></details>
     </div></div>`;
   }
@@ -409,18 +418,18 @@
 
   // ---------- Secteurs ----------
   function vueSecteurs() {
-    return `<section class="carte"><h2>Secteurs</h2>
-      <p class="aide">Un secteur « hors carte » (non géographique) apparaît dans les listes de la carte avec ses districts, sans zone dessinée.</p>
-      <button class="btn" id="ajoutSecteur">+ Nouveau secteur</button></section>
-      ${data.secteurs.map((s, i) => `<section class="carte">
+    return `<section class="ds-card carte"><h2 class="ds-section-title">Secteurs</h2>
+      <p class="ds-supporting aide">Un secteur « hors carte » (non géographique) apparaît dans les listes de la carte avec ses districts, sans zone dessinée.</p>
+      <button class="ds-btn ds-btn-outline" id="ajoutSecteur">+ Nouveau secteur</button></section>
+      ${data.secteurs.map((s, i) => `<section class="ds-card carte">
         <div class="grille">
           <label class="champ"><span>Nom</span><input data-bind="secteurs.${i}.nom"></label>
-          <div class="champ"><span>Type</span><div class="muted" style="padding:8px 0">${s.geographique === false ? 'Hors carte' : 'Géographique'} · ${s.districts.length} districts</div></div>
+          <div class="champ"><span>Type</span><div class="ds-supporting" style="padding:8px 0">${s.geographique === false ? 'Hors carte' : 'Géographique'} · ${s.districts.length} districts</div></div>
           <label class="champ large"><span>Note du secteur (optionnelle)</span><textarea data-bind="secteurs.${i}.note" rows="2"></textarea></label>
         </div>
         <div class="ligne" style="margin-top:12px">
-          <button class="btn petit" data-ajout-district="${s.id}">+ Ajouter un district</button>
-          <button class="btn petit danger" data-suppr-secteur="${s.id}">Supprimer le secteur</button>
+          <button class="ds-btn ds-btn-outline ds-btn-sm" data-ajout-district="${s.id}">+ Ajouter un district</button>
+          <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-suppr-secteur="${s.id}">Supprimer le secteur</button>
         </div></section>`).join('')}`;
   }
 
@@ -428,47 +437,47 @@
   function vueReglages() {
     const P = data.tension.paliers;
     return `
-    <section class="carte"><h2>Publication GitHub</h2>
-      <p class="aide">Le bouton « Publier » envoie data.json sur votre dépôt GitHub : la carte se met à jour pour tout le monde en une à deux minutes. Ces informations restent dans <strong>ce navigateur uniquement</strong>.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Publication GitHub</h2>
+      <p class="ds-supporting aide">Le bouton « Publier » envoie data.json sur votre dépôt GitHub : la carte se met à jour pour tout le monde en une à deux minutes. Ces informations restent dans <strong>ce navigateur uniquement</strong>.</p>
       <div class="grille">
         <label class="champ"><span>Compte GitHub</span><input id="cfgOwner" value="${esc(config.owner || '')}"></label>
         <label class="champ"><span>Dépôt</span><input id="cfgRepo" value="${esc(config.repo || '')}"></label>
         <label class="champ"><span>Branche</span><input id="cfgBranch" value="${esc(config.branch || '')}" placeholder="(branche par défaut)"></label>
         <label class="champ large"><span>Jeton d'accès (fine-grained token)</span><input id="cfgToken" type="password" value="${esc(config.token || '')}" autocomplete="off"><small>Droit requis : Contents → Read and write, sur ce dépôt uniquement. Voir LISEZMOI.</small></label>
       </div>
-      <div class="ligne" style="margin-top:12px"><button class="btn" id="testGithub">Tester la connexion</button></div>
+      <div class="ligne" style="margin-top:12px"><button class="ds-btn ds-btn-outline" id="testGithub">Tester la connexion</button></div>
     </section>
-    <section class="carte"><h2>Annonces Discord</h2>
-      <p class="aide">Webhook d'un salon Discord (Paramètres du salon → Intégrations → Webhooks). Les événements cochés « Annoncer » y sont postés à la publication, ainsi que les changements de palier de tension.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Annonces Discord</h2>
+      <p class="ds-supporting aide">Webhook d'un salon Discord (Paramètres du salon → Intégrations → Webhooks). Les événements cochés « Annoncer » y sont postés à la publication, ainsi que les changements de palier de tension.</p>
       <div class="grille">
         <label class="champ large"><span>URL du webhook</span><input id="cfgWebhook" type="password" value="${esc(config.webhook || '')}" autocomplete="off"></label>
         <label class="champ large"><span>Adresse publique de la carte</span><input id="cfgSite" value="${esc(config.site || '')}" placeholder="https://pseudo.github.io/front-des-cendres/"><small>Pour les liens dans les messages Discord.</small></label>
       </div>
-      <div class="ligne" style="margin-top:12px"><button class="btn" id="testDiscord">Envoyer un message de test</button></div>
+      <div class="ligne" style="margin-top:12px"><button class="ds-btn ds-btn-outline" id="testDiscord">Envoyer un message de test</button></div>
     </section>
-    <section class="carte"><h2>Paliers de tension</h2>
-      <p class="aide">« Seuil » = tension à partir de laquelle le palier s'active. « Minutes » = temps avant minuit affiché sur l'horloge.</p>
+    <section class="ds-card carte"><h2 class="ds-section-title">Paliers de tension</h2>
+      <p class="ds-supporting aide">« Seuil » = tension à partir de laquelle le palier s'active. « Minutes » = temps avant minuit affiché sur l'horloge.</p>
       ${P.map((p, i) => `<div class="grille" style="grid-template-columns:70px 1fr 90px 90px 40px;margin-bottom:8px;align-items:end">
-        <div class="champ"><span>Palier</span><div style="padding:8px 0;font:700 16px var(--f-titre)">${i + 1}</div></div>
+        <div class="champ"><span>Palier</span><div class="palier-num">${i + 1}</div></div>
         <label class="champ"><span>Nom</span><input data-bind="tension.paliers.${i}.nom"></label>
         <label class="champ"><span>Seuil</span><input type="number" class="num" data-bind="tension.paliers.${i}.min" data-type="nombre"></label>
         <label class="champ"><span>Minutes</span><input type="number" step="0.5" class="num" data-bind="tension.paliers.${i}.minutes" data-type="nombre"></label>
-        <button class="btn petit danger" data-suppr-palier="${i}" ${P.length <= 1 ? 'disabled' : ''}>✕</button>
+        <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-suppr-palier="${i}" ${P.length <= 1 ? 'disabled' : ''}>✕</button>
         <label class="champ" style="grid-column:2 / -1"><span>Armement autorisé</span><input data-bind="tension.paliers.${i}.armes"></label></div>`).join('')}
-      <button class="btn petit" id="ajoutPalier">+ Ajouter un palier</button>
+      <button class="ds-btn ds-btn-outline ds-btn-sm" id="ajoutPalier">+ Ajouter un palier</button>
     </section>
-    <section class="carte"><h2>Factions et statuts</h2><div class="grille">
+    <section class="ds-card carte"><h2 class="ds-section-title">Factions et statuts</h2><div class="grille">
       ${C.FACTIONS.map(f => `<label class="champ"><span>Nom court · ${f}</span><input data-bind="factions.${f}.court"></label>`).join('')}
       ${Object.keys(data.statuts).map(k => `<label class="champ"><span>Statut · ${k}</span><input data-bind="statuts.${k}"></label>`).join('')}
     </div></section>
-    <section class="carte"><h2>Chronologie (${data.historique.length} points)</h2>
-      <p class="aide">Chaque publication peut enregistrer un point : la carte peut ensuite « rejouer » le conflit avec le curseur du bas.</p>
-      <div class="hist">${data.historique.map((h, i) => `<div><span class="d">${esc(h.date)}</span><span class="muted">Tension ${h.tension} · ${h.evenements} év.</span>
-        <button class="btn petit danger" data-suppr-hist="${i}">✕</button></div>`).reverse().join('') || '<div class="vide">Aucun point.</div>'}</div>
+    <section class="ds-card carte"><h2 class="ds-section-title">Chronologie (${data.historique.length} points)</h2>
+      <p class="ds-supporting aide">Chaque publication peut enregistrer un point : la carte peut ensuite « rejouer » le conflit avec le curseur du bas.</p>
+      <div class="hist">${data.historique.map((h, i) => `<div><span class="d">${esc(h.date)}</span><span class="ds-supporting">Tension ${h.tension} · ${h.evenements} év.</span>
+        <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-suppr-hist="${i}">✕</button></div>`).reverse().join('') || '<div class="vide">Aucun point.</div>'}</div>
     </section>
-    <section class="carte"><h2>Fichier</h2>
-      <p class="aide">Secours : importer un data.json remplace le brouillon (rien n'est publié tant que vous ne cliquez pas sur Publier).</p>
-      <button class="btn" id="importer">Importer un data.json</button><input type="file" id="fichierImport" accept=".json,application/json" hidden>
+    <section class="ds-card carte"><h2 class="ds-section-title">Fichier</h2>
+      <p class="ds-supporting aide">Secours : importer un data.json remplace le brouillon (rien n'est publié tant que vous ne cliquez pas sur Publier).</p>
+      <button class="ds-btn ds-btn-outline" id="importer">Importer un data.json</button><input type="file" id="fichierImport" accept=".json,application/json" hidden>
     </section>`;
   }
   // Champs de configuration (hors data.json)
@@ -574,17 +583,17 @@
     const aAnnoncer = data.evenements.filter(e => annonces.includes(e.id));
     const P = data.tension.paliers;
     const changePalier = C.palier(publieTension, P) !== C.palier(data.tension.valeur, P);
-    dlg.innerHTML = `<button class="close" onclick="this.closest('dialog').close()" aria-label="Fermer">✕</button>
-      <h2 style="margin:0 0 6px;font:700 20px var(--f-titre);letter-spacing:.08em;text-transform:uppercase">Publier la mise à jour</h2>
-      <p class="muted" style="margin:0 0 18px">La carte sera à jour pour tous les joueurs d'ici une à deux minutes.</p>
+    dlg.innerHTML = `<button class="ds-btn ds-btn-ghost ds-btn-sm fermer" type="button" onclick="this.closest('dialog').close()" aria-label="Fermer">${C.ICONES.close}</button>
+      <h2 class="ds-display" id="pubTitre">Publier la mise à jour</h2>
+      <p class="ds-supporting">La carte sera à jour pour tous les joueurs d'ici une à deux minutes.</p>
       <label class="case"><input type="checkbox" id="pSnap" checked> ${memeDate ? `Mettre à jour le point de chronologie « ${esc(data.meta.dateRP)} »` : `Ajouter un point de chronologie « ${esc(data.meta.dateRP)} »`}</label>
-      <h3 class="lbl" style="margin:18px 0 6px">Annonces Discord ${config.webhook ? '' : '<span class="muted">(aucun webhook configuré)</span>'}</h3>
+      <h3 class="ds-section-title sous-titre">Annonces Discord</h3>${config.webhook ? '' : '<p class="ds-supporting">Aucun webhook configuré : rien ne sera annoncé.</p>'}
       <div class="pub-liste">
-        ${aAnnoncer.map(e => `<label class="case"><input type="checkbox" class="pAnn" value="${e.id}" ${config.webhook ? 'checked' : 'disabled'}> ${ICONE_G[e.gravite]} ${esc(e.titre)}</label>`).join('')}
-        ${changePalier ? `<label class="case"><input type="checkbox" id="pPalier" ${config.webhook ? 'checked' : 'disabled'}> ⏱️ Changement de palier : ${esc(P[C.palier(data.tension.valeur, P)].nom)}</label>` : ''}
-        ${!aAnnoncer.length && !changePalier ? '<span class="muted small">Rien à annoncer.</span>' : ''}
+        ${aAnnoncer.map(e => `<label class="case"><input type="checkbox" class="pAnn" value="${e.id}" ${config.webhook ? 'checked' : 'disabled'}> <span class="ds-badge grav ${e.gravite}">${esc(C.GRAVITES[e.gravite])}</span> ${esc(e.titre)}</label>`).join('')}
+        ${changePalier ? `<label class="case"><input type="checkbox" id="pPalier" ${config.webhook ? 'checked' : 'disabled'}> Changement de palier : ${esc(P[C.palier(data.tension.valeur, P)].nom)}</label>` : ''}
+        ${!aAnnoncer.length && !changePalier ? '<span class="ds-supporting">Rien à annoncer.</span>' : ''}
       </div>
-      <div class="ligne"><button class="btn primaire" id="pGo">Publier maintenant</button><button class="btn" onclick="this.closest('dialog').close()">Annuler</button></div>
+      <div class="ligne"><button class="ds-btn ds-btn-primary" id="pGo">Publier maintenant</button><button class="ds-btn ds-btn-outline" onclick="this.closest('dialog').close()">Annuler</button></div>
       <div class="pub-journal" id="pLog" hidden></div>`;
     dlg.showModal();
     $('#pGo').onclick = async () => {

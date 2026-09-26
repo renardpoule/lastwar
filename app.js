@@ -1,25 +1,21 @@
 // Carte du front — affichage public
 (async function () {
   const $ = s => document.querySelector(s);
-  const esc = C.esc;
+  const esc = C.esc, I = C.ICONES;
 
   let data, topo, districts, parId, secteurParId;
   const etat = { niveau: 'monde', secteur: null, district: null, replay: null, filtre: 'tous' };
-
-  const COUL_STATUT = {
-    controle: '#3f8f6b', conteste: '#e3a33b', reconquete: '#3f93cf', quarantaine: '#e2cf3a', perdu: '#d8284f'
-  };
-  const COUL_GRAV = { mineur: '#5d8fb8', majeur: '#e3a33b', critique: '#ff3b5c' };
   const RANG_GRAV = { mineur: 0, majeur: 1, critique: 2 };
 
-  $('#map').innerHTML = '<div class="chargement">CONNEXION AU RÉSEAU TACTIQUE…</div>';
+  $('#map').innerHTML = '<div class="chargement">Chargement de la carte…</div>';
   try {
     [data, topo] = await Promise.all([
       fetch('data.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json()),
-      fetch('countries-50m.json').then(r => r.json())
+      // Contours pré-simplifiés (4× moins de points que la version 50m d'origine)
+      fetch('countries.json').then(r => r.json())
     ]);
   } catch (e) {
-    $('#map').innerHTML = '<div class="chargement">ÉCHEC DE CONNEXION — data.json illisible</div>';
+    $('#map').innerHTML = '<div class="chargement">Impossible de lire les données de la carte. Rechargez la page.</div>';
     console.error(e);
     return;
   }
@@ -43,24 +39,19 @@
     const gs = geoms.filter(g => sectDe(g) === s.id);
     s._geo = gs.length ? topojson.merge(topo, gs) : null;
   }
-  const meshPays = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b);
-  const meshDist = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && distDe(a) !== distDe(b));
+  const meshPays = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && distDe(a) === distDe(b));
+  const meshDist = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && distDe(a) !== distDe(b) && sectDe(a) === sectDe(b));
   const meshSect = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && sectDe(a) !== sectDe(b));
-  const meshCote = topojson.mesh(topo, topo.objects.countries, (a, b) => a === b);
 
   // ---------- Construction SVG ----------
-  const svg = d3.select('#map').append('svg');
-  const defs = svg.append('defs');
-  defs.html(`
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+  const svg = d3.select('#map').append('svg').attr('role', 'img').attr('aria-label', 'Carte des secteurs et districts');
+  svg.append('defs').html(`
     <pattern id="hachures" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="1.6" height="5" fill="#e2cf3a" fill-opacity=".55"/>
+      <rect width="1.6" height="5" style="fill:var(--st-quarantaine)" fill-opacity=".6"/>
     </pattern>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'corr', 'hatch', 'bords', 'sel', 'mark', 'lab']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'hatch', 'bords', 'sel', 'mark', 'lab']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -68,8 +59,7 @@
 
   const zoom = d3.zoom().scaleExtent([1, 16]).on('zoom', e => {
     gZoom.attr('transform', e.transform);
-    k = e.transform.k;
-    echelleLabels();
+    if (e.transform.k !== k) { k = e.transform.k; echelleLabels(); }
   });
   svg.call(zoom).on('dblclick.zoom', null);
   svg.on('click', e => { if (e.target.tagName === 'svg' || e.target.classList.contains('sphere')) remonter(); });
@@ -78,7 +68,7 @@
     const box = $('#map').getBoundingClientRect();
     W = box.width; H = box.height;
     svg.attr('viewBox', `0 0 ${W} ${H}`);
-    const haut = W < 700 ? 52 : 56, bas = 56;
+    const haut = W < 700 ? 60 : 64, bas = 64;
     projection.fitExtent([[10, haut], [W - 10, H - bas]], {
       type: 'MultiPoint', coordinates: [[-180, 0], [180, 0], [0, 84], [0, -57], [-170, 70], [170, 70], [-170, -57], [170, -57]]
     });
@@ -89,16 +79,11 @@
 
     const avecGeo = districts.filter(d => d._geo);
     L.dist.selectAll('path').data(avecGeo, d => d.id).join('path')
-      .attr('class', 'district cliquable').attr('d', d => path(d._geo))
+      .attr('d', d => path(d._geo))
       .on('mousemove', survol).on('mouseleave', finSurvol).on('click', clicDistrict);
-    L.corr.selectAll('path').data(avecGeo, d => d.id).join('path')
-      .attr('class', 'corruption').attr('d', d => path(d._geo));
-    L.hatch.selectAll('path').data(avecGeo, d => d.id).join('path')
-      .attr('class', 'hatch-over').attr('d', d => path(d._geo));
 
     L.bords.selectAll('*').remove();
     L.bords.append('path').attr('class', 'b-pays').attr('d', path(meshPays));
-    L.bords.append('path').attr('class', 'b-pays').attr('d', path(meshCote)).style('stroke', '#39424e').style('stroke-opacity', .9);
     L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
     L.bords.append('path').attr('class', 'b-secteur').attr('d', path(meshSect));
 
@@ -128,11 +113,12 @@
     let t = d3.zoomIdentity;
     if (b) {
       const [[x0, y0], [x1, y1]] = b;
-      const haut = 60, bas = 60, dispoH = H - haut - bas;
+      const haut = 64, bas = 64, dispoH = H - haut - bas;
       const kk = Math.max(1, Math.min(16, 0.88 / Math.max((x1 - x0) / W, (y1 - y0) / dispoH)));
       t = d3.zoomIdentity.translate(W / 2, haut + dispoH / 2).scale(kk).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
     }
-    (anime ? svg.transition().duration(850).ease(d3.easeCubicInOut) : svg).call(zoom.transform, t);
+    const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    (anime && !reduit ? svg.transition().duration(700).ease(d3.easeCubicInOut) : svg).call(zoom.transform, t);
   }
 
   function cadreVue() {
@@ -143,7 +129,7 @@
       const b = d.cadre ? cadre(d) : (d._geo ? path.bounds(d._geo) : null);
       if (b && (b[1][0] - b[0][0]) < W * 0.6) return b;
     }
-    return cadre(s);
+    return s._geo || s.cadre ? cadre(s) : null;
   }
 
   // ---------- État affiché (direct ou archive) ----------
@@ -166,24 +152,20 @@
     return den ? num / den : 0;
   }
 
+  const badgeStatut = s => `<span class="ds-badge statut ${esc(s)}">${esc(data.statuts[s] || s)}</span>`;
+
   // ---------- Rendu carte ----------
   function rendre(anime = true) {
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
+    const selSurCarte = sel && secteurParId[sel]._geo;
     L.dist.selectAll('path')
-      .attr('fill', d => {
-        const s = statutDe(d);
-        return d3.color(COUL_STATUT[s.statut] || '#555').darker(s.statut === 'perdu' ? 1.6 : 2);
-      })
-      .classed('dim', d => sel && d._secteur !== sel)
-      .classed('sel', d => etat.niveau === 'district' && d.id === etat.district);
-    L.corr.selectAll('path').each(function (d) {
-      const inf = statutDe(d).influence / 100;
-      const o1 = inf * 0.45, o2 = Math.min(0.75, inf * 0.75);
-      d3.select(this).style('--o1', o1).style('--o2', o2).style('opacity', o1)
-        .classed('pulse', inf >= 0.3)
-        .style('display', sel && d._secteur !== sel ? 'none' : null);
-    });
-    L.hatch.selectAll('path').style('display', d => statutDe(d).statut === 'quarantaine' && !(sel && d._secteur !== sel) ? null : 'none');
+      .attr('class', d => `district ${statutDe(d).statut}`
+        + (selSurCarte && d._secteur !== sel ? ' dim' : '')
+        + (etat.niveau === 'district' && d.id === etat.district ? ' sel' : ''));
+
+    // Hachures uniquement sur les districts en quarantaine visibles
+    const quarantaine = districts.filter(d => d._geo && statutDe(d).statut === 'quarantaine' && !(selSurCarte && d._secteur !== sel));
+    L.hatch.selectAll('path').data(quarantaine, d => d.id).join('path').attr('class', 'hatch-over').attr('d', d => path(d._geo));
 
     // Contour de sélection
     const cible = etat.niveau === 'district' ? parId[etat.district] : etat.niveau === 'secteur' ? secteurParId[etat.secteur] : null;
@@ -191,7 +173,7 @@
 
     // Labels
     let labs;
-    if (etat.niveau === 'monde') {
+    if (etat.niveau === 'monde' || !selSurCarte) {
       labs = data.secteurs.filter(s => s._geo).map(s => ({ id: s.id, l1: s.nom, p: ancre(s), taille: 15 }));
     } else {
       labs = secteurParId[etat.secteur].districts.filter(d => d._geo).map(d => {
@@ -205,13 +187,11 @@
         const t = d3.select(this).text('');
         if (l.l0) t.append('tspan').attr('class', 'l0').attr('x', l.p[0]).attr('dy', '-0.5em').text(l.l0);
         t.append('tspan').attr('class', 'l1').attr('x', l.p[0]).attr('dy', l.l0 ? '1.15em' : '0.35em').text(l.l1);
-      })
-      .datum(l => l);
+      });
 
-    // Marqueurs d'événements récents
-    const recents = evenementsAff().slice(-6);
+    // Marqueurs des événements récents (statiques : aucune animation continue)
     const pts = new Map();
-    for (const ev of recents) {
+    for (const ev of evenementsAff().slice(-6)) {
       const o = ev.portee.type === 'district' ? parId[ev.portee.id] : ev.portee.type === 'secteur' ? secteurParId[ev.portee.id] : null;
       if (!o) continue;
       const p = ancre(o);
@@ -221,25 +201,19 @@
       const prev = pts.get(cle);
       if (!prev || RANG_GRAV[ev.gravite] >= RANG_GRAV[prev.ev.gravite]) pts.set(cle, { cle, ev, p, off });
     }
-    L.mark.selectAll('g.marker').data([...pts.values()], m => m.cle).join(
-      en => {
-        const g = en.append('g').attr('class', 'marker').style('cursor', 'pointer');
-        g.append('circle').attr('class', 'ring');
-        g.append('circle').attr('class', 'dot');
-        g.append('title');
-        return g;
-      })
+    L.mark.selectAll('g.marker').data([...pts.values()], m => m.cle).join(en => {
+      const g = en.append('g');
+      g.append('circle').attr('class', 'ring');
+      g.append('circle').attr('class', 'dot');
+      g.append('title');
+      return g;
+    })
+      .attr('class', m => 'marker ' + m.ev.gravite)
       .on('click', (e, m) => { e.stopPropagation(); allerPortee(m.ev.portee); })
-      .each(function (m) {
-        const g = d3.select(this), c = COUL_GRAV[m.ev.gravite];
-        g.select('.ring').attr('stroke', c);
-        g.select('.dot').attr('fill', c);
-        g.select('title').text(`${m.ev.date} — ${m.ev.titre}`);
-      });
+      .each(function (m) { d3.select(this).select('title').text(`${m.ev.date} : ${m.ev.titre}`); });
 
     echelleLabels();
-    const b = cadreVue();
-    zoomSur(b, anime);
+    zoomSur(cadreVue(), anime);
     rendreTension();
     rendrePanel();
     rendreFil();
@@ -249,7 +223,7 @@
 
   function echelleLabels() {
     L.lab.selectAll('text').style('font-size', l => (l.taille / k) + 'px').style('stroke-width', (3.2 / k) + 'px');
-    L.lab.selectAll('.l0').style('font-size', l => (l.taille * 0.62 / k) + 'px').attr('class', 'l0').style('fill', '#9aa5b3');
+    L.lab.selectAll('.l0').style('font-size', (12 * 0.62 / k) + 'px');
     L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
     L.mark.selectAll('.ring').attr('r', 7 / k);
     L.mark.selectAll('.dot').attr('r', 4 / k);
@@ -257,29 +231,33 @@
 
   // ---------- Survol / clics ----------
   const tip = $('#tip');
+  let survolCle = null;
   function survol(e, d) {
     const monde = etat.niveau === 'monde';
     const autreSecteur = !monde && d._secteur !== etat.secteur;
-    L.dist.selectAll('path').classed('hover', x => (monde || autreSecteur) ? x._secteur === d._secteur : x.id === d.id);
-    let html;
-    if (monde || autreSecteur) {
-      const s = secteurParId[d._secteur];
-      const touches = s.districts.filter(x => statutDe(x).statut !== 'controle').length;
-      html = `<b>Secteur ${esc(s.nom)}</b>Influence cultiste : ${Math.round(influenceMoy(s.districts))} %<br>${touches} / ${s.districts.length} districts touchés`;
-    } else {
-      const s = statutDe(d);
-      html = `<b>${esc(d.nom)}</b><span class="chip ${s.statut}">${esc(data.statuts[s.statut])}</span><br>Influence cultiste : ${s.influence} %`;
+    const cle = (monde || autreSecteur) ? 's:' + d._secteur : 'd:' + d.id;
+    if (cle !== survolCle) {
+      survolCle = cle;
+      L.dist.selectAll('path').classed('hover', x => (monde || autreSecteur) ? x._secteur === d._secteur : x.id === d.id);
+      if (monde || autreSecteur) {
+        const s = secteurParId[d._secteur];
+        const touches = s.districts.filter(x => statutDe(x).statut !== 'controle').length;
+        tip.innerHTML = `<strong>Secteur ${esc(s.nom)}</strong>${touches} districts touchés sur ${s.districts.length}<br>Influence cultiste : ${Math.round(influenceMoy(s.districts))} %`;
+      } else {
+        const s = statutDe(d);
+        tip.innerHTML = `<strong>${esc(d.nom)}</strong>${badgeStatut(s.statut)}<br>Influence cultiste : ${s.influence} %`;
+      }
     }
-    tip.innerHTML = html;
     tip.hidden = false;
     const zb = $('.mapzone').getBoundingClientRect();
     let x = e.clientX - zb.left + 14, y = e.clientY - zb.top + 14;
     if (x + tip.offsetWidth > zb.width - 8) x = e.clientX - zb.left - tip.offsetWidth - 14;
-    if (y + tip.offsetHeight > zb.height - 60) y = e.clientY - zb.top - tip.offsetHeight - 14;
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    if (y + tip.offsetHeight > zb.height - 70) y = e.clientY - zb.top - tip.offsetHeight - 14;
+    tip.style.transform = `translate(${x}px,${y}px)`;
   }
   function finSurvol() {
-    L.dist.selectAll('path').classed('hover', false);
+    survolCle = null;
+    L.dist.selectAll('path.hover').classed('hover', false);
     tip.hidden = true;
   }
   function clicDistrict(e, d) {
@@ -298,7 +276,7 @@
     else naviguer();
   }
 
-  // Navigation via l'URL (#europe/eu-est) — les liens sont partageables sur Discord
+  // Navigation via l'URL (#europe/eu-est) : les liens sont partageables sur Discord
   function naviguer(secteur, district) {
     const h = secteur ? '#' + secteur + (district ? '/' + district : '') : '#';
     if (location.hash === h || (h === '#' && !location.hash)) lireHash();
@@ -312,17 +290,22 @@
       else { etat.niveau = 'secteur'; etat.district = null; }
     } else { etat.niveau = 'monde'; etat.secteur = null; etat.district = null; }
     rendre();
-    if (window.innerWidth <= 900 && etat.niveau !== 'monde') { /* reste sur la carte en mobile */ }
     $('#panel').scrollTop = 0;
   }
   window.addEventListener('hashchange', lireHash);
 
   // ---------- Fil d'Ariane ----------
   function rendreFil() {
-    const parts = [`<button data-nav="" class="${etat.niveau === 'monde' ? 'cur' : ''}">Monde</button>`];
-    if (etat.secteur) parts.push('<span class="sep">›</span>', `<button data-nav="${etat.secteur}" class="${etat.niveau === 'secteur' ? 'cur' : ''}">${esc(secteurParId[etat.secteur].nom)}</button>`);
-    if (etat.district) parts.push('<span class="sep">›</span>', `<button class="cur" data-nav="${etat.secteur}/${etat.district}">${esc(parId[etat.district].nom)}</button>`);
-    $('#fil').innerHTML = parts.join('');
+    const crumbs = [{ nav: '', nom: 'Monde' }];
+    if (etat.secteur) crumbs.push({ nav: etat.secteur, nom: secteurParId[etat.secteur].nom });
+    if (etat.district) crumbs.push({ nav: etat.secteur + '/' + etat.district, nom: parId[etat.district].nom });
+    $('#fil').innerHTML = '<ol>' + crumbs.map((c, i) => {
+      const dernier = i === crumbs.length - 1;
+      const el = dernier
+        ? `<span aria-current="page">${esc(c.nom)}</span>`
+        : `<button class="ds-btn ds-btn-ghost ds-btn-sm" type="button" data-nav="${esc(c.nav)}">${esc(c.nom)}</button>`;
+      return (i ? '<li class="sep" aria-hidden="true">/</li>' : '') + `<li>${el}</li>`;
+    }).join('') + '</ol>';
   }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-nav]');
@@ -332,21 +315,21 @@
   });
 
   // ---------- Panneau latéral ----------
-  function barre(inf) {
+  function balance(inf) {
     const i = Math.round(inf);
-    return `<div class="bar"><div class="track"><div class="fill" style="width:${i}%"></div></div>
-      <div class="legend"><span class="c">Confédération ${100 - i} %</span><span class="x">Influence cultiste ${i} %</span></div></div>`;
+    return `<div class="balance"><div class="piste" role="img" aria-label="Confédération ${100 - i} %, influence cultiste ${i} %">
+        <span class="c" style="width:${100 - i}%"></span><span class="x" style="width:${i}%"></span></div>
+      <div class="legende-b"><span>Confédération <strong>${100 - i} %</strong></span><span>Influence cultiste <strong>${i} %</strong></span></div></div>`;
   }
 
+  function stat(v, lbl, cls = '') {
+    return `<div class="stat ${cls}"><span class="v">${C.fmt(v)}</span><span class="lbl">${lbl}</span></div>`;
+  }
   function blocCivils(a) {
     const c = a.civils;
-    return `<section class="bloc"><h3>Population civile</h3><div class="stats">
-      <div class="stat big"><span class="lbl">Population</span><span class="v">${C.fmt(c.population)}</span></div>
-      <div class="stat"><span class="lbl">Civils impliqués</span><span class="v">${C.fmt(c.impliques)}</span></div>
-      <div class="stat"><span class="lbl">Déplacés</span><span class="v">${C.fmt(c.deplaces)}</span></div>
-      <div class="stat"><span class="lbl">Disparus</span><span class="v">${C.fmt(c.disparus)}</span></div>
-      <div class="stat rouge"><span class="lbl">Décès</span><span class="v">${C.fmt(c.deces)}</span></div>
-    </div></section>`;
+    return `<section class="bloc"><h3 class="ds-section-title">Population civile</h3><div class="stats">
+      ${stat(c.population, 'Population', 'big')}${stat(c.impliques, 'Civils impliqués')}${stat(c.deplaces, 'Déplacés')}
+      ${stat(c.disparus, 'Disparus')}${stat(c.deces, 'Décès', 'rouge')}</div></section>`;
   }
 
   // Un bloc entièrement à zéro (secteurs organisationnels) n'apprend rien : on le masque
@@ -368,34 +351,34 @@
         <span class="ub"><i style="width:${(u.v.n / max * 100).toFixed(1)}%"></i></span></div>`).join('')
         : '<div class="vide">Aucune force signalée.</div>';
       return `<details class="faction ${cle}" ${fa.unites.length ? 'open' : ''}>
-        <summary><span class="nom">${esc(data.factions[cle].court)}</span><span class="tot">${C.fmt(fa.total, fa.total.n >= 1e7)}</span></summary>
+        <summary><span class="pastille" aria-hidden="true"></span><span class="nom">${esc(data.factions[cle].court)}</span><span class="tot">${C.fmt(fa.total, fa.total.n >= 1e7)}</span></summary>
         <div class="unites">${lignes}</div></details>`;
     };
     const a1 = f.confederation.total.n, a2 = f.cultistes.total.n;
     let rapport = '';
     if (a1 && a2) {
-      const r = a1 >= a2 ? `${(a1 / a2).toFixed(1).replace('.', ',')} : 1 en faveur de la Confédération` : `1 : ${(a2 / a1).toFixed(1).replace('.', ',')} en faveur des Cultistes`;
-      rapport = `<p class="muted small" style="margin:10px 0 0">Rapport de force : <strong style="color:var(--text)">${rapport = r}</strong></p>`;
+      const r = a1 >= a2 ? `${(a1 / a2).toFixed(1).replace('.', ',')} contre 1 pour la Confédération` : `${(a2 / a1).toFixed(1).replace('.', ',')} contre 1 pour les Cultistes`;
+      rapport = `<p class="rapport">Rapport de force : <strong>${r}</strong></p>`;
     }
-    return `<section class="bloc"><h3>Effectifs engagés</h3>${carte('confederation')}${carte('cultistes')}${rapport}</section>`;
+    return `<section class="bloc"><h3 class="ds-section-title">Effectifs engagés</h3>${carte('confederation')}${carte('cultistes')}${rapport}</section>`;
   }
 
   function blocPertes(a) {
-    const ligne = cle => `<tr><td>${esc(data.factions[cle].court)}</td>${C.PERTES.map(([k2]) => `<td>${C.fmt(a.pertes[cle][k2])}</td>`).join('')}</tr>`;
-    return `<section class="bloc"><h3>Pertes militaires</h3><table class="pertes">
-      <tr><th>Faction</th>${C.PERTES.map(([, l]) => `<th>${l}</th>`).join('')}</tr>
-      ${ligne('confederation')}${ligne('cultistes')}</table></section>`;
+    const ligne = cle => `<tr><td>${esc(data.factions[cle].court)}</td>${C.PERTES.map(([k2]) => `<td class="num">${C.fmt(a.pertes[cle][k2])}</td>`).join('')}</tr>`;
+    return `<section class="bloc"><h3 class="ds-section-title">Pertes militaires</h3><div class="tableau"><table class="ds-table">
+      <thead><tr><th scope="col">Faction</th>${C.PERTES.map(([, l]) => `<th scope="col" class="num">${l}</th>`).join('')}</tr></thead>
+      <tbody>${ligne('confederation')}${ligne('cultistes')}</tbody></table></div></section>`;
   }
 
   function nomPortee(p) {
-    if (p.type === 'district' && parId[p.id]) return parId[p.id].nom + ' · ' + secteurParId[parId[p.id]._secteur].nom;
+    if (p.type === 'district' && parId[p.id]) return parId[p.id].nom;
     if (p.type === 'secteur' && secteurParId[p.id]) return 'Secteur ' + secteurParId[p.id].nom;
     return 'Mondial';
   }
 
   function blocEvenements(filtreFn, titre) {
     let evs = evenementsAff().filter(filtreFn).slice().reverse();
-    const filtres = { tous: 'Tous', majeur: 'Majeurs +', critique: 'Critiques' };
+    const filtres = { tous: 'Tous', majeur: 'Majeurs et critiques', critique: 'Critiques' };
     if (etat.filtre === 'majeur') evs = evs.filter(e => e.gravite !== 'mineur');
     if (etat.filtre === 'critique') evs = evs.filter(e => e.gravite === 'critique');
     // Regroupe les événements par date : on cherche d'abord « quand », puis « quoi »
@@ -405,16 +388,16 @@
       dernierJour = ev.date;
       return entete + `
       <article class="ev ${ev.gravite}">
-        <div class="meta"><span class="grav">${esc(C.GRAVITES[ev.gravite])}</span>
-          <button class="portee" data-portee='${esc(JSON.stringify(ev.portee))}'>${esc(nomPortee(ev.portee))}</button></div>
+        <div class="meta"><span class="ds-badge grav ${ev.gravite}">${esc(C.GRAVITES[ev.gravite])}</span>
+          <button class="ds-btn ds-btn-ghost ds-btn-sm portee" type="button" data-portee='${esc(JSON.stringify(ev.portee))}'>${I.location}${esc(nomPortee(ev.portee))}</button></div>
         <h4>${esc(ev.titre)}</h4>
         <p>${esc(ev.description)}</p>
         ${ev.consequences && ev.consequences.length ? `<ul>${ev.consequences.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
-        ${ev.tension ? `<span class="dt ${ev.tension > 0 ? 'up' : 'down'}">Tension ${ev.tension > 0 ? '+' : ''}${ev.tension}</span>` : ''}
+        ${ev.tension ? `<span class="ds-badge dt ${ev.tension > 0 ? 'up' : 'down'}">Tension ${ev.tension > 0 ? '+' : '−'}${Math.abs(ev.tension)}</span>` : ''}
       </article>`;
-    }).join('') : '<div class="vide">Aucun événement.</div>';
-    return `<section class="bloc"><h3>${titre}</h3>
-      <div class="filtres">${Object.entries(filtres).map(([k2, l]) => `<button data-filtre="${k2}" class="${etat.filtre === k2 ? 'on' : ''}">${l}</button>`).join('')}</div>
+    }).join('') : '<p class="vide">Aucun événement pour ce filtre.</p>';
+    return `<section class="bloc"><h3 class="ds-section-title">${titre}</h3>
+      <div class="filtres" role="group" aria-label="Filtrer par gravité">${Object.entries(filtres).map(([k2, l]) => `<button class="ds-chip" type="button" data-filtre="${k2}" aria-pressed="${etat.filtre === k2}">${l}</button>`).join('')}</div>
       ${html}</section>`;
   }
 
@@ -423,13 +406,14 @@
     let droite;
     if (sousDistricts) {
       const touches = sousDistricts.filter(x => statutDe(x).statut !== 'controle').length;
-      droite = o.geographique === false ? '<span class="chip horscarte">Hors carte</span>' : `<span class="muted small">${touches}/${sousDistricts.length} touchés</span>`;
+      droite = o.geographique === false
+        ? '<span class="ds-badge statut horscarte">Hors carte</span>'
+        : `<span class="meta-d">${touches} touché${touches > 1 ? 's' : ''} sur ${sousDistricts.length}</span>`;
     } else {
-      const s = statutDe(o);
-      droite = `<span class="chip ${s.statut}">${esc(data.statuts[s.statut])}</span>`;
+      droite = badgeStatut(statutDe(o).statut);
     }
-    return `<button class="item" data-nav="${navCle}"><span class="t">${esc(o.nom)}${o._sous ? `<small>${esc(o._sous)}</small>` : ''}</span>${droite}
-      <span class="mini"><i style="width:${Math.round(inf)}%"></i></span></button>`;
+    return `<button class="item" type="button" data-nav="${esc(navCle)}"><span class="t">${esc(o.nom)}${o._sous ? `<small>${esc(o._sous)}</small>` : ''}</span>${droite}
+      <span class="mini" aria-hidden="true"><i style="width:${Math.round(inf)}%"></i></span></button>`;
   }
 
   // Districts où la Confédération ne tient plus, du plus menacé au moins menacé
@@ -437,7 +421,7 @@
     const fronts = districts.filter(d => statutDe(d).statut !== 'controle')
       .sort((a, b) => statutDe(b).influence - statutDe(a).influence);
     if (!fronts.length) return '';
-    return `<section class="bloc"><h3>Fronts actifs</h3><div class="liste">${fronts.map(d => itemListe({ ...d, _sous: secteurParId[d._secteur].nom }, d._secteur + '/' + d.id)).join('')}</div></section>`;
+    return `<section class="bloc"><h3 class="ds-section-title">Fronts actifs</h3><div class="liste">${fronts.map(d => itemListe({ ...d, _sous: 'Secteur ' + secteurParId[d._secteur].nom }, d._secteur + '/' + d.id)).join('')}</div></section>`;
   }
 
   function rendrePanel() {
@@ -445,31 +429,35 @@
     if (etat.niveau === 'monde') {
       const compte = {};
       districts.forEach(d => { const s = statutDe(d).statut; compte[s] = (compte[s] || 0) + 1; });
-      html = `<div class="p-head"><span class="lbl">Vue globale · ${districts.length} districts</span><h2>${esc(data.meta.titre)}</h2>
-        <div class="row compte">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="chip ${s}">${compte[s]} · ${esc(data.statuts[s])}</span>`).join('')}</div>
-        ${barre(influenceMoy(districts))}</div>
+      html = `<div class="p-head"><h2 class="ds-display">Situation mondiale</h2>
+        <div class="statuts">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="ds-badge statut ${s}">${compte[s]} ${esc(data.statuts[s]).toLowerCase()}</span>`).join('')}</div>
+        ${balance(influenceMoy(districts))}</div>
         ${blocFronts()}
-        <section class="bloc"><h3>Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
-        ${data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3>Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : ''}
+        <section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
+        ${data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3 class="ds-section-title">Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : ''}
         ${blocs(C.agrege(districts))}
-        ${blocEvenements(() => true, 'Événements mondiaux')}`;
+        ${blocEvenements(() => true, 'Événements')}`;
     } else if (etat.niveau === 'secteur') {
       const s = secteurParId[etat.secteur];
       const a = C.agrege(s.districts);
       const ids = new Set(s.districts.map(d => d.id));
-      html = `<div class="p-head"><span class="lbl">Secteur${s.geographique === false ? ' · hors carte' : ''}</span><h2>${esc(s.nom)}</h2>${barre(influenceMoy(s.districts))}</div>
-        ${s.note ? `<div class="note">${esc(s.note)}</div>` : ''}
-        <section class="bloc"><h3>Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<div class="vide">Aucun district.</div>'}</div></section>
+      html = `<div class="p-head"><h2 class="ds-display">${esc(s.nom)}</h2>
+        <p class="ds-supporting">${s.geographique === false ? 'Secteur organisationnel, hors carte' : 'Secteur géographique'}, ${s.districts.length} district${s.districts.length > 1 ? 's' : ''}</p>
+        ${balance(influenceMoy(s.districts))}</div>
+        ${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}
+        <section class="bloc"><h3 class="ds-section-title">Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<p class="vide">Aucun district.</p>'}</div></section>
         ${blocs(a)}
         ${blocEvenements(e => (e.portee.type === 'secteur' && e.portee.id === s.id) || (e.portee.type === 'district' && ids.has(e.portee.id)), 'Événements du secteur')}`;
     } else {
       const d = parId[etat.district], s = secteurParId[d._secteur], st = statutDe(d);
       const a = C.agrege([d]);
-      html = `<div class="p-head"><span class="lbl">Secteur ${esc(s.nom)} · District</span><h2>${esc(d.nom)}</h2>
-        <div class="row"><span class="chip ${st.statut}">${esc(data.statuts[st.statut])}</span>
-        ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}">${d.tendance === 'hausse' ? '▲' : d.tendance === 'baisse' ? '▼' : '■'} ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
-        ${barre(st.influence)}</div>
-        ${d.note ? `<div class="note">${esc(d.note)}</div>` : ''}
+      const fl = { hausse: '▲', baisse: '▼', stable: '■' };
+      html = `<div class="p-head"><h2 class="ds-display">${esc(d.nom)}</h2>
+        <p class="ds-supporting">Secteur ${esc(s.nom)}</p>
+        <div class="statuts">${badgeStatut(st.statut)}
+        ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}"><span aria-hidden="true">${fl[d.tendance]}</span> ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
+        ${balance(st.influence)}</div>
+        ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
         ${blocs(a)}
         ${blocEvenements(e => (e.portee.type === 'district' && e.portee.id === d.id) || (e.portee.type === 'secteur' && e.portee.id === s.id), 'Événements récents')}`;
     }
@@ -489,48 +477,47 @@
     const ticks = d3.range(60).map(i => {
       const a = i * 6, long = i % 5 === 0, [x1, y1] = P(a, 44), [x2, y2] = P(a, long ? 37 : 41);
       if (!grand && !long) return '';
-      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${a >= 270 || a === 0 ? '#d8284f' : '#4a5563'}" stroke-width="${long ? 2 : 1}"/>`;
+      const rouge = a >= 270 || a === 0;
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(${rouge ? '--st-perdu' : '--border'})" stroke-width="${long ? 2 : 1}"/>`;
     }).join('');
     const [ax, ay] = P(270, 46), [bx, by] = P(359.9, 46);
     const [mx, my] = P(aMin, 40), [hx, hy] = P(aH, 26);
-    el.innerHTML = `<svg viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="48" fill="#0b0e12" stroke="#2c3440" stroke-width="2"/>
-      <path d="M50 50 L${ax} ${ay} A46 46 0 0 1 ${bx} ${by} Z" fill="#d8284f" fill-opacity=".14"/>
+    el.innerHTML = `
+      <circle cx="50" cy="50" r="48" style="fill:var(--ocean);stroke:var(--border)" stroke-width="2"/>
+      <path d="M50 50 L${ax} ${ay} A46 46 0 0 1 ${bx} ${by} Z" style="fill:var(--st-perdu)" fill-opacity=".16"/>
       ${ticks}
-      <line x1="50" y1="50" x2="${hx}" y2="${hy}" stroke="#dde1e7" stroke-width="4" stroke-linecap="round"/>
-      <line x1="50" y1="50" x2="${mx}" y2="${my}" stroke="#ff3b5c" stroke-width="2.4" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="3.5" fill="#ff3b5c"/>
-    </svg>`.replace(/^<svg[^>]*>|<\/svg>$/g, '');
-    el.setAttribute('viewBox', '0 0 100 100');
+      <line x1="50" y1="50" x2="${hx}" y2="${hy}" style="stroke:var(--foreground)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="50" y1="50" x2="${mx}" y2="${my}" style="stroke:var(--st-perdu)" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="3.5" style="fill:var(--st-perdu)"/>`;
   }
 
   function rendreTension() {
     const t = tensionAff(), P = data.tension.paliers;
     const i = C.palier(t, P), min = C.minutes(t, P);
-    const coul = d3.interpolateRgb('#e3a33b', '#ff3b5c')(i / Math.max(1, P.length - 1));
     horloge($('#miniClock'), min, false);
     $('#tensionVal').textContent = `${Math.round(t)} / 100`;
-    $('#tensionPalier').textContent = `Palier ${i + 1} · ${P[i].nom}`;
-    $('#tensionPalier').style.color = coul;
+    const pb = $('#tensionPalier');
+    pb.textContent = `Palier ${i + 1} · ${P[i].nom}`;
+    pb.className = 'ds-badge ' + (i >= P.length - 2 ? 'ds-badge-danger' : 'grav majeur');
+    $('#tensionBtn').setAttribute('aria-label', `Tension mondiale ${Math.round(t)} sur 100, palier ${i + 1}, ${P[i].nom}. Voir le détail`);
 
-    const romain = n => ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][n] || n + 1;
     $('#tensionDetail').innerHTML = `
-      <div class="t-top"><svg id="bigClock"></svg>
-        <div><span class="lbl">Tension mondiale${etat.replay !== null ? ' · archive' : ''}</span>
-        <h2 style="color:${coul}">Palier ${romain(i)} · ${esc(P[i].nom)}</h2>
-        <div class="heure">${C.heure(min)}</div>
-        <p class="muted small" style="margin:4px 0 0">${min > 0 ? `${min.toFixed(1).replace('.', ',')} minutes avant minuit` : 'Minuit atteint'} · Tension ${Math.round(t)} / 100</p></div></div>
-      <div class="t-jauge"><div class="cur" style="left:calc(${t}% - 1px)"></div>
+      <div class="t-top"><svg id="bigClock" viewBox="0 0 100 100" aria-hidden="true"></svg>
+        <div><h2 id="tensionTitre" class="ds-display">Palier ${i + 1} · ${esc(P[i].nom)}</h2>
+        <p class="heure">${C.heure(min)}</p>
+        <p class="ds-supporting">${min > 0 ? `${min.toFixed(1).replace('.', ',')} minutes avant minuit` : 'Minuit atteint'}, tension ${Math.round(t)} sur 100${etat.replay !== null ? ' (archive)' : ''}</p></div></div>
+      <div class="t-jauge" role="img" aria-label="Tension ${Math.round(t)} sur 100"><div class="cur" style="left:calc(${t}% - 1px)"></div>
         ${P.map(p => `<span class="tick" style="left:${p.min}%">${p.min}</span>`).join('')}</div>
-      <div class="paliers">${P.map((p, j) => `
-        <div class="pal ${j < i ? 'passe' : j === i ? 'actuel' : ''}">
-          <span class="num">${romain(j)}</span>
-          <span class="nm">${esc(p.nom)} ${j === i ? '<span class="badge">· ACTUEL</span>' : ''}</span>
-          <span class="seuil">≥ ${p.min} · ${p.minutes} min</span>
-          <span class="ar">${esc(p.armes)}</span></div>`).join('')}</div>`;
+      <ol class="paliers">${P.map((p, j) => `
+        <li class="pal ${j < i ? 'passe' : j === i ? 'actuel' : ''}" ${j === i ? 'aria-current="step"' : ''}>
+          <span class="num">${j + 1}</span>
+          <span class="nm">${esc(p.nom)}</span>
+          <span class="seuil">À partir de ${p.min}, ${p.minutes} min</span>
+          <span class="ar">${esc(p.armes)}</span></li>`).join('')}</ol>`;
     horloge($('#bigClock'), min, true);
   }
   $('#tensionBtn').addEventListener('click', () => $('#tensionDlg').showModal());
+  document.querySelector('.dlg .fermer').innerHTML = I.close;
 
   // ---------- Alerte / archive / en-tête ----------
   function rendreAlerte() {
@@ -538,14 +525,15 @@
     const dernier = data.evenements[data.evenements.length - 1];
     if (etat.replay !== null || !dernier || dernier.gravite !== 'critique') { el.hidden = true; return; }
     el.hidden = false;
-    el.innerHTML = `<span class="tag">ALERTE</span><span><strong>${esc(dernier.titre)}</strong> — ${esc(nomPortee(dernier.portee))}</span><span class="quand">${esc(dernier.date)}</span>`;
-    el.onclick = () => allerPortee(dernier.portee);
+    el.innerHTML = `<button type="button" class="alerte-in">${I.warning}<span class="ds-badge">Alerte</span>
+      <span><strong>${esc(dernier.titre)}</strong>, ${esc(nomPortee(dernier.portee))}</span><span class="quand">${esc(dernier.date)}</span></button>`;
+    el.firstElementChild.onclick = () => allerPortee(dernier.portee);
   }
   function rendreArchive() {
     const el = $('#archive');
     if (etat.replay === null) { el.hidden = true; return; }
     el.hidden = false;
-    el.innerHTML = `<b>ARCHIVE — ${esc(data.historique[etat.replay].date)}</b><br>Carte, statuts et tension à cette date. Les chiffres détaillés sont ceux d'aujourd'hui.`;
+    el.innerHTML = `<strong>Archive du ${esc(data.historique[etat.replay].date)}</strong><span>Carte, statuts et tension à cette date. Les chiffres détaillés sont ceux d'aujourd'hui.</span>`;
   }
 
   $('#titre').textContent = data.meta.titre;
@@ -557,29 +545,35 @@
   }
 
   // ---------- Chronologie ----------
-  const slider = $('#slider'), sLbl = $('#sliderLbl');
+  const slider = $('#slider'), sLbl = $('#sliderLbl'), play = $('#play');
   const nH = data.historique.length;
   if (!nH) $('.timeline').hidden = true;
   slider.max = nH; slider.value = nH;
   function majSlider() {
     const v = +slider.value;
     etat.replay = v >= nH ? null : v;
-    sLbl.textContent = etat.replay === null ? 'EN DIRECT' : data.historique[v].date;
+    sLbl.textContent = etat.replay === null ? 'En direct' : data.historique[v].date;
     sLbl.classList.toggle('live', etat.replay === null);
+    slider.setAttribute('aria-valuetext', sLbl.textContent);
     rendre(false);
   }
   slider.addEventListener('input', () => { arreterLecture(); majSlider(); });
   let lecture = null;
-  function arreterLecture() { clearInterval(lecture); lecture = null; $('#play').textContent = '▶'; }
-  $('#play').addEventListener('click', () => {
+  function majPlay() {
+    play.innerHTML = lecture ? I.pause : I.play;
+    play.setAttribute('aria-label', lecture ? 'Mettre la chronologie en pause' : 'Rejouer le conflit');
+  }
+  function arreterLecture() { clearInterval(lecture); lecture = null; majPlay(); }
+  play.addEventListener('click', () => {
     if (lecture) return arreterLecture();
-    $('#play').textContent = '❚❚';
     slider.value = 0; majSlider();
     lecture = setInterval(() => {
       slider.value = +slider.value + 1; majSlider();
       if (+slider.value >= nH) arreterLecture();
     }, 1400);
+    majPlay();
   });
+  majPlay();
   sLbl.classList.add('live');
 
   // ---------- Démarrage ----------
@@ -590,6 +584,7 @@
 
   // Rechargement automatique si une mise à jour est publiée
   setInterval(async () => {
+    if (document.hidden) return;
     try {
       const d = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
       if (d.meta.derniereMaj !== data.meta.derniereMaj) location.reload();
