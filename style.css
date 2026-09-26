@@ -580,12 +580,17 @@ button{font:inherit;color:inherit;cursor:pointer}
 .loin .rail-traverses{display:none}
 .loin .rail-voie{stroke-width:1.6}
 .sw-rail{width:1.5rem;height:0.5rem;overflow:visible}
-/* Cordon de quarantaine autour d'une bulle : barrière (ligne et poteaux) */
-.cordon-zone{fill:none;stroke:transparent;stroke-width:10;vector-effect:non-scaling-stroke;pointer-events:stroke}
-.cordon-fond{fill:none;stroke:oklch(0.15 0.03 280 / .8);stroke-width:4;vector-effect:non-scaling-stroke;pointer-events:none}
-.cordon-ligne{fill:none;stroke:var(--st-quarantaine);stroke-width:1.4;vector-effect:non-scaling-stroke;pointer-events:none}
-.cordon-poteaux{fill:none;stroke:var(--st-quarantaine);stroke-width:7;stroke-dasharray:1.4 6;vector-effect:non-scaling-stroke;pointer-events:none}
-.cordon:hover .cordon-ligne{stroke-width:2}
+/* Cordon de quarantaine autour d'une bulle : double fil sur poteaux, postes de contrôle */
+.cordon-zone{fill:none;stroke:transparent;stroke-width:12;vector-effect:non-scaling-stroke;pointer-events:stroke}
+.cordon-fond{fill:none;stroke:oklch(0.15 0.03 280 / .85);stroke-width:8;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon-fils{fill:none;stroke:var(--st-quarantaine);stroke-width:4.4;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon-entre{fill:none;stroke:oklch(0.2 0.04 280);stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon-poteaux{fill:none;stroke:var(--st-quarantaine);stroke-width:10;stroke-dasharray:1.6 10;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon:hover .cordon-fils{stroke:oklch(0.93 0.13 100)}
+.poste{cursor:default}
+.poste rect{fill:oklch(0.2 0.04 280);stroke:var(--st-quarantaine);stroke-width:1.6}
+.poste path{stroke:var(--st-quarantaine);stroke-width:1.2}
+.loin .poste{display:none}
 
 @media (prefers-reduced-motion:reduce){.sphere-glitch *{animation:none!important}}
 

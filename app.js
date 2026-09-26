@@ -53,7 +53,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'detruites', 'bords', 'sel', 'fronts', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'detruites', 'bords', 'sel', 'fronts', 'postes', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -279,6 +279,13 @@
 
   const badgeStatut = s => `<span class="ds-badge statut ${esc(s)}">${esc(data.statuts[s] || s)}</span>`;
 
+  // Tracé du cordon : même forme que la zone contestée (même graine), agrandie d'une marge
+  function ringCordon(z) {
+    const R = +z.rayon || 1, h = R + Math.max(0.4, Math.min(2, R * 0.35));
+    return tache({ ...z, id: z.id + '-c', rayon: h * 1.06 + Math.max(0.5, R * 0.06) });
+  }
+  const majPostes = () => L.postes.selectAll('g.poste').attr('transform', x => `translate(${x.p[0]},${x.p[1]}) scale(${ech / k})`);
+
   // ---------- Rendu carte ----------
   function rendre(anime = true) {
     majFlottes();
@@ -313,17 +320,26 @@
     });
     L.sceaux.selectAll('path').data(sceaux, x => x.id).join('path').attr('class', 'sceau-chaos')
       .attr('d', CHAOS).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`);
-    // Cordons de quarantaine : une barrière (ligne et poteaux) tracée juste au-delà de la zone contestée
-    const cordons = zs.filter(z => z.cordon).map(z => {
-      const R = +z.rayon || 1;
-      return { ...z, id: z.id + '-q', r: R + Math.max(0.4, Math.min(2, R * 0.35)) + Math.max(0.5, R * 0.08) };
-    });
+    // Cordons de quarantaine : barrière (double fil, poteaux, postes de contrôle) qui épouse la zone contestée
+    // avec une marge, tracée seulement sur les terres (la marine tient les côtes)
+    const cordons = zs.filter(z => z.cordon).map(z => ({ ...z, ring: ringCordon(z) }));
+    L.cordons.attr('clip-path', 'url(#clipTerres)');
     L.cordons.selectAll('g.cordon').data(cordons, z => z.id).join(en => {
       const g = en.append('g').attr('class', 'cordon');
-      for (const c of ['cordon-zone', 'cordon-fond', 'cordon-ligne', 'cordon-poteaux']) g.append('path').attr('class', c);
+      for (const c of ['cordon-zone', 'cordon-fond', 'cordon-fils', 'cordon-entre', 'cordon-poteaux']) g.append('path').attr('class', c);
       return g;
-    }).each(function (z) { d3.select(this).selectAll('path').attr('d', path(d3.geoCircle().center(z.centre).radius(z.r)())); })
+    }).each(function (z) { d3.select(this).selectAll('path').attr('d', path(z.ring)); })
       .on('mousemove', survolCordon).on('mouseleave', finSurvol);
+    // Postes de contrôle : un tous les quatre points du tracé, s'il tombe sur terre
+    const postes = cordons.flatMap(z => z.ring.coordinates[0].slice(0, -1).filter((c, i) => i % 4 === 0 && d3.geoContains(terres, c))
+      .map((c, i) => ({ ...z, pid: z.id + ':' + i, p: projection(c) })));
+    L.postes.selectAll('g.poste').data(postes, x => x.pid).join(en => {
+      const g = en.append('g').attr('class', 'poste');
+      g.append('rect').attr('x', -4.5).attr('y', -4.5).attr('width', 9).attr('height', 9).attr('rx', 1);
+      g.append('path').attr('d', 'M-4.5,0H4.5M0,-4.5V4.5');
+      return g;
+    }).on('mousemove', survolCordon).on('mouseleave', finSurvol);
+    majPostes();
     rendreUnites();
     const etats = new Map(villesAff().map(v => [v.id, v.etat]));
     L.villes.selectAll('g.ville').attr('class', v => 'ville ' + VILLES.niveau(etats.get(v.id) ?? v.etat)[1]);
@@ -757,11 +773,21 @@
       }
       for (const z of autour) {
         const R = +z.rayon || 1;
+        if (z.cordon) {
+          const pts = ringCordon(z).coordinates[0].filter(surTerre);
+          if (pts.length) { anneau.push(...pts); continue; }
+        }
         for (const f of [1.35, 1.7, 2.2, 3]) {
           const pts = [];
           for (let a = 0; a < 24; a++) { const q = decale(z.centre, R * f, a * Math.PI / 12); if (surTerre(q)) pts.push(q); }
           if (pts.length) { anneau.push(...pts); break; }
         }
+      }
+      // Foyer voisin sous cordon : les cultistes du district restent de l'autre côté de la barrière
+      const derriere = [];
+      if (voisin && voisin.cordon) {
+        const R = +voisin.rayon || 1;
+        for (let a = 0; a < 24; a++) for (const f of [0.55, 0.7, 0.85]) { const q = decale(voisin.centre, R * f, a * Math.PI / 12); if (surTerre(q)) derriere.push(q); }
       }
       const villesD = villesAff().filter(v => v.district === d.id).map(v => v.coord);
       const calme = [...villesD, ...cands];
@@ -784,6 +810,7 @@
           let pos;
           if (u.type === 'cult' && m === 0 && bulles.length) pos = bulles[0].centre;
           else if ((u.type === 'cult' || u.type === 'ph') && dedans.length) pos = choisir(dedans, 0);
+          else if (u.type === 'cult' && derriere.length) pos = choisir(derriere, 0);
           else if (u.type === 'cult' && anneau.length) pos = choisir(anneau, 0);
           // Autour d'une petite poche, seule la première formation régulière monte au contact, le reste garde les villes du district
           else if (anneau.length && u.type === 'reg' && m > 0 && petitesPoches) pos = villesD.find(v => pris.every(q => d3.geoDistance(q, v) > 0.01)) || choisir(calme, 0.8);
@@ -866,7 +893,7 @@
       + (vus.size ? '<li><i class="sw conteste"></i>Zone contestée</li>' : '')
       + [...vus].map(([n, c]) => `<li><i class="sw" style="background:${esc(c)}"></i>${esc(n)}</li>`).join('')
       + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '')
-      + (zonesAff().some(z => z.cordon) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="cordon-fond" d="M1,4H23"/><path class="cordon-ligne" d="M1,4H23"/><path class="cordon-poteaux" d="M1,4H23"/></svg>Cordon de quarantaine</li>' : '')
+      + (zonesAff().some(z => z.cordon) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="cordon-fond" d="M1,4H23"/><path class="cordon-fils" d="M1,4H23"/><path class="cordon-entre" d="M1,4H23"/><path class="cordon-poteaux" d="M1,4H23"/></svg>Cordon de quarantaine</li>' : '')
       + (detruitesAff().length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
       + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
@@ -900,6 +927,7 @@
 
   function echelleLabels() {
     L.sites.classed('proche', k >= 3).classed('loin', k < 2);
+    L.postes.classed('loin', k < 2);
     L.flottes.classed('loin', k < 2);
     L.rails.classed('loin', k < 2).classed('proche', k >= 3);
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
@@ -908,6 +936,7 @@
     L.lab.selectAll('.l0').style('font-size', (12 * 0.62 * el / k) + 'px');
     L.sites.selectAll('g.site').attr('transform', x => `translate(${x.p[0]},${x.p[1]}) scale(${ech / k})`);
     L.villes.selectAll('g.ville').attr('transform', v => `translate(${v.p[0]},${v.p[1]}) scale(${ech / k})`);
+    majPostes();
     ecarterPions();
     L.unites.selectAll('g.pion').attr('transform', u => `translate(${u.p[0] + (u.dx * ech + (u._ox || 0)) / k},${u.p[1] + (u.dy * ech + (u._oy || 0)) / k}) scale(${u.t * ech / k})`);
     majSatellites();
