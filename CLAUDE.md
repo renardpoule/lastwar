@@ -12,7 +12,7 @@ Site statique (GitHub Pages) qui suit un roleplay SCP sur Discord : la **Conféd
 |---|---|
 | `index.html`, `app.js`, `style.css` | Carte : zoom d3, navigation Monde → secteur → district → ville (hash `#secteur/district/ville`), panneau à onglets, tension, chronologie |
 | `villes.js` | Illustrations SVG procédurales des villes, déformées selon l'état (0–100 %) |
-| `secteurs.html`, `dossiers.js`, `secteurs.css` | Dossiers des secteurs organisationnels (hash `#secteur/page`), dont le registre "terminal" du Rapport Confédéral sur l'Anormal |
+| `secteurs.html`, `dossiers.js`, `secteurs.css` | Dossiers des secteurs organisationnels (hash `#secteur/page`), page entièrement en terminal : arborescence `tree`, `ls -l`, `cat`, invite de commande (`cd`, `ls`, `help`, complétion Tab), registre du Rapport Confédéral sur l'Anormal. Chaque page de `dossiers{}` autre que `overview` = un sous-dossier |
 | `admin.html`, `admin.js`, `admin.css`, `auth.js`, `acces.json` | Admin : édite `data.json` puis publie via l'API GitHub (jeton saisi par l'utilisateur, jamais stocké dans le dépôt). Connexion PBKDF2 + AES-GCM |
 | `common.js` | Utilitaires partagés (`C.parse`, `C.fmt`, `C.court`, `C.agrege`, `C.palier`…) |
 | `data.json` | **Toutes les données du RP** (voir plus bas) |

@@ -3,7 +3,7 @@
 Carte interactive du conflit entre la Confédération des Cendres et les Cultistes.
 
 - `index.html` : la carte publique (lien à partager sur Discord)
-- `secteurs.html` : les dossiers des secteurs organisationnels (Monde → secteur → Atmosphère, Rapport Confédéral sur l'Anormal…)
+- `secteurs.html` : les dossiers des secteurs organisationnels, présentés comme un terminal (un dossier par secteur, un sous-dossier par thématique : Atmosphère, Rapport Confédéral sur l'Anormal, Ganzir, Phoenix…). On clique dans l'arborescence, ou on tape `cd armee/phoenix` dans l'invite en bas de page.
 - `admin.html` : le poste de commandement, pour faire les mises à jour
 - `data.json` : toutes les données (modifiées par `admin.html`)
 - `app.js`, `villes.js`, `dossiers.js`, `admin.js`, `common.js`, `style.css`, `admin.css`, `secteurs.css` : le code

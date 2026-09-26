@@ -3982,6 +3982,31 @@
           "id": "overview",
           "titre": "Vue d'ensemble",
           "contenu": "## Direction\nConseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège lui aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
+        },
+        {
+          "id": "ganzir",
+          "titre": "Ganzir",
+          "contenu": "## Situation\nForteresse et centre d'entraînement de l'armée, Ganzir se dresse au milieu de l'Atlantique, loin de tous les fronts, et c'est de là que Harvey A. Houtson dirige le secteur, ce qui en fait, en pratique, le cœur militaire de la Confédération.\n\n## Rôle dans le conflit\n- Le 10 septembre, après la perte de 2 145 soldats face à une entité, HCP réclama Ganzir, et l'Escouade Phoenix fut engagée dans la foulée.\n- Le 11 septembre, Ganzir ordonna de raser l'Afrique, et une dizaine d'appareils portant l'insigne du Phoenix suffirent.\n- Le 12 septembre, c'est en accord avec Ganzir que Merrick raccorda HCP à tous les capteurs de la Confédération.\n\n## Garnison\nL'effectif de la garnison est classifié, comme à peu près tout ce qui se passe sur l'île, et on n'en sait que ce que les ordres qui en sortent laissent deviner."
+        },
+        {
+          "id": "phoenix",
+          "titre": "Phoenix",
+          "contenu": "## Escouade Phoenix\n\"La force de frappe contre les dieux.\" Placée sous le commandement d'Aupox et coordonnée par Rosenrad depuis le secteur Renseignement, l'escouade réunit des plieurs de réalité, qu'on envoie contre les entités depuis le 10 septembre, date à laquelle elle prit le relais des troupes de HCP sur les fronts anormaux.\n\n## Division Phoenix\nLa division compte 13 400 soldats au total, déployés pour l'essentiel à l'intérieur des bulles cultistes, là où les unités ordinaires ne tiennent pas longtemps.\n- Amérique : 7 000, dont 6 000 en Amazonie, 800 dans les Andes et 200 dans le district Austral.\n- Asie : 5 400, dont 5 000 face à Izala dans le district Sino-Russe et 400 en Asie centrale.\n- Europe : 1 000, dont 600 dans le district Central et 400 dans celui de l'Est.\n\n## Le Phénix\nDepuis le discours du bunker, le Phénix apparaît sur les murs, les casques et les fuselages, et les appareils qui ont rasé l'Afrique portaient eux aussi son insigne, ce qui en dit long sur ce que le symbole est devenu."
+        },
+        {
+          "id": "forces-speciales",
+          "titre": "Forces spéciales",
+          "contenu": "## Effectifs\nLa Confédération aligne 100 000 hommes des forces spéciales, répartis entre les secteurs géographiques à peu près selon la pression cultiste qui s'y exerce.\n- Asie : 47 000.\n- Amérique : 27 000.\n- Europe : 25 000.\n- Océanie : 1 000.\n\n## Rôle dans le conflit\n- En Europe, ce sont elles qui neutralisèrent plusieurs entités et brisèrent l'expansion cultiste, au bout d'une semaine de combat, avant que le secteur ne soit déclaré réglé le 19 septembre.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement, ce qui, selon le point de vue, le rend deux fois plus utile ou deux fois plus difficile à commander."
+        },
+        {
+          "id": "regulieres",
+          "titre": "Régulières",
+          "contenu": "## Effectifs\nL'armée régulière compte 50 millions de soldats, dont plus de la moitié en Asie, ce qui n'étonnera personne au vu de ce qui s'y passe.\n- Asie : 30,8 millions, dont 14,9 millions dans le seul district Sino-Russe.\n- Amérique : 13,3 millions, dont 5,4 millions en Amazonie.\n- Europe : 5,2 millions.\n- Océanie : 710 000.\n\n## Rôle dans le conflit\n- Le 10 septembre, l'armée perdit 2 145 soldats face à une entité, avant que HCP ne retire ses troupes des fronts anormaux.\n- À Zurich, le 19 septembre, elle tint la rue aux côtés de la milice populaire pendant quarante minutes de contact.\n- Là où les entités apparaissent, les régulières laissent la place à l'Escouade Phoenix, à la Ligue Noire et à l'Ordre, ce qui revient à reconnaître qu'un fusil ne suffit plus."
+        },
+        {
+          "id": "milices-civiles",
+          "titre": "Milices civiles",
+          "contenu": "## Mobilisation\nSuite au discours du bunker, le 10 septembre, le confinement et la loi martiale tombèrent, des milliards de civils sortirent armés de chez eux, et les milices comptent aujourd'hui environ 4,9 milliards de membres.\n- Asie : 3,2 milliards, dont 1,9 milliard dans le district Indo-Pakistanais.\n- Europe : 903 millions.\n- Amérique : 729 millions.\n- Océanie : 46 millions.\n\n## Au combat\nLes civils ont tué une grande partie des cultistes, et à Zurich, la milice du quartier résidentiel tint le contact quarante minutes aux côtés de l'armée, pour dix-neuf cultistes tués et quatre miliciens morts, tous du quartier. Face aux entités, en revanche, ils perdent pied, deviennent fous ou rejoignent l'ennemi.\n\n## En Amérique du Sud\nLes civils refusent de fuir et veulent affronter les cultistes, mais ils hésitent à tuer leurs proches infectés, qui gardent leurs souvenirs, et se font contaminer à leur tour."
         }
       ]
     },
