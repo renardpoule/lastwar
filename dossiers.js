@@ -183,12 +183,42 @@
     const page = s && sousDossiers(s).find(p => p.id === pid);
     return [s && s.id, page && page.id];
   }
-  function lire() {
+  // Animation de la sortie : chaque commande est tapée, puis son résultat s'affiche ; un clic ou une touche termine tout
+  let jeton = 0;
+  function animer() {
+    const moi = ++jeton, blocs = [...$('#contenu').children];
+    const tapes = blocs.map(b => { const t = b.querySelector && b.classList.contains('t-cmd') && b.querySelector('.t-tape'); return t ? [t, t.textContent] : null; });
+    blocs.forEach(b => b.classList.add('t-cache'));
+    const toutAfficher = () => { if (moi !== jeton) return; jeton++; blocs.forEach((b, i) => { b.classList.remove('t-cache'); if (tapes[i]) tapes[i][0].textContent = tapes[i][1]; }); };
+    const attente = ms => new Promise(r => setTimeout(r, ms));
+    const passer = e => { if (e.type === 'keydown' && e.target.id === 't-cmd') return; toutAfficher(); fin(); };
+    const fin = () => { removeEventListener('keydown', passer, true); removeEventListener('pointerdown', passer, true); };
+    addEventListener('keydown', passer, true); addEventListener('pointerdown', passer, true);
+    (async () => {
+      for (let i = 0; i < blocs.length; i++) {
+        if (moi !== jeton) return fin();
+        const b = blocs[i];
+        b.classList.remove('t-cache');
+        if (tapes[i]) {
+          const [el, txt] = tapes[i];
+          el.textContent = '';
+          el.classList.add('t-frappe');
+          for (let c = 1; c <= txt.length; c++) { if (moi !== jeton) return fin(); el.textContent = txt.slice(0, c); await attente(22 + Math.random() * 30); }
+          el.classList.remove('t-frappe');
+          await attente(120);
+        } else await attente(b.matches('.t-saisie') ? 0 : 70);
+      }
+      jeton++; fin();
+    })();
+  }
+
+  function lire(anime = false) {
     const [sid, pid] = etat();
     const s = secteurs.find(x => x.id === sid), page = s && pid && sousDossiers(s).find(p => p.id === pid);
     rendreArbre(sid, pid);
     $('#contenu').innerHTML = (page ? vuePage(s, page) : s ? vueSecteur(s) : vueMonde()) + saisie(sid, pid);
     document.title = page ? `${page.titre} · ${s.nom}` : s ? `${s.nom} · Dossiers des secteurs` : 'Dossiers des secteurs';
+    if (anime) animer();
   }
 
   // L'arborescence reste ouverte sur grand écran, repliée sur téléphone
@@ -199,7 +229,6 @@
 
   // Séquence de démarrage à chaque ouverture de la page ; un clic ou une touche la passe
   (function demarrage() {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const nb = secteurs.reduce((n, s) => n + sousDossiers(s).length, 0);
     const lignes = [
       ['CCOS 7.5.2075 · noyau confédéré, build ' + (data.meta.dateRP || '')],
@@ -222,6 +251,7 @@
       if (fini) return; fini = true;
       el.classList.add('sortie');
       setTimeout(() => el.remove(), 350);
+      animer();
       removeEventListener('keydown', fermer); el.removeEventListener('click', fermer);
     };
     addEventListener('keydown', fermer); el.addEventListener('click', fermer);
@@ -236,7 +266,7 @@
 
   window.addEventListener('hashchange', () => {
     if (!large.matches) $('#arbre-boite').open = false;
-    lire(); window.scrollTo(0, 0);
+    lire(true); window.scrollTo(0, 0);
     if (depuisSaisie) $('#t-cmd').focus({ preventScroll: true }); else $('#contenu').focus({ preventScroll: true });
     depuisSaisie = false;
   });

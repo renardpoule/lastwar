@@ -172,3 +172,9 @@ body.ds.dossiers{
 .t-inst .t-l{grid-template-columns:auto minmax(0,1fr);column-gap:1rem}
 .t-inst .t-cle{white-space:nowrap}
 @media (max-width:600px){.t-installations{grid-template-columns:1fr}.t-inst .t-l{grid-template-columns:1fr}}
+
+/* Frappe des commandes à chaque ouverture de dossier */
+.t-cache{visibility:hidden}
+.t-sortie>:not(.t-cache):not(.t-cmd){animation:t-apparait .25s ease both}
+.t-frappe::after{content:"";display:inline-block;width:0.55em;height:1.05em;margin-left:0.05em;vertical-align:-0.15em;background:var(--t-texte);animation:t-clignote .6s steps(1) infinite}
+@keyframes t-clignote{50%{opacity:0}}
