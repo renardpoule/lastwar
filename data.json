@@ -5974,7 +5974,7 @@
         {
           "id": "marine",
           "titre": "Marine",
-          "contenu": "## Situation\nAlors que l'armée de terre se bat dans les bulles, la marine de la Confédération tient les mers qui les bordent, avec 15 divisions et environ 78 000 marins, ce qui reste peu à côté des forces terrestres, mais aucune bulle cultiste n'a encore de débouché sur la mer qui ne soit surveillé.\n\n## Autour de Ganzir\n- Le Groupe aéronaval de Ganzir tourne autour de la forteresse, dont il assure la couverture aérienne.\n- Le Rideau sous-marin ferme les approches, à une journée de mer.\n- L'Escadre de l'Atlantique tient la route des renforts entre Ganzir et les Açores.\n\n## Face à Nargal\n- La Division de l'Amazone ferme l'embouchure du fleuve et appuie le district Amazonien depuis la côte.\n- La Flottille sous-marine de l'Atlantique Sud longe la côte brésilienne, et celle de la Plata garde l'estuaire pour le district Austral.\n- Le Groupe aéronaval du Pacifique Sud appuie la brigade exotique sur le front andin.\n- La Division des Caraïbes surveille les poches d'infection du Venezuela et de la Colombie, et appuie depuis la mer les forces spéciales débarquées à Haïti.\n\n## Face à Izala\nSuite à la reprise de Hainan, une grosse partie de la marine fit route vers le littoral chinois, où le commandement espère voir descendre les cultistes.\n- Le Groupe aéronaval de la mer de Chine méridionale frappe la côte du Guangdong et coupe la route de Hong Kong.\n- La Division du Golfe, rappelée après la destruction de la poche de Mexico, tient la côte entre Shantou et Hong Kong, et la Flottille de la mer d'Arabie garde les bouches de la rivière des Perles.\n- La Division d'Andaman couvre Hainan et la côte de Zhanjiang, et celle du golfe du Bengale ferme la côte du Zhejiang et du Fujian.\n- La Flottille du Tonkin bombarde sans relâche la côte vietnamienne, au sud de la bulle, et celle de la mer Jaune surveille le flanc nord, pour que rien ne passe vers le Japon.\n\n## Hors hiérarchie\nLa Flotte de recherche stratégique \"Bismarck\" ne dépend pas de la marine mais de la DVA, au sein du secteur Recherche & Développement."
+          "contenu": "## Situation\nAlors que l'armée de terre se bat dans les bulles, la marine de la Confédération tient les mers qui les bordent, avec 15 divisions et environ 78 000 marins, ce qui reste peu à côté des forces terrestres, mais aucune bulle cultiste n'a encore de débouché sur la mer qui ne soit surveillé.\n\n## Autour de Ganzir\n- Le Groupe aéronaval de Ganzir tourne autour de la forteresse, dont il assure la couverture aérienne.\n- Le Rideau sous-marin ferme les approches, à une journée de mer.\n- L'Escadre de l'Atlantique tient la route des renforts entre Ganzir et les Açores.\n\n## Face à Nargal\n- La Division de l'Amazone ferme l'embouchure du fleuve et appuie le district Amazonien depuis la côte.\n- La Flottille sous-marine de l'Atlantique Sud longe la côte brésilienne.\n- Depuis la pose du cordon, la Flottille de la Plata tient la côte d'Arica et d'Antofagasta, là où la barrière vient buter contre le Pacifique, et le Groupe aéronaval du Pacifique Sud, qui appuie la brigade exotique sur le front andin, pousse ses patrouilles jusqu'au sud du Pérou pour la relayer.\n- La Division des Caraïbes surveille les poches d'infection du Venezuela et de la Colombie, et appuie depuis la mer les forces spéciales débarquées à Haïti.\n\n## Face à Izala\nSuite à la reprise de Hainan, une grosse partie de la marine fit route vers le littoral chinois, où le commandement espère voir descendre les cultistes.\n- Le Groupe aéronaval de la mer de Chine méridionale frappe la côte du Guangdong et coupe la route de Hong Kong.\n- La Division du Golfe, rappelée après la destruction de la poche de Mexico, tient la côte entre Shantou et Hong Kong, et la Flottille de la mer d'Arabie garde les bouches de la rivière des Perles.\n- La Division d'Andaman couvre Hainan et la côte de Zhanjiang, et celle du golfe du Bengale ferme la côte du Zhejiang et du Fujian.\n- La Flottille du Tonkin bombarde sans relâche la côte vietnamienne, au sud de la bulle, et celle de la mer Jaune surveille le flanc nord, pour que rien ne passe vers le Japon.\n\n## Hors hiérarchie\nLa Flotte de recherche stratégique \"Bismarck\" ne dépend pas de la marine mais de la DVA, au sein du secteur Recherche & Développement."
         },
         {
           "id": "milices-civiles",
@@ -7012,28 +7012,36 @@
       "periode": 640,
       "trajet": [
         [
-          -55,
-          -36.2
+          -71.1,
+          -18.4
         ],
         [
-          -52,
-          -36.8
+          -70.9,
+          -20.3
         ],
         [
-          -53,
-          -39.2
+          -71.0,
+          -22.4
         ],
         [
-          -56.2,
-          -39.3
+          -71.5,
+          -24.3
         ],
         [
-          -56.5,
-          -37.6
+          -72.5,
+          -23.2
+        ],
+        [
+          -72.3,
+          -20.6
+        ],
+        [
+          -72.4,
+          -18.6
         ]
       ],
-      "zone": "Estuaire du Río de la Plata",
-      "info": "Une petite flottille garde l'estuaire du Río de la Plata, pour le district Austral.",
+      "zone": "Pacifique, côte d'Arica et d'Antofagasta",
+      "info": "Suite à la pose du cordon autour de Nargal, les sous-marins quittèrent l'estuaire de la Plata pour la côte d'Arica et d'Antofagasta, là où la barrière vient buter contre le Pacifique, et ferment désormais le côté mer de la quarantaine.",
       "fiche": [
         [
           "Bâtiments",
@@ -7069,12 +7077,20 @@
           -8.5
         ],
         [
-          -79.2,
-          -13.2
+          -78.8,
+          -14.2
         ],
         [
-          -78.3,
-          -11.8
+          -76.2,
+          -17.0
+        ],
+        [
+          -74.3,
+          -18.2
+        ],
+        [
+          -77.6,
+          -13.4
         ],
         [
           -81.5,
@@ -7085,8 +7101,8 @@
           -2.3
         ]
       ],
-      "zone": "Pacifique, côte andine",
-      "info": "Le porte-avions appuie la brigade exotique sur le front andin, où dix millions d'infectés tiennent les vallées, et ses avions font l'aller-retour plusieurs fois par jour.",
+      "zone": "Pacifique, de la côte andine au sud du Pérou",
+      "info": "Le porte-avions appuie la brigade exotique sur le front andin, où dix millions d'infectés tiennent les vallées, avec des avions qui font l'aller-retour plusieurs fois par jour, et depuis la pose du cordon de Nargal, ses patrouilles descendent jusqu'au sud du Pérou.",
       "fiche": [
         [
           "Bâtiments",
