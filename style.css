@@ -248,6 +248,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pion .u-echelon{fill:var(--foreground);font:700 6.5px var(--font-sans);text-anchor:middle;letter-spacing:-0.02em;paint-order:stroke;stroke:var(--ocean);stroke-width:2px}
 .pion .u-effectif{fill:var(--foreground);font:600 7px var(--font-mono);text-anchor:middle;paint-order:stroke;stroke:var(--ocean);stroke-width:2.4px}
 .pion.ph .u-cadre{fill:color-mix(in oklab,oklch(0.6 0.16 45) 45%,var(--ocean))}
+.pion .u-embleme,.sw-pion .u-embleme{fill:none;stroke:oklch(0.95 0.03 268);stroke-width:1.1;stroke-linejoin:round}
+.pion.cc .u-cadre{fill:color-mix(in oklab,var(--primary) 45%,var(--ocean))}
 .pion.fs .u-cadre{fill:color-mix(in oklab,var(--primary) 60%,var(--ocean))}
 .sw-pion{width:1rem;height:0.75rem}
 .sw-pion .u-cadre{fill:color-mix(in oklab,var(--st-controle) 55%,var(--ocean));stroke:oklch(0.9 0.05 268);stroke-width:1.5}
@@ -546,8 +548,18 @@ button{font:inherit;color:inherit;cursor:pointer}
 .f-halo{fill:oklch(0.75 0.1 230 / .16);stroke:oklch(0.85 0.1 230 / .55);stroke-width:1}
 .f-navire{fill:oklch(0.93 0.04 240);stroke:var(--ocean);stroke-width:.8}
 .nom-flotte{font-size:0.75rem;text-anchor:start;stroke-width:3px}
-.sw-flotte{width:1rem;height:0.5rem}
 .sw-flotte path{fill:oklch(0.93 0.04 240)}
+.sw-flotte{width:1.1rem;height:0.6rem;overflow:visible}
+.r-sous-marins{stroke:oklch(0.78 0.1 190 / .55);stroke-dasharray:1 4}
+.r-porte-avions{stroke:oklch(0.88 0.1 230 / .75);stroke-dasharray:6 4}
+.r-recherche{stroke:oklch(0.85 0.12 75 / .6)}
+.f-sous-marins .f-navire,.sw-flotte.f-sous-marins path{fill:oklch(0.62 0.07 200)}
+.f-sous-marins .f-halo{fill:oklch(0.7 0.1 190 / .1);stroke:oklch(0.8 0.1 190 / .4);stroke-dasharray:2 2}
+.f-sous-marins .f-navire{opacity:.85}
+.f-porte-avions .f-navire,.sw-flotte.f-porte-avions path{fill:oklch(0.97 0.03 240)}
+.f-recherche .f-navire,.sw-flotte.f-recherche path{fill:oklch(0.9 0.1 80)}
+.f-recherche .f-halo{fill:oklch(0.8 0.12 80 / .14);stroke:oklch(0.85 0.12 80 / .55)}
+.loin .nom-flotte{display:none}
 
 @media (prefers-reduced-motion:reduce){.sphere-glitch *{animation:none!important}}
 

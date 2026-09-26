@@ -65,9 +65,11 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 `…/lastwar/#europe/eu-est` ouvre directement le District de l'Est, `…/lastwar/#europe/eu-est/kazan` la fiche de Kazan,
 `…/lastwar/secteurs.html#renseignement/atmosphere` le dossier Atmosphère.
 
-**Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main.
+**Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main. En vue monde, chaque district n'affiche que deux pions, un pour la CC et un pour les cultistes, qui résument toutes ses troupes ; le détail apparaît quand on clique sur un secteur.
 
 **Bandeau de la carte** : le compteur de pertes additionne tout seul les pertes et les décès civils de tous les districts. À chaque publication, les pertes et l'énergie sont archivées avec le point de chronologie, donc la relecture les affiche à la bonne date.
+
+**Flottes** : chaque division navale a un `type` (`surface`, `porte-avions`, `sous-marins`, `recherche`), une `zone`, une `fiche` et un `trajet` (liste de points [longitude, latitude] parcourue en boucle, à garder en mer).
 
 **Installations** (laboratoires, GGP, TDA, réacteurs à fusion, CLS…), **satellites** et **flottes** : ils se modifient directement dans `data.json` (listes `sites`, `satellites`, `flottes`), pas encore dans l'admin. Un site avec `"glitch": true` reçoit la sphère de confinement des laboratoires d'exclusion, `"dossier": "rd/arcology"` le relie à son dossier, et `"etat"` s'affiche dans l'infobulle. `"fiche"` (liste de paires `["Personnel", "3 200"]`) donne les précisions techniques, affichées dans l'infobulle et en bas du dossier lié.
 

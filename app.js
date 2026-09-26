@@ -154,14 +154,15 @@
     const flottes = data.flottes || [];
     L.flottes.selectAll('path.route').data(flottes, f => f.id).join('path').attr('class', 'route')
       .attr('d', f => d3.line().curve(d3.curveCatmullRomClosed)(f.trajet.map(c => projection(c))));
+    L.flottes.selectAll('path.route').attr('class', f => 'route r-' + (f.type || 'surface'));
     L.flottes.selectAll('g.flotte').data(flottes, f => f.id).join(en => {
-      const x = en.append('g').attr('class', 'flotte');
+      const x = en.append('g').attr('class', f => 'flotte f-' + (f.type || 'surface'));
       x.append('circle').attr('class', 'f-halo').attr('r', 13);
-      x.append('path').attr('class', 'f-navire').attr('d', NAVIRE);
+      x.append('path').attr('class', 'f-navire').attr('d', f => (TYPES_FLOTTE[f.type] || TYPES_FLOTTE.surface).svg);
       x.append('text').attr('class', 'label nom-flotte').attr('x', 14).attr('dy', '0.35em').text(f => f.nom);
       return x;
     }).on('mousemove', survolFlotte).on('mouseleave', finSurvol)
-      .on('click', (e, f) => { e.stopPropagation(); tip.hidden = true; const [sc, di] = (f.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
+      .on('click', (e, f) => { e.stopPropagation(); tip.hidden = true; if (f.dossier) { location.href = 'secteurs.html#' + f.dossier; return; } const [sc, di] = (f.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
     majFlottes();
 
     L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
@@ -450,6 +451,12 @@
 
   // ---------- Flottes ----------
   const NAVIRE = 'M-11,-2.6H5.5L11,0L5.5,2.6H-11L-9,0Z';
+  const TYPES_FLOTTE = {
+    surface: { nom: 'Division de surface', svg: NAVIRE },
+    'porte-avions': { nom: 'Groupe aéronaval', svg: 'M-12,-3.6H8L12,-1.6V1.6L8,3.6H-12L-10.5,0ZM1,-3.6V-6H5V-3.6' },
+    'sous-marins': { nom: 'Flottille sous-marine', svg: 'M-11,0C-11,-1.8 -8,-2.4 -4,-2.4H6C9,-2.4 11,-1.3 11,0C11,1.3 9,2.4 6,2.4H-4C-8,2.4 -11,1.8 -11,0ZM-1.5,-1V1H2.5V-1Z' },
+    recherche: { nom: 'Flotte de recherche', svg: NAVIRE }
+  };
   function majFlottes() {
     if (!L.flottes) return;
     const replay = etat.replay !== null;
@@ -470,7 +477,7 @@
   const ficheTip = x => x.fiche && x.fiche.length ? `<dl class="tip-fiche">${x.fiche.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>` : '';
   function survolFlotte(e, f) {
     const cle = 'f:' + f.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(f.nom)}</strong>${esc(f.info || '')}<br><span class="ds-supporting">Cliquer pour la fiche</span>`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(f.nom)}</strong><span class="ds-supporting">${esc((TYPES_FLOTTE[f.type] || TYPES_FLOTTE.surface).nom)}${f.zone ? ' · ' + esc(f.zone) : ''}</span><br>${esc(f.info || '')}${ficheTip(f)}<span class="ds-supporting">Cliquer pour ${f.dossier ? 'le dossier' : 'la fiche'}</span>`; }
     placerTip(e);
   }
 
@@ -533,8 +540,11 @@
     reg: { re: /^forces régulières/i, nom: 'Forces régulières', ref: 1e6, echelon: 'XXX', piles: [3e6, 8e6] },
     fs: { re: /^forces spéciales/i, nom: 'Forces spéciales', ref: 5000, echelon: 'X', piles: [1e4] },
     ph: { re: /^division phoenix/i, nom: 'Division Phoenix', ref: 1500, echelon: 'XX', piles: [3000] },
-    cult: { nom: 'Cultistes', ref: 1e6, echelon: '', piles: [5e6, 2e7] }
+    cult: { nom: 'Cultistes', ref: 1e6, echelon: '', piles: [5e6, 2e7] },
+    cc: { nom: 'Forces de la Confédération', ref: 1e6, echelon: '', piles: [] }
   };
+  // Emblème de la CC (cercle et triangle) pour le pion qui résume un district en vue monde
+  const EMBLEME_CC = '<circle class="u-embleme" r="4.6"/><path class="u-embleme" d="M0,-4.6L4,2.3H-4Z"/>';
   const INTERIEUR = {
     reg: '<path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/>',
     // Forces spéciales : dague de commando ; Phoenix : oiseau de feu ailes déployées
@@ -550,7 +560,7 @@
   function unitesDe(d) {
     const out = [];
     for (const [cle, T] of Object.entries(TYPES_UNITE)) {
-      if (cle === 'cult') continue;
+      if (!T.re) continue;
       const u = (d.forces.confederation || []).find(x => T.re.test(x.nom));
       const n = u ? C.parse(u.effectif).n : 0;
       if (n > 0) out.push({ type: cle, n, v: u.effectif });
@@ -584,10 +594,26 @@
   const MORCEAUX = { reg: [1.5e6, 4e6, 8e6], fs: [6000], ph: [], cult: [3e6, 1.2e7] };
   function rendreUnites() {
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
-    // Pas d'effectifs archivés : les pions ne s'affichent qu'en direct
-    const visibles = etat.replay !== null ? [] : districts.filter(d => d._geo && (sel ? d._secteur === sel : ech === 1 && statutDe(d).statut !== 'controle'));
+    // Pas d'effectifs archivés : les pions ne s'affichent qu'en direct, et seulement dans le secteur sélectionné
+    const visibles = etat.replay !== null || !sel ? [] : districts.filter(d => d._geo && d._secteur === sel);
     const foyers = zonesAff().filter(z => (+z.rayon || 0) >= 2);
     const pions = [];
+    // Vue monde : un pion par camp et par district, qui résume l'ensemble de ses troupes
+    if (!sel && etat.replay === null) for (const d of districts) {
+      const a = d._geo && ancre(d);
+      if (!a) continue;
+      const cc = (d.forces.confederation || []).filter(u => u.effectif !== undefined && u.effectif !== '');
+      const cult = (d.forces.cultistes || []).filter(u => !/survivants/i.test(u.nom));
+      const camps = [];
+      if (cc.length) camps.push({ type: 'cc', liste: cc });
+      if (cult.length) camps.push({ type: 'cult', liste: cult, couleur: couleurZoneDe(d) });
+      camps.forEach((c, i) => {
+        const tot = C.somme(c.liste.map(u => u.effectif));
+        const t = !tot.n ? 0.8 : Math.max(0.75, Math.min(1.4, 0.95 + 0.15 * Math.log10(tot.n / 1e6)));
+        pions.push({ type: c.type, n: tot.n, v: tot, inconnu: !tot.n, couleur: c.couleur, detail: c.liste, synthese: true, id: `${d.id}:${c.type}`, g: d.id, d, t,
+          pile: 1, p: a, dx: camps.length > 1 ? (i ? 14 : -14) : 0, dy: 0, larg: 26 * t + 34 });
+      });
+    }
     for (const d of visibles) {
       const a = ancre(d);
       if (!a) continue;
@@ -649,7 +675,7 @@
       }
     }
     L.unites.selectAll('g.pion').data(pions, u => u.id).join('g')
-      .attr('class', u => 'pion ' + u.type)
+      .attr('class', u => 'pion ' + u.type + (u.synthese ? ' synthese' : ''))
       .each(function (u) {
         const T = TYPES_UNITE[u.type];
         let h = '';
@@ -661,7 +687,7 @@
         }
         h += u.type === 'cult'
           ? (u.inconnu ? '<text class="u-txt" dy="0.35em">?</text>' : `<path class="u-sceau" d="${CHAOS}" transform="scale(6.5)"/>`)
-          : INTERIEUR[u.type];
+          : u.type === 'cc' ? EMBLEME_CC : INTERIEUR[u.type];
         if (T.echelon) h += `<text class="u-echelon" y="-10">${T.echelon}</text>`;
         h += `<text class="u-effectif" y="${u.type === 'cult' ? 20 : 17}">${u.inconnu ? '?' : C.court(u.n)}</text>`;
         this.innerHTML = h;
@@ -696,7 +722,9 @@
     const cle = 'u:' + u.id;
     if (cle !== survolCle) {
       survolCle = cle;
-      tip.innerHTML = `<strong>${esc(TYPES_UNITE[u.type].nom)}</strong>${esc(u.d.nom)}<br>Effectif : ${C.fmt(u.v)}${u.total ? `<br>${u.nb} groupements, ${C.fmt(u.total)} au total` : ''}`;
+      tip.innerHTML = u.synthese
+        ? `<strong>${esc(TYPES_UNITE[u.type].nom)}</strong>${esc(u.d.nom)}<br>Total : ${C.fmt(u.v)}<dl class="tip-fiche">${u.detail.map(x => `<dt>${esc(x.nom)}</dt><dd>${C.fmt(x.effectif)}</dd>`).join('')}</dl><span class="ds-supporting">Cliquer pour ouvrir le district</span>`
+        : `<strong>${esc(TYPES_UNITE[u.type].nom)}</strong>${esc(u.d.nom)}<br>Effectif : ${C.fmt(u.v)}${u.total ? `<br>${u.nb} groupements, ${C.fmt(u.total)} au total` : ''}`;
     }
     placerTip(e);
   }
@@ -719,10 +747,12 @@
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
       + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
       + (villesAff().some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')
-      + (L.unites.selectAll('g.pion').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
+      + (L.unites.selectAll('g.pion.synthese').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/>' + EMBLEME_CC + '</svg>Forces de la CC, total du district</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Forces cultistes, total du district</li>' : '')
+      + (L.unites.selectAll('g.pion:not(.synthese)').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
       + Object.entries(TYPES_SITE).filter(([t]) => (data.sites || []).some(x => x.icone === t)).map(([t, T]) => `<li><svg class="sw-labo t-${t}" viewBox="0 0 24 24" aria-hidden="true">${T.svg}</svg>${T.nom}</li>`).join('')
       + ((data.sites || []).some(x => x.glitch) ? '<li><svg class="sw-sphere" viewBox="-15 -15 30 30" aria-hidden="true"><circle r="11"/><ellipse rx="4.5" ry="11"/><ellipse rx="11" ry="3.5"/></svg>Laboratoire d\'exclusion</li>' : '')
-      + ((data.flottes || []).length && etat.replay === null ? '<li><svg class="sw-flotte" viewBox="-12 -6 24 12" aria-hidden="true"><path d="' + NAVIRE + '"/></svg>Flotte en patrouille</li>' : '');
+      + (etat.replay === null ? Object.entries(TYPES_FLOTTE).filter(([t]) => (data.flottes || []).some(f => (f.type || 'surface') === t))
+        .map(([t, x]) => `<li><svg class="sw-flotte f-${t}" viewBox="-13 -7 26 14" aria-hidden="true"><path d="${x.svg}"/></svg>${x.nom}</li>`).join('') : '');
   }
 
   function survolZone(e, z) {
@@ -739,6 +769,7 @@
 
   function echelleLabels() {
     L.sites.classed('proche', k >= 3).classed('loin', k < 2);
+    L.flottes.classed('loin', k < 2);
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     const el = ech < 1 ? 0.8 : 1;
     L.lab.selectAll('text').style('font-size', l => (l.taille * el / k) + 'px').style('stroke-width', (3.2 * el / k) + 'px');
