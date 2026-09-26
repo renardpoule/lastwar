@@ -602,7 +602,8 @@
     if (!sel && etat.replay === null) for (const d of districts) {
       const a = d._geo && ancre(d);
       if (!a) continue;
-      const cc = (d.forces.confederation || []).filter(u => u.effectif !== undefined && u.effectif !== '');
+      // Militaires seulement : les milices citoyennes (civils armés) écraseraient tout le reste
+      const cc = (d.forces.confederation || []).filter(u => u.effectif !== undefined && u.effectif !== '' && !/milice/i.test(u.nom));
       const cult = (d.forces.cultistes || []).filter(u => !/survivants/i.test(u.nom));
       const camps = [];
       if (cc.length) camps.push({ type: 'cc', liste: cc });

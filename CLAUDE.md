@@ -34,7 +34,7 @@ Après toute modification des `pays` d'un district, vérifier que chaque nom exi
 - L'influence cultiste d'un district doit correspondre à la **surface réellement couverte par les bulles** (`zones`). Aucun district n'est "perdu" à ce stade.
 - L'état d'une ville doit correspondre à sa distance aux bulles.
 - Effectifs mondiaux : milices ~4,9 Md, régulière 50 M, forces spéciales 100 000, **Division Phoenix 13 400 au total** (surtout dans les bulles). Marine : 15 divisions, ~78 000 marins, placées face aux bulles cultistes et autour de Ganzir.
-- Carte : en vue monde, un seul pion par camp et par district (total des troupes) ; le détail des pions n'apparaît qu'une fois le secteur ouvert.
+- Carte : en vue monde, un seul pion par camp et par district (total des troupes militaires, sans les milices citoyennes) ; le détail des pions n'apparaît qu'une fois le secteur ouvert.
 - Afrique : seul le district expérimental est en quarantaine, la côte en est sortie.
 - Projets technologiques de la R&D (dossiers `rd/*`, la Smith Technologies Corporation et les accords de Stockholm ne sont plus à mentionner) : installé = CLS, GGP, RESS, Télescope Stockholm, TDA ; en fabrication = Station Arachne ; en recherche = Singularité, SPA (très peu avancé), SPMQN.
 - Les fichiers CSS/JS sont appelés avec `?v=N` : incrémenter N à chaque modification, sinon les navigateurs gardent l'ancienne version.
