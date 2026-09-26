@@ -4,7 +4,7 @@
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "20 sept. 2075",
     "derniereMaj": "2026-09-26T00:48:40.000Z",
-    "distorsion": 35
+    "distorsion": 50
   },
   "tension": {
     "valeur": 75,
@@ -500,8 +500,7 @@
             "Turkmenistan",
             "Kyrgyzstan",
             "Tajikistan",
-            "Afghanistan",
-            "Mongolia"
+            "Afghanistan"
           ],
           "statut": "conteste",
           "influence": 41,
@@ -633,7 +632,9 @@
           "pays": [
             "China",
             "Hong Kong",
-            "Macao"
+            "Macao",
+            "Mongolia",
+            "Sibérie"
           ],
           "statut": "perdu",
           "influence": 81,
@@ -705,8 +706,8 @@
           },
           "note": "Les cultistes retranchés dans une ville chinoise en sont ressortis après le rituel, menés par Izala. Enlèvements, tortures et cas de cannibalisme rapportés par les témoins. Harbin et Vladivostok ne répondent plus régulièrement.",
           "label": [
-            108,
-            33
+            104,
+            50
           ],
           "quarantaine": false,
           "air": {
@@ -3631,7 +3632,7 @@
           "rayon": 3.4
         }
       ],
-      "distorsion": 35
+      "distorsion": 50
     }
   ],
   "zones": [

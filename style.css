@@ -221,12 +221,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .label .l0{fill:var(--muted-foreground);font-weight:500}
 .ile{fill:color-mix(in oklab,var(--st-controle) 48%,var(--ocean));stroke:color-mix(in oklab,var(--primary) 70%,white);stroke-width:1;vector-effect:non-scaling-stroke}
 .site{cursor:pointer}
-.embleme .em-fond{fill:var(--ocean);fill-opacity:.85}
-.embleme .em-anneau{fill:none;stroke:var(--or);stroke-width:1.2}
-.embleme .em-grad{stroke:var(--or);stroke-width:1;stroke-linecap:round}
-.embleme .em-clair{fill:var(--or)}
-.embleme .em-sombre{fill:var(--or-sombre)}
-.site .embleme{filter:drop-shadow(0 0 0.25rem oklch(0.86 0.13 88 / .45))}
+.embleme .em-fond{fill:oklch(0.98 0.005 250)}
+.embleme .em-trait{fill:oklch(0.45 0.14 255)}
+.site .embleme{filter:drop-shadow(0 0 0.3rem oklch(0.7 0.14 255 / .55))}
 .embleme.petit{transform:scale(.72)}
 .detruite{fill:url(#brulure);stroke:var(--detruit-coeur);stroke-width:1;stroke-dasharray:2 2;vector-effect:non-scaling-stroke;cursor:pointer}
 .sw.detruite{background:radial-gradient(circle,var(--detruit-coeur),var(--detruit));box-shadow:inset 0 0 0 0.0625rem var(--detruit-coeur)}
@@ -246,7 +243,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pion.cult .u-cadre{stroke:oklch(0.95 0.02 0);fill-opacity:.9}
 .pion .u-trait{stroke:oklch(0.92 0.04 268);stroke-width:1.1}
 .pion .u-txt{fill:oklch(0.95 0.03 268);font:700 7.5px var(--font-sans);text-anchor:middle}
-.pion .u-flamme{fill:oklch(0.78 0.16 55)}
+.pion .u-dague{fill:oklch(0.95 0.03 268)}
+.pion .u-phenix{fill:oklch(0.8 0.16 60);stroke:oklch(0.45 0.14 35);stroke-width:.35;stroke-linejoin:round}
 .pion .u-sceau{fill:oklch(0.98 0 0);fill-opacity:.85}
 .pion .u-echelon{fill:var(--foreground);font:700 6.5px var(--font-sans);text-anchor:middle;letter-spacing:-0.02em;paint-order:stroke;stroke:var(--ocean);stroke-width:2px}
 .pion .u-effectif{fill:var(--foreground);font:600 7px var(--font-mono);text-anchor:middle;paint-order:stroke;stroke:var(--ocean);stroke-width:2.4px}

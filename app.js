@@ -389,21 +389,13 @@
     }
     return d + 'Z';
   }
-  // Emblème des sites stratégiques : étoile facettée à cinq branches dans un anneau gradué
-  const EMBLEME = (() => {
-    const P = (a, r) => [(r * Math.cos(a)).toFixed(2), (r * Math.sin(a)).toFixed(2)];
-    let clair = '', sombre = '', graduations = '';
-    for (let i = 0; i < 5; i++) {
-      const a = -Math.PI / 2 + i * 2 * Math.PI / 5, t = P(a, 9.6), g = P(a - Math.PI / 5, 3.9), d = P(a + Math.PI / 5, 3.9);
-      clair += `M0,0L${t}L${g}Z`; sombre += `M0,0L${t}L${d}Z`;
-    }
-    for (let i = 0; i < 16; i++) {
-      const a = i * Math.PI / 8, [x1, y1] = P(a, 11.6), [x2, y2] = P(a, i % 2 ? 12.6 : 13.6);
-      graduations += `M${x1},${y1}L${x2},${y2}`;
-    }
-    return `<circle class="em-fond" r="13.8"/><circle class="em-anneau" r="11.6"/><path class="em-grad" d="${graduations}"/>`
-      + `<path class="em-clair" d="${clair}"/><path class="em-sombre" d="${sombre}"/>`;
-  })();
+  // Emblème des zones de grande importance : étoile brisée dans un cadre carré (dessin 830 × 830 ramené à 26 px)
+  const EMBLEME = '<g transform="translate(-13,-13) scale(0.031325)">'
+    + '<rect class="em-fond" x="27" y="27" width="776" height="776"/>'
+    + '<path class="em-trait" fill-rule="evenodd" d="M0,0H830V830H0ZM55,55V775H775V55Z'
+    + 'M415,110L483,320H438L415,248L392,320H347Z'
+    + 'M110,348H720L217,718L292,487ZM237,390L342,470L299,605L590,390Z'
+    + 'M546,511L615,720L437,591L472,565L533,608L510,537Z"/></g>';
 
   // ---------- Satellites ----------
   const SATELLITE = 'M-3.5,-3.5h7v7h-7zM-12,-2.5h7.5v5h-7.5zM4.5,-2.5h7.5v5h-7.5zM-4.5,0h9M0,-3.5v-3';
@@ -467,8 +459,9 @@
   };
   const INTERIEUR = {
     reg: '<path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/>',
-    fs: '<text class="u-txt" dy="0.35em">FS</text>',
-    ph: '<path class="u-flamme" d="M0,-6C3.5,-2.5 4.5,1 2.5,4.5C1.5,6 -1.5,6 -2.5,4.5C-4.5,1 -1,-0.5 0,-6Z"/>',
+    // Forces spéciales : dague de commando ; Phoenix : oiseau de feu ailes déployées
+    fs: '<path class="u-dague" d="M0,-6.4L1.4,-3.4V1.6H-1.4V-3.4ZM-4.2,1.6H4.2V3H-4.2ZM-0.8,3H0.8V5.2H-0.8ZM0,5L1.3,6.3L0,7.3L-1.3,6.3Z"/>',
+    ph: '<path class="u-phenix" d="M0,-6.2L1.1,-4.8L0.9,-3.2L3.6,-3.4L6.6,-5.4L9.4,-6.2L8.2,-4.1L8.6,-3.1L6.4,-2.7L6.6,-1.5L4.2,-1.2L1.6,0.2L2.2,2.4L3.4,5.4L1.3,3.7L0,6.2L-1.3,3.7L-3.4,5.4L-2.2,2.4L-1.6,0.2L-4.2,-1.2L-6.6,-1.5L-6.4,-2.7L-8.6,-3.1L-8.2,-4.1L-9.4,-6.2L-6.6,-5.4L-3.6,-3.4L-0.9,-3.2L-1.1,-4.8Z"/>',
     cult: ''
   };
   const couleurZoneDe = d => {
@@ -491,28 +484,66 @@
     }
     return out;
   }
+  // Points d'implantation possibles dans un district : grille régulière gardée si elle tombe sur ses terres
+  function pointsDe(d) {
+    if (d._pts) return d._pts;
+    // Seulement les grandes masses de terre : pas de pions perdus sur de petites îles
+    const polys = d._geo.type === 'MultiPolygon' ? d._geo.coordinates : [d._geo.coordinates];
+    const aires = polys.map(c => d3.geoArea({ type: 'Polygon', coordinates: c })), max = Math.max(...aires);
+    const geo = { type: 'MultiPolygon', coordinates: polys.filter((c, i) => aires[i] >= max * 0.2) };
+    let [[x0, y0], [x1, y1]] = d3.geoBounds(geo);
+    if (x1 < x0) x1 += 360;
+    const pts = [], n = 18;
+    for (let i = 0; i <= n; i++) for (let j = 0; j <= n; j++) {
+      let lon = x0 + (x1 - x0) * (i + 0.5) / (n + 1), lat = y0 + (y1 - y0) * (j + 0.5) / (n + 1);
+      if (lon > 180) lon -= 360;
+      if (lat > 75 || lat < -60) continue; // pas d'unités sur la banquise
+      if (d3.geoContains(geo, [lon, lat])) pts.push([lon, lat]);
+    }
+    return (d._pts = pts);
+  }
+  // Une grosse formation se répartit en plusieurs pions (corps, brigades) sur le terrain
+  const MORCEAUX = { reg: [1.5e6, 4e6, 8e6], fs: [6000], ph: [], cult: [3e6, 1.2e7] };
   function rendreUnites() {
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
     const visibles = districts.filter(d => d._geo && (sel ? d._secteur === sel : ech === 1 && statutDe(d).statut !== 'controle'));
+    const foyers = zonesAff().filter(z => (+z.rayon || 0) >= 2);
     const pions = [];
     for (const d of visibles) {
-      const p = ancre(d);
-      if (!p) continue;
-      const us = unitesDe(d);
-      const tailles = us.map(u => u.inconnu ? 0.8 : Math.max(0.7, Math.min(1.55, 0.95 + 0.22 * Math.log10(u.n / TYPES_UNITE[u.type].ref))));
-      const largeurs = tailles.map(t => 26 * t + 6);
-      // Les forces cultistes se placent sur leur foyer quand le district en contient un
-      const foyer = zonesAff().find(z => z.district === d.id && (+z.rayon || 0) >= 2);
-      const rangee = us.filter(u => !(u.type === 'cult' && foyer));
-      let x = -rangee.reduce((a, u) => a + largeurs[us.indexOf(u)], 0) / 2 + (rangee.some(u => u.type === 'cult') ? -5 : 0);
-      us.forEach((u, i) => {
+      const a = ancre(d);
+      if (!a) continue;
+      const centre = projection.invert(a), us = unitesDe(d);
+      const cands = pointsDe(d).length ? pointsDe(d) : [centre];
+      // Front : foyer cultiste du district, sinon le plus proche à portée
+      const foyer = foyers.find(z => z.district === d.id)
+        || foyers.map(z => ({ z, dist: d3.geoDistance(z.centre, centre) })).filter(o => o.dist < 0.75).sort((x, y) => x.dist - y.dist)[0]?.z;
+      const pris = [centre];
+      if (foyer && foyer.district === d.id) pris.push(foyer.centre);
+      const cultOrdre = us.filter(u => u.type === 'cult'), ccOrdre = us.filter(u => u.type !== 'cult');
+      for (const u of [...cultOrdre, ...ccOrdre]) {
         const T = TYPES_UNITE[u.type];
-        const base = { ...u, id: d.id + ':' + u.type, d, t: tailles[i], pile: u.inconnu ? 1 : 1 + T.piles.filter(s => u.n >= s).length };
-        if (u.type === 'cult' && foyer) { pions.push({ ...base, p: projection(foyer.centre), dx: 0, dy: 0, g: d.id + ':foyer' }); return; }
-        if (u.type === 'cult') x += 10;
-        pions.push({ ...base, p, dx: x + largeurs[i] / 2, dy: 26, g: d.id, larg: rangee.reduce((a, v) => a + largeurs[us.indexOf(v)], 0) });
-        x += largeurs[i];
-      });
+        const nb = u.inconnu ? 1 : 1 + MORCEAUX[u.type].filter(x => u.n >= x).length;
+        const part = u.n / nb;
+        const t = u.inconnu ? 0.8 : Math.max(0.7, Math.min(1.55, 0.95 + 0.22 * Math.log10(part / T.ref)));
+        for (let m = 0; m < nb; m++) {
+          let pos;
+          if (u.type === 'cult' && m === 0 && foyer && foyer.district === d.id) pos = foyer.centre;
+          else {
+            // Le plus éloigné des pions déjà posés, en penchant vers le front
+            let best = -Infinity;
+            for (const c of cands) {
+              const ecart = Math.min(...pris.map(q => d3.geoDistance(c, q)));
+              const front = foyer ? d3.geoDistance(c, foyer.centre) : 0;
+              const sc = ecart - (u.type === 'cult' ? 0.6 : 0.35) * front - 0.6 * d3.geoDistance(c, centre);
+              if (sc > best) { best = sc; pos = c; }
+            }
+            pos = pos || centre;
+          }
+          pris.push(pos);
+          pions.push({ ...u, n: part, v: nb > 1 ? '~' + Math.round(part) : u.v, total: nb > 1 ? u.v : null, nb, id: `${d.id}:${u.type}:${m}`, g: `${d.id}:${u.type}:${m}`, d, t,
+            pile: u.inconnu ? 1 : 1 + T.piles.filter(x => part >= x).length, p: projection(pos), dx: 0, dy: 0, larg: 26 * t + 6 });
+        }
+      }
     }
     L.unites.selectAll('g.pion').data(pions, u => u.id).join('g')
       .attr('class', u => 'pion ' + u.type)
@@ -563,7 +594,7 @@
     const cle = 'u:' + u.id;
     if (cle !== survolCle) {
       survolCle = cle;
-      tip.innerHTML = `<strong>${esc(TYPES_UNITE[u.type].nom)}</strong>${esc(u.d.nom)}<br>Effectif : ${C.fmt(u.v)}`;
+      tip.innerHTML = `<strong>${esc(TYPES_UNITE[u.type].nom)}</strong>${esc(u.d.nom)}<br>Effectif : ${C.fmt(u.v)}${u.total ? `<br>${u.nb} groupements, ${C.fmt(u.total)} au total` : ''}`;
     }
     placerTip(e);
   }
