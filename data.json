@@ -11,17 +11,17 @@
     "paliers": [
       {
         "min": 0,
-        "nom": "Zeebrugge",
+        "nom": "Veille",
         "minutes": 15
       },
       {
         "min": 20,
-        "nom": "Dragon",
+        "nom": "Tocsin",
         "minutes": 10
       },
       {
         "min": 40,
-        "nom": "Éclipse",
+        "nom": "Crépuscule",
         "minutes": 5
       },
       {
@@ -3804,7 +3804,7 @@
         {
           "id": "anormal",
           "titre": "Rapport Confédéral sur l'Anormal",
-          "contenu": "## Cadre\nLa Convention d'Alcyon, rédigée par Sally Weirman et signée à l'unanimité par le Conseil, classe chaque anomalie en trois usages : usage civil, confinement ou neutralisation. Depuis le palier Éclipse, les armes anomaliques sont autorisées sous contrôle du Conseil.\n\n## HCP\nL'IA de planification a prédit 85 % des mouvements cultistes, déplacements civils compris. Elle a obtenu l'accès aux topographies et à tous les capteurs de la Confédération. Son unité s'est vu administrer un psychoactif à sa demande. Consigne en vigueur : personne ne l'approche en dehors de l'opérateur Merrick.\n\n## Plieurs de réalité\nL'Escouade Phoenix engage ses plieurs de réalité contre les entités depuis le 10 septembre. Deux anciens plieurs de la Confédération, perdus au combat, combattent désormais pour l'ennemi :\n- Arthur « le Bon », corrompu par Nargal, à la tête des infectés d'Amérique du Sud ;\n- Izala, qui se proclame déesse et tient le sud de la Chine.\n\n## Brigade exotique\n96 % des 45 000 soldats engagés sur le front sud-américain ont reçu des drogues de performance et une armure Exo-3. Les témoignages recueillis décrivent des soldats qui ne transpirent pas et ne montrent aucune peur. À la question « Êtes-vous humain ? », l'état-major a répondu : « Cela dépend d'où vous placez la limite de l'Homme. »\n\n## Ichoria\nUn injecteur d'ichoria marqué du symbole de la Fondation SCP a été retrouvé sur un membre du commando qui a frappé les centres névralgiques d'Europe. HCP juge nulle la probabilité d'une attaque de la Fondation. L'origine du commando reste inconnue.\n\n## Recherches en cours\n- Contrôle du hasard (unités Sertannets) : augmenter la probabilité d'un événement sur une installation ennemie.\n- Architectes du Réel : conception d'armes par altération du Réel.\n- Département de l'Irréalité : score de loyauté exigé d'au moins 99,7 %."
+          "contenu": "## Cadre\nLa Convention d'Alcyon, rédigée par Sally Weirman et signée à l'unanimité par le Conseil, classe chaque anomalie en trois usages : usage civil, confinement ou neutralisation. Depuis le palier Crépuscule, les armes anomaliques sont autorisées sous contrôle du Conseil.\n\n## HCP\nL'IA de planification a prédit 85 % des mouvements cultistes, déplacements civils compris. Elle a obtenu l'accès aux topographies et à tous les capteurs de la Confédération. Son unité s'est vu administrer un psychoactif à sa demande. Consigne en vigueur : personne ne l'approche en dehors de l'opérateur Merrick.\n\n## Plieurs de réalité\nL'Escouade Phoenix engage ses plieurs de réalité contre les entités depuis le 10 septembre. Deux anciens plieurs de la Confédération, perdus au combat, combattent désormais pour l'ennemi :\n- Arthur « le Bon », corrompu par Nargal, à la tête des infectés d'Amérique du Sud ;\n- Izala, qui se proclame déesse et tient le sud de la Chine.\n\n## Brigade exotique\n96 % des 45 000 soldats engagés sur le front sud-américain ont reçu des drogues de performance et une armure Exo-3. Les témoignages recueillis décrivent des soldats qui ne transpirent pas et ne montrent aucune peur. À la question « Êtes-vous humain ? », l'état-major a répondu : « Cela dépend d'où vous placez la limite de l'Homme. »\n\n## Ichoria\nUn injecteur d'ichoria marqué du symbole de la Fondation SCP a été retrouvé sur un membre du commando qui a frappé les centres névralgiques d'Europe. HCP juge nulle la probabilité d'une attaque de la Fondation. L'origine du commando reste inconnue.\n\n## Recherches en cours\n- Contrôle du hasard (unités Sertannets) : augmenter la probabilité d'un événement sur une installation ennemie.\n- Architectes du Réel : conception d'armes par altération du Réel.\n- Département de l'Irréalité : score de loyauté exigé d'au moins 99,7 %."
         }
       ]
     },
