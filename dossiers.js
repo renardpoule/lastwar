@@ -26,7 +26,7 @@
   }
 
   // Registre façon terminal : une entrée par utilisation d'anomalie, la plus récente en haut
-  const USAGES = ['NEUTRALISATION', 'CONFINEMENT', 'CIVIL', 'PLANIFICATION', 'AUGMENTATION', 'RECHERCHE', 'PERTE DE CONTRÔLE'];
+  const USAGES = ['OFFENSIVE', 'DÉFENSIVE', 'RESTRUCTURATION'];
   let filtreUsage = 'TOUS';
   function terminal(page) {
     const j = page.journal || [];
@@ -37,11 +37,11 @@
       <div class="t-barre"><span class="t-points" aria-hidden="true"><i></i><i></i><i></i></span><span>rca://registre-anormal</span><span class="t-compte">${j.length} entrée${j.length > 1 ? 's' : ''}</span></div>
       <div class="t-corps">
         ${(page.contenu || '').split('\n').filter(Boolean).map(l => `<p class="t-com"># ${esc(l)}</p>`).join('')}
-        <div class="t-filtres" role="group" aria-label="Filtrer par usage"><span class="t-invite" aria-hidden="true">$ rca --usage</span>${usages.map(u =>
+        <div class="t-filtres" role="group" aria-label="Filtrer par catégorie"><span class="t-invite" aria-hidden="true">$ rca --categorie</span>${usages.map(u =>
           `<button type="button" class="t-flag ${u === filtreUsage ? 'actif' : ''}" aria-pressed="${u === filtreUsage}" data-usage="${esc(u)}">${esc(u.toLowerCase())}</button>`).join('')}</div>
         <ol class="t-journal" reversed>${visibles.map(({ e, i }, k) => `<li class="t-entree" style="--i:${k}">
-          <p class="t-tete"><span class="t-date">[${esc(e.date || 'date non consignée')}]</span> <span class="t-num">#${String(i + 1).padStart(3, '0')}</span> <span class="t-usage u-${esc((e.usage || '').toLowerCase().replace(/[^a-z]+/g, '-'))}">${esc(e.usage || '')}</span></p>
-          ${ligne('anomalie', e.anomalie, 't-fort')}${ligne('lieu', e.lieu)}${ligne('autorisation', e.autorisation)}${ligne('résultat', e.resultat)}</li>`).join('') || '<li class="t-vide">Aucune entrée pour cet usage.</li>'}</ol>
+          <p class="t-tete"><span class="t-date">[${esc(e.date || 'date non consignée')}]</span> <span class="t-num">#${String(i + 1).padStart(3, '0')}</span> <span class="t-usage u-${esc((e.usage || '').toLowerCase().normalize('NFD').replace(/[^a-z]+/g, ''))}">${esc(e.usage || '')}</span></p>
+          ${ligne('groupe', e.groupe)}${ligne('anomalie', e.anomalie, 't-fort')}${ligne('lieu', e.lieu)}${ligne('autorisation', e.autorisation)}${ligne('résultat', e.resultat)}</li>`).join('') || '<li class="t-vide">Aucune entrée dans cette catégorie.</li>'}</ol>
         <p class="t-invite fin" aria-hidden="true">$ <span class="t-curseur"></span></p>
       </div></section>`;
   }

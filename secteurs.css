@@ -69,10 +69,9 @@ body.ds.dossiers{display:flex;flex-direction:column;min-height:100vh}
 .t-date{color:var(--t-ambre)}
 .t-num{color:var(--t-pale)}
 .t-usage{font-weight:700;letter-spacing:.04em}
-.t-usage.u-neutralisation{color:var(--t-rouge)}
-.t-usage.u-perte-de-contr-le{color:var(--t-rouge);text-decoration:underline wavy}
-.t-usage.u-recherche,.t-usage.u-planification{color:oklch(0.8 0.1 220)}
-.t-usage.u-augmentation{color:var(--t-ambre)}
+.t-usage.u-offensive{color:var(--t-rouge)}
+.t-usage.u-defensive{color:oklch(0.8 0.1 220)}
+.t-usage.u-restructuration{color:var(--t-ambre)}
 .t-l{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:0.75rem}
 .t-cle{color:var(--t-pale)}
 .t-cle::after{content:" :"}

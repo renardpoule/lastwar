@@ -362,7 +362,7 @@
     }
     else if (ds.ajoutEntree) {
       const [sid, j] = ds.ajoutEntree.split(':');
-      data.dossiers[sid].pages[+j].journal.push({ date: data.meta.dateRP || '', anomalie: '', usage: 'NEUTRALISATION', lieu: '', autorisation: '', resultat: '' }); modifie(); rendre();
+      data.dossiers[sid].pages[+j].journal.push({ date: data.meta.dateRP || '', groupe: '', anomalie: '', usage: 'OFFENSIVE', lieu: '', autorisation: '', resultat: '' }); modifie(); rendre();
     }
     else if (ds.supprEntree) {
       const [sid, j, n] = ds.supprEntree.split(':');
@@ -551,16 +551,16 @@
             ${p.id !== 'overview' ? `<div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-page="${s.id}:${j}">Supprimer ce dossier</button></div>` : ''}
             <label class="champ large"><span>${p.journal ? 'Préambule du registre' : 'Contenu'}</span><textarea rows="${p.journal ? 3 : 8}" data-bind="dossiers.${s.id}.pages.${j}.contenu"></textarea></label></div>
             ${p.journal ? `<h4>Registre des anomalies (${p.journal.length} entrées, la plus récente en bas)</h4>
-              <p class="ds-supporting aide">Une ligne par utilisation d'anomalie. Usages conseillés : NEUTRALISATION, CONFINEMENT, CIVIL, PLANIFICATION, AUGMENTATION, RECHERCHE, PERTE DE CONTRÔLE.</p>
+              <p class="ds-supporting aide">Une ligne par utilisation d'anomalie. Trois catégories : OFFENSIVE, DÉFENSIVE, RESTRUCTURATION. N'y inscrire que les anomalies réellement utilisées, avec le groupe qui s'en est servi.</p>
               ${p.journal.map((e, n) => `<div class="grille entree-journal">
                 <label class="champ"><span>Date</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.date" placeholder="20 sept. 2075"></label>
-                <label class="champ"><span>Usage</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.usage" list="usagesAnomalie"></label>
+                <label class="champ"><span>Catégorie</span><select data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.usage">${['OFFENSIVE', 'DÉFENSIVE', 'RESTRUCTURATION'].map(u => `<option ${e.usage === u ? 'selected' : ''}>${u}</option>`).join('')}</select></label>
+                <label class="champ"><span>Groupe</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.groupe" placeholder="Qui l'a utilisée"></label>
                 <label class="champ"><span>Anomalie</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.anomalie"></label>
                 <label class="champ"><span>Lieu</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.lieu"></label>
                 <label class="champ"><span>Autorisation</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.autorisation"></label>
                 <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-entree="${s.id}:${j}:${n}">Supprimer l'entrée</button></div>
                 <label class="champ large"><span>Résultat</span><textarea rows="2" data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.resultat"></textarea></label></div>`).join('')}
-              <datalist id="usagesAnomalie">${['NEUTRALISATION', 'CONFINEMENT', 'CIVIL', 'PLANIFICATION', 'AUGMENTATION', 'RECHERCHE', 'PERTE DE CONTRÔLE'].map(u => `<option value="${u}">`).join('')}</datalist>
               <div class="ligne"><button class="ds-btn ds-btn-primary ds-btn-sm" type="button" data-ajout-entree="${s.id}:${j}">Ajouter une entrée</button></div>` : ''}`).join('')}
           <div class="ligne"><button class="ds-btn ds-btn-outline ds-btn-sm" type="button" data-ajout-page="${s.id}">Ajouter un dossier</button></div></section>`;
       }).join('')}`;

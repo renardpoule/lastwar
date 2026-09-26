@@ -503,7 +503,7 @@
             "Afghanistan"
           ],
           "statut": "conteste",
-          "influence": 41,
+          "influence": 16,
           "tendance": "hausse",
           "civils": {
             "population": 120000000,
@@ -636,11 +636,11 @@
             "Mongolia",
             "Sibérie"
           ],
-          "statut": "perdu",
-          "influence": 81,
+          "statut": "conteste",
+          "influence": 22,
           "tendance": "hausse",
           "civils": {
-            "population": 1450000000,
+            "population": 1490000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~180000000",
             "disparus": "CLASSIFIÉ",
@@ -801,7 +801,7 @@
             "Indian Ocean Ter."
           ],
           "statut": "conteste",
-          "influence": 33,
+          "influence": 14,
           "tendance": "hausse",
           "civils": {
             "population": 680000000,
@@ -1306,7 +1306,8 @@
           "pays": [
             "Canada",
             "Greenland",
-            "St. Pierre and Miquelon"
+            "St. Pierre and Miquelon",
+            "Alaska"
           ],
           "statut": "controle",
           "influence": 1,
@@ -1529,7 +1530,7 @@
             "Chile"
           ],
           "statut": "conteste",
-          "influence": 58,
+          "influence": 24,
           "tendance": "hausse",
           "civils": {
             "population": 130000000,
@@ -1601,8 +1602,8 @@
             "Suriname",
             "Guyane"
           ],
-          "statut": "perdu",
-          "influence": 86,
+          "statut": "conteste",
+          "influence": 45,
           "tendance": "hausse",
           "civils": {
             "population": 250000000,
@@ -1682,7 +1683,7 @@
             "Falkland Is."
           ],
           "statut": "conteste",
-          "influence": 37,
+          "influence": 17,
           "tendance": "hausse",
           "civils": {
             "population": 55000000,
@@ -2777,7 +2778,7 @@
         },
         "as-sinorusse": {
           "statut": "conteste",
-          "influence": 18
+          "influence": 8
         },
         "as-japon": {
           "statut": "controle",
@@ -2821,15 +2822,15 @@
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 22
+          "influence": 10
         },
         "am-amazonien": {
           "statut": "conteste",
-          "influence": 30
+          "influence": 15
         },
         "am-austral": {
           "statut": "conteste",
-          "influence": 10
+          "influence": 5
         },
         "rd-civil": {
           "statut": "controle",
@@ -2958,9 +2959,9 @@
         "kiel": 90,
         "kazan": 80,
         "yokohama": 97,
-        "harbin": 85,
-        "novossibirsk": 88,
-        "singapour": 92,
+        "harbin": 94,
+        "novossibirsk": 96,
+        "singapour": 95,
         "dubai": 97,
         "mumbai": 94,
         "sydney": 100,
@@ -2968,7 +2969,7 @@
         "new-york": 95,
         "mexico": 90,
         "brasilia": 70,
-        "buenos-aires": 90,
+        "buenos-aires": 95,
         "canberra": 100,
         "le-cap": 88
       }
@@ -3012,7 +3013,7 @@
         },
         "as-sinorusse": {
           "statut": "conteste",
-          "influence": 25
+          "influence": 9
         },
         "as-japon": {
           "statut": "controle",
@@ -3020,7 +3021,7 @@
         },
         "as-sudest": {
           "statut": "conteste",
-          "influence": 15
+          "influence": 14
         },
         "oc-australasie": {
           "statut": "controle",
@@ -3056,15 +3057,15 @@
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 30
+          "influence": 14
         },
         "am-amazonien": {
           "statut": "conteste",
-          "influence": 45
+          "influence": 20
         },
         "am-austral": {
           "statut": "conteste",
-          "influence": 14
+          "influence": 8
         },
         "rd-civil": {
           "statut": "controle",
@@ -3193,9 +3194,9 @@
         "kiel": 88,
         "kazan": 70,
         "yokohama": 95,
-        "harbin": 70,
-        "novossibirsk": 78,
-        "singapour": 85,
+        "harbin": 90,
+        "novossibirsk": 93,
+        "singapour": 90,
         "dubai": 95,
         "mumbai": 90,
         "sydney": 100,
@@ -3203,7 +3204,7 @@
         "new-york": 92,
         "mexico": 82,
         "brasilia": 45,
-        "buenos-aires": 82,
+        "buenos-aires": 90,
         "canberra": 99,
         "le-cap": 80
       }
@@ -3239,7 +3240,7 @@
         },
         "as-centre": {
           "statut": "conteste",
-          "influence": 20
+          "influence": 16
         },
         "as-indopak": {
           "statut": "controle",
@@ -3247,7 +3248,7 @@
         },
         "as-sinorusse": {
           "statut": "conteste",
-          "influence": 38
+          "influence": 10
         },
         "as-japon": {
           "statut": "controle",
@@ -3255,7 +3256,7 @@
         },
         "as-sudest": {
           "statut": "conteste",
-          "influence": 18
+          "influence": 14
         },
         "oc-australasie": {
           "statut": "controle",
@@ -3291,15 +3292,15 @@
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 42
+          "influence": 18
         },
         "am-amazonien": {
-          "statut": "perdu",
-          "influence": 66
+          "statut": "conteste",
+          "influence": 30
         },
         "am-austral": {
           "statut": "conteste",
-          "influence": 20
+          "influence": 11
         },
         "rd-civil": {
           "statut": "controle",
@@ -3430,9 +3431,9 @@
         "kiel": 92,
         "kazan": 62,
         "yokohama": 92,
-        "harbin": 52,
-        "novossibirsk": 60,
-        "singapour": 76,
+        "harbin": 85,
+        "novossibirsk": 88,
+        "singapour": 85,
         "dubai": 92,
         "mumbai": 85,
         "sydney": 99,
@@ -3440,7 +3441,7 @@
         "new-york": 89,
         "mexico": 70,
         "brasilia": 22,
-        "buenos-aires": 70,
+        "buenos-aires": 85,
         "canberra": 99,
         "le-cap": 66
       }
@@ -3476,15 +3477,15 @@
         },
         "as-centre": {
           "statut": "conteste",
-          "influence": 41
+          "influence": 16
         },
         "as-indopak": {
           "statut": "controle",
           "influence": 9
         },
         "as-sinorusse": {
-          "statut": "perdu",
-          "influence": 81
+          "statut": "conteste",
+          "influence": 22
         },
         "as-japon": {
           "statut": "controle",
@@ -3492,7 +3493,7 @@
         },
         "as-sudest": {
           "statut": "conteste",
-          "influence": 33
+          "influence": 14
         },
         "oc-australasie": {
           "statut": "controle",
@@ -3528,15 +3529,15 @@
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 58
+          "influence": 24
         },
         "am-amazonien": {
-          "statut": "perdu",
-          "influence": 86
+          "statut": "conteste",
+          "influence": 45
         },
         "am-austral": {
           "statut": "conteste",
-          "influence": 37
+          "influence": 17
         },
         "rd-civil": {
           "statut": "controle",
@@ -3703,9 +3704,9 @@
         "kiel": 94,
         "kazan": 58,
         "yokohama": 88,
-        "harbin": 31,
-        "novossibirsk": 44,
-        "singapour": 66,
+        "harbin": 78,
+        "novossibirsk": 82,
+        "singapour": 80,
         "dubai": 90,
         "mumbai": 79,
         "sydney": 99,
@@ -3713,7 +3714,7 @@
         "new-york": 87,
         "mexico": 46,
         "brasilia": 8,
-        "buenos-aires": 57,
+        "buenos-aires": 80,
         "canberra": 98,
         "le-cap": 71
       }
@@ -3889,95 +3890,61 @@
         {
           "id": "anormal",
           "titre": "Rapport Confédéral sur l'Anormal",
-          "contenu": "Registre tenu par le secteur Recherche & Développement, en application de la Convention d'Alcyon que Sally Weirman a rédigée et que le Conseil a signée à l'unanimité. Chaque anomalie y reçoit l'un des trois usages prévus, civil, confinement ou neutralisation, et depuis le palier Crépuscule les armes anomaliques sont autorisées tant que le Conseil garde la main dessus, ce qui, sur le terrain, reste à vérifier.",
+          "contenu": "Registre tenu par le secteur Recherche & Développement, en application de la Convention d'Alcyon que Sally Weirman a rédigée et que le Conseil a signée à l'unanimité. N'y figurent que les anomalies réellement utilisées, classées en offensives, défensives et restructurations, et depuis le palier Crépuscule les armes anomaliques sont autorisées tant que le Conseil garde la main dessus, ce qui, sur le terrain, reste à vérifier.",
           "journal": [
             {
               "date": "",
-              "anomalie": "Unités Sertannets, contrôle du hasard",
-              "usage": "RECHERCHE",
-              "lieu": "Non consigné",
+              "groupe": "L'Ordre",
+              "anomalie": "Thaumaturgie de combat",
+              "usage": "OFFENSIVE",
+              "lieu": "Fronts anormaux",
               "autorisation": "Non consignée",
-              "resultat": "Travaux en cours pour augmenter la probabilité qu'un événement se produise sur une installation ennemie, ce qui, dit comme ça, a l'air presque raisonnable."
-            },
-            {
-              "date": "",
-              "anomalie": "Architectes du Réel",
-              "usage": "RECHERCHE",
-              "lieu": "Non consigné",
-              "autorisation": "Non consignée",
-              "resultat": "Conception d'armes par altération du Réel."
-            },
-            {
-              "date": "",
-              "anomalie": "Département de l'Irréalité",
-              "usage": "RECHERCHE",
-              "lieu": "Non consigné",
-              "autorisation": "Non consignée",
-              "resultat": "Accès soumis à un score de loyauté d'au moins 99,7 %."
+              "resultat": "Les thaumaturges du Haut-Château sont engagés contre les entités aux côtés de l'Escouade Phoenix et de la Ligue Noire, sans que le détail de leurs interventions ait été versé au registre."
             },
             {
               "date": "8 sept. 2075",
+              "groupe": "Station HCP, opérateur Merrick",
               "anomalie": "HCP (Hate Computer Program)",
-              "usage": "PLANIFICATION",
+              "usage": "DÉFENSIVE",
               "lieu": "Mer du Nord, 2 500 m sous la surface",
               "autorisation": "Opérateur Merrick",
               "resultat": "Réveillée à 22 h 31 par Merrick, la machine avait déjà tout vu depuis trois heures et une minute, et c'est elle qui identifia le Culte de la Vérité Primordiale avant qu'on ait eu le temps de lui poser la question."
             },
             {
-              "date": "8 sept. 2075",
-              "anomalie": "Injecteur d'ichoria frappé du symbole de la Fondation SCP",
-              "usage": "CONFINEMENT",
-              "lieu": "Europe, centres névralgiques",
-              "autorisation": "Non consignée",
-              "resultat": "Retrouvé sur le corps d'un membre du commando qui a frappé les points stratégiques avant de disparaître. HCP juge nulle la probabilité d'une attaque de la Fondation, ce qui laisse l'origine du commando entière, et l'injecteur sans propriétaire."
-            },
-            {
               "date": "9 sept. 2075",
+              "groupe": "Unités sous commandement HCP",
               "anomalie": "HCP (Hate Computer Program)",
-              "usage": "NEUTRALISATION",
+              "usage": "OFFENSIVE",
               "lieu": "Ibérie",
               "autorisation": "Non consignée",
               "resultat": "Le groupement cultiste d'Ibérie fut neutralisé sans une seule perte civile, même si les soldats qui ont exécuté les ordres les ont trouvés étranges. Va savoir ce qu'ils y ont vu."
             },
             {
               "date": "10 sept. 2075",
-              "anomalie": "Plieurs de réalité, Escouade Phoenix",
-              "usage": "NEUTRALISATION",
+              "groupe": "Escouade Phoenix",
+              "anomalie": "Plieurs de réalité",
+              "usage": "OFFENSIVE",
               "lieu": "Fronts anormaux",
               "autorisation": "Ganzir",
               "resultat": "Après 2 145 effectifs perdus face à l'entité détectée à 3 h 30, HCP réclama Ganzir, et l'Escouade Phoenix prit le relais à 13 h 30 pendant que la machine retirait ses troupes des fronts anormaux."
             },
             {
               "date": "12 sept. 2075",
+              "groupe": "Brigade exotique",
               "anomalie": "Drogues de performance et armure Exo-3",
-              "usage": "AUGMENTATION",
+              "usage": "OFFENSIVE",
               "lieu": "Front sud-américain",
               "autorisation": "Non consignée",
-              "resultat": "À T+81 h, 96 % des 45 000 soldats de la brigade exotique étaient traités. Les témoins parlent de soldats qui ne transpirent pas et n'ont pas peur, et à la question \"Êtes-vous humain ?\", l'état-major a répondu que ça dépendait d'où l'on plaçait la limite de l'Homme."
+              "resultat": "À T+81 h, 96 % des 45 000 soldats de la brigade étaient traités. Les témoins parlent de soldats qui ne transpirent pas et n'ont pas peur, et à la question \"Êtes-vous humain ?\", l'état-major a répondu que ça dépendait d'où l'on plaçait la limite de l'Homme."
             },
             {
               "date": "12 sept. 2075",
+              "groupe": "Recherche & Développement, opérateur Merrick",
               "anomalie": "HCP (Hate Computer Program)",
-              "usage": "PLANIFICATION",
+              "usage": "RESTRUCTURATION",
               "lieu": "Ensemble des capteurs de la Confédération",
               "autorisation": "Ganzir",
-              "resultat": "Suite aux calculs de Merrick, qui établissent que HCP a prédit 85 % des mouvements cultistes, déplacements civils compris, la machine obtint l'accès aux topographies et à tous les capteurs. Un psychoactif fut administré à son unité, à sa demande, et plus personne ne l'approche en dehors de Merrick."
-            },
-            {
-              "date": "15 sept. 2075",
-              "anomalie": "Arthur \"le Bon\", plieur de réalité",
-              "usage": "PERTE DE CONTRÔLE",
-              "lieu": "Amérique du Sud",
-              "autorisation": "Sans objet",
-              "resultat": "Ancien plieur de la Confédération perdu au combat, il est revenu à moitié insecte, corrompu par Nargal, à la tête d'une horde d'infectés et d'entités qui écrase les garnisons et fait voler nos propres appareils contre nous."
-            },
-            {
-              "date": "16 sept. 2075",
-              "anomalie": "Izala, plieuse de réalité",
-              "usage": "PERTE DE CONTRÔLE",
-              "lieu": "Sud de la Chine",
-              "autorisation": "Sans objet",
-              "resultat": "Au soir d'un rituel qui a déréglé la météo et les capteurs pendant une journée, Izala mit l'armée en déroute et exigea que la Confédération la vénère. La transmission fut coupée, et aucune réponse n'a été donnée depuis."
+              "resultat": "Suite aux calculs de Merrick, qui établissent que HCP a prédit 85 % des mouvements cultistes, déplacements civils compris, tout le réseau de capteurs et de topographies de la Confédération fut raccordé à la machine. Un psychoactif fut administré à son unité, à sa demande, et plus personne ne l'approche en dehors de Merrick."
             }
           ]
         }
@@ -4221,7 +4188,7 @@
         45.75
       ],
       "district": "as-sinorusse",
-      "etat": 31,
+      "etat": 78,
       "image": "usines",
       "garnison": [
         {
@@ -4241,7 +4208,7 @@
           "effectif": "~4000000"
         }
       ],
-      "description": "Ancien cœur industriel du district sino-russe, aujourd'hui encerclé à l'ouest et au sud, où les usines d'armement tournent sous les bombes parce que les arrêter reviendrait à abandonner la ville. Le fleuve Songhua est gelé, et rouge par endroits, et le ravitaillement n'arrive plus que par Vladivostok."
+      "description": "Ancien cœur industriel du district sino-russe, loin du domaine d'Izala mais pas assez pour dormir tranquille, où les usines d'armement tournent jour et nuit pour le front du sud. Le Songhua charrie déjà des réfugiés venus de là-bas, et depuis que la ville ne répond plus qu'irrégulièrement, les rapports qui en sortent arrivent par le rail, quand ils arrivent."
     },
     {
       "id": "novossibirsk",
@@ -4251,7 +4218,7 @@
         55.03
       ],
       "district": "as-sinorusse",
-      "etat": 44,
+      "etat": 82,
       "image": "prison",
       "garnison": [
         {
@@ -4267,7 +4234,7 @@
           "effectif": "~1200000"
         }
       ],
-      "description": "Principal centre pénitentiaire de la Confédération, dont la moitié des détenus a été transférée vers l'ouest, pendant que l'autre moitié était armée et envoyée sur la ligne. Les cultistes d'Izala tiennent la rive droite de l'Ob, et les deux ponts qui restent sont minés, au cas où."
+      "description": "Principal centre pénitentiaire de la Confédération, à des milliers de kilomètres du front, ce qui n'a pas empêché d'en vider la moitié : une partie des détenus a été transférée vers l'ouest, l'autre armée et envoyée vers le sud. Les ponts sur l'Ob restent sous garde, au cas où, et la ville reçoit chaque semaine plus de réfugiés qu'elle ne peut en loger."
     },
     {
       "id": "singapour",
@@ -4277,7 +4244,7 @@
         1.35
       ],
       "district": "as-sudest",
-      "etat": 66,
+      "etat": 80,
       "image": "port",
       "garnison": [
         {
@@ -4293,7 +4260,7 @@
           "effectif": "~2500000"
         }
       ],
-      "description": "Plaque tournante du commerce maritime du secteur, où le détroit reste ouvert grâce à des patrouilles permanentes, même si le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai. Couvre-feu à 20 h, et contrôle d'identité à chaque pont."
+      "description": "Plaque tournante du commerce maritime du secteur, loin des combats mais pas de leurs arrières, où le détroit reste ouvert grâce à des patrouilles permanentes, même si le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai. Couvre-feu à 20 h, et contrôle d'identité à chaque pont."
     },
     {
       "id": "dubai",
@@ -4482,7 +4449,7 @@
         -34.6
       ],
       "district": "am-austral",
-      "etat": 57,
+      "etat": 80,
       "image": "port",
       "garnison": [
         {
@@ -4502,7 +4469,7 @@
           "effectif": "~5300000"
         }
       ],
-      "description": "Dernier grand port du sud du continent, où les réfugiés du bassin amazonien arrivent par le Río de la Plata, par centaines de milliers. La ville filtre chaque barge, en cherchant la mousse verte sous les ongles et derrière les oreilles, et les tests positifs ne remontent pas à bord."
+      "description": "Dernier grand port du sud du continent, loin du foyer de Nargal mais en aval de tout ce qu'il charrie, où les réfugiés du bassin amazonien arrivent par le Río de la Plata, par centaines de milliers. La ville filtre chaque barge, en cherchant la mousse verte sous les ongles et derrière les oreilles, et les tests positifs ne remontent pas à bord."
     },
     {
       "id": "canberra",
