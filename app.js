@@ -99,7 +99,7 @@
       .on('mousemove', survolSite).on('mouseleave', finSurvol)
       .on('click', (e, x) => { e.stopPropagation(); const [sc, di] = (x.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
     g.filter(x => x.icone !== 'labo').append('g').attr('class', 'embleme').html(EMBLEME);
-    // Intérêt scientifique : erlenmeyer (icône MingCute « flask-line ») sur une pastille
+    // Intérêt scientifique : erlenmeyer (icône MingCute "flask-line") sur une pastille
     const labo = g.filter(x => x.icone === 'labo');
     labo.append('circle').attr('class', 'pastille-labo').attr('r', 10);
     labo.append('path').attr('class', 'labo').attr('transform', 'translate(-7.2,-7.2) scale(0.6)').attr('d', FLASK);
@@ -111,7 +111,7 @@
       .on('mousemove', survolDetruite).on('mouseleave', finSurvol)
       .on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
 
-    // Villes « Too young to die »
+    // Villes "Too young to die"
     const villes = (data.villes || []).filter(v => parId[v.district]).map(v => ({ ...v, p: projection(v.coord) }));
     const gv = L.villes.selectAll('g.ville').data(villes, v => v.id).join(en => {
       const x = en.append('g');
@@ -204,7 +204,7 @@
   }
   const tensionAff = () => etat.replay !== null ? data.historique[etat.replay].tension : data.tension.valeur;
   const zonesAff = () => (etat.replay !== null && data.historique[etat.replay].zones) || data.zones || [];
-  // Dates du RP (« 11 sept. 2075 ») comparables entre elles
+  // Dates du RP ("11 sept. 2075") comparables entre elles
   const MOIS = { janv: 1, févr: 2, fevr: 2, mars: 3, avr: 4, mai: 5, juin: 6, juil: 7, août: 8, aout: 8, sept: 9, oct: 10, nov: 11, déc: 12, dec: 12 };
   const dateVal = t => { const m = /(\d+)\s+([a-zéû]+)\.?\s+(\d{4})/i.exec(t || ''); return m ? +m[3] * 1e4 + (MOIS[m[2].toLowerCase()] || 0) * 100 + +m[1] : Infinity; };
   const dateAff = () => etat.replay !== null ? data.historique[etat.replay].date : data.meta.dateRP;
@@ -651,7 +651,7 @@
       + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '')
       + (detruitesAff().length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
-      + (villesAff().length ? '<li><i class="sw ville"></i>Ville « Too young to die »</li>' : '')
+      + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
       + (villesAff().some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')
       + (L.unites.selectAll('g.pion').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
       + ((data.sites || []).some(x => x.icone === 'labo') ? '<li><svg class="sw-labo" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLASK + '"/></svg>Intérêt scientifique</li>' : '');
@@ -839,7 +839,7 @@
     const filtres = { tous: 'Tous', majeur: 'Majeurs et critiques', critique: 'Critiques' };
     if (etat.filtre === 'majeur') evs = evs.filter(e => e.gravite !== 'mineur');
     if (etat.filtre === 'critique') evs = evs.filter(e => e.gravite === 'critique');
-    // Regroupe les événements par date : on cherche d'abord « quand », puis « quoi »
+    // Regroupe les événements par date : on cherche d'abord "quand", puis "quoi"
     let dernierJour = null;
     const html = evs.length ? evs.map(ev => {
       const entete = ev.date !== dernierJour ? `<h4 class="ev-jour">${esc(ev.date)}</h4>` : '';
@@ -913,7 +913,7 @@
       <p class="ds-supporting">Too young to die · ${esc(d.nom)}, secteur ${esc(s.nom)}</p>
       <div class="etat-ville ${cls}"><div class="ev-chiffre"><strong>${v.etat} %</strong><span class="ds-badge etat ${cls}">${esc(lib)}</span></div>
         <div class="piste" role="img" aria-label="État de la ville : ${v.etat} %"><i style="width:${v.etat}%"></i></div></div></div>
-      <figure class="illu-ville">${VILLES.dessiner(v, zone && zone.couleur)}<figcaption class="ds-supporting">Vue reconstituée à partir des derniers rapports. Plus l'état baisse, plus le signal se dégrade.</figcaption></figure>
+      <figure class="illu-ville">${VILLES.dessiner(v, zone && zone.couleur)}<figcaption class="ds-supporting">Vue reconstituée à partir des derniers rapports, avec un signal qui se dégrade à mesure que la ville tombe, ce qui, pour certaines, ne laisse plus grand-chose à voir.</figcaption></figure>
       <section class="bloc"><h3 class="ds-section-title">Situation</h3><p class="texte-ville">${esc(v.description)}</p></section>
       <section class="bloc"><h3 class="ds-section-title">Garnison présente</h3>
         <div class="tableau"><table class="ds-table"><tbody>${v.garnison.map(u => `<tr><td>${esc(u.nom)}</td><td class="num">${C.fmt(u.effectif)}</td></tr>`).join('')}</tbody>
@@ -923,7 +923,7 @@
 
   function blocVilles(vs) {
     if (!vs.length) return '';
-    return `<section class="bloc"><h3 class="ds-section-title">Villes « Too young to die »</h3><div class="liste">${vs.map(v => {
+    return `<section class="bloc"><h3 class="ds-section-title">Villes "Too young to die"</h3><div class="liste">${vs.map(v => {
       const [lib, cls] = VILLES.niveau(v.etat), d = parId[v.district];
       return `<button class="item" type="button" data-nav="${esc(d._secteur + '/' + d.id + '/' + v.id)}"><span class="t">${esc(v.nom)}</span><span class="ds-badge etat ${cls}">${v.etat} % · ${esc(lib)}</span>
         <span class="mini ville" aria-hidden="true"><i style="width:${v.etat}%"></i></span></button>`;
@@ -1071,7 +1071,7 @@
     const el = $('#archive');
     if (etat.replay === null) { el.hidden = true; return; }
     el.hidden = false;
-    el.innerHTML = `<strong>Archive du ${esc(data.historique[etat.replay].date)}</strong><span>Carte, statuts, villes, tension et événements à cette date.</span>`;
+    el.innerHTML = `<strong>Archive du ${esc(data.historique[etat.replay].date)}</strong><span>La carte telle qu'elle était à cette date, avec ses statuts, ses villes, sa tension et ses événements.</span>`;
   }
 
   $('#titre').textContent = data.meta.titre;

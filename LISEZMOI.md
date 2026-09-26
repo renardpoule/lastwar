@@ -20,7 +20,7 @@ Les fichiers sont déjà sur le dépôt GitHub `renardpoule/lastwar`.
 3. Une à deux minutes plus tard, la carte est en ligne à l'adresse
    `https://renardpoule.github.io/lastwar/`.
 
-### 3. Créer le jeton de publication (pour le bouton « Publier »)
+### 3. Créer le jeton de publication (pour le bouton "Publier")
 1. GitHub → photo de profil → **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
 2. Nom : `carte`. Expiration : au choix (un an, par exemple).
 3. *Repository access* : **Only select repositories**, puis choisissez `lastwar`.
@@ -33,7 +33,7 @@ La page `admin.html` est publique, mais sans jeton elle ne peut rien publier.
 
 ### 4. (Optionnel) Annonces Discord
 Salon Discord → **Modifier le salon → Intégrations → Webhooks → Nouveau webhook → Copier l'URL**.
-Collez l'URL dans **Réglages → Annonces Discord** et cliquez sur « Envoyer un message de test ».
+Collez l'URL dans **Réglages → Annonces Discord** et cliquez sur "Envoyer un message de test".
 
 ---
 
@@ -52,14 +52,14 @@ mais la vraie barrière contre toute modification de la carte reste le jeton Git
 3. **Événements** : ajoutez ce qui s'est passé (portée, gravité, conséquences, effet sur la tension).
 4. **Districts** : ajustez statut, influence cultiste, effectifs et pertes des zones touchées.
 5. **Situation** : réglez la tension et la distorsion si besoin.
-6. **Villes** : état (0 à 100 %) et garnison des villes « Too young to die ». L'état colore le point et déforme l'illustration.
+6. **Villes** : état (0 à 100 %) et garnison des villes "Too young to die". L'état colore le point et déforme l'illustration.
 7. **Zones** : zones cultistes et zones détruites (frappes, bombardements).
 8. **Dossiers** : textes de la page Secteurs.
 9. Cliquez sur **Publier**. La carte se met à jour pour tout le monde en une à deux minutes.
 
 Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans le navigateur.
 
-**Chiffres** : `12000` · `~12000` (estimation, affichée « ~12 000 ») · `?` ou `CLASSIFIÉ` (donnée masquée).
+**Chiffres** : `12000` · `~12000` (estimation, affichée "~12 000") · `?` ou `CLASSIFIÉ` (donnée masquée).
 
 **Liens partageables** : chaque zone a sa propre adresse, par exemple
 `…/lastwar/#europe/eu-est` ouvre directement le District de l'Est, `…/lastwar/#europe/eu-est/kazan` la fiche de Kazan,
@@ -67,4 +67,4 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 
 **Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main.
 
-**Sans jeton GitHub** : cliquez sur « Télécharger data.json » dans l'admin, puis dans le dépôt GitHub utilisez **Add file → Upload files** pour remplacer `data.json`.
+**Sans jeton GitHub** : cliquez sur "Télécharger data.json" dans l'admin, puis dans le dépôt GitHub utilisez **Add file → Upload files** pour remplacer `data.json`.

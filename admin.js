@@ -150,7 +150,7 @@
   function vueSituation() {
     return `
     <section class="ds-card carte"><h2 class="ds-section-title">Date du RP</h2>
-      <p class="ds-supporting aide">La date affichée en haut de la carte. Changez-la à chaque nouveau « tour » du conflit : elle sert aussi de repère dans la chronologie.</p>
+      <p class="ds-supporting aide">La date affichée en haut de la carte. Changez-la à chaque nouveau "tour" du conflit : elle sert aussi de repère dans la chronologie.</p>
       <div class="grille"><label class="champ"><span>Date actuelle</span><input data-bind="meta.dateRP"></label></div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Tension mondiale</h2>
@@ -287,7 +287,7 @@
     else if (t.id === 'annulerEv') { evEdite = null; rendre(); }
     else if (ds.evSuppr !== undefined) {
       const ev = data.evenements[+ds.evSuppr];
-      if (!confirm(`Supprimer « ${ev.titre} » ?`)) return;
+      if (!confirm(`Supprimer "${ev.titre}" ?`)) return;
       data.evenements.splice(+ds.evSuppr, 1);
       // Garde la chronologie cohérente
       data.historique.forEach(h => { if (h.evenements > +ds.evSuppr) h.evenements--; });
@@ -333,7 +333,7 @@
     }
     else if (ds.supprZone !== undefined) {
       const z = data.zones[+ds.supprZone];
-      if (!confirm(`Supprimer « ${z.nom} » ?`)) return;
+      if (!confirm(`Supprimer "${z.nom}" ?`)) return;
       data.zones.splice(+ds.supprZone, 1); modifie(); rendre();
     }
     else if (t.id === 'ajoutDetruite') {
@@ -342,7 +342,7 @@
     }
     else if (ds.supprDetruite !== undefined) {
       const z = data.detruites[+ds.supprDetruite];
-      if (!confirm(`Supprimer « ${z.nom} » ?`)) return;
+      if (!confirm(`Supprimer "${z.nom}" ?`)) return;
       data.detruites.splice(+ds.supprDetruite, 1); modifie(); rendre();
     }
     else if (t.id === 'ajoutVille') {
@@ -351,7 +351,7 @@
     }
     else if (ds.supprVille !== undefined) {
       const v = data.villes[+ds.supprVille];
-      if (!confirm(`Supprimer « ${v.nom} » ?`)) return;
+      if (!confirm(`Supprimer "${v.nom}" ?`)) return;
       data.villes.splice(+ds.supprVille, 1); modifie(); rendre();
     }
     else if (ds.ajoutGarnison !== undefined) {
@@ -375,7 +375,7 @@
     }
     else if (ds.supprPage) {
       const [sid, j] = ds.supprPage.split(':'), pg = data.dossiers[sid].pages[+j];
-      if (!confirm(`Supprimer le dossier « ${pg.titre} » ?`)) return;
+      if (!confirm(`Supprimer le dossier "${pg.titre}" ?`)) return;
       data.dossiers[sid].pages.splice(+j, 1); modifie(); rendre();
     }
     else if (t.id === 'ajoutSecteur') {
@@ -496,7 +496,7 @@
         <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-zone="${i}">Supprimer la zone</button></div>
       </div></section>`).join('')}
       <section class="ds-card carte"><h2 class="ds-section-title">Zones détruites</h2>
-      <p class="ds-supporting aide">Frappes, bombardements, rasages. Dessinées en brûlé sur la carte, avec la légende « Zone détruite ».</p>
+      <p class="ds-supporting aide">Frappes, bombardements, rasages. Dessinées en brûlé sur la carte, avec la légende "Zone détruite".</p>
       <div class="ligne"><button class="ds-btn ds-btn-primary" type="button" id="ajoutDetruite">Ajouter une zone détruite</button></div></section>
       ${(data.detruites ||= []).map((z, i) => `<section class="ds-card carte"><div class="grille">
         <label class="champ"><span>Nom</span><input data-bind="detruites.${i}.nom"></label>
@@ -511,12 +511,12 @@
       <datalist id="dieuxConnus">${[...new Set(data.zones.map(z => z.dieu).filter(Boolean))].map(n => `<option value="${esc(n)}">`).join('')}</datalist>`;
   }
 
-  // ---------- Villes « Too young to die » ----------
+  // ---------- Villes "Too young to die" ----------
   const IMAGES_VILLE = { tours: 'Tours', port: 'Port', caserne: 'Caserne / aérodrome', labo: 'Laboratoires', hopital: 'Hôpital', ruines: 'Remparts', pagode: 'Pagode', usines: 'Usines', prison: 'Prison', opera: 'Opéra', capitole: 'Capitole', infectee: 'Infectée' };
   function vueVilles() {
     data.villes ||= [];
     const optD = sel => data.secteurs.filter(s => s.geographique !== false).map(s => `<optgroup label="${esc(s.nom)}">${s.districts.map(d => `<option value="${d.id}" ${d.id === sel ? 'selected' : ''}>${esc(d.nom)}</option>`).join('')}</optgroup>`).join('');
-    return `<section class="ds-card carte"><h2 class="ds-section-title">Villes « Too young to die »</h2>
+    return `<section class="ds-card carte"><h2 class="ds-section-title">Villes "Too young to die"</h2>
       <p class="ds-supporting aide">L'état va de 0 (tombée) à 100 (intacte). Il colore le point sur la carte et déforme l'illustration de la ville.</p>
       <div class="ligne"><button class="ds-btn ds-btn-primary" type="button" id="ajoutVille">Ajouter une ville</button></div></section>
       ${data.villes.map((v, i) => `<section class="ds-card carte"><h3>${esc(v.nom)}</h3><div class="grille">
@@ -541,7 +541,7 @@
   function vueDossiers() {
     data.dossiers ||= {};
     return `<section class="ds-card carte"><h2 class="ds-section-title">Dossiers des secteurs</h2>
-      <p class="ds-supporting aide">Affichés sur la page Secteurs. Mise en forme : une ligne « ## Titre » pour un intertitre, « - » en début de ligne pour une puce, une ligne vide entre deux paragraphes.</p></section>
+      <p class="ds-supporting aide">Affichés sur la page Secteurs. Mise en forme : une ligne "## Titre" pour un intertitre, "-" en début de ligne pour une puce, une ligne vide entre deux paragraphes.</p></section>
       ${data.secteurs.filter(s => s.geographique === false).map(s => {
         const d = data.dossiers[s.id] ||= { resume: '', pages: [{ id: 'overview', titre: "Vue d'ensemble", contenu: '' }] };
         return `<section class="ds-card carte"><h3>${esc(s.nom)}</h3>
@@ -569,7 +569,7 @@
   // ---------- Secteurs ----------
   function vueSecteurs() {
     return `<section class="ds-card carte"><h2 class="ds-section-title">Secteurs</h2>
-      <p class="ds-supporting aide">Un secteur « hors carte » (non géographique) apparaît dans les listes de la carte avec ses districts, sans zone dessinée.</p>
+      <p class="ds-supporting aide">Un secteur "hors carte" (non géographique) apparaît dans les listes de la carte avec ses districts, sans zone dessinée.</p>
       <button class="ds-btn ds-btn-outline" id="ajoutSecteur">+ Nouveau secteur</button></section>
       ${data.secteurs.map((s, i) => `<section class="ds-card carte">
         <div class="grille">
@@ -588,7 +588,7 @@
     const P = data.tension.paliers;
     return `
     <section class="ds-card carte"><h2 class="ds-section-title">Publication GitHub</h2>
-      <p class="ds-supporting aide">Le bouton « Publier » envoie data.json sur votre dépôt GitHub : la carte se met à jour pour tout le monde en une à deux minutes. Ces informations restent dans <strong>ce navigateur uniquement</strong>.</p>
+      <p class="ds-supporting aide">Le bouton "Publier" envoie data.json sur votre dépôt GitHub : la carte se met à jour pour tout le monde en une à deux minutes. Ces informations restent dans <strong>ce navigateur uniquement</strong>.</p>
       <div class="grille">
         <label class="champ"><span>Compte GitHub</span><input id="cfgOwner" value="${esc(config.owner || '')}"></label>
         <label class="champ"><span>Dépôt</span><input id="cfgRepo" value="${esc(config.repo || '')}"></label>
@@ -607,7 +607,7 @@
       <div class="ligne" style="margin-top:0.75rem"><button class="ds-btn ds-btn-outline" type="button" id="changerAcces">Changer les accès</button></div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Annonces Discord</h2>
-      <p class="ds-supporting aide">Webhook d'un salon Discord (Paramètres du salon → Intégrations → Webhooks). Les événements cochés « Annoncer » y sont postés à la publication, ainsi que les changements de palier de tension.</p>
+      <p class="ds-supporting aide">Webhook d'un salon Discord (Paramètres du salon → Intégrations → Webhooks). Les événements cochés "Annoncer" y sont postés à la publication, ainsi que les changements de palier de tension.</p>
       <div class="grille">
         <label class="champ large"><span>URL du webhook</span><input id="cfgWebhook" type="password" value="${esc(config.webhook || '')}" autocomplete="off"></label>
         <label class="champ large"><span>Adresse publique de la carte</span><input id="cfgSite" value="${esc(config.site || '')}" placeholder="https://pseudo.github.io/front-des-cendres/"><small>Pour les liens dans les messages Discord.</small></label>
@@ -615,7 +615,7 @@
       <div class="ligne" style="margin-top:12px"><button class="ds-btn ds-btn-outline" id="testDiscord">Envoyer un message de test</button></div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Paliers de tension</h2>
-      <p class="ds-supporting aide">« Seuil » = tension à partir de laquelle le palier s'active. « Minutes » = temps avant minuit affiché sur l'horloge.</p>
+      <p class="ds-supporting aide">"Seuil" = tension à partir de laquelle le palier s'active. "Minutes" = temps avant minuit affiché sur l'horloge.</p>
       ${P.map((p, i) => `<div class="grille" style="grid-template-columns:70px 1fr 90px 90px 40px;margin-bottom:8px;align-items:end">
         <div class="champ"><span>Palier</span><div class="palier-num">${i + 1}</div></div>
         <label class="champ"><span>Nom</span><input data-bind="tension.paliers.${i}.nom"></label>
@@ -629,7 +629,7 @@
       ${Object.keys(data.statuts).map(k => `<label class="champ"><span>Statut · ${k}</span><input data-bind="statuts.${k}"></label>`).join('')}
     </div></section>
     <section class="ds-card carte"><h2 class="ds-section-title">Chronologie (${data.historique.length} points)</h2>
-      <p class="ds-supporting aide">Chaque publication peut enregistrer un point : la carte peut ensuite « rejouer » le conflit avec le curseur du bas.</p>
+      <p class="ds-supporting aide">Chaque publication peut enregistrer un point : la carte peut ensuite "rejouer" le conflit avec le curseur du bas.</p>
       <div class="hist">${data.historique.map((h, i) => `<div><span class="d">${esc(h.date)}</span><span class="ds-supporting">Tension ${h.tension} · ${h.evenements} év.</span>
         <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-suppr-hist="${i}">✕</button></div>`).reverse().join('') || '<div class="vide">Aucun point.</div>'}</div>
     </section>
@@ -765,7 +765,7 @@
     dlg.innerHTML = `<button class="ds-btn ds-btn-ghost ds-btn-sm fermer" type="button" onclick="this.closest('dialog').close()" aria-label="Fermer">${C.ICONES.close}</button>
       <h2 class="ds-display" id="pubTitre">Publier la mise à jour</h2>
       <p class="ds-supporting">La carte sera à jour pour tous les joueurs d'ici une à deux minutes.</p>
-      <label class="case"><input type="checkbox" id="pSnap" checked> ${memeDate ? `Mettre à jour le point de chronologie « ${esc(data.meta.dateRP)} »` : `Ajouter un point de chronologie « ${esc(data.meta.dateRP)} »`}</label>
+      <label class="case"><input type="checkbox" id="pSnap" checked> ${memeDate ? `Mettre à jour le point de chronologie "${esc(data.meta.dateRP)}"` : `Ajouter un point de chronologie "${esc(data.meta.dateRP)}"`}</label>
       <h3 class="ds-section-title sous-titre">Annonces Discord</h3>${config.webhook ? '' : '<p class="ds-supporting">Aucun webhook configuré : rien ne sera annoncé.</p>'}
       <div class="pub-liste">
         ${aAnnoncer.map(e => `<label class="case"><input type="checkbox" class="pAnn" value="${e.id}" ${config.webhook ? 'checked' : 'disabled'}> <span class="ds-badge grav ${e.gravite}">${esc(C.GRAVITES[e.gravite])}</span> ${esc(e.titre)}</label>`).join('')}
@@ -798,7 +798,7 @@
         note('data.json publié sur GitHub');
       } catch (e) {
         note(e.message, false);
-        note('Rien n\'a été publié. Vous pouvez aussi « Télécharger data.json » et le déposer vous-même sur GitHub.', false);
+        note('Rien n\'a été publié. Vous pouvez aussi "Télécharger data.json" et le déposer vous-même sur GitHub.', false);
         $('#pGo').disabled = false;
         return;
       }

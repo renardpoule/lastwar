@@ -1,4 +1,4 @@
-// Illustrations des villes « Too young to die » : une vue dessinée à partir de la description,
+// Illustrations des villes "Too young to die" : une vue dessinée à partir de la description,
 // déformée selon l'état de la ville (100 % = intacte, 0 % = tombée).
 const VILLES = (() => {
   // Générateur pseudo-aléatoire stable : même ville, même dessin

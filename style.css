@@ -226,7 +226,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .embleme.petit{transform:scale(.72)}
 .detruite{fill:url(#brulure);stroke:var(--detruit-coeur);stroke-width:1;stroke-dasharray:2 2;vector-effect:non-scaling-stroke;cursor:pointer}
 .sw.detruite{background:radial-gradient(circle,var(--detruit-coeur),var(--detruit));box-shadow:inset 0 0 0 0.0625rem var(--detruit-coeur)}
-/* Villes « Too young to die » : la couleur du point suit l'état */
+/* Villes "Too young to die" : la couleur du point suit l'état */
 .ville{cursor:pointer;--vc:var(--texte-ok)}
 .ville.moyen{--vc:var(--st-quarantaine)}.ville.grave{--vc:var(--st-conteste)}.ville.critique{--vc:var(--st-perdu)}
 .ville .v-point{fill:var(--vc);stroke:var(--ocean);stroke-width:1.6}

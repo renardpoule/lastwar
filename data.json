@@ -58,7 +58,7 @@
       "id": "europe",
       "nom": "Europe",
       "geographique": true,
-      "note": "Directrice adjointe : Sally Weirman. Situation réglée depuis le 19 septembre, au prix d'environ 10 millions de morts.",
+      "note": "Directrice adjointe : Sally Weirman. Suite aux combats de la mi-septembre, la situation est réglée depuis le 19, au prix d'environ 10 millions de morts, ce qui, vu d'ici, passe presque pour une bonne nouvelle.",
       "districts": [
         {
           "id": "eu-nord",
@@ -114,7 +114,7 @@
               "disparus": "?"
             }
           },
-          "note": "Gotland, capitale du secteur Recherche & Développement, n'a pas été touchée.",
+          "note": "Gotland, capitale du secteur Recherche & Développement, n'a pas été touchée, et vu ce qu'elle abrite, c'est probablement ce qui compte le plus aux yeux du Conseil.",
           "label": [
             18,
             64
@@ -188,7 +188,7 @@
               "disparus": "?"
             }
           },
-          "note": "Kazan reste la seule grande ville debout près de l'Oural.",
+          "note": "Kazan reste la seule grande ville encore debout près de l'Oural, et tout ce qui fuit l'est finit par passer par elle.",
           "label": [
             42,
             55
@@ -196,7 +196,7 @@
           "quarantaine": false,
           "air": {
             "niveau": "totale",
-            "note": "Poches cultistes écrasées ; l'aviation confédérée opère sans opposition."
+            "note": "Une fois les poches cultistes écrasées, l'aviation confédérée a pu opérer sans opposition."
           }
         },
         {
@@ -255,11 +255,11 @@
               "disparus": "?"
             }
           },
-          "note": "Zurich : la milice populaire du quartier résidentiel a tenu le contact quarante minutes aux côtés de l'armée. Dix-neuf cultistes tués, quatre miliciens morts. Les districts Rhénan et Alpin n'ont signalé aucun cultiste.",
+          "note": "À Zurich, la milice populaire du quartier résidentiel a tenu le contact quarante minutes aux côtés de l'armée, pour dix-neuf cultistes tués et quatre miliciens morts. Plus au nord et dans les Alpes, les districts Rhénan et Alpin n'ont signalé aucun cultiste, ce qui les arrange bien.",
           "quarantaine": false,
           "air": {
             "niveau": "totale",
-            "note": "Menace aérienne nulle après l'élimination des dernières poches."
+            "note": "Menace aérienne nulle depuis l'élimination des dernières poches."
           }
         },
         {
@@ -392,11 +392,11 @@
               "disparus": "?"
             }
           },
-          "note": "Ibérie : le groupement cultiste a été neutralisé par HCP sans perte civile.",
+          "note": "En Ibérie, le groupement cultiste a été neutralisé par HCP sans une seule perte civile, avec des ordres que les soldats ont trouvés étranges, sur le moment du moins.",
           "quarantaine": false,
           "air": {
             "niveau": "totale",
-            "note": "Espace aérien couvert par les unités d'HCP."
+            "note": "L'espace aérien est couvert par les unités d'HCP."
           }
         }
       ],
@@ -419,7 +419,7 @@
       "id": "asie",
       "nom": "Asie",
       "geographique": true,
-      "note": "Conseillère : Mlle Mori « Kodo » Kumano. Capitale : Yokohama. Front le plus critique avec l'Amérique du Sud.",
+      "note": "Conseillère : Mlle Mori \"Kodo\" Kumano. Capitale : Yokohama. Avec l'Amérique du Sud, c'est le front le plus critique de la Confédération, et de loin le plus imprévisible.",
       "districts": [
         {
           "id": "as-moyen-orient",
@@ -484,7 +484,7 @@
               "disparus": "?"
             }
           },
-          "note": "Capitales économiques : Dubaï, Riyad (ressources militaires), Téhéran (recherche).",
+          "note": "Capitales économiques : Dubaï, Riyad pour les ressources militaires et Téhéran pour la recherche.",
           "quarantaine": false,
           "air": {
             "niveau": "totale",
@@ -554,11 +554,11 @@
               "disparus": "?"
             }
           },
-          "note": "Bichkek abrite la principale école de formation militaire du secteur.",
+          "note": "Bichkek abrite la principale école de formation militaire du secteur, ce qui, par les temps qui courent, en fait une cible autant qu'un atout.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
-            "note": "Le groupe organisé dispose de soutiens blindés, mais d'aucune aviation."
+            "note": "Le groupe organisé dispose de soutiens blindés, mais d'aucune aviation, pour l'instant."
           }
         },
         {
@@ -687,7 +687,7 @@
                 "effectif": "?"
               },
               {
-                "nom": "Izala « la Déesse » (plieuse de réalité)",
+                "nom": "Izala \"la Déesse\" (plieuse de réalité)",
                 "effectif": 1
               }
             ]
@@ -704,7 +704,7 @@
               "disparus": "?"
             }
           },
-          "note": "Les cultistes retranchés dans une ville chinoise en sont ressortis après le rituel, menés par Izala. Enlèvements, tortures et cas de cannibalisme rapportés par les témoins. Harbin et Vladivostok ne répondent plus régulièrement.",
+          "note": "Après le rituel, les cultistes retranchés dans une ville chinoise en sont ressortis, menés par Izala, et les témoins parlent d'enlèvements, de tortures et de cannibalisme. Harbin et Vladivostok ne répondent plus que de manière irrégulière, ce qui n'a rien de rassurant.",
           "label": [
             104,
             50
@@ -712,7 +712,7 @@
           "quarantaine": false,
           "air": {
             "niveau": "contestee",
-            "note": "Les cultistes pillent les réserves d'armes et cherchent à remettre en service des arsenaux. Tempête et brouillage liés au rituel d'Izala."
+            "note": "Les cultistes pillent les réserves d'armes et cherchent à remettre des arsenaux en service, pendant que la tempête et le brouillage laissés par le rituel d'Izala gênent tout le reste."
           }
         },
         {
@@ -772,7 +772,7 @@
               "disparus": "?"
             }
           },
-          "note": "Capitale du secteur : Yokohama. Le Site-45 reconverti y protège la recherche en IA et robotique.",
+          "note": "Capitale du secteur : Yokohama, où le Site-45 reconverti protège la recherche en IA et en robotique.",
           "label": [
             137,
             37
@@ -848,11 +848,11 @@
               "disparus": "?"
             }
           },
-          "note": "Manille, siège d'espionnage du secteur, reste tenue. Baguio, où tout a commencé en mai, est à 250 km au nord.",
+          "note": "Manille, siège d'espionnage du secteur, tient toujours, alors que Baguio, où tout a commencé en mai, n'est qu'à 250 km au nord.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
-            "note": "Un commando cultiste harcèle les arrières ; pas d'aviation adverse."
+            "note": "Un commando cultiste harcèle les arrières, sans aviation adverse pour le soutenir."
           }
         }
       ],
@@ -875,7 +875,7 @@
       "id": "oceanie",
       "nom": "Océanie",
       "geographique": true,
-      "note": "Environ 75,5 millions d'habitants. Aucun cultiste signalé.",
+      "note": "Environ 75,5 millions d'habitants, et aucun cultiste signalé à ce jour, ce qui fait de l'Océanie le secteur le plus calme de la Confédération. Pour l'instant.",
       "districts": [
         {
           "id": "oc-australasie",
@@ -925,7 +925,7 @@
               "disparus": 0
             }
           },
-          "note": "Capitale : Canberra. Le QG du secteur Santé se trouve à Sydney.",
+          "note": "Capitale : Canberra. Le QG du secteur Santé, lui, se trouve à Sydney.",
           "quarantaine": false,
           "air": {
             "niveau": "totale",
@@ -976,7 +976,7 @@
               "disparus": 0
             }
           },
-          "note": "District spécial : armée, trafic économique, prisons. Capitale : Wellington.",
+          "note": "District spécial, entre armée, trafic économique et prisons. Capitale : Wellington.",
           "label": [
             172,
             -42
@@ -1032,7 +1032,7 @@
               "disparus": 0
             }
           },
-          "note": "Capitale : Suva. Le réacteur à eau lourde de Port Moresby fournit plus de 20 % de l'électricité du secteur.",
+          "note": "Capitale : Suva. Le réacteur à eau lourde de Port Moresby fournit à lui seul plus de 20 % de l'électricité du secteur.",
           "label": [
             152,
             -7
@@ -1090,7 +1090,7 @@
               "disparus": 0
             }
           },
-          "note": "Capitale : Agana. Alimentation.",
+          "note": "Capitale : Agana. Le district assure l'alimentation du secteur.",
           "label": [
             150,
             10
@@ -1149,7 +1149,7 @@
               "disparus": 0
             }
           },
-          "note": "Capitale : Apia. Matières premières.",
+          "note": "Capitale : Apia. Le district fournit les matières premières du secteur.",
           "label": [
             -160,
             -15
@@ -1180,7 +1180,7 @@
       "id": "afrique",
       "nom": "Afrique",
       "geographique": true,
-      "note": "Secteur sans conseiller. Rasé le 11 septembre : les cultistes y ont été anéantis. Le continent reste sous contrôle confédéré, en quarantaine.",
+      "note": "Secteur sans conseiller. Rasé le 11 septembre, les cultistes y ont été anéantis, et le continent reste sous contrôle confédéré, en quarantaine, même si \"contrôle\" est un grand mot pour ce qu'il en reste.",
       "districts": [
         {
           "id": "af-cote",
@@ -1220,10 +1220,10 @@
               "disparus": "?"
             }
           },
-          "note": "Bande littorale du continent, îles comprises (Madagascar, La Réunion, Mayotte…). Tenue par la Confédération, hors quarantaine : les ports servent de sas vers l'intérieur.",
+          "note": "Bande littorale du continent, îles comprises, de Madagascar à La Réunion en passant par Mayotte. Tenue par la Confédération et sortie de la quarantaine, elle sert de sas vers l'intérieur par ses ports.",
           "air": {
             "niveau": "totale",
-            "note": "Continent rasé depuis le ciel ; plus aucune opposition."
+            "note": "Le continent a été rasé depuis le ciel, et il n'y reste plus aucune opposition."
           },
           "label": [
             -11.5,
@@ -1268,10 +1268,10 @@
               "disparus": "?"
             }
           },
-          "note": "Tout l'intérieur des terres. Zone irradiée, tenue par la Confédération, sous quarantaine.",
+          "note": "Tout l'intérieur des terres, irradié, tenu par la Confédération et placé sous quarantaine.",
           "air": {
             "niveau": "totale",
-            "note": "Continent rasé depuis le ciel ; plus aucune opposition."
+            "note": "Le continent a été rasé depuis le ciel, et il n'y reste plus aucune opposition."
           },
           "label": [
             22,
@@ -1347,7 +1347,7 @@
               "disparus": 0
             }
           },
-          "note": "Représentante : Mme Cindy Tremblay. Capitale : Ottawa. Production de véhicules militaires.",
+          "note": "Représentante : Mme Cindy Tremblay. Capitale : Ottawa. Le district produit les véhicules militaires du secteur.",
           "label": [
             -100,
             60
@@ -1417,7 +1417,7 @@
               "disparus": "?"
             }
           },
-          "note": "Psychose : rumeurs d'agents mémétiques dans l'eau, officiers accusés d'être cultistes. La plupart des personnes lynchées l'ont été sur simple soupçon.",
+          "note": "La psychose s'installe, entre rumeurs d'agents mémétiques dans l'eau et officiers accusés d'être cultistes, et la plupart des personnes lynchées l'ont été sur simple soupçon.",
           "label": [
             -99,
             39
@@ -1425,7 +1425,7 @@
           "quarantaine": false,
           "air": {
             "niveau": "totale",
-            "note": "Foyers de maladie maîtrisés ; espace aérien sous contrôle d'HCP."
+            "note": "Les foyers de maladie sont maîtrisés, et l'espace aérien est sous le contrôle d'HCP."
           }
         },
         {
@@ -1511,11 +1511,11 @@
               "disparus": "?"
             }
           },
-          "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme.",
+          "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme, ce qui était, à vrai dire, une question de temps.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
-            "note": "Quelques appareils volés aperçus en provenance du sud."
+            "note": "Quelques appareils volés ont été aperçus en provenance du sud."
           }
         },
         {
@@ -1584,11 +1584,11 @@
               "disparus": "?"
             }
           },
-          "note": "96 % de la brigade exotique a reçu des drogues de performance et une armure Exo-3.",
+          "note": "96 % de la brigade exotique a reçu des drogues de performance et une armure Exo-3, et d'après les témoins, ça se voit.",
           "quarantaine": false,
           "air": {
             "niveau": "contestee",
-            "note": "Surveillance par satellites géostationnaires, mais l'aviation cultiste volée opère depuis le bassin amazonien."
+            "note": "Les satellites géostationnaires surveillent le secteur, mais l'aviation cultiste, volée, opère depuis le bassin amazonien."
           }
         },
         {
@@ -1648,7 +1648,7 @@
                 "effectif": "?"
               },
               {
-                "nom": "Arthur « le Bon » (plieur de réalité)",
+                "nom": "Arthur \"le Bon\" (plieur de réalité)",
                 "effectif": 1
               }
             ]
@@ -1665,11 +1665,11 @@
               "disparus": "?"
             }
           },
-          "note": "La jungle vire au marécage sous l'effet des pathogènes. Des aérodromes sont tombés : les cultistes volent nos propres appareils.",
+          "note": "Sous l'effet des pathogènes, la jungle vire au marécage, et depuis que des aérodromes sont tombés, les cultistes font voler nos propres appareils.",
           "quarantaine": false,
           "air": {
             "niveau": "perdue",
-            "note": "Aérodromes tombés : les cultistes font voler nos propres appareils, modifiés. Pertes de l'aviation confédérée."
+            "note": "Les aérodromes sont tombés, si bien que les cultistes font voler nos propres appareils, modifiés, et l'aviation confédérée y laisse des plumes."
           }
         },
         {
@@ -1729,7 +1729,7 @@
               "disparus": "?"
             }
           },
-          "note": "L'infection remonte les cours d'eau depuis le bassin amazonien.",
+          "note": "L'infection remonte les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
@@ -1756,7 +1756,7 @@
       "id": "rd",
       "nom": "Recherche & Développement",
       "geographique": false,
-      "note": "Conseillère : Mlle Sally Weirman. Dirigé depuis Gotland.",
+      "note": "Conseillère : Mlle Sally Weirman, qui dirige le secteur depuis Gotland.",
       "districts": [
         {
           "id": "rd-civil",
@@ -1788,7 +1788,7 @@
               "disparus": 0
             }
           },
-          "note": "Responsable : M. Marco Tanaka. Dirigé depuis Zurich.",
+          "note": "Responsable : M. Marco Tanaka. Le district est dirigé depuis Zurich.",
           "quarantaine": false
         },
         {
@@ -1821,7 +1821,7 @@
               "disparus": 0
             }
           },
-          "note": "Responsable : Mme Nora Lang. Dirigé depuis l'île d'Okinotori-shima.",
+          "note": "Responsable : Mme Nora Lang. Le district est dirigé depuis l'île d'Okinotori-shima.",
           "quarantaine": false
         },
         {
@@ -1859,7 +1859,7 @@
               "disparus": 0
             }
           },
-          "note": "Station immergée à 2 500 m, au large d'une île au nord de l'Islande. Opérateur : Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération. Il a prédit 85 % des mouvements cultistes. Personne ne doit l'approcher.",
+          "note": "Station immergée à 2 500 m, au large d'une île au nord de l'Islande, sous la responsabilité de l'opérateur Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération, après avoir prédit 85 % des mouvements cultistes. Personne ne doit l'approcher, et pour une fois, personne ne s'en plaint.",
           "quarantaine": false
         },
         {
@@ -1897,7 +1897,7 @@
               "disparus": 0
             }
           },
-          "note": "Sous le Commandant Heir. Position secrète, maintenance à Zeebrugge.",
+          "note": "Placée sous le Commandant Heir, la flotte garde sa position secrète et revient se faire entretenir à Zeebrugge.",
           "quarantaine": false
         }
       ]
@@ -1906,7 +1906,7 @@
       "id": "renseignement",
       "nom": "Renseignement",
       "geographique": false,
-      "note": "Conseiller : Miroslav Mikhaïl Perković, dit « Rosenrad ». Coordonne les opérations de Phoenix depuis 2075.",
+      "note": "Conseiller : Miroslav Mikhaïl Perković, dit \"Rosenrad\", qui coordonne les opérations de Phoenix depuis 2075.",
       "districts": [
         {
           "id": "re-smc",
@@ -1938,7 +1938,7 @@
               "disparus": 0
             }
           },
-          "note": "Siège : Nouvelle-Luxembourg. Ne répond qu'au Conseil.",
+          "note": "Siège : Nouvelle-Luxembourg. Le Service ne répond qu'au Conseil, et à personne d'autre.",
           "quarantaine": false
         },
         {
@@ -1976,7 +1976,7 @@
               "disparus": 0
             }
           },
-          "note": "Commandé par le Colonel « Zyiag ». Dépend à la fois de l'Armée et du Renseignement.",
+          "note": "Commandé par le Colonel \"Zyiag\", le bataillon dépend à la fois de l'Armée et du Renseignement.",
           "quarantaine": false
         }
       ]
@@ -2017,7 +2017,7 @@
               "disparus": 0
             }
           },
-          "note": "District de Contestation et de Conformité Législative. Comprend le Comité Phénix.",
+          "note": "District de Contestation et de Conformité Législative, dont dépend le Comité Phénix.",
           "quarantaine": false
         },
         {
@@ -2050,7 +2050,7 @@
               "disparus": 0
             }
           },
-          "note": "Divisions pénale et familiale. Les prisonniers de guerre passent devant un tribunal militaire.",
+          "note": "Divisions pénale et familiale. Les prisonniers de guerre, eux, passent devant un tribunal militaire.",
           "quarantaine": false
         },
         {
@@ -2125,7 +2125,7 @@
       "id": "armee",
       "nom": "Armée",
       "geographique": false,
-      "note": "Conseiller : Mr Harvey A. Houtson. Siège aussi : Larco « Bull » Skripović.",
+      "note": "Conseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège à ses côtés.",
       "districts": [
         {
           "id": "ar-ganzir",
@@ -2162,7 +2162,7 @@
               "disparus": 0
             }
           },
-          "note": "Forteresse et centre d'entraînement dans l'Atlantique. C'est de Ganzir qu'est parti l'ordre de raser l'Afrique.",
+          "note": "Forteresse et centre d'entraînement au milieu de l'Atlantique, c'est de Ganzir qu'est parti l'ordre de raser l'Afrique.",
           "quarantaine": false
         },
         {
@@ -2200,7 +2200,7 @@
               "disparus": 0
             }
           },
-          "note": "« La force de frappe contre les dieux. » Commandante : Aupox. Ses plieurs de réalité sont engagés contre les entités.",
+          "note": "\"La force de frappe contre les dieux.\" Sous le commandement d'Aupox, ses plieurs de réalité sont engagés contre les entités.",
           "quarantaine": false
         },
         {
@@ -2238,7 +2238,7 @@
               "disparus": 0
             }
           },
-          "note": "Protège les centres de recherche d'Europe et d'Asie.",
+          "note": "La Ligue protège les centres de recherche d'Europe et d'Asie.",
           "quarantaine": false
         },
         {
@@ -2276,7 +2276,7 @@
               "disparus": 0
             }
           },
-          "note": "Thaumaturges combattants. Base : le Haut-Château, en Islande.",
+          "note": "Thaumaturges combattants, basés au Haut-Château, en Islande.",
           "quarantaine": false
         }
       ]
@@ -2285,7 +2285,7 @@
       "id": "sante",
       "nom": "Santé & Prévention",
       "geographique": false,
-      "note": "Conseiller : Dr James Llewellyn-Ford. QG : Llewellyn-Ford Memorial Hospital, Sydney.",
+      "note": "Conseiller : Dr James Llewellyn-Ford, depuis son QG du Llewellyn-Ford Memorial Hospital, à Sydney.",
       "districts": [
         {
           "id": "sa-sydney",
@@ -2317,7 +2317,7 @@
               "disparus": 0
             }
           },
-          "note": "Sydney. Coordonne la réponse aux épidémies d'Amérique du Sud.",
+          "note": "Depuis Sydney, l'hôpital coordonne la réponse aux épidémies d'Amérique du Sud.",
           "quarantaine": false
         },
         {
@@ -2350,7 +2350,7 @@
               "disparus": 0
             }
           },
-          "note": "Kiel / Lübeck. Formation, start-up médicales, hôpital de pointe.",
+          "note": "Entre Kiel et Lübeck, le campus réunit formation, start-up médicales et un hôpital de pointe.",
           "quarantaine": false
         },
         {
@@ -2383,7 +2383,7 @@
               "disparus": 0
             }
           },
-          "note": "Psychiatrie (Dr Warren Burke). Traitement du Syndrome de la Perception Déchue.",
+          "note": "Service de psychiatrie du Dr Warren Burke, où l'on traite le Syndrome de la Perception Déchue.",
           "quarantaine": false
         }
       ]
@@ -2392,7 +2392,7 @@
       "id": "administration",
       "nom": "Administration",
       "geographique": false,
-      "note": "Conseiller : Unité 007 « Gamma ».",
+      "note": "Conseiller : Unité 007 \"Gamma\".",
       "districts": [
         {
           "id": "ad-detroit",
@@ -2424,7 +2424,7 @@
               "disparus": 0
             }
           },
-          "note": "Centre administratif de la Confédération. La Citadelle abrite le conseiller.",
+          "note": "Centre administratif de la Confédération, où la Citadelle abrite le conseiller.",
           "quarantaine": false
         }
       ]
@@ -2439,7 +2439,7 @@
       },
       "gravite": "critique",
       "titre": "Perturbations électromagnétiques",
-      "description": "21 h. Les capteurs de la Confédération s'affolent sur tout le globe, surtout en Asie, en Amérique du Sud et en Afrique. Au même moment, des cellules cultistes restées discrètes passent à la guérilla.",
+      "description": "À 21 h, les capteurs de la Confédération s'affolèrent sur tout le globe, surtout en Asie, en Amérique du Sud et en Afrique, et au même moment, des cellules cultistes restées bien discrètes jusque-là passèrent à la guérilla. Une coïncidence, sans doute.",
       "consequences": [
         "Invasion cultiste sur trois continents",
         "Signaux plus faibles en Europe et en Amérique du Nord"
@@ -2454,8 +2454,8 @@
         "id": "rd-hcp"
       },
       "gravite": "majeur",
-      "titre": "HCP : « Vous arrivez tard. »",
-      "description": "22 h 31. L'opérateur Merrick réveille HCP à 2 500 m sous la mer du Nord. La machine avait tout vu depuis trois heures et une minute. Elle identifie le Culte de la Vérité Primordiale.",
+      "titre": "HCP : \"Vous arrivez tard.\"",
+      "description": "À 22 h 31, l'opérateur Merrick réveilla HCP, à 2 500 m sous la mer du Nord, pour découvrir que la machine avait tout vu depuis trois heures et une minute. Elle identifia le Culte de la Vérité Primordiale sans qu'on ait besoin de le lui demander, ce qui, venant d'elle, n'étonne plus grand monde.",
       "consequences": [
         "200 000 cultistes en Asie, 260 000 en Amérique du Sud",
         "60 000 en Afrique, 50 000 en Europe et en Amérique du Nord",
@@ -2472,7 +2472,7 @@
       },
       "gravite": "majeur",
       "titre": "Un commando frappe les centres névralgiques",
-      "description": "Une trentaine d'hommes très bien armés attaquent des points stratégiques puis disparaissent. Ils tirent aussi sur les cultistes qu'ils croisent. HCP parle d'un leurre. Sur un corps : un injecteur d'ichoria frappé du symbole de la Fondation SCP.",
+      "description": "Une trentaine d'hommes très bien armés frappèrent des points stratégiques avant de disparaître, en tirant au passage sur les cultistes qu'ils croisaient. HCP parla d'un leurre, et sur l'un des corps, on retrouva un injecteur d'ichoria frappé du symbole de la Fondation SCP. Leurre ou pas, va savoir.",
       "consequences": [
         "HCP prend le commandement des unités d'Europe et d'Amérique du Nord",
         "Le Conseil ne répond plus"
@@ -2487,7 +2487,7 @@
       },
       "gravite": "majeur",
       "titre": "Confinement général",
-      "description": "Villes closes, frontières verrouillées. L'Humanité attend derrière des portes fermées.",
+      "description": "Villes closes, frontières verrouillées, l'Humanité attendit derrière des portes fermées sans trop savoir quoi, ce qui, dans ce genre de situation, revient à attendre le pire.",
       "consequences": [
         "Loi martiale"
       ],
@@ -2502,7 +2502,7 @@
       },
       "gravite": "mineur",
       "titre": "Ibérie nettoyée par HCP",
-      "description": "HCP neutralise le groupement cultiste d'Ibérie sans une seule perte civile. Les soldats ont trouvé ses ordres étranges.",
+      "description": "HCP neutralisa le groupement cultiste d'Ibérie sans une seule perte civile, avec des ordres que les soldats trouvèrent étranges, sur le moment du moins.",
       "consequences": [
         "Première utilisation d'HCP sur un front terrestre"
       ],
@@ -2517,7 +2517,7 @@
       },
       "gravite": "majeur",
       "titre": "Entité détectée : Phoenix engagée",
-      "description": "3 h 30. HCP : « Entité détectée. Menace élevée. 2 145 effectifs perdus. Ganzir requis. » À 13 h 30, l'Escouade Phoenix prend le relais. HCP retire ses troupes des fronts anormaux.",
+      "description": "À 3 h 30, HCP transmit : \"Entité détectée. Menace élevée. 2 145 effectifs perdus. Ganzir requis.\" Suite à quoi l'Escouade Phoenix prit le relais à 13 h 30, pendant que la machine retirait ses troupes des fronts anormaux.",
       "consequences": [
         "2 145 soldats perdus",
         "Phoenix engagée contre les entités"
@@ -2531,8 +2531,8 @@
         "type": "monde"
       },
       "gravite": "critique",
-      "titre": "« Ouvrez vos portes. Prenez les armes. »",
-      "description": "Depuis le bunker, une voix d'homme prend tous les canaux. « Nous avons tué Dieu il y a quatre-vingts ans. Et nous le tuerons à nouveau. » Le confinement tombe. Des milliards de civils sortent armés, et le Phénix apparaît sur les murs, les casques et les fuselages.",
+      "titre": "\"Ouvrez vos portes. Prenez les armes.\"",
+      "description": "Depuis le bunker, une voix d'homme prit tous les canaux : \"Nous avons tué Dieu il y a quatre-vingts ans. Et nous le tuerons à nouveau.\" Le confinement tomba dans la foulée, des milliards de civils sortirent armés, et le Phénix apparut sur les murs, les casques et les fuselages, comme si tout le monde n'attendait que ça.",
       "consequences": [
         "Fin du confinement et de la loi martiale",
         "Mobilisation générale",
@@ -2549,7 +2549,7 @@
       },
       "gravite": "critique",
       "titre": "Le berceau devenu désert",
-      "description": "Ganzir ordonne de se débarrasser de la menace. Une dizaine d'appareils portant l'insigne du Phoenix suffisent. « Rasez ce qu'il reste des êtres vivants de ce continent. » Personne ne demande de répéter l'ordre. Feu nucléaire.",
+      "description": "Ganzir ordonna de se débarrasser de la menace, et une dizaine d'appareils portant l'insigne du Phoenix suffirent. \"Rasez ce qu'il reste des êtres vivants de ce continent.\" Personne ne demanda de répéter l'ordre, et le feu nucléaire fit le reste.",
       "consequences": [
         "99 % des 60 000 cultistes tués",
         "Survivants lourdement irradiés",
@@ -2566,7 +2566,7 @@
       },
       "gravite": "majeur",
       "titre": "Les foules d'Asie",
-      "description": "Les citoyens prennent les cultistes de court et en tuent 100 000. Les 30 000 soldats organisés, eux, massacrent les foules puis se replient. 70 000 cultistes se retranchent dans une ville chinoise et y enlèvent des civils.",
+      "description": "Les citoyens prirent les cultistes de court et en tuèrent 100 000, mais les 30 000 soldats organisés, eux, massacrèrent les foules avant de se replier, pendant que 70 000 cultistes allaient se retrancher dans une ville chinoise pour y enlever des civils.",
       "consequences": [
         "100 000 cultistes tués",
         "Lourdes pertes civiles face aux soldats organisés"
@@ -2582,7 +2582,7 @@
       },
       "gravite": "critique",
       "titre": "La foule devient bête",
-      "description": "Une foule tente de submerger des cultistes qui la massacrent au corps à corps. Le bain de sang fait apparaître une entité. Les citoyens perdent la raison et s'entretuent dans la ville, incapables de savoir qui est touché.",
+      "description": "Alors qu'une foule tentait de submerger des cultistes, ces derniers la massacrèrent au corps à corps, et le bain de sang fit apparaître une entité. Les citoyens perdirent la raison et s'entretuèrent dans la ville, incapables de savoir qui était touché, ce qui, à ce stade, ne changeait plus grand-chose.",
       "consequences": [
         "30 000 cultistes éliminés en Europe",
         "20 000 survivants passent à la guérilla",
@@ -2599,7 +2599,7 @@
       },
       "gravite": "critique",
       "titre": "L'eau qui fait rire",
-      "description": "Une maladie se répand par les cours d'eau. Toux, nausées, agonie sans la mort. Puis les voix promettent la fin des souffrances. Ceux qui acceptent deviennent hilares et cherchent à contaminer.",
+      "description": "Une maladie se répandit par les cours d'eau, avec toux, nausées et une agonie qui ne menait pas à la mort, jusqu'à ce que des voix promettent la fin des souffrances. Ceux qui acceptèrent devinrent hilares, et se mirent à chercher d'autres personnes à contaminer.",
       "consequences": [
         "La jungle vire au marécage, la faune mute",
         "Temps d'incubation long : risque hors du continent"
@@ -2615,10 +2615,10 @@
       },
       "gravite": "majeur",
       "titre": "La brigade exotique",
-      "description": "45 000 soldats de la brigade exotique sont déployés sur le front sud-américain. À T+80 h, armes électriques et combinaisons. À T+81 h, 96 % ont reçu des drogues de performance et une armure Exo-3. « Mes chers amis cultistes ! Vous voyez ? C'est moins drôle quand ça ne se passe pas chez soi. »",
+      "description": "45 000 soldats de la brigade exotique furent déployés sur le front sud-américain, avec armes électriques et combinaisons à T+80 h, puis, à T+81 h, 96 % d'entre eux avaient reçu des drogues de performance et une armure Exo-3. \"Mes chers amis cultistes ! Vous voyez ? C'est moins drôle quand ça ne se passe pas chez soi.\"",
       "consequences": [
         "45 000 effectifs engagés",
-        "« Maman, je n'ai plus peur. »"
+        "\"Maman, je n'ai plus peur.\""
       ],
       "tension": -1
     },
@@ -2631,7 +2631,7 @@
       },
       "gravite": "mineur",
       "titre": "HCP a vu juste à 85 %",
-      "description": "Merrick fait ses calculs : HCP a prédit 85 % des mouvements cultistes, déplacements civils compris. En accord avec Ganzir, il obtient tous les capteurs de la Confédération. Il a demandé un psychoactif pour son unité.",
+      "description": "Suite à ses calculs, Merrick établit que HCP avait prédit 85 % des mouvements cultistes, déplacements civils compris, et en accord avec Ganzir, il obtint l'accès à tous les capteurs de la Confédération. Un psychoactif fut aussi demandé pour son unité, ce qui, dit comme ça, n'a rien de rassurant.",
       "consequences": [
         "Personne ne doit approcher HCP",
         "Merrick ignore d'où vient cette directive"
@@ -2646,8 +2646,8 @@
         "id": "am-amazonien"
       },
       "gravite": "critique",
-      "titre": "Arthur « le Bon »",
-      "description": "Un ancien plieur de réalité de la Confédération, perdu au combat, revient à moitié insecte, corrompu par Nargal. Il écrase les garnisons à la tête d'une horde d'infectés et d'entités. Des aérodromes tombent : l'aviation doit affronter nos propres appareils modifiés.",
+      "titre": "Arthur \"le Bon\"",
+      "description": "Un ancien plieur de réalité de la Confédération, perdu au combat, revint à moitié insecte, corrompu par Nargal, et se mit à écraser les garnisons à la tête d'une horde d'infectés et d'entités. Des aérodromes tombèrent, si bien que l'aviation dut affronter nos propres appareils, modifiés.",
       "consequences": [
         "Environ 40 millions de cultistes en Amérique du Sud",
         "Des dizaines de millions de morts",
@@ -2663,8 +2663,8 @@
         "id": "as-sinorusse"
       },
       "gravite": "critique",
-      "titre": "Izala « la Déesse »",
-      "description": "Un rituel dérègle la météo et les capteurs pendant une journée. Au soir, les cultistes sortent plus nombreux, menés par Izala, une autre plieuse de réalité égarée. Elle met l'armée en déroute et exige que la Confédération la vénère. La transmission est coupée. Aucune réponse n'est donnée.",
+      "titre": "Izala \"la Déesse\"",
+      "description": "Un rituel dérégla la météo et les capteurs pendant une journée, et au soir, les cultistes sortirent plus nombreux, menés par Izala, une autre plieuse de réalité égarée. Elle mit l'armée en déroute et exigea que la Confédération la vénère, avant que la transmission ne soit coupée. Aucune réponse ne fut donnée, et c'est probablement la seule qu'elle méritait.",
       "consequences": [
         "Environ 50 millions de cultistes en Asie",
         "Recrutement par la torture et la séduction"
@@ -2680,7 +2680,7 @@
       },
       "gravite": "mineur",
       "titre": "Zurich, un jeudi à l'aube",
-      "description": "Six jours de guet, puis quarante minutes de contact entre deux rangées d'immeubles. La milice populaire tient la rue avec l'armée. Le soir, la diffusion annonce que le District Central est sécurisé. (Déposition n° 4 412, Pietro Shat.)",
+      "description": "Après six jours de guet, il y eut quarante minutes de contact entre deux rangées d'immeubles, pendant lesquelles la milice populaire tint la rue aux côtés de l'armée, et le soir même, la diffusion annonça que le District Central était sécurisé. (Déposition n° 4 412, Pietro Shat.)",
       "consequences": [
         "19 cultistes tués",
         "4 miliciens morts, tous du quartier"
@@ -2696,7 +2696,7 @@
       },
       "gravite": "majeur",
       "titre": "Europe : dernières poches écrasées",
-      "description": "Après une semaine de combat, les forces spéciales neutralisent plusieurs entités et brisent l'expansion cultiste. Hors des zones touchées, l'Europe a été relativement épargnée.",
+      "description": "Après une semaine de combat, les forces spéciales neutralisèrent plusieurs entités et brisèrent l'expansion cultiste. Hors des zones touchées, l'Europe s'en tira relativement bien, pour autant qu'on puisse dire ça d'un continent qui compte ses morts par millions.",
       "consequences": [
         "Environ 10 millions de morts",
         "Plusieurs centres urbains ravagés",
@@ -2713,7 +2713,7 @@
       },
       "gravite": "majeur",
       "titre": "Chasses aux cultistes",
-      "description": "Les foyers de maladie venus du sud sont vite maîtrisés. La psychose, elle, s'installe : agents mémétiques dans l'eau, officiers cultistes. Des meutes se font justice. La plupart des personnes attrapées l'ont été sur simple soupçon.",
+      "description": "Les foyers de maladie venus du sud furent vite maîtrisés, mais la psychose, elle, s'installa, entre agents mémétiques dans l'eau et officiers cultistes, et des meutes se firent justice elles-mêmes. La plupart des personnes attrapées l'ont été sur simple soupçon.",
       "consequences": [
         "Rumeurs contre le gouvernement",
         "Lynchages en hausse"
@@ -2728,7 +2728,7 @@
       },
       "gravite": "majeur",
       "titre": "Le prix de la mobilisation",
-      "description": "Les civils ont tué une grande partie des cultistes, mais face aux entités ils perdent pied, deviennent fous ou rejoignent l'ennemi. Suicides, vandalisme et crimes augmentent : beaucoup n'ont plus peur de mourir.",
+      "description": "Les civils ont tué une grande partie des cultistes, mais face aux entités, ils perdent pied, deviennent fous ou rejoignent l'ennemi. Suicides, vandalisme et crimes augmentent, et à lire les rapports, beaucoup n'ont simplement plus peur de mourir.",
       "consequences": [
         "Apparitions d'entités en hausse",
         "Perturbations électromagnétiques persistantes",
@@ -3804,7 +3804,7 @@
       "ile": true,
       "rayon": 2.2,
       "lien": "armee/ar-ganzir",
-      "info": "Forteresse et centre d'entraînement de l'armée. C'est de là qu'est parti l'ordre de raser l'Afrique."
+      "info": "Forteresse et centre d'entraînement de l'armée, c'est de là qu'est parti l'ordre de raser l'Afrique."
     },
     {
       "id": "gotland",
@@ -3828,7 +3828,7 @@
       "rayon": 1.1,
       "icone": "labo",
       "lien": "rd/rd-hcp",
-      "info": "Hate Computer Program : l'IA de planification de la Confédération. Opérateur : Merrick. Personne ne doit l'approcher."
+      "info": "Hate Computer Program, l'IA de planification de la Confédération, sous la responsabilité de l'opérateur Merrick. Personne ne doit l'approcher."
     }
   ],
   "niveauxAir": {
@@ -3846,7 +3846,7 @@
       "noeud": -40,
       "periode": 90,
       "phase": 0,
-      "info": "Station-laboratoire spatiale de la R&D. Zone importante : accès réservé au rang S."
+      "info": "Station-laboratoire spatiale de la R&D, zone importante dont l'accès est réservé au rang S."
     },
     {
       "id": "arachne-1",
@@ -3874,17 +3874,17 @@
         -62,
         0
       ],
-      "info": "Satellite géostationnaire au-dessus du front sud-américain. C'est lui qui a repéré les cultistes au sud de la brigade exotique."
+      "info": "Satellite géostationnaire placé au-dessus du front sud-américain, c'est lui qui a repéré les cultistes au sud de la brigade exotique."
     }
   ],
   "dossiers": {
     "rd": {
-      "resume": "Dirigé par Sally Weirman depuis Gotland. Le secteur conçoit l'armement, pilote HCP et encadre l'usage des anomalies.",
+      "resume": "Dirigé par Sally Weirman depuis Gotland, le secteur conçoit l'armement, pilote HCP et encadre l'usage des anomalies.",
       "pages": [
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, le district civil depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau ; sa maintenance se fait à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes."
+          "contenu": "## Direction\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment."
         },
         {
           "id": "anormal",
@@ -3984,57 +3984,57 @@
       ]
     },
     "renseignement": {
-      "resume": "Dirigé par Rosenrad. Le Service du Maintien de la Confédération surveille la population et coordonne l'Escouade Phoenix depuis 2075.",
+      "resume": "Dirigé par Rosenrad, le secteur surveille la population par le Service du Maintien de la Confédération, et coordonne l'Escouade Phoenix depuis 2075.",
       "pages": [
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Miroslav Mikhaïl Perković, dit « Rosenrad ». Siège : Nouvelle-Luxembourg, ville réservée aux militaires et entièrement vidéosurveillée.\n\n## Rôle dans le conflit\n- Le SMC recueille les dépositions des civils engagés dans les milices (déposition n° 4 412 : Pietro Shat, Zurich).\n- Rosenrad coordonne les opérations de l'Escouade Phoenix.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement."
+          "contenu": "## Direction\nConseiller : Miroslav Mikhaïl Perković, dit \"Rosenrad\". Siège : Nouvelle-Luxembourg, ville réservée aux militaires et entièrement vidéosurveillée.\n\n## Rôle dans le conflit\n- Le SMC recueille les dépositions des civils engagés dans les milices, comme celle de Pietro Shat, à Zurich (déposition n° 4 412).\n- Rosenrad coordonne les opérations de l'Escouade Phoenix.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement."
         },
         {
           "id": "atmosphere",
           "titre": "Atmosphère",
-          "contenu": "## Mobilisation\nLe 10 septembre, le discours du bunker a mis fin au confinement. Des milliards de civils sont sortis armés. Le Phénix est apparu sur les murs, les casques et les fuselages. Dans chaque commune d'Europe, les diffusions se terminent par la même phrase.\n\n## Europe\nLe secteur est tenu, mais il a payé environ 10 millions de morts. Là où une entité est apparue, une foule entière a perdu la raison et s'est entretuée. Les dépositions recueillies par le SMC se ressemblent toutes ; l'agent qui a entendu Pietro Shat l'a résumé ainsi : « Votre déposition est conforme aux autres. »\n\n## Amérique du Nord\nPsychose. Des rumeurs accusent le gouvernement de diffuser des agents mémétiques dans l'eau ou par les messages visuels. D'autres désignent des officiers comme cultistes. Des meutes traquent des suspects ; la plupart des personnes attrapées l'ont été sur simple soupçon.\n\n## Amérique du Sud\nLes civils refusent de fuir et veulent affronter les cultistes. Ils hésitent à tuer leurs proches infectés, qui gardent leurs souvenirs, et se font contaminer à leur tour.\n\n## Asie\nTerreur. Les cultistes d'Izala recrutent par la torture, la séduction et la manipulation. Les témoins parlent d'enlèvements et de cannibalisme.\n\n## Indicateurs sociaux\n- Suicides, vandalisme, crimes et délits en hausse : beaucoup n'ont plus peur de mourir.\n- Face aux entités, les civils perdent pied, deviennent fous ou rejoignent l'ennemi.\n- Des psychologues craignent un effet durable sur l'ordre public."
+          "contenu": "## Mobilisation\nLe 10 septembre, le discours du bunker mit fin au confinement, des milliards de civils sortirent armés, et le Phénix apparut sur les murs, les casques et les fuselages. Depuis, dans chaque commune d'Europe, les diffusions se terminent par la même phrase.\n\n## Europe\nLe secteur est tenu, mais il a payé environ 10 millions de morts pour ça. Là où une entité est apparue, une foule entière a perdu la raison et s'est entretuée, et les dépositions recueillies par le SMC se ressemblent toutes, au point que l'agent qui a entendu Pietro Shat l'a résumé en une phrase : \"Votre déposition est conforme aux autres.\"\n\n## Amérique du Nord\nMaintenant, concernant l'Amérique du Nord, c'est la psychose. Des rumeurs accusent le gouvernement de diffuser des agents mémétiques dans l'eau ou par les messages visuels, d'autres désignent des officiers comme cultistes, et des meutes traquent des suspects dont la plupart ont été attrapés sur simple soupçon.\n\n## Amérique du Sud\nLes civils refusent de fuir et veulent affronter les cultistes, mais ils hésitent à tuer leurs proches infectés, qui gardent leurs souvenirs, et se font contaminer à leur tour.\n\n## Asie\nEn Asie, c'est la terreur. Les cultistes d'Izala recrutent par la torture, la séduction et la manipulation, et les témoins parlent d'enlèvements et de cannibalisme.\n\n## Indicateurs sociaux\n- Suicides, vandalisme, crimes et délits sont en hausse, et beaucoup n'ont plus peur de mourir.\n- Face aux entités, les civils perdent pied, deviennent fous ou rejoignent l'ennemi.\n- Des psychologues craignent un effet durable sur l'ordre public, ce qui, vu d'ici, tient presque de l'euphémisme."
         }
       ]
     },
     "justice": {
-      "resume": "Présidé par Euphyllia Anisphia Celest. Le secteur juge les textes, les appels et les prisonniers de guerre.",
+      "resume": "Présidé par Euphyllia Anisphia Celest, le secteur juge les textes, les appels et les prisonniers de guerre.",
       "pages": [
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseillère : Euphyllia Anisphia Celest. Tuteur : Tanza Ginomai.\n\n## Organisation\n- D2CL : contrôle de conformité des textes, dont le Comité Phénix.\n- District Judiciaire : divisions pénale et familiale.\n- District Économique et District Administratif.\n\n## Rôle dans le conflit\nLes prisonniers de guerre passent devant un tribunal militaire. Les « Protocoles sur les Droits de Guerre » héritent de la Convention de Genève."
+          "contenu": "## Direction\nConseillère : Euphyllia Anisphia Celest. Tuteur : Tanza Ginomai.\n\n## Organisation\n- D2CL : contrôle de conformité des textes, dont le Comité Phénix.\n- District Judiciaire : divisions pénale et familiale.\n- District Économique et District Administratif.\n\n## Rôle dans le conflit\nLes prisonniers de guerre passent devant un tribunal militaire, selon les \"Protocoles sur les Droits de Guerre\", qui héritent de la Convention de Genève."
         }
       ]
     },
     "armee": {
-      "resume": "Dirigé par Harvey A. Houtson depuis Ganzir. C'est de Ganzir qu'est parti l'ordre de raser l'Afrique.",
+      "resume": "Dirigé par Harvey A. Houtson depuis Ganzir, d'où est parti l'ordre de raser l'Afrique.",
       "pages": [
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Mr Harvey A. Houtson. Larco « Bull » Skripović siège aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
+          "contenu": "## Direction\nConseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège lui aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
         }
       ]
     },
     "sante": {
-      "resume": "Dirigé par le Dr James Llewellyn-Ford depuis Sydney. Le secteur fait face aux épidémies d'Amérique du Sud.",
+      "resume": "Dirigé par le Dr James Llewellyn-Ford depuis Sydney, le secteur fait face aux épidémies d'Amérique du Sud.",
       "pages": [
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Dr James Llewellyn-Ford. QG : Llewellyn-Ford Memorial Hospital, Sydney.\n\n## Rôle dans le conflit\n- Une maladie se répand par les cours d'eau d'Amérique du Sud ; son incubation longue fait craindre une contamination hors du continent.\n- Les foyers apparus en Amérique du Nord ont été rapidement maîtrisés.\n- L'hôpital militaire de Krasnoïarsk traite le Syndrome de la Perception Déchue."
+          "contenu": "## Direction\nConseiller : Dr James Llewellyn-Ford, depuis son QG du Llewellyn-Ford Memorial Hospital, à Sydney.\n\n## Rôle dans le conflit\n- Une maladie se répand par les cours d'eau d'Amérique du Sud, et son incubation longue fait craindre une contamination hors du continent.\n- Les foyers apparus en Amérique du Nord ont été rapidement maîtrisés.\n- L'hôpital militaire de Krasnoïarsk traite le Syndrome de la Perception Déchue."
         }
       ]
     },
     "administration": {
-      "resume": "Représenté par l'Unité 007 « Gamma ». Le secteur fait tourner la Confédération depuis Nouvelle-Détroit.",
+      "resume": "Représenté par l'Unité 007 \"Gamma\", le secteur fait tourner la Confédération depuis Nouvelle-Détroit.",
       "pages": [
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Unité 007 « Gamma », représentant du culte du Mekhane.\n\n## Rôle dans le conflit\nNouvelle-Détroit coordonne l'administration pendant la mobilisation générale. La Citadelle abrite le conseiller."
+          "contenu": "## Direction\nConseiller : Unité 007 \"Gamma\", représentant du culte du Mekhane.\n\n## Rôle dans le conflit\nNouvelle-Détroit coordonne l'administration pendant la mobilisation générale, depuis la Citadelle qui abrite le conseiller."
         }
       ]
     }
@@ -4068,7 +4068,7 @@
           "effectif": "CLASSIFIÉ"
         }
       ],
-      "description": "Méga-port gagné sur la Manche, dix kilomètres de digues terraformées. 57 cales pour cuirassés, cinq usines et six dépôts d'armement tournent jour et nuit. C'est ici qu'on a assemblé le navire qui a neutralisé SCP-3000, et ici que la flotte Bismarck revient se faire réparer. Les quais ont pris deux frappes de drones en mars. Les grues fonctionnent encore."
+      "description": "Méga-port gagné sur la Manche, avec dix kilomètres de digues terraformées, 57 cales pour cuirassés, cinq usines et six dépôts d'armement qui tournent jour et nuit. C'est ici qu'on a assemblé le navire qui a neutralisé SCP-3000, et c'est ici que la flotte Bismarck revient se faire réparer. Les quais ont encaissé deux frappes de drones depuis le 8 septembre, mais les grues, elles, fonctionnent toujours."
     },
     {
       "id": "nouvelle-luxembourg",
@@ -4098,7 +4098,7 @@
           "effectif": "~900000"
         }
       ],
-      "description": "Ville réservée aux militaires, siège du Service du Maintien de la Confédération. Écoles supérieures de guerre, aérodrome, zone économique spéciale pour le commerce d'équipement. Chaque rue est filmée et Rosenrad lit les rapports lui-même. Aucun incident cultiste recensé à ce jour, ce qui inquiète plus le SMC que l'inverse."
+      "description": "Ville réservée aux militaires et siège du Service du Maintien de la Confédération, entre écoles supérieures de guerre, aérodrome et zone économique spéciale pour le commerce d'équipement. Chaque rue y est filmée, et Rosenrad lit les rapports lui-même. Aucun incident cultiste n'y a été recensé à ce jour, ce qui, au SMC, inquiète plutôt qu'autre chose."
     },
     {
       "id": "zurich",
@@ -4124,7 +4124,7 @@
           "effectif": "~1100000"
         }
       ],
-      "description": "Capitale du district des Recherches civiles. Les divisions Agroalimentaire, Industrielle et Transport y ont leurs sièges au bord du lac. Les files devant les bureaux de recrutement des milices s'allongent depuis la déposition de Pietro Shat, enregistrée ici par le SMC."
+      "description": "Capitale du district des Recherches civiles, où les divisions Agroalimentaire, Industrielle et Transport ont leurs sièges au bord du lac. Depuis la déposition de Pietro Shat, enregistrée ici par le SMC, les files devant les bureaux de recrutement des milices ne font que s'allonger."
     },
     {
       "id": "kiel",
@@ -4150,7 +4150,7 @@
           "effectif": "~700000"
         }
       ],
-      "description": "Campus MUSH : école de médecine, pépinière de start-up médicales et hôpital de pointe répartis entre les deux villes. Les trains-hôpitaux des Traverseurs y déchargent les blessés du front oriental toutes les six heures. Les lits de réanimation sont pleins depuis février."
+      "description": "Le campus MUSH répartit entre les deux villes son école de médecine, sa pépinière de start-up médicales et son hôpital de pointe. Les trains-hôpitaux des Traverseurs y déchargent les blessés du front oriental toutes les six heures, et les lits de réanimation sont pleins depuis la mi-septembre."
     },
     {
       "id": "kazan",
@@ -4180,7 +4180,7 @@
           "effectif": "~3100000"
         }
       ],
-      "description": "Dernière ville digne de ce nom près de l'Oural. Tout ce qui fuit la Sibérie passe par ses gares. Les faubourgs est ont été évacués et murés, la Volga sert de fossé. La nuit, on voit depuis les remparts des lumières qui ne correspondent à aucune position connue."
+      "description": "Dernière ville digne de ce nom près de l'Oural, par les gares de laquelle passe tout ce qui fuit la Sibérie. Les faubourgs est ont été évacués puis murés, la Volga sert de fossé, et la nuit, depuis les remparts, on aperçoit des lumières qui ne correspondent à aucune position connue. Personne n'a encore été voir."
     },
     {
       "id": "yokohama",
@@ -4210,7 +4210,7 @@
           "effectif": "CLASSIFIÉ"
         }
       ],
-      "description": "Capitale du secteur Asie, siège de Mlle Mori Kumano. Le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Les sanctuaires kami sont gardés par l'armée depuis que trois prêtres ont disparu en une semaine.",
+      "description": "Capitale du secteur Asie et siège de Mlle Mori Kumano, où le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Depuis que trois prêtres ont disparu en une semaine, l'armée garde les sanctuaires kami.",
       "capitale": true
     },
     {
@@ -4241,7 +4241,7 @@
           "effectif": "~4000000"
         }
       ],
-      "description": "Ancien cœur industriel du district sino-russe, aujourd'hui encerclé à l'ouest et au sud. Les usines d'armement tournent sous les bombes parce que les arrêter reviendrait à abandonner la ville. Le fleuve Songhua est gelé et rouge par endroits. Ravitaillement par Vladivostok uniquement."
+      "description": "Ancien cœur industriel du district sino-russe, aujourd'hui encerclé à l'ouest et au sud, où les usines d'armement tournent sous les bombes parce que les arrêter reviendrait à abandonner la ville. Le fleuve Songhua est gelé, et rouge par endroits, et le ravitaillement n'arrive plus que par Vladivostok."
     },
     {
       "id": "novossibirsk",
@@ -4267,7 +4267,7 @@
           "effectif": "~1200000"
         }
       ],
-      "description": "Principal centre pénitentiaire de la Confédération. La moitié des détenus a été transférée vers l'ouest, l'autre moitié a été armée et envoyée sur la ligne. Les cultistes d'Izala tiennent la rive droite de l'Ob. Les deux ponts restants sont minés."
+      "description": "Principal centre pénitentiaire de la Confédération, dont la moitié des détenus a été transférée vers l'ouest, pendant que l'autre moitié était armée et envoyée sur la ligne. Les cultistes d'Izala tiennent la rive droite de l'Ob, et les deux ponts qui restent sont minés, au cas où."
     },
     {
       "id": "singapour",
@@ -4293,7 +4293,7 @@
           "effectif": "~2500000"
         }
       ],
-      "description": "Plaque tournante du commerce maritime du secteur. Le détroit reste ouvert grâce à des patrouilles permanentes, mais le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai. Couvre-feu à 20 h, contrôles d'identité à chaque pont."
+      "description": "Plaque tournante du commerce maritime du secteur, où le détroit reste ouvert grâce à des patrouilles permanentes, même si le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai. Couvre-feu à 20 h, et contrôle d'identité à chaque pont."
     },
     {
       "id": "dubai",
@@ -4319,7 +4319,7 @@
           "effectif": "~2100000"
         }
       ],
-      "description": "Capitale économique du district Moyen-Oriental, qui fournit l'énergie de la moitié du secteur. Les tours tiennent, les prix du carburant beaucoup moins. Cellules cultistes démantelées dans deux raffineries depuis janvier."
+      "description": "Capitale économique du district Moyen-Oriental, qui fournit l'énergie de la moitié du secteur. Les tours tiennent, les prix du carburant beaucoup moins, et deux cellules cultistes ont été démantelées dans des raffineries depuis le début du mois."
     },
     {
       "id": "mumbai",
@@ -4345,7 +4345,7 @@
           "effectif": "~21000000"
         }
       ],
-      "description": "Plus grande ville du district indo-pakistanais et premier grenier de la Confédération. Les convois de céréales partent vers le nord sous escorte. Des prédicateurs convertis ont été arrêtés dans les bidonvilles de Dharavi, d'autres ont pris leur place."
+      "description": "Plus grande ville du district indo-pakistanais et premier grenier de la Confédération, d'où les convois de céréales partent vers le nord sous escorte. Des prédicateurs convertis ont été arrêtés dans les bidonvilles de Dharavi, et d'autres ont pris leur place, évidemment."
     },
     {
       "id": "sydney",
@@ -4371,7 +4371,7 @@
           "effectif": "~2600000"
         }
       ],
-      "description": "Siège du secteur Santé, autour du Llewellyn-Ford Memorial Hospital. Le Site-43, restauré, fonctionne sous couverture de laboratoire P4. Ville la plus sûre de la Confédération d'après les statistiques officielles, qui oublient les réfugiés parqués à Parramatta."
+      "description": "Siège du secteur Santé, organisé autour du Llewellyn-Ford Memorial Hospital, où le Site-43, restauré, fonctionne sous couverture de laboratoire P4. D'après les statistiques officielles, c'est la ville la plus sûre de la Confédération, des statistiques qui oublient les réfugiés parqués à Parramatta."
     },
     {
       "id": "washington",
@@ -4397,7 +4397,7 @@
           "effectif": "~3000000"
         }
       ],
-      "description": "Capitale du secteur Amérique. Mark Saddler y décide, Karl Saddler y négocie. Les cellules cultistes arrêtées en février venaient toutes du même quartier, que le SMC a vidé en une nuit. Le Capitole est fermé au public depuis.",
+      "description": "Capitale du secteur Amérique, où Mark Saddler décide et où Karl Saddler négocie. Les cellules cultistes arrêtées au début du mois venaient toutes du même quartier, que le SMC a vidé en une nuit, et le Capitole est fermé au public depuis.",
       "capitale": true
     },
     {
@@ -4428,7 +4428,7 @@
           "effectif": 30
         }
       ],
-      "description": "Première place financière du secteur. Trente robots de la 3rd Liberty division gardent les ponts de Manhattan, à l'effigie de la statue qu'ils entourent. Le métro a été fermé après la découverte de marques cultistes dans le tunnel de la ligne 7."
+      "description": "Première place financière du secteur, où trente robots de la 3rd Liberty division gardent les ponts de Manhattan, à l'effigie de la statue qu'ils entourent. Le métro a été fermé après la découverte de marques cultistes dans le tunnel de la ligne 7."
     },
     {
       "id": "mexico",
@@ -4454,7 +4454,7 @@
           "effectif": "~8500000"
         }
       ],
-      "description": "Capitale du district mexicain et premier centre de recrutement de masse du continent. Une poche d'infection de Nargal s'est ouverte au sud de la ville. Les quartiers de Xochimilco et Tlalpan sont sous cloche, les canaux ont verdi en quatre jours."
+      "description": "Capitale du district mexicain et premier centre de recrutement de masse du continent. Une poche d'infection de Nargal s'est ouverte au sud de la ville, si bien que les quartiers de Xochimilco et Tlalpan sont sous cloche, et les canaux ont verdi en quatre jours."
     },
     {
       "id": "brasilia",
@@ -4472,7 +4472,7 @@
           "effectif": "?"
         }
       ],
-      "description": "Choisie parmi les « Too young to die », tombée quand même. Le front de Nargal a franchi l'axe monumental le 14 février. Veilleur-Sud montre encore des lumières dans la cathédrale. On ignore qui les allume."
+      "description": "Choisie parmi les \"Too young to die\", et tombée quand même, quand le front de Nargal a franchi l'axe monumental à la mi-septembre. Veilleur-Sud montre encore des lumières dans la cathédrale, et on ignore qui les allume."
     },
     {
       "id": "buenos-aires",
@@ -4502,7 +4502,7 @@
           "effectif": "~5300000"
         }
       ],
-      "description": "Dernier grand port du sud du continent. Les réfugiés du bassin amazonien arrivent par le Río de la Plata par centaines de milliers. La ville filtre chaque barge : on cherche la mousse verte sous les ongles, derrière les oreilles. Les tests positifs ne remontent pas à bord."
+      "description": "Dernier grand port du sud du continent, où les réfugiés du bassin amazonien arrivent par le Río de la Plata, par centaines de milliers. La ville filtre chaque barge, en cherchant la mousse verte sous les ongles et derrière les oreilles, et les tests positifs ne remontent pas à bord."
     },
     {
       "id": "canberra",
@@ -4525,7 +4525,7 @@
           "effectif": "~210000"
         }
       ],
-      "description": "Capitale du district Australasie et siège administratif du secteur Océanie. Aucun cultiste signalé sur le secteur : la ville tourne au rythme des convois de ravitaillement vers l'Asie et des réfugiés qui transitent vers Sydney."
+      "description": "Capitale du district Australasie et siège administratif du secteur Océanie. Aucun cultiste n'a été signalé sur le secteur, si bien que la ville vit au rythme des convois de ravitaillement vers l'Asie et des réfugiés qui transitent vers Sydney."
     },
     {
       "id": "le-cap",
@@ -4548,7 +4548,7 @@
           "effectif": "~6000"
         }
       ],
-      "description": "Port-sas du secteur Afrique. Le continent n'a plus de conseiller depuis les frappes du 11 septembre : l'administration confédérée tient depuis les quais. Tout convoi vers l'intérieur passe ici par les douches de décontamination, et rien ne revient sans quarantaine."
+      "description": "Port-sas du secteur Afrique, d'où l'administration confédérée tient le continent depuis les quais, faute de conseiller depuis les frappes du 11 septembre. Tout convoi vers l'intérieur passe ici par les douches de décontamination, et rien n'en revient sans quarantaine."
     }
   ],
   "detruites": [
@@ -4562,7 +4562,7 @@
       "rayon": 2.6,
       "district": "af-experimental",
       "date": "11 sept. 2075",
-      "info": "Feu nucléaire, ordre de Ganzir. Sol vitrifié."
+      "info": "Feu nucléaire, sur ordre de Ganzir. Le sol en est ressorti vitrifié."
     },
     {
       "id": "d-congo",
@@ -4574,7 +4574,7 @@
       "rayon": 3.4,
       "district": "af-experimental",
       "date": "11 sept. 2075",
-      "info": "Principal foyer cultiste du continent. Rien n'a survécu à moins de 200 km."
+      "info": "Principal foyer cultiste du continent, où rien n'a survécu à moins de 200 km."
     },
     {
       "id": "d-lacs",
@@ -4586,7 +4586,7 @@
       "rayon": 2,
       "district": "af-experimental",
       "date": "11 sept. 2075",
-      "info": "Les lacs se sont vidés de toute vie."
+      "info": "Les lacs se sont vidés de toute vie, jusqu'au dernier poisson."
     },
     {
       "id": "d-kalahari",
@@ -4598,7 +4598,7 @@
       "rayon": 2.3,
       "district": "af-experimental",
       "date": "11 sept. 2075",
-      "info": "Survivants lourdement irradiés signalés en bordure."
+      "info": "Des survivants lourdement irradiés sont signalés en bordure de zone."
     },
     {
       "id": "d-ethiopie",
@@ -4610,7 +4610,7 @@
       "rayon": 1.9,
       "district": "af-experimental",
       "date": "11 sept. 2075",
-      "info": "Plateaux éthiopiens. Zone interdite de survol."
+      "info": "Plateaux éthiopiens, dont le survol est interdit."
     }
   ]
 }

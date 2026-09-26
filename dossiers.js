@@ -8,7 +8,7 @@
   const dossiers = data.dossiers || {};
   const secteurs = data.secteurs.filter(s => s.geographique === false && dossiers[s.id]);
 
-  // Texte des dossiers : « ## » titre, « - » puce, ligne vide = nouveau paragraphe
+  // Texte des dossiers : "##" titre, "-" puce, ligne vide = nouveau paragraphe
   function texte(src) {
     const html = [];
     let liste = null, para = [];
@@ -64,7 +64,7 @@
 
   function vueMonde() {
     return `<header class="dos-tete"><p class="surtitre">Monde</p><h2 class="ds-display">Secteurs organisationnels</h2>
-      <p class="chapo">Six secteurs sans territoire font tourner la Confédération : la recherche, le renseignement, la justice, l'armée, la santé et l'administration. Chacun tient son dossier, mis à jour par son conseiller.</p></header>
+      <p class="chapo">Alors que les secteurs géographiques tiennent le terrain, six secteurs sans territoire font tourner la Confédération, de la recherche au renseignement en passant par la justice, l'armée, la santé et l'administration, et chacun tient son propre dossier, mis à jour par son conseiller.</p></header>
       <div class="dos-cartes">${secteurs.map(s => {
         const d = dossiers[s.id], sous = (d.pages || []).filter(p => p.id !== 'overview');
         return `<a class="dos-carte" href="#${esc(s.id)}"><span class="nom">${esc(s.nom)}</span><span class="resume">${esc(d.resume || '')}</span>
