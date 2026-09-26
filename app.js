@@ -61,8 +61,10 @@
 
   const zoom = d3.zoom().scaleExtent([1, 16]).on('zoom', e => {
     gZoom.attr('transform', e.transform);
-    if (e.transform.k !== k) { k = e.transform.k; echelleLabels(); }
+    // Les étiquettes et symboles ne sont recalculés qu'une fois par image, pas à chaque événement de molette
+    if (e.transform.k !== k) { k = e.transform.k; if (!echelleDemandee) { echelleDemandee = true; requestAnimationFrame(() => { echelleDemandee = false; echelleLabels(); }); } }
   });
+  let echelleDemandee = false;
   svg.call(zoom).on('dblclick.zoom', null);
   svg.on('click', e => { if (e.target.tagName === 'svg' || e.target.classList.contains('sphere')) remonter(); });
 
@@ -389,6 +391,14 @@
     x.putImageData(img, 0, 0);
     calqueD.querySelector('.d-bruit').style.backgroundImage = `url(${c.toDataURL()})`;
   })();
+  // Grain : six positions par seconde environ, posées en JS pour ne produire une image que quand il bouge
+  const POS_GRAIN = ['0,0', '-2rem,1rem', '1rem,-2rem', '-1rem,2rem', '2rem,-1rem'];
+  let iGrain = 0;
+  setInterval(() => {
+    if (document.hidden || calqueD.hidden || mouvementReduit.matches) return;
+    iGrain = (iGrain + 1) % POS_GRAIN.length;
+    calqueD.querySelector('.d-bruit').style.transform = `translate(${POS_GRAIN[iGrain]})`;
+  }, 160);
   function appliquerDistorsion() {
     const v = etat.replay !== null && data.historique[etat.replay].distorsion != null
       ? data.historique[etat.replay].distorsion : (data.meta.distorsion || 0);
@@ -464,7 +474,10 @@
     if (replay) return;
     const t = (performance.now() - t0) / 1000;
     L.flottes.selectAll('path.route').each(function (f) {
-      const lg = this.getTotalLength();
+      // Longueur mise en cache tant que le tracé ne change pas (getTotalLength est coûteux)
+      const d = this.getAttribute('d');
+      if (this._d !== d) { this._d = d; this._lg = this.getTotalLength(); }
+      const lg = this._lg;
       if (!lg) return;
       const u = ((t / (f.periode || 480)) % 1) * lg;
       const a = this.getPointAtLength(u), b = this.getPointAtLength((u + 2) % lg);
@@ -505,12 +518,25 @@
       return `translate(${p[0].toFixed(1)},${p[1].toFixed(1)}) scale(${ech / k})`;
     });
   }
-  // 10 images par seconde suffisent pour un mouvement lent ; arrêt si l'onglet est masqué
+  // 4 images par seconde suffisent pour un mouvement aussi lent ; arrêt si l'onglet est masqué
   let dernierSat = 0;
   (function boucleSat(ts) {
-    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 100) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); } }
+    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 250) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); majSpheres(); } }
     requestAnimationFrame(boucleSat);
   })(0);
+  // Sphères des laboratoires d'exclusion : méridien qui tourne, et soubresauts toutes les 3,4 s
+  // (une moitié des sphères décalée), posés par classes pour éviter une animation CSS permanente
+  function majSpheres() {
+    const sx = Math.cos(2 * Math.PI * ((performance.now() - t0) / 7000));
+    L.sites.selectAll('.sg-meridien').attr('transform', `scale(${(Math.abs(sx) < 0.08 ? Math.sign(sx || 1) * 0.08 : sx).toFixed(2)},1)`);
+  }
+  const SOUBRESAUTS = [[0, 'f1'], [68, 'f2'], [102, 'f3'], [136, 'f4'], [204, ''], [374, 'f5'], [408, '']];
+  function soubresaut(pair) {
+    if (document.hidden || mouvementReduit.matches || !L.sites) return;
+    const sph = L.sites.selectAll('g.site').filter((x, i) => i % 2 === pair).selectAll('.sphere-glitch');
+    for (const [t, c] of SOUBRESAUTS) setTimeout(() => sph.attr('class', 'sphere-glitch' + (c ? ' ' + c : '')), t);
+  }
+  setInterval(() => { soubresaut(0); setTimeout(() => soubresaut(1), 1300); }, 3400);
   function survolSat(e, s) {
     const cle = 'o:' + s.id;
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(s.nom)}</strong>${esc(s.info || '')}${s.etat ? `<br><span class="tip-etat">${esc(s.etat)}</span>` : ''}${ficheTip(s)}<br><span class="ds-supporting">${s.geo ? 'Orbite géostationnaire' : `Orbite inclinée à ${s.inclinaison}°`}${s.dossier ? ' · cliquer pour le dossier' : ''}</span>`; }
