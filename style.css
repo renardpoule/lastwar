@@ -571,7 +571,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .rail-voie.coupe{stroke:var(--st-perdu);stroke-dasharray:4 3;stroke-width:2.2}
 .rail-fond{fill:none;stroke:oklch(0.15 0.03 280 / .75);stroke-width:4;vector-effect:non-scaling-stroke;pointer-events:none}
 .rail-parcours{fill:none;stroke:none;pointer-events:none}
-.ligne:hover .rail-voie:not(.coupe){stroke:oklch(0.9 0.08 60)}
+.rail-voie.travaux{stroke:oklch(0.76 0.16 50);stroke-dasharray:2 2.5;stroke-width:2.4}
+.ligne:hover .rail-voie:not(.coupe):not(.travaux){stroke:oklch(0.9 0.08 60)}
 .tr-corps{fill:oklch(0.88 0.08 60);stroke:var(--ocean);stroke-width:.8}
 .nom-train{font-size:0.75rem;text-anchor:start;stroke-width:3px}
 .nom-train{display:none}
@@ -579,6 +580,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .loin .rail-traverses{display:none}
 .loin .rail-voie{stroke-width:1.6}
 .sw-rail{width:1.5rem;height:0.5rem;overflow:visible}
+/* Cordon de quarantaine autour d'une bulle : barrière (ligne et poteaux) */
+.cordon-zone{fill:none;stroke:transparent;stroke-width:10;vector-effect:non-scaling-stroke;pointer-events:stroke}
+.cordon-fond{fill:none;stroke:oklch(0.15 0.03 280 / .8);stroke-width:4;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon-ligne{fill:none;stroke:var(--st-quarantaine);stroke-width:1.4;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon-poteaux{fill:none;stroke:var(--st-quarantaine);stroke-width:7;stroke-dasharray:1.4 6;vector-effect:non-scaling-stroke;pointer-events:none}
+.cordon:hover .cordon-ligne{stroke-width:2}
 
 @media (prefers-reduced-motion:reduce){.sphere-glitch *{animation:none!important}}
 

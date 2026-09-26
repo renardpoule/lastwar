@@ -53,7 +53,7 @@ mais la vraie barrière contre toute modification de la carte reste le jeton Git
 4. **Districts** : ajustez statut, influence cultiste, effectifs et pertes des zones touchées.
 5. **Situation** : réglez la tension, la distorsion la **stabilité** (gouvernement, armée, population) et l'**énergie mondiale** (production, consommation, production détruite, production détournée) si besoin.
 6. **Villes** : état (0 à 100 %) et garnison des villes "Too young to die". L'état colore le point et déforme l'illustration.
-7. **Zones** : zones cultistes et zones détruites (frappes, bombardements).
+7. **Zones** : zones cultistes et zones détruites (frappes, bombardements). La case "Cordon de quarantaine" trace une barrière tout autour d'une zone cultiste, avec sa date et sa description dans l'infobulle.
 8. **Dossiers** : textes de la page Secteurs.
 9. Cliquez sur **Publier**. La carte se met à jour pour tout le monde en une à deux minutes.
 
@@ -67,7 +67,7 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 
 **Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main. En vue monde, chaque district n'affiche que deux pions, un pour la CC et un pour les cultistes, qui résument toutes ses troupes ; le détail apparaît quand on clique sur un secteur.
 
-**Bandeau de la carte** : le compteur de pertes additionne tout seul les pertes et les décès civils de tous les districts. À chaque publication, les pertes et l'énergie sont archivées avec le point de chronologie, donc la relecture les affiche à la bonne date.
+**Bandeau de la carte** : le compteur de pertes additionne tout seul les pertes et les décès civils de tous les districts. Le détail des tués confédérés par corps (régulières, milices, forces spéciales, Phoenix) se règle dans l'onglet Situation. À chaque publication, les pertes et l'énergie sont archivées avec le point de chronologie, donc la relecture les affiche à la bonne date.
 
 **Flottes** : chaque division navale a un `type` (`surface`, `porte-avions`, `sous-marins`, `recherche`), une `zone`, une `fiche` et un `trajet` (liste de points [longitude, latitude] parcourue en boucle, à garder en mer).
 

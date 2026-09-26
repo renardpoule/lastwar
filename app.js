@@ -53,7 +53,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'detruites', 'bords', 'sel', 'fronts', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'detruites', 'bords', 'sel', 'fronts', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -180,8 +180,8 @@
       for (const t of toutes) {
         const dd = path({ type: 'LineString', coordinates: t.pts });
         el.append('path').attr('class', 'rail-fond').attr('d', dd);
-        el.append('path').attr('class', 'rail-voie' + (t.coupe ? ' coupe' : '')).attr('d', dd);
-        if (!t.coupe) el.append('path').attr('class', 'rail-traverses').attr('d', dd);
+        el.append('path').attr('class', 'rail-voie' + (t.coupe ? ' coupe' : '') + (t.travaux ? ' travaux' : '')).attr('d', dd);
+        if (!t.coupe && !t.travaux) el.append('path').attr('class', 'rail-traverses').attr('d', dd);
       }
       r._chemin = el.append('path').attr('class', 'rail-parcours').attr('d', path({ type: 'LineString', coordinates: r.parcours })).node();
     });
@@ -313,6 +313,17 @@
     });
     L.sceaux.selectAll('path').data(sceaux, x => x.id).join('path').attr('class', 'sceau-chaos')
       .attr('d', CHAOS).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`);
+    // Cordons de quarantaine : une barrière (ligne et poteaux) tracée juste au-delà de la zone contestée
+    const cordons = zs.filter(z => z.cordon).map(z => {
+      const R = +z.rayon || 1;
+      return { ...z, id: z.id + '-q', r: R + Math.max(0.4, Math.min(2, R * 0.35)) + Math.max(0.5, R * 0.08) };
+    });
+    L.cordons.selectAll('g.cordon').data(cordons, z => z.id).join(en => {
+      const g = en.append('g').attr('class', 'cordon');
+      for (const c of ['cordon-zone', 'cordon-fond', 'cordon-ligne', 'cordon-poteaux']) g.append('path').attr('class', c);
+      return g;
+    }).each(function (z) { d3.select(this).selectAll('path').attr('d', path(d3.geoCircle().center(z.centre).radius(z.r)())); })
+      .on('mousemove', survolCordon).on('mouseleave', finSurvol);
     rendreUnites();
     const etats = new Map(villesAff().map(v => [v.id, v.etat]));
     L.villes.selectAll('g.ville').attr('class', v => 'ville ' + VILLES.niveau(etats.get(v.id) ?? v.etat)[1]);
@@ -516,7 +527,8 @@
   }
   // ---------- Traverseurs ----------
   const TRAIN = 'M-12,-2.4H-5V2.4H-12ZM-4,-2.4H3V2.4H-4ZM4,-2.4H9.5L12,0L9.5,2.4H4Z';
-  // Découpe la voie en tronçons de ~0,5°, coupés quand ils passent dans une bulle cultiste ou une zone frappée
+  // Découpe la voie en tronçons de ~0,5°, coupés quand ils passent dans une bulle cultiste ou une zone frappée,
+  // ou en travaux dans les secteurs de reconstruction de la ligne (r.travaux)
   function preparerRail(r) {
     const voie = r.boucle ? [...r.voie, r.voie[0]] : r.voie;
     const pts = [voie[0]];
@@ -525,17 +537,21 @@
       for (let j = 1; j <= n; j++) pts.push(f(j / n));
     }
     const dangers = [...(data.zones || []), ...detruitesAff()];
-    const coupe = (a, b) => { const m = d3.geoInterpolate(a, b)(0.5); return dangers.some(z => d3.geoDistance(m, z.centre) / RAD < (+z.rayon || 1) * 1.1); };
+    const pres = (m, z, f) => d3.geoDistance(m, z.centre) / RAD < (+z.rayon || 1) * f;
+    const etatSeg = (a, b) => {
+      const m = d3.geoInterpolate(a, b)(0.5);
+      return dangers.some(z => pres(m, z, 1.1)) ? 'coupe' : (r.travaux || []).some(z => pres(m, z, 1)) ? 'travaux' : '';
+    };
     const troncons = [];
     for (let i = 1; i < pts.length; i++) {
-      const c = coupe(pts[i - 1], pts[i]), der = troncons[troncons.length - 1];
-      if (der && der.coupe === c) der.pts.push(pts[i]); else troncons.push({ coupe: c, pts: [pts[i - 1], pts[i]] });
+      const c = etatSeg(pts[i - 1], pts[i]), der = troncons[troncons.length - 1];
+      if (der && der.etat === c) der.pts.push(pts[i]); else troncons.push({ etat: c, coupe: c === 'coupe', travaux: c === 'travaux', pts: [pts[i - 1], pts[i]] });
     }
-    // Le convoi roule sur la boucle entière si rien n'est coupé, sinon fait la navette sur le plus long tronçon en service
-    const libres = troncons.filter(t => !t.coupe);
-    const boucle = r.boucle && !troncons.some(t => t.coupe);
+    // Le convoi roule sur la boucle entière si tout est en service, sinon fait la navette sur le plus long tronçon en service
+    const libres = troncons.filter(t => !t.etat);
+    const boucle = r.boucle && !troncons.some(t => t.etat);
     const parcours = boucle ? pts : (libres.sort((a, b) => b.pts.length - a.pts.length)[0] || { pts: [] }).pts;
-    return { ...r, troncons, branches: r.branches || [], parcours, navette: !boucle, coupee: troncons.some(t => t.coupe) };
+    return { ...r, troncons, branches: r.branches || [], parcours, navette: !boucle, coupee: troncons.some(t => t.coupe), enTravaux: troncons.some(t => t.travaux) };
   }
   function majTrains() {
     if (!L.rails) return;
@@ -560,7 +576,7 @@
   }
   function survolRail(e, r) {
     const cle = 'r:' + r.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(r.nom)}</strong><span class="ds-supporting">Traverseur · ${r.coupee ? 'voie coupée par endroits' : 'en service'}</span><br>${esc(r.info || '')}${ficheTip(r)}${r.dossier ? '<span class="ds-supporting">Cliquer pour le dossier</span>' : ''}`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(r.nom)}</strong><span class="ds-supporting">Traverseur · ${[r.coupee && 'voie coupée par endroits', r.enTravaux && 'en reconstruction par endroits'].filter(Boolean).join(', ') || 'en service'}</span><br>${esc(r.info || '')}${ficheTip(r)}${r.dossier ? '<span class="ds-supporting">Cliquer pour le dossier</span>' : ''}`; }
     placerTip(e);
   }
   // Fiche technique d'une installation dans l'infobulle
@@ -728,6 +744,7 @@
       const voisin = bulles.length ? null
         : foyers.map(z => ({ z, dist: d3.geoDistance(z.centre, centre) })).filter(o => o.dist < 0.75).sort((x, y) => x.dist - y.dist)[0]?.z;
       const autour = bulles.length ? bulles : voisin ? [voisin] : [];
+      const petitesPoches = bulles.length > 0 && bulles.every(z => (+z.rayon || 0) < 2);
       const decale = (c, r, th) => [c[0] + r * Math.cos(th) / Math.max(0.2, Math.cos(c[1] * RAD)), c[1] + r * Math.sin(th)];
       const surTerre = pt => d3.geoContains(d._geo, pt);
       // Positions candidates : dans les bulles (cultistes, Phoenix), en anneau autour (lignes confédérées),
@@ -768,6 +785,8 @@
           if (u.type === 'cult' && m === 0 && bulles.length) pos = bulles[0].centre;
           else if ((u.type === 'cult' || u.type === 'ph') && dedans.length) pos = choisir(dedans, 0);
           else if (u.type === 'cult' && anneau.length) pos = choisir(anneau, 0);
+          // Autour d'une petite poche, seule la première formation régulière monte au contact, le reste garde les villes du district
+          else if (anneau.length && u.type === 'reg' && m > 0 && petitesPoches) pos = villesD.find(v => pris.every(q => d3.geoDistance(q, v) > 0.01)) || choisir(calme, 0.8);
           else if (anneau.length) pos = choisir(anneau, 0.1);
           else if (u.type === 'cult') pos = choisir(cands.filter(c => villesD.every(v => d3.geoDistance(c, v) > 0.05)), 0.4);
           else pos = m < villesD.length && pris.every(q => d3.geoDistance(q, villesD[m]) > 0.01) ? villesD[m] : choisir(calme, 0.8);
@@ -847,6 +866,7 @@
       + (vus.size ? '<li><i class="sw conteste"></i>Zone contestée</li>' : '')
       + [...vus].map(([n, c]) => `<li><i class="sw" style="background:${esc(c)}"></i>${esc(n)}</li>`).join('')
       + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '')
+      + (zonesAff().some(z => z.cordon) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="cordon-fond" d="M1,4H23"/><path class="cordon-ligne" d="M1,4H23"/><path class="cordon-poteaux" d="M1,4H23"/></svg>Cordon de quarantaine</li>' : '')
       + (detruitesAff().length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
       + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
@@ -855,11 +875,17 @@
       + (L.unites.selectAll('g.pion:not(.synthese)').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
       + Object.entries(TYPES_SITE).filter(([t]) => (data.sites || []).some(x => x.icone === t)).map(([t, T]) => `<li><svg class="sw-labo t-${t}" viewBox="0 0 24 24" aria-hidden="true">${T.svg}</svg>${T.nom}</li>`).join('')
       + ((data.sites || []).some(x => x.glitch) ? '<li><svg class="sw-sphere" viewBox="-15 -15 30 30" aria-hidden="true"><circle r="11"/><ellipse rx="4.5" ry="11"/><ellipse rx="11" ry="3.5"/></svg>Laboratoire d\'exclusion</li>' : '')
-      + (etat.replay === null && (data.traverseurs || []).length ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie" d="M1,4H23"/><path class="rail-traverses" d="M1,4H23"/></svg>Traverseur (voie ferrée)</li><li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie coupe" d="M1,4H23"/></svg>Voie coupée</li>' : '')
+      + (etat.replay === null && (data.traverseurs || []).length ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie" d="M1,4H23"/><path class="rail-traverses" d="M1,4H23"/></svg>Traverseur (voie ferrée)</li><li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie coupe" d="M1,4H23"/></svg>Voie coupée</li>'
+        + ((data.traverseurs || []).some(r => (r.travaux || []).length) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie travaux" d="M1,4H23"/></svg>Voie en reconstruction</li>' : '') : '')
       + (etat.replay === null ? Object.entries(TYPES_FLOTTE).filter(([t]) => (data.flottes || []).some(f => (f.type || 'surface') === t))
         .map(([t, x]) => `<li><svg class="sw-flotte f-${t}" viewBox="-13 -7 26 14" aria-hidden="true"><path d="${x.svg}"/></svg>${x.nom}</li>`).join('') : '');
   }
 
+  function survolCordon(e, z) {
+    const cle = 'q:' + z.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>Cordon de quarantaine</strong>Autour : ${esc(z.nom)} (${esc(z.dieu)})${z.cordonDepuis ? `<br><span class="ds-supporting">Depuis le ${esc(z.cordonDepuis)}</span>` : ''}${z.cordonInfo ? `<br>${esc(z.cordonInfo)}` : ''}`; }
+    placerTip(e);
+  }
   function survolZone(e, z) {
     const cle = 'z:' + z.id;
     if (cle !== survolCle) {
@@ -1282,8 +1308,9 @@
     if (etat.replay === null) return C.pertesMonde(data);
     return data.historique[etat.replay].pertes || null;
   }
+  const tuesParCorpsAff = () => etat.replay === null ? data.meta.tuesParCorps : data.historique[etat.replay].tuesParCorps;
   function rendreBandeau() {
-    const p = pertesAff(), btn = $('#pertesBtn');
+    const p = pertesAff(), btn = $('#pertesBtn'), corps = tuesParCorpsAff();
     const chiffre = (n, lib, cls) => `<span class="p-chiffre ${cls}"><strong>${C.court(n)}</strong> ${lib}</span>`;
     btn.innerHTML = `<span class="p-titre">Pertes</span>` + (p
       ? chiffre(p.confederation.tues, 'confédérés', 'cc') + chiffre(p.cultistes.tues, 'cultistes', 'cult') + (p.civils.deces ? chiffre(p.civils.deces, 'civils', 'civ') : '')
@@ -1297,6 +1324,7 @@
         <table class="p-table"><caption>${esc(data.factions.confederation.court)}</caption>${ligne('Tués', p.confederation.tues)}${ligne('Blessés', p.confederation.blesses)}${ligne('Disparus', p.confederation.disparus)}</table>
         <table class="p-table cult"><caption>${esc(data.factions.cultistes.court)}</caption>${ligne('Tués', p.cultistes.tues)}${ligne('Blessés', p.cultistes.blesses)}${ligne('Disparus', p.cultistes.disparus)}</table>
         <table class="p-table civ"><caption>Civils</caption>${ligne('Décès', p.civils.deces)}${ligne('Disparus', p.civils.disparus)}</table></div>
+        ${corps ? `<table class="p-table p-secteurs"><caption>Tués confédérés par corps</caption>${C.CORPS.filter(([c]) => corps[c]).map(([c, lib]) => ligne(lib, corps[c])).join('')}</table>` : ''}
         ${etat.replay === null ? `<table class="p-table p-secteurs"><caption>Tués par secteur</caption><thead><tr><th scope="col">Secteur</th><th scope="col" class="num">Confédérés</th><th scope="col" class="num">Cultistes</th></tr></thead>
           ${secteurs.map(s => { const a = C.agrege(s.districts).pertes; return `<tr><th scope="row">${esc(s.nom)}</th><td class="num">${C.fmt(a.confederation.tues)}</td><td class="num">${C.fmt(a.cultistes.tues)}</td></tr>`; }).join('')}</table>` : ''}`
       : '<p>Les pertes n\'étaient pas encore consignées dans la chronologie à cette date.</p>'}`;

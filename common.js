@@ -54,6 +54,8 @@ const C = (() => {
   ];
   const PERTES = [['tues', 'Tués'], ['blesses', 'Blessés'], ['disparus', 'Disparus']];
   const FACTIONS = ['confederation', 'cultistes'];
+  // Corps de l'armée confédérée, pour le détail des tués (meta.tuesParCorps)
+  const CORPS = [['regulieres', 'Forces régulières'], ['milices', 'Milices citoyennes'], ['speciales', 'Forces spéciales'], ['phoenix', 'Division Phoenix']];
 
   // Agrège une liste de districts
   function agrege(districts) {
@@ -127,5 +129,5 @@ const C = (() => {
   const GRAVITES = { mineur: 'Mineur', majeur: 'Majeur', critique: 'Critique' };
   const TENDANCES = { hausse: 'Progression cultiste', stable: 'Front stable', baisse: 'Recul cultiste' };
 
-  return { ICONES, pertesMonde, parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, GRAVITES, TENDANCES };
+  return { ICONES, pertesMonde, parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, CORPS, GRAVITES, TENDANCES };
 })();

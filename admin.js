@@ -149,6 +149,7 @@
   // ---------- 1. Situation ----------
   function vueSituation() {
     data.meta.stabilite ||= { gouvernement: 100, armee: 100, population: 100 };
+    data.meta.tuesParCorps ||= Object.fromEntries(C.CORPS.map(([k]) => [k, 0]));
     data.meta.energie ||= { unite: 'TW', production: 0, consommation: 0, detruite: 0, detournee: 0 };
     return `
     <section class="ds-card carte"><h2 class="ds-section-title">Date du RP</h2>
@@ -172,6 +173,12 @@
         <label class="champ"><span>Stabilité gouvernementale (%)</span><input type="number" min="0" max="100" class="num" data-bind="meta.stabilite.gouvernement" data-type="nombre"></label>
         <label class="champ"><span>Loyauté de l'armée (%)</span><input type="number" min="0" max="100" class="num" data-bind="meta.stabilite.armee" data-type="nombre"></label>
         <label class="champ"><span>Soutien de la population (%)</span><input type="number" min="0" max="100" class="num" data-bind="meta.stabilite.population" data-type="nombre"></label>
+      </div>
+    </section>
+    <section class="ds-card carte"><h2 class="ds-section-title">Tués confédérés par corps</h2>
+      <p class="ds-supporting aide">Totaux depuis le début de la guerre, affichés dans le détail des pertes de la carte. Le total des tués se règle toujours district par district.</p>
+      <div class="grille">
+        ${C.CORPS.map(([k, lib]) => `<label class="champ"><span>${lib}</span><input type="number" min="0" class="num" data-bind="meta.tuesParCorps.${k}" data-type="nombre"></label>`).join('')}
       </div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Énergie mondiale</h2>
@@ -524,6 +531,9 @@
         <label class="champ"><span>Longitude</span><input type="number" step="0.1" class="num" data-bind="zones.${i}.centre.0" data-type="nombre"></label>
         <label class="champ"><span>Latitude</span><input type="number" step="0.1" class="num" data-bind="zones.${i}.centre.1" data-type="nombre"></label>
         <label class="champ"><span>Rayon (degrés)</span><input type="number" step="0.1" min="0.2" class="num" data-bind="zones.${i}.rayon" data-type="nombre"></label>
+        <label class="champ large case"><input type="checkbox" data-bind="zones.${i}.cordon"> Cordon de quarantaine (barrière tracée autour de la zone)</label>
+        <label class="champ"><span>Cordon depuis le</span><input data-bind="zones.${i}.cordonDepuis"></label>
+        <label class="champ large"><span>Description du cordon</span><input data-bind="zones.${i}.cordonInfo"></label>
         <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-zone="${i}">Supprimer la zone</button></div>
       </div></section>`).join('')}
       <section class="ds-card carte"><h2 class="ds-section-title">Zones détruites</h2>
@@ -821,6 +831,7 @@
         const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, distorsion: pub.meta.distorsion || 0, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])), villes: Object.fromEntries((pub.villes || []).map(v => [v.id, v.etat])), pertes: C.pertesMonde(pub) };
         if (pub.meta.energie) snap.energie = { ...pub.meta.energie };
         if (pub.meta.stabilite) snap.stabilite = { ...pub.meta.stabilite };
+        if (pub.meta.tuesParCorps) snap.tuesParCorps = { ...pub.meta.tuesParCorps };
         const ph = pub.historique;
         if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }

@@ -2,8 +2,8 @@
   "meta": {
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
-    "dateRP": "20 sept. 2075",
-    "derniereMaj": "2026-09-26T00:48:40.000Z",
+    "dateRP": "27 sept. 2075",
+    "derniereMaj": "2026-09-26T12:00:00.000Z",
     "distorsion": 50,
     "energie": {
       "unite": "TW",
@@ -16,10 +16,16 @@
       "gouvernement": 100,
       "armee": 100,
       "population": 80
+    },
+    "tuesParCorps": {
+      "regulieres": 2500000,
+      "milices": 799200,
+      "speciales": 33000,
+      "phoenix": 800
     }
   },
   "tension": {
-    "valeur": 75,
+    "valeur": 70,
     "paliers": [
       {
         "min": 0,
@@ -97,7 +103,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 353000
+                "effectif": 352000
               },
               {
                 "nom": "Forces spéciales",
@@ -105,7 +111,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~27600000"
+                "effectif": "~27599800"
               },
               {
                 "nom": "Ligue Noire",
@@ -116,9 +122,9 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 2100,
-              "blesses": 5400,
-              "disparus": "~600"
+              "tues": 3000,
+              "blesses": 7714,
+              "disparus": "~857"
             },
             "cultistes": {
               "tues": 4000,
@@ -167,19 +173,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1493000
+                "effectif": 1490000
               },
               {
                 "nom": "Forces spéciales",
                 "effectif": 8000
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 400
-              },
-              {
                 "nom": "Milices citoyennes",
-                "effectif": "~286900000"
+                "effectif": "~286898900"
               },
               {
                 "nom": "Unités sous commandement HCP",
@@ -190,9 +192,9 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 9800,
-              "blesses": "~21000",
-              "disparus": "~2300"
+              "tues": 14000,
+              "blesses": "~30000",
+              "disparus": "~3286"
             },
             "cultistes": {
               "tues": 18000,
@@ -238,28 +240,24 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1199000
+                "effectif": 1197000
               },
               {
                 "nom": "Forces spéciales",
                 "effectif": 6000
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 600
-              },
-              {
                 "nom": "Milices citoyennes",
-                "effectif": "~188000000"
+                "effectif": "~187999300"
               }
             ],
             "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 7300,
-              "blesses": "~16000",
-              "disparus": "~1900"
+              "tues": 10000,
+              "blesses": "~21918",
+              "disparus": "~2603"
             },
             "cultistes": {
               "tues": 12000,
@@ -307,7 +305,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 662000
+                "effectif": 661000
               },
               {
                 "nom": "Forces spéciales",
@@ -315,16 +313,16 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~74200000"
+                "effectif": "~74199600"
               }
             ],
             "cultistes": []
           },
           "pertes": {
             "confederation": {
-              "tues": 4400,
-              "blesses": "~9800",
-              "disparus": "~1100"
+              "tues": 6000,
+              "blesses": "~13364",
+              "disparus": "~1500"
             },
             "cultistes": {
               "tues": 9000,
@@ -375,7 +373,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1497000
+                "effectif": 1496000
               },
               {
                 "nom": "Forces spéciales",
@@ -383,7 +381,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~326500000"
+                "effectif": "~326499800"
               },
               {
                 "nom": "Unités sous commandement HCP",
@@ -394,9 +392,9 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 2600,
-              "blesses": "~5800",
-              "disparus": "~700"
+              "tues": 3500,
+              "blesses": "~7808",
+              "disparus": "~942"
             },
             "cultistes": {
               "tues": 7000,
@@ -460,13 +458,13 @@
             "impliques": "~4000000",
             "deplaces": "~900000",
             "disparus": "~60000",
-            "deces": "~70000"
+            "deces": "~80000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1578000
+                "effectif": 1576000
               },
               {
                 "nom": "Forces spéciales",
@@ -474,7 +472,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~296800000"
+                "effectif": "~296799300"
               }
             ],
             "cultistes": [
@@ -486,12 +484,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 1300,
-              "blesses": 3000,
-              "disparus": 400
+              "tues": 4000,
+              "blesses": 9231,
+              "disparus": 1231
             },
             "cultistes": {
-              "tues": "~3000",
+              "tues": "~5000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -522,25 +520,21 @@
             "impliques": "~45000000",
             "deplaces": "~14000000",
             "disparus": "~1800000",
-            "deces": "~2600000"
+            "deces": "~3300000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2072000
+                "effectif": 1987000
               },
               {
                 "nom": "Forces spéciales",
                 "effectif": 12000
               },
               {
-                "nom": "Division Phoenix",
-                "effectif": 400
-              },
-              {
                 "nom": "Milices citoyennes",
-                "effectif": "~95000000"
+                "effectif": "~94973000"
               }
             ],
             "cultistes": [
@@ -556,12 +550,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 5200,
-              "blesses": "~11000",
-              "disparus": "~1600"
+              "tues": 110000,
+              "blesses": "~232692",
+              "disparus": "~33846"
             },
             "cultistes": {
-              "tues": 25000,
+              "tues": 180000,
               "blesses": "?",
               "disparus": "?"
             }
@@ -595,13 +589,13 @@
             "impliques": "~60000000",
             "deplaces": "~9000000",
             "disparus": "~500000",
-            "deces": "~700000"
+            "deces": "~800000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 5599000
+                "effectif": 5593000
               },
               {
                 "nom": "Forces spéciales",
@@ -609,7 +603,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~1879500000"
+                "effectif": "~1879498000"
               }
             ],
             "cultistes": [
@@ -621,12 +615,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 2400,
-              "blesses": "~5200",
-              "disparus": 700
+              "tues": 10000,
+              "blesses": "~21667",
+              "disparus": 2917
             },
             "cultistes": {
-              "tues": "~5000",
+              "tues": "~12000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -649,8 +643,8 @@
             "Sibérie"
           ],
           "statut": "conteste",
-          "influence": 22,
-          "tendance": "hausse",
+          "influence": 21,
+          "tendance": "baisse",
           "civils": {
             "population": 1490000000,
             "impliques": "CLASSIFIÉ",
@@ -662,19 +656,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 14854000
+                "effectif": 14039000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 14000
+                "effectif": 45000
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 5000
+                "effectif": 6300
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~215200000"
+                "effectif": "~214939800"
               },
               {
                 "nom": "Ligue Noire",
@@ -699,24 +693,24 @@
                 "effectif": "?"
               },
               {
-                "nom": "Izala \"la Déesse\" (plieuse de réalité)",
+                "nom": "Izala \"la Déesse\" (plieuse de réalité, blessée)",
                 "effectif": 1
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~61000",
-              "blesses": "~140000",
-              "disparus": "~38000"
+              "tues": "~1069500",
+              "blesses": "~2454590",
+              "disparus": "~666246"
             },
             "cultistes": {
-              "tues": 60000,
+              "tues": 900000,
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Après le rituel, les cultistes retranchés dans une ville chinoise en sont ressortis, menés par Izala, et les témoins parlent d'enlèvements, de tortures et de cannibalisme. Harbin et Vladivostok ne répondent plus que de manière irrégulière, ce qui n'a rien de rassurant.",
+          "note": "Après le rituel, les cultistes retranchés dans une ville chinoise en sont ressortis, menés par Izala, et les témoins parlent d'enlèvements, de tortures et de cannibalisme. Suite à la reprise de Hainan, les forces spéciales et les régulières consolident l'arrière pour attirer les cultistes vers le littoral, où la marine les attend, et Izala, blessée par Phoenix, ne s'est plus montrée depuis, ce qui ne veut pas dire grand-chose.",
           "label": [
             104,
             50
@@ -744,13 +738,13 @@
             "impliques": "~6000000",
             "deplaces": "~1200000",
             "disparus": "~40000",
-            "deces": "~90000"
+            "deces": "~100000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1536000
+                "effectif": 1529000
               },
               {
                 "nom": "Forces spéciales",
@@ -758,7 +752,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~197900000"
+                "effectif": "~197897700"
               },
               {
                 "nom": "Ligue Noire",
@@ -774,12 +768,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 3100,
-              "blesses": "~7000",
-              "disparus": 900
+              "tues": 12000,
+              "blesses": "~27097",
+              "disparus": 3484
             },
             "cultistes": {
-              "tues": "~4000",
+              "tues": "~8000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -811,28 +805,28 @@
             "Indian Ocean Ter."
           ],
           "statut": "conteste",
-          "influence": 14,
-          "tendance": "hausse",
+          "influence": 11,
+          "tendance": "stable",
           "civils": {
             "population": 522000000,
             "impliques": "~31000000",
             "deplaces": "~8000000",
             "disparus": "~650000",
-            "deces": "~1100000"
+            "deces": "~1500000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 3905000
+                "effectif": 3835000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 6000
+                "effectif": 15000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~412200000"
+                "effectif": "~412177500"
               }
             ],
             "cultistes": [
@@ -848,17 +842,17 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 2700,
-              "blesses": "~6000",
-              "disparus": "~700"
+              "tues": 90000,
+              "blesses": "~200000",
+              "disparus": "~23333"
             },
             "cultistes": {
-              "tues": 9000,
+              "tues": 110000,
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Alors que les Philippines et le nord de l'Indonésie passèrent en quarantaine, le reste du district garde ses routes ouvertes, même si le Commando des lignes arrières frappe toujours là où on ne l'attend pas, de Singapour aux ports de Java.",
+          "note": "Alors que les Philippines et le nord de l'Indonésie passèrent en quarantaine, le reste du district garde ses routes ouvertes, même si le Commando des lignes arrières frappe toujours là où on ne l'attend pas, de Singapour aux ports de Java. Au nord, la Flottille du Tonkin bombarde la côte vietnamienne jour et nuit.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
@@ -882,21 +876,21 @@
             "impliques": "~9000000",
             "deplaces": "~3000000",
             "disparus": "~250000",
-            "deces": "~400000"
+            "deces": "~600000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1250000
+                "effectif": 1215000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 3000
+                "effectif": 7000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~126000000"
+                "effectif": "~125988900"
               }
             ],
             "cultistes": [
@@ -912,12 +906,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 1900,
-              "blesses": "~4000",
-              "disparus": "~600"
+              "tues": 45000,
+              "blesses": "~94737",
+              "disparus": "~14211"
             },
             "cultistes": {
-              "tues": 6000,
+              "tues": 60000,
               "blesses": "?",
               "disparus": "?"
             }
@@ -1448,13 +1442,13 @@
             "impliques": "~9000000",
             "deplaces": "~400000",
             "disparus": "~30000",
-            "deces": "~45000"
+            "deces": "~60000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1744000
+                "effectif": 1741000
               },
               {
                 "nom": "Forces spéciales",
@@ -1462,7 +1456,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~331400000"
+                "effectif": "~331398900"
               },
               {
                 "nom": "Unités sous commandement HCP",
@@ -1482,12 +1476,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 1900,
-              "blesses": "~4100",
-              "disparus": 500
+              "tues": 6000,
+              "blesses": "~12947",
+              "disparus": 1579
             },
             "cultistes": {
-              "tues": "~14000",
+              "tues": "~20000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1542,51 +1536,51 @@
             "St-Barthélemy",
             "Antilles françaises"
           ],
-          "statut": "conteste",
-          "influence": 14,
-          "tendance": "hausse",
+          "statut": "reconquete",
+          "influence": 6,
+          "tendance": "baisse",
           "civils": {
             "population": 220000000,
             "impliques": "~3000000",
             "deplaces": "~800000",
             "disparus": "~70000",
-            "deces": "~160000"
+            "deces": "~900000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1762000
+                "effectif": 1610000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 3000
+                "effectif": 20000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~174100000"
+                "effectif": "~174051500"
               }
             ],
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~400000"
+                "effectif": "~120000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": 2200,
-              "blesses": "~4800",
-              "disparus": 600
+              "tues": 190000,
+              "blesses": "~414545",
+              "disparus": 51818
             },
             "cultistes": {
-              "tues": "~3000",
+              "tues": "~380000",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme, ce qui était, à vrai dire, une question de temps.",
+          "note": "Représentant : Mr Francisco D. Carlos. Suite à la destruction de la poche de Mexico, le district respire un peu, alors qu'à Haïti les forces spéciales ont figé la poche sans parvenir à la détruire, ce qui reste mieux que rien, en attendant la suite.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
@@ -1605,31 +1599,27 @@
           ],
           "statut": "conteste",
           "influence": 24,
-          "tendance": "hausse",
+          "tendance": "stable",
           "civils": {
             "population": 130000000,
             "impliques": "~70000000",
             "deplaces": "~20000000",
             "disparus": "~4000000",
-            "deces": "~6000000"
+            "deces": "~8500000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2734000
+                "effectif": 2420000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 8000
-              },
-              {
-                "nom": "Division Phoenix",
-                "effectif": 800
+                "effectif": 63000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~102900000"
+                "effectif": "~102799600"
               },
               {
                 "nom": "Brigade exotique",
@@ -1649,12 +1639,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~31000",
-              "blesses": "~52000",
-              "disparus": "~9000"
+              "tues": "~420000",
+              "blesses": "~704516",
+              "disparus": "~121935"
             },
             "cultistes": {
-              "tues": "~40000",
+              "tues": "~650000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1678,31 +1668,31 @@
           ],
           "statut": "conteste",
           "influence": 45,
-          "tendance": "hausse",
+          "tendance": "stable",
           "civils": {
             "population": 250000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~60000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~15000000"
+            "deces": "~21360000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 5413000
+                "effectif": 4532000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 7000
+                "effectif": 120000
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 6000
+                "effectif": 6300
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~37000000"
+                "effectif": "~36718200"
               }
             ],
             "cultistes": [
@@ -1730,17 +1720,17 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~88000",
-              "blesses": "~120000",
-              "disparus": "~60000"
+              "tues": "~1180000",
+              "blesses": "~1609091",
+              "disparus": "~804545"
             },
             "cultistes": {
-              "tues": "~25000",
+              "tues": "~1915600",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Sous l'effet des pathogènes, la jungle vire au marécage, et depuis que des aérodromes sont tombés, les cultistes font voler nos propres appareils.",
+          "note": "Sous l'effet des pathogènes, la jungle vire au marécage, et depuis que des aérodromes sont tombés, les cultistes font voler nos propres appareils. Depuis le 22 sept., un cordon de quarantaine ceinture le foyer de Nargal, et la bulle ne gagne plus un mètre, pour l'instant du moins.",
           "quarantaine": false,
           "air": {
             "niveau": "perdue",
@@ -1758,31 +1748,27 @@
           ],
           "statut": "conteste",
           "influence": 17,
-          "tendance": "hausse",
+          "tendance": "stable",
           "civils": {
             "population": 55000000,
             "impliques": "~14000000",
             "deplaces": "~5000000",
             "disparus": "~600000",
-            "deces": "~2000000"
+            "deces": "~2800000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1218000
+                "effectif": 1096000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 4000
-              },
-              {
-                "nom": "Division Phoenix",
-                "effectif": 200
+                "effectif": 25000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~43600000"
+                "effectif": "~43561000"
               }
             ],
             "cultistes": [
@@ -1794,17 +1780,17 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~9000",
-              "blesses": "~15000",
-              "disparus": "~2000"
+              "tues": "~160000",
+              "blesses": "~266667",
+              "disparus": "~35556"
             },
             "cultistes": {
-              "tues": "~8000",
+              "tues": "~250000",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "L'infection remonte les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter.",
+          "note": "L'infection remontait les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter, jusqu'à ce que le cordon de quarantaine la bloque, au moins sur la carte.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
@@ -2834,6 +2820,133 @@
         "Contrôles de la marine autour de l'archipel"
       ],
       "tension": 0
+    },
+    {
+      "id": "ev21",
+      "date": "22 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "majeur",
+      "titre": "Un cordon autour de Nargal",
+      "description": "Alors que la bulle gagnait encore du terrain chaque jour, le commandement du secteur fit dresser un cordon de quarantaine tout autour du foyer de Nargal, avec des barrières, des postes de contrôle sur chaque route et des filets sur chaque cours d'eau. La propagation s'arrêta net, ce qui ne veut pas dire que la bulle recule, mais c'est déjà ça.",
+      "consequences": [
+        "Propagation de la bulle stoppée",
+        "Routes et cours d'eau fermés autour du foyer"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev22",
+      "date": "23 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-mexicain"
+      },
+      "gravite": "majeur",
+      "titre": "Mexico libérée",
+      "description": "Suite aux combats de la semaine, la poche d'infection de Mexico fut détruite, et ce qu'il restait des infectés se dispersa dans les faubourgs, où les milices s'en chargèrent. Maintenant, concernant le Panaméricain, les équipes de Nouvelle-Détroit relaient déjà les voies, même si personne ne sait dire quand le premier convoi repassera.",
+      "consequences": [
+        "Poche de Mexico détruite",
+        "Reconstruction du Panaméricain"
+      ],
+      "tension": -2
+    },
+    {
+      "id": "ev23",
+      "date": "24 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-mexicain"
+      },
+      "gravite": "majeur",
+      "titre": "Forces spéciales à Haïti",
+      "description": "Des effectifs des forces spéciales débarquèrent à Haïti pour détruire la poche, appuyés depuis la mer par la Division des Caraïbes. La propagation s'arrêta au bout de deux jours, mais la poche tient toujours, et les rapports parlent d'un terrain qui se défend presque tout seul.",
+      "consequences": [
+        "Propagation stoppée à Haïti",
+        "Poche toujours active"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev24",
+      "date": "25 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "majeur",
+      "titre": "Hainan reprise",
+      "description": "Suite à une semaine d'assauts, l'île de Hainan fut reprise et consolidée, alors que les forces spéciales et les régulières renforçaient l'arrière du front chinois pour attirer les cultistes vers le littoral. Une grosse partie de la marine fit route vers la côte chinoise, et la Flottille du Tonkin, elle, bombarde la côte vietnamienne sans s'arrêter.",
+      "consequences": [
+        "Hainan sous contrôle",
+        "Quatre divisions navales redéployées vers la côte chinoise",
+        "Bombardements continus sur le Tonkin"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev25",
+      "date": "26 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "Izala blessée",
+      "description": "La division asiatique de Phoenix, celle qu'on envoie contre les entités les plus fortes, atteignit Izala au cœur de la bulle et la blessa, avant de se replier avec ses morts. La plieuse de réalité disparut des transmissions dans la soirée, ce qui peut aussi bien vouloir dire qu'elle se soigne que qu'elle prépare autre chose, va savoir.",
+      "consequences": [
+        "Izala blessée",
+        "Phoenix divisée en deux divisions, Amérique du Sud et Asie"
+      ],
+      "tension": -2
+    },
+    {
+      "id": "ev26",
+      "date": "26 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "majeur",
+      "titre": "1 300 entités abattues",
+      "description": "Pendant ce temps, la division sud-américaine de Phoenix, chargée des entités faibles, en tua près de 1 300 à l'intérieur de la bulle de Nargal, en une semaine. Personne ne sait combien il en reste, mais pour la première fois depuis le début de la guerre, c'est Phoenix qui chasse.",
+      "consequences": [
+        "Environ 1 300 entités tuées"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev27",
+      "date": "27 sept. 2075",
+      "portee": {
+        "type": "secteur",
+        "id": "rd"
+      },
+      "gravite": "majeur",
+      "titre": "L'ancre d'Eucrynomos",
+      "description": "Le laboratoire d'exclusion d'Eucrynomos lança la construction d'une ancre de réalité gigantesque, un chantier prévu sur vingt-cinq semaines, soit jusqu'au 20 mars 2076, si tout se passe bien, ce qui, par les temps qui courent, n'a rien d'évident.",
+      "consequences": [
+        "Achèvement prévu le 20 mars 2076"
+      ],
+      "tension": 0
+    },
+    {
+      "id": "ev28",
+      "date": "27 sept. 2075",
+      "portee": {
+        "type": "monde"
+      },
+      "gravite": "majeur",
+      "titre": "Le bilan de la troisième semaine",
+      "description": "Au 27 sept., la Confédération compta 50 millions de civils morts, 4,6 millions de cultistes tués et 3 333 000 morts dans ses propres rangs, dont 2,5 millions de régulières, 33 000 hommes des forces spéciales et 800 soldats de Phoenix, le reste venant des milices. Les forces spéciales, elles, passèrent à 350 000 hommes, en grande partie envoyés en Amérique du Sud.",
+      "consequences": [
+        "50 millions de civils morts",
+        "3 333 000 morts confédérés",
+        "Forces spéciales portées à 350 000"
+      ],
+      "tension": 3
     }
   ],
   "historique": [
@@ -3861,6 +3974,349 @@
         "armee": 100,
         "population": 80
       }
+    },
+    {
+      "date": "27 sept. 2075",
+      "tension": 70,
+      "distorsion": 50,
+      "evenements": 28,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2,
+          "quarantaine": false
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 16,
+          "quarantaine": false
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9,
+          "quarantaine": false
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 21,
+          "quarantaine": false
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
+          "quarantaine": true
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5,
+          "quarantaine": false
+        },
+        "am-mexicain": {
+          "statut": "reconquete",
+          "influence": 6,
+          "quarantaine": false
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 24,
+          "quarantaine": false
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 45,
+          "quarantaine": false
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 17,
+          "quarantaine": false
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5,
+          "cordon": true,
+          "cordonDepuis": "22 sept. 2075",
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer."
+        },
+        {
+          "id": "z-poche-haiti",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-mexicain",
+          "centre": [
+            -72.4,
+            18.9
+          ],
+          "rayon": 0.7
+        },
+        {
+          "id": "z-poche-colombie",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-andin",
+          "centre": [
+            -74.5,
+            4.5
+          ],
+          "rayon": 0.7
+        },
+        {
+          "id": "z-poche-venezuela",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -65.5,
+            7
+          ],
+          "rayon": 0.6
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.3,
+            24.9
+          ],
+          "rayon": 3.2
+        }
+      ],
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "kazan": 58,
+        "yokohama": 88,
+        "harbin": 78,
+        "novossibirsk": 82,
+        "singapour": 80,
+        "dubai": 90,
+        "mumbai": 79,
+        "sydney": 99,
+        "washington": 92,
+        "new-york": 87,
+        "mexico": 60,
+        "brasilia": 8,
+        "buenos-aires": 80,
+        "canberra": 98,
+        "le-cap": 71
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 3333000,
+          "blesses": 6128584,
+          "disparus": 1769889
+        },
+        "cultistes": {
+          "tues": 4600000,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 50000000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 64,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 100,
+        "population": 80
+      },
+      "tuesParCorps": {
+        "regulieres": 2500000,
+        "milices": 799200,
+        "speciales": 33000,
+        "phoenix": 800
+      }
     }
   ],
   "zones": [
@@ -3874,19 +4330,10 @@
         -57.5,
         -14.5
       ],
-      "rayon": 8.5
-    },
-    {
-      "id": "z-poche-mexique",
-      "nom": "Poche d'infection",
-      "dieu": "Nargal",
-      "couleur": "#2fbf5b",
-      "district": "am-mexicain",
-      "centre": [
-        -99,
-        19.5
-      ],
-      "rayon": 0.9
+      "rayon": 8.5,
+      "cordon": true,
+      "cordonDepuis": "22 sept. 2075",
+      "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer."
     },
     {
       "id": "z-poche-haiti",
@@ -3931,10 +4378,10 @@
       "couleur": "#b45bd6",
       "district": "as-sinorusse",
       "centre": [
-        107.5,
-        23.8
+        107.3,
+        24.9
       ],
-      "rayon": 3.4
+      "rayon": 3.2
     }
   ],
   "sites": [
@@ -4014,7 +4461,7 @@
       "icone": "labo",
       "glitch": true,
       "lien": "rd",
-      "info": "Laboratoire d'exclusion de la Confédération, au nord de la Norvège.",
+      "info": "Laboratoire d'exclusion de la Confédération, au nord de la Norvège, où l'on construit depuis le 27 sept. une ancre de réalité gigantesque.",
       "fiche": [
         [
           "Personnel",
@@ -4027,6 +4474,14 @@
         [
           "Confinement",
           "double enceinte, sphère d'exclusion active"
+        ],
+        [
+          "Projet",
+          "ancre de réalité gigantesque, semaine 1 sur 25"
+        ],
+        [
+          "Achèvement prévu",
+          "20 mars 2076"
         ]
       ]
     },
@@ -5315,7 +5770,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "![Haine : \"Je pense donc je suis ?\"](img/haine.webp)\n\n## Direction\n![Gotland, capitale du secteur](img/gotland.webp)\n\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Projets technologiques\nProjets de la R&D, classés selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
+          "contenu": "![Haine : \"Je pense donc je suis ?\"](img/haine.webp)\n\n## Direction\n![Gotland, capitale du secteur](img/gotland.webp)\n\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Projets technologiques\nProjets de la R&D, classés selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne, et depuis le 27 sept., l'ancre de réalité gigantesque d'Eucrynomos, prévue pour le 20 mars 2076, au bout de vingt-cinq semaines de chantier.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
         },
         {
           "id": "anormal",
@@ -5375,6 +5830,24 @@
               "lieu": "Ensemble des capteurs de la Confédération",
               "autorisation": "Ganzir",
               "resultat": "Suite aux calculs de Merrick, qui établissent que HCP a prédit 85 % des mouvements cultistes, déplacements civils compris, tout le réseau de capteurs et de topographies de la Confédération fut raccordé à la machine. Un psychoactif fut administré à son unité, à sa demande, et plus personne ne l'approche en dehors de Merrick."
+            },
+            {
+              "date": "26 sept. 2075",
+              "groupe": "Division Phoenix (Amérique du Sud)",
+              "anomalie": "Plieurs de réalité",
+              "usage": "OFFENSIVE",
+              "lieu": "Bulle de Nargal",
+              "autorisation": "Ganzir",
+              "resultat": "En une semaine, la division tua près de 1 300 entités faibles à l'intérieur de la bulle, sans que le registre ait reçu le détail de ses propres pertes."
+            },
+            {
+              "date": "26 sept. 2075",
+              "groupe": "Division Phoenix (Asie)",
+              "anomalie": "Plieurs de réalité",
+              "usage": "OFFENSIVE",
+              "lieu": "Domaine d'Izala",
+              "autorisation": "Ganzir",
+              "resultat": "Izala fut blessée au cours du raid, puis disparut des transmissions, et la division se replia avec ses morts."
             }
           ]
         },
@@ -5476,7 +5949,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "![Patrouille confédérée](img/armee-art.webp \"GARYOSAVAN, ArtStation\")\n\n## Direction\nConseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège lui aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n- Marine : environ 78 000 marins, répartis en 15 divisions.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
+          "contenu": "![Patrouille confédérée](img/armee-art.webp \"GARYOSAVAN, ArtStation\")\n\n## Direction\nConseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège lui aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 47,5 millions.\n- Forces spéciales : 350 000, en majorité en Amérique du Sud.\n- Division Phoenix : 12 600, en deux divisions.\n- Marine : environ 78 000 marins, répartis en 15 divisions.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités.\n\n## Pertes au 27 sept.\nDepuis le début de la guerre, l'armée a perdu 3 333 000 hommes, dont 2,5 millions de régulières, 799 200 miliciens, 33 000 hommes des forces spéciales et 800 soldats de Phoenix, ce qui fait beaucoup pour trois semaines."
         },
         {
           "id": "ganzir",
@@ -5486,22 +5959,22 @@
         {
           "id": "phoenix",
           "titre": "Phoenix",
-          "contenu": "![Mère Nature : \"Saurez-vous contenir votre feu prométhéen ?\"](img/mere-nature.webp)\n\n## Escouade Phoenix\n\"La force de frappe contre les dieux.\" Placée sous le commandement d'Aupox et coordonnée par Rosenrad depuis le secteur Renseignement, l'escouade réunit des plieurs de réalité, qu'on envoie contre les entités depuis le 10 septembre, date à laquelle elle prit le relais des troupes de HCP sur les fronts anormaux.\n\n## Division Phoenix\n![Tenue de la Division Phoenix](img/phoenix-tenue.webp)\n\nLa division compte 13 400 soldats au total, déployés pour l'essentiel à l'intérieur des bulles cultistes, là où les unités ordinaires ne tiennent pas longtemps.\n- Amérique : 7 000, dont 6 000 en Amazonie, 800 dans les Andes et 200 dans le district Austral.\n- Asie : 5 400, dont 5 000 face à Izala dans le district Sino-Russe et 400 en Asie centrale.\n- Europe : 1 000, dont 600 dans le district Central et 400 dans celui de l'Est.\n\n## Le Phénix\nDepuis le discours du bunker, le Phénix apparaît sur les murs, les casques et les fuselages, et les appareils qui ont rasé l'Afrique portaient eux aussi son insigne, ce qui en dit long sur ce que le symbole est devenu."
+          "contenu": "![Mère Nature : \"Saurez-vous contenir votre feu prométhéen ?\"](img/mere-nature.webp)\n\n## Escouade Phoenix\n\"La force de frappe contre les dieux.\" Placée sous le commandement d'Aupox et coordonnée par Rosenrad depuis le secteur Renseignement, l'escouade réunit des plieurs de réalité, qu'on envoie contre les entités depuis le 10 septembre, date à laquelle elle prit le relais des troupes de HCP sur les fronts anormaux.\n\n## Division Phoenix\n![Tenue de la Division Phoenix](img/phoenix-tenue.webp)\n\nSuite aux combats de septembre, la division compte 12 600 soldats, après 800 morts, et depuis le 26 sept., elle se partage en deux divisions de 6 300 hommes, déployées pour l'essentiel à l'intérieur des bulles cultistes, là où les unités ordinaires ne tiennent pas longtemps.\n- Division d'Amérique du Sud : elle chasse les entités faibles dans la bulle de Nargal, et en a tué près de 1 300 en une semaine.\n- Division d'Asie : elle s'en prend aux entités les plus fortes, et c'est elle qui blessa Izala le 26 sept.\n\n## Le Phénix\nDepuis le discours du bunker, le Phénix apparaît sur les murs, les casques et les fuselages, et les appareils qui ont rasé l'Afrique portaient eux aussi son insigne, ce qui en dit long sur ce que le symbole est devenu."
         },
         {
           "id": "forces-speciales",
           "titre": "Forces spéciales",
-          "contenu": "![Tenue des forces spéciales](img/forces-speciales-tenue.webp)\n\n## Effectifs\nLa Confédération aligne 100 000 hommes des forces spéciales, répartis entre les secteurs géographiques à peu près selon la pression cultiste qui s'y exerce.\n- Asie : 47 000.\n- Amérique : 27 000.\n- Europe : 25 000.\n- Océanie : 1 000.\n\n## Rôle dans le conflit\n- En Europe, ce sont elles qui neutralisèrent plusieurs entités et brisèrent l'expansion cultiste, au bout d'une semaine de combat, avant que le secteur ne soit déclaré réglé le 19 septembre.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement, ce qui, selon le point de vue, le rend deux fois plus utile ou deux fois plus difficile à commander."
+          "contenu": "![Tenue des forces spéciales](img/forces-speciales-tenue.webp)\n\n## Effectifs\nAlors que la Confédération alignait 100 000 hommes des forces spéciales au début de la guerre, elle en compte désormais 350 000, malgré 33 000 morts, et la majorité est partie pour l'Amérique du Sud.\n- Amérique : 233 000, dont 208 000 en Amérique du Sud et 20 000 à Haïti.\n- Asie : 91 000, dont 45 000 à l'arrière du front chinois.\n- Europe : 25 000.\n- Océanie : 1 000.\n\n## Rôle dans le conflit\n- En Europe, ce sont elles qui neutralisèrent plusieurs entités et brisèrent l'expansion cultiste, au bout d'une semaine de combat, avant que le secteur ne soit déclaré réglé le 19 septembre.\n- À Haïti, depuis le 24 sept., elles ont arrêté la propagation de la poche, sans parvenir à la détruire.\n- En Chine, elles consolident l'arrière avec les régulières depuis la reprise de Hainan, pour attirer les cultistes vers le littoral.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement, ce qui, selon le point de vue, le rend deux fois plus utile ou deux fois plus difficile à commander."
         },
         {
           "id": "regulieres",
           "titre": "Régulières",
-          "contenu": "![Tenue violette des forces régulières](img/regulieres-art.webp \"Emiliano Andes, recoloré, ArtStation\")\n\n## Effectifs\nL'armée régulière compte 50 millions de soldats, dont plus de la moitié en Asie, ce qui n'étonnera personne au vu de ce qui s'y passe.\n- Asie : 30,8 millions, dont 14,9 millions dans le seul district Sino-Russe.\n- Amérique : 13,3 millions, dont 5,4 millions en Amazonie.\n- Europe : 5,2 millions.\n- Océanie : 710 000.\n\n## Rôle dans le conflit\n- Le 10 septembre, l'armée perdit 2 145 soldats face à une entité, avant que HCP ne retire ses troupes des fronts anormaux.\n- À Zurich, le 19 septembre, elle tint la rue aux côtés de la milice populaire pendant quarante minutes de contact.\n- Là où les entités apparaissent, les régulières laissent la place à l'Escouade Phoenix, à la Ligue Noire et à l'Ordre, ce qui revient à reconnaître qu'un fusil ne suffit plus."
+          "contenu": "![Tenue violette des forces régulières](img/regulieres-art.webp \"Emiliano Andes, recoloré, ArtStation\")\n\n## Effectifs\nL'armée régulière compte 47,5 millions de soldats, après 2,5 millions de morts, dont plus de la moitié en Asie, ce qui n'étonnera personne au vu de ce qui s'y passe.\n- Asie : 29,8 millions, dont 14 millions dans le seul district Sino-Russe.\n- Amérique : 11,8 millions, dont 4,5 millions en Amazonie.\n- Europe : 5,2 millions.\n- Océanie : 710 000.\n\n## Rôle dans le conflit\n- Le 10 septembre, l'armée perdit 2 145 soldats face à une entité, avant que HCP ne retire ses troupes des fronts anormaux.\n- Depuis le 22 sept., elles tiennent avec les milices le cordon de quarantaine autour du foyer de Nargal.\n- À Zurich, le 19 septembre, elle tint la rue aux côtés de la milice populaire pendant quarante minutes de contact.\n- Là où les entités apparaissent, les régulières laissent la place à l'Escouade Phoenix, à la Ligue Noire et à l'Ordre, ce qui revient à reconnaître qu'un fusil ne suffit plus."
         },
         {
           "id": "marine",
           "titre": "Marine",
-          "contenu": "## Situation\nAlors que l'armée de terre se bat dans les bulles, la marine de la Confédération tient les mers qui les bordent, avec 15 divisions et environ 78 000 marins, ce qui reste peu à côté des forces terrestres, mais aucune bulle cultiste n'a encore de débouché sur la mer qui ne soit surveillé.\n\n## Autour de Ganzir\n- Le Groupe aéronaval de Ganzir tourne autour de la forteresse, dont il assure la couverture aérienne.\n- Le Rideau sous-marin ferme les approches, à une journée de mer.\n- L'Escadre de l'Atlantique tient la route des renforts entre Ganzir et les Açores.\n\n## Face à Nargal\n- La Division de l'Amazone ferme l'embouchure du fleuve et appuie le district Amazonien depuis la côte.\n- La Flottille sous-marine de l'Atlantique Sud longe la côte brésilienne, et celle de la Plata garde l'estuaire pour le district Austral.\n- Le Groupe aéronaval du Pacifique Sud appuie la brigade exotique sur le front andin.\n- Les divisions des Caraïbes et du Golfe surveillent les poches d'infection d'Haïti, du Venezuela, de la Colombie et du Mexique.\n\n## Face à Izala\n- Le Groupe aéronaval de la mer de Chine méridionale frappe la côte du Guangdong et coupe la route de Hong Kong.\n- Les flottilles du Tonkin et de la mer Jaune surveillent les flancs du district Sino-Russe, pour que rien ne passe vers le Japon.\n- Les divisions d'Andaman et du golfe du Bengale, et la flottille de la mer d'Arabie, couvrent le Sud-Est asiatique, l'Inde et le Moyen-Orient.\n\n## Hors hiérarchie\nLa Flotte de recherche stratégique \"Bismarck\" ne dépend pas de la marine mais de la DVA, au sein du secteur Recherche & Développement."
+          "contenu": "## Situation\nAlors que l'armée de terre se bat dans les bulles, la marine de la Confédération tient les mers qui les bordent, avec 15 divisions et environ 78 000 marins, ce qui reste peu à côté des forces terrestres, mais aucune bulle cultiste n'a encore de débouché sur la mer qui ne soit surveillé.\n\n## Autour de Ganzir\n- Le Groupe aéronaval de Ganzir tourne autour de la forteresse, dont il assure la couverture aérienne.\n- Le Rideau sous-marin ferme les approches, à une journée de mer.\n- L'Escadre de l'Atlantique tient la route des renforts entre Ganzir et les Açores.\n\n## Face à Nargal\n- La Division de l'Amazone ferme l'embouchure du fleuve et appuie le district Amazonien depuis la côte.\n- La Flottille sous-marine de l'Atlantique Sud longe la côte brésilienne, et celle de la Plata garde l'estuaire pour le district Austral.\n- Le Groupe aéronaval du Pacifique Sud appuie la brigade exotique sur le front andin.\n- La Division des Caraïbes surveille les poches d'infection du Venezuela et de la Colombie, et appuie depuis la mer les forces spéciales débarquées à Haïti.\n\n## Face à Izala\nSuite à la reprise de Hainan, une grosse partie de la marine fit route vers le littoral chinois, où le commandement espère voir descendre les cultistes.\n- Le Groupe aéronaval de la mer de Chine méridionale frappe la côte du Guangdong et coupe la route de Hong Kong.\n- La Division du Golfe, rappelée après la destruction de la poche de Mexico, tient la côte entre Shantou et Hong Kong, et la Flottille de la mer d'Arabie garde les bouches de la rivière des Perles.\n- La Division d'Andaman couvre Hainan et la côte de Zhanjiang, et celle du golfe du Bengale ferme la côte du Zhejiang et du Fujian.\n- La Flottille du Tonkin bombarde sans relâche la côte vietnamienne, au sud de la bulle, et celle de la mer Jaune surveille le flanc nord, pour que rien ne passe vers le Japon.\n\n## Hors hiérarchie\nLa Flotte de recherche stratégique \"Bismarck\" ne dépend pas de la marine mais de la DVA, au sein du secteur Recherche & Développement."
         },
         {
           "id": "milices-civiles",
@@ -5531,7 +6004,7 @@
         {
           "id": "traverseurs",
           "titre": "Traverseurs",
-          "contenu": "## Le réseau\nLes Traverseurs, ce sont les quatre grandes lignes ferroviaires de la Confédération, que Nouvelle-Détroit fait tourner jour et nuit depuis la mobilisation générale, et qui transportent à peu près tout ce qui ne peut pas voler, des blindés aux réfugiés en passant par les trains-hôpitaux qui déchargent les blessés à Krasnoïarsk et au campus MUSH.\n\n## Pendant la guerre\nAlors que la guerre éclata le 8 sept., le réseau passa sous l'autorité du secteur Administration, qui décide seul de ce qui monte dans les convois et de ce qui reste sur le quai. Là où les bulles cultistes mordent sur les voies, à Mexico ou près de Bogotá, la ligne est considérée comme coupée, même si des trains blindés forcent encore le passage de temps à autre, ce qui revient presque au même pour ceux qui attendent de l'autre côté."
+          "contenu": "## Le réseau\nLes Traverseurs, ce sont les quatre grandes lignes ferroviaires de la Confédération, que Nouvelle-Détroit fait tourner jour et nuit depuis la mobilisation générale, et qui transportent à peu près tout ce qui ne peut pas voler, des blindés aux réfugiés en passant par les trains-hôpitaux qui déchargent les blessés à Krasnoïarsk et au campus MUSH.\n\n## Pendant la guerre\nAlors que la guerre éclata le 8 sept., le réseau passa sous l'autorité du secteur Administration, qui décide seul de ce qui monte dans les convois et de ce qui reste sur le quai. Là où les bulles cultistes mordent sur les voies, près de Bogotá, la ligne est considérée comme coupée, même si des trains blindés forcent encore le passage de temps à autre, ce qui revient presque au même pour ceux qui attendent de l'autre côté. À Mexico, depuis la destruction de la poche le 23 sept., les équipes de Nouvelle-Détroit relaient la voie, et le Panaméricain devrait rouvrir, un jour."
         }
       ]
     }
@@ -5935,7 +6408,7 @@
         19.43
       ],
       "district": "am-mexicain",
-      "etat": 46,
+      "etat": 60,
       "image": "infectee",
       "garnison": [
         {
@@ -5951,7 +6424,7 @@
           "effectif": "~8500000"
         }
       ],
-      "description": "Capitale du district mexicain et premier centre de recrutement de masse du continent. Une poche d'infection de Nargal s'est ouverte au sud de la ville, si bien que les quartiers de Xochimilco et Tlalpan sont sous cloche, et les canaux ont verdi en quatre jours."
+      "description": "Capitale du district mexicain et premier centre de recrutement de masse du continent. La poche d'infection de Nargal qui s'était ouverte au sud de la ville fut détruite le 23 sept., si bien que les quartiers de Xochimilco et Tlalpan sortent de sous la cloche, même si les canaux, eux, n'ont toujours pas perdu leur couleur verte."
     },
     {
       "id": "brasilia",
@@ -6364,7 +6837,7 @@
         ]
       ],
       "zone": "Mer des Caraïbes",
-      "info": "La division surveille les côtes d'Haïti, du Venezuela et de la Colombie, où des poches d'infection sont apparues, et bloque tout ce qui tenterait de passer d'une île à l'autre.",
+      "info": "La division surveille les côtes d'Haïti, du Venezuela et de la Colombie, où des poches d'infection sont apparues, et appuie depuis la mer les forces spéciales débarquées à Haïti.",
       "fiche": [
         [
           "Bâtiments",
@@ -6384,32 +6857,32 @@
       "periode": 420,
       "trajet": [
         [
-          -95.8,
+          115.2,
+          21.6
+        ],
+        [
+          116.4,
+          22.2
+        ],
+        [
+          117.4,
+          22.7
+        ],
+        [
+          117.9,
+          22.0
+        ],
+        [
+          116.9,
+          21.2
+        ],
+        [
+          115.7,
           20.9
-        ],
-        [
-          -93.5,
-          23.3
-        ],
-        [
-          -89.5,
-          24.2
-        ],
-        [
-          -86.5,
-          23.6
-        ],
-        [
-          -90,
-          22.6
-        ],
-        [
-          -93.2,
-          20.3
         ]
       ],
-      "zone": "Golfe du Mexique",
-      "info": "La division tient le golfe du Mexique, à portée de missiles de la poche d'infection de Mexico.",
+      "zone": "Mer de Chine méridionale, côte de Shantou",
+      "info": "Suite à la destruction de la poche de Mexico, la division quitta le golfe du Mexique pour le littoral chinois, où elle tient la côte entre Shantou et Hong Kong.",
       "fiche": [
         [
           "Bâtiments",
@@ -6711,7 +7184,7 @@
         ]
       ],
       "zone": "Golfe du Tonkin",
-      "info": "Les sous-marins du golfe du Tonkin surveillent le flanc sud du domaine d'Izala, entre la côte vietnamienne et Hainan.",
+      "info": "Les sous-marins du golfe du Tonkin bombardent sans relâche la côte vietnamienne et le flanc sud du domaine d'Izala, à coups de missiles de croisière, entre Haïphong et Hainan.",
       "fiche": [
         [
           "Bâtiments",
@@ -6772,32 +7245,28 @@
       "periode": 440,
       "trajet": [
         [
-          95.8,
-          12.5
+          110.9,
+          20.5
         ],
         [
-          97.3,
-          10
+          111.8,
+          21.1
         ],
         [
-          97,
-          7.3
+          112.8,
+          21.4
         ],
         [
-          95.8,
-          6.5
+          112.9,
+          20.6
         ],
         [
-          94.3,
-          8.5
-        ],
-        [
-          94.5,
-          11
+          111.9,
+          20.1
         ]
       ],
-      "zone": "Mer d'Andaman",
-      "info": "La division chasse le commando des lignes arrières qui opère depuis les côtes du Sud-Est asiatique, entre la Birmanie et la Thaïlande.",
+      "zone": "Détroit de Hainan, côte de Zhanjiang",
+      "info": "Rappelée de la mer d'Andaman, la division couvre Hainan, reprise le 25 sept., et la côte de Zhanjiang, là où l'on espère voir les cultistes descendre.",
       "fiche": [
         [
           "Bâtiments",
@@ -6817,32 +7286,28 @@
       "periode": 480,
       "trajet": [
         [
-          86.5,
-          19.2
+          121.9,
+          27.3
         ],
         [
-          90.5,
-          20.5
+          122.7,
+          28.4
         ],
         [
-          92,
-          17.5
+          123.4,
+          27.9
         ],
         [
-          89.5,
-          14.2
+          123.0,
+          26.6
         ],
         [
-          85.8,
-          15
-        ],
-        [
-          84.8,
-          17.3
+          122.2,
+          26.2
         ]
       ],
-      "zone": "Golfe du Bengale",
-      "info": "La division couvre les côtes de l'Inde et du Bangladesh, où les milices du district Indo-Pakistanais tiennent la plupart des ports.",
+      "zone": "Mer de Chine orientale, côte du Zhejiang",
+      "info": "Venue du golfe du Bengale, la division ferme la côte du Zhejiang et du Fujian, au nord du détroit de Taïwan.",
       "fiche": [
         [
           "Bâtiments",
@@ -6862,28 +7327,24 @@
       "periode": 700,
       "trajet": [
         [
-          61.5,
-          22
+          113.5,
+          21.6
         ],
         [
-          65,
-          23.7
+          114.5,
+          21.9
         ],
         [
-          67.2,
-          20.5
+          115.0,
+          21.3
         ],
         [
-          63.5,
-          18.3
-        ],
-        [
-          60.6,
-          19.5
+          114.0,
+          21.0
         ]
       ],
-      "zone": "Mer d'Arabie",
-      "info": "Entre Oman et le Pakistan, les sous-marins surveillent le golfe d'Oman, par où passent les cellules cultistes du Moyen-Orient.",
+      "zone": "Bouches de la rivière des Perles",
+      "info": "Les sous-marins, retirés de la mer d'Arabie, gardent les bouches de la rivière des Perles, au large de Hong Kong.",
       "fiche": [
         [
           "Bâtiments",
@@ -6917,6 +7378,26 @@
       "date": "19 sept. 2075",
       "source": "Diffusion confédérée",
       "texte": "Le District Central est sécurisé."
+    },
+    {
+      "date": "22 sept. 2075",
+      "source": "Commandement Amérique",
+      "texte": "Cordon établi autour du foyer de Nargal. Rien n'entre, rien ne sort."
+    },
+    {
+      "date": "23 sept. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Mexico est libérée. Le Panaméricain sera rouvert."
+    },
+    {
+      "date": "26 sept. 2075",
+      "source": "Phoenix",
+      "texte": "Cible touchée. Elle saigne."
+    },
+    {
+      "date": "27 sept. 2075",
+      "source": "Eucrynomos",
+      "texte": "Chantier de l'ancre ouvert. Livraison dans vingt-cinq semaines."
     }
   ],
   "traverseurs": [
@@ -7184,7 +7665,7 @@
       "nom": "Panaméricain",
       "periode": 1000,
       "dossier": "administration/traverseurs",
-      "info": "Ligne qui relie l'Alaska à la Terre de Feu, et qui traverse deux poches d'infection, à Mexico et près de Bogotá, où les convois passent désormais en force ou pas du tout.",
+      "info": "Ligne qui relie l'Alaska à la Terre de Feu, coupée près de Bogotá, où les convois passent en force ou pas du tout, et en reconstruction à Mexico depuis la destruction de la poche.",
       "voie": [
         [
           -149.9,
@@ -7318,8 +7799,17 @@
         ],
         [
           "Particularité",
-          "Coupée à Mexico et près de Bogotá, où des trains blindés rouvrent le passage quand ils le peuvent"
+          "Coupée près de Bogotá, en reconstruction à Mexico depuis le 23 sept."
         ]
+      ],
+      "travaux": [
+        {
+          "centre": [
+            -99.1,
+            19.4
+          ],
+          "rayon": 1.4
+        }
       ]
     },
     {
