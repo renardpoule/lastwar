@@ -807,7 +807,6 @@
             "Malaysia",
             "Singapore",
             "Indonesia",
-            "Philippines",
             "Brunei",
             "Timor-Leste",
             "Indian Ocean Ter."
@@ -816,31 +815,31 @@
           "influence": 14,
           "tendance": "hausse",
           "civils": {
-            "population": 680000000,
-            "impliques": "~40000000",
-            "deplaces": "~11000000",
-            "disparus": "~900000",
-            "deces": "~1500000"
+            "population": 530000000,
+            "impliques": "~31000000",
+            "deplaces": "~8000000",
+            "disparus": "~650000",
+            "deces": "~1100000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 5155000
+                "effectif": 3905000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 9000
+                "effectif": 6000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~538200000"
+                "effectif": "~418200000"
               }
             ],
             "cultistes": [
               {
                 "nom": "Cultistes convertis",
-                "effectif": "~8000000"
+                "effectif": "~5000000"
               },
               {
                 "nom": "Commando des lignes arrières",
@@ -850,18 +849,80 @@
           },
           "pertes": {
             "confederation": {
-              "tues": 4600,
-              "blesses": "~10000",
-              "disparus": "~1300"
+              "tues": 2700,
+              "blesses": "~6000",
+              "disparus": "~700"
             },
             "cultistes": {
-              "tues": 15000,
+              "tues": 9000,
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Manille, siège d'espionnage du secteur, tient toujours, alors que Baguio, où tout a commencé en mai, n'est qu'à 250 km au nord.",
+          "note": "Alors que les Philippines et le nord de l'Indonésie passèrent en quarantaine, le reste du district garde ses routes ouvertes, même si le Commando des lignes arrières frappe toujours là où on ne l'attend pas, de Singapour aux ports de Java.",
           "quarantaine": false,
+          "air": {
+            "niveau": "nette",
+            "note": "Un commando cultiste harcèle les arrières, sans aviation adverse pour le soutenir."
+          }
+        },
+        {
+          "id": "as-philippines",
+          "nom": "District Philippin",
+          "pays": [
+            "Philippines",
+            "Indonésie du Nord"
+          ],
+          "statut": "conteste",
+          "influence": 14,
+          "tendance": "hausse",
+          "civils": {
+            "population": 150000000,
+            "impliques": "~9000000",
+            "deplaces": "~3000000",
+            "disparus": "~250000",
+            "deces": "~400000"
+          },
+          "forces": {
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 1250000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 3000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~120000000"
+              }
+            ],
+            "cultistes": [
+              {
+                "nom": "Cultistes convertis",
+                "effectif": "~3000000"
+              },
+              {
+                "nom": "Commando des lignes arrières",
+                "effectif": "?"
+              }
+            ]
+          },
+          "pertes": {
+            "confederation": {
+              "tues": 1900,
+              "blesses": "~4000",
+              "disparus": "~600"
+            },
+            "cultistes": {
+              "tues": 6000,
+              "blesses": "?",
+              "disparus": "?"
+            }
+          },
+          "note": "Manille, siège d'espionnage du secteur, tient toujours, alors que Baguio, où tout a commencé en mai, n'est qu'à 250 km au nord. Suite à la mise en quarantaine, plus personne n'entre ni ne sort de l'archipel sans passer par les contrôles de la marine, qui ferment aussi le nord de Bornéo, de Sumatra et de Célèbes.",
+          "quarantaine": true,
           "air": {
             "niveau": "nette",
             "note": "Un commando cultiste harcèle les arrières, sans aviation adverse pour le soutenir."
@@ -2756,6 +2817,22 @@
         "Des psychologues s'inquiètent pour l'ordre public"
       ],
       "tension": 1
+    },
+    {
+      "id": "ev20",
+      "date": "20 sept. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-philippines"
+      },
+      "gravite": "majeur",
+      "titre": "Quarantaine sur l'archipel",
+      "description": "Alors que Baguio, où tout commença en mai, reste à deux pas de Manille, le commandement du secteur plaça les Philippines et le nord de l'Indonésie en quarantaine, et la marine ferma les détroits dans la nuit. Officiellement, c'est une mesure sanitaire, ce qui revient probablement au même, va savoir.",
+      "consequences": [
+        "Détroits fermés au trafic civil",
+        "Contrôles de la marine autour de l'archipel"
+      ],
+      "tension": 0
     }
   ],
   "historique": [
@@ -2931,6 +3008,10 @@
         "af-experimental": {
           "statut": "conteste",
           "influence": 17
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 12
         }
       },
       "zones": [
@@ -3166,6 +3247,10 @@
         "af-experimental": {
           "statut": "conteste",
           "influence": 19
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14
         }
       },
       "zones": [
@@ -3403,6 +3488,10 @@
           "statut": "controle",
           "influence": 0,
           "quarantaine": true
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14
         }
       },
       "zones": [
@@ -3469,7 +3558,7 @@
     {
       "date": "20 sept. 2075",
       "tension": 75,
-      "evenements": 19,
+      "evenements": 20,
       "districts": {
         "eu-nord": {
           "statut": "controle",
@@ -3639,6 +3728,11 @@
         "af-experimental": {
           "statut": "controle",
           "influence": 0,
+          "quarantaine": true
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
           "quarantaine": true
         }
       },

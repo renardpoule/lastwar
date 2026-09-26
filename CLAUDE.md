@@ -16,7 +16,7 @@ Site statique (GitHub Pages) qui suit un roleplay SCP sur Discord : la **Conféd
 | `admin.html`, `admin.js`, `admin.css`, `auth.js`, `acces.json` | Admin : édite `data.json` puis publie via l'API GitHub (jeton saisi par l'utilisateur, jamais stocké dans le dépôt). Connexion PBKDF2 + AES-GCM |
 | `common.js` | Utilitaires partagés (`C.parse`, `C.fmt`, `C.court`, `C.agrege`, `C.palier`…) |
 | `data.json` | **Toutes les données du RP** (voir plus bas) |
-| `countries.json` | TopoJSON des pays, retouché : Afrique découpée en "Côte africaine" / "Intérieur africain", France d'outre-mer séparée ("Guyane", "Antilles françaises"), Russie coupée à 60° E ("Russia" = partie européenne, "Sibérie"), "Alaska" séparée des États-Unis |
+| `countries.json` | TopoJSON des pays, retouché : Afrique découpée en "Côte africaine" / "Intérieur africain", France d'outre-mer séparée ("Guyane", "Antilles françaises"), Russie coupée à 60° E ("Russia" = partie européenne, "Sibérie"), "Alaska" séparée des États-Unis, Indonésie coupée à l'équateur ("Indonésie du Nord", "Indonesia" = sud). Appelé avec `?v=N` dans `app.js` |
 | `img/` | Images des dossiers (syntaxe `![légende](img/x.webp)` dans le contenu) |
 | `LISEZMOI.md` | Mode d'emploi de l'admin pour Foxy |
 
@@ -35,7 +35,7 @@ Après toute modification des `pays` d'un district, vérifier que chaque nom exi
 - L'état d'une ville doit correspondre à sa distance aux bulles.
 - Effectifs mondiaux : milices ~4,9 Md, régulière 50 M, forces spéciales 100 000, **Division Phoenix 13 400 au total** (surtout dans les bulles). Marine : 15 divisions, ~78 000 marins, placées face aux bulles cultistes et autour de Ganzir.
 - Carte : en vue monde, un seul pion par camp et par district (total des troupes militaires, sans les milices citoyennes) ; le détail des pions n'apparaît qu'une fois le secteur ouvert.
-- Afrique : seul le district expérimental est en quarantaine, la côte en est sortie.
+- Quarantaines : en Afrique, seul le district expérimental (la côte en est sortie) ; en Asie, le District Philippin (Philippines + nord de l'Indonésie), depuis le 20 sept.
 - Projets technologiques de la R&D (dossiers `rd/*`, la Smith Technologies Corporation et les accords de Stockholm ne sont plus à mentionner) : installé = CLS, GGP, RESS, Télescope Stockholm, TDA ; en fabrication = Station Arachne ; en recherche = Singularité, SPA (très peu avancé), SPMQN.
 - Performances : pas d'animation CSS continue sur les éléments du SVG de la carte ni sur les calques en fondu (chaque image redessinerait toute la carte). Les mouvements lents passent par la boucle à 4 images/s de `app.js` (satellites, flottes, méridien des sphères) ou par des classes posées ponctuellement (soubresauts des sphères, grain de distorsion).
 - Les fichiers CSS/JS sont appelés avec `?v=N` : incrémenter N à chaque modification, sinon les navigateurs gardent l'ancienne version.
