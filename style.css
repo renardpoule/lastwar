@@ -564,6 +564,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 .f-recherche .f-navire,.sw-flotte.f-recherche path{fill:oklch(0.9 0.1 80)}
 .f-recherche .f-halo{fill:oklch(0.8 0.12 80 / .14);stroke:oklch(0.85 0.12 80 / .55)}
 .loin .nom-flotte{display:none}
+.rail-zone{fill:none;stroke:transparent;stroke-width:10;vector-effect:non-scaling-stroke;pointer-events:stroke}
+.ligne.lien,.train{cursor:pointer}
+.rail-voie{fill:none;stroke:oklch(0.9 0.1 70);stroke-width:1.8;vector-effect:non-scaling-stroke;pointer-events:none}
+.rail-traverses{fill:none;stroke:oklch(0.9 0.1 70 / .8);stroke-width:5;stroke-dasharray:1.2 4;vector-effect:non-scaling-stroke;pointer-events:none}
+.rail-voie.coupe{stroke:var(--st-perdu);stroke-dasharray:4 3;stroke-width:2.2}
+.rail-fond{fill:none;stroke:oklch(0.15 0.03 280 / .75);stroke-width:4;vector-effect:non-scaling-stroke;pointer-events:none}
+.rail-parcours{fill:none;stroke:none;pointer-events:none}
+.ligne:hover .rail-voie:not(.coupe){stroke:oklch(0.9 0.08 60)}
+.tr-corps{fill:oklch(0.88 0.08 60);stroke:var(--ocean);stroke-width:.8}
+.nom-train{font-size:0.75rem;text-anchor:start;stroke-width:3px}
+.nom-train{display:none}
+.proche .nom-train,.train:hover .nom-train{display:inline}
+.loin .rail-traverses{display:none}
+.loin .rail-voie{stroke-width:1.6}
+.sw-rail{width:1.5rem;height:0.5rem;overflow:visible}
 
 @media (prefers-reduced-motion:reduce){.sphere-glitch *{animation:none!important}}
 

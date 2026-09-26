@@ -53,7 +53,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'detruites', 'bords', 'sel', 'fronts', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'detruites', 'bords', 'sel', 'fronts', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -167,6 +167,33 @@
       .on('click', (e, f) => { e.stopPropagation(); tip.hidden = true; if (f.dossier) { location.href = 'secteurs.html#' + f.dossier; return; } const [sc, di] = (f.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
     majFlottes();
 
+    // Traverseurs : voies ferrées, tronçons coupés près des bulles et des zones frappées, convoi animé
+    const rails = (data.traverseurs || []).map(preparerRail);
+    L.rails.selectAll('*').remove();
+    const gr = L.rails.selectAll('g.ligne').data(rails, r => r.id).join('g').attr('class', r => 'ligne' + (r.dossier ? ' lien' : ''))
+      .on('mousemove', survolRail).on('mouseleave', finSurvol)
+      .on('click', (e, r) => { e.stopPropagation(); tip.hidden = true; if (r.dossier) location.href = 'secteurs.html#' + r.dossier; });
+    gr.each(function (r) {
+      const el = d3.select(this);
+      const toutes = [...r.troncons, ...r.branches.map(b => ({ pts: b, coupe: false }))];
+      el.append('path').attr('class', 'rail-zone').attr('d', path({ type: 'MultiLineString', coordinates: toutes.map(t => t.pts) }));
+      for (const t of toutes) {
+        const dd = path({ type: 'LineString', coordinates: t.pts });
+        el.append('path').attr('class', 'rail-fond').attr('d', dd);
+        el.append('path').attr('class', 'rail-voie' + (t.coupe ? ' coupe' : '')).attr('d', dd);
+        if (!t.coupe) el.append('path').attr('class', 'rail-traverses').attr('d', dd);
+      }
+      r._chemin = el.append('path').attr('class', 'rail-parcours').attr('d', path({ type: 'LineString', coordinates: r.parcours })).node();
+    });
+    L.rails.selectAll('g.train').data(rails.filter(r => r.parcours.length > 1), r => r.id).join(en => {
+      const x = en.append('g').attr('class', 'train');
+      x.append('path').attr('class', 'tr-corps').attr('d', TRAIN);
+      x.append('text').attr('class', 'label nom-train').attr('x', 14).attr('dy', '0.35em').text(r => r.nom);
+      return x;
+    }).on('mousemove', survolRail).on('mouseleave', finSurvol)
+      .on('click', (e, r) => { e.stopPropagation(); tip.hidden = true; if (r.dossier) location.href = 'secteurs.html#' + r.dossier; });
+    majTrains();
+
     L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
     L.bords.append('path').attr('class', 'b-secteur').attr('d', path(meshSect));
 
@@ -255,6 +282,7 @@
   // ---------- Rendu carte ----------
   function rendre(anime = true) {
     majFlottes();
+    majTrains();
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
     const selSurCarte = sel && secteurParId[sel]._geo;
     L.dist.selectAll('path')
@@ -486,6 +514,55 @@
     L.flottes.selectAll('g.flotte').attr('transform', f => f._p ? `translate(${f._p[0].toFixed(1)},${f._p[1].toFixed(1)}) scale(${ech / k})` : null)
       .select('.f-navire').attr('transform', f => `rotate(${(f._angle || 0).toFixed(0)})`);
   }
+  // ---------- Traverseurs ----------
+  const TRAIN = 'M-12,-2.4H-5V2.4H-12ZM-4,-2.4H3V2.4H-4ZM4,-2.4H9.5L12,0L9.5,2.4H4Z';
+  // Découpe la voie en tronçons de ~0,5°, coupés quand ils passent dans une bulle cultiste ou une zone frappée
+  function preparerRail(r) {
+    const voie = r.boucle ? [...r.voie, r.voie[0]] : r.voie;
+    const pts = [voie[0]];
+    for (let i = 1; i < voie.length; i++) {
+      const f = d3.geoInterpolate(voie[i - 1], voie[i]), n = Math.max(1, Math.ceil(d3.geoDistance(voie[i - 1], voie[i]) / RAD / 0.5));
+      for (let j = 1; j <= n; j++) pts.push(f(j / n));
+    }
+    const dangers = [...(data.zones || []), ...detruitesAff()];
+    const coupe = (a, b) => { const m = d3.geoInterpolate(a, b)(0.5); return dangers.some(z => d3.geoDistance(m, z.centre) / RAD < (+z.rayon || 1) * 1.1); };
+    const troncons = [];
+    for (let i = 1; i < pts.length; i++) {
+      const c = coupe(pts[i - 1], pts[i]), der = troncons[troncons.length - 1];
+      if (der && der.coupe === c) der.pts.push(pts[i]); else troncons.push({ coupe: c, pts: [pts[i - 1], pts[i]] });
+    }
+    // Le convoi roule sur la boucle entière si rien n'est coupé, sinon fait la navette sur le plus long tronçon en service
+    const libres = troncons.filter(t => !t.coupe);
+    const boucle = r.boucle && !troncons.some(t => t.coupe);
+    const parcours = boucle ? pts : (libres.sort((a, b) => b.pts.length - a.pts.length)[0] || { pts: [] }).pts;
+    return { ...r, troncons, branches: r.branches || [], parcours, navette: !boucle, coupee: troncons.some(t => t.coupe) };
+  }
+  function majTrains() {
+    if (!L.rails) return;
+    const replay = etat.replay !== null;
+    L.rails.attr('display', replay ? 'none' : null);
+    if (replay) return;
+    const t = (performance.now() - t0) / 1000;
+    L.rails.selectAll('g.train').each(function (r) {
+      const ch = r._chemin;
+      if (!ch) return;
+      const d = ch.getAttribute('d');
+      if (ch._d !== d) { ch._d = d; ch._lg = ch.getTotalLength(); }
+      const lg = ch._lg;
+      if (!lg) return;
+      let v = (t / (r.periode || 900)) % 1, sens = 1;
+      if (r.navette) { v *= 2; if (v > 1) { v = 2 - v; sens = -1; } }
+      const u = Math.min(lg - 2, Math.max(0, v * lg));
+      const a = ch.getPointAtLength(u), b = ch.getPointAtLength(u + 2);
+      r._p = [a.x, a.y]; r._angle = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI + (sens < 0 ? 180 : 0);
+    }).attr('transform', r => r._p ? `translate(${r._p[0].toFixed(1)},${r._p[1].toFixed(1)}) scale(${ech / k})` : null)
+      .select('.tr-corps').attr('transform', r => `rotate(${(r._angle || 0).toFixed(0)})`);
+  }
+  function survolRail(e, r) {
+    const cle = 'r:' + r.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(r.nom)}</strong><span class="ds-supporting">Traverseur · ${r.coupee ? 'voie coupée par endroits' : 'en service'}</span><br>${esc(r.info || '')}${ficheTip(r)}${r.dossier ? '<span class="ds-supporting">Cliquer pour le dossier</span>' : ''}`; }
+    placerTip(e);
+  }
   // Fiche technique d'une installation dans l'infobulle
   const ficheTip = x => x.fiche && x.fiche.length ? `<dl class="tip-fiche">${x.fiche.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>` : '';
   function survolFlotte(e, f) {
@@ -521,7 +598,7 @@
   // 4 images par seconde suffisent pour un mouvement aussi lent ; arrêt si l'onglet est masqué
   let dernierSat = 0;
   (function boucleSat(ts) {
-    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 250) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); majSpheres(); } }
+    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 250) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); majTrains(); majSpheres(); } }
     requestAnimationFrame(boucleSat);
   })(0);
   // Sphères des laboratoires d'exclusion : méridien qui tourne, et soubresauts toutes les 3,4 s
@@ -778,6 +855,7 @@
       + (L.unites.selectAll('g.pion:not(.synthese)').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
       + Object.entries(TYPES_SITE).filter(([t]) => (data.sites || []).some(x => x.icone === t)).map(([t, T]) => `<li><svg class="sw-labo t-${t}" viewBox="0 0 24 24" aria-hidden="true">${T.svg}</svg>${T.nom}</li>`).join('')
       + ((data.sites || []).some(x => x.glitch) ? '<li><svg class="sw-sphere" viewBox="-15 -15 30 30" aria-hidden="true"><circle r="11"/><ellipse rx="4.5" ry="11"/><ellipse rx="11" ry="3.5"/></svg>Laboratoire d\'exclusion</li>' : '')
+      + (etat.replay === null && (data.traverseurs || []).length ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie" d="M1,4H23"/><path class="rail-traverses" d="M1,4H23"/></svg>Traverseur (voie ferrée)</li><li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="rail-voie coupe" d="M1,4H23"/></svg>Voie coupée</li>' : '')
       + (etat.replay === null ? Object.entries(TYPES_FLOTTE).filter(([t]) => (data.flottes || []).some(f => (f.type || 'surface') === t))
         .map(([t, x]) => `<li><svg class="sw-flotte f-${t}" viewBox="-13 -7 26 14" aria-hidden="true"><path d="${x.svg}"/></svg>${x.nom}</li>`).join('') : '');
   }
@@ -797,6 +875,7 @@
   function echelleLabels() {
     L.sites.classed('proche', k >= 3).classed('loin', k < 2);
     L.flottes.classed('loin', k < 2);
+    L.rails.classed('loin', k < 2).classed('proche', k >= 3);
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     const el = ech < 1 ? 0.8 : 1;
     L.lab.selectAll('text').style('font-size', l => (l.taille * el / k) + 'px').style('stroke-width', (3.2 * el / k) + 'px');
@@ -807,6 +886,7 @@
     L.unites.selectAll('g.pion').attr('transform', u => `translate(${u.p[0] + (u.dx * ech + (u._ox || 0)) / k},${u.p[1] + (u.dy * ech + (u._oy || 0)) / k}) scale(${u.t * ech / k})`);
     majSatellites();
     majFlottes();
+    majTrains();
     L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
     L.mark.selectAll('.ring').attr('r', 7 / k);
     L.mark.selectAll('.dot').attr('r', 4 / k);

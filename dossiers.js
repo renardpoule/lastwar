@@ -92,11 +92,11 @@
 
   // Installations de la carte rattachées à ce dossier, avec leur fiche technique
   function installations(chemin) {
-    const liste = [...(data.sites || []), ...(data.satellites || []), ...(data.flottes || [])].filter(x => x.dossier === chemin && x.fiche && x.fiche.length);
+    const liste = [...(data.sites || []), ...(data.satellites || []), ...(data.flottes || []), ...(data.traverseurs || [])].filter(x => x.dossier === chemin && x.fiche && x.fiche.length);
     if (!liste.length) return '';
     return `${cmd(...chemin.split('/'), `ls installations/ | xargs cat`)}<div class="t-installations">${liste.map(x => `<section class="t-inst">
       <h3>${esc(x.nom)}${x.etat ? ` <span class="t-etat">[${esc(x.etat)}]</span>` : ''}</h3>
-      ${x.trajet ? `<p class="t-pale">en patrouille, ${esc(x.zone || 'zone classifiée')}</p>` : x.coord ? `<p class="t-pale">${x.coord[1].toFixed(2)}° ${x.coord[1] >= 0 ? 'N' : 'S'}, ${Math.abs(x.coord[0]).toFixed(2)}° ${x.coord[0] >= 0 ? 'E' : 'O'}${x.geo ? ', orbite géostationnaire' : ''}</p>` : '<p class="t-pale">en orbite</p>'}
+      ${x.voie ? `<p class="t-pale">voie ferrée${x.boucle ? ' en boucle' : ''}, ${x.voie.length} gares principales</p>` : x.trajet ? `<p class="t-pale">en patrouille, ${esc(x.zone || 'zone classifiée')}</p>` : x.coord ? `<p class="t-pale">${x.coord[1].toFixed(2)}° ${x.coord[1] >= 0 ? 'N' : 'S'}, ${Math.abs(x.coord[0]).toFixed(2)}° ${x.coord[0] >= 0 ? 'E' : 'O'}${x.geo ? ', orbite géostationnaire' : ''}</p>` : '<p class="t-pale">en orbite</p>'}
       ${x.fiche.map(([k, v]) => `<span class="t-l"><span class="t-cle">${esc(k)}</span><span class="t-val">${esc(v)}</span></span>`).join('')}</section>`).join('')}</div>`;
   }
 
