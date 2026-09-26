@@ -79,11 +79,6 @@
     L.fond.selectAll('*').remove();
     L.fond.append('path').attr('class', 'sphere').attr('d', path({ type: 'Sphere' }));
     L.fond.append('path').attr('class', 'ocean-grid').attr('d', path(d3.geoGraticule10()));
-    // Logo de la CC en filigrane : dans le groupe zoomé, il suit la carte
-    const [[sx0, sy0], [sx1, sy1]] = path.bounds({ type: 'Sphere' });
-    const tl = Math.min(sx1 - sx0, sy1 - sy0) * 0.92;
-    L.fond.append('image').attr('class', 'filigrane').attr('href', 'logo.png').attr('aria-hidden', 'true')
-      .attr('x', (sx0 + sx1 - tl) / 2).attr('y', (sy0 + sy1 - tl) / 2).attr('width', tl).attr('height', tl);
     // On se déplace dans la carte sans pouvoir la sortir du cadre
     zoom.translateExtent([[0, 0], [W, H]]).extent([[0, 0], [W, H]]);
 
@@ -121,8 +116,11 @@
     const gv = L.villes.selectAll('g.ville').data(villes, v => v.id).join(en => {
       const x = en.append('g');
       x.append('circle').attr('class', 'v-halo').attr('r', 9);
-      x.append('circle').attr('class', 'v-point').attr('r', 4.5);
-      x.append('text').attr('class', 'label nom-ville').attr('x', 8).attr('dy', '0.35em');
+      x.each(function (v) {
+        if (v.capitale) d3.select(this).append('g').attr('class', 'embleme').html(etoileBrisee(19));
+        else d3.select(this).append('circle').attr('class', 'v-point').attr('r', 4.5);
+      });
+      x.append('text').attr('class', 'label nom-ville').attr('x', v => v.capitale ? 12 : 8).attr('dy', '0.35em');
       return x;
     }).on('mousemove', survolVille).on('mouseleave', finSurvol)
       .on('click', (e, v) => { e.stopPropagation(); tip.hidden = true; naviguer(parId[v.district]._secteur, v.district, v.id); });
@@ -389,13 +387,12 @@
     }
     return d + 'Z';
   }
-  // Emblème des zones de grande importance : étoile brisée dans un cadre carré (dessin 830 × 830 ramené à 26 px)
-  const EMBLEME = '<g transform="translate(-13,-13) scale(0.031325)">'
-    + '<rect class="em-fond" x="27" y="27" width="776" height="776"/>'
-    + '<path class="em-trait" fill-rule="evenodd" d="M0,0H830V830H0ZM55,55V775H775V55Z'
-    + 'M415,110L483,320H438L415,248L392,320H347Z'
+  // Étoile brisée des lieux de grande importance (dessin d'origine 830 × 830, étoile centrée sur 415,415)
+  const ETOILE_D = 'M415,110L483,320H438L415,248L392,320H347Z'
     + 'M110,348H720L217,718L292,487ZM237,390L342,470L299,605L590,390Z'
-    + 'M546,511L615,720L437,591L472,565L533,608L510,537Z"/></g>';
+    + 'M546,511L615,720L437,591L472,565L533,608L510,537Z';
+  const etoileBrisee = taille => `<path class="em-trait" fill-rule="evenodd" transform="scale(${(taille / 610).toFixed(4)}) translate(-415,-415)" d="${ETOILE_D}"/>`;
+  const EMBLEME = etoileBrisee(26);
 
   // ---------- Satellites ----------
   const SATELLITE = 'M-3.5,-3.5h7v7h-7zM-12,-2.5h7.5v5h-7.5zM4.5,-2.5h7.5v5h-7.5zM-4.5,0h9M0,-3.5v-3';
@@ -514,31 +511,55 @@
       if (!a) continue;
       const centre = projection.invert(a), us = unitesDe(d);
       const cands = pointsDe(d).length ? pointsDe(d) : [centre];
-      // Front : foyer cultiste du district, sinon le plus proche à portée
-      const foyer = foyers.find(z => z.district === d.id)
-        || foyers.map(z => ({ z, dist: d3.geoDistance(z.centre, centre) })).filter(o => o.dist < 0.75).sort((x, y) => x.dist - y.dist)[0]?.z;
+      // Bulles de propagation qui concernent le district : les siennes, sinon le grand foyer voisin
+      const bulles = zonesAff().filter(z => z.district === d.id).sort((x, y) => (+y.rayon || 0) - (+x.rayon || 0));
+      const voisin = bulles.length ? null
+        : foyers.map(z => ({ z, dist: d3.geoDistance(z.centre, centre) })).filter(o => o.dist < 0.75).sort((x, y) => x.dist - y.dist)[0]?.z;
+      const autour = bulles.length ? bulles : voisin ? [voisin] : [];
+      const decale = (c, r, th) => [c[0] + r * Math.cos(th) / Math.max(0.2, Math.cos(c[1] * RAD)), c[1] + r * Math.sin(th)];
+      const surTerre = pt => d3.geoContains(d._geo, pt);
+      // Positions candidates : dans les bulles (cultistes, Phoenix), en anneau autour (lignes confédérées),
+      // ou près des villes et du centre pour un district calme (garnisons)
+      const dedans = [], anneau = [];
+      for (const z of bulles) {
+        const R = +z.rayon || 1;
+        dedans.push(z.centre);
+        for (let a = 0; a < 8; a++) for (const f of [0.35, 0.6]) { const q = decale(z.centre, R * f, a * Math.PI / 4 + f); if (surTerre(q)) dedans.push(q); }
+      }
+      for (const z of autour) {
+        const R = +z.rayon || 1;
+        for (const f of [1.35, 1.7, 2.2, 3]) {
+          const pts = [];
+          for (let a = 0; a < 24; a++) { const q = decale(z.centre, R * f, a * Math.PI / 12); if (surTerre(q)) pts.push(q); }
+          if (pts.length) { anneau.push(...pts); break; }
+        }
+      }
+      const villesD = (data.villes || []).filter(v => v.district === d.id).map(v => v.coord);
+      const calme = [...villesD, ...cands];
       const pris = [centre];
-      if (foyer && foyer.district === d.id) pris.push(foyer.centre);
-      const cultOrdre = us.filter(u => u.type === 'cult'), ccOrdre = us.filter(u => u.type !== 'cult');
-      for (const u of [...cultOrdre, ...ccOrdre]) {
+      const choisir = (liste, poidsCentre) => {
+        let best = -Infinity, pos = null;
+        for (const c of liste) {
+          const sc = Math.min(...pris.map(q => d3.geoDistance(c, q))) - poidsCentre * d3.geoDistance(c, centre);
+          if (sc > best) { best = sc; pos = c; }
+        }
+        return pos;
+      };
+      const ordre = [...us.filter(u => u.type === 'cult'), ...us.filter(u => u.type === 'ph'), ...us.filter(u => u.type !== 'cult' && u.type !== 'ph')];
+      for (const u of ordre) {
         const T = TYPES_UNITE[u.type];
         const nb = u.inconnu ? 1 : 1 + MORCEAUX[u.type].filter(x => u.n >= x).length;
         const part = u.n / nb;
         const t = u.inconnu ? 0.8 : Math.max(0.7, Math.min(1.55, 0.95 + 0.22 * Math.log10(part / T.ref)));
         for (let m = 0; m < nb; m++) {
           let pos;
-          if (u.type === 'cult' && m === 0 && foyer && foyer.district === d.id) pos = foyer.centre;
-          else {
-            // Le plus éloigné des pions déjà posés, en penchant vers le front
-            let best = -Infinity;
-            for (const c of cands) {
-              const ecart = Math.min(...pris.map(q => d3.geoDistance(c, q)));
-              const front = foyer ? d3.geoDistance(c, foyer.centre) : 0;
-              const sc = ecart - (u.type === 'cult' ? 0.6 : 0.35) * front - 0.6 * d3.geoDistance(c, centre);
-              if (sc > best) { best = sc; pos = c; }
-            }
-            pos = pos || centre;
-          }
+          if (u.type === 'cult' && m === 0 && bulles.length) pos = bulles[0].centre;
+          else if ((u.type === 'cult' || u.type === 'ph') && dedans.length) pos = choisir(dedans, 0);
+          else if (u.type === 'cult' && anneau.length) pos = choisir(anneau, 0);
+          else if (anneau.length) pos = choisir(anneau, 0.1);
+          else if (u.type === 'cult') pos = choisir(cands.filter(c => villesD.every(v => d3.geoDistance(c, v) > 0.05)), 0.4);
+          else pos = m < villesD.length && pris.every(q => d3.geoDistance(q, villesD[m]) > 0.01) ? villesD[m] : choisir(calme, 0.8);
+          pos = pos || centre;
           pris.push(pos);
           pions.push({ ...u, n: part, v: nb > 1 ? '~' + Math.round(part) : u.v, total: nb > 1 ? u.v : null, nb, id: `${d.id}:${u.type}:${m}`, g: `${d.id}:${u.type}:${m}`, d, t,
             pile: u.inconnu ? 1 : 1 + T.piles.filter(x => part >= x).length, p: projection(pos), dx: 0, dy: 0, larg: 26 * t + 6 });
@@ -565,7 +586,6 @@
       })
       .on('mousemove', survolPion).on('mouseleave', finSurvol)
       .on('click', (e, u) => { e.stopPropagation(); naviguer(u.d._secteur, u.d.id); });
-    rendreFronts();
   }
   // Écarte les groupes d'unités qui se chevauchent à l'écran (quelques itérations suffisent)
   function ecarterPions() {
@@ -598,40 +618,6 @@
     }
     placerTip(e);
   }
-  // Axes d'attaque cultistes : de chaque foyer vers les districts contestés ou perdus voisins
-  function rendreFronts() {
-    const foyers = zonesAff().filter(z => (+z.rayon || 0) >= 2);
-    const axes = [];
-    for (const d of districts) {
-      const st = statutDe(d);
-      if (!d._geo || !['conteste', 'perdu', 'reconquete'].includes(st.statut)) continue;
-      const cible = d.label ? d.label : projection.invert(path.centroid(d._geo));
-      const f = foyers.map(z => ({ z, dist: d3.geoDistance(z.centre, cible) })).filter(o => o.dist < 0.75).sort((a, b) => a.dist - b.dist)[0];
-      if (!f || f.z.district === d.id) continue;
-      axes.push({ id: f.z.id + '>' + d.id, z: f.z, a: projection(f.z.centre), b: ancre(d), rayon: f.z.rayon });
-    }
-    L.fronts.selectAll('path').data(axes, a => a.id).join('path').attr('class', 'axe')
-      .style('fill', a => a.z.couleur).attr('d', a => fleche(a));
-  }
-  // Flèche effilée le long d'une courbe, en coordonnées de carte (grossit avec le zoom, comme sur un plan)
-  function fleche(o) {
-    const [x0, y0] = o.a, [x1, y1] = o.b, dx = x1 - x0, dy = y1 - y0, L0 = Math.hypot(dx, dy) || 1;
-    const nx = -dy / L0, ny = dx / L0, courbe = L0 * 0.18;
-    const cx = (x0 + x1) / 2 + nx * courbe, cy = (y0 + y1) / 2 + ny * courbe;
-    const pt = t => [(1 - t) ** 2 * x0 + 2 * (1 - t) * t * cx + t * t * x1, (1 - t) ** 2 * y0 + 2 * (1 - t) * t * cy + t * t * y1];
-    const debut = 0.25, fin = 0.8, larg = Math.max(2, Math.min(7, L0 * 0.06));
-    const g = [], dr = [];
-    for (let i = 0; i <= 16; i++) {
-      const t = debut + (fin - debut) * i / 16, [px, py] = pt(t), [qx, qy] = pt(Math.min(1, t + 0.01));
-      const tl = Math.hypot(qx - px, qy - py) || 1, w = larg * (0.35 + 0.65 * i / 16);
-      g.push([px - (qy - py) / tl * w, py + (qx - px) / tl * w]); dr.push([px + (qy - py) / tl * w, py - (qx - px) / tl * w]);
-    }
-    const [ex, ey] = pt(fin), [tx, ty] = pt(0.93), ux = (tx - ex), uy = (ty - ey), ul = Math.hypot(ux, uy) || 1;
-    const pw = larg * 2.1, bx = -uy / ul * pw, by = ux / ul * pw;
-    const pts = [...g, [ex + bx, ey + by], [tx, ty], [ex - bx, ey - by], ...dr.reverse()];
-    return 'M' + pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L') + 'Z';
-  }
-
   function survolSite(e, x) {
     const cle = 's:' + x.id;
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(x.nom)}</strong>${esc(x.info || '')}`; }
@@ -650,6 +636,7 @@
       + ((data.detruites || []).length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
       + ((data.villes || []).length ? '<li><i class="sw ville"></i>Ville « Too young to die »</li>' : '')
+      + ((data.villes || []).some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')
       + (L.unites.selectAll('g.pion').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
       + ((data.sites || []).some(x => x.icone === 'labo') ? '<li><svg class="sw-labo" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLASK + '"/></svg>Intérêt scientifique</li>' : '');
   }

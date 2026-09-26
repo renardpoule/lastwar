@@ -163,7 +163,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 1400
+                "effectif": 400
               },
               {
                 "nom": "Milices citoyennes",
@@ -234,7 +234,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 2400
+                "effectif": 600
               },
               {
                 "nom": "Milices citoyennes",
@@ -524,7 +524,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 1200
+                "effectif": 400
               },
               {
                 "nom": "Milices citoyennes",
@@ -658,7 +658,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 3600
+                "effectif": 5000
               },
               {
                 "nom": "Milices citoyennes",
@@ -1550,7 +1550,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 1200
+                "effectif": 800
               },
               {
                 "nom": "Milices citoyennes",
@@ -1623,7 +1623,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 3200
+                "effectif": 6000
               },
               {
                 "nom": "Milices citoyennes",
@@ -1703,7 +1703,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 400
+                "effectif": 200
               },
               {
                 "nom": "Milices citoyennes",
@@ -4036,7 +4036,8 @@
           "effectif": "CLASSIFIÉ"
         }
       ],
-      "description": "Capitale du secteur Asie, siège de Mlle Mori Kumano. Le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Les sanctuaires kami sont gardés par l'armée depuis que trois prêtres ont disparu en une semaine."
+      "description": "Capitale du secteur Asie, siège de Mlle Mori Kumano. Le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Les sanctuaires kami sont gardés par l'armée depuis que trois prêtres ont disparu en une semaine.",
+      "capitale": true
     },
     {
       "id": "harbin",
@@ -4222,7 +4223,8 @@
           "effectif": "~3000000"
         }
       ],
-      "description": "Capitale du secteur Amérique. Mark Saddler y décide, Karl Saddler y négocie. Les cellules cultistes arrêtées en février venaient toutes du même quartier, que le SMC a vidé en une nuit. Le Capitole est fermé au public depuis."
+      "description": "Capitale du secteur Amérique. Mark Saddler y décide, Karl Saddler y négocie. Les cellules cultistes arrêtées en février venaient toutes du même quartier, que le SMC a vidé en une nuit. Le Capitole est fermé au public depuis.",
+      "capitale": true
     },
     {
       "id": "new-york",
@@ -4327,6 +4329,52 @@
         }
       ],
       "description": "Dernier grand port du sud du continent. Les réfugiés du bassin amazonien arrivent par le Río de la Plata par centaines de milliers. La ville filtre chaque barge : on cherche la mousse verte sous les ongles, derrière les oreilles. Les tests positifs ne remontent pas à bord."
+    },
+    {
+      "id": "canberra",
+      "nom": "Canberra",
+      "coord": [
+        149.13,
+        -35.28
+      ],
+      "district": "oc-australasie",
+      "etat": 98,
+      "image": "capitole",
+      "capitale": true,
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": "~40000"
+        },
+        {
+          "nom": "Milice citoyenne",
+          "effectif": "~210000"
+        }
+      ],
+      "description": "Capitale du district Australasie et siège administratif du secteur Océanie. Aucun cultiste signalé sur le secteur : la ville tourne au rythme des convois de ravitaillement vers l'Asie et des réfugiés qui transitent vers Sydney."
+    },
+    {
+      "id": "le-cap",
+      "nom": "Le Cap",
+      "coord": [
+        18.42,
+        -33.92
+      ],
+      "district": "af-cote",
+      "etat": 71,
+      "image": "port",
+      "capitale": true,
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": "~25000"
+        },
+        {
+          "nom": "Unités de décontamination",
+          "effectif": "~6000"
+        }
+      ],
+      "description": "Port-sas du secteur Afrique. Le continent n'a plus de conseiller depuis les frappes du 11 septembre : l'administration confédérée tient depuis les quais. Tout convoi vers l'intérieur passe ici par les douches de décontamination, et rien ne revient sans quarantaine."
     }
   ],
   "detruites": [

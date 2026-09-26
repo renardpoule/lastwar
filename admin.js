@@ -518,6 +518,7 @@
         <label class="champ"><span>Illustration</span><select data-bind="villes.${i}.image">${Object.entries(IMAGES_VILLE).map(([k2, l]) => `<option value="${k2}" ${v.image === k2 ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
         <label class="champ"><span>Longitude</span><input type="number" step="0.01" class="num" data-bind="villes.${i}.coord.0" data-type="nombre"></label>
         <label class="champ"><span>Latitude</span><input type="number" step="0.01" class="num" data-bind="villes.${i}.coord.1" data-type="nombre"></label>
+        <label class="champ large case"><input type="checkbox" data-bind="villes.${i}.capitale"> Capitale de secteur (étoile sur la carte)</label>
         <label class="champ large"><span>Description</span><textarea rows="3" data-bind="villes.${i}.description"></textarea></label>
       </div>
       <h3>Garnison</h3><div class="unites-ed">${v.garnison.map((u, j) => `<div class="unite-ed">

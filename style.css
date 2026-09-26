@@ -221,8 +221,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .label .l0{fill:var(--muted-foreground);font-weight:500}
 .ile{fill:color-mix(in oklab,var(--st-controle) 48%,var(--ocean));stroke:color-mix(in oklab,var(--primary) 70%,white);stroke-width:1;vector-effect:non-scaling-stroke}
 .site{cursor:pointer}
-.embleme .em-fond{fill:oklch(0.98 0.005 250)}
-.embleme .em-trait{fill:oklch(0.45 0.14 255)}
+.embleme .em-trait,.sw-etoile .em-trait{fill:oklch(0.58 0.16 255);stroke:oklch(0.97 0.01 250);stroke-width:26;paint-order:stroke;stroke-linejoin:round}
 .site .embleme{filter:drop-shadow(0 0 0.3rem oklch(0.7 0.14 255 / .55))}
 .embleme.petit{transform:scale(.72)}
 .detruite{fill:url(#brulure);stroke:var(--detruit-coeur);stroke-width:1;stroke-dasharray:2 2;vector-effect:non-scaling-stroke;cursor:pointer}
@@ -250,7 +249,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pion .u-effectif{fill:var(--foreground);font:600 7px var(--font-mono);text-anchor:middle;paint-order:stroke;stroke:var(--ocean);stroke-width:2.4px}
 .pion.ph .u-cadre{fill:color-mix(in oklab,oklch(0.6 0.16 45) 45%,var(--ocean))}
 .pion.fs .u-cadre{fill:color-mix(in oklab,var(--primary) 60%,var(--ocean))}
-.axe{fill-opacity:.55;stroke:oklch(0.98 0 0 / .5);stroke-width:.8;vector-effect:non-scaling-stroke;pointer-events:none}
 .sw-pion{width:1rem;height:0.75rem}
 .sw-pion .u-cadre{fill:color-mix(in oklab,var(--st-controle) 55%,var(--ocean));stroke:oklch(0.9 0.05 268);stroke-width:1.5}
 .sw-pion .u-trait{stroke:oklch(0.92 0.04 268);stroke-width:1.5}
@@ -263,7 +261,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sat.importante .nom-sat{fill:var(--or);font-weight:700}
 .btn-legende{display:none}
 /* Filigrane : sceau de la Confédération derrière la carte */
-.filigrane{opacity:.08;pointer-events:none;mix-blend-mode:screen;filter:grayscale(.3)}
 .pastille-labo{fill:var(--card);stroke:var(--st-reconquete);stroke-width:1.5}
 .labo{fill:none;stroke:var(--st-reconquete);stroke-width:2.2;stroke-linecap:round}
 .sw-labo{width:0.8rem;height:0.8rem}
