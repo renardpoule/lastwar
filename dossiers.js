@@ -23,8 +23,8 @@
     for (const ligne of (src || '').split('\n')) {
       const l = ligne.trim();
       if (!l) { finPara(); finListe(); continue; }
-      const img = /^!\[([^\]]*)\]\(([\w./-]+\.(?:webp|png|jpe?g|gif|avif))\)$/i.exec(l);
-      if (img) { finPara(); finListe(); html.push(`<figure class="t-image"><img src="${esc(img[2])}" alt="${esc(img[1])}" loading="lazy"><figcaption>${esc(img[2].split('/').pop())}</figcaption></figure>`); continue; }
+      const img = /^!\[([^\]]*)\]\(([\w./-]+\.(?:webp|png|jpe?g|gif|avif))(?: "([^"]*)")?\)$/i.exec(l);
+      if (img) { finPara(); finListe(); html.push(`<figure class="t-image"><img src="${esc(img[2])}" alt="${esc(img[1])}" loading="lazy"><figcaption>${esc(img[2].split('/').pop())}${img[3] ? ` <span class="t-credit">· ${esc(img[3])}</span>` : ''}</figcaption></figure>`); continue; }
       const titre = /^(#{2,3}) (.+)$/.exec(l);
       if (titre) { finPara(); finListe(); html.push(titre[1].length === 2 ? `<h3>${enLigne(titre[2])}</h3>` : `<h4>${enLigne(titre[2])}</h4>`); continue; }
       if (l.startsWith('- ')) { finPara(); (liste ||= []).push(l.slice(2)); continue; }
