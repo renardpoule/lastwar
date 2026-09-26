@@ -35,7 +35,7 @@ Après toute modification des `pays` d'un district, vérifier que chaque nom exi
 - L'état d'une ville doit correspondre à sa distance aux bulles.
 - Effectifs mondiaux : milices ~4,9 Md, régulière 50 M, forces spéciales 100 000, **Division Phoenix 13 400 au total** (surtout dans les bulles).
 - Afrique : seul le district expérimental est en quarantaine, la côte en est sortie.
-- Accords de Stockholm (technologies CC + Smith Technologies Corporation, dossiers `rd/*`) : installé = CLS, GGP, RESS, Télescope Stockholm, TDA ; en fabrication = Station Arachne ; en recherche = Singularité, SPA (très peu avancé), SPMQN.
+- Projets technologiques de la R&D (dossiers `rd/*`, la Smith Technologies Corporation et les accords de Stockholm ne sont plus à mentionner) : installé = CLS, GGP, RESS, Télescope Stockholm, TDA ; en fabrication = Station Arachne ; en recherche = Singularité, SPA (très peu avancé), SPMQN.
 - Les fichiers CSS/JS sont appelés avec `?v=N` : incrémenter N à chaque modification, sinon les navigateurs gardent l'ancienne version.
 - En relecture de chronologie, seules les données archivées s'affichent (pas de pions, pas de notes ni de chiffres actuels).
 - Ne pas inventer de lore lourd sans le signaler à Foxy.
