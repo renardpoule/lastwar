@@ -69,7 +69,7 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 
 **Bandeau de la carte** : le compteur de pertes additionne tout seul les pertes et les décès civils de tous les districts. À chaque publication, les pertes et l'énergie sont archivées avec le point de chronologie, donc la relecture les affiche à la bonne date.
 
-**Installations** (laboratoires, GGP, TDA, réacteurs à fusion, CLS…), **satellites** et **flottes** : ils se modifient directement dans `data.json` (listes `sites`, `satellites`, `flottes`), pas encore dans l'admin. Un site avec `"glitch": true` reçoit la sphère de confinement des laboratoires d'exclusion, `"dossier": "rd/arcology"` le relie à son dossier, et `"etat"` s'affiche dans l'infobulle.
+**Installations** (laboratoires, GGP, TDA, réacteurs à fusion, CLS…), **satellites** et **flottes** : ils se modifient directement dans `data.json` (listes `sites`, `satellites`, `flottes`), pas encore dans l'admin. Un site avec `"glitch": true` reçoit la sphère de confinement des laboratoires d'exclusion, `"dossier": "rd/arcology"` le relie à son dossier, et `"etat"` s'affiche dans l'infobulle. `"fiche"` (liste de paires `["Personnel", "3 200"]`) donne les précisions techniques, affichées dans l'infobulle et en bas du dossier lié.
 
 **Dossiers** : dans les textes, `**gras**`, `*italique*`, `## Titre`, `- puce` et `![légende](img/fichier.webp)` pour une image (déposée dans le dossier `img/`).
 

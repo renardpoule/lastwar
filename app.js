@@ -466,6 +466,8 @@
     L.flottes.selectAll('g.flotte').attr('transform', f => f._p ? `translate(${f._p[0].toFixed(1)},${f._p[1].toFixed(1)}) scale(${ech / k})` : null)
       .select('.f-navire').attr('transform', f => `rotate(${(f._angle || 0).toFixed(0)})`);
   }
+  // Fiche technique d'une installation dans l'infobulle
+  const ficheTip = x => x.fiche && x.fiche.length ? `<dl class="tip-fiche">${x.fiche.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>` : '';
   function survolFlotte(e, f) {
     const cle = 'f:' + f.id;
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(f.nom)}</strong>${esc(f.info || '')}<br><span class="ds-supporting">Cliquer pour la fiche</span>`; }
@@ -504,7 +506,7 @@
   })(0);
   function survolSat(e, s) {
     const cle = 'o:' + s.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(s.nom)}</strong>${esc(s.info || '')}${s.etat ? `<br><span class="tip-etat">${esc(s.etat)}</span>` : ''}<br><span class="ds-supporting">${s.geo ? 'Orbite géostationnaire' : `Orbite inclinée à ${s.inclinaison}°`}${s.dossier ? ' · cliquer pour le dossier' : ''}</span>`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(s.nom)}</strong>${esc(s.info || '')}${s.etat ? `<br><span class="tip-etat">${esc(s.etat)}</span>` : ''}${ficheTip(s)}<br><span class="ds-supporting">${s.geo ? 'Orbite géostationnaire' : `Orbite inclinée à ${s.inclinaison}°`}${s.dossier ? ' · cliquer pour le dossier' : ''}</span>`; }
     placerTip(e);
   }
 
@@ -700,7 +702,7 @@
   }
   function survolSite(e, x) {
     const cle = 's:' + x.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(x.nom)}</strong>${esc(x.info || '')}${x.etat ? `<br><span class="tip-etat">${esc(x.etat)}</span>` : ''}${x.dossier ? '<br><span class="ds-supporting">Cliquer pour ouvrir le dossier</span>' : ''}`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(x.nom)}</strong>${esc(x.info || '')}${x.etat ? `<br><span class="tip-etat">${esc(x.etat)}</span>` : ''}${ficheTip(x)}${x.dossier ? '<br><span class="ds-supporting">Cliquer pour ouvrir le dossier</span>' : ''}`; }
     placerTip(e);
   }
 

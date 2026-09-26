@@ -90,11 +90,21 @@
         `<li><span class="t-fort">${esc(x.nom)}</span>${x.note ? `<span>${esc(x.note)}</span>` : ''}</li>`).join('')}</ul>` : ''}`;
   }
 
+  // Installations de la carte rattachées à ce dossier, avec leur fiche technique
+  function installations(chemin) {
+    const liste = [...(data.sites || []), ...(data.satellites || [])].filter(x => x.dossier === chemin && x.fiche && x.fiche.length);
+    if (!liste.length) return '';
+    return `${cmd(...chemin.split('/'), `ls installations/ | xargs cat`)}<div class="t-installations">${liste.map(x => `<section class="t-inst">
+      <h3>${esc(x.nom)}${x.etat ? ` <span class="t-etat">[${esc(x.etat)}]</span>` : ''}</h3>
+      ${x.coord ? `<p class="t-pale">${x.coord[1].toFixed(2)}° ${x.coord[1] >= 0 ? 'N' : 'S'}, ${Math.abs(x.coord[0]).toFixed(2)}° ${x.coord[0] >= 0 ? 'E' : 'O'}${x.geo ? ', orbite géostationnaire' : ''}</p>` : '<p class="t-pale">en orbite</p>'}
+      ${x.fiche.map(([k, v]) => `<span class="t-l"><span class="t-cle">${esc(k)}</span><span class="t-val">${esc(v)}</span></span>`).join('')}</section>`).join('')}</div>`;
+  }
+
   function vuePage(s, page) {
     return `${cmd(s.id, page.id, 'ls')}
       <ul class="t-liste">${entree(lien(s.id), '..', '', s.nom)}</ul>
       ${page.journal ? `<div class="t-texte"><h2>${esc(page.titre)}</h2></div>${registre(s, page)}`
-        : `${cmd(s.id, page.id, 'cat dossier.txt')}<div class="t-texte"><h2>${esc(page.titre)}</h2><p class="t-chapo">${esc(s.nom)}</p></div>${texte(page.contenu)}`}`;
+        : `${cmd(s.id, page.id, 'cat dossier.txt')}<div class="t-texte"><h2>${esc(page.titre)}</h2><p class="t-chapo">${esc(s.nom)}</p></div>${texte(page.contenu)}${installations(s.id + '/' + page.id)}`}`;
   }
 
   // Invite de commande : cd, ls, cat, tree, help
@@ -187,11 +197,9 @@
   large.addEventListener('change', ouvrir);
   ouvrir();
 
-  // Séquence de démarrage, une fois par session ; un clic ou une touche la passe
+  // Séquence de démarrage à chaque ouverture de la page ; un clic ou une touche la passe
   (function demarrage() {
-    let deja = false;
-    try { deja = sessionStorage.getItem('cc-boot') === '1'; sessionStorage.setItem('cc-boot', '1'); } catch (e) { /* stockage indisponible */ }
-    if (deja || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const nb = secteurs.reduce((n, s) => n + sousDossiers(s).length, 0);
     const lignes = [
       ['CCOS 7.5.2075 · noyau confédéré, build ' + (data.meta.dateRP || '')],

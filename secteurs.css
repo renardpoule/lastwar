@@ -162,3 +162,13 @@ body.ds.dossiers{
 .t-boot-res{color:var(--t-vert);font-weight:700}
 .t-boot-res::before{content:"[ "}.t-boot-res::after{content:" ]"}
 .t-boot-passer{position:absolute;bottom:1.5rem;left:0;right:0;margin:0;text-align:center;font-size:0.75rem;color:var(--t-pale)}
+
+.t-installations{display:grid;grid-template-columns:repeat(auto-fill,minmax(22rem,1fr));gap:0.875rem;max-width:62rem}
+.t-inst{padding:0.625rem 0.75rem;border:0.0625rem solid var(--t-ligne);border-radius:0.25rem}
+.t-inst h3{margin:0;font:700 0.9375rem/1.4 var(--t-police);color:var(--t-fort)}
+.t-inst h3::before{content:"> ";color:var(--t-dossier)}
+.t-inst .t-pale{margin:0 0 0.375rem;font-size:0.8125rem}
+.t-etat{font-weight:400;font-size:0.8125rem;color:var(--t-ambre)}
+.t-inst .t-l{grid-template-columns:auto minmax(0,1fr);column-gap:1rem}
+.t-inst .t-cle{white-space:nowrap}
+@media (max-width:600px){.t-installations{grid-template-columns:1fr}.t-inst .t-l{grid-template-columns:1fr}}
