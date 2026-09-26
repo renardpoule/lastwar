@@ -2950,7 +2950,28 @@
           "rayon": 6
         }
       ],
-      "distorsion": 5
+      "distorsion": 5,
+      "villes": {
+        "zeebrugge": 96,
+        "nouvelle-luxembourg": 99,
+        "zurich": 99,
+        "kiel": 90,
+        "kazan": 80,
+        "yokohama": 97,
+        "harbin": 85,
+        "novossibirsk": 88,
+        "singapour": 92,
+        "dubai": 97,
+        "mumbai": 94,
+        "sydney": 100,
+        "washington": 97,
+        "new-york": 95,
+        "mexico": 90,
+        "brasilia": 70,
+        "buenos-aires": 90,
+        "canberra": 100,
+        "le-cap": 88
+      }
     },
     {
       "date": "10 sept. 2075",
@@ -3164,7 +3185,28 @@
           "rayon": 5
         }
       ],
-      "distorsion": 15
+      "distorsion": 15,
+      "villes": {
+        "zeebrugge": 94,
+        "nouvelle-luxembourg": 98,
+        "zurich": 99,
+        "kiel": 88,
+        "kazan": 70,
+        "yokohama": 95,
+        "harbin": 70,
+        "novossibirsk": 78,
+        "singapour": 85,
+        "dubai": 95,
+        "mumbai": 90,
+        "sydney": 100,
+        "washington": 95,
+        "new-york": 92,
+        "mexico": 82,
+        "brasilia": 45,
+        "buenos-aires": 82,
+        "canberra": 99,
+        "le-cap": 80
+      }
     },
     {
       "date": "12 sept. 2075",
@@ -3380,7 +3422,28 @@
           "rayon": 1.6
         }
       ],
-      "distorsion": 30
+      "distorsion": 30,
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 98,
+        "kiel": 92,
+        "kazan": 62,
+        "yokohama": 92,
+        "harbin": 52,
+        "novossibirsk": 60,
+        "singapour": 76,
+        "dubai": 92,
+        "mumbai": 85,
+        "sydney": 99,
+        "washington": 93,
+        "new-york": 89,
+        "mexico": 70,
+        "brasilia": 22,
+        "buenos-aires": 70,
+        "canberra": 99,
+        "le-cap": 66
+      }
     },
     {
       "date": "20 sept. 2075",
@@ -3632,7 +3695,28 @@
           "rayon": 3.4
         }
       ],
-      "distorsion": 50
+      "distorsion": 50,
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "kazan": 58,
+        "yokohama": 88,
+        "harbin": 31,
+        "novossibirsk": 44,
+        "singapour": 66,
+        "dubai": 90,
+        "mumbai": 79,
+        "sydney": 99,
+        "washington": 92,
+        "new-york": 87,
+        "mexico": 46,
+        "brasilia": 8,
+        "buenos-aires": 57,
+        "canberra": 98,
+        "le-cap": 71
+      }
     }
   ],
   "zones": [
@@ -3805,7 +3889,97 @@
         {
           "id": "anormal",
           "titre": "Rapport Confédéral sur l'Anormal",
-          "contenu": "## Cadre\nLa Convention d'Alcyon, rédigée par Sally Weirman et signée à l'unanimité par le Conseil, classe chaque anomalie en trois usages : usage civil, confinement ou neutralisation. Depuis le palier Crépuscule, les armes anomaliques sont autorisées sous contrôle du Conseil.\n\n## HCP\nL'IA de planification a prédit 85 % des mouvements cultistes, déplacements civils compris. Elle a obtenu l'accès aux topographies et à tous les capteurs de la Confédération. Son unité s'est vu administrer un psychoactif à sa demande. Consigne en vigueur : personne ne l'approche en dehors de l'opérateur Merrick.\n\n## Plieurs de réalité\nL'Escouade Phoenix engage ses plieurs de réalité contre les entités depuis le 10 septembre. Deux anciens plieurs de la Confédération, perdus au combat, combattent désormais pour l'ennemi :\n- Arthur « le Bon », corrompu par Nargal, à la tête des infectés d'Amérique du Sud ;\n- Izala, qui se proclame déesse et tient le sud de la Chine.\n\n## Brigade exotique\n96 % des 45 000 soldats engagés sur le front sud-américain ont reçu des drogues de performance et une armure Exo-3. Les témoignages recueillis décrivent des soldats qui ne transpirent pas et ne montrent aucune peur. À la question « Êtes-vous humain ? », l'état-major a répondu : « Cela dépend d'où vous placez la limite de l'Homme. »\n\n## Ichoria\nUn injecteur d'ichoria marqué du symbole de la Fondation SCP a été retrouvé sur un membre du commando qui a frappé les centres névralgiques d'Europe. HCP juge nulle la probabilité d'une attaque de la Fondation. L'origine du commando reste inconnue.\n\n## Recherches en cours\n- Contrôle du hasard (unités Sertannets) : augmenter la probabilité d'un événement sur une installation ennemie.\n- Architectes du Réel : conception d'armes par altération du Réel.\n- Département de l'Irréalité : score de loyauté exigé d'au moins 99,7 %."
+          "contenu": "Registre tenu par le secteur Recherche & Développement, en application de la Convention d'Alcyon que Sally Weirman a rédigée et que le Conseil a signée à l'unanimité. Chaque anomalie y reçoit l'un des trois usages prévus, civil, confinement ou neutralisation, et depuis le palier Crépuscule les armes anomaliques sont autorisées tant que le Conseil garde la main dessus, ce qui, sur le terrain, reste à vérifier.",
+          "journal": [
+            {
+              "date": "",
+              "anomalie": "Unités Sertannets, contrôle du hasard",
+              "usage": "RECHERCHE",
+              "lieu": "Non consigné",
+              "autorisation": "Non consignée",
+              "resultat": "Travaux en cours pour augmenter la probabilité qu'un événement se produise sur une installation ennemie, ce qui, dit comme ça, a l'air presque raisonnable."
+            },
+            {
+              "date": "",
+              "anomalie": "Architectes du Réel",
+              "usage": "RECHERCHE",
+              "lieu": "Non consigné",
+              "autorisation": "Non consignée",
+              "resultat": "Conception d'armes par altération du Réel."
+            },
+            {
+              "date": "",
+              "anomalie": "Département de l'Irréalité",
+              "usage": "RECHERCHE",
+              "lieu": "Non consigné",
+              "autorisation": "Non consignée",
+              "resultat": "Accès soumis à un score de loyauté d'au moins 99,7 %."
+            },
+            {
+              "date": "8 sept. 2075",
+              "anomalie": "HCP (Hate Computer Program)",
+              "usage": "PLANIFICATION",
+              "lieu": "Mer du Nord, 2 500 m sous la surface",
+              "autorisation": "Opérateur Merrick",
+              "resultat": "Réveillée à 22 h 31 par Merrick, la machine avait déjà tout vu depuis trois heures et une minute, et c'est elle qui identifia le Culte de la Vérité Primordiale avant qu'on ait eu le temps de lui poser la question."
+            },
+            {
+              "date": "8 sept. 2075",
+              "anomalie": "Injecteur d'ichoria frappé du symbole de la Fondation SCP",
+              "usage": "CONFINEMENT",
+              "lieu": "Europe, centres névralgiques",
+              "autorisation": "Non consignée",
+              "resultat": "Retrouvé sur le corps d'un membre du commando qui a frappé les points stratégiques avant de disparaître. HCP juge nulle la probabilité d'une attaque de la Fondation, ce qui laisse l'origine du commando entière, et l'injecteur sans propriétaire."
+            },
+            {
+              "date": "9 sept. 2075",
+              "anomalie": "HCP (Hate Computer Program)",
+              "usage": "NEUTRALISATION",
+              "lieu": "Ibérie",
+              "autorisation": "Non consignée",
+              "resultat": "Le groupement cultiste d'Ibérie fut neutralisé sans une seule perte civile, même si les soldats qui ont exécuté les ordres les ont trouvés étranges. Va savoir ce qu'ils y ont vu."
+            },
+            {
+              "date": "10 sept. 2075",
+              "anomalie": "Plieurs de réalité, Escouade Phoenix",
+              "usage": "NEUTRALISATION",
+              "lieu": "Fronts anormaux",
+              "autorisation": "Ganzir",
+              "resultat": "Après 2 145 effectifs perdus face à l'entité détectée à 3 h 30, HCP réclama Ganzir, et l'Escouade Phoenix prit le relais à 13 h 30 pendant que la machine retirait ses troupes des fronts anormaux."
+            },
+            {
+              "date": "12 sept. 2075",
+              "anomalie": "Drogues de performance et armure Exo-3",
+              "usage": "AUGMENTATION",
+              "lieu": "Front sud-américain",
+              "autorisation": "Non consignée",
+              "resultat": "À T+81 h, 96 % des 45 000 soldats de la brigade exotique étaient traités. Les témoins parlent de soldats qui ne transpirent pas et n'ont pas peur, et à la question \"Êtes-vous humain ?\", l'état-major a répondu que ça dépendait d'où l'on plaçait la limite de l'Homme."
+            },
+            {
+              "date": "12 sept. 2075",
+              "anomalie": "HCP (Hate Computer Program)",
+              "usage": "PLANIFICATION",
+              "lieu": "Ensemble des capteurs de la Confédération",
+              "autorisation": "Ganzir",
+              "resultat": "Suite aux calculs de Merrick, qui établissent que HCP a prédit 85 % des mouvements cultistes, déplacements civils compris, la machine obtint l'accès aux topographies et à tous les capteurs. Un psychoactif fut administré à son unité, à sa demande, et plus personne ne l'approche en dehors de Merrick."
+            },
+            {
+              "date": "15 sept. 2075",
+              "anomalie": "Arthur \"le Bon\", plieur de réalité",
+              "usage": "PERTE DE CONTRÔLE",
+              "lieu": "Amérique du Sud",
+              "autorisation": "Sans objet",
+              "resultat": "Ancien plieur de la Confédération perdu au combat, il est revenu à moitié insecte, corrompu par Nargal, à la tête d'une horde d'infectés et d'entités qui écrase les garnisons et fait voler nos propres appareils contre nous."
+            },
+            {
+              "date": "16 sept. 2075",
+              "anomalie": "Izala, plieuse de réalité",
+              "usage": "PERTE DE CONTRÔLE",
+              "lieu": "Sud de la Chine",
+              "autorisation": "Sans objet",
+              "resultat": "Au soir d'un rituel qui a déréglé la météo et les capteurs pendant une journée, Izala mit l'armée en déroute et exigea que la Confédération la vénère. La transmission fut coupée, et aucune réponse n'a été donnée depuis."
+            }
+          ]
         }
       ]
     },

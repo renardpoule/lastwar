@@ -111,3 +111,5 @@ body.ds.admin.verrouille{display:grid;place-items:center;min-height:100vh;paddin
 .connexion>.ds-supporting{text-align:center;margin-bottom:1rem}
 .connexion .ds-btn{width:100%;margin-top:0.5rem}
 .cx-erreur{margin:0;padding:0.5rem 0.75rem;border-radius:var(--radius-md);font-size:0.875rem;color:var(--texte-critique);background:color-mix(in oklab,var(--st-perdu) 16%,var(--card))}
+.entree-journal{padding-top:0.75rem;border-top:0.0625rem dashed var(--border)}
+.carte h4{margin:1rem 0 0;font-size:0.9375rem}

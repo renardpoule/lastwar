@@ -4,7 +4,7 @@
   const esc = C.esc, I = C.ICONES;
 
   let data, topo, districts, parId, secteurParId;
-  const etat = { niveau: 'monde', secteur: null, district: null, ville: null, replay: null, filtre: 'tous' };
+  const etat = { niveau: 'monde', secteur: null, district: null, ville: null, replay: null, filtre: 'tous', onglet: 'apercu' };
   const RANG_GRAV = { mineur: 0, majeur: 1, critique: 2 };
 
   $('#map').innerHTML = '<div class="chargement">Chargement de la carte…</div>';
@@ -204,6 +204,16 @@
   }
   const tensionAff = () => etat.replay !== null ? data.historique[etat.replay].tension : data.tension.valeur;
   const zonesAff = () => (etat.replay !== null && data.historique[etat.replay].zones) || data.zones || [];
+  // Dates du RP (« 11 sept. 2075 ») comparables entre elles
+  const MOIS = { janv: 1, févr: 2, fevr: 2, mars: 3, avr: 4, mai: 5, juin: 6, juil: 7, août: 8, aout: 8, sept: 9, oct: 10, nov: 11, déc: 12, dec: 12 };
+  const dateVal = t => { const m = /(\d+)\s+([a-zéû]+)\.?\s+(\d{4})/i.exec(t || ''); return m ? +m[3] * 1e4 + (MOIS[m[2].toLowerCase()] || 0) * 100 + +m[1] : Infinity; };
+  const dateAff = () => etat.replay !== null ? data.historique[etat.replay].date : data.meta.dateRP;
+  const detruitesAff = () => (data.detruites || []).filter(z => !z.date || dateVal(z.date) <= dateVal(dateAff()));
+  // État des villes : celui de l'archive pendant la relecture, sinon l'état actuel
+  const villesAff = () => {
+    const h = etat.replay !== null && data.historique[etat.replay].villes;
+    return (data.villes || []).map(v => h && h[v.id] != null ? { ...v, etat: h[v.id] } : v);
+  };
   const enQuarantaine = st => st.statut === 'quarantaine' || !!st.quarantaine;
   const evenementsAff = () => etat.replay !== null ? data.evenements.slice(0, data.historique[etat.replay].evenements) : data.evenements;
 
@@ -251,6 +261,10 @@
     L.sceaux.selectAll('path').data(sceaux, x => x.id).join('path').attr('class', 'sceau-chaos')
       .attr('d', CHAOS).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`);
     rendreUnites();
+    const etats = new Map(villesAff().map(v => [v.id, v.etat]));
+    L.villes.selectAll('g.ville').attr('class', v => 'ville ' + VILLES.niveau(etats.get(v.id) ?? v.etat)[1]);
+    const dVis = new Set(detruitesAff().map(z => z.id));
+    L.detruites.selectAll('path').attr('display', z => dVis.has(z.id) ? null : 'none');
     L.villes.selectAll('g.ville').classed('sel', v => v.id === etat.ville).classed('sans-nom', etat.niveau === 'monde');
     rendreLegende();
     appliquerDistorsion();
@@ -435,6 +449,7 @@
     const cle = 'v:' + v.id;
     if (cle !== survolCle) {
       survolCle = cle;
+      v = villeParId(v.id) || v;
       const [lib] = VILLES.niveau(v.etat);
       tip.innerHTML = `<strong>${esc(v.nom)}</strong>État : ${v.etat} % (${esc(lib.toLowerCase())})<br>Garnison : ${C.fmt(C.somme(v.garnison.map(u => u.effectif)), true)}<br><span class="ds-supporting">Cliquer pour la fiche</span>`;
     }
@@ -503,7 +518,8 @@
   const MORCEAUX = { reg: [1.5e6, 4e6, 8e6], fs: [6000], ph: [], cult: [3e6, 1.2e7] };
   function rendreUnites() {
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
-    const visibles = districts.filter(d => d._geo && (sel ? d._secteur === sel : ech === 1 && statutDe(d).statut !== 'controle'));
+    // Pas d'effectifs archivés : les pions ne s'affichent qu'en direct
+    const visibles = etat.replay !== null ? [] : districts.filter(d => d._geo && (sel ? d._secteur === sel : ech === 1 && statutDe(d).statut !== 'controle'));
     const foyers = zonesAff().filter(z => (+z.rayon || 0) >= 2);
     const pions = [];
     for (const d of visibles) {
@@ -534,7 +550,7 @@
           if (pts.length) { anneau.push(...pts); break; }
         }
       }
-      const villesD = (data.villes || []).filter(v => v.district === d.id).map(v => v.coord);
+      const villesD = villesAff().filter(v => v.district === d.id).map(v => v.coord);
       const calme = [...villesD, ...cands];
       const pris = [centre];
       const choisir = (liste, poidsCentre) => {
@@ -633,10 +649,10 @@
       + (vus.size ? '<li><i class="sw conteste"></i>Zone contestée</li>' : '')
       + [...vus].map(([n, c]) => `<li><i class="sw" style="background:${esc(c)}"></i>${esc(n)}</li>`).join('')
       + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '')
-      + ((data.detruites || []).length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
+      + (detruitesAff().length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
-      + ((data.villes || []).length ? '<li><i class="sw ville"></i>Ville « Too young to die »</li>' : '')
-      + ((data.villes || []).some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')
+      + (villesAff().length ? '<li><i class="sw ville"></i>Ville « Too young to die »</li>' : '')
+      + (villesAff().some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')
       + (L.unites.selectAll('g.pion').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
       + ((data.sites || []).some(x => x.icone === 'labo') ? '<li><svg class="sw-labo" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLASK + '"/></svg>Intérêt scientifique</li>' : '');
   }
@@ -726,7 +742,7 @@
   }
   function lireHash() {
     const [s, d, v] = decodeURIComponent(location.hash.slice(1)).split('/');
-    const ville = (data.villes || []).find(x => x.id === v && x.district === d);
+    const ville = villesAff().find(x => x.id === v && x.district === d);
     etat.ville = ville ? ville.id : null;
     if (s && secteurParId[s]) {
       etat.secteur = s;
@@ -781,12 +797,7 @@
 
   // Un bloc entièrement à zéro (secteurs organisationnels) n'apprend rien : on le masque
   const vide = vals => vals.every(v => !v.n && !v.cls);
-  function blocs(a) {
-    const civils = vide(Object.values(a.civils)) ? '' : blocCivils(a);
-    const forces = a.forces.confederation.unites.length || a.forces.cultistes.unites.length ? blocForces(a) : '';
-    const pertes = vide(C.FACTIONS.flatMap(f => Object.values(a.pertes[f]))) ? '' : blocPertes(a);
-    return civils + forces + pertes;
-  }
+
 
   function blocForces(a) {
     const f = a.forces;
@@ -892,7 +903,7 @@
       `<li>${badgeAir(n)}<span>${c[n]} district${c[n] > 1 ? 's' : ''}</span></li>`).join('')}</ul></section>`;
   }
 
-  const villeParId = id => (data.villes || []).find(v => v.id === id);
+  const villeParId = id => villesAff().find(v => v.id === id);
   function panneauVille(v) {
     const d = parId[v.district], s = secteurParId[d._secteur];
     const [lib, cls] = VILLES.niveau(v.etat);
@@ -925,51 +936,74 @@
       $('#panel').innerHTML = panneauVille(villeParId(etat.ville));
       return;
     }
+    const archive = etat.replay !== null;
+    // Contenu réparti en onglets pour éviter un long défilement ; l'en-tête reste visible
+    const forcesPop = a => {
+      if (archive) return { forces: '', pop: '' };
+      const civils = vide(Object.values(a.civils)) ? '' : blocCivils(a);
+      const forces = a.forces.confederation.unites.length || a.forces.cultistes.unites.length ? blocForces(a) : '';
+      const pertes = vide(C.FACTIONS.flatMap(f => Object.values(a.pertes[f]))) ? '' : blocPertes(a);
+      return { forces: forces + pertes, pop: civils };
+    };
+    let tete, onglets;
     if (etat.niveau === 'monde') {
       const compte = {};
       let nq = 0;
       districts.forEach(d => { const st = statutDe(d); compte[st.statut] = (compte[st.statut] || 0) + 1; if (st.quarantaine && st.statut !== 'quarantaine') nq++; });
-      html = `<div class="p-head"><h2 class="ds-display">Situation mondiale</h2>
+      tete = `<h2 class="ds-display">Situation mondiale</h2>
         <div class="statuts">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="ds-badge statut ${s}">${compte[s]} ${esc(data.statuts[s]).toLowerCase()}</span>`).join('')}${nq ? `<span class="ds-badge statut quarantaine">dont ${nq} en quarantaine</span>` : ''}</div>
-        ${balance(influenceMoy(districts))}</div>
-        ${blocFronts()}
-        ${blocVilles((data.villes || []).slice().sort((a, b) => a.etat - b.etat))}
-        <section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
-        ${data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3 class="ds-section-title">Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : ''}
-        ${blocAirListe(districts, false)}
-        ${blocs(C.agrege(districts))}
-        ${blocEvenements(() => true, 'Événements')}`;
+        ${balance(influenceMoy(districts))}`;
+      const fp = forcesPop(C.agrege(districts));
+      onglets = [
+        ['apercu', 'Aperçu', blocFronts() + `<section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>`
+          + (data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3 class="ds-section-title">Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : '')],
+        ['villes', 'Villes', blocVilles(villesAff().slice().sort((a, b) => a.etat - b.etat))],
+        ['forces', 'Forces', (archive ? '' : blocAirListe(districts, false)) + fp.forces],
+        ['pop', 'Population', fp.pop],
+        ['evt', 'Événements', blocEvenements(() => true, 'Événements')]
+      ];
     } else if (etat.niveau === 'secteur') {
       const s = secteurParId[etat.secteur];
-      const a = C.agrege(s.districts);
       const ids = new Set(s.districts.map(d => d.id));
-      html = `<div class="p-head"><h2 class="ds-display">${esc(s.nom)}</h2>
+      tete = `<h2 class="ds-display">${esc(s.nom)}</h2>
         <p class="ds-supporting">${s.geographique === false ? 'Secteur organisationnel, hors carte' : 'Secteur géographique'}, ${s.districts.length} district${s.districts.length > 1 ? 's' : ''}</p>
-        ${balance(influenceMoy(s.districts))}</div>
-        ${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}
-        <section class="bloc"><h3 class="ds-section-title">Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<p class="vide">Aucun district.</p>'}</div></section>
-        ${blocVilles((data.villes || []).filter(v => ids.has(v.district)))}
-        ${blocAirListe(s.districts, true)}
-        ${blocs(a)}
-        ${blocEvenements(e => (e.portee.type === 'secteur' && e.portee.id === s.id) || (e.portee.type === 'district' && ids.has(e.portee.id)), 'Événements du secteur')}`;
+        ${balance(influenceMoy(s.districts))}`;
+      const fp = forcesPop(C.agrege(s.districts));
+      onglets = [
+        ['apercu', 'Aperçu', (s.note && !archive ? `<p class="note">${esc(s.note)}</p>` : '')
+          + `<section class="bloc"><h3 class="ds-section-title">Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<p class="vide">Aucun district.</p>'}</div></section>`],
+        ['villes', 'Villes', blocVilles(villesAff().filter(v => ids.has(v.district)))],
+        ['forces', 'Forces', (archive ? '' : blocAirListe(s.districts, true)) + fp.forces],
+        ['pop', 'Population', fp.pop],
+        ['evt', 'Événements', blocEvenements(e => (e.portee.type === 'secteur' && e.portee.id === s.id) || (e.portee.type === 'district' && ids.has(e.portee.id)), 'Événements du secteur')]
+      ];
     } else {
       const d = parId[etat.district], s = secteurParId[d._secteur], st = statutDe(d);
-      const a = C.agrege([d]);
       const fl = { hausse: '▲', baisse: '▼', stable: '■' };
-      html = `<div class="p-head"><h2 class="ds-display">${esc(d.nom)}</h2>
+      tete = `<h2 class="ds-display">${esc(d.nom)}</h2>
         <p class="ds-supporting">Secteur ${esc(s.nom)}</p>
         <div class="statuts">${badgeStatut(st.statut)}${st.quarantaine && st.statut !== 'quarantaine' ? badgeStatut('quarantaine') : ''}
-        ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}"><span aria-hidden="true">${fl[d.tendance]}</span> ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
-        ${balance(st.influence)}</div>
-        ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
-        ${blocVilles((data.villes || []).filter(v => v.district === d.id))}
-        ${blocAirDistrict(d)}
-        ${blocs(a)}
-        ${blocEvenements(e => (e.portee.type === 'district' && e.portee.id === d.id) || (e.portee.type === 'secteur' && e.portee.id === s.id), 'Événements récents')}`;
+        ${!archive && d.tendance ? `<span class="tendance ${d.tendance}"><span aria-hidden="true">${fl[d.tendance]}</span> ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
+        ${balance(st.influence)}`;
+      const fp = forcesPop(C.agrege([d]));
+      onglets = [
+        ['apercu', 'Aperçu', (d.note && !archive ? `<p class="note">${esc(d.note)}</p>` : '') + blocVilles(villesAff().filter(v => v.district === d.id))],
+        ['forces', 'Forces', (archive ? '' : blocAirDistrict(d)) + fp.forces],
+        ['pop', 'Population', fp.pop],
+        ['evt', 'Événements', blocEvenements(e => (e.portee.type === 'district' && e.portee.id === d.id) || (e.portee.type === 'secteur' && e.portee.id === s.id), 'Événements récents')]
+      ];
     }
+    onglets = onglets.filter(o => o[2] && o[2].trim());
+    const actif = onglets.find(o => o[0] === etat.onglet) || onglets[0];
+    html = `<div class="p-head">${tete}</div>
+      ${onglets.length > 1 ? `<div class="p-onglets"><div class="ds-tabs" role="tablist" aria-label="Rubriques">${onglets.map(o =>
+        `<button class="ds-tab ${o === actif ? 'active' : ''}" type="button" role="tab" aria-selected="${o === actif}" data-onglet="${o[0]}">${o[1]}</button>`).join('')}</div></div>` : ''}
+      <div class="p-corps" role="tabpanel">${actif ? actif[2] : ''}</div>`;
     $('#panel').innerHTML = html;
   }
   $('#panel').addEventListener('click', e => {
+    const o = e.target.closest('[data-onglet]');
+    if (o) { etat.onglet = o.dataset.onglet; rendrePanel(); $('#panel').scrollTop = 0; return; }
     const f = e.target.closest('[data-filtre]');
     if (f) { etat.filtre = f.dataset.filtre; rendrePanel(); return; }
     const p = e.target.closest('[data-portee]');
@@ -1037,7 +1071,7 @@
     const el = $('#archive');
     if (etat.replay === null) { el.hidden = true; return; }
     el.hidden = false;
-    el.innerHTML = `<strong>Archive du ${esc(data.historique[etat.replay].date)}</strong><span>Carte, statuts et tension à cette date. Les chiffres détaillés sont ceux d'aujourd'hui.</span>`;
+    el.innerHTML = `<strong>Archive du ${esc(data.historique[etat.replay].date)}</strong><span>Carte, statuts, villes, tension et événements à cette date.</span>`;
   }
 
   $('#titre').textContent = data.meta.titre;
@@ -1080,9 +1114,9 @@
   majPlay();
   sLbl.classList.add('live');
 
-  // Légende repliable sur téléphone
+  // Légende : tiroir dépliable sur le bord droit de la carte
   $('#btnLegende').addEventListener('click', e => {
-    const ouvert = $('.map-ui').classList.toggle('legende-ouverte');
+    const ouvert = $('#tiroirLegende').classList.toggle('ouvert');
     e.currentTarget.setAttribute('aria-expanded', ouvert);
   });
 

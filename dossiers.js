@@ -25,6 +25,31 @@
     return html.join('');
   }
 
+  // Registre façon terminal : une entrée par utilisation d'anomalie, la plus récente en haut
+  const USAGES = ['NEUTRALISATION', 'CONFINEMENT', 'CIVIL', 'PLANIFICATION', 'AUGMENTATION', 'RECHERCHE', 'PERTE DE CONTRÔLE'];
+  let filtreUsage = 'TOUS';
+  function terminal(page) {
+    const j = page.journal || [];
+    const usages = ['TOUS', ...USAGES.filter(u => j.some(e => e.usage === u)), ...[...new Set(j.map(e => e.usage))].filter(u => u && !USAGES.includes(u))];
+    const visibles = j.map((e, i) => ({ e, i })).filter(o => filtreUsage === 'TOUS' || o.e.usage === filtreUsage).reverse();
+    const ligne = (cle, val, cls = '') => `<span class="t-l"><span class="t-cle">${cle}</span><span class="t-val ${cls}">${esc(val || '—')}</span></span>`;
+    return `<section class="terminal" aria-label="Registre des utilisations d'anomalies">
+      <div class="t-barre"><span class="t-points" aria-hidden="true"><i></i><i></i><i></i></span><span>rca://registre-anormal</span><span class="t-compte">${j.length} entrée${j.length > 1 ? 's' : ''}</span></div>
+      <div class="t-corps">
+        ${(page.contenu || '').split('\n').filter(Boolean).map(l => `<p class="t-com"># ${esc(l)}</p>`).join('')}
+        <div class="t-filtres" role="group" aria-label="Filtrer par usage"><span class="t-invite" aria-hidden="true">$ rca --usage</span>${usages.map(u =>
+          `<button type="button" class="t-flag ${u === filtreUsage ? 'actif' : ''}" aria-pressed="${u === filtreUsage}" data-usage="${esc(u)}">${esc(u.toLowerCase())}</button>`).join('')}</div>
+        <ol class="t-journal" reversed>${visibles.map(({ e, i }, k) => `<li class="t-entree" style="--i:${k}">
+          <p class="t-tete"><span class="t-date">[${esc(e.date || 'date non consignée')}]</span> <span class="t-num">#${String(i + 1).padStart(3, '0')}</span> <span class="t-usage u-${esc((e.usage || '').toLowerCase().replace(/[^a-z]+/g, '-'))}">${esc(e.usage || '')}</span></p>
+          ${ligne('anomalie', e.anomalie, 't-fort')}${ligne('lieu', e.lieu)}${ligne('autorisation', e.autorisation)}${ligne('résultat', e.resultat)}</li>`).join('') || '<li class="t-vide">Aucune entrée pour cet usage.</li>'}</ol>
+        <p class="t-invite fin" aria-hidden="true">$ <span class="t-curseur"></span></p>
+      </div></section>`;
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-usage]');
+    if (b) { filtreUsage = b.dataset.usage; lire(); }
+  });
+
   function rendreArbre(sid, pid) {
     $('#arbre').innerHTML = `<ul class="arbre-racine"><li>
       <a href="#" class="noeud ${!sid ? 'actif' : ''}" ${!sid ? 'aria-current="page"' : ''}>Monde</a>
@@ -54,7 +79,7 @@
       <p class="chapo">${esc(d.resume || '')}</p></header>
       ${pages.length > 1 ? `<div class="ds-tabs dos-onglets" role="tablist" aria-label="Dossiers du secteur ${esc(s.nom)}">${pages.map(p =>
         `<a class="ds-tab ${p === page ? 'active' : ''}" role="tab" aria-selected="${p === page}" href="#${esc(s.id)}${p.id === 'overview' ? '' : '/' + esc(p.id)}">${esc(p.titre)}</a>`).join('')}</div>` : ''}
-      <article class="dos-texte">${page ? texte(page.contenu) : '<p>Dossier vide.</p>'}</article>
+      ${page && page.journal ? terminal(page) : `<article class="dos-texte">${page ? texte(page.contenu) : '<p>Dossier vide.</p>'}</article>`}
       ${(!page || page.id === 'overview') && s.districts.length ? `<section class="dos-districts"><h3 class="ds-section-title">Districts</h3><ul>${s.districts.map(x =>
         `<li><strong>${esc(x.nom)}</strong>${x.note ? `<span>${esc(x.note)}</span>` : ''}</li>`).join('')}</ul></section>` : ''}`;
   }

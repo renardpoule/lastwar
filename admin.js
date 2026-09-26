@@ -360,6 +360,14 @@
     else if (ds.supprGarnison) {
       const [i, j] = ds.supprGarnison.split(':'); data.villes[+i].garnison.splice(+j, 1); modifie(); rendre();
     }
+    else if (ds.ajoutEntree) {
+      const [sid, j] = ds.ajoutEntree.split(':');
+      data.dossiers[sid].pages[+j].journal.push({ date: data.meta.dateRP || '', anomalie: '', usage: 'NEUTRALISATION', lieu: '', autorisation: '', resultat: '' }); modifie(); rendre();
+    }
+    else if (ds.supprEntree) {
+      const [sid, j, n] = ds.supprEntree.split(':');
+      data.dossiers[sid].pages[+j].journal.splice(+n, 1); modifie(); rendre();
+    }
     else if (ds.ajoutPage) {
       const nom = prompt('Titre du nouveau dossier :');
       if (!nom) return;
@@ -541,7 +549,19 @@
           ${d.pages.map((p, j) => `<div class="grille">
             <label class="champ"><span>Titre du dossier</span><input data-bind="dossiers.${s.id}.pages.${j}.titre"></label>
             ${p.id !== 'overview' ? `<div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-page="${s.id}:${j}">Supprimer ce dossier</button></div>` : ''}
-            <label class="champ large"><span>Contenu</span><textarea rows="8" data-bind="dossiers.${s.id}.pages.${j}.contenu"></textarea></label></div>`).join('')}
+            <label class="champ large"><span>${p.journal ? 'Préambule du registre' : 'Contenu'}</span><textarea rows="${p.journal ? 3 : 8}" data-bind="dossiers.${s.id}.pages.${j}.contenu"></textarea></label></div>
+            ${p.journal ? `<h4>Registre des anomalies (${p.journal.length} entrées, la plus récente en bas)</h4>
+              <p class="ds-supporting aide">Une ligne par utilisation d'anomalie. Usages conseillés : NEUTRALISATION, CONFINEMENT, CIVIL, PLANIFICATION, AUGMENTATION, RECHERCHE, PERTE DE CONTRÔLE.</p>
+              ${p.journal.map((e, n) => `<div class="grille entree-journal">
+                <label class="champ"><span>Date</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.date" placeholder="20 sept. 2075"></label>
+                <label class="champ"><span>Usage</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.usage" list="usagesAnomalie"></label>
+                <label class="champ"><span>Anomalie</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.anomalie"></label>
+                <label class="champ"><span>Lieu</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.lieu"></label>
+                <label class="champ"><span>Autorisation</span><input data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.autorisation"></label>
+                <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-entree="${s.id}:${j}:${n}">Supprimer l'entrée</button></div>
+                <label class="champ large"><span>Résultat</span><textarea rows="2" data-bind="dossiers.${s.id}.pages.${j}.journal.${n}.resultat"></textarea></label></div>`).join('')}
+              <datalist id="usagesAnomalie">${['NEUTRALISATION', 'CONFINEMENT', 'CIVIL', 'PLANIFICATION', 'AUGMENTATION', 'RECHERCHE', 'PERTE DE CONTRÔLE'].map(u => `<option value="${u}">`).join('')}</datalist>
+              <div class="ligne"><button class="ds-btn ds-btn-primary ds-btn-sm" type="button" data-ajout-entree="${s.id}:${j}">Ajouter une entrée</button></div>` : ''}`).join('')}
           <div class="ligne"><button class="ds-btn ds-btn-outline ds-btn-sm" type="button" data-ajout-page="${s.id}">Ajouter un dossier</button></div></section>`;
       }).join('')}`;
   }
@@ -767,7 +787,7 @@
       if ($('#pSnap').checked) {
         const districts = {};
         for (const s of pub.secteurs) for (const d of s.districts) districts[d.id] = { statut: d.statut, influence: d.influence, quarantaine: !!d.quarantaine };
-        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, distorsion: pub.meta.distorsion || 0, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])) };
+        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, distorsion: pub.meta.distorsion || 0, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])), villes: Object.fromEntries((pub.villes || []).map(v => [v.id, v.etat])) };
         const ph = pub.historique;
         if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }

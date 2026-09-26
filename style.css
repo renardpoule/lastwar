@@ -259,7 +259,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sat-corps{fill:oklch(0.85 0.04 250);stroke:var(--ocean);stroke-width:.8}
 .nom-sat{font-size:0.625rem;text-anchor:start;stroke-width:2.6px;fill:oklch(0.85 0.04 250);font-weight:500;letter-spacing:.04em}
 .sat.importante .nom-sat{fill:var(--or);font-weight:700}
-.btn-legende{display:none}
 /* Filigrane : sceau de la Confédération derrière la carte */
 .pastille-labo{fill:var(--card);stroke:var(--st-reconquete);stroke-width:1.5}
 .labo{fill:none;stroke:var(--st-reconquete);stroke-width:2.2;stroke-linecap:round}
@@ -297,7 +296,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .fil ol{display:flex;align-items:center;gap:0.25rem;margin:0;padding:0;list-style:none;flex-wrap:wrap}
 .fil .sep{color:var(--muted-foreground);padding:0 0.125rem}
 .fil [aria-current]{display:inline-block;padding:.4rem .7rem;font-size:.8125rem;font-weight:600;color:var(--foreground)}
-.legende{flex:0 1 auto;display:flex;flex-wrap:wrap;gap:0.25rem 0.75rem;justify-content:flex-end;margin:0;padding:0.5rem 0.75rem;list-style:none;font-size:.75rem;color:var(--muted-foreground);background:color-mix(in oklab,var(--card) 92%,transparent);border:0.0625rem solid var(--border);border-radius:var(--radius-lg)}
+.tiroir-legende{position:absolute;right:0;top:50%;transform:translate(calc(100% - 2.25rem),-50%);display:flex;align-items:center;transition:transform .25s ease;z-index:5;max-height:calc(100% - 9rem)}
+.tiroir-legende.ouvert{transform:translate(0,-50%)}
+.onglet-legende{flex:none;width:2.25rem;padding:0.875rem 0;border:0.0625rem solid var(--border);border-right:0;border-radius:var(--radius-lg) 0 0 var(--radius-lg);background:var(--card);color:var(--foreground);font:600 .8125rem var(--font-sans);cursor:pointer;display:flex;justify-content:center}
+.onglet-legende span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.04em}
+.tiroir-legende.ouvert .onglet-legende{background:var(--secondary)}
+.legende{display:flex;flex-direction:column;gap:0.5rem;margin:0;padding:0.875rem 1rem;list-style:none;font-size:.8125rem;color:var(--muted-foreground);background:color-mix(in oklab,var(--card) 96%,transparent);border:0.0625rem solid var(--border);border-right:0;width:15rem;max-height:100%;overflow-y:auto;box-shadow:-0.5rem 0 1.5rem oklch(0 0 0 / .3)}
+@media (prefers-reduced-motion:reduce){.tiroir-legende{transition:none}}
 .legende li{display:inline-flex;align-items:center;gap:0.5rem}
 .sw{width:0.625rem;height:0.625rem;border-radius:0.1875rem;display:inline-block}
 .sw.conteste{background:color-mix(in oklab,var(--st-conteste) 60%,var(--ocean))}
@@ -316,6 +321,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* Panneau latéral */
 .p-head{padding:1.25rem;border-bottom:0.0625rem solid var(--border);display:flex;flex-direction:column;gap:0.75rem}
+.p-onglets{position:sticky;top:0;z-index:2;padding:0.625rem 1.25rem;background:var(--background);border-bottom:0.0625rem solid var(--border)}
+.p-onglets .ds-tabs{display:flex;width:100%;overflow-x:auto}
+.p-onglets .ds-tab{flex:1 1 auto;white-space:nowrap}
 .p-head .ds-display{font-size:1.75rem;text-wrap:balance}
 .p-head .ds-supporting{margin-top:-0.375rem}
 .statuts{display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center}
@@ -483,12 +491,10 @@ button{font:inherit;color:inherit;cursor:pointer}
   .layout{display:flex;flex-direction:column}
   .mapzone{height:62vh;min-height:23.75rem;flex:none}
   .panel{max-height:none;border-left:0;border-top:0.0625rem solid var(--border)}
-  .legende{display:none}
-  .map-ui{flex-wrap:wrap}
-  .btn-legende{display:inline-flex;margin-left:auto}
-  .map-ui.legende-ouverte .legende{display:flex;flex-basis:100%;justify-content:flex-start;max-height:40vh;overflow-y:auto}
+  .legende{width:12.5rem;font-size:.75rem}
+  .p-onglets{position:static}
   .map-ui{left:0.75rem;right:0.75rem;top:0.75rem}
-  .fil{max-width:calc(100% - 6.5rem);overflow-x:auto}
+  .fil{max-width:100%;overflow-x:auto}
   .fil ol{flex-wrap:nowrap;white-space:nowrap}
   .fil .ds-btn,.fil [aria-current]{font-size:0.75rem;padding:0.375rem 0.5rem;min-height:2.25rem}
   .nav-site{width:100%}
