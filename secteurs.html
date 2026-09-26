@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dossiers des secteurs</title>
+<meta name="description" content="Dossiers des secteurs organisationnels de la Confédération des Cendres.">
+<meta name="theme-color" content="#16131f">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="secteurs.css">
+</head>
+<body class="ds dossiers">
+<header class="topbar">
+  <div class="identite">
+    <img class="logo" src="logo.png" width="44" height="44" alt="Sceau de la Confédération des Cendres">
+    <div>
+      <h1>Dossiers des secteurs</h1>
+      <p class="ds-supporting">Confédération des Cendres · diffusion restreinte</p>
+    </div>
+  </div>
+  <nav class="nav-site" aria-label="Site"><a class="ds-btn ds-btn-ghost" href="./">Carte</a><span class="ds-btn ds-btn-ghost actif" aria-current="page">Secteurs</span><a class="ds-btn ds-btn-ghost" href="admin.html">Administratif</a></nav>
+</header>
+<div class="dos-layout">
+  <nav class="arbre" id="arbre" aria-label="Arborescence des dossiers"></nav>
+  <main class="dos-contenu" id="contenu" tabindex="-1"><p class="ds-supporting">Chargement…</p></main>
+</div>
+<script src="common.js"></script>
+<script src="dossiers.js"></script>
+</body>
+</html>

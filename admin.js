@@ -138,7 +138,7 @@
   }
 
   function rendre() {
-    const vues = { situation: vueSituation, evenements: vueEvenements, districts: vueDistricts, zones: vueZones, secteurs: vueSecteurs, reglages: vueReglages };
+    const vues = { situation: vueSituation, evenements: vueEvenements, districts: vueDistricts, zones: vueZones, villes: vueVilles, dossiers: vueDossiers, secteurs: vueSecteurs, reglages: vueReglages };
     $('#contenu').innerHTML = vues[onglet]();
     habiller($('#contenu'));
     lier($('#contenu'));
@@ -336,6 +336,40 @@
       if (!confirm(`Supprimer « ${z.nom} » ?`)) return;
       data.zones.splice(+ds.supprZone, 1); modifie(); rendre();
     }
+    else if (t.id === 'ajoutDetruite') {
+      (data.detruites ||= []).push({ id: 'd-' + Date.now().toString(36), nom: 'Nouvelle zone détruite', centre: [0, 0], rayon: 1.5, district: data.secteurs[0].districts[0].id, date: data.meta.dateRP, info: '' });
+      modifie(); rendre();
+    }
+    else if (ds.supprDetruite !== undefined) {
+      const z = data.detruites[+ds.supprDetruite];
+      if (!confirm(`Supprimer « ${z.nom} » ?`)) return;
+      data.detruites.splice(+ds.supprDetruite, 1); modifie(); rendre();
+    }
+    else if (t.id === 'ajoutVille') {
+      (data.villes ||= []).push({ id: 'v-' + Date.now().toString(36), nom: 'Nouvelle ville', coord: [0, 0], district: data.secteurs[0].districts[0].id, etat: 100, image: 'tours', garnison: [], description: '' });
+      modifie(); rendre();
+    }
+    else if (ds.supprVille !== undefined) {
+      const v = data.villes[+ds.supprVille];
+      if (!confirm(`Supprimer « ${v.nom} » ?`)) return;
+      data.villes.splice(+ds.supprVille, 1); modifie(); rendre();
+    }
+    else if (ds.ajoutGarnison !== undefined) {
+      data.villes[+ds.ajoutGarnison].garnison.push({ nom: '', effectif: 0 }); modifie(); rendre();
+    }
+    else if (ds.supprGarnison) {
+      const [i, j] = ds.supprGarnison.split(':'); data.villes[+i].garnison.splice(+j, 1); modifie(); rendre();
+    }
+    else if (ds.ajoutPage) {
+      const nom = prompt('Titre du nouveau dossier :');
+      if (!nom) return;
+      data.dossiers[ds.ajoutPage].pages.push({ id: slug(nom), titre: nom, contenu: '' }); modifie(); rendre();
+    }
+    else if (ds.supprPage) {
+      const [sid, j] = ds.supprPage.split(':'), pg = data.dossiers[sid].pages[+j];
+      if (!confirm(`Supprimer le dossier « ${pg.titre} » ?`)) return;
+      data.dossiers[sid].pages.splice(+j, 1); modifie(); rendre();
+    }
     else if (t.id === 'ajoutSecteur') {
       const nom = prompt('Nom du nouveau secteur :');
       if (!nom) return;
@@ -453,7 +487,62 @@
         <label class="champ"><span>Rayon (degrés)</span><input type="number" step="0.1" min="0.2" class="num" data-bind="zones.${i}.rayon" data-type="nombre"></label>
         <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-zone="${i}">Supprimer la zone</button></div>
       </div></section>`).join('')}
+      <section class="ds-card carte"><h2 class="ds-section-title">Zones détruites</h2>
+      <p class="ds-supporting aide">Frappes, bombardements, rasages. Dessinées en brûlé sur la carte, avec la légende « Zone détruite ».</p>
+      <div class="ligne"><button class="ds-btn ds-btn-primary" type="button" id="ajoutDetruite">Ajouter une zone détruite</button></div></section>
+      ${(data.detruites ||= []).map((z, i) => `<section class="ds-card carte"><div class="grille">
+        <label class="champ"><span>Nom</span><input data-bind="detruites.${i}.nom"></label>
+        <label class="champ"><span>Date</span><input data-bind="detruites.${i}.date"></label>
+        <label class="champ"><span>District concerné</span><select data-bind="detruites.${i}.district">${optDistricts(z.district)}</select></label>
+        <label class="champ"><span>Longitude</span><input type="number" step="0.1" class="num" data-bind="detruites.${i}.centre.0" data-type="nombre"></label>
+        <label class="champ"><span>Latitude</span><input type="number" step="0.1" class="num" data-bind="detruites.${i}.centre.1" data-type="nombre"></label>
+        <label class="champ"><span>Rayon (degrés)</span><input type="number" step="0.1" min="0.2" class="num" data-bind="detruites.${i}.rayon" data-type="nombre"></label>
+        <label class="champ large"><span>Description</span><input data-bind="detruites.${i}.info"></label>
+        <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-detruite="${i}">Supprimer</button></div>
+      </div></section>`).join('')}
       <datalist id="dieuxConnus">${[...new Set(data.zones.map(z => z.dieu).filter(Boolean))].map(n => `<option value="${esc(n)}">`).join('')}</datalist>`;
+  }
+
+  // ---------- Villes « Too young to die » ----------
+  const IMAGES_VILLE = { tours: 'Tours', port: 'Port', caserne: 'Caserne / aérodrome', labo: 'Laboratoires', hopital: 'Hôpital', ruines: 'Remparts', pagode: 'Pagode', usines: 'Usines', prison: 'Prison', opera: 'Opéra', capitole: 'Capitole', infectee: 'Infectée' };
+  function vueVilles() {
+    data.villes ||= [];
+    const optD = sel => data.secteurs.filter(s => s.geographique !== false).map(s => `<optgroup label="${esc(s.nom)}">${s.districts.map(d => `<option value="${d.id}" ${d.id === sel ? 'selected' : ''}>${esc(d.nom)}</option>`).join('')}</optgroup>`).join('');
+    return `<section class="ds-card carte"><h2 class="ds-section-title">Villes « Too young to die »</h2>
+      <p class="ds-supporting aide">L'état va de 0 (tombée) à 100 (intacte). Il colore le point sur la carte et déforme l'illustration de la ville.</p>
+      <div class="ligne"><button class="ds-btn ds-btn-primary" type="button" id="ajoutVille">Ajouter une ville</button></div></section>
+      ${data.villes.map((v, i) => `<section class="ds-card carte"><h3>${esc(v.nom)}</h3><div class="grille">
+        <label class="champ"><span>Nom</span><input data-bind="villes.${i}.nom"></label>
+        <label class="champ"><span>District</span><select data-bind="villes.${i}.district">${optD(v.district)}</select></label>
+        <label class="champ"><span>État (%)</span><input type="number" min="0" max="100" class="num" data-bind="villes.${i}.etat" data-type="nombre"></label>
+        <label class="champ"><span>Illustration</span><select data-bind="villes.${i}.image">${Object.entries(IMAGES_VILLE).map(([k2, l]) => `<option value="${k2}" ${v.image === k2 ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+        <label class="champ"><span>Longitude</span><input type="number" step="0.01" class="num" data-bind="villes.${i}.coord.0" data-type="nombre"></label>
+        <label class="champ"><span>Latitude</span><input type="number" step="0.01" class="num" data-bind="villes.${i}.coord.1" data-type="nombre"></label>
+        <label class="champ large"><span>Description</span><textarea rows="3" data-bind="villes.${i}.description"></textarea></label>
+      </div>
+      <h3>Garnison</h3><div class="unites-ed">${v.garnison.map((u, j) => `<div class="unite-ed">
+        <input data-bind="villes.${i}.garnison.${j}.nom" aria-label="Unité">
+        <input class="num" data-bind="villes.${i}.garnison.${j}.effectif" data-type="valeur" aria-label="Effectif">
+        <button class="ds-btn ds-btn-ghost ds-btn-sm danger" type="button" data-suppr-garnison="${i}:${j}" aria-label="Retirer">×</button></div>`).join('')}</div>
+      <div class="ligne"><button class="ds-btn ds-btn-outline ds-btn-sm" type="button" data-ajout-garnison="${i}">Ajouter une unité</button>
+        <button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-ville="${i}">Supprimer la ville</button></div></section>`).join('')}`;
+  }
+
+  // ---------- Dossiers des secteurs ----------
+  function vueDossiers() {
+    data.dossiers ||= {};
+    return `<section class="ds-card carte"><h2 class="ds-section-title">Dossiers des secteurs</h2>
+      <p class="ds-supporting aide">Affichés sur la page Secteurs. Mise en forme : une ligne « ## Titre » pour un intertitre, « - » en début de ligne pour une puce, une ligne vide entre deux paragraphes.</p></section>
+      ${data.secteurs.filter(s => s.geographique === false).map(s => {
+        const d = data.dossiers[s.id] ||= { resume: '', pages: [{ id: 'overview', titre: "Vue d'ensemble", contenu: '' }] };
+        return `<section class="ds-card carte"><h3>${esc(s.nom)}</h3>
+          <label class="champ large"><span>Résumé</span><textarea rows="2" data-bind="dossiers.${s.id}.resume"></textarea></label>
+          ${d.pages.map((p, j) => `<div class="grille">
+            <label class="champ"><span>Titre du dossier</span><input data-bind="dossiers.${s.id}.pages.${j}.titre"></label>
+            ${p.id !== 'overview' ? `<div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-page="${s.id}:${j}">Supprimer ce dossier</button></div>` : ''}
+            <label class="champ large"><span>Contenu</span><textarea rows="8" data-bind="dossiers.${s.id}.pages.${j}.contenu"></textarea></label></div>`).join('')}
+          <div class="ligne"><button class="ds-btn ds-btn-outline ds-btn-sm" type="button" data-ajout-page="${s.id}">Ajouter un dossier</button></div></section>`;
+      }).join('')}`;
   }
 
   // ---------- Secteurs ----------

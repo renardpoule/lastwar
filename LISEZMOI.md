@@ -3,9 +3,10 @@
 Carte interactive du conflit entre la Confédération des Cendres et les Cultistes.
 
 - `index.html` : la carte publique (lien à partager sur Discord)
+- `secteurs.html` : les dossiers des secteurs organisationnels (Monde → secteur → Atmosphère, Rapport Confédéral sur l'Anormal…)
 - `admin.html` : le poste de commandement, pour faire les mises à jour
 - `data.json` : toutes les données (modifiées par `admin.html`)
-- `app.js`, `admin.js`, `common.js`, `style.css`, `admin.css` : le code
+- `app.js`, `villes.js`, `dossiers.js`, `admin.js`, `common.js`, `style.css`, `admin.css`, `secteurs.css` : le code
 - `countries.json`, `lib/`, `logo.png` : fond de carte simplifié, bibliothèques et sceau de la CC (inclus, aucun service extérieur requis)
 
 ---
@@ -50,14 +51,20 @@ mais la vraie barrière contre toute modification de la carte reste le jeton Git
 2. **Situation** : changez la date du RP.
 3. **Événements** : ajoutez ce qui s'est passé (portée, gravité, conséquences, effet sur la tension).
 4. **Districts** : ajustez statut, influence cultiste, effectifs et pertes des zones touchées.
-5. **Situation** : réglez la tension si besoin.
-6. Cliquez sur **Publier**. La carte se met à jour pour tout le monde en une à deux minutes.
+5. **Situation** : réglez la tension et la distorsion si besoin.
+6. **Villes** : état (0 à 100 %) et garnison des villes « Too young to die ». L'état colore le point et déforme l'illustration.
+7. **Zones** : zones cultistes et zones détruites (frappes, bombardements).
+8. **Dossiers** : textes de la page Secteurs.
+9. Cliquez sur **Publier**. La carte se met à jour pour tout le monde en une à deux minutes.
 
 Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans le navigateur.
 
 **Chiffres** : `12000` · `~12000` (estimation, affichée « ~12 000 ») · `?` ou `CLASSIFIÉ` (donnée masquée).
 
 **Liens partageables** : chaque zone a sa propre adresse, par exemple
-`…/lastwar/#europe/eu-est` ouvre directement le District de l'Est.
+`…/lastwar/#europe/eu-est` ouvre directement le District de l'Est, `…/lastwar/#europe/eu-est/kazan` la fiche de Kazan,
+`…/lastwar/secteurs.html#renseignement/atmosphere` le dossier Atmosphère.
+
+**Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main.
 
 **Sans jeton GitHub** : cliquez sur « Télécharger data.json » dans l'admin, puis dans le dépôt GitHub utilisez **Add file → Upload files** pour remplacer `data.json`.

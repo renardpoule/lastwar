@@ -3,7 +3,7 @@
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "20 sept. 2075",
-    "derniereMaj": "2026-09-26T00:31:40.000Z",
+    "derniereMaj": "2026-09-26T00:48:40.000Z",
     "distorsion": 35
   },
   "tension": {
@@ -1190,7 +1190,7 @@
           "statut": "controle",
           "influence": 0,
           "tendance": "stable",
-          "quarantaine": true,
+          "quarantaine": false,
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1219,7 +1219,7 @@
               "disparus": "?"
             }
           },
-          "note": "Bande littorale du continent, îles comprises (Madagascar, La Réunion, Mayotte…). Tenue par la Confédération, sous quarantaine.",
+          "note": "Bande littorale du continent, îles comprises (Madagascar, La Réunion, Mayotte…). Tenue par la Confédération, hors quarantaine : les ports servent de sas vers l'intérieur.",
           "air": {
             "niveau": "totale",
             "note": "Continent rasé depuis le ciel ; plus aucune opposition."
@@ -3751,5 +3751,643 @@
     "nette": "Nette",
     "contestee": "Contestée",
     "perdue": "Perdue"
-  }
+  },
+  "satellites": [
+    {
+      "id": "eureka",
+      "nom": "EUREKA",
+      "etoile": true,
+      "inclinaison": 51.6,
+      "noeud": -40,
+      "periode": 90,
+      "phase": 0,
+      "info": "Station-laboratoire spatiale de la R&D. Zone importante : accès réservé au rang S."
+    },
+    {
+      "id": "arachne-1",
+      "nom": "Arachne-I",
+      "inclinaison": 97,
+      "noeud": 20,
+      "periode": 70,
+      "phase": 0.3,
+      "info": "Satellite d'observation du Projet Arachne."
+    },
+    {
+      "id": "arachne-2",
+      "nom": "Arachne-II",
+      "inclinaison": 97,
+      "noeud": 110,
+      "periode": 70,
+      "phase": 0.8,
+      "info": "Satellite d'observation du Projet Arachne."
+    },
+    {
+      "id": "veilleur-sud",
+      "nom": "Veilleur-Sud",
+      "geo": true,
+      "coord": [
+        -62,
+        0
+      ],
+      "info": "Satellite géostationnaire au-dessus du front sud-américain. C'est lui qui a repéré les cultistes au sud de la brigade exotique."
+    }
+  ],
+  "dossiers": {
+    "rd": {
+      "resume": "Dirigé par Sally Weirman depuis Gotland. Le secteur conçoit l'armement, pilote HCP et encadre l'usage des anomalies.",
+      "pages": [
+        {
+          "id": "overview",
+          "titre": "Vue d'ensemble",
+          "contenu": "## Direction\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, le district civil depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau ; sa maintenance se fait à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes."
+        },
+        {
+          "id": "anormal",
+          "titre": "Rapport Confédéral sur l'Anormal",
+          "contenu": "## Cadre\nLa Convention d'Alcyon, rédigée par Sally Weirman et signée à l'unanimité par le Conseil, classe chaque anomalie en trois usages : usage civil, confinement ou neutralisation. Depuis le palier Éclipse, les armes anomaliques sont autorisées sous contrôle du Conseil.\n\n## HCP\nL'IA de planification a prédit 85 % des mouvements cultistes, déplacements civils compris. Elle a obtenu l'accès aux topographies et à tous les capteurs de la Confédération. Son unité s'est vu administrer un psychoactif à sa demande. Consigne en vigueur : personne ne l'approche en dehors de l'opérateur Merrick.\n\n## Plieurs de réalité\nL'Escouade Phoenix engage ses plieurs de réalité contre les entités depuis le 10 septembre. Deux anciens plieurs de la Confédération, perdus au combat, combattent désormais pour l'ennemi :\n- Arthur « le Bon », corrompu par Nargal, à la tête des infectés d'Amérique du Sud ;\n- Izala, qui se proclame déesse et tient le sud de la Chine.\n\n## Brigade exotique\n96 % des 45 000 soldats engagés sur le front sud-américain ont reçu des drogues de performance et une armure Exo-3. Les témoignages recueillis décrivent des soldats qui ne transpirent pas et ne montrent aucune peur. À la question « Êtes-vous humain ? », l'état-major a répondu : « Cela dépend d'où vous placez la limite de l'Homme. »\n\n## Ichoria\nUn injecteur d'ichoria marqué du symbole de la Fondation SCP a été retrouvé sur un membre du commando qui a frappé les centres névralgiques d'Europe. HCP juge nulle la probabilité d'une attaque de la Fondation. L'origine du commando reste inconnue.\n\n## Recherches en cours\n- Contrôle du hasard (unités Sertannets) : augmenter la probabilité d'un événement sur une installation ennemie.\n- Architectes du Réel : conception d'armes par altération du Réel.\n- Département de l'Irréalité : score de loyauté exigé d'au moins 99,7 %."
+        }
+      ]
+    },
+    "renseignement": {
+      "resume": "Dirigé par Rosenrad. Le Service du Maintien de la Confédération surveille la population et coordonne l'Escouade Phoenix depuis 2075.",
+      "pages": [
+        {
+          "id": "overview",
+          "titre": "Vue d'ensemble",
+          "contenu": "## Direction\nConseiller : Miroslav Mikhaïl Perković, dit « Rosenrad ». Siège : Nouvelle-Luxembourg, ville réservée aux militaires et entièrement vidéosurveillée.\n\n## Rôle dans le conflit\n- Le SMC recueille les dépositions des civils engagés dans les milices (déposition n° 4 412 : Pietro Shat, Zurich).\n- Rosenrad coordonne les opérations de l'Escouade Phoenix.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement."
+        },
+        {
+          "id": "atmosphere",
+          "titre": "Atmosphère",
+          "contenu": "## Mobilisation\nLe 10 septembre, le discours du bunker a mis fin au confinement. Des milliards de civils sont sortis armés. Le Phénix est apparu sur les murs, les casques et les fuselages. Dans chaque commune d'Europe, les diffusions se terminent par la même phrase.\n\n## Europe\nLe secteur est tenu, mais il a payé environ 10 millions de morts. Là où une entité est apparue, une foule entière a perdu la raison et s'est entretuée. Les dépositions recueillies par le SMC se ressemblent toutes ; l'agent qui a entendu Pietro Shat l'a résumé ainsi : « Votre déposition est conforme aux autres. »\n\n## Amérique du Nord\nPsychose. Des rumeurs accusent le gouvernement de diffuser des agents mémétiques dans l'eau ou par les messages visuels. D'autres désignent des officiers comme cultistes. Des meutes traquent des suspects ; la plupart des personnes attrapées l'ont été sur simple soupçon.\n\n## Amérique du Sud\nLes civils refusent de fuir et veulent affronter les cultistes. Ils hésitent à tuer leurs proches infectés, qui gardent leurs souvenirs, et se font contaminer à leur tour.\n\n## Asie\nTerreur. Les cultistes d'Izala recrutent par la torture, la séduction et la manipulation. Les témoins parlent d'enlèvements et de cannibalisme.\n\n## Indicateurs sociaux\n- Suicides, vandalisme, crimes et délits en hausse : beaucoup n'ont plus peur de mourir.\n- Face aux entités, les civils perdent pied, deviennent fous ou rejoignent l'ennemi.\n- Des psychologues craignent un effet durable sur l'ordre public."
+        }
+      ]
+    },
+    "justice": {
+      "resume": "Présidé par Euphyllia Anisphia Celest. Le secteur juge les textes, les appels et les prisonniers de guerre.",
+      "pages": [
+        {
+          "id": "overview",
+          "titre": "Vue d'ensemble",
+          "contenu": "## Direction\nConseillère : Euphyllia Anisphia Celest. Tuteur : Tanza Ginomai.\n\n## Organisation\n- D2CL : contrôle de conformité des textes, dont le Comité Phénix.\n- District Judiciaire : divisions pénale et familiale.\n- District Économique et District Administratif.\n\n## Rôle dans le conflit\nLes prisonniers de guerre passent devant un tribunal militaire. Les « Protocoles sur les Droits de Guerre » héritent de la Convention de Genève."
+        }
+      ]
+    },
+    "armee": {
+      "resume": "Dirigé par Harvey A. Houtson depuis Ganzir. C'est de Ganzir qu'est parti l'ordre de raser l'Afrique.",
+      "pages": [
+        {
+          "id": "overview",
+          "titre": "Vue d'ensemble",
+          "contenu": "## Direction\nConseiller : Mr Harvey A. Houtson. Larco « Bull » Skripović siège aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
+        }
+      ]
+    },
+    "sante": {
+      "resume": "Dirigé par le Dr James Llewellyn-Ford depuis Sydney. Le secteur fait face aux épidémies d'Amérique du Sud.",
+      "pages": [
+        {
+          "id": "overview",
+          "titre": "Vue d'ensemble",
+          "contenu": "## Direction\nConseiller : Dr James Llewellyn-Ford. QG : Llewellyn-Ford Memorial Hospital, Sydney.\n\n## Rôle dans le conflit\n- Une maladie se répand par les cours d'eau d'Amérique du Sud ; son incubation longue fait craindre une contamination hors du continent.\n- Les foyers apparus en Amérique du Nord ont été rapidement maîtrisés.\n- L'hôpital militaire de Krasnoïarsk traite le Syndrome de la Perception Déchue."
+        }
+      ]
+    },
+    "administration": {
+      "resume": "Représenté par l'Unité 007 « Gamma ». Le secteur fait tourner la Confédération depuis Nouvelle-Détroit.",
+      "pages": [
+        {
+          "id": "overview",
+          "titre": "Vue d'ensemble",
+          "contenu": "## Direction\nConseiller : Unité 007 « Gamma », représentant du culte du Mekhane.\n\n## Rôle dans le conflit\nNouvelle-Détroit coordonne l'administration pendant la mobilisation générale. La Citadelle abrite le conseiller."
+        }
+      ]
+    }
+  },
+  "villes": [
+    {
+      "id": "zeebrugge",
+      "nom": "Zeebrugge",
+      "coord": [
+        3.2,
+        51.33
+      ],
+      "district": "eu-ouest",
+      "etat": 93,
+      "image": "port",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 120000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1500
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~2400000"
+        },
+        {
+          "nom": "Flotte Bismarck (maintenance)",
+          "effectif": "CLASSIFIÉ"
+        }
+      ],
+      "description": "Méga-port gagné sur la Manche, dix kilomètres de digues terraformées. 57 cales pour cuirassés, cinq usines et six dépôts d'armement tournent jour et nuit. C'est ici qu'on a assemblé le navire qui a neutralisé SCP-3000, et ici que la flotte Bismarck revient se faire réparer. Les quais ont pris deux frappes de drones en mars. Les grues fonctionnent encore."
+    },
+    {
+      "id": "nouvelle-luxembourg",
+      "nom": "Nouvelle-Luxembourg",
+      "coord": [
+        6.13,
+        49.61
+      ],
+      "district": "eu-central",
+      "etat": 97,
+      "image": "caserne",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 210000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 2500
+        },
+        {
+          "nom": "Division Phoenix",
+          "effectif": 600
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~900000"
+        }
+      ],
+      "description": "Ville réservée aux militaires, siège du Service du Maintien de la Confédération. Écoles supérieures de guerre, aérodrome, zone économique spéciale pour le commerce d'équipement. Chaque rue est filmée et Rosenrad lit les rapports lui-même. Aucun incident cultiste recensé à ce jour, ce qui inquiète plus le SMC que l'inverse."
+    },
+    {
+      "id": "zurich",
+      "nom": "Zurich",
+      "coord": [
+        8.54,
+        47.37
+      ],
+      "district": "eu-central",
+      "etat": 95,
+      "image": "labo",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 40000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 800
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~1100000"
+        }
+      ],
+      "description": "Capitale du district des Recherches civiles. Les divisions Agroalimentaire, Industrielle et Transport y ont leurs sièges au bord du lac. Les files devant les bureaux de recrutement des milices s'allongent depuis la déposition de Pietro Shat, enregistrée ici par le SMC."
+    },
+    {
+      "id": "kiel",
+      "nom": "Kiel-Lübeck",
+      "coord": [
+        10.4,
+        54.1
+      ],
+      "district": "eu-nord",
+      "etat": 94,
+      "image": "hopital",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 25000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 300
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~700000"
+        }
+      ],
+      "description": "Campus MUSH : école de médecine, pépinière de start-up médicales et hôpital de pointe répartis entre les deux villes. Les trains-hôpitaux des Traverseurs y déchargent les blessés du front oriental toutes les six heures. Les lits de réanimation sont pleins depuis février."
+    },
+    {
+      "id": "kazan",
+      "nom": "Kazan",
+      "coord": [
+        49.1,
+        55.8
+      ],
+      "district": "eu-est",
+      "etat": 58,
+      "image": "ruines",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 260000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1200
+        },
+        {
+          "nom": "Division Phoenix",
+          "effectif": 400
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~3100000"
+        }
+      ],
+      "description": "Dernière ville digne de ce nom près de l'Oural. Tout ce qui fuit la Sibérie passe par ses gares. Les faubourgs est ont été évacués et murés, la Volga sert de fossé. La nuit, on voit depuis les remparts des lumières qui ne correspondent à aucune position connue."
+    },
+    {
+      "id": "yokohama",
+      "nom": "Yokohama",
+      "coord": [
+        139.64,
+        35.44
+      ],
+      "district": "as-japon",
+      "etat": 88,
+      "image": "pagode",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 140000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1500
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~6200000"
+        },
+        {
+          "nom": "Ligue Noire",
+          "effectif": "CLASSIFIÉ"
+        }
+      ],
+      "description": "Capitale du secteur Asie, siège de Mlle Mori Kumano. Le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Les sanctuaires kami sont gardés par l'armée depuis que trois prêtres ont disparu en une semaine."
+    },
+    {
+      "id": "harbin",
+      "nom": "Harbin",
+      "coord": [
+        126.63,
+        45.75
+      ],
+      "district": "as-sinorusse",
+      "etat": 31,
+      "image": "usines",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 610000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 2200
+        },
+        {
+          "nom": "Division Phoenix",
+          "effectif": 900
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~4000000"
+        }
+      ],
+      "description": "Ancien cœur industriel du district sino-russe, aujourd'hui encerclé à l'ouest et au sud. Les usines d'armement tournent sous les bombes parce que les arrêter reviendrait à abandonner la ville. Le fleuve Songhua est gelé et rouge par endroits. Ravitaillement par Vladivostok uniquement."
+    },
+    {
+      "id": "novossibirsk",
+      "nom": "Novossibirsk",
+      "coord": [
+        82.92,
+        55.03
+      ],
+      "district": "as-sinorusse",
+      "etat": 44,
+      "image": "prison",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 180000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 900
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~1200000"
+        }
+      ],
+      "description": "Principal centre pénitentiaire de la Confédération. La moitié des détenus a été transférée vers l'ouest, l'autre moitié a été armée et envoyée sur la ligne. Les cultistes d'Izala tiennent la rive droite de l'Ob. Les deux ponts restants sont minés."
+    },
+    {
+      "id": "singapour",
+      "nom": "Singapour",
+      "coord": [
+        103.82,
+        1.35
+      ],
+      "district": "as-sudest",
+      "etat": 66,
+      "image": "port",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 95000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1400
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~2500000"
+        }
+      ],
+      "description": "Plaque tournante du commerce maritime du secteur. Le détroit reste ouvert grâce à des patrouilles permanentes, mais le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai. Couvre-feu à 20 h, contrôles d'identité à chaque pont."
+    },
+    {
+      "id": "dubai",
+      "nom": "Dubaï",
+      "coord": [
+        55.27,
+        25.2
+      ],
+      "district": "as-moyen-orient",
+      "etat": 90,
+      "image": "tours",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 70000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 500
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~2100000"
+        }
+      ],
+      "description": "Capitale économique du district Moyen-Oriental, qui fournit l'énergie de la moitié du secteur. Les tours tiennent, les prix du carburant beaucoup moins. Cellules cultistes démantelées dans deux raffineries depuis janvier."
+    },
+    {
+      "id": "mumbai",
+      "nom": "Mumbai",
+      "coord": [
+        72.88,
+        19.08
+      ],
+      "district": "as-indopak",
+      "etat": 79,
+      "image": "tours",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 330000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 700
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~21000000"
+        }
+      ],
+      "description": "Plus grande ville du district indo-pakistanais et premier grenier de la Confédération. Les convois de céréales partent vers le nord sous escorte. Des prédicateurs convertis ont été arrêtés dans les bidonvilles de Dharavi, d'autres ont pris leur place."
+    },
+    {
+      "id": "sydney",
+      "nom": "Sydney",
+      "coord": [
+        151.21,
+        -33.87
+      ],
+      "district": "oc-australasie",
+      "etat": 99,
+      "image": "opera",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 45000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 400
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~2600000"
+        }
+      ],
+      "description": "Siège du secteur Santé, autour du Llewellyn-Ford Memorial Hospital. Le Site-43, restauré, fonctionne sous couverture de laboratoire P4. Ville la plus sûre de la Confédération d'après les statistiques officielles, qui oublient les réfugiés parqués à Parramatta."
+    },
+    {
+      "id": "washington",
+      "nom": "Washington",
+      "coord": [
+        -77.04,
+        38.9
+      ],
+      "district": "am-usa",
+      "etat": 92,
+      "image": "capitole",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 160000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 900
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~3000000"
+        }
+      ],
+      "description": "Capitale du secteur Amérique. Mark Saddler y décide, Karl Saddler y négocie. Les cellules cultistes arrêtées en février venaient toutes du même quartier, que le SMC a vidé en une nuit. Le Capitole est fermé au public depuis."
+    },
+    {
+      "id": "new-york",
+      "nom": "New York",
+      "coord": [
+        -74.0,
+        40.71
+      ],
+      "district": "am-usa",
+      "etat": 87,
+      "image": "tours",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 210000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1100
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~9800000"
+        },
+        {
+          "nom": "3rd Liberty division (robots)",
+          "effectif": 30
+        }
+      ],
+      "description": "Première place financière du secteur. Trente robots de la 3rd Liberty division gardent les ponts de Manhattan, à l'effigie de la statue qu'ils entourent. Le métro a été fermé après la découverte de marques cultistes dans le tunnel de la ligne 7."
+    },
+    {
+      "id": "mexico",
+      "nom": "Mexico",
+      "coord": [
+        -99.13,
+        19.43
+      ],
+      "district": "am-mexicain",
+      "etat": 46,
+      "image": "infectee",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 480000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1200
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~8500000"
+        }
+      ],
+      "description": "Capitale du district mexicain et premier centre de recrutement de masse du continent. Une poche d'infection de Nargal s'est ouverte au sud de la ville. Les quartiers de Xochimilco et Tlalpan sont sous cloche, les canaux ont verdi en quatre jours."
+    },
+    {
+      "id": "brasilia",
+      "nom": "Brasília",
+      "coord": [
+        -47.88,
+        -15.79
+      ],
+      "district": "am-amazonien",
+      "etat": 8,
+      "image": "infectee",
+      "garnison": [
+        {
+          "nom": "Arrière-garde (dernier contact)",
+          "effectif": "?"
+        }
+      ],
+      "description": "Choisie parmi les « Too young to die », tombée quand même. Le front de Nargal a franchi l'axe monumental le 14 février. Veilleur-Sud montre encore des lumières dans la cathédrale. On ignore qui les allume."
+    },
+    {
+      "id": "buenos-aires",
+      "nom": "Buenos Aires",
+      "coord": [
+        -58.38,
+        -34.6
+      ],
+      "district": "am-austral",
+      "etat": 57,
+      "image": "port",
+      "garnison": [
+        {
+          "nom": "Forces régulières",
+          "effectif": 290000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 1300
+        },
+        {
+          "nom": "Division Phoenix",
+          "effectif": 400
+        },
+        {
+          "nom": "Milices citoyennes",
+          "effectif": "~5300000"
+        }
+      ],
+      "description": "Dernier grand port du sud du continent. Les réfugiés du bassin amazonien arrivent par le Río de la Plata par centaines de milliers. La ville filtre chaque barge : on cherche la mousse verte sous les ongles, derrière les oreilles. Les tests positifs ne remontent pas à bord."
+    }
+  ],
+  "detruites": [
+    {
+      "id": "d-sahel",
+      "nom": "Frappe du Sahel",
+      "centre": [
+        12,
+        14
+      ],
+      "rayon": 2.6,
+      "district": "af-experimental",
+      "date": "11 sept. 2075",
+      "info": "Feu nucléaire, ordre de Ganzir. Sol vitrifié."
+    },
+    {
+      "id": "d-congo",
+      "nom": "Frappe du bassin du Congo",
+      "centre": [
+        22,
+        -1.5
+      ],
+      "rayon": 3.4,
+      "district": "af-experimental",
+      "date": "11 sept. 2075",
+      "info": "Principal foyer cultiste du continent. Rien n'a survécu à moins de 200 km."
+    },
+    {
+      "id": "d-lacs",
+      "nom": "Frappe des Grands Lacs",
+      "centre": [
+        31,
+        -2.5
+      ],
+      "rayon": 2,
+      "district": "af-experimental",
+      "date": "11 sept. 2075",
+      "info": "Les lacs se sont vidés de toute vie."
+    },
+    {
+      "id": "d-kalahari",
+      "nom": "Frappe du Kalahari",
+      "centre": [
+        24,
+        -22
+      ],
+      "rayon": 2.3,
+      "district": "af-experimental",
+      "date": "11 sept. 2075",
+      "info": "Survivants lourdement irradiés signalés en bordure."
+    },
+    {
+      "id": "d-ethiopie",
+      "nom": "Frappe des hauts plateaux",
+      "centre": [
+        39,
+        9
+      ],
+      "rayon": 1.9,
+      "district": "af-experimental",
+      "date": "11 sept. 2075",
+      "info": "Plateaux éthiopiens. Zone interdite de survol."
+    }
+  ]
 }
