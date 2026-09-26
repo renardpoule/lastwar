@@ -807,7 +807,6 @@
             "Malaysia",
             "Singapore",
             "Indonesia",
-            "Brunei",
             "Timor-Leste",
             "Indian Ocean Ter."
           ],
@@ -815,7 +814,7 @@
           "influence": 14,
           "tendance": "hausse",
           "civils": {
-            "population": 530000000,
+            "population": 522000000,
             "impliques": "~31000000",
             "deplaces": "~8000000",
             "disparus": "~650000",
@@ -833,7 +832,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~418200000"
+                "effectif": "~412200000"
               }
             ],
             "cultistes": [
@@ -871,13 +870,15 @@
           "nom": "District Philippin",
           "pays": [
             "Philippines",
-            "Indonésie du Nord"
+            "Indonésie du Nord",
+            "Malaisie orientale",
+            "Brunei"
           ],
           "statut": "conteste",
           "influence": 14,
           "tendance": "hausse",
           "civils": {
-            "population": 150000000,
+            "population": 158000000,
             "impliques": "~9000000",
             "deplaces": "~3000000",
             "disparus": "~250000",
@@ -895,7 +896,7 @@
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~120000000"
+                "effectif": "~126000000"
               }
             ],
             "cultistes": [
@@ -921,7 +922,7 @@
               "disparus": "?"
             }
           },
-          "note": "Manille, siège d'espionnage du secteur, tient toujours, alors que Baguio, où tout a commencé en mai, n'est qu'à 250 km au nord. Suite à la mise en quarantaine, plus personne n'entre ni ne sort de l'archipel sans passer par les contrôles de la marine, qui ferment aussi le nord de Bornéo, de Sumatra et de Célèbes.",
+          "note": "Manille, siège d'espionnage du secteur, tient toujours, alors que Baguio, où tout a commencé en mai, n'est qu'à 250 km au nord. Suite à la mise en quarantaine, plus personne n'entre ni ne sort de l'archipel sans passer par les contrôles de la marine, qui ferment aussi le nord de Sumatra et de Célèbes, ainsi que tout le nord de Bornéo, Sabah, Sarawak et Brunei compris.",
           "quarantaine": true,
           "air": {
             "niveau": "nette",

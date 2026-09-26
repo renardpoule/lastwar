@@ -12,7 +12,7 @@
     [data, topo] = await Promise.all([
       fetch('data.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json()),
       // Contours pré-simplifiés (4× moins de points que la version 50m d'origine)
-      fetch('countries.json?v=2').then(r => r.json())
+      fetch('countries.json?v=3').then(r => r.json())
     ]);
   } catch (e) {
     $('#map').innerHTML = '<div class="chargement">Impossible de lire les données de la carte. Rechargez la page.</div>';
