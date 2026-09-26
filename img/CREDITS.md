@@ -13,4 +13,4 @@ Photos tirées de Wikimedia Commons, toutes dans le domaine public ou sous CC0 (
 | sante.webp | [Ebola treatment unit visit 141122-A-QE750-047](https://commons.wikimedia.org/wiki/File:Ebola_treatment_unit_visit_141122-A-QE750-047.jpg) | Sgt. 1st Class Brien Vorhees, US Army | Domaine public |
 | administration.webp | [River Rouge aerial 4a25915r](https://commons.wikimedia.org/wiki/File:River_Rouge_aerial_4a25915r.jpg) | Detroit Publishing Co. | Domaine public |
 
-Les autres images (tenues des forces spéciales et de Phoenix, projets de la R&D, textes Demi-Vie, Éducation, Haine, Mère Nature, Pizzicato) viennent de Foxy.
+Les autres images (tenues des forces spéciales et de Phoenix, flotte Bismarck, Gotland, projets de la R&D, textes Demi-Vie, Éducation, Haine, Mère Nature, Pizzicato) viennent de Foxy.
