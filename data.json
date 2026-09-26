@@ -25,7 +25,7 @@
     }
   },
   "tension": {
-    "valeur": 70,
+    "valeur": 55,
     "paliers": [
       {
         "min": 0,
@@ -2513,7 +2513,7 @@
         "Invasion cultiste sur trois continents",
         "Signaux plus faibles en Europe et en Amérique du Nord"
       ],
-      "tension": 20
+      "tension": 16
     },
     {
       "id": "ev2",
@@ -2530,7 +2530,7 @@
         "60 000 en Afrique, 50 000 en Europe et en Amérique du Nord",
         "Armement biochimique en Amérique du Sud"
       ],
-      "tension": 5
+      "tension": 4
     },
     {
       "id": "ev3",
@@ -2546,7 +2546,7 @@
         "HCP prend le commandement des unités d'Europe et d'Amérique du Nord",
         "Le Conseil ne répond plus"
       ],
-      "tension": 5
+      "tension": 4
     },
     {
       "id": "ev4",
@@ -2560,7 +2560,7 @@
       "consequences": [
         "Loi martiale"
       ],
-      "tension": 5
+      "tension": 4
     },
     {
       "id": "ev5",
@@ -2591,7 +2591,7 @@
         "2 145 soldats perdus",
         "Phoenix engagée contre les entités"
       ],
-      "tension": 4
+      "tension": 3
     },
     {
       "id": "ev7",
@@ -2605,9 +2605,9 @@
       "consequences": [
         "Fin du confinement et de la loi martiale",
         "Mobilisation générale",
-        "Palier IV · Crise atteint"
+        "Palier III · Crépuscule atteint"
       ],
-      "tension": 15
+      "tension": 12
     },
     {
       "id": "ev8",
@@ -2624,7 +2624,7 @@
         "Survivants lourdement irradiés",
         "Afrique entière en quarantaine"
       ],
-      "tension": 4
+      "tension": 3
     },
     {
       "id": "ev9",
@@ -2657,7 +2657,7 @@
         "20 000 survivants passent à la guérilla",
         "Certains officiers craignent que la rage se propage"
       ],
-      "tension": 3
+      "tension": 2
     },
     {
       "id": "ev11",
@@ -2673,7 +2673,7 @@
         "La jungle vire au marécage, la faune mute",
         "Temps d'incubation long : risque hors du continent"
       ],
-      "tension": 3
+      "tension": 2
     },
     {
       "id": "ev12",
@@ -2722,7 +2722,7 @@
         "Des dizaines de millions de morts",
         "Poches d'infection dans le reste du continent"
       ],
-      "tension": 4
+      "tension": 3
     },
     {
       "id": "ev15",
@@ -2738,7 +2738,7 @@
         "Environ 50 millions de cultistes en Asie",
         "Recrutement par la torture et la séduction"
       ],
-      "tension": 4
+      "tension": 3
     },
     {
       "id": "ev16",
@@ -2771,7 +2771,7 @@
         "Plusieurs centres urbains ravagés",
         "Situation réglée"
       ],
-      "tension": -4
+      "tension": -3
     },
     {
       "id": "ev18",
@@ -2946,13 +2946,13 @@
         "3 333 000 morts confédérés",
         "Forces spéciales portées à 350 000"
       ],
-      "tension": 3
+      "tension": 2
     }
   ],
   "historique": [
     {
       "date": "8 sept. 2075",
-      "tension": 43,
+      "tension": 34,
       "evenements": 4,
       "districts": {
         "eu-nord": {
@@ -3191,7 +3191,7 @@
     },
     {
       "date": "10 sept. 2075",
-      "tension": 60,
+      "tension": 47,
       "evenements": 7,
       "districts": {
         "eu-nord": {
@@ -3430,7 +3430,7 @@
     },
     {
       "date": "12 sept. 2075",
-      "tension": 69,
+      "tension": 54,
       "evenements": 13,
       "districts": {
         "eu-nord": {
@@ -3671,7 +3671,7 @@
     },
     {
       "date": "20 sept. 2075",
-      "tension": 75,
+      "tension": 59,
       "evenements": 20,
       "districts": {
         "eu-nord": {
@@ -3977,7 +3977,7 @@
     },
     {
       "date": "27 sept. 2075",
-      "tension": 70,
+      "tension": 55,
       "distorsion": 50,
       "evenements": 28,
       "districts": {

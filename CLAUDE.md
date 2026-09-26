@@ -31,6 +31,7 @@ Après toute modification des `pays` d'un district, vérifier que chaque nom exi
 ## Règles de cohérence du RP
 
 - Un tour de RP = une semaine. Nouveau tour : changer `meta.dateRP`, ajouter les événements, puis un instantané dans `historique[]` (mêmes champs que celui de l'admin à la publication).
+- Tension : au plus au palier Crépuscule (moins de 60) sur toute la chronologie, à ce stade.
 - Chronologie : la guerre éclate le **8 sept. 2075** (tout a commencé en mai à Baguio). Rien de daté avant ne doit contredire ça. Date actuelle du RP : voir `meta.dateRP`.
 - L'influence cultiste d'un district doit correspondre à la **surface réellement couverte par les bulles** (`zones`). Aucun district n'est "perdu" à ce stade.
 - L'état d'une ville doit correspondre à sa distance aux bulles.
