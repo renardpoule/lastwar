@@ -5217,7 +5217,7 @@
         {
           "id": "anormal",
           "titre": "Rapport Confédéral sur l'Anormal",
-          "contenu": "Registre tenu par le secteur Recherche & Développement, en application de la Convention d'Alcyon que Sally Weirman a rédigée et que le Conseil a signée à l'unanimité. N'y figurent que les anomalies réellement utilisées, classées en offensives, défensives et restructurations, et depuis le palier Crépuscule les armes anomaliques sont autorisées tant que le Conseil garde la main dessus, ce qui, sur le terrain, reste à vérifier.",
+          "contenu": "![Galeries de stockage du Rapport](img/anormal.webp)\n\nRegistre tenu par le secteur Recherche & Développement, en application de la Convention d'Alcyon que Sally Weirman a rédigée et que le Conseil a signée à l'unanimité. N'y figurent que les anomalies réellement utilisées, classées en offensives, défensives et restructurations, et depuis le palier Crépuscule les armes anomaliques sont autorisées tant que le Conseil garde la main dessus, ce qui, sur le terrain, reste à vérifier.",
           "journal": [
             {
               "date": "",
@@ -5343,7 +5343,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Miroslav Mikhaïl Perković, dit \"Rosenrad\". Siège : Nouvelle-Luxembourg, ville réservée aux militaires et entièrement vidéosurveillée.\n\n## Rôle dans le conflit\n- Le SMC recueille les dépositions des civils engagés dans les milices, comme celle de Pietro Shat, à Zurich (déposition n° 4 412).\n- Rosenrad coordonne les opérations de l'Escouade Phoenix.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement."
+          "contenu": "![Caméras de Nouvelle-Luxembourg](img/renseignement.webp)\n\n## Direction\nConseiller : Miroslav Mikhaïl Perković, dit \"Rosenrad\". Siège : Nouvelle-Luxembourg, ville réservée aux militaires et entièrement vidéosurveillée.\n\n## Rôle dans le conflit\n- Le SMC recueille les dépositions des civils engagés dans les milices, comme celle de Pietro Shat, à Zurich (déposition n° 4 412).\n- Rosenrad coordonne les opérations de l'Escouade Phoenix.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement."
         },
         {
           "id": "atmosphere",
@@ -5358,7 +5358,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseillère : Euphyllia Anisphia Celest. Tuteur : Tanza Ginomai.\n\n## Organisation\n- D2CL : contrôle de conformité des textes, dont le Comité Phénix.\n- District Judiciaire : divisions pénale et familiale.\n- District Économique et District Administratif.\n\n## Rôle dans le conflit\nLes prisonniers de guerre passent devant un tribunal militaire, selon les \"Protocoles sur les Droits de Guerre\", qui héritent de la Convention de Genève."
+          "contenu": "![Tribunal militaire](img/justice.webp)\n\n## Direction\nConseillère : Euphyllia Anisphia Celest. Tuteur : Tanza Ginomai.\n\n## Organisation\n- D2CL : contrôle de conformité des textes, dont le Comité Phénix.\n- District Judiciaire : divisions pénale et familiale.\n- District Économique et District Administratif.\n\n## Rôle dans le conflit\nLes prisonniers de guerre passent devant un tribunal militaire, selon les \"Protocoles sur les Droits de Guerre\", qui héritent de la Convention de Genève."
         }
       ]
     },
@@ -5368,12 +5368,12 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège lui aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
+          "contenu": "![Forces de la Confédération](img/armee.webp)\n\n## Direction\nConseiller : Mr Harvey A. Houtson, avec Larco \"Bull\" Skripović qui siège lui aussi au Conseil.\n\n## Effectifs mondiaux\n- Milices citoyennes : environ 4,9 milliards.\n- Forces régulières : 50 millions.\n- Forces spéciales : 100 000.\n- Division Phoenix : 13 400.\n\n## Rôle dans le conflit\n- Ganzir a ordonné la destruction des forces cultistes d'Afrique depuis les airs.\n- La brigade exotique tient le front andin.\n- L'Escouade Phoenix, la Ligue Noire et l'Ordre sont engagés contre les entités."
         },
         {
           "id": "ganzir",
           "titre": "Ganzir",
-          "contenu": "## Situation\nForteresse et centre d'entraînement de l'armée, Ganzir se dresse au milieu de l'Atlantique, loin de tous les fronts, et c'est de là que Harvey A. Houtson dirige le secteur, ce qui en fait, en pratique, le cœur militaire de la Confédération.\n\n## Rôle dans le conflit\n- Le 10 septembre, après la perte de 2 145 soldats face à une entité, HCP réclama Ganzir, et l'Escouade Phoenix fut engagée dans la foulée.\n- Le 11 septembre, Ganzir ordonna de raser l'Afrique, et une dizaine d'appareils portant l'insigne du Phoenix suffirent.\n- Le 12 septembre, c'est en accord avec Ganzir que Merrick raccorda HCP à tous les capteurs de la Confédération.\n\n## Garnison\nL'effectif de la garnison est classifié, comme à peu près tout ce qui se passe sur l'île, et on n'en sait que ce que les ordres qui en sortent laissent deviner."
+          "contenu": "![Ganzir](img/ganzir.webp)\n\n## Situation\nForteresse et centre d'entraînement de l'armée, Ganzir se dresse au milieu de l'Atlantique, loin de tous les fronts, et c'est de là que Harvey A. Houtson dirige le secteur, ce qui en fait, en pratique, le cœur militaire de la Confédération.\n\n## Rôle dans le conflit\n- Le 10 septembre, après la perte de 2 145 soldats face à une entité, HCP réclama Ganzir, et l'Escouade Phoenix fut engagée dans la foulée.\n- Le 11 septembre, Ganzir ordonna de raser l'Afrique, et une dizaine d'appareils portant l'insigne du Phoenix suffirent.\n- Le 12 septembre, c'est en accord avec Ganzir que Merrick raccorda HCP à tous les capteurs de la Confédération.\n\n## Garnison\nL'effectif de la garnison est classifié, comme à peu près tout ce qui se passe sur l'île, et on n'en sait que ce que les ordres qui en sortent laissent deviner."
         },
         {
           "id": "phoenix",
@@ -5383,12 +5383,12 @@
         {
           "id": "forces-speciales",
           "titre": "Forces spéciales",
-          "contenu": "## Effectifs\nLa Confédération aligne 100 000 hommes des forces spéciales, répartis entre les secteurs géographiques à peu près selon la pression cultiste qui s'y exerce.\n- Asie : 47 000.\n- Amérique : 27 000.\n- Europe : 25 000.\n- Océanie : 1 000.\n\n## Rôle dans le conflit\n- En Europe, ce sont elles qui neutralisèrent plusieurs entités et brisèrent l'expansion cultiste, au bout d'une semaine de combat, avant que le secteur ne soit déclaré réglé le 19 septembre.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement, ce qui, selon le point de vue, le rend deux fois plus utile ou deux fois plus difficile à commander."
+          "contenu": "![Forces spéciales en opération de nuit](img/forces-speciales.webp)\n\n## Effectifs\nLa Confédération aligne 100 000 hommes des forces spéciales, répartis entre les secteurs géographiques à peu près selon la pression cultiste qui s'y exerce.\n- Asie : 47 000.\n- Amérique : 27 000.\n- Europe : 25 000.\n- Océanie : 1 000.\n\n## Rôle dans le conflit\n- En Europe, ce sont elles qui neutralisèrent plusieurs entités et brisèrent l'expansion cultiste, au bout d'une semaine de combat, avant que le secteur ne soit déclaré réglé le 19 septembre.\n- Le 1er Bataillon de Commandos d'Infanterie dépend à la fois de l'Armée et du Renseignement, ce qui, selon le point de vue, le rend deux fois plus utile ou deux fois plus difficile à commander."
         },
         {
           "id": "regulieres",
           "titre": "Régulières",
-          "contenu": "## Effectifs\nL'armée régulière compte 50 millions de soldats, dont plus de la moitié en Asie, ce qui n'étonnera personne au vu de ce qui s'y passe.\n- Asie : 30,8 millions, dont 14,9 millions dans le seul district Sino-Russe.\n- Amérique : 13,3 millions, dont 5,4 millions en Amazonie.\n- Europe : 5,2 millions.\n- Océanie : 710 000.\n\n## Rôle dans le conflit\n- Le 10 septembre, l'armée perdit 2 145 soldats face à une entité, avant que HCP ne retire ses troupes des fronts anormaux.\n- À Zurich, le 19 septembre, elle tint la rue aux côtés de la milice populaire pendant quarante minutes de contact.\n- Là où les entités apparaissent, les régulières laissent la place à l'Escouade Phoenix, à la Ligue Noire et à l'Ordre, ce qui revient à reconnaître qu'un fusil ne suffit plus."
+          "contenu": "![Forces régulières](img/regulieres.webp)\n\n## Effectifs\nL'armée régulière compte 50 millions de soldats, dont plus de la moitié en Asie, ce qui n'étonnera personne au vu de ce qui s'y passe.\n- Asie : 30,8 millions, dont 14,9 millions dans le seul district Sino-Russe.\n- Amérique : 13,3 millions, dont 5,4 millions en Amazonie.\n- Europe : 5,2 millions.\n- Océanie : 710 000.\n\n## Rôle dans le conflit\n- Le 10 septembre, l'armée perdit 2 145 soldats face à une entité, avant que HCP ne retire ses troupes des fronts anormaux.\n- À Zurich, le 19 septembre, elle tint la rue aux côtés de la milice populaire pendant quarante minutes de contact.\n- Là où les entités apparaissent, les régulières laissent la place à l'Escouade Phoenix, à la Ligue Noire et à l'Ordre, ce qui revient à reconnaître qu'un fusil ne suffit plus."
         },
         {
           "id": "milices-civiles",
@@ -5403,7 +5403,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Dr James Llewellyn-Ford, depuis son QG du Llewellyn-Ford Memorial Hospital, à Sydney.\n\n## Rôle dans le conflit\n- Une maladie se répand par les cours d'eau d'Amérique du Sud, et son incubation longue fait craindre une contamination hors du continent.\n- Les foyers apparus en Amérique du Nord ont été rapidement maîtrisés.\n- L'hôpital militaire de Krasnoïarsk traite le Syndrome de la Perception Déchue."
+          "contenu": "![Unité de décontamination](img/sante.webp)\n\n## Direction\nConseiller : Dr James Llewellyn-Ford, depuis son QG du Llewellyn-Ford Memorial Hospital, à Sydney.\n\n## Rôle dans le conflit\n- Une maladie se répand par les cours d'eau d'Amérique du Sud, et son incubation longue fait craindre une contamination hors du continent.\n- Les foyers apparus en Amérique du Nord ont été rapidement maîtrisés.\n- L'hôpital militaire de Krasnoïarsk traite le Syndrome de la Perception Déchue."
         }
       ]
     },
@@ -5413,7 +5413,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseiller : Unité 007 \"Gamma\", représentant du culte du Mekhane.\n\n## Rôle dans le conflit\nNouvelle-Détroit coordonne l'administration pendant la mobilisation générale, depuis la Citadelle qui abrite le conseiller."
+          "contenu": "![Nouvelle-Détroit](img/administration.webp)\n\n## Direction\nConseiller : Unité 007 \"Gamma\", représentant du culte du Mekhane.\n\n## Rôle dans le conflit\nNouvelle-Détroit coordonne l'administration pendant la mobilisation générale, depuis la Citadelle qui abrite le conseiller."
         }
       ]
     }

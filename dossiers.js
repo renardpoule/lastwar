@@ -43,7 +43,7 @@
     const visibles = j.map((e, i) => ({ e, i })).filter(o => filtreUsage === 'TOUS' || o.e.usage === filtreUsage).reverse();
     const ligne = (cle, val, cls = '') => `<span class="t-l"><span class="t-cle">${cle}</span><span class="t-val ${cls}">${esc(val || '—')}</span></span>`;
     return `${cmd(s.id, page.id, 'cat preambule.txt')}
-      ${(page.contenu || '').split('\n').filter(Boolean).map(l => `<p class="t-com"># ${esc(l)}</p>`).join('')}
+      ${(page.contenu || '').split('\n').filter(Boolean).map(l => l.startsWith('![') ? texte(l) : `<p class="t-com"># ${esc(l)}</p>`).join('')}
       ${cmd(s.id, page.id, `rca --categorie ${filtreUsage.toLowerCase()}`)}
       <div class="t-filtres" role="group" aria-label="Filtrer par catégorie">${usages.map(u =>
         `<button type="button" class="t-flag ${u === filtreUsage ? 'actif' : ''}" aria-pressed="${u === filtreUsage}" data-usage="${esc(u)}">${esc(u.toLowerCase())}</button>`).join('')}
