@@ -3,38 +3,38 @@
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "20 sept. 2075",
-    "derniereMaj": "2026-09-25T23:43:14.000Z"
+    "derniereMaj": "2026-09-26T00:13:32.000Z"
   },
   "tension": {
     "valeur": 75,
     "paliers": [
       {
         "min": 0,
-        "nom": "Vigilance",
+        "nom": "Zeebrugge",
         "minutes": 15,
         "armes": "Armement conventionnel uniquement."
       },
       {
         "min": 20,
-        "nom": "Alerte",
+        "nom": "Dragon",
         "minutes": 10,
         "armes": "Armes lourdes, frappes orbitales limitées."
       },
       {
         "min": 40,
-        "nom": "Escalade",
+        "nom": "Éclipse",
         "minutes": 5,
         "armes": "Armes anomaliques sous contrôle du Conseil."
       },
       {
         "min": 60,
-        "nom": "Crise",
+        "nom": "Ganzir",
         "minutes": 2,
         "armes": "Armes de destruction de zone autorisées."
       },
       {
         "min": 80,
-        "nom": "Minuit",
+        "nom": "Pizzicato",
         "minutes": 0,
         "armes": "Protocoles d'extinction. Plus aucune restriction."
       }
@@ -89,15 +89,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 60000
+                "effectif": 323000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 3000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~27600000"
               },
               {
                 "nom": "Ligue Noire",
                 "effectif": "CLASSIFIÉ"
-              },
-              {
-                "nom": "Milices citoyennes",
-                "effectif": "~3000000"
               }
             ],
             "cultistes": []
@@ -118,7 +122,8 @@
           "label": [
             18,
             64
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "eu-est",
@@ -150,15 +155,23 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 180000
+                "effectif": 1366000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 8000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 1400
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~286900000"
               },
               {
                 "nom": "Unités sous commandement HCP",
                 "effectif": "CLASSIFIÉ"
-              },
-              {
-                "nom": "Milices citoyennes",
-                "effectif": "~40000000"
               }
             ],
             "cultistes": []
@@ -179,7 +192,8 @@
           "label": [
             42,
             55
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "eu-central",
@@ -208,15 +222,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 220000
+                "effectif": 1097000
               },
               {
-                "nom": "Escouade Phoenix",
-                "effectif": "CLASSIFIÉ"
+                "nom": "Forces spéciales",
+                "effectif": 6000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 2400
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~25000000"
+                "effectif": "~188000000"
               }
             ],
             "cultistes": []
@@ -233,7 +251,8 @@
               "disparus": "?"
             }
           },
-          "note": "Zurich : la milice populaire du quartier résidentiel a tenu le contact quarante minutes aux côtés de l'armée. Dix-neuf cultistes tués, quatre miliciens morts. Les districts Rhénan et Alpin n'ont signalé aucun cultiste."
+          "note": "Zurich : la milice populaire du quartier résidentiel a tenu le contact quarante minutes aux côtés de l'armée. Dix-neuf cultistes tués, quatre miliciens morts. Les districts Rhénan et Alpin n'ont signalé aucun cultiste.",
+          "quarantaine": false
         },
         {
           "id": "eu-sud",
@@ -268,11 +287,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 90000
+                "effectif": 606000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 3000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~9000000"
+                "effectif": "~74200000"
               }
             ],
             "cultistes": []
@@ -289,7 +312,8 @@
               "disparus": "?"
             }
           },
-          "note": ""
+          "note": "",
+          "quarantaine": false
         },
         {
           "id": "eu-ouest",
@@ -327,19 +351,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 250000
+                "effectif": 1370000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 5000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~326500000"
               },
               {
                 "nom": "Unités sous commandement HCP",
                 "effectif": "CLASSIFIÉ"
-              },
-              {
-                "nom": "Garde civile",
-                "effectif": 80000
-              },
-              {
-                "nom": "Milices citoyennes",
-                "effectif": "~35000000"
               }
             ],
             "cultistes": []
@@ -356,7 +380,8 @@
               "disparus": "?"
             }
           },
-          "note": "Ibérie : le groupement cultiste a été neutralisé par HCP sans perte civile."
+          "note": "Ibérie : le groupement cultiste a été neutralisé par HCP sans perte civile.",
+          "quarantaine": false
         }
       ],
       "label": [
@@ -413,11 +438,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 150000
+                "effectif": 1444000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 50000
+                "nom": "Forces spéciales",
+                "effectif": 2000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~296800000"
               }
             ],
             "cultistes": [
@@ -439,7 +468,8 @@
               "disparus": "?"
             }
           },
-          "note": "Capitales économiques : Dubaï, Riyad (ressources militaires), Téhéran (recherche)."
+          "note": "Capitales économiques : Dubaï, Riyad (ressources militaires), Téhéran (recherche).",
+          "quarantaine": false
         },
         {
           "id": "as-centre",
@@ -467,11 +497,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 70000
+                "effectif": 1896000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 10000
+                "effectif": 12000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 1200
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~95000000"
               }
             ],
             "cultistes": [
@@ -497,7 +535,8 @@
               "disparus": "?"
             }
           },
-          "note": "Bichkek abrite la principale école de formation militaire du secteur."
+          "note": "Bichkek abrite la principale école de formation militaire du secteur.",
+          "quarantaine": false
         },
         {
           "id": "as-indopak",
@@ -527,15 +566,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 600000
+                "effectif": 5122000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 200000
+                "nom": "Forces spéciales",
+                "effectif": 4000
               },
               {
                 "nom": "Milices citoyennes",
-                "effectif": "~120000000"
+                "effectif": "~1879500000"
               }
             ],
             "cultistes": [
@@ -557,7 +596,8 @@
               "disparus": "?"
             }
           },
-          "note": "Mumbai, Lahore, Chennai."
+          "note": "Mumbai, Lahore, Chennai.",
+          "quarantaine": false
         },
         {
           "id": "as-sinorusse",
@@ -581,7 +621,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": "~300000"
+                "effectif": 13576000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 14000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 3600
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~215200000"
               },
               {
                 "nom": "Ligue Noire",
@@ -627,7 +679,8 @@
           "label": [
             108,
             33
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "as-japon",
@@ -652,11 +705,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 500000
+                "effectif": 1405000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 90000
+                "effectif": 6000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~197900000"
               },
               {
                 "nom": "Ligue Noire",
@@ -686,7 +743,8 @@
           "label": [
             137,
             37
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "as-sudest",
@@ -719,11 +777,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 300000
+                "effectif": 4716000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 100000
+                "nom": "Forces spéciales",
+                "effectif": 9000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~538200000"
               }
             ],
             "cultistes": [
@@ -749,7 +811,8 @@
               "disparus": "?"
             }
           },
-          "note": "Manille, siège d'espionnage du secteur, reste tenue. Baguio, où tout a commencé en mai, est à 250 km au nord."
+          "note": "Manille, siège d'espionnage du secteur, reste tenue. Baguio, où tout a commencé en mai, est à 250 km au nord.",
+          "quarantaine": false
         }
       ],
       "label": [
@@ -796,11 +859,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 60000
+                "effectif": 293000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 20000
+                "nom": "Forces spéciales",
+                "effectif": 1000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~26700000"
               }
             ],
             "cultistes": []
@@ -817,7 +884,8 @@
               "disparus": 0
             }
           },
-          "note": "Capitale : Canberra. Le QG du secteur Santé se trouve à Sydney."
+          "note": "Capitale : Canberra. Le QG du secteur Santé se trouve à Sydney.",
+          "quarantaine": false
         },
         {
           "id": "oc-nz",
@@ -842,7 +910,11 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 9000
+                "effectif": 109000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~5100000"
               }
             ],
             "cultistes": []
@@ -863,7 +935,8 @@
           "label": [
             172,
             -42
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "oc-melanesie",
@@ -889,7 +962,11 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 15000
+                "effectif": 189000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~12800000"
               }
             ],
             "cultistes": []
@@ -910,7 +987,8 @@
           "label": [
             152,
             -7
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "oc-micronesie",
@@ -938,7 +1016,11 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 3000
+                "effectif": 29000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~500000"
               }
             ],
             "cultistes": []
@@ -959,7 +1041,8 @@
           "label": [
             150,
             10
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "oc-polynesie",
@@ -988,7 +1071,11 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2000
+                "effectif": 32000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~600000"
               }
             ],
             "cultistes": []
@@ -1009,7 +1096,8 @@
           "label": [
             -160,
             -15
-          ]
+          ],
+          "quarantaine": false
         }
       ],
       "label": [
@@ -1031,7 +1119,7 @@
       "id": "afrique",
       "nom": "Afrique",
       "geographique": true,
-      "note": "Secteur sans conseiller. Rasé le 11 septembre : les cultistes y ont été anéantis avant d'avoir vu la menace venir du ciel.",
+      "note": "Secteur sans conseiller. Rasé le 11 septembre : les cultistes y ont été anéantis. Le continent reste sous contrôle confédéré, en quarantaine.",
       "districts": [
         {
           "id": "af-nord",
@@ -1044,9 +1132,9 @@
             "Libya",
             "Egypt"
           ],
-          "statut": "quarantaine",
-          "influence": 1,
-          "tendance": "baisse",
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1055,7 +1143,12 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [],
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 853000
+              }
+            ],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
@@ -1075,7 +1168,8 @@
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
+          "quarantaine": true
         },
         {
           "id": "af-ouest",
@@ -1099,9 +1193,9 @@
             "Cabo Verde",
             "Saint Helena"
           ],
-          "statut": "quarantaine",
-          "influence": 1,
-          "tendance": "baisse",
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1110,7 +1204,12 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [],
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 853000
+              }
+            ],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
@@ -1130,7 +1229,8 @@
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
+          "quarantaine": true
         },
         {
           "id": "af-central",
@@ -1145,9 +1245,9 @@
             "Dem. Rep. Congo",
             "São Tomé and Principe"
           ],
-          "statut": "quarantaine",
-          "influence": 1,
-          "tendance": "baisse",
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1156,7 +1256,12 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [],
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 853000
+              }
+            ],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
@@ -1176,7 +1281,8 @@
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
+          "quarantaine": true
         },
         {
           "id": "af-est",
@@ -1196,9 +1302,9 @@
             "Tanzania",
             "Seychelles"
           ],
-          "statut": "quarantaine",
-          "influence": 1,
-          "tendance": "baisse",
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1207,7 +1313,12 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [],
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 853000
+              }
+            ],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
@@ -1227,7 +1338,8 @@
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
+          "quarantaine": true
         },
         {
           "id": "af-sud",
@@ -1247,9 +1359,9 @@
             "Comoros",
             "Mauritius"
           ],
-          "statut": "quarantaine",
-          "influence": 1,
-          "tendance": "baisse",
+          "statut": "controle",
+          "influence": 0,
+          "tendance": "stable",
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1258,7 +1370,12 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [],
+            "confederation": [
+              {
+                "nom": "Forces régulières",
+                "effectif": 853000
+              }
+            ],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
@@ -1278,7 +1395,8 @@
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Zone irradiée, placée sous quarantaine."
+          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
+          "quarantaine": true
         }
       ],
       "label": [
@@ -1324,11 +1442,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 90000
+                "effectif": 386000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 30000
+                "nom": "Forces spéciales",
+                "effectif": 1000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~39500000"
               }
             ],
             "cultistes": []
@@ -1349,7 +1471,8 @@
           "label": [
             -100,
             60
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "am-usa",
@@ -1372,7 +1495,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 900000
+                "effectif": 1596000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 4000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~331400000"
               },
               {
                 "nom": "Unités sous commandement HCP",
@@ -1381,10 +1512,6 @@
               {
                 "nom": "3rd Liberty division (robots)",
                 "effectif": 100
-              },
-              {
-                "nom": "Milices citoyennes",
-                "effectif": "~60000000"
               }
             ],
             "cultistes": [
@@ -1410,7 +1537,8 @@
           "label": [
             -99,
             39
-          ]
+          ],
+          "quarantaine": false
         },
         {
           "id": "am-mexicain",
@@ -1464,11 +1592,15 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 160000
+                "effectif": 1612000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 53333
+                "nom": "Forces spéciales",
+                "effectif": 3000
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~174100000"
               }
             ],
             "cultistes": [
@@ -1490,7 +1622,8 @@
               "disparus": "?"
             }
           },
-          "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme."
+          "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme.",
+          "quarantaine": false
         },
         {
           "id": "am-andin",
@@ -1516,7 +1649,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": "~40000"
+                "effectif": 2501000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 8000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 1200
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~102900000"
               },
               {
                 "nom": "Brigade exotique",
@@ -1546,7 +1691,8 @@
               "disparus": "?"
             }
           },
-          "note": "96 % de la brigade exotique a reçu des drogues de performance et une armure Exo-3."
+          "note": "96 % de la brigade exotique a reçu des drogues de performance et une armure Exo-3.",
+          "quarantaine": false
         },
         {
           "id": "am-amazonien",
@@ -1570,8 +1716,20 @@
           "forces": {
             "confederation": [
               {
-                "nom": "Garnisons en repli",
-                "effectif": "~20000"
+                "nom": "Forces régulières",
+                "effectif": 4952000
+              },
+              {
+                "nom": "Forces spéciales",
+                "effectif": 7000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 3200
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~37000000"
               }
             ],
             "cultistes": [
@@ -1609,7 +1767,8 @@
               "disparus": "?"
             }
           },
-          "note": "La jungle vire au marécage sous l'effet des pathogènes. Des aérodromes sont tombés : les cultistes volent nos propres appareils."
+          "note": "La jungle vire au marécage sous l'effet des pathogènes. Des aérodromes sont tombés : les cultistes volent nos propres appareils.",
+          "quarantaine": false
         },
         {
           "id": "am-austral",
@@ -1634,11 +1793,19 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 70000
+                "effectif": 1115000
               },
               {
-                "nom": "Garde civile",
-                "effectif": 23333
+                "nom": "Forces spéciales",
+                "effectif": 4000
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 400
+              },
+              {
+                "nom": "Milices citoyennes",
+                "effectif": "~43600000"
               }
             ],
             "cultistes": [
@@ -1660,7 +1827,8 @@
               "disparus": "?"
             }
           },
-          "note": "L'infection remonte les cours d'eau depuis le bassin amazonien."
+          "note": "L'infection remonte les cours d'eau depuis le bassin amazonien.",
+          "quarantaine": false
         }
       ],
       "label": [
@@ -1714,7 +1882,8 @@
               "disparus": 0
             }
           },
-          "note": "Responsable : M. Marco Tanaka. Dirigé depuis Zurich."
+          "note": "Responsable : M. Marco Tanaka. Dirigé depuis Zurich.",
+          "quarantaine": false
         },
         {
           "id": "rd-anormal",
@@ -1746,7 +1915,8 @@
               "disparus": 0
             }
           },
-          "note": "Responsable : Mme Nora Lang. Dirigé depuis l'île d'Okinotori-shima."
+          "note": "Responsable : Mme Nora Lang. Dirigé depuis l'île d'Okinotori-shima.",
+          "quarantaine": false
         },
         {
           "id": "rd-hcp",
@@ -1783,7 +1953,8 @@
               "disparus": 0
             }
           },
-          "note": "À 2 500 m sous la mer du Nord. Opérateur : Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération. Il a prédit 85 % des mouvements cultistes. Personne ne doit l'approcher."
+          "note": "À 2 500 m sous la mer du Nord. Opérateur : Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération. Il a prédit 85 % des mouvements cultistes. Personne ne doit l'approcher.",
+          "quarantaine": false
         },
         {
           "id": "rd-bismarck",
@@ -1820,7 +1991,8 @@
               "disparus": 0
             }
           },
-          "note": "Sous le Commandant Heir. Position secrète, maintenance à Zeebrugge."
+          "note": "Sous le Commandant Heir. Position secrète, maintenance à Zeebrugge.",
+          "quarantaine": false
         }
       ]
     },
@@ -1860,7 +2032,8 @@
               "disparus": 0
             }
           },
-          "note": "Siège : Nouvelle-Luxembourg. Ne répond qu'au Conseil."
+          "note": "Siège : Nouvelle-Luxembourg. Ne répond qu'au Conseil.",
+          "quarantaine": false
         },
         {
           "id": "re-commandos",
@@ -1897,7 +2070,8 @@
               "disparus": 0
             }
           },
-          "note": "Commandé par le Colonel « Zyiag ». Dépend à la fois de l'Armée et du Renseignement."
+          "note": "Commandé par le Colonel « Zyiag ». Dépend à la fois de l'Armée et du Renseignement.",
+          "quarantaine": false
         }
       ]
     },
@@ -1937,7 +2111,8 @@
               "disparus": 0
             }
           },
-          "note": "District de Contestation et de Conformité Législative. Comprend le Comité Phénix."
+          "note": "District de Contestation et de Conformité Législative. Comprend le Comité Phénix.",
+          "quarantaine": false
         },
         {
           "id": "ju-judiciaire",
@@ -1969,7 +2144,8 @@
               "disparus": 0
             }
           },
-          "note": "Divisions pénale et familiale. Les prisonniers de guerre passent devant un tribunal militaire."
+          "note": "Divisions pénale et familiale. Les prisonniers de guerre passent devant un tribunal militaire.",
+          "quarantaine": false
         },
         {
           "id": "ju-economique",
@@ -2001,7 +2177,8 @@
               "disparus": 0
             }
           },
-          "note": "Divisions commerciale et du travail."
+          "note": "Divisions commerciale et du travail.",
+          "quarantaine": false
         },
         {
           "id": "ju-administratif",
@@ -2033,7 +2210,8 @@
               "disparus": 0
             }
           },
-          "note": "Tribunal administratif."
+          "note": "Tribunal administratif.",
+          "quarantaine": false
         }
       ]
     },
@@ -2078,7 +2256,8 @@
               "disparus": 0
             }
           },
-          "note": "Forteresse et centre d'entraînement dans l'Atlantique. C'est de Ganzir qu'est parti l'ordre de raser l'Afrique."
+          "note": "Forteresse et centre d'entraînement dans l'Atlantique. C'est de Ganzir qu'est parti l'ordre de raser l'Afrique.",
+          "quarantaine": false
         },
         {
           "id": "ar-phoenix",
@@ -2115,7 +2294,8 @@
               "disparus": 0
             }
           },
-          "note": "« La force de frappe contre les dieux. » Commandante : Aupox. Ses plieurs de réalité sont engagés contre les entités."
+          "note": "« La force de frappe contre les dieux. » Commandante : Aupox. Ses plieurs de réalité sont engagés contre les entités.",
+          "quarantaine": false
         },
         {
           "id": "ar-ligue",
@@ -2152,7 +2332,8 @@
               "disparus": 0
             }
           },
-          "note": "Protège les centres de recherche d'Europe et d'Asie."
+          "note": "Protège les centres de recherche d'Europe et d'Asie.",
+          "quarantaine": false
         },
         {
           "id": "ar-ordre",
@@ -2189,7 +2370,8 @@
               "disparus": 0
             }
           },
-          "note": "Thaumaturges combattants. Base : le Haut-Château, en Islande."
+          "note": "Thaumaturges combattants. Base : le Haut-Château, en Islande.",
+          "quarantaine": false
         }
       ]
     },
@@ -2229,7 +2411,8 @@
               "disparus": 0
             }
           },
-          "note": "Sydney. Coordonne la réponse aux épidémies d'Amérique du Sud."
+          "note": "Sydney. Coordonne la réponse aux épidémies d'Amérique du Sud.",
+          "quarantaine": false
         },
         {
           "id": "sa-mush",
@@ -2261,7 +2444,8 @@
               "disparus": 0
             }
           },
-          "note": "Kiel / Lübeck. Formation, start-up médicales, hôpital de pointe."
+          "note": "Kiel / Lübeck. Formation, start-up médicales, hôpital de pointe.",
+          "quarantaine": false
         },
         {
           "id": "sa-krasnoiarsk",
@@ -2293,7 +2477,8 @@
               "disparus": 0
             }
           },
-          "note": "Psychiatrie (Dr Warren Burke). Traitement du Syndrome de la Perception Déchue."
+          "note": "Psychiatrie (Dr Warren Burke). Traitement du Syndrome de la Perception Déchue.",
+          "quarantaine": false
         }
       ]
     },
@@ -2333,7 +2518,8 @@
               "disparus": 0
             }
           },
-          "note": "Centre administratif de la Confédération. La Citadelle abrite le conseiller."
+          "note": "Centre administratif de la Confédération. La Citadelle abrite le conseiller.",
+          "quarantaine": false
         }
       ]
     }
@@ -2831,7 +3017,45 @@
           "statut": "controle",
           "influence": 0
         }
-      }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 3
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.5,
+            23.8
+          ],
+          "rayon": 1.2
+        },
+        {
+          "id": "z-afrique",
+          "nom": "Bandes cultistes",
+          "dieu": "Cultistes",
+          "couleur": "#d9822b",
+          "district": "af-central",
+          "centre": [
+            20,
+            4
+          ],
+          "rayon": 6
+        }
+      ]
     },
     {
       "date": "10 sept. 2075",
@@ -3018,7 +3242,45 @@
           "statut": "controle",
           "influence": 0
         }
-      }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 4.2
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.5,
+            23.8
+          ],
+          "rayon": 1.4
+        },
+        {
+          "id": "z-afrique",
+          "nom": "Bandes cultistes",
+          "dieu": "Cultistes",
+          "couleur": "#d9822b",
+          "district": "af-central",
+          "centre": [
+            20,
+            4
+          ],
+          "rayon": 5
+        }
+      ]
     },
     {
       "date": "12 sept. 2075",
@@ -3090,24 +3352,29 @@
           "influence": 0
         },
         "af-nord": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-ouest": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-central": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-est": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-sud": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "am-canada": {
           "statut": "controle",
@@ -3205,7 +3472,45 @@
           "statut": "controle",
           "influence": 0
         }
-      }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 6
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.5,
+            23.8
+          ],
+          "rayon": 1.6
+        },
+        {
+          "id": "z-hysterie",
+          "nom": "Hystérie collective",
+          "dieu": "Entité",
+          "couleur": "#c93a4d",
+          "district": "eu-central",
+          "centre": [
+            15,
+            51
+          ],
+          "rayon": 1.6
+        }
+      ]
     },
     {
       "date": "20 sept. 2075",
@@ -3277,24 +3582,29 @@
           "influence": 0
         },
         "af-nord": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-ouest": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-central": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-est": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "af-sud": {
-          "statut": "quarantaine",
-          "influence": 1
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         },
         "am-canada": {
           "statut": "controle",
@@ -3392,7 +3702,155 @@
           "statut": "controle",
           "influence": 0
         }
-      }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5
+        },
+        {
+          "id": "z-poche-mexique",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-mexicain",
+          "centre": [
+            -99,
+            19.5
+          ],
+          "rayon": 0.9
+        },
+        {
+          "id": "z-poche-haiti",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-mexicain",
+          "centre": [
+            -72.4,
+            18.9
+          ],
+          "rayon": 0.7
+        },
+        {
+          "id": "z-poche-colombie",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-andin",
+          "centre": [
+            -74.5,
+            4.5
+          ],
+          "rayon": 0.7
+        },
+        {
+          "id": "z-poche-venezuela",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -65.5,
+            7
+          ],
+          "rayon": 0.6
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.5,
+            23.8
+          ],
+          "rayon": 3.4
+        }
+      ]
+    }
+  ],
+  "zones": [
+    {
+      "id": "z-nargal",
+      "nom": "Foyer de Nargal",
+      "dieu": "Nargal",
+      "couleur": "#2fbf5b",
+      "district": "am-amazonien",
+      "centre": [
+        -57.5,
+        -14.5
+      ],
+      "rayon": 8.5
+    },
+    {
+      "id": "z-poche-mexique",
+      "nom": "Poche d'infection",
+      "dieu": "Nargal",
+      "couleur": "#2fbf5b",
+      "district": "am-mexicain",
+      "centre": [
+        -99,
+        19.5
+      ],
+      "rayon": 0.9
+    },
+    {
+      "id": "z-poche-haiti",
+      "nom": "Poche d'infection",
+      "dieu": "Nargal",
+      "couleur": "#2fbf5b",
+      "district": "am-mexicain",
+      "centre": [
+        -72.4,
+        18.9
+      ],
+      "rayon": 0.7
+    },
+    {
+      "id": "z-poche-colombie",
+      "nom": "Poche d'infection",
+      "dieu": "Nargal",
+      "couleur": "#2fbf5b",
+      "district": "am-andin",
+      "centre": [
+        -74.5,
+        4.5
+      ],
+      "rayon": 0.7
+    },
+    {
+      "id": "z-poche-venezuela",
+      "nom": "Poche d'infection",
+      "dieu": "Nargal",
+      "couleur": "#2fbf5b",
+      "district": "am-amazonien",
+      "centre": [
+        -65.5,
+        7
+      ],
+      "rayon": 0.6
+    },
+    {
+      "id": "z-izala",
+      "nom": "Domaine d'Izala",
+      "dieu": "Izala",
+      "couleur": "#b45bd6",
+      "district": "as-sinorusse",
+      "centre": [
+        107.5,
+        23.8
+      ],
+      "rayon": 3.4
     }
   ]
 }

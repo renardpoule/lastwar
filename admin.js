@@ -136,7 +136,7 @@
   }
 
   function rendre() {
-    const vues = { situation: vueSituation, evenements: vueEvenements, districts: vueDistricts, secteurs: vueSecteurs, reglages: vueReglages };
+    const vues = { situation: vueSituation, evenements: vueEvenements, districts: vueDistricts, zones: vueZones, secteurs: vueSecteurs, reglages: vueReglages };
     $('#contenu').innerHTML = vues[onglet]();
     habiller($('#contenu'));
     lier($('#contenu'));
@@ -320,6 +320,16 @@
       onglet = 'districts'; document.querySelectorAll('#onglets button').forEach(x => { x.classList.toggle('active', x.dataset.onglet === 'districts'); x.setAttribute('aria-selected', x.dataset.onglet === 'districts'); });
       modifie(); rendre();
     }
+    else if (t.id === 'ajoutZone') {
+      const d0 = trouverDistrict(districtSel).d || data.secteurs[0].districts[0];
+      (data.zones ||= []).push({ id: 'z-' + Date.now().toString(36), nom: 'Nouvelle zone', dieu: 'Nargal', couleur: '#2fbf5b', district: d0.id, centre: [0, 0], rayon: 2 });
+      modifie(); rendre();
+    }
+    else if (ds.supprZone !== undefined) {
+      const z = data.zones[+ds.supprZone];
+      if (!confirm(`Supprimer « ${z.nom} » ?`)) return;
+      data.zones.splice(+ds.supprZone, 1); modifie(); rendre();
+    }
     else if (t.id === 'ajoutSecteur') {
       const nom = prompt('Nom du nouveau secteur :');
       if (!nom) return;
@@ -382,6 +392,7 @@
         <div class="champ" style="grid-column:span 2"><span>Influence cultiste (%)</span><div class="ligne">
           <input type="range" min="0" max="100" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="flex:1">
           <input type="number" min="0" max="100" class="num" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="width:80px"></div></div>
+        <label class="champ large case"><input type="checkbox" data-bind="${P}.quarantaine" data-maj="nav"> Zone en quarantaine (hachures sur la carte, indépendant du statut)</label>
         <label class="champ large"><span>Note de situation (optionnelle)</span><textarea data-bind="${P}.note" rows="2"></textarea></label>
       </div>
       <p class="ds-supporting" style="margin:14px 0 0">Pour tous les chiffres : <code>12000</code> · <code>~12000</code> pour une estimation · <code>?</code> ou <code>CLASSIFIÉ</code> pour une donnée inconnue.</p>
@@ -414,6 +425,26 @@
       pertes: { confederation: { tues: 0, blesses: 0, disparus: 0 }, cultistes: { tues: 0, blesses: 0, disparus: 0 } },
       note: ''
     };
+  }
+
+  // ---------- Zones cultistes (taches sur la carte) ----------
+  function vueZones() {
+    data.zones ||= [];
+    const optDistricts = sel => data.secteurs.filter(s => s.geographique !== false).map(s => `<optgroup label="${esc(s.nom)}">${s.districts.map(d => `<option value="${d.id}" ${d.id === sel ? 'selected' : ''}>${esc(d.nom)}</option>`).join('')}</optgroup>`).join('');
+    return `<section class="ds-card carte"><h2 class="ds-section-title">Zones cultistes</h2>
+      <p class="ds-supporting aide">Chaque zone est une tache dessinée sur la carte, découpée sur les terres. Le centre se donne en longitude / latitude (ex. Brasilia : -47,9 / -15,8), le rayon en degrés (1° ≈ 110 km).</p>
+      <div class="ligne"><button class="ds-btn ds-btn-primary" type="button" id="ajoutZone">Ajouter une zone</button></div></section>
+      ${data.zones.map((z, i) => `<section class="ds-card carte"><div class="grille">
+        <label class="champ"><span>Nom</span><input data-bind="zones.${i}.nom"></label>
+        <label class="champ"><span>Dieu ou faction</span><input data-bind="zones.${i}.dieu" list="dieuxConnus"></label>
+        <label class="champ"><span>Couleur</span><input type="color" data-bind="zones.${i}.couleur"></label>
+        <label class="champ"><span>District concerné</span><select data-bind="zones.${i}.district">${optDistricts(z.district)}</select></label>
+        <label class="champ"><span>Longitude</span><input type="number" step="0.1" class="num" data-bind="zones.${i}.centre.0" data-type="nombre"></label>
+        <label class="champ"><span>Latitude</span><input type="number" step="0.1" class="num" data-bind="zones.${i}.centre.1" data-type="nombre"></label>
+        <label class="champ"><span>Rayon (degrés)</span><input type="number" step="0.1" min="0.2" class="num" data-bind="zones.${i}.rayon" data-type="nombre"></label>
+        <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-zone="${i}">Supprimer la zone</button></div>
+      </div></section>`).join('')}
+      <datalist id="dieuxConnus">${[...new Set(data.zones.map(z => z.dieu).filter(Boolean))].map(n => `<option value="${esc(n)}">`).join('')}</datalist>`;
   }
 
   // ---------- Secteurs ----------
@@ -607,8 +638,8 @@
       const pub = JSON.parse(versJSON(data));
       if ($('#pSnap').checked) {
         const districts = {};
-        for (const s of pub.secteurs) for (const d of s.districts) districts[d.id] = { statut: d.statut, influence: d.influence };
-        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, evenements: pub.evenements.length, districts };
+        for (const s of pub.secteurs) for (const d of s.districts) districts[d.id] = { statut: d.statut, influence: d.influence, quarantaine: !!d.quarantaine };
+        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])) };
         const ph = pub.historique;
         if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }

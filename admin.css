@@ -24,6 +24,8 @@ details.carte>summary.avance{cursor:pointer;font-weight:600;color:var(--muted-fo
 .admin input.num{font-variant-numeric:tabular-nums}
 .admin input[type=range]{padding:0;accent-color:var(--primary);width:100%}
 .admin input[type=checkbox]{width:1rem;height:1rem;accent-color:var(--primary)}
+.champ.case{flex-direction:row}
+.admin input[type=color]{padding:0.25rem;height:2.5rem}
 .case{display:flex;align-items:center;gap:0.5rem;font-size:.875rem;cursor:pointer}
 .ligne{display:flex;gap:0.625rem;align-items:center;flex-wrap:wrap}
 .vide{color:var(--muted-foreground);font-size:.875rem}

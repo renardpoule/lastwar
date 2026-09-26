@@ -197,15 +197,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sphere{fill:var(--ocean)}
 .ocean-grid{fill:none;stroke:var(--grille);stroke-width:.5;vector-effect:non-scaling-stroke}
 .district{stroke:none;cursor:pointer}
-.district.controle{fill:color-mix(in oklab,var(--st-controle) 55%,var(--ocean))}
-.district.conteste{fill:color-mix(in oklab,var(--st-conteste) 68%,var(--ocean))}
-.district.reconquete{fill:color-mix(in oklab,var(--st-reconquete) 50%,var(--ocean))}
-.district.quarantaine{fill:color-mix(in oklab,var(--st-quarantaine) 38%,var(--ocean))}
-.district.perdu{fill:color-mix(in oklab,var(--st-perdu) 62%,var(--ocean))}
+.district{fill:color-mix(in oklab,var(--st-controle) 48%,var(--ocean))}
 .district.dim{opacity:.35}
 .district.hover{filter:brightness(1.3)}
 .district.sel{filter:brightness(1.4)}
 .hatch-over{fill:url(#hachures);pointer-events:none}
+.zone{fill-opacity:.88;stroke:color-mix(in oklab,var(--foreground) 35%,transparent);stroke-width:0.8;vector-effect:non-scaling-stroke;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.zone:hover{fill-opacity:1}}
 .b-pays{fill:none;stroke:var(--ocean);stroke-opacity:.6;stroke-width:.5;vector-effect:non-scaling-stroke;pointer-events:none}
 .b-district{fill:none;stroke:color-mix(in oklab,var(--foreground) 45%,transparent);stroke-width:.8;stroke-dasharray:3 3;vector-effect:non-scaling-stroke;pointer-events:none}
 .b-secteur{fill:none;stroke:color-mix(in oklab,var(--primary) 70%,white);stroke-opacity:.9;stroke-width:1.4;vector-effect:non-scaling-stroke;pointer-events:none}
@@ -230,11 +228,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .legende{display:flex;flex-wrap:wrap;gap:0.25rem 0.75rem;justify-content:flex-end;margin:0;padding:0.5rem 0.75rem;list-style:none;font-size:.75rem;color:var(--muted-foreground);background:color-mix(in oklab,var(--card) 92%,transparent);border:0.0625rem solid var(--border);border-radius:var(--radius-lg)}
 .legende li{display:inline-flex;align-items:center;gap:0.5rem}
 .sw{width:0.625rem;height:0.625rem;border-radius:0.1875rem;display:inline-block}
-.sw.controle{background:var(--st-controle)}
-.sw.conteste{background:var(--st-conteste)}
-.sw.reconquete{background:var(--st-reconquete)}
+.sw.territoire{background:color-mix(in oklab,var(--st-controle) 48%,var(--ocean));box-shadow:inset 0 0 0 0.0625rem var(--st-controle)}
 .sw.quarantaine{background:repeating-linear-gradient(-45deg,var(--st-quarantaine) 0 0.125rem,transparent 0.125rem 0.25rem);box-shadow:inset 0 0 0 0.0625rem var(--st-quarantaine)}
-.sw.perdu{background:var(--st-perdu)}
 .archive{position:absolute;top:4.5rem;left:50%;transform:translateX(-50%);z-index:2;max-width:calc(100% - 2rem);padding:0.5rem 1rem;text-align:center;font-size:.8125rem;background:var(--card);border:0.0625rem solid var(--primary);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop)}
 .archive strong{display:block;font-size:.875rem}
 .archive span{color:var(--muted-foreground)}
@@ -279,6 +274,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* Listes cliquables */
 .liste{display:flex;flex-direction:column;gap:0.5rem}
 .item{display:grid;grid-template-columns:1fr auto;gap:0.5rem 0.75rem;align-items:center;width:100%;padding:0.75rem;text-align:left;background:var(--card);border:0.0625rem solid var(--border);border-radius:var(--radius-lg)}
+.item .statuts{flex-wrap:nowrap;justify-content:flex-end}
 .item .t{font-weight:600;font-size:.875rem;min-width:0}
 .item .t small{display:block;margin-top:0.25rem;font-weight:400;font-size:.8125rem;color:var(--muted-foreground)}
 .item .meta-d{font-size:.8125rem;color:var(--muted-foreground);white-space:nowrap}

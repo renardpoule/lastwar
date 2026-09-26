@@ -39,7 +39,7 @@
     const gs = geoms.filter(g => sectDe(g) === s.id);
     s._geo = gs.length ? topojson.merge(topo, gs) : null;
   }
-  const meshPays = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && distDe(a) === distDe(b));
+  const terres = topojson.merge(topo, geoms);
   const meshDist = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && distDe(a) !== distDe(b) && sectDe(a) === sectDe(b));
   const meshSect = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b && sectDe(a) !== sectDe(b));
 
@@ -48,10 +48,11 @@
   svg.append('defs').html(`
     <pattern id="hachures" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="1.6" height="5" style="fill:var(--st-quarantaine)" fill-opacity=".6"/>
-    </pattern>`);
+    </pattern>
+    <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'hatch', 'bords', 'sel', 'mark', 'lab']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'hatch', 'bords', 'sel', 'mark', 'lab']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -83,7 +84,7 @@
       .on('mousemove', survol).on('mouseleave', finSurvol).on('click', clicDistrict);
 
     L.bords.selectAll('*').remove();
-    L.bords.append('path').attr('class', 'b-pays').attr('d', path(meshPays));
+    svg.select('#clipTerresPath').attr('d', path(terres));
     L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
     L.bords.append('path').attr('class', 'b-secteur').attr('d', path(meshSect));
 
@@ -138,9 +139,11 @@
       const s = data.historique[etat.replay].districts[d.id];
       return s || { statut: 'controle', influence: 0 };
     }
-    return { statut: d.statut, influence: d.influence };
+    return { statut: d.statut, influence: d.influence, quarantaine: !!d.quarantaine };
   }
   const tensionAff = () => etat.replay !== null ? data.historique[etat.replay].tension : data.tension.valeur;
+  const zonesAff = () => (etat.replay !== null && data.historique[etat.replay].zones) || data.zones || [];
+  const enQuarantaine = st => st.statut === 'quarantaine' || !!st.quarantaine;
   const evenementsAff = () => etat.replay !== null ? data.evenements.slice(0, data.historique[etat.replay].evenements) : data.evenements;
 
   function influenceMoy(list) {
@@ -159,13 +162,18 @@
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
     const selSurCarte = sel && secteurParId[sel]._geo;
     L.dist.selectAll('path')
-      .attr('class', d => `district ${statutDe(d).statut}`
+      .attr('class', d => 'district'
         + (selSurCarte && d._secteur !== sel ? ' dim' : '')
         + (etat.niveau === 'district' && d.id === etat.district ? ' sel' : ''));
 
     // Hachures uniquement sur les districts en quarantaine visibles
-    const quarantaine = districts.filter(d => d._geo && statutDe(d).statut === 'quarantaine' && !(selSurCarte && d._secteur !== sel));
+    const quarantaine = districts.filter(d => d._geo && enQuarantaine(statutDe(d)) && !(selSurCarte && d._secteur !== sel));
     L.hatch.selectAll('path').data(quarantaine, d => d.id).join('path').attr('class', 'hatch-over').attr('d', d => path(d._geo));
+
+    L.zones.attr('clip-path', 'url(#clipTerres)').selectAll('path').data(zonesAff(), z => z.id).join('path')
+      .attr('class', 'zone').attr('d', z => path(tache(z))).style('fill', z => z.couleur)
+      .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
+    rendreLegende();
 
     // Contour de sélection
     const cible = etat.niveau === 'district' ? parId[etat.district] : etat.niveau === 'secteur' ? secteurParId[etat.secteur] : null;
@@ -221,7 +229,46 @@
     rendreArchive();
   }
 
+  // Tache organique autour d'un centre (forme stable : dérivée de l'identifiant de la zone)
+  function tache(z) {
+    let h = 0;
+    for (const c of z.id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    const a = (h % 628) / 100, b = ((h >> 8) % 628) / 100, c2 = ((h >> 16) % 628) / 100;
+    const [lon0, lat0] = z.centre, R = +z.rayon || 1, cos = Math.max(0.2, Math.cos(lat0 * Math.PI / 180));
+    const ring = [];
+    for (let i = 0; i < 64; i++) {
+      const t = -i / 64 * 2 * Math.PI;
+      const r = R * (1 + 0.2 * Math.sin(3 * t + a) + 0.12 * Math.sin(5 * t + b) + 0.06 * Math.sin(9 * t + c2));
+      ring.push([lon0 + r * Math.cos(t) / cos, Math.max(-89, Math.min(89, lat0 + r * Math.sin(t)))]);
+    }
+    ring.push(ring[0]);
+    let poly = { type: 'Polygon', coordinates: [ring] };
+    if (d3.geoArea(poly) > 2 * Math.PI) poly = { type: 'Polygon', coordinates: [ring.slice().reverse()] };
+    return poly;
+  }
+
+  const nomZone = z => ['Cultistes', 'Entité'].includes(z.dieu) ? z.nom : 'Zone de ' + z.dieu;
+  function rendreLegende() {
+    const vus = new Map();
+    for (const z of zonesAff()) { const n = nomZone(z); if (!vus.has(n)) vus.set(n, z.couleur); }
+    const q = districts.some(d => enQuarantaine(statutDe(d)));
+    $('#legende').innerHTML = '<li><i class="sw territoire"></i>Territoire confédéré</li>'
+      + [...vus].map(([n, c]) => `<li><i class="sw" style="background:${esc(c)}"></i>${esc(n)}</li>`).join('')
+      + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '');
+  }
+
+  function survolZone(e, z) {
+    const cle = 'z:' + z.id;
+    if (cle !== survolCle) {
+      survolCle = cle;
+      const d = parId[z.district];
+      tip.innerHTML = `<strong>${esc(z.nom)}</strong>${esc(z.dieu)}${d ? `<br>${esc(d.nom)}` : ''}`;
+    }
+    placerTip(e);
+  }
+
   function echelleLabels() {
+    svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     L.lab.selectAll('text').style('font-size', l => (l.taille / k) + 'px').style('stroke-width', (3.2 / k) + 'px');
     L.lab.selectAll('.l0').style('font-size', (12 * 0.62 / k) + 'px');
     L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
@@ -242,12 +289,15 @@
       if (monde || autreSecteur) {
         const s = secteurParId[d._secteur];
         const touches = s.districts.filter(x => statutDe(x).statut !== 'controle').length;
-        tip.innerHTML = `<strong>Secteur ${esc(s.nom)}</strong>${touches} districts touchés sur ${s.districts.length}<br>Influence cultiste : ${Math.round(influenceMoy(s.districts))} %`;
+        tip.innerHTML = `<strong>Secteur ${esc(s.nom)}</strong>${touches} district${touches > 1 ? 's' : ''} touché${touches > 1 ? 's' : ''} sur ${s.districts.length}<br>Influence cultiste : ${Math.round(influenceMoy(s.districts))} %`;
       } else {
         const s = statutDe(d);
-        tip.innerHTML = `<strong>${esc(d.nom)}</strong>${badgeStatut(s.statut)}<br>Influence cultiste : ${s.influence} %`;
+        tip.innerHTML = `<strong>${esc(d.nom)}</strong>${badgeStatut(s.statut)}${enQuarantaine(s) && s.statut !== 'quarantaine' ? ' ' + badgeStatut('quarantaine') : ''}<br>Influence cultiste : ${s.influence} %`;
       }
     }
+    placerTip(e);
+  }
+  function placerTip(e) {
     tip.hidden = false;
     const zb = $('.mapzone').getBoundingClientRect();
     let x = e.clientX - zb.left + 14, y = e.clientY - zb.top + 14;
@@ -410,7 +460,8 @@
         ? '<span class="ds-badge statut horscarte">Hors carte</span>'
         : `<span class="meta-d">${touches} touché${touches > 1 ? 's' : ''} sur ${sousDistricts.length}</span>`;
     } else {
-      droite = badgeStatut(statutDe(o).statut);
+      const st = statutDe(o);
+      droite = '<span class="statuts">' + badgeStatut(st.statut) + (st.quarantaine && st.statut !== 'quarantaine' ? badgeStatut('quarantaine') : '') + '</span>';
     }
     return `<button class="item" type="button" data-nav="${esc(navCle)}"><span class="t">${esc(o.nom)}${o._sous ? `<small>${esc(o._sous)}</small>` : ''}</span>${droite}
       <span class="mini" aria-hidden="true"><i style="width:${Math.round(inf)}%"></i></span></button>`;
@@ -428,9 +479,10 @@
     let html;
     if (etat.niveau === 'monde') {
       const compte = {};
-      districts.forEach(d => { const s = statutDe(d).statut; compte[s] = (compte[s] || 0) + 1; });
+      let nq = 0;
+      districts.forEach(d => { const st = statutDe(d); compte[st.statut] = (compte[st.statut] || 0) + 1; if (st.quarantaine && st.statut !== 'quarantaine') nq++; });
       html = `<div class="p-head"><h2 class="ds-display">Situation mondiale</h2>
-        <div class="statuts">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="ds-badge statut ${s}">${compte[s]} ${esc(data.statuts[s]).toLowerCase()}</span>`).join('')}</div>
+        <div class="statuts">${Object.keys(data.statuts).filter(s => compte[s]).map(s => `<span class="ds-badge statut ${s}">${compte[s]} ${esc(data.statuts[s]).toLowerCase()}</span>`).join('')}${nq ? `<span class="ds-badge statut quarantaine">dont ${nq} en quarantaine</span>` : ''}</div>
         ${balance(influenceMoy(districts))}</div>
         ${blocFronts()}
         <section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
@@ -454,7 +506,7 @@
       const fl = { hausse: '▲', baisse: '▼', stable: '■' };
       html = `<div class="p-head"><h2 class="ds-display">${esc(d.nom)}</h2>
         <p class="ds-supporting">Secteur ${esc(s.nom)}</p>
-        <div class="statuts">${badgeStatut(st.statut)}
+        <div class="statuts">${badgeStatut(st.statut)}${st.quarantaine && st.statut !== 'quarantaine' ? badgeStatut('quarantaine') : ''}
         ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}"><span aria-hidden="true">${fl[d.tendance]}</span> ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
         ${balance(st.influence)}</div>
         ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
