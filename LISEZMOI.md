@@ -36,6 +36,15 @@ Collez l'URL dans **Réglages → Annonces Discord** et cliquez sur « Envoyer u
 
 ---
 
+## Accès au poste de commandement
+L'onglet **Administratif** du site mène au poste de commandement, protégé par un identifiant et un mot de passe.
+Le dépôt ne contient qu'une empreinte du mot de passe (`acces.json`), jamais le mot de passe lui-même.
+Pour le changer : **Réglages → Accès au poste de commandement** (il faut que le jeton GitHub soit configuré).
+Le jeton GitHub et le webhook Discord sont chiffrés dans le navigateur avec une clé tirée du mot de passe.
+
+Limite à connaître : le site est statique. L'écran de connexion protège l'interface et les secrets enregistrés,
+mais la vraie barrière contre toute modification de la carte reste le jeton GitHub : ne le partagez jamais.
+
 ## Faire une mise à jour
 1. Ouvrez `admin.html`.
 2. **Situation** : changez la date du RP.

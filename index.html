@@ -23,6 +23,7 @@
     <strong id="daterp">—</strong>
     <span id="maj" class="ds-supporting"></span>
   </div>
+  <nav class="nav-site" aria-label="Site"><span class="ds-btn ds-btn-ghost actif" aria-current="page">Carte</span><a class="ds-btn ds-btn-ghost" href="admin.html">Administratif</a></nav>
   <button id="tensionBtn" class="tension-mini" type="button" aria-haspopup="dialog">
     <svg id="miniClock" viewBox="0 0 100 100" aria-hidden="true"></svg>
     <span class="tm-txt">
@@ -37,6 +38,7 @@
 <main class="layout">
   <section class="mapzone" aria-label="Carte du conflit">
     <div id="map" class="map"></div>
+    <div id="distorsion" class="distorsion" aria-hidden="true" hidden><div class="d-bruit"></div><div class="d-lignes"></div><div class="d-vignette"></div><div class="d-coupure"></div></div>
     <div class="map-ui">
       <nav id="fil" class="fil" aria-label="Fil d'Ariane"></nav>
       <ul class="legende" id="legende" aria-label="Légende"></ul>

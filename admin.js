@@ -1,6 +1,8 @@
 // Poste de commandement — édition et publication de data.json
 (async function () {
+  await AUTH.pret;
   const $ = s => document.querySelector(s);
+  $('#btnDeconnexion').onclick = AUTH.deconnexion;
   const esc = C.esc;
   const CLE_BROUILLON = 'cendres-brouillon', CLE_CONFIG = 'cendres-config', CLE_ANNONCES = 'cendres-annonces';
 
@@ -13,7 +15,7 @@
 
   let data, publie, publieTension;
   let onglet = 'situation', districtSel = null, evEdite = null;
-  let config = lire(CLE_CONFIG, {});
+  let config = await AUTH.lireConfig();
   let annonces = lire(CLE_ANNONCES, []);
 
   // Devine le dépôt quand la page est servie par GitHub Pages (pseudo.github.io/depot)
@@ -152,10 +154,15 @@
       <div class="grille"><label class="champ"><span>Date actuelle</span><input data-bind="meta.dateRP"></label></div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Tension mondiale</h2>
-      <p class="ds-supporting aide">Réglée à la main, de 0 à 100. Les paliers et les armes autorisées se modifient dans l'onglet Réglages.</p>
+      <p class="ds-supporting aide">Réglée à la main, de 0 à 100. Les paliers se modifient dans l'onglet Réglages.</p>
       <div class="ligne"><input type="range" min="0" max="100" data-bind="tension.valeur" data-type="nombre" style="flex:1">
         <input type="number" min="0" max="100" data-bind="tension.valeur" data-type="nombre" class="num" style="width:90px"></div>
       <div class="apercu-tension" id="apercuT"></div>
+    </section>
+    <section class="ds-card carte"><h2 class="ds-section-title">Distorsion de la carte</h2>
+      <p class="ds-supporting aide">Effet de brouillage sur la carte publique (grain, balayage, coupures). 0 = aucun, 100 = maximal. Enregistré avec chaque point de chronologie, donc il évolue dans le temps quand on rejoue le conflit.</p>
+      <div class="ligne"><input type="range" min="0" max="100" data-bind="meta.distorsion" data-type="nombre" style="flex:1">
+        <input type="number" min="0" max="100" data-bind="meta.distorsion" data-type="nombre" class="num" style="width:90px"></div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">En-tête</h2>
       <div class="grille">
@@ -174,7 +181,6 @@
     const i = C.palier(t, P), m = C.minutes(t, P);
     const change = C.palier(publieTension, P) !== i;
     el.innerHTML = `<span class="h">${C.heure(m)}</span><div><div class="p">Palier ${i + 1} · ${esc(P[i].nom)}</div>
-      <div class="ds-supporting">${esc(P[i].armes)}</div>
       ${change ? `<div class="small" style="color:var(--g-critique);margin-top:4px">Changement de palier depuis la dernière publication (${esc(P[C.palier(publieTension, P)].nom)} → ${esc(P[i].nom)})</div>` : ''}</div>`;
   }
 
@@ -343,9 +349,10 @@
     }
     // Réglages
     else if (ds.supprPalier !== undefined) { data.tension.paliers.splice(+ds.supprPalier, 1); modifie(); rendre(); }
-    else if (t.id === 'ajoutPalier') { data.tension.paliers.push({ min: 100, nom: 'Nouveau palier', minutes: 0, armes: '' }); modifie(); rendre(); }
+    else if (t.id === 'ajoutPalier') { data.tension.paliers.push({ min: 100, nom: 'Nouveau palier', minutes: 0 }); modifie(); rendre(); }
     else if (ds.supprHist !== undefined) { data.historique.splice(+ds.supprHist, 1); modifie(); rendre(); }
     else if (t.id === 'testGithub') testGithub();
+    else if (t.id === 'changerAcces') changerAcces();
     else if (t.id === 'testDiscord') testDiscord();
     else if (t.id === 'importer') $('#fichierImport').click();
   });
@@ -392,6 +399,8 @@
         <div class="champ" style="grid-column:span 2"><span>Influence cultiste (%)</span><div class="ligne">
           <input type="range" min="0" max="100" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="flex:1">
           <input type="number" min="0" max="100" class="num" data-bind="${P}.influence" data-type="nombre" data-maj="nav" style="width:80px"></div></div>
+        <label class="champ"><span>Supériorité aérienne</span><select data-bind="${P}.air.niveau"><option value="">Non évaluée</option>${Object.entries(data.niveauxAir || {}).map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
+        <label class="champ" style="grid-column:span 2"><span>Justification aérienne</span><input data-bind="${P}.air.note"></label>
         <label class="champ large case"><input type="checkbox" data-bind="${P}.quarantaine" data-maj="nav"> Zone en quarantaine (hachures sur la carte, indépendant du statut)</label>
         <label class="champ large"><span>Note de situation (optionnelle)</span><textarea data-bind="${P}.note" rows="2"></textarea></label>
       </div>
@@ -478,6 +487,15 @@
       </div>
       <div class="ligne" style="margin-top:12px"><button class="ds-btn ds-btn-outline" id="testGithub">Tester la connexion</button></div>
     </section>
+    <section class="ds-card carte"><h2 class="ds-section-title">Accès au poste de commandement</h2>
+      <p class="ds-supporting aide">Change l'identifiant et le mot de passe pour tout le monde (le fichier acces.json est publié sur GitHub). Au moins 12 caractères.</p>
+      <div class="grille">
+        <label class="champ"><span>Nouvel identifiant</span><input id="nvId" autocomplete="off"></label>
+        <label class="champ"><span>Nouveau mot de passe</span><input id="nvMdp" type="password" autocomplete="new-password"></label>
+        <label class="champ"><span>Confirmer le mot de passe</span><input id="nvMdp2" type="password" autocomplete="new-password"></label>
+      </div>
+      <div class="ligne" style="margin-top:0.75rem"><button class="ds-btn ds-btn-outline" type="button" id="changerAcces">Changer les accès</button></div>
+    </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Annonces Discord</h2>
       <p class="ds-supporting aide">Webhook d'un salon Discord (Paramètres du salon → Intégrations → Webhooks). Les événements cochés « Annoncer » y sont postés à la publication, ainsi que les changements de palier de tension.</p>
       <div class="grille">
@@ -493,8 +511,7 @@
         <label class="champ"><span>Nom</span><input data-bind="tension.paliers.${i}.nom"></label>
         <label class="champ"><span>Seuil</span><input type="number" class="num" data-bind="tension.paliers.${i}.min" data-type="nombre"></label>
         <label class="champ"><span>Minutes</span><input type="number" step="0.5" class="num" data-bind="tension.paliers.${i}.minutes" data-type="nombre"></label>
-        <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-suppr-palier="${i}" ${P.length <= 1 ? 'disabled' : ''}>✕</button>
-        <label class="champ" style="grid-column:2 / -1"><span>Armement autorisé</span><input data-bind="tension.paliers.${i}.armes"></label></div>`).join('')}
+        <button class="ds-btn ds-btn-outline ds-btn-sm danger" data-suppr-palier="${i}" ${P.length <= 1 ? 'disabled' : ''}>✕</button></div>`).join('')}
       <button class="ds-btn ds-btn-outline ds-btn-sm" id="ajoutPalier">+ Ajouter un palier</button>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">Factions et statuts</h2><div class="grille">
@@ -514,7 +531,7 @@
   // Champs de configuration (hors data.json)
   $('#contenu').addEventListener('input', e => {
     const map = { cfgOwner: 'owner', cfgRepo: 'repo', cfgBranch: 'branch', cfgToken: 'token', cfgWebhook: 'webhook', cfgSite: 'site' };
-    if (map[e.target.id]) { config[map[e.target.id]] = e.target.value.trim(); ecrire(CLE_CONFIG, config); }
+    if (map[e.target.id]) { config[map[e.target.id]] = e.target.value.trim(); AUTH.ecrireConfig(config); }
   });
   $('#contenu').addEventListener('change', async e => {
     if (e.target.id !== 'fichierImport' || !e.target.files[0]) return;
@@ -551,6 +568,27 @@
       const f = await gh('GET', '/contents/data.json' + refBranche());
       toast('Connexion OK — data.json trouvé (' + Math.round(f.size / 1024) + ' ko)');
     } catch (e) { alert(e.message); }
+  }
+  async function envoyerFichier(chemin, contenu, message) {
+    let sha;
+    try { sha = (await gh('GET', '/contents/' + chemin + refBranche())).sha; } catch (e) { if (!/introuvable/.test(e.message)) throw e; }
+    const corps = { message, content: b64(contenu) };
+    if (sha) corps.sha = sha;
+    if (config.branch) corps.branch = config.branch;
+    return gh('PUT', '/contents/' + chemin, corps);
+  }
+  async function changerAcces() {
+    const id = $('#nvId').value.trim(), m1 = $('#nvMdp').value, m2 = $('#nvMdp2').value;
+    if (!id) return alert('Indiquez un identifiant.');
+    if (m1.length < 12) return alert('Le mot de passe doit contenir au moins 12 caractères.');
+    if (m1 !== m2) return alert('Les deux mots de passe ne correspondent pas.');
+    try {
+      const { acces, appliquer } = await AUTH.creerAcces(id, m1, config);
+      await envoyerFichier('acces.json', JSON.stringify(acces, null, 2) + '\n', 'Changement des accès du poste de commandement');
+      await appliquer();
+      toast('Accès changés. Ils seront actifs pour tous d\'ici une à deux minutes.');
+      $('#nvMdp').value = $('#nvMdp2').value = '';
+    } catch (e) { alert('Échec : ' + e.message); }
   }
   async function envoyerGithub(contenu, message) {
     const f = await gh('GET', '/contents/data.json' + refBranche());
@@ -590,7 +628,7 @@
     const P = data.tension.paliers, i = C.palier(data.tension.valeur, P);
     return {
       title: `⏱️ Tension mondiale : palier ${i + 1} · ${P[i].nom}`, url: config.site || undefined,
-      description: `**${C.heure(C.minutes(data.tension.valeur, P))}** — tension ${data.tension.valeur} / 100\n\n${P[i].armes}`,
+      description: `**${C.heure(C.minutes(data.tension.valeur, P))}** — tension ${data.tension.valeur} / 100`,
       color: i > C.palier(publieTension, P) ? 0xff3b5c : 0x3f8f6b, footer: { text: data.meta.dateRP }
     };
   }
@@ -639,7 +677,7 @@
       if ($('#pSnap').checked) {
         const districts = {};
         for (const s of pub.secteurs) for (const d of s.districts) districts[d.id] = { statut: d.statut, influence: d.influence, quarantaine: !!d.quarantaine };
-        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])) };
+        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, distorsion: pub.meta.distorsion || 0, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])) };
         const ph = pub.historique;
         if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }

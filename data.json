@@ -3,7 +3,8 @@
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "20 sept. 2075",
-    "derniereMaj": "2026-09-26T00:13:32.000Z"
+    "derniereMaj": "2026-09-26T00:31:40.000Z",
+    "distorsion": 35
   },
   "tension": {
     "valeur": 75,
@@ -11,32 +12,27 @@
       {
         "min": 0,
         "nom": "Zeebrugge",
-        "minutes": 15,
-        "armes": "Armement conventionnel uniquement."
+        "minutes": 15
       },
       {
         "min": 20,
         "nom": "Dragon",
-        "minutes": 10,
-        "armes": "Armes lourdes, frappes orbitales limitées."
+        "minutes": 10
       },
       {
         "min": 40,
         "nom": "Éclipse",
-        "minutes": 5,
-        "armes": "Armes anomaliques sous contrôle du Conseil."
+        "minutes": 5
       },
       {
         "min": 60,
         "nom": "Ganzir",
-        "minutes": 2,
-        "armes": "Armes de destruction de zone autorisées."
+        "minutes": 2
       },
       {
         "min": 80,
         "nom": "Pizzicato",
-        "minutes": 0,
-        "armes": "Protocoles d'extinction. Plus aucune restriction."
+        "minutes": 0
       }
     ]
   },
@@ -89,7 +85,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 323000
+                "effectif": 353000
               },
               {
                 "nom": "Forces spéciales",
@@ -123,7 +119,11 @@
             18,
             64
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucune activité aérienne cultiste signalée."
+          }
         },
         {
           "id": "eu-est",
@@ -155,7 +155,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1366000
+                "effectif": 1493000
               },
               {
                 "nom": "Forces spéciales",
@@ -193,7 +193,11 @@
             42,
             55
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Poches cultistes écrasées ; l'aviation confédérée opère sans opposition."
+          }
         },
         {
           "id": "eu-central",
@@ -222,7 +226,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1097000
+                "effectif": 1199000
               },
               {
                 "nom": "Forces spéciales",
@@ -252,7 +256,11 @@
             }
           },
           "note": "Zurich : la milice populaire du quartier résidentiel a tenu le contact quarante minutes aux côtés de l'armée. Dix-neuf cultistes tués, quatre miliciens morts. Les districts Rhénan et Alpin n'ont signalé aucun cultiste.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Menace aérienne nulle après l'élimination des dernières poches."
+          }
         },
         {
           "id": "eu-sud",
@@ -287,7 +295,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 606000
+                "effectif": 662000
               },
               {
                 "nom": "Forces spéciales",
@@ -313,7 +321,11 @@
             }
           },
           "note": "",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucune activité aérienne cultiste signalée."
+          }
         },
         {
           "id": "eu-ouest",
@@ -351,7 +363,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1370000
+                "effectif": 1497000
               },
               {
                 "nom": "Forces spéciales",
@@ -381,7 +393,11 @@
             }
           },
           "note": "Ibérie : le groupement cultiste a été neutralisé par HCP sans perte civile.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Espace aérien couvert par les unités d'HCP."
+          }
         }
       ],
       "label": [
@@ -438,7 +454,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1444000
+                "effectif": 1578000
               },
               {
                 "nom": "Forces spéciales",
@@ -469,7 +485,11 @@
             }
           },
           "note": "Capitales économiques : Dubaï, Riyad (ressources militaires), Téhéran (recherche).",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucune activité aérienne cultiste signalée."
+          }
         },
         {
           "id": "as-centre",
@@ -497,7 +517,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1896000
+                "effectif": 2072000
               },
               {
                 "nom": "Forces spéciales",
@@ -536,7 +556,11 @@
             }
           },
           "note": "Bichkek abrite la principale école de formation militaire du secteur.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "nette",
+            "note": "Le groupe organisé dispose de soutiens blindés, mais d'aucune aviation."
+          }
         },
         {
           "id": "as-indopak",
@@ -566,7 +590,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 5122000
+                "effectif": 5599000
               },
               {
                 "nom": "Forces spéciales",
@@ -597,7 +621,11 @@
             }
           },
           "note": "Mumbai, Lahore, Chennai.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucune activité aérienne cultiste signalée."
+          }
         },
         {
           "id": "as-sinorusse",
@@ -621,7 +649,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 13576000
+                "effectif": 14854000
               },
               {
                 "nom": "Forces spéciales",
@@ -680,7 +708,11 @@
             108,
             33
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "contestee",
+            "note": "Les cultistes pillent les réserves d'armes et cherchent à remettre en service des arsenaux. Tempête et brouillage liés au rituel d'Izala."
+          }
         },
         {
           "id": "as-japon",
@@ -705,7 +737,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1405000
+                "effectif": 1536000
               },
               {
                 "nom": "Forces spéciales",
@@ -744,7 +776,11 @@
             137,
             37
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucune activité aérienne cultiste signalée."
+          }
         },
         {
           "id": "as-sudest",
@@ -777,7 +813,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 4716000
+                "effectif": 5155000
               },
               {
                 "nom": "Forces spéciales",
@@ -812,7 +848,11 @@
             }
           },
           "note": "Manille, siège d'espionnage du secteur, reste tenue. Baguio, où tout a commencé en mai, est à 250 km au nord.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "nette",
+            "note": "Un commando cultiste harcèle les arrières ; pas d'aviation adverse."
+          }
         }
       ],
       "label": [
@@ -859,7 +899,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 293000
+                "effectif": 320000
               },
               {
                 "nom": "Forces spéciales",
@@ -885,7 +925,11 @@
             }
           },
           "note": "Capitale : Canberra. Le QG du secteur Santé se trouve à Sydney.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucun cultiste signalé."
+          }
         },
         {
           "id": "oc-nz",
@@ -910,7 +954,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 109000
+                "effectif": 119000
               },
               {
                 "nom": "Milices citoyennes",
@@ -936,7 +980,11 @@
             172,
             -42
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucun cultiste signalé."
+          }
         },
         {
           "id": "oc-melanesie",
@@ -962,7 +1010,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 189000
+                "effectif": 206000
               },
               {
                 "nom": "Milices citoyennes",
@@ -988,7 +1036,11 @@
             152,
             -7
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucun cultiste signalé."
+          }
         },
         {
           "id": "oc-micronesie",
@@ -1016,7 +1068,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 29000
+                "effectif": 31000
               },
               {
                 "nom": "Milices citoyennes",
@@ -1042,7 +1094,11 @@
             150,
             10
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucun cultiste signalé."
+          }
         },
         {
           "id": "oc-polynesie",
@@ -1071,7 +1127,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 32000
+                "effectif": 34000
               },
               {
                 "nom": "Milices citoyennes",
@@ -1097,7 +1153,11 @@
             -160,
             -15
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucun cultiste signalé."
+          }
         }
       ],
       "label": [
@@ -1122,19 +1182,15 @@
       "note": "Secteur sans conseiller. Rasé le 11 septembre : les cultistes y ont été anéantis. Le continent reste sous contrôle confédéré, en quarantaine.",
       "districts": [
         {
-          "id": "af-nord",
-          "nom": "District du Nord",
+          "id": "af-cote",
+          "nom": "District de la Côte",
           "pays": [
-            "Morocco",
-            "W. Sahara",
-            "Algeria",
-            "Tunisia",
-            "Libya",
-            "Egypt"
+            "Côte africaine"
           ],
           "statut": "controle",
           "influence": 0,
           "tendance": "stable",
+          "quarantaine": true,
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1143,16 +1199,11 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
-              {
-                "nom": "Forces régulières",
-                "effectif": 853000
-              }
-            ],
+            "confederation": [],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
-                "effectif": "~120"
+                "effectif": "~200"
               }
             ]
           },
@@ -1163,39 +1214,31 @@
               "disparus": 0
             },
             "cultistes": {
-              "tues": "~9000",
+              "tues": "~24000",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
-          "quarantaine": true
+          "note": "Bande littorale du continent, îles comprises (Madagascar, La Réunion, Mayotte…). Tenue par la Confédération, sous quarantaine.",
+          "air": {
+            "niveau": "totale",
+            "note": "Continent rasé depuis le ciel ; plus aucune opposition."
+          },
+          "label": [
+            -11.5,
+            10.5
+          ]
         },
         {
-          "id": "af-ouest",
-          "nom": "District de l'Ouest",
+          "id": "af-experimental",
+          "nom": "District expérimental",
           "pays": [
-            "Mauritania",
-            "Mali",
-            "Niger",
-            "Senegal",
-            "Gambia",
-            "Guinea-Bissau",
-            "Guinea",
-            "Sierra Leone",
-            "Liberia",
-            "Côte d'Ivoire",
-            "Burkina Faso",
-            "Ghana",
-            "Togo",
-            "Benin",
-            "Nigeria",
-            "Cabo Verde",
-            "Saint Helena"
+            "Intérieur africain"
           ],
           "statut": "controle",
           "influence": 0,
           "tendance": "stable",
+          "quarantaine": true,
           "civils": {
             "population": "CLASSIFIÉ",
             "impliques": "CLASSIFIÉ",
@@ -1204,16 +1247,11 @@
             "deces": "CLASSIFIÉ"
           },
           "forces": {
-            "confederation": [
-              {
-                "nom": "Forces régulières",
-                "effectif": 853000
-              }
-            ],
+            "confederation": [],
             "cultistes": [
               {
                 "nom": "Survivants irradiés",
-                "effectif": "~120"
+                "effectif": "~400"
               }
             ]
           },
@@ -1224,179 +1262,20 @@
               "disparus": 0
             },
             "cultistes": {
-              "tues": "~16000",
+              "tues": "~35400",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
-          "quarantaine": true
-        },
-        {
-          "id": "af-central",
-          "nom": "District Central",
-          "pays": [
-            "Chad",
-            "Central African Rep.",
-            "Cameroon",
-            "Eq. Guinea",
-            "Gabon",
-            "Congo",
-            "Dem. Rep. Congo",
-            "São Tomé and Principe"
-          ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
-          "civils": {
-            "population": "CLASSIFIÉ",
-            "impliques": "CLASSIFIÉ",
-            "deplaces": "CLASSIFIÉ",
-            "disparus": "CLASSIFIÉ",
-            "deces": "CLASSIFIÉ"
+          "note": "Tout l'intérieur des terres. Zone irradiée, tenue par la Confédération, sous quarantaine.",
+          "air": {
+            "niveau": "totale",
+            "note": "Continent rasé depuis le ciel ; plus aucune opposition."
           },
-          "forces": {
-            "confederation": [
-              {
-                "nom": "Forces régulières",
-                "effectif": 853000
-              }
-            ],
-            "cultistes": [
-              {
-                "nom": "Survivants irradiés",
-                "effectif": "~120"
-              }
-            ]
-          },
-          "pertes": {
-            "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
-            },
-            "cultistes": {
-              "tues": "~14000",
-              "blesses": "?",
-              "disparus": "?"
-            }
-          },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
-          "quarantaine": true
-        },
-        {
-          "id": "af-est",
-          "nom": "District de l'Est",
-          "pays": [
-            "Sudan",
-            "S. Sudan",
-            "Ethiopia",
-            "Eritrea",
-            "Djibouti",
-            "Somalia",
-            "Somaliland",
-            "Kenya",
-            "Uganda",
-            "Rwanda",
-            "Burundi",
-            "Tanzania",
-            "Seychelles"
-          ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
-          "civils": {
-            "population": "CLASSIFIÉ",
-            "impliques": "CLASSIFIÉ",
-            "deplaces": "CLASSIFIÉ",
-            "disparus": "CLASSIFIÉ",
-            "deces": "CLASSIFIÉ"
-          },
-          "forces": {
-            "confederation": [
-              {
-                "nom": "Forces régulières",
-                "effectif": 853000
-              }
-            ],
-            "cultistes": [
-              {
-                "nom": "Survivants irradiés",
-                "effectif": "~120"
-              }
-            ]
-          },
-          "pertes": {
-            "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
-            },
-            "cultistes": {
-              "tues": "~13000",
-              "blesses": "?",
-              "disparus": "?"
-            }
-          },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
-          "quarantaine": true
-        },
-        {
-          "id": "af-sud",
-          "nom": "District du Sud",
-          "pays": [
-            "Angola",
-            "Zambia",
-            "Malawi",
-            "Mozambique",
-            "Zimbabwe",
-            "Botswana",
-            "Namibia",
-            "South Africa",
-            "Lesotho",
-            "eSwatini",
-            "Madagascar",
-            "Comoros",
-            "Mauritius"
-          ],
-          "statut": "controle",
-          "influence": 0,
-          "tendance": "stable",
-          "civils": {
-            "population": "CLASSIFIÉ",
-            "impliques": "CLASSIFIÉ",
-            "deplaces": "CLASSIFIÉ",
-            "disparus": "CLASSIFIÉ",
-            "deces": "CLASSIFIÉ"
-          },
-          "forces": {
-            "confederation": [
-              {
-                "nom": "Forces régulières",
-                "effectif": 853000
-              }
-            ],
-            "cultistes": [
-              {
-                "nom": "Survivants irradiés",
-                "effectif": "~120"
-              }
-            ]
-          },
-          "pertes": {
-            "confederation": {
-              "tues": 0,
-              "blesses": 0,
-              "disparus": 0
-            },
-            "cultistes": {
-              "tues": "~7400",
-              "blesses": "?",
-              "disparus": "?"
-            }
-          },
-          "note": "Rasé depuis le ciel sur ordre de Ganzir. Territoire tenu par la Confédération, placé sous quarantaine (zone irradiée).",
-          "quarantaine": true
+          "label": [
+            22,
+            4
+          ]
         }
       ],
       "label": [
@@ -1442,7 +1321,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 386000
+                "effectif": 421000
               },
               {
                 "nom": "Forces spéciales",
@@ -1472,7 +1351,11 @@
             -100,
             60
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Aucune activité aérienne cultiste signalée."
+          }
         },
         {
           "id": "am-usa",
@@ -1495,7 +1378,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1596000
+                "effectif": 1744000
               },
               {
                 "nom": "Forces spéciales",
@@ -1538,7 +1421,11 @@
             -99,
             39
           ],
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "totale",
+            "note": "Foyers de maladie maîtrisés ; espace aérien sous contrôle d'HCP."
+          }
         },
         {
           "id": "am-mexicain",
@@ -1576,7 +1463,8 @@
             "Curaçao",
             "Sint Maarten",
             "St-Martin",
-            "St-Barthélemy"
+            "St-Barthélemy",
+            "Antilles françaises"
           ],
           "statut": "conteste",
           "influence": 14,
@@ -1592,7 +1480,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1612000
+                "effectif": 1762000
               },
               {
                 "nom": "Forces spéciales",
@@ -1623,7 +1511,11 @@
             }
           },
           "note": "Représentant : Mr Francisco D. Carlos. Des poches d'infection venues du sud ont franchi l'isthme.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "nette",
+            "note": "Quelques appareils volés aperçus en provenance du sud."
+          }
         },
         {
           "id": "am-andin",
@@ -1649,7 +1541,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2501000
+                "effectif": 2734000
               },
               {
                 "nom": "Forces spéciales",
@@ -1692,7 +1584,11 @@
             }
           },
           "note": "96 % de la brigade exotique a reçu des drogues de performance et une armure Exo-3.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "contestee",
+            "note": "Surveillance par satellites géostationnaires, mais l'aviation cultiste volée opère depuis le bassin amazonien."
+          }
         },
         {
           "id": "am-amazonien",
@@ -1701,7 +1597,8 @@
             "Brazil",
             "Venezuela",
             "Guyana",
-            "Suriname"
+            "Suriname",
+            "Guyane"
           ],
           "statut": "perdu",
           "influence": 86,
@@ -1717,7 +1614,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 4952000
+                "effectif": 5413000
               },
               {
                 "nom": "Forces spéciales",
@@ -1768,7 +1665,11 @@
             }
           },
           "note": "La jungle vire au marécage sous l'effet des pathogènes. Des aérodromes sont tombés : les cultistes volent nos propres appareils.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "perdue",
+            "note": "Aérodromes tombés : les cultistes font voler nos propres appareils, modifiés. Pertes de l'aviation confédérée."
+          }
         },
         {
           "id": "am-austral",
@@ -1793,7 +1694,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1115000
+                "effectif": 1218000
               },
               {
                 "nom": "Forces spéciales",
@@ -1828,7 +1729,11 @@
             }
           },
           "note": "L'infection remonte les cours d'eau depuis le bassin amazonien.",
-          "quarantaine": false
+          "quarantaine": false,
+          "air": {
+            "niveau": "nette",
+            "note": "Incursions ponctuelles d'appareils volés."
+          }
         }
       ],
       "label": [
@@ -1953,7 +1858,7 @@
               "disparus": 0
             }
           },
-          "note": "À 2 500 m sous la mer du Nord. Opérateur : Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération. Il a prédit 85 % des mouvements cultistes. Personne ne doit l'approcher.",
+          "note": "Station immergée à 2 500 m, au large d'une île au nord de l'Islande. Opérateur : Merrick. Depuis l'accord de Ganzir, HCP a accès aux topographies et à tous les capteurs de la Confédération. Il a prédit 85 % des mouvements cultistes. Personne ne doit l'approcher.",
           "quarantaine": false
         },
         {
@@ -2901,26 +2806,6 @@
           "statut": "controle",
           "influence": 0
         },
-        "af-nord": {
-          "statut": "conteste",
-          "influence": 12
-        },
-        "af-ouest": {
-          "statut": "conteste",
-          "influence": 15
-        },
-        "af-central": {
-          "statut": "conteste",
-          "influence": 18
-        },
-        "af-est": {
-          "statut": "conteste",
-          "influence": 14
-        },
-        "af-sud": {
-          "statut": "conteste",
-          "influence": 8
-        },
         "am-canada": {
           "statut": "controle",
           "influence": 0
@@ -3016,6 +2901,14 @@
         "ad-detroit": {
           "statut": "controle",
           "influence": 0
+        },
+        "af-cote": {
+          "statut": "conteste",
+          "influence": 13
+        },
+        "af-experimental": {
+          "statut": "conteste",
+          "influence": 17
         }
       },
       "zones": [
@@ -3048,14 +2941,15 @@
           "nom": "Bandes cultistes",
           "dieu": "Cultistes",
           "couleur": "#d9822b",
-          "district": "af-central",
+          "district": "af-experimental",
           "centre": [
             20,
             4
           ],
           "rayon": 6
         }
-      ]
+      ],
+      "distorsion": 5
     },
     {
       "date": "10 sept. 2075",
@@ -3125,26 +3019,6 @@
         "oc-polynesie": {
           "statut": "controle",
           "influence": 0
-        },
-        "af-nord": {
-          "statut": "conteste",
-          "influence": 14
-        },
-        "af-ouest": {
-          "statut": "conteste",
-          "influence": 17
-        },
-        "af-central": {
-          "statut": "conteste",
-          "influence": 20
-        },
-        "af-est": {
-          "statut": "conteste",
-          "influence": 16
-        },
-        "af-sud": {
-          "statut": "conteste",
-          "influence": 9
         },
         "am-canada": {
           "statut": "controle",
@@ -3241,6 +3115,14 @@
         "ad-detroit": {
           "statut": "controle",
           "influence": 0
+        },
+        "af-cote": {
+          "statut": "conteste",
+          "influence": 15
+        },
+        "af-experimental": {
+          "statut": "conteste",
+          "influence": 19
         }
       },
       "zones": [
@@ -3273,14 +3155,15 @@
           "nom": "Bandes cultistes",
           "dieu": "Cultistes",
           "couleur": "#d9822b",
-          "district": "af-central",
+          "district": "af-experimental",
           "centre": [
             20,
             4
           ],
           "rayon": 5
         }
-      ]
+      ],
+      "distorsion": 15
     },
     {
       "date": "12 sept. 2075",
@@ -3350,31 +3233,6 @@
         "oc-polynesie": {
           "statut": "controle",
           "influence": 0
-        },
-        "af-nord": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-ouest": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-central": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-est": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-sud": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
         },
         "am-canada": {
           "statut": "controle",
@@ -3471,6 +3329,16 @@
         "ad-detroit": {
           "statut": "controle",
           "influence": 0
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         }
       },
       "zones": [
@@ -3510,7 +3378,8 @@
           ],
           "rayon": 1.6
         }
-      ]
+      ],
+      "distorsion": 30
     },
     {
       "date": "20 sept. 2075",
@@ -3580,31 +3449,6 @@
         "oc-polynesie": {
           "statut": "controle",
           "influence": 0
-        },
-        "af-nord": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-ouest": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-central": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-est": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
-        },
-        "af-sud": {
-          "statut": "controle",
-          "influence": 0,
-          "quarantaine": true
         },
         "am-canada": {
           "statut": "controle",
@@ -3701,6 +3545,16 @@
         "ad-detroit": {
           "statut": "controle",
           "influence": 0
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
         }
       },
       "zones": [
@@ -3776,7 +3630,8 @@
           ],
           "rayon": 3.4
         }
-      ]
+      ],
+      "distorsion": 35
     }
   ],
   "zones": [
@@ -3852,5 +3707,49 @@
       ],
       "rayon": 3.4
     }
-  ]
+  ],
+  "sites": [
+    {
+      "id": "ganzir",
+      "nom": "Ganzir",
+      "coord": [
+        -44,
+        33
+      ],
+      "ile": true,
+      "rayon": 2.2,
+      "lien": "armee/ar-ganzir",
+      "info": "Forteresse et centre d'entraînement de l'armée. C'est de là qu'est parti l'ordre de raser l'Afrique."
+    },
+    {
+      "id": "gotland",
+      "nom": "Gotland",
+      "coord": [
+        18.55,
+        57.45
+      ],
+      "ile": false,
+      "lien": "rd",
+      "info": "Mégalopole, capitale du secteur Recherche & Développement et résidence de Sally Weirman."
+    },
+    {
+      "id": "hcp",
+      "nom": "HCP",
+      "coord": [
+        -17.5,
+        69.4
+      ],
+      "ile": true,
+      "rayon": 1.1,
+      "icone": "labo",
+      "lien": "rd/rd-hcp",
+      "info": "Hate Computer Program : l'IA de planification de la Confédération. Opérateur : Merrick. Personne ne doit l'approcher."
+    }
+  ],
+  "niveauxAir": {
+    "totale": "Totale",
+    "nette": "Nette",
+    "contestee": "Contestée",
+    "perdue": "Perdue"
+  }
 }

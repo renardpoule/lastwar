@@ -10,7 +10,17 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="admin.css">
 </head>
-<body class="ds admin">
+<body class="ds admin verrouille">
+<form id="connexion" class="connexion ds-card" hidden autocomplete="on">
+  <img class="logo" src="logo.png" width="72" height="72" alt="">
+  <h1 class="ds-section-title">Poste de commandement</h1>
+  <p class="ds-supporting">Accès réservé au Conseil.</p>
+  <div class="ds-field"><label class="ds-label" for="cxId">Identifiant</label><input class="ds-input" id="cxId" name="username" autocomplete="username" required></div>
+  <div class="ds-field"><label class="ds-label" for="cxMdp">Mot de passe</label><input class="ds-input" id="cxMdp" name="password" type="password" autocomplete="current-password" required></div>
+  <p id="cxErreur" class="cx-erreur" role="alert" hidden></p>
+  <button class="ds-btn ds-btn-primary" type="submit">Se connecter</button>
+  <a class="ds-btn ds-btn-ghost" href="./">Retour à la carte</a>
+</form>
 <header class="topbar">
   <div class="identite">
     <img class="logo" src="logo.png" width="44" height="44" alt="Sceau de la Confédération des Cendres">
@@ -20,7 +30,9 @@
     </div>
   </div>
   <div class="actions">
-    <a class="ds-btn ds-btn-ghost" href="./" target="_blank" rel="noopener">Voir la carte <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h6m9 2V4h-5m-5 10l9.5-9.5"/></svg></a>
+    <nav class="nav-site" aria-label="Site"><a class="ds-btn ds-btn-ghost" href="./">Carte</a><span class="ds-btn ds-btn-ghost actif" aria-current="page">Administratif</span></nav>
+    <button class="ds-btn ds-btn-ghost" id="btnDeconnexion" type="button">Se déconnecter</button>
+    <a class="ds-btn ds-btn-ghost" href="./" target="_blank" rel="noopener" hidden>Voir la carte <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h6m9 2V4h-5m-5 10l9.5-9.5"/></svg></a>
     <button class="ds-btn ds-btn-outline" id="btnTelecharger" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 3a1 1 0 1 0-2 0zm-2 13a1 1 0 1 0 2 0zm-1.828-4a1 1 0 1 0-1.415 1.414l.707-.707zM12 16.243l-.707.707a1 1 0 0 0 1.414 0zm4.243-2.829A1 1 0 1 0 14.828 12l.708.707zM20 7h-1v13h2V7zm-1 14v-1H5v2h14zM4 20h1V7H3v13zM5 6v1h3V5H5zm11 0v1h3V5h-3zm-4-3h-1v13h2V3zm-3.536 9.707l-.707.707l3.536 3.536l.707-.707l.707-.707L9.172 12zM12 16.243l.707.707l3.536-3.536l-.707-.707l-.708-.707l-3.535 3.536zM4 7h1V5a2 2 0 0 0-2 2zm1 14v-1H3a2 2 0 0 0 2 2zm15-1h-1v2a2 2 0 0 0 2-2zm0-13h1a2 2 0 0 0-2-2v2z"/></svg>Télécharger data.json</button>
     <button class="ds-btn ds-btn-primary" id="btnPublier" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9H6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10a1 1 0 0 0-1-1h-2m-4-6v11m2.5-8.5L12 3L9.5 5.5"/></svg>Publier</button>
   </div>
@@ -45,6 +57,7 @@
 <div id="toast" class="toast" role="status" hidden></div>
 
 <script src="common.js"></script>
+<script src="auth.js"></script>
 <script src="admin.js"></script>
 </body>
 </html>

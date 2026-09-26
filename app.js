@@ -52,7 +52,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'hatch', 'bords', 'sel', 'mark', 'lab']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'bords', 'sel', 'sites', 'mark', 'lab']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -85,6 +85,21 @@
 
     L.bords.selectAll('*').remove();
     svg.select('#clipTerresPath').attr('d', path(terres));
+
+    // Sites marqués d'une étoile (Ganzir, Gotland…) ; Ganzir est une île ajoutée à la carte
+    const sites = (data.sites || []).map(x => ({ ...x, p: projection(x.coord) }));
+    L.sites.selectAll('*').remove();
+    L.sites.selectAll('path.ile').data(sites.filter(x => x.ile)).join('path').attr('class', 'ile')
+      .attr('d', x => path(tache({ id: x.id, centre: x.coord, rayon: x.rayon || 1 })));
+    const g = L.sites.selectAll('g.site').data(sites).join('g').attr('class', 'site')
+      .on('mousemove', survolSite).on('mouseleave', finSurvol)
+      .on('click', (e, x) => { e.stopPropagation(); const [sc, di] = (x.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
+    g.filter(x => x.icone !== 'labo').append('path').attr('class', 'etoile').attr('d', etoile(9, 4));
+    // Intérêt scientifique : erlenmeyer (icône MingCute « flask-line ») sur une pastille
+    const labo = g.filter(x => x.icone === 'labo');
+    labo.append('circle').attr('class', 'pastille-labo').attr('r', 10);
+    labo.append('path').attr('class', 'labo').attr('transform', 'translate(-7.2,-7.2) scale(0.6)').attr('d', FLASK);
+    g.append('text').attr('class', 'label nom-site').attr('x', 13).attr('dy', '0.35em').text(x => x.nom);
     L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
     L.bords.append('path').attr('class', 'b-secteur').attr('d', path(meshSect));
 
@@ -170,10 +185,27 @@
     const quarantaine = districts.filter(d => d._geo && enQuarantaine(statutDe(d)) && !(selSurCarte && d._secteur !== sel));
     L.hatch.selectAll('path').data(quarantaine, d => d.id).join('path').attr('class', 'hatch-over').attr('d', d => path(d._geo));
 
-    L.zones.attr('clip-path', 'url(#clipTerres)').selectAll('path').data(zonesAff(), z => z.id).join('path')
+    // Bordure contestée autour de chaque zone cultiste (étroite : ~1/3 du rayon, entre 0,4° et 2°)
+    const zs = zonesAff();
+    const halos = zs.map(z => ({ ...z, id: z.id + '-c', rayon: (+z.rayon || 1) + Math.max(0.4, Math.min(2, (+z.rayon || 1) * 0.35)), halo: true }));
+    L.zones.attr('clip-path', 'url(#clipTerres)');
+    const gH = L.zones.selectAll('g.halos').data([0]).join('g').attr('class', 'halos');
+    const gZ = L.zones.selectAll('g.coeurs').data([0]).join('g').attr('class', 'coeurs');
+    gH.selectAll('path').data(halos, z => z.id).join('path')
+      .attr('class', 'zone-contestee').attr('d', z => path(tache(z)))
+      .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
+    gZ.selectAll('path').data(zs, z => z.id).join('path')
       .attr('class', 'zone').attr('d', z => path(tache(z))).style('fill', z => z.couleur)
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
+    // Symbole du chaos, semi-transparent, sur les zones cultistes principales
+    const sceaux = zs.filter(z => (+z.rayon || 0) >= 2).map(z => {
+      const c = projection(z.centre), b = projection([z.centre[0] + z.rayon * 0.8, z.centre[1]]);
+      return { id: z.id, c, r: Math.hypot(b[0] - c[0], b[1] - c[1]) };
+    });
+    L.sceaux.selectAll('path').data(sceaux, x => x.id).join('path').attr('class', 'sceau-chaos')
+      .attr('d', CHAOS).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`);
     rendreLegende();
+    appliquerDistorsion();
 
     // Contour de sélection
     const cible = etat.niveau === 'district' ? parId[etat.district] : etat.niveau === 'secteur' ? secteurParId[etat.secteur] : null;
@@ -247,14 +279,83 @@
     return poly;
   }
 
+  // Étoile du chaos (8 flèches), dessinée dans un cercle de rayon 1
+  const CHAOS = (() => {
+    const w = 0.06, forme = [[0, -w], [0.74, -w], [0.6, -0.2], [1, 0], [0.6, 0.2], [0.74, w], [0, w]];
+    let d = '';
+    for (let i = 0; i < 8; i++) {
+      const a = i * Math.PI / 4, ca = Math.cos(a), sa = Math.sin(a);
+      d += forme.map(([x, y], j) => (j ? 'L' : 'M') + (x * ca - y * sa).toFixed(3) + ',' + (x * sa + y * ca).toFixed(3)).join('') + 'Z';
+    }
+    return d + 'M0.14,0A0.14,0.14 0 1 1 -0.14,0A0.14,0.14 0 1 1 0.14,0Z';
+  })();
+
+  // ---------- Distorsion (façon The Fire Rises) ----------
+  // Intensité 0–100 réglée dans l'administration, enregistrée à chaque point de chronologie.
+  const zoneCarte = document.querySelector('.mapzone'), calqueD = document.getElementById('distorsion');
+  const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let intensite = 0, minuterieGlitch = null;
+  (function bruit() {
+    const c = document.createElement('canvas'); c.width = c.height = 128;
+    const x = c.getContext('2d'), img = x.createImageData(128, 128);
+    for (let i = 0; i < img.data.length; i += 4) { const v = Math.random() * 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+    x.putImageData(img, 0, 0);
+    calqueD.querySelector('.d-bruit').style.backgroundImage = `url(${c.toDataURL()})`;
+  })();
+  function appliquerDistorsion() {
+    const v = etat.replay !== null && data.historique[etat.replay].distorsion != null
+      ? data.historique[etat.replay].distorsion : (data.meta.distorsion || 0);
+    const n = Math.max(0, Math.min(100, +v || 0)) / 100;
+    if (n === intensite) return;
+    intensite = n;
+    zoneCarte.style.setProperty('--dist', n);
+    calqueD.hidden = n === 0;
+    clearTimeout(minuterieGlitch);
+    if (n > 0 && !mouvementReduit.matches) planifierGlitch();
+  }
+  function planifierGlitch() {
+    // Plus l'intensité est forte, plus les coupures sont fréquentes (≈ 9 s à 1 s)
+    const attente = 9000 * (1 - intensite) + 900 + Math.random() * 2500 * (1 - intensite);
+    minuterieGlitch = setTimeout(() => {
+      if (!document.hidden) {
+        const dx = (Math.random() * 2 - 1) * 10 * intensite;
+        zoneCarte.style.setProperty('--gx', dx.toFixed(1) + 'px');
+        zoneCarte.style.setProperty('--gy', (Math.random() * 90).toFixed(0) + '%');
+        zoneCarte.style.setProperty('--gh', (4 + Math.random() * 18 * intensite).toFixed(0) + '%');
+        zoneCarte.classList.add('glitch');
+        if (intensite > 0.5) zoneCarte.classList.add('glitch-fort');
+        setTimeout(() => zoneCarte.classList.remove('glitch', 'glitch-fort'), 90 + Math.random() * 160 * intensite);
+      }
+      planifierGlitch();
+    }, attente);
+  }
+
+  const FLASK = 'M8 3h8m-6 0h4v6.631a1 1 0 0 0 .173.563l5.227 7.68c.903 1.329-.048 3.126-1.654 3.126H6.254c-1.606 0-2.557-1.797-1.654-3.125l5.227-7.681A1 1 0 0 0 10 9.63z';
+  function etoile(R, r) {
+    let d = '';
+    for (let i = 0; i < 10; i++) {
+      const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R;
+      d += (i ? 'L' : 'M') + (rr * Math.cos(a)).toFixed(2) + ',' + (rr * Math.sin(a)).toFixed(2);
+    }
+    return d + 'Z';
+  }
+  function survolSite(e, x) {
+    const cle = 's:' + x.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(x.nom)}</strong>${esc(x.info || '')}`; }
+    placerTip(e);
+  }
+
   const nomZone = z => ['Cultistes', 'Entité'].includes(z.dieu) ? z.nom : 'Zone de ' + z.dieu;
   function rendreLegende() {
     const vus = new Map();
     for (const z of zonesAff()) { const n = nomZone(z); if (!vus.has(n)) vus.set(n, z.couleur); }
     const q = districts.some(d => enQuarantaine(statutDe(d)));
     $('#legende').innerHTML = '<li><i class="sw territoire"></i>Territoire confédéré</li>'
+      + (vus.size ? '<li><i class="sw conteste"></i>Zone contestée</li>' : '')
       + [...vus].map(([n, c]) => `<li><i class="sw" style="background:${esc(c)}"></i>${esc(n)}</li>`).join('')
-      + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '');
+      + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '')
+      + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-10 -10 20 20" aria-hidden="true"><path d="' + etoile(9, 4) + '"/></svg>Site stratégique</li>' : '')
+      + ((data.sites || []).some(x => x.icone === 'labo') ? '<li><svg class="sw-labo" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLASK + '"/></svg>Intérêt scientifique</li>' : '');
   }
 
   function survolZone(e, z) {
@@ -262,7 +363,9 @@
     if (cle !== survolCle) {
       survolCle = cle;
       const d = parId[z.district];
-      tip.innerHTML = `<strong>${esc(z.nom)}</strong>${esc(z.dieu)}${d ? `<br>${esc(d.nom)}` : ''}`;
+      tip.innerHTML = z.halo
+        ? `<strong>Zone contestée</strong>Autour : ${esc(z.nom)} (${esc(z.dieu)})${d ? `<br>${esc(d.nom)}` : ''}`
+        : `<strong>${esc(z.nom)}</strong>${esc(z.dieu)}${d ? `<br>${esc(d.nom)}` : ''}`;
     }
     placerTip(e);
   }
@@ -271,6 +374,7 @@
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     L.lab.selectAll('text').style('font-size', l => (l.taille / k) + 'px').style('stroke-width', (3.2 / k) + 'px');
     L.lab.selectAll('.l0').style('font-size', (12 * 0.62 / k) + 'px');
+    L.sites.selectAll('g.site').attr('transform', x => `translate(${x.p[0]},${x.p[1]}) scale(${1 / k})`);
     L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
     L.mark.selectAll('.ring').attr('r', 7 / k);
     L.mark.selectAll('.dot').attr('r', 4 / k);
@@ -399,7 +503,7 @@
       const lignes = fa.unites.length ? fa.unites.map(u => `
         <div class="unite"><span>${esc(u.nom)}</span><span class="n">${C.fmt(u.v)}</span>
         <span class="ub"><i style="width:${(u.v.n / max * 100).toFixed(1)}%"></i></span></div>`).join('')
-        : '<div class="vide">Aucune force signalée.</div>';
+        : '<div class="vide">Aucune force engagée.</div>';
       return `<details class="faction ${cle}" ${fa.unites.length ? 'open' : ''}>
         <summary><span class="pastille" aria-hidden="true"></span><span class="nom">${esc(data.factions[cle].court)}</span><span class="tot">${C.fmt(fa.total, fa.total.n >= 1e7)}</span></summary>
         <div class="unites">${lignes}</div></details>`;
@@ -475,6 +579,26 @@
     return `<section class="bloc"><h3 class="ds-section-title">Fronts actifs</h3><div class="liste">${fronts.map(d => itemListe({ ...d, _sous: 'Secteur ' + secteurParId[d._secteur].nom }, d._secteur + '/' + d.id)).join('')}</div></section>`;
   }
 
+  // ---------- Supériorité aérienne ----------
+  const NIV_AIR = ['totale', 'nette', 'contestee', 'perdue'];
+  const badgeAir = n => `<span class="ds-badge air ${esc(n)}">${esc((data.niveauxAir || {})[n] || n)}</span>`;
+  function blocAirDistrict(d) {
+    if (!d.air || !d.air.niveau) return '';
+    return `<section class="bloc"><h3 class="ds-section-title">Supériorité aérienne</h3>
+      <div class="air-ligne">${badgeAir(d.air.niveau)}${d.air.note ? `<p class="ds-supporting">${esc(d.air.note)}</p>` : ''}</div></section>`;
+  }
+  function blocAirListe(liste, detail) {
+    const avec = liste.filter(d => d.air && d.air.niveau);
+    if (!avec.length) return '';
+    if (detail) {
+      return `<section class="bloc"><h3 class="ds-section-title">Supériorité aérienne</h3><ul class="air-liste">${avec.map(d =>
+        `<li><span>${esc(d.nom)}</span>${badgeAir(d.air.niveau)}</li>`).join('')}</ul></section>`;
+    }
+    const c = {}; avec.forEach(d => { c[d.air.niveau] = (c[d.air.niveau] || 0) + 1; });
+    return `<section class="bloc"><h3 class="ds-section-title">Supériorité aérienne</h3><ul class="air-liste">${NIV_AIR.filter(n => c[n]).map(n =>
+      `<li>${badgeAir(n)}<span>${c[n]} district${c[n] > 1 ? 's' : ''}</span></li>`).join('')}</ul></section>`;
+  }
+
   function rendrePanel() {
     let html;
     if (etat.niveau === 'monde') {
@@ -487,6 +611,7 @@
         ${blocFronts()}
         <section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>
         ${data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3 class="ds-section-title">Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : ''}
+        ${blocAirListe(districts, false)}
         ${blocs(C.agrege(districts))}
         ${blocEvenements(() => true, 'Événements')}`;
     } else if (etat.niveau === 'secteur') {
@@ -498,6 +623,7 @@
         ${balance(influenceMoy(s.districts))}</div>
         ${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}
         <section class="bloc"><h3 class="ds-section-title">Districts</h3><div class="liste">${s.districts.map(d => itemListe(d, s.id + '/' + d.id)).join('') || '<p class="vide">Aucun district.</p>'}</div></section>
+        ${blocAirListe(s.districts, true)}
         ${blocs(a)}
         ${blocEvenements(e => (e.portee.type === 'secteur' && e.portee.id === s.id) || (e.portee.type === 'district' && ids.has(e.portee.id)), 'Événements du secteur')}`;
     } else {
@@ -510,6 +636,7 @@
         ${etat.replay === null && d.tendance ? `<span class="tendance ${d.tendance}"><span aria-hidden="true">${fl[d.tendance]}</span> ${esc(C.TENDANCES[d.tendance])}</span>` : ''}</div>
         ${balance(st.influence)}</div>
         ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
+        ${blocAirDistrict(d)}
         ${blocs(a)}
         ${blocEvenements(e => (e.portee.type === 'district' && e.portee.id === d.id) || (e.portee.type === 'secteur' && e.portee.id === s.id), 'Événements récents')}`;
     }
@@ -564,8 +691,7 @@
         <li class="pal ${j < i ? 'passe' : j === i ? 'actuel' : ''}" ${j === i ? 'aria-current="step"' : ''}>
           <span class="num">${j + 1}</span>
           <span class="nm">${esc(p.nom)}</span>
-          <span class="seuil">À partir de ${p.min}, ${p.minutes} min</span>
-          <span class="ar">${esc(p.armes)}</span></li>`).join('')}</ol>`;
+          <span class="seuil">À partir de ${p.min}, ${p.minutes} min</span></li>`).join('')}</ol>`;
     horloge($('#bigClock'), min, true);
   }
   $('#tensionBtn').addEventListener('click', () => $('#tensionDlg').showModal());
