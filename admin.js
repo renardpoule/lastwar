@@ -148,6 +148,8 @@
 
   // ---------- 1. Situation ----------
   function vueSituation() {
+    data.meta.stabilite ||= { gouvernement: 100, armee: 100, population: 100 };
+    data.meta.energie ||= { unite: 'TW', production: 0, consommation: 0, detruite: 0, detournee: 0 };
     return `
     <section class="ds-card carte"><h2 class="ds-section-title">Date du RP</h2>
       <p class="ds-supporting aide">La date affichée en haut de la carte. Changez-la à chaque nouveau "tour" du conflit : elle sert aussi de repère dans la chronologie.</p>
@@ -163,6 +165,24 @@
       <p class="ds-supporting aide">Effet de brouillage sur la carte publique (grain, balayage, coupures). 0 = aucun, 100 = maximal. Enregistré avec chaque point de chronologie, donc il évolue dans le temps quand on rejoue le conflit.</p>
       <div class="ligne"><input type="range" min="0" max="100" data-bind="meta.distorsion" data-type="nombre" style="flex:1">
         <input type="number" min="0" max="100" data-bind="meta.distorsion" data-type="nombre" class="num" style="width:90px"></div>
+    </section>
+    <section class="ds-card carte"><h2 class="ds-section-title">Stabilité</h2>
+      <p class="ds-supporting aide">Affichée dans la vue monde de la carte, de 0 à 100 %.</p>
+      <div class="grille">
+        <label class="champ"><span>Stabilité gouvernementale (%)</span><input type="number" min="0" max="100" class="num" data-bind="meta.stabilite.gouvernement" data-type="nombre"></label>
+        <label class="champ"><span>Loyauté de l'armée (%)</span><input type="number" min="0" max="100" class="num" data-bind="meta.stabilite.armee" data-type="nombre"></label>
+        <label class="champ"><span>Soutien de la population (%)</span><input type="number" min="0" max="100" class="num" data-bind="meta.stabilite.population" data-type="nombre"></label>
+      </div>
+    </section>
+    <section class="ds-card carte"><h2 class="ds-section-title">Énergie mondiale</h2>
+      <p class="ds-supporting aide">La barre du bandeau de la carte. La production est découpée en production disponible, détruite et détournée, et la consommation s'affiche comme un repère sur la barre.</p>
+      <div class="grille">
+        <label class="champ"><span>Production (${esc((data.meta.energie || {}).unite || 'TW')})</span><input type="number" step="0.1" min="0" class="num" data-bind="meta.energie.production" data-type="nombre"></label>
+        <label class="champ"><span>Consommation</span><input type="number" step="0.1" min="0" class="num" data-bind="meta.energie.consommation" data-type="nombre"></label>
+        <label class="champ"><span>Production détruite</span><input type="number" step="0.1" min="0" class="num" data-bind="meta.energie.detruite" data-type="nombre"></label>
+        <label class="champ"><span>Production détournée</span><input type="number" step="0.1" min="0" class="num" data-bind="meta.energie.detournee" data-type="nombre"></label>
+        <label class="champ"><span>Unité</span><input data-bind="meta.energie.unite"></label>
+      </div>
     </section>
     <section class="ds-card carte"><h2 class="ds-section-title">En-tête</h2>
       <div class="grille">
@@ -240,6 +260,15 @@
           <button class="ds-btn ds-btn-primary" type="submit">${ev ? 'Enregistrer' : 'Ajouter l\'événement'}</button>
           ${ev ? '<button class="ds-btn ds-btn-outline" type="button" id="annulerEv">Annuler</button>' : ''}</div></div>
       </form>
+    </section>
+    <section class="ds-card carte"><h2 class="ds-section-title">Communiqués (${(data.communiques || []).length})</h2>
+      <p class="ds-supporting aide">Diffusions officielles qui défilent dans le bandeau de la carte, de la plus récente à la plus ancienne. Pendant la relecture de la chronologie, seuls les communiqués antérieurs à la date affichée apparaissent.</p>
+      ${(data.communiques || []).map((c, i) => `<div class="grille">
+        <label class="champ"><span>Date</span><input data-bind="communiques.${i}.date" placeholder="20 sept. 2075"></label>
+        <label class="champ"><span>Source</span><input data-bind="communiques.${i}.source" placeholder="Diffusion confédérée, HCP, Ganzir…"></label>
+        <div class="champ" style="justify-content:flex-end"><button class="ds-btn ds-btn-outline ds-btn-sm danger" type="button" data-suppr-communique="${i}">Supprimer</button></div>
+        <label class="champ large"><span>Texte</span><textarea rows="2" data-bind="communiques.${i}.texte"></textarea></label></div>`).join('')}
+      <div class="ligne"><button class="ds-btn ds-btn-outline ds-btn-sm" type="button" id="ajoutCommunique">Ajouter un communiqué</button></div>
     </section>
     <section class="ds-card carte ev-liste"><h2 class="ds-section-title">Fil des événements (${data.evenements.length})</h2>
       <p class="ds-supporting aide">Du plus récent au plus ancien. Les flèches corrigent l'ordre si besoin.</p>
@@ -392,6 +421,8 @@
     // Réglages
     else if (ds.supprPalier !== undefined) { data.tension.paliers.splice(+ds.supprPalier, 1); modifie(); rendre(); }
     else if (t.id === 'ajoutPalier') { data.tension.paliers.push({ min: 100, nom: 'Nouveau palier', minutes: 0 }); modifie(); rendre(); }
+    else if (t.id === 'ajoutCommunique') { (data.communiques ||= []).push({ date: data.meta.dateRP || '', source: 'Diffusion confédérée', texte: '' }); modifie(); rendre(); }
+    else if (ds.supprCommunique !== undefined) { data.communiques.splice(+ds.supprCommunique, 1); modifie(); rendre(); }
     else if (ds.supprHist !== undefined) { data.historique.splice(+ds.supprHist, 1); modifie(); rendre(); }
     else if (t.id === 'testGithub') testGithub();
     else if (t.id === 'changerAcces') changerAcces();
@@ -787,7 +818,9 @@
       if ($('#pSnap').checked) {
         const districts = {};
         for (const s of pub.secteurs) for (const d of s.districts) districts[d.id] = { statut: d.statut, influence: d.influence, quarantaine: !!d.quarantaine };
-        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, distorsion: pub.meta.distorsion || 0, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])), villes: Object.fromEntries((pub.villes || []).map(v => [v.id, v.etat])) };
+        const snap = { date: pub.meta.dateRP, tension: pub.tension.valeur, distorsion: pub.meta.distorsion || 0, evenements: pub.evenements.length, districts, zones: JSON.parse(JSON.stringify(pub.zones || [])), villes: Object.fromEntries((pub.villes || []).map(v => [v.id, v.etat])), pertes: C.pertesMonde(pub) };
+        if (pub.meta.energie) snap.energie = { ...pub.meta.energie };
+        if (pub.meta.stabilite) snap.stabilite = { ...pub.meta.stabilite };
         const ph = pub.historique;
         if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }

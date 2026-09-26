@@ -13,16 +13,20 @@
   const cmd = (sid, pid, c) => `<p class="t-cmd">${USER}:<span class="t-chemin">${esc(chemin(sid, pid))}</span>$ <span class="t-tape">${esc(c)}</span></p>`;
   const lien = (sid, pid) => '#' + (sid ? esc(sid) + (pid ? '/' + esc(pid) : '') : '');
 
-  // Texte des dossiers : "##" titre, "-" puce, ligne vide = nouveau paragraphe
+  // Texte des dossiers : "##" titre, "-" puce, **gras**, *italique*, ![légende](img/…) image, ligne vide = nouveau paragraphe
+  const enLigne = t => esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
   function texte(src) {
     const html = [];
     let liste = null, para = [];
-    const finPara = () => { if (para.length) { html.push(`<p>${para.map(esc).join(' ')}</p>`); para = []; } };
-    const finListe = () => { if (liste) { html.push(`<ul>${liste.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`); liste = null; } };
+    const finPara = () => { if (para.length) { html.push(`<p>${para.map(enLigne).join(' ')}</p>`); para = []; } };
+    const finListe = () => { if (liste) { html.push(`<ul>${liste.map(l => `<li>${enLigne(l)}</li>`).join('')}</ul>`); liste = null; } };
     for (const ligne of (src || '').split('\n')) {
       const l = ligne.trim();
       if (!l) { finPara(); finListe(); continue; }
-      if (l.startsWith('## ')) { finPara(); finListe(); html.push(`<h3>${esc(l.slice(3))}</h3>`); continue; }
+      const img = /^!\[([^\]]*)\]\(([\w./-]+\.(?:webp|png|jpe?g|gif|avif))\)$/i.exec(l);
+      if (img) { finPara(); finListe(); html.push(`<figure class="t-image"><img src="${esc(img[2])}" alt="${esc(img[1])}" loading="lazy"><figcaption>${esc(img[2].split('/').pop())}</figcaption></figure>`); continue; }
+      const titre = /^(#{2,3}) (.+)$/.exec(l);
+      if (titre) { finPara(); finListe(); html.push(titre[1].length === 2 ? `<h3>${enLigne(titre[2])}</h3>` : `<h4>${enLigne(titre[2])}</h4>`); continue; }
       if (l.startsWith('- ')) { finPara(); (liste ||= []).push(l.slice(2)); continue; }
       finListe(); para.push(l);
     }
@@ -182,6 +186,45 @@
   const ouvrir = () => { $('#arbre-boite').open = large.matches; };
   large.addEventListener('change', ouvrir);
   ouvrir();
+
+  // Séquence de démarrage, une fois par session ; un clic ou une touche la passe
+  (function demarrage() {
+    let deja = false;
+    try { deja = sessionStorage.getItem('cc-boot') === '1'; sessionStorage.setItem('cc-boot', '1'); } catch (e) { /* stockage indisponible */ }
+    if (deja || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const nb = secteurs.reduce((n, s) => n + sousDossiers(s).length, 0);
+    const lignes = [
+      ['CCOS 7.5.2075 · noyau confédéré, build ' + (data.meta.dateRP || '')],
+      ['montage de ~/secteurs', 'ok'],
+      ['connexion au réseau tactique confédéré', 'ok'],
+      ['liaison HCP', 'surveillée'],
+      ['vérification de l\'habilitation', 'accordée'],
+      [`indexation : ${secteurs.length} dossiers, ${nb} sous-dossiers`, 'ok'],
+      ['chargement du Rapport Confédéral sur l\'Anormal', 'ok'],
+      ['diffusion restreinte, toute consultation est journalisée']
+    ];
+    const el = document.createElement('div');
+    el.className = 't-boot';
+    el.setAttribute('role', 'status');
+    el.innerHTML = '<div class="t-boot-in"></div><p class="t-boot-passer">cliquer ou appuyer sur une touche pour passer</p>';
+    document.body.appendChild(el);
+    const zone = el.firstElementChild;
+    let i = 0, fini = false;
+    const fermer = () => {
+      if (fini) return; fini = true;
+      el.classList.add('sortie');
+      setTimeout(() => el.remove(), 350);
+      removeEventListener('keydown', fermer); el.removeEventListener('click', fermer);
+    };
+    addEventListener('keydown', fermer); el.addEventListener('click', fermer);
+    (function suivante() {
+      if (fini) return;
+      if (i >= lignes.length) { setTimeout(fermer, 700); return; }
+      const [txt, res] = lignes[i++];
+      zone.insertAdjacentHTML('beforeend', `<p><span class="t-pale">[${(i * 0.137).toFixed(3).padStart(7, ' ')}]</span> ${esc(txt)}${res ? ` <span class="t-boot-res">${esc(res)}</span>` : ''}</p>`);
+      setTimeout(suivante, 140 + Math.random() * 160);
+    })();
+  })();
 
   window.addEventListener('hashchange', () => {
     if (!large.matches) $('#arbre-boite').open = false;

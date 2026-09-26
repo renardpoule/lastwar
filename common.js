@@ -99,6 +99,16 @@ const C = (() => {
     return data.secteurs.flatMap(s => s.districts.map(d => Object.assign(d, { _secteur: s.id })));
   }
 
+  // Pertes mondiales, en nombres simples (compteur de la carte, instantanés de la chronologie)
+  function pertesMonde(data) {
+    const r = { confederation: { tues: 0, blesses: 0, disparus: 0 }, cultistes: { tues: 0, blesses: 0, disparus: 0 }, civils: { deces: 0, disparus: 0 } };
+    for (const s of data.secteurs) for (const d of s.districts) {
+      for (const f of FACTIONS) for (const [k] of PERTES) r[f][k] += parse(d.pertes && d.pertes[f] && d.pertes[f][k]).n;
+      for (const k of ['deces', 'disparus']) r.civils[k] += parse(d.civils && d.civils[k]).n;
+    }
+    return r;
+  }
+
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 
@@ -117,5 +127,5 @@ const C = (() => {
   const GRAVITES = { mineur: 'Mineur', majeur: 'Majeur', critique: 'Critique' };
   const TENDANCES = { hausse: 'Progression cultiste', stable: 'Front stable', baisse: 'Recul cultiste' };
 
-  return { ICONES, parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, GRAVITES, TENDANCES };
+  return { ICONES, pertesMonde, parse, fmt, num, court, somme, combine, agrege, palier, minutes, heure, tousDistricts, esc, CIVILS, PERTES, FACTIONS, GRAVITES, TENDANCES };
 })();

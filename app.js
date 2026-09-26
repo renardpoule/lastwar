@@ -53,7 +53,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'detruites', 'bords', 'sel', 'fronts', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'detruites', 'bords', 'sel', 'fronts', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -95,15 +95,21 @@
     L.sites.selectAll('*').remove();
     L.sites.selectAll('path.ile').data(sites.filter(x => x.ile)).join('path').attr('class', 'ile')
       .attr('d', x => path(tache({ id: x.id, centre: x.coord, rayon: x.rayon || 1 })));
-    const g = L.sites.selectAll('g.site').data(sites).join('g').attr('class', 'site')
+    const g = L.sites.selectAll('g.site').data(sites).join('g').attr('class', x => 'site' + (TYPES_SITE[x.icone] && TYPES_SITE[x.icone].mineur ? ' mineur' : '') + (x.icone ? ' t-' + x.icone : ''))
       .on('mousemove', survolSite).on('mouseleave', finSurvol)
-      .on('click', (e, x) => { e.stopPropagation(); const [sc, di] = (x.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
-    g.filter(x => x.icone !== 'labo').append('g').attr('class', 'embleme').html(EMBLEME);
-    // Intérêt scientifique : erlenmeyer (icône MingCute "flask-line") sur une pastille
-    const labo = g.filter(x => x.icone === 'labo');
-    labo.append('circle').attr('class', 'pastille-labo').attr('r', 10);
-    labo.append('path').attr('class', 'labo').attr('transform', 'translate(-7.2,-7.2) scale(0.6)').attr('d', FLASK);
-    g.append('text').attr('class', 'label nom-site').attr('x', 13).attr('dy', '0.35em').text(x => x.nom);
+      .on('click', (e, x) => {
+        e.stopPropagation();
+        if (x.dossier) { location.href = 'secteurs.html#' + x.dossier; return; }
+        const [sc, di] = (x.lien || '').split('/'); naviguer(sc || undefined, di || undefined);
+      });
+    // Laboratoires d'exclusion : sphère de confinement qui "décroche" par à-coups
+    g.filter(x => x.glitch).append('g').attr('class', 'sphere-glitch').attr('aria-hidden', 'true').html(SPHERE_GLITCH);
+    g.filter(x => !TYPES_SITE[x.icone]).append('g').attr('class', 'embleme').html(EMBLEME);
+    // Installations : pictogramme sur une pastille (erlenmeyer MingCute "flask-line" pour les laboratoires)
+    const inst = g.filter(x => TYPES_SITE[x.icone]);
+    inst.append('circle').attr('class', 'pastille-labo').attr('r', 10);
+    inst.append('g').attr('class', 'labo').attr('transform', 'translate(-7.2,-7.2) scale(0.6)').html(x => TYPES_SITE[x.icone].svg);
+    g.append('text').attr('class', 'label nom-site').attr('x', x => x.glitch ? 38 : 13).attr('dy', '0.35em').text(x => x.nom);
     // Zones détruites (frappes, rasages) : taches brûlées découpées sur les terres
     L.detruites.attr('clip-path', 'url(#clipTerres)');
     L.detruites.selectAll('path').data(data.detruites || [], z => z.id).join('path').attr('class', 'detruite')
@@ -139,9 +145,24 @@
         el.append('text').attr('class', 'label nom-sat').attr('x', o.etoile ? 15 : 10).attr('dy', '0.35em').text(o.nom);
       });
       return x;
-    }).attr('class', x => 'sat' + (x.etoile ? ' importante' : '') + (x.geo ? ' geo' : ''))
-      .on('mousemove', survolSat).on('mouseleave', finSurvol);
+    }).attr('class', x => 'sat' + (x.etoile ? ' importante' : '') + (x.geo ? ' geo' : '') + (/fabrication/i.test(x.etat || '') ? ' chantier' : '') + (x.dossier ? ' lien' : ''))
+      .on('mousemove', survolSat).on('mouseleave', finSurvol)
+      .on('click', (e, x) => { if (x.dossier) { e.stopPropagation(); location.href = 'secteurs.html#' + x.dossier; } });
     majSatellites();
+
+    // Flottes en patrouille : route en pointillés et navire qui la parcourt
+    const flottes = data.flottes || [];
+    L.flottes.selectAll('path.route').data(flottes, f => f.id).join('path').attr('class', 'route')
+      .attr('d', f => d3.line().curve(d3.curveCatmullRomClosed)(f.trajet.map(c => projection(c))));
+    L.flottes.selectAll('g.flotte').data(flottes, f => f.id).join(en => {
+      const x = en.append('g').attr('class', 'flotte');
+      x.append('circle').attr('class', 'f-halo').attr('r', 13);
+      x.append('path').attr('class', 'f-navire').attr('d', NAVIRE);
+      x.append('text').attr('class', 'label nom-flotte').attr('x', 14).attr('dy', '0.35em').text(f => f.nom);
+      return x;
+    }).on('mousemove', survolFlotte).on('mouseleave', finSurvol)
+      .on('click', (e, f) => { e.stopPropagation(); tip.hidden = true; const [sc, di] = (f.lien || '').split('/'); naviguer(sc || undefined, di || undefined); });
+    majFlottes();
 
     L.bords.append('path').attr('class', 'b-district').attr('d', path(meshDist));
     L.bords.append('path').attr('class', 'b-secteur').attr('d', path(meshSect));
@@ -230,6 +251,7 @@
 
   // ---------- Rendu carte ----------
   function rendre(anime = true) {
+    majFlottes();
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
     const selSurCarte = sel && secteurParId[sel]._geo;
     L.dist.selectAll('path')
@@ -321,6 +343,8 @@
     rendreFil();
     rendreAlerte();
     rendreArchive();
+    rendreBandeau();
+    rendreEnergie();
   }
 
   // Tache organique autour d'un centre (forme stable : dérivée de l'identifiant de la zone)
@@ -392,6 +416,16 @@
     }, attente);
   }
 
+  // Types d'installations affichées sur la carte (pictogrammes dessinés sur une grille de 24)
+  const TYPES_SITE = {
+    labo: { nom: 'Intérêt scientifique', svg: '<path d="M8 3h8m-6 0h4v6.631a1 1 0 0 0 .173.563l5.227 7.68c.903 1.329-.048 3.126-1.654 3.126H6.254c-1.606 0-2.557-1.797-1.654-3.125l5.227-7.681A1 1 0 0 0 10 9.63z"/>' },
+    lancement: { nom: 'Site de lancement spatial', svg: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M13.5 10.5L18 6m0 0h-3.5M18 6v3.5"/>' },
+    geothermie: { nom: 'Générateur géothermique', svg: '<path d="M3 20l6-10l2 2h2l2-2l6 10z"/><path d="M12 8c-1.5-1.5 1-2.5 0-5"/>' },
+    reception: { nom: 'Station de réception', svg: '<path d="M12 21v-9m-4 9h8"/><circle cx="12" cy="10" r="1.5"/><path d="M8.5 6.5a5 5 0 0 1 7 0M5.5 3.5a9 9 0 0 1 13 0"/>' },
+    telescope: { nom: 'Observatoire', svg: '<path d="M4 14a8 8 0 0 0 10-10z"/><path d="M9 9l6-6m-6 12l-2 6h6l-2-5"/>' },
+    fusion: { nom: 'Réacteur à fusion', mineur: true, svg: '<circle cx="12" cy="12" r="1.8"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/>' },
+    tda: { nom: 'Tour de décarbonisation', mineur: true, svg: '<rect x="8.5" y="3" width="7" height="15" rx="3.5"/><path d="M8.5 8h7m-7 5h7M6 21h12"/>' }
+  };
   const FLASK = 'M8 3h8m-6 0h4v6.631a1 1 0 0 0 .173.563l5.227 7.68c.903 1.329-.048 3.126-1.654 3.126H6.254c-1.606 0-2.557-1.797-1.654-3.125l5.227-7.681A1 1 0 0 0 10 9.63z';
   function etoile(R, r) {
     let d = '';
@@ -407,6 +441,36 @@
     + 'M546,511L615,720L437,591L472,565L533,608L510,537Z';
   const etoileBrisee = taille => `<path class="em-trait" fill-rule="evenodd" transform="scale(${(taille / 610).toFixed(4)}) translate(-415,-415)" d="${ETOILE_D}"/>`;
   const EMBLEME = etoileBrisee(26);
+
+  // ---------- Laboratoires d'exclusion ----------
+  const SPHERE_GLITCH = '<circle class="sg-halo" r="36"/>'
+    + '<g class="sg-corps"><circle class="sg-coque" r="27"/><ellipse class="sg-meridien" rx="11" ry="27"/><ellipse class="sg-equateur" rx="27" ry="8"/><ellipse class="sg-equateur" rx="23" ry="7" cy="-12"/><ellipse class="sg-equateur" rx="23" ry="7" cy="12"/></g>'
+    + '<g class="sg-r"><circle r="27"/></g><g class="sg-c"><circle r="27"/></g>'
+    + '<g class="sg-tranches"><rect x="-33" y="-15" width="66" height="4"/><rect x="-30" y="3" width="60" height="2.5"/><rect x="-33" y="16" width="66" height="2"/><rect x="-24" y="-24" width="48" height="1.5"/></g>';
+
+  // ---------- Flottes ----------
+  const NAVIRE = 'M-11,-2.6H5.5L11,0L5.5,2.6H-11L-9,0Z';
+  function majFlottes() {
+    if (!L.flottes) return;
+    const replay = etat.replay !== null;
+    L.flottes.attr('display', replay ? 'none' : null);
+    if (replay) return;
+    const t = (performance.now() - t0) / 1000;
+    L.flottes.selectAll('path.route').each(function (f) {
+      const lg = this.getTotalLength();
+      if (!lg) return;
+      const u = ((t / (f.periode || 480)) % 1) * lg;
+      const a = this.getPointAtLength(u), b = this.getPointAtLength((u + 2) % lg);
+      f._p = [a.x, a.y]; f._angle = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+    });
+    L.flottes.selectAll('g.flotte').attr('transform', f => f._p ? `translate(${f._p[0].toFixed(1)},${f._p[1].toFixed(1)}) scale(${ech / k})` : null)
+      .select('.f-navire').attr('transform', f => `rotate(${(f._angle || 0).toFixed(0)})`);
+  }
+  function survolFlotte(e, f) {
+    const cle = 'f:' + f.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(f.nom)}</strong>${esc(f.info || '')}<br><span class="ds-supporting">Cliquer pour la fiche</span>`; }
+    placerTip(e);
+  }
 
   // ---------- Satellites ----------
   const SATELLITE = 'M-3.5,-3.5h7v7h-7zM-12,-2.5h7.5v5h-7.5zM4.5,-2.5h7.5v5h-7.5zM-4.5,0h9M0,-3.5v-3';
@@ -435,12 +499,12 @@
   // 10 images par seconde suffisent pour un mouvement lent ; arrêt si l'onglet est masqué
   let dernierSat = 0;
   (function boucleSat(ts) {
-    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 100) { dernierSat = ts; if (W) majSatellites(); }
+    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 100) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); } }
     requestAnimationFrame(boucleSat);
   })(0);
   function survolSat(e, s) {
     const cle = 'o:' + s.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(s.nom)}</strong>${esc(s.info || '')}<br><span class="ds-supporting">${s.geo ? 'Orbite géostationnaire' : `Orbite inclinée à ${s.inclinaison}°`}</span>`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(s.nom)}</strong>${esc(s.info || '')}${s.etat ? `<br><span class="tip-etat">${esc(s.etat)}</span>` : ''}<br><span class="ds-supporting">${s.geo ? 'Orbite géostationnaire' : `Orbite inclinée à ${s.inclinaison}°`}${s.dossier ? ' · cliquer pour le dossier' : ''}</span>`; }
     placerTip(e);
   }
 
@@ -636,7 +700,7 @@
   }
   function survolSite(e, x) {
     const cle = 's:' + x.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(x.nom)}</strong>${esc(x.info || '')}`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(x.nom)}</strong>${esc(x.info || '')}${x.etat ? `<br><span class="tip-etat">${esc(x.etat)}</span>` : ''}${x.dossier ? '<br><span class="ds-supporting">Cliquer pour ouvrir le dossier</span>' : ''}`; }
     placerTip(e);
   }
 
@@ -654,7 +718,9 @@
       + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
       + (villesAff().some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')
       + (L.unites.selectAll('g.pion').size() ? '<li><svg class="sw-pion" viewBox="-12 -8 24 16" aria-hidden="true"><rect class="u-cadre" x="-11" y="-7" width="22" height="14" rx="1"/><path class="u-trait" d="M-11,-7L11,7M-11,7L11,-7"/></svg>Unité confédérée</li><li><svg class="sw-pion" viewBox="-12 -12 24 24" aria-hidden="true"><path class="u-cadre" d="M0,-11L11,0L0,11L-11,0Z" style="fill:var(--cult)"/></svg>Force cultiste</li>' : '')
-      + ((data.sites || []).some(x => x.icone === 'labo') ? '<li><svg class="sw-labo" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLASK + '"/></svg>Intérêt scientifique</li>' : '');
+      + Object.entries(TYPES_SITE).filter(([t]) => (data.sites || []).some(x => x.icone === t)).map(([t, T]) => `<li><svg class="sw-labo t-${t}" viewBox="0 0 24 24" aria-hidden="true">${T.svg}</svg>${T.nom}</li>`).join('')
+      + ((data.sites || []).some(x => x.glitch) ? '<li><svg class="sw-sphere" viewBox="-15 -15 30 30" aria-hidden="true"><circle r="11"/><ellipse rx="4.5" ry="11"/><ellipse rx="11" ry="3.5"/></svg>Laboratoire d\'exclusion</li>' : '')
+      + ((data.flottes || []).length && etat.replay === null ? '<li><svg class="sw-flotte" viewBox="-12 -6 24 12" aria-hidden="true"><path d="' + NAVIRE + '"/></svg>Flotte en patrouille</li>' : '');
   }
 
   function survolZone(e, z) {
@@ -670,6 +736,7 @@
   }
 
   function echelleLabels() {
+    L.sites.classed('proche', k >= 3).classed('loin', k < 2);
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     const el = ech < 1 ? 0.8 : 1;
     L.lab.selectAll('text').style('font-size', l => (l.taille * el / k) + 'px').style('stroke-width', (3.2 * el / k) + 'px');
@@ -679,6 +746,7 @@
     ecarterPions();
     L.unites.selectAll('g.pion').attr('transform', u => `translate(${u.p[0] + (u.dx * ech + (u._ox || 0)) / k},${u.p[1] + (u.dy * ech + (u._oy || 0)) / k}) scale(${u.t * ech / k})`);
     majSatellites();
+    majFlottes();
     L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
     L.mark.selectAll('.ring').attr('r', 7 / k);
     L.mark.selectAll('.dot').attr('r', 4 / k);
@@ -875,6 +943,18 @@
       <span class="mini" aria-hidden="true"><i style="width:${Math.round(inf)}%"></i></span></button>`;
   }
 
+  // Stabilité intérieure de la Confédération (vue monde)
+  function blocStabilite() {
+    const st = etat.replay === null ? data.meta.stabilite : data.historique[etat.replay].stabilite;
+    if (!data.meta.stabilite) return '';
+    if (!st) return '<section class="bloc"><h3 class="ds-section-title">Stabilité</h3><p class="ds-supporting">Non archivée à cette date.</p></section>';
+    const L = [['gouvernement', 'Stabilité gouvernementale'], ['armee', 'Loyauté de l\'armée'], ['population', 'Soutien de la population']];
+    const niveau = v => v >= 80 ? 'haut' : v >= 50 ? 'moyen' : 'bas';
+    return `<section class="bloc stabilite"><h3 class="ds-section-title">Stabilité</h3>
+      ${L.map(([k, lib]) => { const v = Math.max(0, Math.min(100, +st[k] || 0)); return `<div class="stab ${niveau(v)}"><span class="stab-lib">${lib}</span><span class="stab-v">${Math.round(v)} %</span>
+        <span class="stab-barre" role="img" aria-label="${lib} : ${Math.round(v)} %"><i style="width:${v}%"></i></span></div>`; }).join('')}</section>`;
+  }
+
   // Districts où la Confédération ne tient plus, du plus menacé au moins menacé
   function blocFronts() {
     const fronts = districts.filter(d => statutDe(d).statut !== 'controle')
@@ -955,7 +1035,7 @@
         ${balance(influenceMoy(districts))}`;
       const fp = forcesPop(C.agrege(districts));
       onglets = [
-        ['apercu', 'Aperçu', blocFronts() + `<section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>`
+        ['apercu', 'Aperçu', blocStabilite() + blocFronts() + `<section class="bloc"><h3 class="ds-section-title">Secteurs géographiques</h3><div class="liste">${data.secteurs.filter(s => s.geographique !== false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>`
           + (data.secteurs.some(s => s.geographique === false) ? `<section class="bloc"><h3 class="ds-section-title">Secteurs organisationnels</h3><div class="liste">${data.secteurs.filter(s => s.geographique === false).map(s => itemListe(s, s.id, s.districts)).join('')}</div></section>` : '')],
         ['villes', 'Villes', blocVilles(villesAff().slice().sort((a, b) => a.etat - b.etat))],
         ['forces', 'Forces', (archive ? '' : blocAirListe(districts, false)) + fp.forces],
@@ -1055,7 +1135,75 @@
     horloge($('#bigClock'), min, true);
   }
   $('#tensionBtn').addEventListener('click', () => $('#tensionDlg').showModal());
-  document.querySelector('.dlg .fermer').innerHTML = I.close;
+  document.querySelectorAll('.dlg .fermer').forEach(b => { b.innerHTML = I.close; });
+
+  // ---------- Bandeau : pertes mondiales et communiqués ----------
+  function pertesAff() {
+    if (etat.replay === null) return C.pertesMonde(data);
+    return data.historique[etat.replay].pertes || null;
+  }
+  function rendreBandeau() {
+    const p = pertesAff(), btn = $('#pertesBtn');
+    const chiffre = (n, lib, cls) => `<span class="p-chiffre ${cls}"><strong>${C.court(n)}</strong> ${lib}</span>`;
+    btn.innerHTML = `<span class="p-titre">Pertes</span>` + (p
+      ? chiffre(p.confederation.tues, 'confédérés', 'cc') + chiffre(p.cultistes.tues, 'cultistes', 'cult') + (p.civils.deces ? chiffre(p.civils.deces, 'civils', 'civ') : '')
+      : '<span class="ds-supporting">non archivées à cette date</span>');
+    btn.setAttribute('aria-label', p ? `Pertes mondiales : ${C.num(p.confederation.tues)} confédérés tués, ${C.num(p.cultistes.tues)} cultistes tués. Voir le détail` : 'Pertes non archivées à cette date');
+    const ligne = (lib, v) => `<tr><th scope="row">${lib}</th><td class="num">${C.num(v)}</td></tr>`;
+    const secteurs = data.secteurs.filter(s => s.geographique !== false);
+    $('#pertesDetail').innerHTML = `<h2 id="pertesTitre" class="ds-display">Pertes mondiales</h2>
+      <p class="ds-supporting">${etat.replay !== null ? `Archive du ${esc(data.historique[etat.replay].date)}` : `Au ${esc(data.meta.dateRP)}, d'après les rapports des districts`}</p>
+      ${p ? `<div class="p-cols">
+        <table class="p-table"><caption>${esc(data.factions.confederation.court)}</caption>${ligne('Tués', p.confederation.tues)}${ligne('Blessés', p.confederation.blesses)}${ligne('Disparus', p.confederation.disparus)}</table>
+        <table class="p-table cult"><caption>${esc(data.factions.cultistes.court)}</caption>${ligne('Tués', p.cultistes.tues)}${ligne('Blessés', p.cultistes.blesses)}${ligne('Disparus', p.cultistes.disparus)}</table>
+        <table class="p-table civ"><caption>Civils</caption>${ligne('Décès', p.civils.deces)}${ligne('Disparus', p.civils.disparus)}</table></div>
+        ${etat.replay === null ? `<table class="p-table p-secteurs"><caption>Tués par secteur</caption><thead><tr><th scope="col">Secteur</th><th scope="col" class="num">Confédérés</th><th scope="col" class="num">Cultistes</th></tr></thead>
+          ${secteurs.map(s => { const a = C.agrege(s.districts).pertes; return `<tr><th scope="row">${esc(s.nom)}</th><td class="num">${C.fmt(a.confederation.tues)}</td><td class="num">${C.fmt(a.cultistes.tues)}</td></tr>`; }).join('')}</table>` : ''}`
+      : '<p>Les pertes n\'étaient pas encore consignées dans la chronologie à cette date.</p>'}`;
+
+    // Communiqués jusqu'à la date affichée, du plus récent au plus ancien
+    const lim = dateVal(dateAff());
+    const coms = (data.communiques || []).map((c, i) => ({ c, i })).filter(o => dateVal(o.c.date) <= lim)
+      .sort((a, b) => dateVal(b.c.date) - dateVal(a.c.date) || b.i - a.i).map(o => o.c);
+    const bloc = coms.map(c => `<span class="c-item"><span class="c-date">${esc((c.date || '').replace(/\s*\d{4}$/, ''))}</span><span class="c-source">${esc(c.source || 'Diffusion')}</span><q>${esc(c.texte)}</q></span>`).join('');
+    const defil = $('#cDefil');
+    defil.innerHTML = coms.length ? `<span class="c-groupe">${bloc}</span><span class="c-groupe" aria-hidden="true">${bloc}</span>` : '<span class="c-item ds-supporting">Aucun communiqué à cette date.</span>';
+    defil.classList.toggle('anime', coms.length > 0);
+    defil.style.setProperty('--duree', Math.max(20, coms.reduce((n, c) => n + (c.texte || '').length + 20, 0) / 6) + 's');
+    document.querySelector('.communiques').hidden = !(data.communiques || []).length;
+  }
+  $('#pertesBtn').addEventListener('click', () => $('#pertesDlg').showModal());
+  $('#energieBtn').addEventListener('click', () => $('#energieDlg').showModal());
+
+  // Barre énergétique : production nominale découpée en disponible / détruite / détournée, consommation en repère
+  function rendreEnergie() {
+    const e = etat.replay === null ? data.meta.energie : data.historique[etat.replay].energie;
+    const btn = $('#energieBtn');
+    btn.hidden = !data.meta.energie;
+    if (!data.meta.energie) return;
+    if (!e) {
+      btn.innerHTML = '<span class="p-titre">Énergie</span><span class="ds-supporting">non archivée à cette date</span>';
+      btn.setAttribute('aria-label', 'Production énergétique non archivée à cette date');
+      $('#energieDetail').innerHTML = '<h2 id="energieTitre" class="ds-display">Énergie mondiale</h2><p>La production énergétique n\'était pas encore consignée dans la chronologie à cette date.</p>';
+      return;
+    }
+    const u = ' ' + (e.unite || 'TW'), f = v => String(+v || 0).replace('.', ',');
+    const prod = Math.max(+e.production || 0, 0.001), det = +e.detruite || 0, dev = +e.detournee || 0, dispo = Math.max(0, prod - det - dev), conso = +e.consommation || 0;
+    const pc = v => (Math.min(100, v / prod * 100)).toFixed(2) + '%';
+    const barre = cls => `<span class="e-barre ${cls}" aria-hidden="true"><i class="e-dispo" style="width:${pc(dispo)}"></i><i class="e-detruite" style="width:${pc(det)}"></i><i class="e-detournee" style="width:${pc(dev)}"></i><i class="e-conso" style="left:calc(${pc(conso)} - 1px)"></i></span>`;
+    btn.innerHTML = `<span class="p-titre">Énergie</span>${barre('')}<span class="e-chiffres"><strong>${f(dispo)}</strong> / ${f(conso)}${u}</span>`;
+    btn.setAttribute('aria-label', `Énergie : ${f(dispo)}${u} disponibles pour ${f(conso)}${u} consommés. Voir le détail`);
+    const deficit = dispo < conso;
+    $('#energieDetail').innerHTML = `<h2 id="energieTitre" class="ds-display">Énergie mondiale</h2>
+      <p class="ds-supporting">${etat.replay !== null ? `Archive du ${esc(data.historique[etat.replay].date)}` : `Au ${esc(data.meta.dateRP)}`}</p>
+      ${barre('e-grande')}
+      <ul class="e-legende">
+        <li><i class="e-dispo"></i>Production disponible<strong>${f(dispo)}${u}</strong></li>
+        <li><i class="e-detruite"></i>Production détruite<strong>${f(det)}${u}</strong></li>
+        <li><i class="e-detournee"></i>Production détournée<strong>${f(dev)}${u}</strong></li>
+        <li><i class="e-conso"></i>Consommation<strong>${f(conso)}${u}</strong></li></ul>
+      <p>Production de la Confédération : <strong>${f(prod)}${u}</strong>, dont ${Math.round(det / prod * 100)} % détruits et ${Math.round(dev / prod * 100)} % détournés. ${deficit ? 'La production disponible ne couvre plus la consommation.' : `Il reste une marge de ${f(Math.round((dispo - conso) * 10) / 10)}${u}.`}</p>`;
+  }
 
   // ---------- Alerte / archive / en-tête ----------
   function rendreAlerte() {

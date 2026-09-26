@@ -49,9 +49,9 @@ mais la vraie barrière contre toute modification de la carte reste le jeton Git
 ## Faire une mise à jour
 1. Ouvrez `admin.html`.
 2. **Situation** : changez la date du RP.
-3. **Événements** : ajoutez ce qui s'est passé (portée, gravité, conséquences, effet sur la tension).
+3. **Événements** : ajoutez ce qui s'est passé (portée, gravité, conséquences, effet sur la tension). Les **communiqués** qui défilent dans le bandeau de la carte se gèrent en bas du même onglet.
 4. **Districts** : ajustez statut, influence cultiste, effectifs et pertes des zones touchées.
-5. **Situation** : réglez la tension et la distorsion si besoin.
+5. **Situation** : réglez la tension, la distorsion la **stabilité** (gouvernement, armée, population) et l'**énergie mondiale** (production, consommation, production détruite, production détournée) si besoin.
 6. **Villes** : état (0 à 100 %) et garnison des villes "Too young to die". L'état colore le point et déforme l'illustration.
 7. **Zones** : zones cultistes et zones détruites (frappes, bombardements).
 8. **Dossiers** : textes de la page Secteurs.
@@ -66,5 +66,11 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 `…/lastwar/secteurs.html#renseignement/atmosphere` le dossier Atmosphère.
 
 **Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main.
+
+**Bandeau de la carte** : le compteur de pertes additionne tout seul les pertes et les décès civils de tous les districts. À chaque publication, les pertes et l'énergie sont archivées avec le point de chronologie, donc la relecture les affiche à la bonne date.
+
+**Installations** (laboratoires, GGP, TDA, réacteurs à fusion, CLS…), **satellites** et **flottes** : ils se modifient directement dans `data.json` (listes `sites`, `satellites`, `flottes`), pas encore dans l'admin. Un site avec `"glitch": true` reçoit la sphère de confinement des laboratoires d'exclusion, `"dossier": "rd/arcology"` le relie à son dossier, et `"etat"` s'affiche dans l'infobulle.
+
+**Dossiers** : dans les textes, `**gras**`, `*italique*`, `## Titre`, `- puce` et `![légende](img/fichier.webp)` pour une image (déposée dans le dossier `img/`).
 
 **Sans jeton GitHub** : cliquez sur "Télécharger data.json" dans l'admin, puis dans le dépôt GitHub utilisez **Add file → Upload files** pour remplacer `data.json`.

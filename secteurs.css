@@ -144,3 +144,21 @@ body.ds.dossiers{
   .t-texte h2{font-size:1.125rem}
   .t-saisie input{font-size:1rem}
 }
+
+/* Mise en forme des dossiers */
+.t-texte em{font-style:italic;color:var(--t-pale)}
+.t-texte strong{color:var(--t-fort)}
+.t-texte h4{margin:1rem 0 0.25rem;font:700 0.9375rem/1.4 var(--t-police);color:var(--t-texte)}
+.t-texte h4::before{content:"### ";color:var(--t-pale)}
+.t-image{margin:0.5rem 0 1rem;max-width:100%}
+.t-image img{display:block;width:100%;height:auto;border:0.0625rem solid var(--t-ligne);border-radius:0.25rem;filter:saturate(.85) contrast(1.05)}
+.t-image figcaption{margin-top:0.25rem;font-size:0.75rem;color:var(--t-pale)}
+.t-image figcaption::before{content:"> "}
+
+/* Séquence de démarrage */
+.t-boot{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:center;padding:2rem max(1.5rem,calc(50vw - 30rem));background:var(--t-fond) repeating-linear-gradient(0deg,oklch(0 0 0 / .2) 0 1px,transparent 1px 3px);color:var(--t-texte);cursor:pointer;transition:opacity .35s ease}
+.t-boot.sortie{opacity:0}
+.t-boot-in p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;animation:t-apparait .2s ease both}
+.t-boot-res{color:var(--t-vert);font-weight:700}
+.t-boot-res::before{content:"[ "}.t-boot-res::after{content:" ]"}
+.t-boot-passer{position:absolute;bottom:1.5rem;left:0;right:0;margin:0;text-align:center;font-size:0.75rem;color:var(--t-pale)}

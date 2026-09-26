@@ -4,7 +4,19 @@
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "20 sept. 2075",
     "derniereMaj": "2026-09-26T00:48:40.000Z",
-    "distorsion": 50
+    "distorsion": 50,
+    "energie": {
+      "unite": "TW",
+      "production": 64,
+      "consommation": 51,
+      "detruite": 7,
+      "detournee": 2.5
+    },
+    "stabilite": {
+      "gouvernement": 100,
+      "armee": 100,
+      "population": 80
+    }
   },
   "tension": {
     "valeur": 75,
@@ -3717,6 +3729,34 @@
         "buenos-aires": 80,
         "canberra": 98,
         "le-cap": 71
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 235900,
+          "blesses": 430100,
+          "disparus": 121600
+        },
+        "cultistes": {
+          "tues": 311400,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 38165000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 64,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 100,
+        "population": 80
       }
     }
   ],
@@ -3830,6 +3870,469 @@
       "icone": "labo",
       "lien": "rd/rd-hcp",
       "info": "Hate Computer Program, l'IA de planification de la Confédération, sous la responsabilité de l'opérateur Merrick. Personne ne doit l'approcher."
+    },
+    {
+      "id": "arcology",
+      "nom": "ARCOLOGY",
+      "coord": [
+        -69.4165,
+        -27.9937
+      ],
+      "icone": "labo",
+      "glitch": true,
+      "dossier": "rd/arcology",
+      "info": "Laboratoire d'exclusion de la Confédération, consacré à l'étude des matières extrêmes et des forces venues d'autres Univers."
+    },
+    {
+      "id": "eucrynomos",
+      "nom": "Eucrynomos",
+      "coord": [
+        25.3,
+        70.7
+      ],
+      "icone": "labo",
+      "glitch": true,
+      "lien": "rd",
+      "info": "Laboratoire d'exclusion de la Confédération, au nord de la Norvège."
+    },
+    {
+      "id": "cls",
+      "nom": "CLS",
+      "coord": [
+        9.4,
+        0.4
+      ],
+      "icone": "lancement",
+      "info": "Centrifugeuse de Lancement Spatiale, capable d'envoyer quatre modules par jour hors de l'attraction terrestre.",
+      "dossier": "rd/cls",
+      "etat": "Installé"
+    },
+    {
+      "id": "ggp-etna",
+      "nom": "GGP Etna",
+      "coord": [
+        15.0,
+        37.75
+      ],
+      "icone": "geothermie",
+      "info": "Générateur Géothermique Profond, forages autour de la chambre magmatique de l'Etna.",
+      "dossier": "rd/ggp",
+      "etat": "Installé"
+    },
+    {
+      "id": "ggp-barren",
+      "nom": "GGP Barren",
+      "coord": [
+        93.86,
+        12.28
+      ],
+      "icone": "geothermie",
+      "info": "Générateur Géothermique Profond, sur l'île Barren, seul volcan actif de l'Inde.",
+      "dossier": "rd/ggp",
+      "etat": "Installé"
+    },
+    {
+      "id": "ggp-meager",
+      "nom": "GGP Meager",
+      "coord": [
+        -123.5,
+        50.64
+      ],
+      "icone": "geothermie",
+      "info": "Générateur Géothermique Profond, au mont Meager, en Colombie-Britannique.",
+      "dossier": "rd/ggp",
+      "etat": "Installé"
+    },
+    {
+      "id": "ggp-spurr",
+      "nom": "GGP Spurr",
+      "coord": [
+        -152.25,
+        61.3
+      ],
+      "icone": "geothermie",
+      "info": "Générateur Géothermique Profond, au mont Spurr, en Alaska.",
+      "dossier": "rd/ggp",
+      "etat": "Installé"
+    },
+    {
+      "id": "ress-reception",
+      "nom": "Réception RESS",
+      "coord": [
+        -150.0,
+        4.0
+      ],
+      "icone": "reception",
+      "info": "Station de réception maritime du RESS, qui récupère le rayonnement solaire concentré par les miroirs en orbite.",
+      "dossier": "rd/ress",
+      "etat": "Installé"
+    },
+    {
+      "id": "singularite",
+      "nom": "Projet Singularité",
+      "coord": [
+        21.5,
+        3.0
+      ],
+      "icone": "labo",
+      "info": "Laboratoire d'exclusion du Projet Singularité, où l'on cherche à confiner une singularité gravitationnelle dans un stabilisateur.",
+      "dossier": "rd/singularite",
+      "glitch": true,
+      "etat": "En recherche (prototype)"
+    },
+    {
+      "id": "telescopes-stockholm",
+      "nom": "Télescopes Stockholm",
+      "coord": [
+        100.0,
+        62.0
+      ],
+      "icone": "telescope",
+      "info": "Site des télescopes Stockholm, consacrés à l'étude des distorsions gravitationnelles et des signatures de la matière noire.",
+      "dossier": "rd/telescope-stockholm",
+      "etat": "Installé"
+    },
+    {
+      "id": "spa",
+      "nom": "SPA",
+      "coord": [
+        2.4,
+        46.6
+      ],
+      "icone": "labo",
+      "info": "Laboratoire d'exclusion du Système de Production à Antimatière.",
+      "dossier": "rd/spa",
+      "glitch": true,
+      "etat": "En recherche (prototype), très peu avancé"
+    },
+    {
+      "id": "spmqn",
+      "nom": "SPMQN",
+      "coord": [
+        -116.0,
+        37.2
+      ],
+      "icone": "labo",
+      "info": "Laboratoire d'exclusion du Système de Production à Matière Quasi-Négative.",
+      "dossier": "rd/spmqn",
+      "glitch": true,
+      "etat": "En recherche (prototype)"
+    },
+    {
+      "id": "tda-1",
+      "nom": "TDA Ruhr",
+      "coord": [
+        7.2,
+        51.5
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Ruhr, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-2",
+      "nom": "TDA Silésie",
+      "coord": [
+        19.0,
+        50.3
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Silésie, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-3",
+      "nom": "TDA Lombardie",
+      "coord": [
+        9.4,
+        45.4
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Lombardie, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-4",
+      "nom": "TDA Tianjin",
+      "coord": [
+        117.2,
+        39.1
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Tianjin, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-5",
+      "nom": "TDA Bombay",
+      "coord": [
+        73.4,
+        18.9
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Bombay, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-6",
+      "nom": "TDA Nagoya",
+      "coord": [
+        136.9,
+        35.2
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Nagoya, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-7",
+      "nom": "TDA Casablanca",
+      "coord": [
+        -7.6,
+        33.6
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Casablanca, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-8",
+      "nom": "TDA Alexandrie",
+      "coord": [
+        29.9,
+        31.1
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Alexandrie, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-9",
+      "nom": "TDA Durban",
+      "coord": [
+        30.9,
+        -29.8
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Durban, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-10",
+      "nom": "TDA Houston",
+      "coord": [
+        -95.3,
+        29.7
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Houston, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-11",
+      "nom": "TDA Nouvelle-Détroit",
+      "coord": [
+        -83.6,
+        42.0
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Nouvelle-Détroit, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-12",
+      "nom": "TDA Monterrey",
+      "coord": [
+        -100.3,
+        25.7
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Monterrey, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-13",
+      "nom": "TDA São Paulo",
+      "coord": [
+        -46.6,
+        -23.5
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de São Paulo, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-14",
+      "nom": "TDA Rosario",
+      "coord": [
+        -60.7,
+        -33.0
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Rosario, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-15",
+      "nom": "TDA Antofagasta",
+      "coord": [
+        -70.3,
+        -23.6
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Antofagasta, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-16",
+      "nom": "TDA Newcastle",
+      "coord": [
+        151.7,
+        -32.9
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Newcastle, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-17",
+      "nom": "TDA Kwinana",
+      "coord": [
+        115.8,
+        -32.2
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Kwinana, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "tda-18",
+      "nom": "TDA Auckland",
+      "coord": [
+        174.8,
+        -36.9
+      ],
+      "icone": "tda",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Auckland, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "dossier": "rd/tda",
+      "etat": "Installé"
+    },
+    {
+      "id": "fusion-1",
+      "nom": "Fusion Cadarache",
+      "coord": [
+        5.76,
+        43.7
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Cadarache, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-2",
+      "nom": "Fusion Stockholm",
+      "coord": [
+        18.1,
+        59.3
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Stockholm, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-3",
+      "nom": "Fusion Moscou",
+      "coord": [
+        37.6,
+        55.5
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Moscou, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-4",
+      "nom": "Fusion Delhi",
+      "coord": [
+        77.2,
+        28.4
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Delhi, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-5",
+      "nom": "Fusion Naka",
+      "coord": [
+        140.5,
+        36.5
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Naka, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-6",
+      "nom": "Fusion Canberra",
+      "coord": [
+        149.1,
+        -35.3
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Canberra, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-7",
+      "nom": "Fusion Santiago",
+      "coord": [
+        -70.6,
+        -33.4
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Santiago, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-8",
+      "nom": "Fusion Caroline",
+      "coord": [
+        -80.9,
+        35.2
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Caroline, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-9",
+      "nom": "Fusion Californie",
+      "coord": [
+        -121.7,
+        37.7
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Californie, raccordé au réseau énergétique de la Confédération."
+    },
+    {
+      "id": "fusion-10",
+      "nom": "Fusion Dubaï",
+      "coord": [
+        55.3,
+        25.2
+      ],
+      "icone": "fusion",
+      "info": "Réacteur à fusion nucléaire de Dubaï, raccordé au réseau énergétique de la Confédération."
     }
   ],
   "niveauxAir": {
@@ -3876,6 +4379,30 @@
         0
       ],
       "info": "Satellite géostationnaire placé au-dessus du front sud-américain, c'est lui qui a repéré les cultistes au sud de la brigade exotique."
+    },
+    {
+      "id": "ress",
+      "nom": "RESS",
+      "inclinaison": 12,
+      "noeud": 160,
+      "periode": 120,
+      "phase": 0.1,
+      "dossier": "rd/ress",
+      "info": "Réseau d'Énergie Solaire Spatiale : 10 000 miroirs de 100 m², soit 1 km², qui concentrent le rayonnement solaire vers la station de réception du Pacifique.",
+      "etat": "Installé"
+    },
+    {
+      "id": "arachne",
+      "nom": "Station Arachne",
+      "etoile": true,
+      "geo": true,
+      "coord": [
+        -22,
+        0
+      ],
+      "dossier": "rd/arachne",
+      "info": "Station de recherche orbitale en anneaux concentriques, autosuffisante en énergie, avec laboratoires en microgravité et modules d'observation atmosphérique.",
+      "etat": "En fabrication"
     }
   ],
   "dossiers": {
@@ -3885,7 +4412,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "## Direction\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment."
+          "contenu": "## Direction\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Accords de Stockholm\nTechnologies développées avec la Smith Technologie Corporation, classées selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
         },
         {
           "id": "anormal",
@@ -3947,6 +4474,61 @@
               "resultat": "Suite aux calculs de Merrick, qui établissent que HCP a prédit 85 % des mouvements cultistes, déplacements civils compris, tout le réseau de capteurs et de topographies de la Confédération fut raccordé à la machine. Un psychoactif fut administré à son unité, à sa demande, et plus personne ne l'approche en dehors de Merrick."
             }
           ]
+        },
+        {
+          "id": "arcology",
+          "titre": "Laboratoire ARCOLOGY",
+          "contenu": "![Le Laboratoire ARCOLOGY](img/arcology.webp)\n\n**Localisation :** 27°59'37.3\"S, 69°24'59.3\"W, Chili, Secteur Amérique, Confédération des Cendres\n\n**Classement :** laboratoire d'exclusion\n\n*Le Laboratoire ARCOLOGY est un laboratoire construit aux débuts mêmes des Accords de Stockholm. Là où la Smith Technologie Corporation se spécialise dans la conception spatiale et la poussée vers les étoiles, la Confédération des Cendres, elle, s'est spécialisée dans l'étude des forces fondamentales et de la recherche sur les différents types de matières.*\n\n*Comme sous-entendu, la fonction principale du laboratoire est l'étude de nouvelles matières, cela peut se schématiser avec, comme exemple mais non limité : la Matière Noire, la Matière exotique (avec la matière quasi négative), la Lumière, la Matière étrange et tout autre composé extrême de notre Univers.*\n\n*Cependant, l'autre fonction principale de ce laboratoire est l'étude des forces et des matériaux fondamentaux d'autres Univers, on pourra par exemple mentionner les cristaux énergétiques de l'Empire du Dragon ou encore l'énergie se baladant au sein des Cultistes.*\n\n## Organisation\n*Le Laboratoire est organisé en 4 ailes bien distinctes. La première est l'aile administrative, des blocs administratifs de plusieurs centaines de mètres de haut comprenant des logements, des ailes de repos et tout autre centre d'activités pour le personnel embauché. Le tout est situé à la surface, permettant à la fois une couverture et des bâtiments de fonction pour une autonomie.*\n\n*La seconde aile, la plus intéressante, est l'aile de recherche, un complexe d'1,3 km² se situant au-dessus de l'aile administrative. Des laboratoires, des salles d'expériences, des bureaux de chercheurs, tout se situe dans cet endroit même, et 90 % de l'activité cérébrale se trouve justement dans cette zone (des recherches sont en cours pour optimiser l'utilisation de cette capacité cérébrale).*\n\n*La troisième aile, la branche armée. Des secteurs à la surface et sous terre regroupant des baraquements de forces de la Confédération et certains détachements de robots de maintenance de la Smith Technologie Corporation. En cas de problème, ce sont eux qui s'occupent de la neutralisation et de l'évacuation du personnel de recherche.*\n\n*La dernière aile est l'aile annexe, on y retrouve notamment le portail reliant la STC et la CC ainsi que le Générateur à Fusion Nucléaire et certains prototypes de générateurs énergétiques de nouvelle génération.*\n\n## Statistiques annexes\n- **Nombre de personnel (CC et STC confondues) :** 27 000\n- **Budget annuel alloué par Stockholm :** 5,7 milliards de Cens\n- **Date de mise en fonction :** 04/03/2075"
+        },
+        {
+          "id": "cls",
+          "titre": "Système CLS",
+          "contenu": "*Développé conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** Installé\n\nLa Centrifugeuse de Lancement Spatiale, abrégée en CLS, est capable d'envoyer des modules spatiaux en dehors de l'attraction terrestre. Initialement, cette technologie avait déjà été découverte par les deux groupes. Le projet final constitue un ensemble de centrifugeuses de 2 km de rayon, permettant l'envoi de vastes satellites sur des astres au sein du système solaire, en l'espace de quelques semaines seulement.\n\nReliée directement à un réacteur à fusion nucléaire et à une usine de fabrication de matériel spatial, il est théoriquement possible d'envoyer 4 modules par jour."
+        },
+        {
+          "id": "ggp",
+          "titre": "Générateur Géothermique Profond",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** Installé\n\nLe Générateur Géothermique Profond, également appelé GGP, est un vaste réseau de forages de plusieurs kilomètres de profondeur autour des chambres magmatiques des volcans. Le GGP est utilisé pour pomper l'énergie thermique du magma enfoui sous un volcan et ramener cette énergie vers la surface à l'aide de réseaux hydrauliques. Une installation type auprès d'un volcan vulcanien permet une production annuelle moyenne de 5 GW.\n\nSur le monde de la Confédération, une installation sur chaque volcan permet théoriquement une production moyenne de 50 TW par an, soit l'équivalent de 40 000 centrales à fission nucléaire.\n\n## Installations\n- Etna, en Italie.\n- Île Barren, en Inde.\n- Mont Meager, au Canada.\n- Mont Spurr, en Alaska."
+        },
+        {
+          "id": "ress",
+          "titre": "Réseau d'Énergie Solaire Spatiale",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** Installé\n\nLe Réseau d'Énergie Solaire Spatiale (RESS) combine deux installations complémentaires de production énergétique. La première se situe en orbite géostationnaire à 35 786 km d'altitude et comprend 10 000 miroirs de 100 m² chacun, couvrant une surface totale d'1 km². Ces miroirs concentrent le rayonnement solaire vers une station de réception maritime dans le Pacifique, optimisée pour une récupération de l'énergie déviée.\n\nLa capacité théorique d'une telle installation est d'environ 4 500 TWh par an."
+        },
+        {
+          "id": "arachne",
+          "titre": "Station Arachne",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** En fabrication\n\nLa Station Arachne est une station de recherche orbitale située en très haute orbite terrestre. Elle est structurée en anneaux concentriques reliés par un réseau de couloirs formant une architecture en toile. Un noyau central assure le contrôle de la rotation, la régulation de la gravité artificielle par force centrifuge, la gestion énergétique et la supervision des équipements.\n\nArachne est conçue pour garantir l'autonomie des deux groupes partenaires, et la station est entièrement autosuffisante en énergie grâce à la conversion du rayonnement solaire. Un module agricole optionnel permet une production alimentaire continue pour les organismes biologiques présents à bord.\n\nLa station comprend des laboratoires en microgravité, des modules d'observation atmosphérique et des unités de recherche dédiées aux technologies solaires. Le programme inclut également le développement de modules expérimentaux extensibles et l'adaptation de cette architecture pour un déploiement vers d'autres corps du système solaire."
+        },
+        {
+          "id": "singularite",
+          "titre": "Projet Singularité",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** En recherche (prototype)\n\nLe Projet Singularité vise à générer une singularité gravitationnelle confinée au sein d'un stabilisateur. L'objectif initial consiste à étudier le comportement de la matière et de l'information à proximité de l'horizon des événements, ainsi qu'à mesurer les interactions quantiques.\n\nLe laboratoire est équipé de capteurs gravitationnels à haute précision. À terme, le projet vise trois objectifs distincts : bien évidemment, l'étude des singularités, mais également le stockage infini d'information et possiblement la création de bombe de Penrose \"portable\".\n\nPour le moment, ce projet n'est qu'un projet de pensée."
+        },
+        {
+          "id": "telescope-stockholm",
+          "titre": "Télescope Stockholm",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** Installé\n\nLe Télescope Stockholm est un observatoire orbital de très grande dimension, équipé d'un miroir hexagonal segmenté à haute sensibilité. Déployé en orbite profonde afin de réduire les interférences lumineuses et thermiques, il est optimisé pour l'analyse des distorsions gravitationnelles faibles et des variations du fond cosmologique. Bien qu'il soit capable d'observer des astres avec une précision exceptionnelle, sa fonction principale demeure l'étude des signatures associées à la matière noire.\n\nLe télescope alterne entre deux phases opérationnelles : l'Observation Solaire et l'Observation Profonde. L'Observation Solaire consiste à analyser le centre solaire et son environnement gravitationnel immédiat afin de détecter d'éventuelles perturbations mesurables. L'Observation Profonde cible des régions faiblement lumineuses de l'espace, nécessitant des temps d'exposition prolongés pour identifier des signatures gravitationnelles et spectrales à très faible intensité."
+        },
+        {
+          "id": "kuiper",
+          "titre": "Station Kuiper",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\nLa Station Kuiper est une installation de recherche intégrée à un astéroïde massif se situant dans la ceinture de Kuiper, à environ 5 milliards de kilomètres de la Terre. La station est utilisée pour étudier la lumière dans des conditions extrêmes ainsi que les minéraux présents dans cette région.\n\nDu fait de sa nature extrêmement isolée, elle doit être entièrement autosuffisante, et elle est équipée d'un prototype de générateur à antimatière et d'un portail dimensionnel. On estime que les bases du portail permettant le début des travaux devraient arriver sur l'astéroïde dans plusieurs mois."
+        },
+        {
+          "id": "spa",
+          "titre": "Système de Production à Antimatière",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** En recherche (prototype), très peu avancé\n\nLe Système de Production à Antimatière (SPA), à ne pas confondre avec le Système de Production à Matière Quasi-Négative, est un générateur expérimental dont le développement demeure en phase théorique. Fondé sur l'équation d'Einstein reliant l'énergie à la masse (E = mc²), le dispositif exploite l'annihilation de la matière avec l'antimatière afin de convertir une masse extrêmement faible en énergie exploitable.\n\nLa mise en œuvre opérationnelle repose sur la production en chaîne d'antimatière en quantités significatives, puis sur son confinement stable. Les premiers prototypes ont permis une production hebdomadaire d'environ 3,785 g, au prix d'un apport énergétique supérieur à l'énergie restituée, rendant le système pour le moment non rentable.\n\nÀ terme, le projet vise à devenir une source énergétique primaire. Deux objectifs structurants conditionnent sa viabilité : la production industrialisée d'antimatière, ainsi que l'atteinte d'un rendement énergétique supérieur à 1,1, garantissant un bilan net positif entre énergie produite et énergie investie.\n\n## Site\nLe laboratoire d'exclusion du SPA se trouve en Europe, au centre de la France."
+        },
+        {
+          "id": "spmqn",
+          "titre": "Système de Production à Matière Quasi-Négative",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** En recherche (prototype)\n\n## Site\nLe laboratoire d'exclusion du SPMQN se trouve en Amérique du Nord, dans le désert du Nevada."
+        },
+        {
+          "id": "tda",
+          "titre": "Tour de Décarbonisation Atmosphérique",
+          "contenu": "*Cet article fait partie des accords de Stockholm. Technologie développée conjointement par la Smith Technologie Corporation et la Confédération des Cendres.*\n\n**État :** Installé\n\nCette technologie ne rentre pas dans les besoins immédiats des deux groupes partenaires des accords de Stockholm. La tour de décarbonisation atmosphérique est une tour d'une centaine de mètres de hauteur, conçue pour absorber de vastes quantités de dioxyde de carbone présent dans l'atmosphère en utilisant des membranes imitant les propriétés de la biosphère. Le dioxyde de carbone est ensuite liquéfié et dirigé vers des stockages ou des zones industrielles.\n\nLa tour a une efficacité remarquable, et ne nécessite presque aucune maintenance ni de vaste quantité d'énergie. On estime que dans une atmosphère saturée à 0,05 %, une seule tour permet le recyclage de 50 000 tonnes par an, son efficacité augmentant quand les concentrations en CO2 sont plus élevées. Pour donner un ordre de grandeur, un arbre à lui seul permet le recyclage de 20 kilogrammes par an.\n\nÀ terme, cette tour ne sera pas utilisée partout sur la Terre mais dans des zones industrielles ou des sites d'excavations spatiaux.\n\n## Implantations\nTrois tours par continent, dans les zones industrielles."
         }
       ]
     },
@@ -4603,6 +5185,63 @@
       "district": "af-experimental",
       "date": "11 sept. 2075",
       "info": "Plateaux éthiopiens, dont le survol est interdit."
+    }
+  ],
+  "flottes": [
+    {
+      "id": "bismarck",
+      "nom": "Flotte Bismarck",
+      "lien": "rd/rd-bismarck",
+      "periode": 480,
+      "info": "Placée sous le Commandant Heir, la flotte teste l'armement nouveau de la R&D et croise en mer de Chine orientale, pas très loin des côtes chinoises.",
+      "trajet": [
+        [
+          123.4,
+          30.6
+        ],
+        [
+          124.9,
+          29.4
+        ],
+        [
+          125.3,
+          27.6
+        ],
+        [
+          124.2,
+          26.3
+        ],
+        [
+          122.9,
+          27.4
+        ],
+        [
+          122.7,
+          29.0
+        ]
+      ]
+    }
+  ],
+  "communiques": [
+    {
+      "date": "10 sept. 2075",
+      "source": "HCP",
+      "texte": "Entité détectée. Menace élevée. 2 145 effectifs perdus. Ganzir requis."
+    },
+    {
+      "date": "10 sept. 2075",
+      "source": "Diffusion du bunker",
+      "texte": "Nous avons tué Dieu il y a quatre-vingts ans. Et nous le tuerons à nouveau. Ouvrez vos portes. Prenez les armes."
+    },
+    {
+      "date": "11 sept. 2075",
+      "source": "Ganzir",
+      "texte": "Rasez ce qu'il reste des êtres vivants de ce continent."
+    },
+    {
+      "date": "19 sept. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Le District Central est sécurisé."
     }
   ]
 }
