@@ -79,6 +79,13 @@
     L.fond.selectAll('*').remove();
     L.fond.append('path').attr('class', 'sphere').attr('d', path({ type: 'Sphere' }));
     L.fond.append('path').attr('class', 'ocean-grid').attr('d', path(d3.geoGraticule10()));
+    // Logo de la CC en filigrane : dans le groupe zoomé, il suit la carte
+    const [[sx0, sy0], [sx1, sy1]] = path.bounds({ type: 'Sphere' });
+    const tl = Math.min(sx1 - sx0, sy1 - sy0) * 0.92;
+    L.fond.append('image').attr('class', 'filigrane').attr('href', 'logo.png').attr('aria-hidden', 'true')
+      .attr('x', (sx0 + sx1 - tl) / 2).attr('y', (sy0 + sy1 - tl) / 2).attr('width', tl).attr('height', tl);
+    // On se déplace dans la carte sans pouvoir la sortir du cadre
+    zoom.translateExtent([[0, 0], [W, H]]).extent([[0, 0], [W, H]]);
 
     const avecGeo = districts.filter(d => d._geo);
     L.dist.selectAll('path').data(avecGeo, d => d.id).join('path')
@@ -170,6 +177,7 @@
       const haut = 64, bas = 64, dispoH = H - haut - bas;
       const kk = Math.max(1, Math.min(16, 0.88 / Math.max((x1 - x0) / W, (y1 - y0) / dispoH)));
       t = d3.zoomIdentity.translate(W / 2, haut + dispoH / 2).scale(kk).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+      t = zoom.constrain()(t, zoom.extent()(), zoom.translateExtent());
     }
     const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     (anime && !reduit ? svg.transition().duration(700).ease(d3.easeCubicInOut) : svg).call(zoom.transform, t);

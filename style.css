@@ -265,7 +265,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sat.importante .nom-sat{fill:var(--or);font-weight:700}
 .btn-legende{display:none}
 /* Filigrane : sceau de la Confédération derrière la carte */
-.filigrane{position:absolute;left:50%;top:50%;width:min(62%,34rem);aspect-ratio:1;max-width:100%;transform:translate(-50%,-50%);opacity:.07;pointer-events:none;mix-blend-mode:screen;z-index:0;filter:grayscale(.3)}
+.filigrane{opacity:.08;pointer-events:none;mix-blend-mode:screen;filter:grayscale(.3)}
 .pastille-labo{fill:var(--card);stroke:var(--st-reconquete);stroke-width:1.5}
 .labo{fill:none;stroke:var(--st-reconquete);stroke-width:2.2;stroke-linecap:round}
 .sw-labo{width:0.8rem;height:0.8rem}
