@@ -993,14 +993,13 @@
       <div class="t-top"><svg id="bigClock" viewBox="0 0 100 100" aria-hidden="true"></svg>
         <div><h2 id="tensionTitre" class="ds-display">Palier ${i + 1} · ${esc(P[i].nom)}</h2>
         <p class="heure">${C.heure(min)}</p>
-        <p class="ds-supporting">${min > 0 ? `${min.toFixed(1).replace('.', ',')} minutes avant minuit` : 'Minuit atteint'}, tension ${Math.round(t)} sur 100${etat.replay !== null ? ' (archive)' : ''}</p></div></div>
+        ${etat.replay !== null ? '<p class="ds-supporting">Archive</p>' : ''}</div></div>
       <div class="t-jauge" role="img" aria-label="Tension ${Math.round(t)} sur 100"><div class="cur" style="left:calc(${t}% - 1px)"></div>
         ${P.map(p => `<span class="tick" style="left:${p.min}%">${p.min}</span>`).join('')}</div>
       <ol class="paliers">${P.map((p, j) => `
         <li class="pal ${j < i ? 'passe' : j === i ? 'actuel' : ''}" ${j === i ? 'aria-current="step"' : ''}>
           <span class="num">${j + 1}</span>
-          <span class="nm">${esc(p.nom)}</span>
-          <span class="seuil">À partir de ${p.min}, ${p.minutes} min</span></li>`).join('')}</ol>`;
+          <span class="nm">${esc(p.nom)}</span></li>`).join('')}</ol>`;
     horloge($('#bigClock'), min, true);
   }
   $('#tensionBtn').addEventListener('click', () => $('#tensionDlg').showModal());
