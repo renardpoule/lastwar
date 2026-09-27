@@ -3,8 +3,8 @@
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "27 sept. 2075",
-    "derniereMaj": "2026-09-27T18:42:05.029Z",
-    "distorsion": 100,
+    "derniereMaj": "2026-09-27T18:45:47.871Z",
+    "distorsion": 55,
     "energie": {
       "unite": "TW",
       "production": 64,
@@ -3978,7 +3978,7 @@
     {
       "date": "27 sept. 2075",
       "tension": 55,
-      "distorsion": 100,
+      "distorsion": 55,
       "evenements": 28,
       "districts": {
         "eu-nord": {
@@ -6120,10 +6120,6 @@
           "effectif": 2500
         },
         {
-          "nom": "Division Phoenix",
-          "effectif": 600
-        },
-        {
           "nom": "Milices citoyennes",
           "effectif": "~900000"
         }
@@ -6202,10 +6198,6 @@
           "effectif": 1200
         },
         {
-          "nom": "Division Phoenix",
-          "effectif": 400
-        },
-        {
           "nom": "Milices citoyennes",
           "effectif": "~3100000"
         }
@@ -6261,10 +6253,6 @@
         {
           "nom": "Forces spéciales",
           "effectif": 2200
-        },
-        {
-          "nom": "Division Phoenix",
-          "effectif": 900
         },
         {
           "nom": "Milices citoyennes",
@@ -6452,10 +6440,6 @@
         {
           "nom": "Milices citoyennes",
           "effectif": "~9800000"
-        },
-        {
-          "nom": "3rd Liberty division (robots)",
-          "effectif": 30
         }
       ],
       "description": "Première place financière du secteur, au bord du lac Michigan, où trente robots de la 3rd Liberty division gardent les ponts de la rivière et les portes de la Bourse. Le métro aérien fut arrêté après la découverte de marques cultistes sur les piliers de la Loop, et les meutes qui tournent la nuit, elles, n'attendent pas toujours le SMC pour décider qui est coupable."
@@ -6522,10 +6506,6 @@
         {
           "nom": "Forces spéciales",
           "effectif": 1300
-        },
-        {
-          "nom": "Division Phoenix",
-          "effectif": 400
         },
         {
           "nom": "Milices citoyennes",
