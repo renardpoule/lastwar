@@ -6064,7 +6064,7 @@
         {
           "id": "traverseurs",
           "titre": "Traverseurs",
-          "contenu": "## Le réseau\nLes Traverseurs, ce sont les quatre grandes lignes ferroviaires de la Confédération, que Nouvelle-Détroit fait tourner jour et nuit depuis la mobilisation générale, et qui transportent à peu près tout ce qui ne peut pas voler, des blindés aux réfugiés en passant par les trains-hôpitaux qui déchargent les blessés à Krasnoïarsk et au campus MUSH.\n\n## Pendant la guerre\nAlors que la guerre éclata le 8 sept., le réseau passa sous l'autorité du secteur Administration, qui décide seul de ce qui monte dans les convois et de ce qui reste sur le quai. Là où les bulles cultistes mordent sur les voies, près de Bogotá, la ligne est considérée comme coupée, même si des trains blindés forcent encore le passage de temps à autre, ce qui revient presque au même pour ceux qui attendent de l'autre côté. À Mexico, depuis la destruction de la poche le 23 sept., les équipes de Nouvelle-Détroit relaient la voie, et le Panaméricain devrait rouvrir, un jour."
+          "contenu": "## Le réseau\nLes Traverseurs, ce sont les quatre grandes lignes ferroviaires de la Confédération, que Nouvelle-Détroit fait tourner jour et nuit depuis la mobilisation générale, et qui transportent à peu près tout ce qui ne peut pas voler, des blindés aux réfugiés en passant par les trains-hôpitaux qui déchargent les blessés à Krasnoïarsk et au campus MUSH. Les lignes se tiennent entre elles, puisque le pont de Gibraltar relie le Transeurasien à la Ceinture africaine et que le Bosphore le relie à la Route des moussons, si bien qu'un convoi parti de Lisbonne peut, en théorie, finir sa course au Cap ou à Port Klang.\n\n## Pendant la guerre\nAlors que la guerre éclata le 8 sept., le réseau passa sous l'autorité du secteur Administration, qui décide seul de ce qui monte dans les convois et de ce qui reste sur le quai. Là où les bulles cultistes mordent sur les voies, près de Bogotá, la ligne est considérée comme coupée, même si des trains blindés forcent encore le passage de temps à autre, ce qui revient presque au même pour ceux qui attendent de l'autre côté. À Mexico, depuis la destruction de la poche le 23 sept., les équipes de Nouvelle-Détroit relaient la voie, et le Panaméricain devrait rouvrir, un jour."
         }
       ]
     }
@@ -7483,7 +7483,7 @@
       "boucle": true,
       "periode": 900,
       "dossier": "administration/traverseurs",
-      "info": "Boucle qui fait le tour du continent par la côte, sans jamais s'enfoncer vers l'intérieur, qui reste en quarantaine depuis les frappes du 11 sept.",
+      "info": "Boucle qui fait le tour du continent par la côte, sans jamais s'enfoncer vers l'intérieur, qui reste en quarantaine depuis les frappes du 11 sept. À Tanger, le pont de Gibraltar la raccorde au Transeurasien.",
       "voie": [
         [
           -5.8,
@@ -7630,7 +7630,7 @@
       "nom": "Transeurasien",
       "periode": 1000,
       "dossier": "administration/traverseurs",
-      "info": "Colonne vertébrale du continent, de Lisbonne à Vladivostok par Moscou et la Sibérie, avec une branche qui descend sur Pékin par Oulan-Bator.",
+      "info": "Colonne vertébrale du continent, de Lisbonne à Vladivostok par Moscou et la Sibérie, avec trois branches : l'une descend sur Pékin par Oulan-Bator, l'autre passe le pont de Gibraltar pour rejoindre la Ceinture africaine à Tanger, et la dernière file de Varsovie à Istanbul par les Balkans, où elle retrouve la Route des moussons.",
       "voie": [
         [
           -9.14,
@@ -7719,6 +7719,54 @@
             116.4,
             39.9
           ]
+        ],
+        [
+          [
+            -3.7,
+            40.4
+          ],
+          [
+            -4.78,
+            37.88
+          ],
+          [
+            -5.98,
+            37.39
+          ],
+          [
+            -5.6,
+            36.02
+          ],
+          [
+            -5.8,
+            35.8
+          ]
+        ],
+        [
+          [
+            21.0,
+            52.2
+          ],
+          [
+            19.94,
+            50.06
+          ],
+          [
+            19.04,
+            47.5
+          ],
+          [
+            20.46,
+            44.8
+          ],
+          [
+            23.32,
+            42.7
+          ],
+          [
+            28.98,
+            41.0
+          ]
         ]
       ],
       "fiche": [
@@ -7727,8 +7775,8 @@
           "Lisbonne, Paris, Berlin, Moscou, Novossibirsk, Krasnoïarsk, Irkoutsk, Vladivostok"
         ],
         [
-          "Branche",
-          "Oulan-Oude, Oulan-Bator, Pékin"
+          "Branches",
+          "Oulan-Oude, Oulan-Bator, Pékin ; Madrid, Séville, pont de Gibraltar, Tanger ; Varsovie, Cracovie, Budapest, Belgrade, Sofia, Istanbul"
         ],
         [
           "Rôle",
@@ -7893,7 +7941,7 @@
       "nom": "Route des moussons",
       "periode": 900,
       "dossier": "administration/traverseurs",
-      "info": "Ligne d'Istanbul à Port Klang par Bagdad, Téhéran, Delhi et Bangkok, qui dessert tout le sud du continent et le port du détroit de Malacca.",
+      "info": "Ligne d'Istanbul à Port Klang par Bagdad, Téhéran, Delhi et Bangkok, qui dessert tout le sud du continent et le port du détroit de Malacca. À Istanbul, elle passe le Bosphore et rejoint la branche balkanique du Transeurasien.",
       "voie": [
         [
           28.98,
