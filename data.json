@@ -3,7 +3,7 @@
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "27 sept. 2075",
-    "derniereMaj": "2026-09-26T12:00:00.000Z",
+    "derniereMaj": "2026-09-27T18:41:48.536Z",
     "distorsion": 50,
     "energie": {
       "unite": "TW",
@@ -4523,7 +4523,7 @@
       "id": "ggp-etna",
       "nom": "GGP Etna",
       "coord": [
-        15.0,
+        15,
         37.75
       ],
       "icone": "geothermie",
@@ -4643,8 +4643,8 @@
       "id": "ress-reception",
       "nom": "Réception RESS",
       "coord": [
-        -150.0,
-        4.0
+        -150,
+        4
       ],
       "icone": "reception",
       "info": "Station de réception maritime du RESS, qui récupère le rayonnement solaire concentré par les miroirs en orbite.",
@@ -4674,7 +4674,7 @@
       "nom": "KRONOS",
       "coord": [
         21.5,
-        3.0
+        3
       ],
       "icone": "labo",
       "info": "Laboratoire d'exclusion du Projet Singularité, où l'on cherche à confiner une singularité gravitationnelle dans un stabilisateur.",
@@ -4704,8 +4704,8 @@
       "id": "telescopes-stockholm",
       "nom": "Télescopes Stockholm",
       "coord": [
-        100.0,
-        62.0
+        100,
+        62
       ],
       "icone": "telescope",
       "info": "Site des télescopes Stockholm, consacrés à l'étude des distorsions gravitationnelles et des signatures de la matière noire.",
@@ -4765,7 +4765,7 @@
       "id": "spmqn",
       "nom": "APEIRON",
       "coord": [
-        -116.0,
+        -116,
         37.2
       ],
       "icone": "labo",
@@ -4822,8 +4822,8 @@
       "id": "khaos",
       "nom": "KHAOS",
       "coord": [
-        78.0,
-        46.0
+        78,
+        46
       ],
       "icone": "labo",
       "glitch": true,
@@ -4886,7 +4886,7 @@
       "id": "tda-2",
       "nom": "TDA Silésie",
       "coord": [
-        19.0,
+        19,
         50.3
       ],
       "icone": "tda",
@@ -5193,7 +5193,7 @@
       "nom": "TDA Nouvelle-Détroit",
       "coord": [
         -83.6,
-        42.0
+        42
       ],
       "icone": "tda",
       "info": "Tour de Décarbonisation Atmosphérique, près de Nouvelle-Détroit, qui recycle environ 50 000 tonnes de CO2 par an.",
@@ -5295,7 +5295,7 @@
       "nom": "TDA Rosario",
       "coord": [
         -60.7,
-        -33.0
+        -33
       ],
       "icone": "tda",
       "info": "Tour de Décarbonisation Atmosphérique, près de Rosario, qui recycle environ 50 000 tonnes de CO2 par an.",
@@ -6304,7 +6304,7 @@
       "nom": "Port Klang",
       "coord": [
         101.39,
-        3.0
+        3
       ],
       "district": "as-sudest",
       "etat": 90,
@@ -6673,7 +6673,7 @@
         ],
         [
           122.7,
-          29.0
+          29
         ]
       ],
       "type": "recherche",
@@ -6714,14 +6714,14 @@
       "trajet": [
         [
           -40.18,
-          33.0
+          33
         ],
         [
           -41.3,
           35.26
         ],
         [
-          -44.0,
+          -44,
           36.2
         ],
         [
@@ -6730,14 +6730,14 @@
         ],
         [
           -47.82,
-          33.0
+          33
         ],
         [
           -46.7,
           30.74
         ],
         [
-          -44.0,
+          -44,
           29.8
         ],
         [
@@ -6930,7 +6930,7 @@
         ],
         [
           117.9,
-          22.0
+          22
         ],
         [
           116.9,
@@ -7080,7 +7080,7 @@
           -20.3
         ],
         [
-          -71.0,
+          -71,
           -22.4
         ],
         [
@@ -7142,7 +7142,7 @@
         ],
         [
           -76.2,
-          -17.0
+          -17
         ],
         [
           -74.3,
@@ -7374,7 +7374,7 @@
           27.9
         ],
         [
-          123.0,
+          123,
           26.6
         ],
         [
@@ -7411,12 +7411,12 @@
           21.9
         ],
         [
-          115.0,
+          115,
           21.3
         ],
         [
-          114.0,
-          21.0
+          114,
+          21
         ]
       ],
       "zone": "Bouches de la rivière des Perles",
@@ -7527,11 +7527,11 @@
         ],
         [
           45.3,
-          2.0
+          2
         ],
         [
           39.7,
-          -4.0
+          -4
         ],
         [
           39.3,
@@ -7546,7 +7546,7 @@
           -25.9
         ],
         [
-          31.0,
+          31,
           -29.9
         ],
         [
@@ -7582,7 +7582,7 @@
           5.6
         ],
         [
-          -4.0,
+          -4,
           5.3
         ],
         [
@@ -7649,7 +7649,7 @@
           52.5
         ],
         [
-          21.0,
+          21,
           52.2
         ],
         [
@@ -7666,15 +7666,15 @@
         ],
         [
           73.4,
-          55.0
+          55
         ],
         [
           82.9,
-          55.0
+          55
         ],
         [
           92.9,
-          56.0
+          56
         ],
         [
           104.3,
@@ -7686,11 +7686,11 @@
         ],
         [
           113.5,
-          52.0
+          52
         ],
         [
           123.9,
-          54.0
+          54
         ],
         [
           135.1,
@@ -7744,7 +7744,7 @@
         ],
         [
           [
-            21.0,
+            21,
             52.2
           ],
           [
@@ -7765,7 +7765,7 @@
           ],
           [
             28.98,
-            41.0
+            41
           ]
         ]
       ],
@@ -7816,7 +7816,7 @@
           40.76
         ],
         [
-          -105.0,
+          -105,
           39.7
         ],
         [
@@ -7853,7 +7853,7 @@
         ],
         [
           -79.5,
-          9.0
+          9
         ],
         [
           -77.3,
@@ -7876,12 +7876,12 @@
           -0.2
         ],
         [
-          -79.0,
+          -79,
           -2.9
         ],
         [
-          -77.0,
-          -12.0
+          -77,
+          -12
         ],
         [
           -71.5,
@@ -7945,7 +7945,7 @@
       "voie": [
         [
           28.98,
-          41.0
+          41
         ],
         [
           32.85,
@@ -7972,7 +7972,7 @@
           29.5
         ],
         [
-          67.0,
+          67,
           30.2
         ],
         [
@@ -7984,7 +7984,7 @@
           28.6
         ],
         [
-          83.0,
+          83,
           25.3
         ],
         [
@@ -8009,7 +8009,7 @@
         ],
         [
           101.39,
-          3.0
+          3
         ]
       ],
       "fiche": [
