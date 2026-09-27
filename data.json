@@ -4677,11 +4677,15 @@
         3.0
       ],
       "icone": "labo",
-      "info": "Laboratoire d'exclusion du Projet Singularité, où l'on cherche à confiner une singularité gravitationnelle dans un stabilisateur.",
+      "info": "Laboratoire d'exclusion KRONOS, où le Projet Singularité cherche à confiner une singularité gravitationnelle dans un stabilisateur.",
       "dossier": "rd/singularite",
       "glitch": true,
       "etat": "En recherche (prototype)",
       "fiche": [
+        [
+          "Laboratoire",
+          "KRONOS"
+        ],
         [
           "Personnel",
           "480 chercheurs"
@@ -5892,7 +5896,7 @@
         {
           "id": "singularite",
           "titre": "Projet Singularité",
-          "contenu": "![Projet Singularité](img/singularite.webp)\n\n**État :** En recherche (prototype)\n\nLe Projet Singularité vise à générer une singularité gravitationnelle confinée au sein d'un stabilisateur. L'objectif initial consiste à étudier le comportement de la matière et de l'information à proximité de l'horizon des événements, ainsi qu'à mesurer les interactions quantiques.\n\nLe laboratoire est équipé de capteurs gravitationnels à haute précision. À terme, le projet vise trois objectifs distincts : bien évidemment, l'étude des singularités, mais également le stockage infini d'information et possiblement la création de bombe de Penrose \"portable\".\n\nPour le moment, ce projet n'est qu'un projet de pensée."
+          "contenu": "![Projet Singularité](img/singularite.webp)\n\n**État :** En recherche (prototype)\n\nLe Projet Singularité vise à générer une singularité gravitationnelle confinée au sein d'un stabilisateur. L'objectif initial consiste à étudier le comportement de la matière et de l'information à proximité de l'horizon des événements, ainsi qu'à mesurer les interactions quantiques.\n\nLe laboratoire est équipé de capteurs gravitationnels à haute précision. À terme, le projet vise trois objectifs distincts : bien évidemment, l'étude des singularités, mais également le stockage infini d'information et possiblement la création de bombe de Penrose \"portable\".\n\nPour le moment, ce projet n'est qu'un projet de pensée.\n\n## Site\nLe laboratoire d'exclusion du Projet Singularité, baptisé KRONOS, se trouve en Afrique, au nord du bassin du Congo."
         },
         {
           "id": "telescope-stockholm",
