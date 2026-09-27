@@ -3171,22 +3171,22 @@
         "zeebrugge": 96,
         "nouvelle-luxembourg": 99,
         "zurich": 99,
-        "kiel": 90,
-        "kazan": 80,
-        "yokohama": 97,
-        "harbin": 94,
-        "novossibirsk": 96,
-        "singapour": 95,
-        "dubai": 97,
-        "mumbai": 94,
+        "kiel": 98,
+        "kazan": 97,
+        "yokohama": 99,
+        "harbin": 97,
+        "novossibirsk": 99,
+        "singapour": 98,
+        "dubai": 99,
+        "mumbai": 98,
         "sydney": 100,
         "washington": 97,
-        "new-york": 95,
-        "mexico": 90,
-        "brasilia": 70,
-        "buenos-aires": 95,
+        "new-york": 97,
+        "mexico": 97,
+        "brasilia": 92,
+        "buenos-aires": 99,
         "canberra": 100,
-        "le-cap": 88
+        "le-cap": 98
       }
     },
     {
@@ -3410,22 +3410,22 @@
         "zeebrugge": 94,
         "nouvelle-luxembourg": 98,
         "zurich": 99,
-        "kiel": 88,
-        "kazan": 70,
-        "yokohama": 95,
-        "harbin": 90,
-        "novossibirsk": 93,
-        "singapour": 90,
-        "dubai": 95,
-        "mumbai": 90,
+        "kiel": 97,
+        "kazan": 95,
+        "yokohama": 98,
+        "harbin": 93,
+        "novossibirsk": 97,
+        "singapour": 96,
+        "dubai": 97,
+        "mumbai": 96,
         "sydney": 100,
         "washington": 95,
-        "new-york": 92,
-        "mexico": 82,
-        "brasilia": 45,
-        "buenos-aires": 90,
+        "new-york": 95,
+        "mexico": 95,
+        "brasilia": 80,
+        "buenos-aires": 97,
         "canberra": 99,
-        "le-cap": 80
+        "le-cap": 98
       }
     },
     {
@@ -3651,22 +3651,22 @@
         "zeebrugge": 93,
         "nouvelle-luxembourg": 97,
         "zurich": 98,
-        "kiel": 92,
-        "kazan": 62,
-        "yokohama": 92,
-        "harbin": 85,
-        "novossibirsk": 88,
-        "singapour": 85,
-        "dubai": 92,
-        "mumbai": 85,
+        "kiel": 90,
+        "kazan": 90,
+        "yokohama": 97,
+        "harbin": 91,
+        "novossibirsk": 95,
+        "singapour": 93,
+        "dubai": 95,
+        "mumbai": 94,
         "sydney": 99,
         "washington": 93,
-        "new-york": 89,
-        "mexico": 70,
-        "brasilia": 22,
-        "buenos-aires": 85,
+        "new-york": 93,
+        "mexico": 92,
+        "brasilia": 55,
+        "buenos-aires": 95,
         "canberra": 99,
-        "le-cap": 66
+        "le-cap": 97
       }
     },
     {
@@ -3929,22 +3929,22 @@
         "zeebrugge": 93,
         "nouvelle-luxembourg": 97,
         "zurich": 95,
-        "kiel": 94,
-        "kazan": 58,
-        "yokohama": 88,
-        "harbin": 78,
-        "novossibirsk": 82,
-        "singapour": 80,
-        "dubai": 90,
-        "mumbai": 79,
+        "kiel": 93,
+        "kazan": 86,
+        "yokohama": 95,
+        "harbin": 89,
+        "novossibirsk": 93,
+        "singapour": 91,
+        "dubai": 93,
+        "mumbai": 92,
         "sydney": 99,
         "washington": 92,
-        "new-york": 87,
+        "new-york": 91,
         "mexico": 46,
-        "brasilia": 8,
-        "buenos-aires": 80,
+        "brasilia": 10,
+        "buenos-aires": 91,
         "canberra": 98,
-        "le-cap": 71
+        "le-cap": 97
       },
       "pertes": {
         "confederation": {
@@ -4267,21 +4267,21 @@
         "nouvelle-luxembourg": 97,
         "zurich": 95,
         "kiel": 94,
-        "kazan": 58,
-        "yokohama": 88,
-        "harbin": 78,
-        "novossibirsk": 82,
-        "singapour": 80,
-        "dubai": 90,
-        "mumbai": 79,
+        "kazan": 84,
+        "yokohama": 94,
+        "harbin": 88,
+        "novossibirsk": 93,
+        "singapour": 90,
+        "dubai": 92,
+        "mumbai": 91,
         "sydney": 99,
         "washington": 92,
-        "new-york": 87,
+        "new-york": 90,
         "mexico": 60,
         "brasilia": 8,
-        "buenos-aires": 80,
+        "buenos-aires": 90,
         "canberra": 98,
-        "le-cap": 71
+        "le-cap": 97
       },
       "pertes": {
         "confederation": {
@@ -6130,7 +6130,7 @@
         55.8
       ],
       "district": "eu-est",
-      "etat": 58,
+      "etat": 84,
       "image": "ruines",
       "garnison": [
         {
@@ -6160,7 +6160,7 @@
         35.44
       ],
       "district": "as-japon",
-      "etat": 88,
+      "etat": 94,
       "image": "pagode",
       "garnison": [
         {
@@ -6191,7 +6191,7 @@
         45.75
       ],
       "district": "as-sinorusse",
-      "etat": 78,
+      "etat": 88,
       "image": "usines",
       "garnison": [
         {
@@ -6221,7 +6221,7 @@
         55.03
       ],
       "district": "as-sinorusse",
-      "etat": 82,
+      "etat": 93,
       "image": "prison",
       "garnison": [
         {
@@ -6247,7 +6247,7 @@
         1.35
       ],
       "district": "as-sudest",
-      "etat": 80,
+      "etat": 90,
       "image": "port",
       "garnison": [
         {
@@ -6273,7 +6273,7 @@
         25.2
       ],
       "district": "as-moyen-orient",
-      "etat": 90,
+      "etat": 92,
       "image": "tours",
       "garnison": [
         {
@@ -6299,7 +6299,7 @@
         19.08
       ],
       "district": "as-indopak",
-      "etat": 79,
+      "etat": 91,
       "image": "tours",
       "garnison": [
         {
@@ -6378,7 +6378,7 @@
         40.71
       ],
       "district": "am-usa",
-      "etat": 87,
+      "etat": 90,
       "image": "tours",
       "garnison": [
         {
@@ -6452,7 +6452,7 @@
         -34.6
       ],
       "district": "am-austral",
-      "etat": 80,
+      "etat": 90,
       "image": "port",
       "garnison": [
         {
@@ -6505,7 +6505,7 @@
         -33.92
       ],
       "district": "af-cote",
-      "etat": 71,
+      "etat": 97,
       "image": "port",
       "capitale": true,
       "garnison": [
