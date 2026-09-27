@@ -62,7 +62,7 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 **Chiffres** : `12000` · `~12000` (estimation, affichée "~12 000") · `?` ou `CLASSIFIÉ` (donnée masquée).
 
 **Liens partageables** : chaque zone a sa propre adresse, par exemple
-`…/lastwar/#europe/eu-est` ouvre directement le District de l'Est, `…/lastwar/#europe/eu-est/kazan` la fiche de Kazan,
+`…/lastwar/#europe/eu-est` ouvre directement le District de l'Est, `…/lastwar/#europe/eu-est/magnitogorsk` la fiche de Magnitogorsk,
 `…/lastwar/secteurs.html#renseignement/atmosphere` le dossier Atmosphère.
 
 **Plan de guerre** : les pions des unités sont calculés à partir des effectifs des districts (Forces régulières, Forces spéciales, Division Phoenix, forces cultistes). Leur taille suit l'effectif ; il n'y a rien à placer à la main. En vue monde, chaque district n'affiche que deux pions, un pour la CC et un pour les cultistes, qui résument toutes ses troupes ; le détail apparaît quand on clique sur un secteur.

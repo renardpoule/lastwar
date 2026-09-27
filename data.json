@@ -202,7 +202,7 @@
               "disparus": "?"
             }
           },
-          "note": "Kazan reste la seule grande ville encore debout près de l'Oural, et tout ce qui fuit l'est finit par passer par elle.",
+          "note": "Magnitogorsk reste la seule grande ville encore debout près de l'Oural, et tout ce qui fuit l'est finit par passer par elle.",
           "label": [
             42,
             55
@@ -429,7 +429,7 @@
       "id": "asie",
       "nom": "Asie",
       "geographique": true,
-      "note": "Conseillère : Mlle Mori \"Kodo\" Kumano. Capitale : Yokohama. Avec l'Amérique du Sud, c'est le front le plus critique de la Confédération, et de loin le plus imprévisible.",
+      "note": "Conseillère : Mlle Mori \"Kodo\" Kumano. Capitale : Sapporo. Avec l'Amérique du Sud, c'est le front le plus critique de la Confédération, et de loin le plus imprévisible.",
       "districts": [
         {
           "id": "as-moyen-orient",
@@ -494,7 +494,7 @@
               "disparus": "?"
             }
           },
-          "note": "Capitales économiques : Dubaï, Riyad pour les ressources militaires et Téhéran pour la recherche.",
+          "note": "Capitales économiques : Bandar Abbas, Riyad pour les ressources militaires et Téhéran pour la recherche.",
           "quarantaine": false,
           "air": {
             "niveau": "totale",
@@ -625,7 +625,7 @@
               "disparus": "?"
             }
           },
-          "note": "Mumbai, Lahore, Chennai.",
+          "note": "Ludhiana, Lahore, Chennai.",
           "quarantaine": false,
           "air": {
             "niveau": "totale",
@@ -778,7 +778,7 @@
               "disparus": "?"
             }
           },
-          "note": "Capitale du secteur : Yokohama, où le Site-45 reconverti protège la recherche en IA et en robotique.",
+          "note": "Capitale du secteur : Sapporo, où le Site-45 reconverti protège la recherche en IA et en robotique.",
           "label": [
             137,
             37
@@ -852,7 +852,7 @@
               "disparus": "?"
             }
           },
-          "note": "Alors que les Philippines et le nord de l'Indonésie passèrent en quarantaine, le reste du district garde ses routes ouvertes, même si le Commando des lignes arrières frappe toujours là où on ne l'attend pas, de Singapour aux ports de Java. Au nord, la Flottille du Tonkin bombarde la côte vietnamienne jour et nuit.",
+          "note": "Alors que les Philippines et le nord de l'Indonésie passèrent en quarantaine, le reste du district garde ses routes ouvertes, même si le Commando des lignes arrières frappe toujours là où on ne l'attend pas, de Port Klang aux ports de Java. Au nord, la Flottille du Tonkin bombarde la côte vietnamienne jour et nuit.",
           "quarantaine": false,
           "air": {
             "niveau": "nette",
@@ -1366,7 +1366,7 @@
       "id": "amerique",
       "nom": "Amérique",
       "geographique": true,
-      "note": "Conseiller : Mr Mark Saddler. Diplomate : Karl Saddler. Capitale : Washington.",
+      "note": "Conseiller : Mr Mark Saddler. Diplomate : Karl Saddler. Capitale : Nouvelle-Détroit.",
       "districts": [
         {
           "id": "am-canada",
@@ -3172,19 +3172,19 @@
         "nouvelle-luxembourg": 99,
         "zurich": 99,
         "kiel": 98,
-        "kazan": 97,
-        "yokohama": 99,
-        "harbin": 97,
-        "novossibirsk": 99,
-        "singapour": 98,
-        "dubai": 99,
-        "mumbai": 98,
+        "magnitogorsk": 97,
+        "sapporo": 99,
+        "tianjin": 97,
+        "norilsk": 99,
+        "port-klang": 98,
+        "bandar-abbas": 99,
+        "ludhiana": 98,
         "sydney": 100,
-        "washington": 97,
-        "new-york": 97,
+        "nouvelle-detroit": 97,
+        "chicago": 97,
         "mexico": 97,
         "brasilia": 92,
-        "buenos-aires": 99,
+        "rosario": 99,
         "canberra": 100,
         "le-cap": 98
       }
@@ -3411,19 +3411,19 @@
         "nouvelle-luxembourg": 98,
         "zurich": 99,
         "kiel": 97,
-        "kazan": 95,
-        "yokohama": 98,
-        "harbin": 93,
-        "novossibirsk": 97,
-        "singapour": 96,
-        "dubai": 97,
-        "mumbai": 96,
+        "magnitogorsk": 95,
+        "sapporo": 98,
+        "tianjin": 93,
+        "norilsk": 98,
+        "port-klang": 96,
+        "bandar-abbas": 97,
+        "ludhiana": 96,
         "sydney": 100,
-        "washington": 95,
-        "new-york": 95,
+        "nouvelle-detroit": 95,
+        "chicago": 95,
         "mexico": 95,
         "brasilia": 80,
-        "buenos-aires": 97,
+        "rosario": 97,
         "canberra": 99,
         "le-cap": 98
       }
@@ -3652,19 +3652,19 @@
         "nouvelle-luxembourg": 97,
         "zurich": 98,
         "kiel": 90,
-        "kazan": 90,
-        "yokohama": 97,
-        "harbin": 91,
-        "novossibirsk": 95,
-        "singapour": 93,
-        "dubai": 95,
-        "mumbai": 94,
+        "magnitogorsk": 90,
+        "sapporo": 97,
+        "tianjin": 90,
+        "norilsk": 96,
+        "port-klang": 93,
+        "bandar-abbas": 95,
+        "ludhiana": 94,
         "sydney": 99,
-        "washington": 93,
-        "new-york": 93,
+        "nouvelle-detroit": 93,
+        "chicago": 93,
         "mexico": 92,
         "brasilia": 55,
-        "buenos-aires": 95,
+        "rosario": 95,
         "canberra": 99,
         "le-cap": 97
       }
@@ -3930,19 +3930,19 @@
         "nouvelle-luxembourg": 97,
         "zurich": 95,
         "kiel": 93,
-        "kazan": 86,
-        "yokohama": 95,
-        "harbin": 89,
-        "novossibirsk": 93,
-        "singapour": 91,
-        "dubai": 93,
-        "mumbai": 92,
+        "magnitogorsk": 86,
+        "sapporo": 95,
+        "tianjin": 87,
+        "norilsk": 94,
+        "port-klang": 91,
+        "bandar-abbas": 93,
+        "ludhiana": 92,
         "sydney": 99,
-        "washington": 92,
-        "new-york": 91,
+        "nouvelle-detroit": 92,
+        "chicago": 91,
         "mexico": 46,
         "brasilia": 10,
-        "buenos-aires": 91,
+        "rosario": 91,
         "canberra": 98,
         "le-cap": 97
       },
@@ -4267,19 +4267,19 @@
         "nouvelle-luxembourg": 97,
         "zurich": 95,
         "kiel": 94,
-        "kazan": 84,
-        "yokohama": 94,
-        "harbin": 88,
-        "novossibirsk": 93,
-        "singapour": 90,
-        "dubai": 92,
-        "mumbai": 91,
+        "magnitogorsk": 84,
+        "sapporo": 94,
+        "tianjin": 85,
+        "norilsk": 94,
+        "port-klang": 90,
+        "bandar-abbas": 92,
+        "ludhiana": 91,
         "sydney": 99,
-        "washington": 92,
-        "new-york": 90,
+        "nouvelle-detroit": 92,
+        "chicago": 90,
         "mexico": 60,
         "brasilia": 8,
-        "buenos-aires": 90,
+        "rosario": 90,
         "canberra": 98,
         "le-cap": 97
       },
@@ -6123,11 +6123,11 @@
       "description": "Le campus MUSH répartit entre les deux villes son école de médecine, sa pépinière de start-up médicales et son hôpital de pointe. Les trains-hôpitaux des Traverseurs y déchargent les blessés du front oriental toutes les six heures, et les lits de réanimation sont pleins depuis la mi-septembre."
     },
     {
-      "id": "kazan",
-      "nom": "Kazan",
+      "id": "magnitogorsk",
+      "nom": "Magnitogorsk",
       "coord": [
-        49.1,
-        55.8
+        58.98,
+        53.41
       ],
       "district": "eu-est",
       "etat": 84,
@@ -6150,14 +6150,14 @@
           "effectif": "~3100000"
         }
       ],
-      "description": "Dernière ville digne de ce nom près de l'Oural, par les gares de laquelle passe tout ce qui fuit la Sibérie. Les faubourgs est ont été évacués puis murés, la Volga sert de fossé, et la nuit, depuis les remparts, on aperçoit des lumières qui ne correspondent à aucune position connue. Personne n'a encore été voir."
+      "description": "Dernière ville digne de ce nom avant l'Oural, bâtie autour de ses aciéries, par les gares de laquelle passe tout ce qui fuit la Sibérie. Les faubourgs de la rive est furent évacués puis murés, le fleuve Oural sert de fossé, et la nuit, depuis les remparts, on aperçoit des lumières qui ne correspondent à aucune position connue. Personne n'est encore allé voir."
     },
     {
-      "id": "yokohama",
-      "nom": "Yokohama",
+      "id": "sapporo",
+      "nom": "Sapporo",
       "coord": [
-        139.64,
-        35.44
+        141.35,
+        43.06
       ],
       "district": "as-japon",
       "etat": 94,
@@ -6180,18 +6180,18 @@
           "effectif": "CLASSIFIÉ"
         }
       ],
-      "description": "Capitale du secteur Asie et siège de Mlle Mori Kumano, où le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Depuis que trois prêtres ont disparu en une semaine, l'armée garde les sanctuaires kami.",
+      "description": "Capitale du secteur Asie et siège de Mlle Mori Kumano, au cœur d'Hokkaido, où le Site-45, conservé, étudie l'influence mentale, l'IA et les artefacts shintô sous des protocoles hérités de l'époque d'Edo. Depuis que trois prêtres ont disparu en une semaine, l'armée garde les sanctuaires kami.",
       "capitale": true
     },
     {
-      "id": "harbin",
-      "nom": "Harbin",
+      "id": "tianjin",
+      "nom": "Tianjin",
       "coord": [
-        126.63,
-        45.75
+        117.2,
+        39.13
       ],
       "district": "as-sinorusse",
-      "etat": 88,
+      "etat": 85,
       "image": "usines",
       "garnison": [
         {
@@ -6211,17 +6211,17 @@
           "effectif": "~4000000"
         }
       ],
-      "description": "Ancien cœur industriel du district sino-russe, loin du domaine d'Izala mais pas assez pour dormir tranquille, où les usines d'armement tournent jour et nuit pour le front du sud. Le Songhua charrie déjà des réfugiés venus de là-bas, et depuis que la ville ne répond plus qu'irrégulièrement, les rapports qui en sortent arrivent par le rail, quand ils arrivent."
+      "description": "Cœur industriel du district sino-russe, où l'usine TDA et les arsenaux tournent jour et nuit pour le front du sud, un front qui n'est d'ailleurs plus si loin, puisque le domaine d'Izala commence à moins de 1 500 km. Le Grand Canal charrie déjà des réfugiés venus de là-bas, et depuis que la ville ne répond plus qu'irrégulièrement, les rapports qui en sortent arrivent par le rail, quand ils arrivent."
     },
     {
-      "id": "novossibirsk",
-      "nom": "Novossibirsk",
+      "id": "norilsk",
+      "nom": "Norilsk",
       "coord": [
-        82.92,
-        55.03
+        88.2,
+        69.35
       ],
       "district": "as-sinorusse",
-      "etat": 93,
+      "etat": 94,
       "image": "prison",
       "garnison": [
         {
@@ -6237,14 +6237,14 @@
           "effectif": "~1200000"
         }
       ],
-      "description": "Principal centre pénitentiaire de la Confédération, à des milliers de kilomètres du front, ce qui n'a pas empêché d'en vider la moitié : une partie des détenus a été transférée vers l'ouest, l'autre armée et envoyée vers le sud. Les ponts sur l'Ob restent sous garde, au cas où, et la ville reçoit chaque semaine plus de réfugiés qu'elle ne peut en loger."
+      "description": "Principal centre pénitentiaire de la Confédération, au-delà du cercle polaire et à des milliers de kilomètres du front, ce qui n'empêcha pas d'en vider la moitié : une partie des détenus fut transférée vers l'ouest, l'autre armée et envoyée vers le sud. Les mines tournent toujours, les ponts restent sous garde, au cas où, et la ville reçoit chaque semaine plus de réfugiés qu'elle ne peut en loger, ce qui, à l'approche de la nuit polaire, pose d'autres problèmes."
     },
     {
-      "id": "singapour",
-      "nom": "Singapour",
+      "id": "port-klang",
+      "nom": "Port Klang",
       "coord": [
-        103.82,
-        1.35
+        101.39,
+        3.0
       ],
       "district": "as-sudest",
       "etat": 90,
@@ -6263,18 +6263,18 @@
           "effectif": "~2500000"
         }
       ],
-      "description": "Plaque tournante du commerce maritime du secteur, loin des combats mais pas de leurs arrières, où le détroit reste ouvert grâce à des patrouilles permanentes, même si le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai. Couvre-feu à 20 h, et contrôle d'identité à chaque pont."
+      "description": "Plaque tournante du commerce maritime du secteur depuis que Singapour n'est plus qu'un village de pêcheurs au bout de la péninsule, là où la Route des moussons rejoint le détroit de Malacca. Le port reste ouvert grâce à des patrouilles permanentes, même si le Commando des lignes arrières a déjà coulé deux porte-conteneurs à quai, et la quarantaine de Bornéo, de l'autre côté de la mer, n'aide personne à dormir. Couvre-feu à 20 h, et contrôle d'identité à chaque pont."
     },
     {
-      "id": "dubai",
-      "nom": "Dubaï",
+      "id": "bandar-abbas",
+      "nom": "Bandar Abbas",
       "coord": [
-        55.27,
-        25.2
+        56.27,
+        27.18
       ],
       "district": "as-moyen-orient",
       "etat": 92,
-      "image": "tours",
+      "image": "port",
       "garnison": [
         {
           "nom": "Forces régulières",
@@ -6289,14 +6289,14 @@
           "effectif": "~2100000"
         }
       ],
-      "description": "Capitale économique du district Moyen-Oriental, qui fournit l'énergie de la moitié du secteur. Les tours tiennent, les prix du carburant beaucoup moins, et deux cellules cultistes ont été démantelées dans des raffineries depuis le début du mois."
+      "description": "Capitale économique du district Moyen-Oriental, sur le détroit d'Ormuz, d'où partent les pétroliers qui fournissent l'énergie de la moitié du secteur. Les quais tiennent, les prix du carburant beaucoup moins, et deux cellules cultistes ont été démantelées dans des raffineries depuis le début du mois."
     },
     {
-      "id": "mumbai",
-      "nom": "Mumbai",
+      "id": "ludhiana",
+      "nom": "Ludhiana",
       "coord": [
-        72.88,
-        19.08
+        75.85,
+        30.9
       ],
       "district": "as-indopak",
       "etat": 91,
@@ -6315,7 +6315,7 @@
           "effectif": "~21000000"
         }
       ],
-      "description": "Plus grande ville du district indo-pakistanais et premier grenier de la Confédération, d'où les convois de céréales partent vers le nord sous escorte. Des prédicateurs convertis ont été arrêtés dans les bidonvilles de Dharavi, et d'autres ont pris leur place, évidemment."
+      "description": "Plus grande ville du district indo-pakistanais, au cœur du Pendjab, et premier grenier de la Confédération, d'où les convois de céréales partent vers le nord sous escorte. Des prédicateurs convertis ont été arrêtés dans les camps de saisonniers, et d'autres ont pris leur place, évidemment."
     },
     {
       "id": "sydney",
@@ -6344,11 +6344,11 @@
       "description": "Siège du secteur Santé, organisé autour du Llewellyn-Ford Memorial Hospital, où le Site-43, restauré, fonctionne sous couverture de laboratoire P4. D'après les statistiques officielles, c'est la ville la plus sûre de la Confédération, des statistiques qui oublient les réfugiés parqués à Parramatta."
     },
     {
-      "id": "washington",
-      "nom": "Washington",
+      "id": "nouvelle-detroit",
+      "nom": "Nouvelle-Détroit",
       "coord": [
-        -77.04,
-        38.9
+        -83.05,
+        42.33
       ],
       "district": "am-usa",
       "etat": 92,
@@ -6367,15 +6367,15 @@
           "effectif": "~3000000"
         }
       ],
-      "description": "Capitale du secteur Amérique, où Mark Saddler décide et où Karl Saddler négocie. Les cellules cultistes arrêtées au début du mois venaient toutes du même quartier, que le SMC a vidé en une nuit, et le Capitole est fermé au public depuis.",
+      "description": "Capitale du secteur Amérique depuis que Washington n'est plus qu'un village au bord du Potomac, où Mark Saddler décide et où Karl Saddler négocie, à quelques rues de la Citadelle d'où l'Unité 007 fait tourner l'administration de toute la Confédération. Les cellules cultistes arrêtées au début du mois venaient toutes du même quartier, que le SMC vida en une nuit, et depuis, le siège du secteur est fermé au public, ce qui, dans une ville de fonctionnaires, ne change pas grand-chose.",
       "capitale": true
     },
     {
-      "id": "new-york",
-      "nom": "New York",
+      "id": "chicago",
+      "nom": "Chicago",
       "coord": [
-        -74.0,
-        40.71
+        -87.63,
+        41.88
       ],
       "district": "am-usa",
       "etat": 90,
@@ -6398,7 +6398,7 @@
           "effectif": 30
         }
       ],
-      "description": "Première place financière du secteur, où trente robots de la 3rd Liberty division gardent les ponts de Manhattan, à l'effigie de la statue qu'ils entourent. Le métro a été fermé après la découverte de marques cultistes dans le tunnel de la ligne 7."
+      "description": "Première place financière du secteur, au bord du lac Michigan, où trente robots de la 3rd Liberty division gardent les ponts de la rivière et les portes de la Bourse. Le métro aérien fut arrêté après la découverte de marques cultistes sur les piliers de la Loop, et les meutes qui tournent la nuit, elles, n'attendent pas toujours le SMC pour décider qui est coupable."
     },
     {
       "id": "mexico",
@@ -6445,11 +6445,11 @@
       "description": "Choisie parmi les \"Too young to die\", et tombée quand même, quand le front de Nargal a franchi l'axe monumental à la mi-septembre. Veilleur-Sud montre encore des lumières dans la cathédrale, et on ignore qui les allume."
     },
     {
-      "id": "buenos-aires",
-      "nom": "Buenos Aires",
+      "id": "rosario",
+      "nom": "Rosario",
       "coord": [
-        -58.38,
-        -34.6
+        -60.64,
+        -32.95
       ],
       "district": "am-austral",
       "etat": 90,
@@ -6472,7 +6472,7 @@
           "effectif": "~5300000"
         }
       ],
-      "description": "Dernier grand port du sud du continent, loin du foyer de Nargal mais en aval de tout ce qu'il charrie, où les réfugiés du bassin amazonien arrivent par le Río de la Plata, par centaines de milliers. La ville filtre chaque barge, en cherchant la mousse verte sous les ongles et derrière les oreilles, et les tests positifs ne remontent pas à bord."
+      "description": "Dernier grand port du sud du continent, sur le Paraná, loin du foyer de Nargal mais en aval de tout ce qu'il charrie, où les réfugiés du bassin amazonien arrivent par le fleuve, par centaines de milliers. La ville filtre chaque barge, en cherchant la mousse verte sous les ongles et derrière les oreilles, et les tests positifs ne remontent pas à bord."
     },
     {
       "id": "canberra",
@@ -7833,7 +7833,7 @@
       "nom": "Route des moussons",
       "periode": 900,
       "dossier": "administration/traverseurs",
-      "info": "Ligne d'Istanbul à Singapour par Bagdad, Téhéran, Delhi et Bangkok, qui dessert tout le sud du continent et le port de Singapour.",
+      "info": "Ligne d'Istanbul à Port Klang par Bagdad, Téhéran, Delhi et Bangkok, qui dessert tout le sud du continent et le port du détroit de Malacca.",
       "voie": [
         [
           28.98,
@@ -7900,18 +7900,14 @@
           6.1
         ],
         [
-          101.7,
-          3.1
-        ],
-        [
-          103.82,
-          1.35
+          101.39,
+          3.0
         ]
       ],
       "fiche": [
         [
           "Parcours",
-          "Istanbul, Bagdad, Téhéran, Lahore, Delhi, Calcutta, Mandalay, Bangkok, Singapour"
+          "Istanbul, Bagdad, Téhéran, Lahore, Delhi, Calcutta, Mandalay, Bangkok, Port Klang"
         ],
         [
           "Rôle",
