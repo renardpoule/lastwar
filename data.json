@@ -4789,6 +4789,66 @@
       ]
     },
     {
+      "id": "abzu",
+      "nom": "ABZU",
+      "coord": [
+        155.3,
+        -6.1
+      ],
+      "icone": "labo",
+      "glitch": true,
+      "lien": "rd",
+      "info": "Laboratoire d'exclusion de la Confédération, enfoui sous la jungle de Bougainville, qui n'a pour l'instant aucun projet attitré, ce qui ne l'empêche pas de tourner.",
+      "fiche": [
+        [
+          "Personnel",
+          "1 900"
+        ],
+        [
+          "Niveaux souterrains",
+          "2"
+        ],
+        [
+          "Confinement",
+          "sphère d'exclusion active"
+        ],
+        [
+          "Projet",
+          "aucun, en attente d'affectation"
+        ]
+      ]
+    },
+    {
+      "id": "khaos",
+      "nom": "KHAOS",
+      "coord": [
+        78.0,
+        46.0
+      ],
+      "icone": "labo",
+      "glitch": true,
+      "lien": "rd",
+      "info": "Laboratoire d'exclusion de la Confédération, dans la steppe kazakhe, sur l'ancien polygone d'essais nucléaires de Semipalatinsk, qui n'a pour l'instant aucun projet attitré.",
+      "fiche": [
+        [
+          "Personnel",
+          "2 300"
+        ],
+        [
+          "Niveaux souterrains",
+          "4"
+        ],
+        [
+          "Confinement",
+          "double enceinte, sphère d'exclusion active"
+        ],
+        [
+          "Projet",
+          "aucun, en attente d'affectation"
+        ]
+      ]
+    },
+    {
       "id": "tda-1",
       "nom": "TDA Ruhr",
       "coord": [
