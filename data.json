@@ -4738,11 +4738,15 @@
         46.6
       ],
       "icone": "labo",
-      "info": "Laboratoire d'exclusion du Système de Production à Antimatière.",
+      "info": "Laboratoire d'exclusion ANTICHTHON, qui abrite le Système de Production à Antimatière.",
       "dossier": "rd/spa",
       "glitch": true,
       "etat": "En recherche (prototype), très peu avancé",
       "fiche": [
+        [
+          "Laboratoire",
+          "ANTICHTHON"
+        ],
         [
           "Personnel",
           "1 100"
@@ -4769,11 +4773,15 @@
         37.2
       ],
       "icone": "labo",
-      "info": "Laboratoire d'exclusion du Système de Production à Matière Quasi-Négative.",
+      "info": "Laboratoire d'exclusion APEIRON, qui abrite le Système de Production à Matière Quasi-Négative.",
       "dossier": "rd/spmqn",
       "glitch": true,
       "etat": "En recherche (prototype)",
       "fiche": [
+        [
+          "Laboratoire",
+          "APEIRON"
+        ],
         [
           "Personnel",
           "780"
@@ -5899,12 +5907,12 @@
         {
           "id": "spa",
           "titre": "Système de Production à Antimatière",
-          "contenu": "![Système de Production à Antimatière](img/spa.webp)\n\n**État :** En recherche (prototype), très peu avancé\n\nLe Système de Production à Antimatière (SPA), à ne pas confondre avec le Système de Production à Matière Quasi-Négative, est un générateur expérimental dont le développement demeure en phase théorique. Fondé sur l'équation d'Einstein reliant l'énergie à la masse (E = mc²), le dispositif exploite l'annihilation de la matière avec l'antimatière afin de convertir une masse extrêmement faible en énergie exploitable.\n\nLa mise en œuvre opérationnelle repose sur la production en chaîne d'antimatière en quantités significatives, puis sur son confinement stable. Les premiers prototypes ont permis une production hebdomadaire d'environ 3,785 g, au prix d'un apport énergétique supérieur à l'énergie restituée, rendant le système pour le moment non rentable.\n\nÀ terme, le projet vise à devenir une source énergétique primaire. Deux objectifs structurants conditionnent sa viabilité : la production industrialisée d'antimatière, ainsi que l'atteinte d'un rendement énergétique supérieur à 1,1, garantissant un bilan net positif entre énergie produite et énergie investie.\n\n## Site\nLe laboratoire d'exclusion du SPA se trouve en Europe, au centre de la France."
+          "contenu": "![Système de Production à Antimatière](img/spa.webp)\n\n**État :** En recherche (prototype), très peu avancé\n\nLe Système de Production à Antimatière (SPA), à ne pas confondre avec le Système de Production à Matière Quasi-Négative, est un générateur expérimental dont le développement demeure en phase théorique. Fondé sur l'équation d'Einstein reliant l'énergie à la masse (E = mc²), le dispositif exploite l'annihilation de la matière avec l'antimatière afin de convertir une masse extrêmement faible en énergie exploitable.\n\nLa mise en œuvre opérationnelle repose sur la production en chaîne d'antimatière en quantités significatives, puis sur son confinement stable. Les premiers prototypes ont permis une production hebdomadaire d'environ 3,785 g, au prix d'un apport énergétique supérieur à l'énergie restituée, rendant le système pour le moment non rentable.\n\nÀ terme, le projet vise à devenir une source énergétique primaire. Deux objectifs structurants conditionnent sa viabilité : la production industrialisée d'antimatière, ainsi que l'atteinte d'un rendement énergétique supérieur à 1,1, garantissant un bilan net positif entre énergie produite et énergie investie.\n\n## Site\nLe laboratoire d'exclusion du SPA, baptisé ANTICHTHON, se trouve en Europe, au centre de la France."
         },
         {
           "id": "spmqn",
           "titre": "Système de Production à Matière Quasi-Négative",
-          "contenu": "![Système de Production à Matière Quasi-Négative](img/spmqn.webp)\n\n**État :** En recherche (prototype)\n\n## Site\nLe laboratoire d'exclusion du SPMQN se trouve en Amérique du Nord, dans le désert du Nevada."
+          "contenu": "![Système de Production à Matière Quasi-Négative](img/spmqn.webp)\n\n**État :** En recherche (prototype)\n\n## Site\nLe laboratoire d'exclusion du SPMQN, baptisé APEIRON, se trouve en Amérique du Nord, dans le désert du Nevada."
         },
         {
           "id": "tda",
