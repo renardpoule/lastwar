@@ -3,8 +3,8 @@
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
     "dateRP": "27 sept. 2075",
-    "derniereMaj": "2026-09-27T18:41:48.536Z",
-    "distorsion": 50,
+    "derniereMaj": "2026-09-27T18:42:05.029Z",
+    "distorsion": 100,
     "energie": {
       "unite": "TW",
       "production": 64,
@@ -3978,7 +3978,7 @@
     {
       "date": "27 sept. 2075",
       "tension": 55,
-      "distorsion": 50,
+      "distorsion": 100,
       "evenements": 28,
       "districts": {
         "eu-nord": {
