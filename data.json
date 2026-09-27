@@ -2925,8 +2925,8 @@
         "id": "rd"
       },
       "gravite": "majeur",
-      "titre": "L'ancre d'Eucrynomos",
-      "description": "Le laboratoire d'exclusion d'Eucrynomos lança la construction d'une ancre de réalité gigantesque, un chantier prévu sur vingt-cinq semaines, soit jusqu'au 20 mars 2076, si tout se passe bien, ce qui, par les temps qui courent, n'a rien d'évident.",
+      "titre": "L'ancre d'EUCRYNOMOS",
+      "description": "Le laboratoire d'exclusion d'EUCRYNOMOS lança la construction d'une ancre de réalité gigantesque, un chantier prévu sur vingt-cinq semaines, soit jusqu'au 20 mars 2076, si tout se passe bien, ce qui, par les temps qui courent, n'a rien d'évident.",
       "consequences": [
         "Achèvement prévu le 20 mars 2076"
       ],
@@ -4453,7 +4453,7 @@
     },
     {
       "id": "eucrynomos",
-      "nom": "Eucrynomos",
+      "nom": "EUCRYNOMOS",
       "coord": [
         25.3,
         70.7
@@ -4671,21 +4671,17 @@
     },
     {
       "id": "singularite",
-      "nom": "Projet Singularité",
+      "nom": "KRONOS",
       "coord": [
         21.5,
         3.0
       ],
       "icone": "labo",
-      "info": "Laboratoire d'exclusion KRONOS, où le Projet Singularité cherche à confiner une singularité gravitationnelle dans un stabilisateur.",
+      "info": "Laboratoire d'exclusion du Projet Singularité, où l'on cherche à confiner une singularité gravitationnelle dans un stabilisateur.",
       "dossier": "rd/singularite",
       "glitch": true,
       "etat": "En recherche (prototype)",
       "fiche": [
-        [
-          "Laboratoire",
-          "KRONOS"
-        ],
         [
           "Personnel",
           "480 chercheurs"
@@ -4736,21 +4732,17 @@
     },
     {
       "id": "spa",
-      "nom": "SPA",
+      "nom": "ANTICHTHON",
       "coord": [
         2.4,
         46.6
       ],
       "icone": "labo",
-      "info": "Laboratoire d'exclusion ANTICHTHON, qui abrite le Système de Production à Antimatière.",
+      "info": "Laboratoire d'exclusion du Système de Production à Antimatière (SPA).",
       "dossier": "rd/spa",
       "glitch": true,
       "etat": "En recherche (prototype), très peu avancé",
       "fiche": [
-        [
-          "Laboratoire",
-          "ANTICHTHON"
-        ],
         [
           "Personnel",
           "1 100"
@@ -4771,21 +4763,17 @@
     },
     {
       "id": "spmqn",
-      "nom": "SPMQN",
+      "nom": "APEIRON",
       "coord": [
         -116.0,
         37.2
       ],
       "icone": "labo",
-      "info": "Laboratoire d'exclusion APEIRON, qui abrite le Système de Production à Matière Quasi-Négative.",
+      "info": "Laboratoire d'exclusion du Système de Production à Matière Quasi-Négative (SPMQN).",
       "dossier": "rd/spmqn",
       "glitch": true,
       "etat": "En recherche (prototype)",
       "fiche": [
-        [
-          "Laboratoire",
-          "APEIRON"
-        ],
         [
           "Personnel",
           "780"
@@ -5782,7 +5770,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "![Haine : \"Je pense donc je suis ?\"](img/haine.webp)\n\n## Direction\n![Gotland, capitale du secteur](img/gotland.webp)\n\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Projets technologiques\nProjets de la R&D, classés selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne, et depuis le 27 sept., l'ancre de réalité gigantesque d'Eucrynomos, prévue pour le 20 mars 2076, au bout de vingt-cinq semaines de chantier.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
+          "contenu": "![Haine : \"Je pense donc je suis ?\"](img/haine.webp)\n\n## Direction\n![Gotland, capitale du secteur](img/gotland.webp)\n\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Projets technologiques\nProjets de la R&D, classés selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne, et depuis le 27 sept., l'ancre de réalité gigantesque d'EUCRYNOMOS, prévue pour le 20 mars 2076, au bout de vingt-cinq semaines de chantier.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
         },
         {
           "id": "anormal",
@@ -7424,7 +7412,7 @@
     },
     {
       "date": "27 sept. 2075",
-      "source": "Eucrynomos",
+      "source": "EUCRYNOMOS",
       "texte": "Chantier de l'ancre ouvert. Livraison dans vingt-cinq semaines."
     }
   ],
