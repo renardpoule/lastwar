@@ -270,6 +270,25 @@
   const dateAff = () => etat.replay !== null ? data.historique[etat.replay].date : data.meta.dateRP;
   // Bombardements : visibles de leur date jusqu'à "jusqu" (le tour où ils ont eu lieu) ; lignes de front : à partir de leur date
   const frappesAff = () => (data.bombardements || []).filter(z => dateVal(z.date) <= dateVal(dateAff()) && (!z.jusqu || dateVal(dateAff()) <= dateVal(z.jusqu)));
+  const contestationsAff = () => (data.contestations || []).filter(x => dateVal(x.date) <= dateVal(dateAff()) && (!x.jusqu || dateVal(dateAff()) <= dateVal(x.jusqu)));
+  // Anneau d'un bombardement : autour d'un centre (rayon, rayonInt) ou le long d'une zone tracée (zone, marge, margeInt)
+  function formesFrappe(z) {
+    const zr = z.zone && zonesAff().find(x => x.id === z.zone);
+    if (zr && zr.contour) return [tache({ id: z.id, contour: zr.contour, marge: +z.marge || 0 }), z.margeInt != null ? tache({ id: z.id, contour: zr.contour, marge: +z.margeInt }) : null];
+    return [tache({ id: z.graine || z.id, centre: z.centre, rayon: z.rayon }), z.rayonInt ? tache({ id: z.graineInt || z.graine || z.id, centre: z.centre, rayon: z.rayonInt }) : null];
+  }
+  // Parcours fermé d'un appareil au-dessus d'un bombardement (entre l'anneau extérieur et l'anneau intérieur)
+  function routeFrappe(z, f) {
+    const zr = z.zone && zonesAff().find(x => x.id === z.zone);
+    let ring;
+    if (zr && zr.contour) {
+      const m = z.margeInt != null ? (+z.marge + +z.margeInt) / 2 : (+z.marge || 0) - 1;
+      ring = tache({ id: z.id, contour: zr.contour, marge: m * f - (1 - f) * 0.6 }).coordinates[0];
+    } else ring = tache({ id: z.graine || z.id, centre: z.centre, rayon: ((+z.rayon + (+z.rayonInt || 0)) / 2) * f }).coordinates[0];
+    const cum = [0];
+    for (let i = 1; i < ring.length; i++) cum.push(cum[i - 1] + Math.hypot((ring[i][0] - ring[i - 1][0]) * Math.cos(ring[i][1] * RAD), ring[i][1] - ring[i - 1][1]));
+    return { ring, cum, lg: cum[cum.length - 1] || 1 };
+  }
   const reprisesAff = () => (data.reprises || []).filter(x => dateVal(x.date) <= dateVal(dateAff()));
   const lignesAff = () => (data.lignes || []).filter(x => dateVal(x.date) <= dateVal(dateAff()) && (!x.jusqu || dateVal(dateAff()) <= dateVal(x.jusqu)));
   const detruitesAff = () => (data.detruites || []).filter(z => !z.date || dateVal(z.date) <= dateVal(dateAff()));
@@ -364,10 +383,14 @@
     L.frappes.attr('clip-path', 'url(#clipTerres)');
     L.frappes.selectAll('path').data(frappesAff(), z => z.id).join('path')
       .attr('class', z => 'frappe ' + (z.type || 'missiles')).attr('d', z => {
-        const ext = path(tache({ id: z.graine || z.id, centre: z.centre, rayon: z.rayon }));
-        return z.rayonInt ? ext + path(tache({ id: z.graineInt || z.graine || z.id, centre: z.centre, rayon: z.rayonInt })) : ext;
+        const [ext, int] = formesFrappe(z);
+        return path(ext) + (int ? path(int) : '');
       })
       .on('mousemove', survolFrappe).on('mouseleave', finSurvol);
+    // Zones de contestation : terrain disputé où la CC a envoyé des renforts (Phoenix…)
+    L.lignes.selectAll('path.contestation').data(contestationsAff(), x => x.id).join('path').attr('class', 'contestation')
+      .attr('d', x => path(tache(x))).lower()
+      .on('mousemove', survolContestation).on('mouseleave', finSurvol);
     // Lignes de front tenues par la CC : stabilisées (trait bleu) ou fortifiées (trait vert à créneaux)
     L.lignes.selectAll('g.ligne-front').data(lignesAff(), x => x.id).join(en => {
       const g = en.append('g');
@@ -605,9 +628,16 @@
   };
   const N_AVIONS = { napalm: 4, missiles: 3 };
   let explosions = [];
+  const routes = new Map();
   function avionsDe(f) {
-    const n = N_AVIONS[f.type] || 2, R = (+f.rayon + (+f.rayonInt || 0)) / 2;
-    return d3.range(n).map(i => ({ f, i, id: f.id + ':' + i, R: R * (0.88 + 0.24 * ((i * 37) % 10) / 10), periode: f.type === 'napalm' ? 70 : 110, sens: i % 2 ? -1 : 1, phase: i / n }));
+    const n = N_AVIONS[f.type] || 2;
+    return d3.range(n).map(i => {
+      const id = f.id + ':' + i, fac = 0.88 + 0.24 * ((i * 37) % 10) / 10, cle = id + '|' + dateAff();
+      if (!routes.has(cle)) routes.set(cle, routeFrappe(f, fac));
+      const r = routes.get(cle);
+      // Vitesse au sol à peu près constante : la période suit la longueur du parcours
+      return { f, i, id, r, periode: r.lg * (f.type === 'napalm' ? 1.6 : 2.4), sens: i % 2 ? -1 : 1, phase: i / n };
+    });
   }
   function majAvions() {
     if (!L.avions) return;
@@ -615,10 +645,11 @@
     const avions = replay ? [] : frappesAff().flatMap(avionsDe);
     const t = (performance.now() - t0) / 1000, cos = c => Math.max(0.2, Math.cos(c * RAD));
     const posA = (a, u) => {
-      const th = a.sens * 2 * Math.PI * (u / a.periode + a.phase), c = a.f.centre;
-      // Boucle légèrement aplatie, un peu différente pour chaque appareil
-      const r = a.R * (1 + 0.12 * Math.sin(3 * th + a.i));
-      return [c[0] + r * Math.cos(th) / cos(c[1]), c[1] + r * Math.sin(th)];
+      let x = ((a.sens * (u / a.periode + a.phase)) % 1 + 1) % 1 * a.r.lg;
+      const c = a.r.cum, rg = a.r.ring;
+      let j = d3.bisectRight(c, x) - 1; j = Math.max(0, Math.min(rg.length - 2, j));
+      const v = (x - c[j]) / ((c[j + 1] - c[j]) || 1);
+      return [rg[j][0] + (rg[j + 1][0] - rg[j][0]) * v, rg[j][1] + (rg[j + 1][1] - rg[j][1]) * v];
     };
     for (const a of avions) {
       const p = projection(posA(a, t)), q = projection(posA(a, t + 0.6));
@@ -784,6 +815,11 @@
   function survolLigne(e, x) {
     const cle = 'l:' + x.id;
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(TYPES_LIGNE[x.type] || 'Ligne de front')}</strong>${esc(x.nom || '')}${x.date ? ', depuis le ' + esc(x.date) : ''}${x.info ? '<br>' + esc(x.info) : ''}`; }
+    placerTip(e);
+  }
+  function survolContestation(e, x) {
+    const cle = 'k:' + x.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>Zone de contestation</strong>${esc(x.nom || '')}${x.date ? ', depuis le ' + esc(x.date) : ''}${x.info ? '<br>' + esc(x.info) : ''}`; }
     placerTip(e);
   }
   function survolDetruite(e, z) {
@@ -1022,6 +1058,7 @@
       + (frappesAff().some(z => z.type === 'napalm') ? '<li><i class="sw frappe napalm"></i>Bombardement au napalm</li>' : '')
       + (frappesAff().some(z => z.type !== 'napalm') ? '<li><i class="sw frappe missiles"></i>Bombardement par missiles et bombardiers</li>' : '')
       + (etat.replay === null && frappesAff().length ? '<li><svg class="sw-avion" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Appareils en mission de bombardement</li>' : '')
+      + (contestationsAff().length ? '<li><i class="sw contestation"></i>Zone de contestation (renforts)</li>' : '')
       + (lignesAff().some(x => x.type !== 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
       + (lignesAff().some(x => x.type === 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait fort" d="M1,4H23"/></svg>Ligne fortifiée</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')

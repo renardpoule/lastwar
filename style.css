@@ -237,6 +237,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sw.detruite.feu{background:var(--feu);box-shadow:inset 0 0 0 0.0625rem oklch(0.5 0.17 30)}
 .frappe{fill-rule:evenodd;stroke:none;cursor:help;opacity:.75}
 .avion{pointer-events:none}
+.contestation{fill:var(--ligne-stab);fill-opacity:.45;stroke:oklch(0.78 0.13 262);stroke-width:1.6;stroke-dasharray:4 3;vector-effect:non-scaling-stroke;cursor:help}
+.sw.contestation{background:color-mix(in oklab,var(--ligne-stab) 55%,transparent);box-shadow:inset 0 0 0 0.0625rem oklch(0.78 0.13 262)}
 .av-corps{stroke:oklch(0.2 0.02 280);stroke-width:.6;stroke-linejoin:round}
 .av-ombre{fill:oklch(0.1 0.02 280 / .45)}
 .avion.napalm .av-corps{fill:oklch(0.94 0.03 90)}

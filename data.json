@@ -2,9 +2,9 @@
   "meta": {
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
-    "dateRP": "11 oct. 2075",
+    "dateRP": "18 oct. 2075",
     "derniereMaj": "2026-09-27T18:45:47.871Z",
-    "distorsion": 52,
+    "distorsion": 53,
     "energie": {
       "unite": "TW",
       "production": 64,
@@ -18,14 +18,14 @@
       "population": 60
     },
     "tuesParCorps": {
-      "regulieres": 7300000,
+      "regulieres": 8620000,
       "milices": 799200,
       "speciales": 35600,
       "phoenix": 800
     }
   },
   "tension": {
-    "valeur": 54,
+    "valeur": 57,
     "paliers": [
       {
         "min": 0,
@@ -643,20 +643,20 @@
             "Sibérie"
           ],
           "statut": "conteste",
-          "influence": 34,
-          "tendance": "stable",
+          "influence": 38,
+          "tendance": "hausse",
           "civils": {
             "population": 1490000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~180000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~15000000"
+            "deces": "~35000000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 11139000
+                "effectif": 12039000
               },
               {
                 "nom": "Forces spéciales",
@@ -678,7 +678,7 @@
             "cultistes": [
               {
                 "nom": "Cultistes d'Izala",
-                "effectif": "~22000000"
+                "effectif": "~25000000"
               },
               {
                 "nom": "Soldats organisés",
@@ -696,12 +696,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~3969500",
+              "tues": "~4569500",
               "blesses": "~2454590",
               "disparus": "~666246"
             },
             "cultistes": {
-              "tues": 15900000,
+              "tues": 20900000,
               "blesses": "?",
               "disparus": "?"
             }
@@ -1594,20 +1594,20 @@
             "Chile"
           ],
           "statut": "conteste",
-          "influence": 24,
-          "tendance": "stable",
+          "influence": 30,
+          "tendance": "hausse",
           "civils": {
             "population": 130000000,
             "impliques": "~70000000",
             "deplaces": "~20000000",
             "disparus": "~4000000",
-            "deces": "~11500000"
+            "deces": "~13500000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2170000
+                "effectif": 2470000
               },
               {
                 "nom": "Forces spéciales",
@@ -1625,7 +1625,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~9000000"
+                "effectif": "~10200000"
               },
               {
                 "nom": "Faune mutée",
@@ -1635,12 +1635,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~670300",
+              "tues": "~870300",
               "blesses": "~704516",
               "disparus": "~121935"
             },
             "cultistes": {
-              "tues": "~3650000",
+              "tues": "~4150000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1663,20 +1663,20 @@
             "Guyane"
           ],
           "statut": "conteste",
-          "influence": 46,
-          "tendance": "stable",
+          "influence": 48,
+          "tendance": "hausse",
           "civils": {
             "population": 250000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~60000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~33360000"
+            "deces": "~36360000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 3582000
+                "effectif": 3462000
               },
               {
                 "nom": "Forces spéciales",
@@ -1684,7 +1684,7 @@
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 6300
+                "effectif": 4300
               },
               {
                 "nom": "Milices citoyennes",
@@ -1694,7 +1694,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~19000000"
+                "effectif": "~19500000"
               },
               {
                 "nom": "Chimères",
@@ -1712,12 +1712,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~2131600",
+              "tues": "~2251600",
               "blesses": "~1609091",
               "disparus": "~804545"
             },
             "cultistes": {
-              "tues": "~14915600",
+              "tues": "~16415600",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1739,24 +1739,28 @@
             "Falkland Is."
           ],
           "statut": "conteste",
-          "influence": 38,
+          "influence": 52,
           "tendance": "stable",
           "civils": {
             "population": 55000000,
             "impliques": "~14000000",
             "deplaces": "~5000000",
             "disparus": "~600000",
-            "deces": "~9800000"
+            "deces": "~16800000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 396000
+                "effectif": 1996000
               },
               {
                 "nom": "Forces spéciales",
                 "effectif": 24300
+              },
+              {
+                "nom": "Division Phoenix",
+                "effectif": 2000
               },
               {
                 "nom": "Milices citoyennes",
@@ -1766,18 +1770,18 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~7000000"
+                "effectif": "~9500000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~860700",
+              "tues": "~1260700",
               "blesses": "~266667",
               "disparus": "~35556"
             },
             "cultistes": {
-              "tues": "~2450000",
+              "tues": "~3450000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -3121,6 +3125,58 @@
         "136 millions de morts dans le monde"
       ],
       "tension": 1
+    },
+    {
+      "id": "ev40",
+      "date": "18 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-austral"
+      },
+      "gravite": "critique",
+      "titre": "Le sud gagne la côte",
+      "description": "Suite à une semaine de pression, les cultistes élargirent encore la percée du sud, jusqu'au Pacifique dans l'Atacama, jusqu'à la côte du Rio Grande do Sul à l'est, et jusqu'aux abords de Rosario, où la division sud-américaine de Phoenix vint tenir la ville avec les régulières, rue par rue. Les bombardements reprirent sur toute la zone gagnée, ce qui n'empêcha pas 7,2 millions de civils d'être convertis.",
+      "consequences": [
+        "Percée élargie jusqu'aux deux côtes",
+        "Rosario contestée, Phoenix en renfort",
+        "3 millions de cultistes tués, 7,2 millions de convertis, 39,2 millions au total"
+      ],
+      "tension": 3
+    },
+    {
+      "id": "ev41",
+      "date": "18 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-austral"
+      },
+      "gravite": "majeur",
+      "titre": "Le prix du sud",
+      "description": "La Confédération y perdit 720 000 militaires et 12 millions de civils, pour un total de 12,72 millions de morts en une semaine, si bien qu'il fallut envoyer 2,5 millions d'hommes en renfort, ce qui porte le front à 4,18 millions de militaires.",
+      "consequences": [
+        "720 000 militaires tués",
+        "12 millions de civils morts",
+        "2,5 millions de renforts, 4,18 millions de militaires au front"
+      ],
+      "tension": 1
+    },
+    {
+      "id": "ev42",
+      "date": "18 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "Izala remonte vers le Yangzi",
+      "description": "Pendant ce temps, en Chine, les cultistes d'Izala gagnèrent encore du terrain au nord de leur percée, jusqu'aux abords du Yangzi et de Shanghai, et y perdirent 5 millions des leurs, compensés, et au-delà, par 8 millions de convertis. Ils sont 25 millions, et la Confédération compte 20 millions de civils morts et 600 000 régulières tués, ce qui l'obligea à envoyer 1,5 million d'hommes en renfort.",
+      "consequences": [
+        "Percée étendue vers le Yangzi",
+        "5 millions de cultistes tués, 8 millions de convertis, 25 millions au total",
+        "20 millions de civils et 600 000 régulières tués",
+        "1,5 million de renforts"
+      ],
+      "tension": 2
     }
   ],
   "historique": [
@@ -5437,6 +5493,503 @@
         "speciales": 35600,
         "phoenix": 800
       }
+    },
+    {
+      "date": "18 oct. 2075",
+      "tension": 57,
+      "distorsion": 53,
+      "evenements": 42,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2,
+          "quarantaine": false
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 16,
+          "quarantaine": false
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9,
+          "quarantaine": false
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 38,
+          "quarantaine": false
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
+          "quarantaine": true
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5,
+          "quarantaine": false
+        },
+        "am-mexicain": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 30,
+          "quarantaine": false
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 48,
+          "quarantaine": false
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 52,
+          "quarantaine": false
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5,
+          "cordon": true,
+          "cordonDepuis": "22 sept. 2075",
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.3,
+            24.9
+          ],
+          "rayon": 3.2
+        },
+        {
+          "id": "z-percee-chine",
+          "nom": "Percée d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            115.5,
+            26
+          ],
+          "rayon": 2.5,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              109.6,
+              27.2
+            ],
+            [
+              109.5,
+              29.6
+            ],
+            [
+              111,
+              30.0
+            ],
+            [
+              112.5,
+              30.2
+            ],
+            [
+              114.5,
+              30.5
+            ],
+            [
+              116.1,
+              30.8
+            ],
+            [
+              118,
+              31.0
+            ],
+            [
+              120,
+              31.0
+            ],
+            [
+              121.2,
+              30.9
+            ],
+            [
+              122.5,
+              30.8
+            ],
+            [
+              122.6,
+              28.4
+            ],
+            [
+              121.2,
+              26.4
+            ],
+            [
+              119.6,
+              24.4
+            ],
+            [
+              117.5,
+              22.5
+            ],
+            [
+              115,
+              21.7
+            ],
+            [
+              113.5,
+              21.5
+            ],
+            [
+              112.4,
+              21.7
+            ],
+            [
+              111.4,
+              22.3
+            ],
+            [
+              110.8,
+              23.3
+            ],
+            [
+              110.2,
+              25.1
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-sud",
+          "nom": "Percée du sud",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-austral",
+          "centre": [
+            -59,
+            -27.5
+          ],
+          "rayon": 3,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              -70.8,
+              -21.0
+            ],
+            [
+              -69.3,
+              -21.5
+            ],
+            [
+              -63,
+              -22.3
+            ],
+            [
+              -57.5,
+              -23.6
+            ],
+            [
+              -52,
+              -23.4
+            ],
+            [
+              -48,
+              -23.8
+            ],
+            [
+              -46.9,
+              -24.1
+            ],
+            [
+              -46,
+              -25.5
+            ],
+            [
+              -47.5,
+              -27.5
+            ],
+            [
+              -49.5,
+              -30
+            ],
+            [
+              -51,
+              -31.6
+            ],
+            [
+              -54.5,
+              -32
+            ],
+            [
+              -57.5,
+              -32.3
+            ],
+            [
+              -59.6,
+              -32.6
+            ],
+            [
+              -61.5,
+              -33.0
+            ],
+            [
+              -64,
+              -33.2
+            ],
+            [
+              -67,
+              -32.5
+            ],
+            [
+              -70,
+              -30.8
+            ],
+            [
+              -71.6,
+              -28
+            ],
+            [
+              -71.3,
+              -24
+            ]
+          ]
+        }
+      ],
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "magnitogorsk": 84,
+        "sapporo": 94,
+        "tianjin": 85,
+        "norilsk": 94,
+        "port-klang": 90,
+        "bandar-abbas": 92,
+        "ludhiana": 91,
+        "sydney": 99,
+        "nouvelle-detroit": 92,
+        "chicago": 90,
+        "mexico": 60,
+        "brasilia": 5,
+        "rosario": 30,
+        "canberra": 98,
+        "le-cap": 97
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 9455600,
+          "blesses": 6128584,
+          "disparus": 1769889
+        },
+        "cultistes": {
+          "tues": 45800000,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 119000000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 64,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 96,
+        "population": 60
+      },
+      "tuesParCorps": {
+        "regulieres": 8620000,
+        "milices": 799200,
+        "speciales": 35600,
+        "phoenix": 800
+      }
     }
   ],
   "zones": [
@@ -5475,7 +6028,7 @@
       "district": "as-sinorusse",
       "centre": [
         115.5,
-        25.5
+        26
       ],
       "rayon": 2.5,
       "depuis": "4 oct. 2075",
@@ -5485,28 +6038,40 @@
           27.2
         ],
         [
+          109.5,
+          29.6
+        ],
+        [
           111,
-          28.4
+          30.0
         ],
         [
-          113,
-          29.2
+          112.5,
+          30.2
         ],
         [
-          115.5,
-          29.4
+          114.5,
+          30.5
+        ],
+        [
+          116.1,
+          30.8
         ],
         [
           118,
-          29.4
+          31.0
         ],
         [
-          120.6,
-          29.7
+          120,
+          31.0
         ],
         [
-          122.4,
-          30.0
+          121.2,
+          30.9
+        ],
+        [
+          122.5,
+          30.8
         ],
         [
           122.6,
@@ -5557,12 +6122,16 @@
       "couleur": "#2fbf5b",
       "district": "am-austral",
       "centre": [
-        -58,
-        -27
+        -59,
+        -27.5
       ],
       "rayon": 3,
       "depuis": "4 oct. 2075",
       "contour": [
+        [
+          -70.8,
+          -21.0
+        ],
         [
           -69.3,
           -21.5
@@ -5588,36 +6157,56 @@
           -24.1
         ],
         [
-          -46.3,
+          -46,
           -25.5
         ],
         [
-          -49,
-          -26.6
+          -47.5,
+          -27.5
         ],
         [
-          -52.5,
-          -29.5
+          -49.5,
+          -30
         ],
         [
-          -56.4,
-          -31
+          -51,
+          -31.6
         ],
         [
-          -62.4,
-          -31.4
+          -54.5,
+          -32
         ],
         [
-          -66.2,
-          -32.1
+          -57.5,
+          -32.3
         ],
         [
-          -68.6,
-          -31.3
+          -59.6,
+          -32.6
         ],
         [
-          -68.7,
-          -26
+          -61.5,
+          -33.0
+        ],
+        [
+          -64,
+          -33.2
+        ],
+        [
+          -67,
+          -32.5
+        ],
+        [
+          -70,
+          -30.8
+        ],
+        [
+          -71.6,
+          -28
+        ],
+        [
+          -71.3,
+          -24
         ]
       ]
     }
@@ -7059,6 +7648,39 @@
           "4 anneaux concentriques"
         ]
       ]
+    },
+    {
+      "id": "vigie-nargal",
+      "nom": "Vigie-Nargal",
+      "geo": true,
+      "coord": [
+        -53.5,
+        -10.5
+      ],
+      "info": "Satellite de renseignement placé au-dessus du foyer de Nargal, qui suit les mouvements cultistes et règle les bombardements, du moins quand la tempête le laisse voir.",
+      "etat": "En service"
+    },
+    {
+      "id": "vigie-sud",
+      "nom": "Vigie-Sud",
+      "geo": true,
+      "coord": [
+        -62.5,
+        -26.5
+      ],
+      "info": "Satellite de renseignement placé au-dessus de la percée du sud, qui suit les mouvements cultistes et règle les bombardements, du moins quand la tempête le laisse voir.",
+      "etat": "En service"
+    },
+    {
+      "id": "vigie-izala",
+      "nom": "Vigie-Izala",
+      "geo": true,
+      "coord": [
+        113.5,
+        27.8
+      ],
+      "info": "Satellite de renseignement placé au-dessus du domaine d'Izala et de sa percée, qui suit les mouvements cultistes et règle les bombardements, du moins quand la tempête le laisse voir.",
+      "etat": "En service"
     }
   ],
   "dossiers": {
@@ -7734,7 +8356,7 @@
         -32.95
       ],
       "district": "am-austral",
-      "etat": 60,
+      "etat": 30,
       "image": "port",
       "garnison": [
         {
@@ -8737,6 +9359,16 @@
       "date": "11 oct. 2075",
       "source": "Diffusion confédérée",
       "texte": "Évacuation ouverte vers l'Europe et Ganzir. Présentez-vous au centre de formation le plus proche."
+    },
+    {
+      "date": "18 oct. 2075",
+      "source": "Phoenix",
+      "texte": "Rosario tient. Pour l'instant."
+    },
+    {
+      "date": "18 oct. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Renforts acheminés vers l'Amérique du Sud et la Chine."
     }
   ],
   "traverseurs": [
@@ -9312,6 +9944,37 @@
       "date": "4 oct. 2075",
       "jusqu": "11 oct. 2075",
       "info": "Missiles et bombardiers stratégiques sur l'intérieur de la bulle, autour du point d'impact."
+    },
+    {
+      "id": "b-sud-napalm",
+      "type": "napalm",
+      "nom": "Front de la percée du sud",
+      "zone": "z-percee-sud",
+      "marge": 0.6,
+      "margeInt": -0.9,
+      "centre": [
+        -59,
+        -27.5
+      ],
+      "district": "am-austral",
+      "date": "18 oct. 2075",
+      "jusqu": "18 oct. 2075",
+      "info": "Napalm sur toute la bordure gagnée par les cultistes, de l'Atacama à la côte du Rio Grande do Sul."
+    },
+    {
+      "id": "b-sud-missiles",
+      "type": "missiles",
+      "nom": "Intérieur de la percée du sud",
+      "zone": "z-percee-sud",
+      "marge": -0.9,
+      "centre": [
+        -59,
+        -27.5
+      ],
+      "district": "am-austral",
+      "date": "18 oct. 2075",
+      "jusqu": "18 oct. 2075",
+      "info": "Missiles et bombardiers stratégiques sur l'intérieur de la percée."
     }
   ],
   "lignes": [
@@ -9423,7 +10086,8 @@
           -25.8
         ]
       ],
-      "info": "Front stabilisé autour de la percée, des Andes à la côte de Santa Catarina."
+      "info": "Front stabilisé autour de la percée, des Andes à la côte de Santa Catarina.",
+      "jusqu": "11 oct. 2075"
     },
     {
       "id": "l-rosario",
@@ -9449,7 +10113,8 @@
           -33.1
         ]
       ],
-      "info": "Ligne fortifiée au nord de Rosario."
+      "info": "Ligne fortifiée au nord de Rosario.",
+      "jusqu": "11 oct. 2075"
     }
   ],
   "reprises": [
@@ -9480,6 +10145,20 @@
           20.1
         ]
       ]
+    }
+  ],
+  "contestations": [
+    {
+      "id": "k-rosario",
+      "nom": "Rosario",
+      "district": "am-austral",
+      "centre": [
+        -60.6,
+        -33.1
+      ],
+      "rayon": 1.0,
+      "date": "18 oct. 2075",
+      "info": "Terrain disputé rue par rue, où la division sud-américaine de Phoenix est venue en renfort."
     }
   ]
 }
