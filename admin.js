@@ -832,6 +832,12 @@
         if (pub.meta.energie) snap.energie = { ...pub.meta.energie };
         if (pub.meta.stabilite) snap.stabilite = { ...pub.meta.stabilite };
         if (pub.meta.tuesParCorps) snap.tuesParCorps = { ...pub.meta.tuesParCorps };
+        // Effectifs archivés (sans les milices) : les pions de la relecture en dépendent
+        snap.forces = {};
+        for (const s of pub.secteurs) for (const d of s.districts) {
+          const f = d.forces || {}, cc = (f.confederation || []).filter(u => !/milice/i.test(u.nom)), cu = f.cultistes || [];
+          if (cc.length || cu.length) snap.forces[d.id] = JSON.parse(JSON.stringify({ confederation: cc, cultistes: cu }));
+        }
         const ph = pub.historique;
         if (memeDate) ph[ph.length - 1] = snap; else ph.push(snap);
       }

@@ -55,6 +55,7 @@
   --missiles: oklch(0.72 0.18 50);
   --ligne-stab: oklch(0.62 0.17 262);
   --ligne-fort: oklch(0.7 0.18 150);
+  --axe-cc: oklch(0.7 0.16 250);
   --or: oklch(0.86 0.13 88);
   --or-sombre: oklch(0.62 0.13 70);
   color-scheme: dark;
@@ -218,7 +219,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .halos{opacity:.55}
 .zone-contestee{fill:var(--st-conteste);stroke:none;cursor:pointer}
 .zone-unie{fill-opacity:1;stroke:none;pointer-events:none}
-.zone{fill-opacity:1;stroke:color-mix(in oklab,var(--foreground) 35%,transparent);stroke-width:0.8;vector-effect:non-scaling-stroke;cursor:pointer}
+.zone{fill-opacity:1;stroke:oklch(0.22 0.06 15 / .9);stroke-width:2.4;stroke-linejoin:round;vector-effect:non-scaling-stroke;cursor:pointer}
 
 .b-pays{fill:none;stroke:var(--ocean);stroke-opacity:.6;stroke-width:.5;vector-effect:non-scaling-stroke;pointer-events:none}
 .b-district{fill:none;stroke:color-mix(in oklab,var(--foreground) 45%,transparent);stroke-width:.8;stroke-dasharray:3 3;vector-effect:non-scaling-stroke;pointer-events:none}
@@ -725,3 +726,25 @@ button{font:inherit;color:inherit;cursor:pointer}
 .tip-fiche dt{color:var(--muted-foreground)}
 .tip-fiche dd{margin:0;font-variant-numeric:tabular-nums}
 .tip:has(.tip-fiche){max-width:20rem}
+
+/* Événements de la semaine : pictogrammes et axes d'attaque */
+.picto{cursor:pointer}
+.pi-halo{fill:oklch(0.14 0.03 280 / .55);stroke:none}
+.pi-fond{stroke:oklch(0.97 0.01 280 / .9);stroke-width:1.4}
+.picto.cult .pi-fond,.pi-fond.cult{fill:var(--cult)}
+.picto.cc .pi-fond{fill:oklch(0.52 0.17 255)}
+.picto.feu .pi-fond{fill:oklch(0.62 0.19 45)}
+.picto.neutre .pi-fond{fill:oklch(0.5 0.08 290)}
+.picto.critique .pi-halo{stroke:oklch(0.97 0.01 280 / .35);stroke-width:1.2}
+.pi-glyphe{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.picto:hover .pi-fond{stroke-width:2.4}
+.sw-picto{width:1.1rem;height:1.1rem}
+.sw-picto .pi-fond{stroke-width:1.4}
+.axe{cursor:help}
+.ax-fond{fill:none;stroke:oklch(0.12 0.03 280 / .75);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.ax-trait{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 5;vector-effect:non-scaling-stroke}
+.axe.cult .ax-trait{stroke:var(--cult)}
+.axe.cc .ax-trait{stroke:var(--axe-cc)}
+.ax-pointe{stroke:oklch(0.12 0.03 280 / .8);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.axe.cult .ax-pointe{fill:var(--cult)}
+.axe.cc .ax-pointe{fill:var(--axe-cc)}

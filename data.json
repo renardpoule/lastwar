@@ -2421,7 +2421,22 @@
         "Invasion cultiste sur trois continents",
         "Signaux plus faibles en Europe et en Amérique du Nord"
       ],
-      "tension": 16
+      "tension": 16,
+      "icone": "signal",
+      "lieux": [
+        [
+          110,
+          30
+        ],
+        [
+          -60,
+          -10
+        ],
+        [
+          20,
+          2
+        ]
+      ]
     },
     {
       "id": "ev2",
@@ -2438,7 +2453,14 @@
         "60 000 en Afrique, 50 000 en Europe et en Amérique du Nord",
         "Armement biochimique en Amérique du Sud"
       ],
-      "tension": 4
+      "tension": 4,
+      "icone": "machine",
+      "lieux": [
+        [
+          -17.5,
+          69.4
+        ]
+      ]
     },
     {
       "id": "ev3",
@@ -2454,7 +2476,14 @@
         "HCP prend le commandement des unités d'Europe et d'Amérique du Nord",
         "Le Conseil ne répond plus"
       ],
-      "tension": 4
+      "tension": 4,
+      "icone": "commando",
+      "lieux": [
+        [
+          5,
+          50
+        ]
+      ]
     },
     {
       "id": "ev4",
@@ -2468,7 +2497,8 @@
       "consequences": [
         "Loi martiale"
       ],
-      "tension": 4
+      "tension": 4,
+      "icone": "confinement"
     },
     {
       "id": "ev5",
@@ -2483,7 +2513,14 @@
       "consequences": [
         "Première utilisation d'HCP sur un front terrestre"
       ],
-      "tension": -2
+      "tension": -2,
+      "icone": "reprise",
+      "lieux": [
+        [
+          -4,
+          40
+        ]
+      ]
     },
     {
       "id": "ev6",
@@ -2499,7 +2536,14 @@
         "2 145 soldats perdus",
         "Phoenix engagée contre les entités"
       ],
-      "tension": 3
+      "tension": 3,
+      "icone": "entite",
+      "lieux": [
+        [
+          13,
+          51
+        ]
+      ]
     },
     {
       "id": "ev7",
@@ -2515,7 +2559,8 @@
         "Mobilisation générale",
         "Palier III · Crépuscule atteint"
       ],
-      "tension": 12
+      "tension": 12,
+      "icone": "discours"
     },
     {
       "id": "ev8",
@@ -2532,7 +2577,30 @@
         "Survivants lourdement irradiés",
         "Afrique entière en quarantaine"
       ],
-      "tension": 3
+      "tension": 3,
+      "icone": "nucleaire",
+      "lieux": [
+        [
+          12,
+          14
+        ],
+        [
+          22,
+          -1.5
+        ],
+        [
+          31,
+          -2.5
+        ],
+        [
+          24,
+          -22
+        ],
+        [
+          39,
+          9
+        ]
+      ]
     },
     {
       "id": "ev9",
@@ -2548,7 +2616,14 @@
         "100 000 cultistes tués",
         "Lourdes pertes civiles face aux soldats organisés"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "foule",
+      "lieux": [
+        [
+          110,
+          28
+        ]
+      ]
     },
     {
       "id": "ev10",
@@ -2565,7 +2640,14 @@
         "20 000 survivants passent à la guérilla",
         "Certains officiers craignent que la rage se propage"
       ],
-      "tension": 2
+      "tension": 2,
+      "icone": "entite",
+      "lieux": [
+        [
+          19,
+          50
+        ]
+      ]
     },
     {
       "id": "ev11",
@@ -2581,7 +2663,14 @@
         "La jungle vire au marécage, la faune mute",
         "Temps d'incubation long : risque hors du continent"
       ],
-      "tension": 2
+      "tension": 2,
+      "icone": "maladie",
+      "lieux": [
+        [
+          -60,
+          -5
+        ]
+      ]
     },
     {
       "id": "ev12",
@@ -2597,7 +2686,14 @@
         "45 000 effectifs engagés",
         "\"Maman, je n'ai plus peur.\""
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "renfort",
+      "lieux": [
+        [
+          -74,
+          -8
+        ]
+      ]
     },
     {
       "id": "ev13",
@@ -2613,7 +2709,14 @@
         "Personne ne doit approcher HCP",
         "Merrick ignore d'où vient cette directive"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "machine",
+      "lieux": [
+        [
+          -17.5,
+          69.4
+        ]
+      ]
     },
     {
       "id": "ev14",
@@ -2630,7 +2733,14 @@
         "Des dizaines de millions de morts",
         "Poches d'infection dans le reste du continent"
       ],
-      "tension": 3
+      "tension": 3,
+      "icone": "plieur",
+      "lieux": [
+        [
+          -57.5,
+          -14.5
+        ]
+      ]
     },
     {
       "id": "ev15",
@@ -2646,7 +2756,14 @@
         "Environ 50 millions de cultistes en Asie",
         "Recrutement par la torture et la séduction"
       ],
-      "tension": 3
+      "tension": 3,
+      "icone": "plieur",
+      "lieux": [
+        [
+          107.3,
+          24.9
+        ]
+      ]
     },
     {
       "id": "ev16",
@@ -2662,7 +2779,14 @@
         "19 cultistes tués",
         "4 miliciens morts, tous du quartier"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "combat",
+      "lieux": [
+        [
+          8.54,
+          47.37
+        ]
+      ]
     },
     {
       "id": "ev17",
@@ -2679,7 +2803,14 @@
         "Plusieurs centres urbains ravagés",
         "Situation réglée"
       ],
-      "tension": -3
+      "tension": -3,
+      "icone": "reprise",
+      "lieux": [
+        [
+          14,
+          48
+        ]
+      ]
     },
     {
       "id": "ev18",
@@ -2695,7 +2826,14 @@
         "Rumeurs contre le gouvernement",
         "Lynchages en hausse"
       ],
-      "tension": 1
+      "tension": 1,
+      "icone": "foule",
+      "lieux": [
+        [
+          -95,
+          37
+        ]
+      ]
     },
     {
       "id": "ev19",
@@ -2711,7 +2849,8 @@
         "Perturbations électromagnétiques persistantes",
         "Des psychologues s'inquiètent pour l'ordre public"
       ],
-      "tension": 1
+      "tension": 1,
+      "icone": "foule"
     },
     {
       "id": "ev20",
@@ -2727,7 +2866,14 @@
         "Détroits fermés au trafic civil",
         "Contrôles de la marine autour de l'archipel"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "quarantaine",
+      "lieux": [
+        [
+          121,
+          15
+        ]
+      ]
     },
     {
       "id": "ev21",
@@ -2743,7 +2889,14 @@
         "Propagation de la bulle stoppée",
         "Routes et cours d'eau fermés autour du foyer"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "quarantaine",
+      "lieux": [
+        [
+          -57.5,
+          -4
+        ]
+      ]
     },
     {
       "id": "ev22",
@@ -2759,7 +2912,14 @@
         "Poche de Mexico détruite",
         "Reconstruction du Panaméricain"
       ],
-      "tension": -2
+      "tension": -2,
+      "icone": "reprise",
+      "lieux": [
+        [
+          -99.13,
+          19.43
+        ]
+      ]
     },
     {
       "id": "ev23",
@@ -2775,7 +2935,14 @@
         "Propagation stoppée à Haïti",
         "Poche toujours active"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "commando",
+      "lieux": [
+        [
+          -72.4,
+          18.9
+        ]
+      ]
     },
     {
       "id": "ev24",
@@ -2792,7 +2959,14 @@
         "Quatre divisions navales redéployées vers la côte chinoise",
         "Bombardements continus sur le Tonkin"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "reprise",
+      "lieux": [
+        [
+          109.8,
+          19.2
+        ]
+      ]
     },
     {
       "id": "ev25",
@@ -2808,7 +2982,14 @@
         "Izala blessée",
         "Phoenix divisée en deux divisions, Amérique du Sud et Asie"
       ],
-      "tension": -2
+      "tension": -2,
+      "icone": "phoenix",
+      "lieux": [
+        [
+          107.3,
+          24.9
+        ]
+      ]
     },
     {
       "id": "ev26",
@@ -2823,7 +3004,14 @@
       "consequences": [
         "Environ 1 300 entités tuées"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "phoenix",
+      "lieux": [
+        [
+          -57.5,
+          -11
+        ]
+      ]
     },
     {
       "id": "ev27",
@@ -2838,7 +3026,14 @@
       "consequences": [
         "Achèvement prévu le 20 mars 2076"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "science",
+      "lieux": [
+        [
+          25.3,
+          70.7
+        ]
+      ]
     },
     {
       "id": "ev28",
@@ -2854,7 +3049,8 @@
         "3 333 000 morts confédérés",
         "Forces spéciales portées à 350 000"
       ],
-      "tension": 2
+      "tension": 2,
+      "icone": "bilan"
     },
     {
       "id": "ev29",
@@ -2872,7 +3068,14 @@
         "5 millions de cultistes tués, 7 millions de civils convertis",
         "33 millions de cultistes en Asie"
       ],
-      "tension": 4
+      "tension": 4,
+      "icone": "percee",
+      "lieux": [
+        [
+          115.5,
+          25.5
+        ]
+      ]
     },
     {
       "id": "ev30",
@@ -2887,7 +3090,15 @@
       "consequences": [
         "-10 au prochain jet d'offensive cultiste en Asie"
       ],
-      "tension": -2
+      "tension": -2,
+      "icone": "entite",
+      "lieux": [
+        [
+          110,
+          27
+        ]
+      ],
+      "camp": "cc"
     },
     {
       "id": "ev31",
@@ -2904,7 +3115,14 @@
         "1,4 million de régulières et 2 600 forces spéciales tués",
         "22 millions de civils morts"
       ],
-      "tension": 3
+      "tension": 3,
+      "icone": "nucleaire",
+      "lieux": [
+        [
+          -57.8,
+          -14
+        ]
+      ]
     },
     {
       "id": "ev32",
@@ -2921,7 +3139,14 @@
         "13,2 millions de civils convertis",
         "38,2 millions de cultistes en Amérique du Sud"
       ],
-      "tension": 2
+      "tension": 2,
+      "icone": "percee",
+      "lieux": [
+        [
+          -58,
+          -26
+        ]
+      ]
     },
     {
       "id": "ev33",
@@ -2937,7 +3162,14 @@
         "Poche du Venezuela reprise",
         "Voie réparée au Mexique"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "rail",
+      "lieux": [
+        [
+          -66,
+          8
+        ]
+      ]
     },
     {
       "id": "ev34",
@@ -2955,7 +3187,14 @@
         "500 000 militaires confédérés tués",
         "Leizhou reprise, frontière vietnamienne fortifiée"
       ],
-      "tension": -2
+      "tension": -2,
+      "icone": "front",
+      "lieux": [
+        [
+          114,
+          29.5
+        ]
+      ]
     },
     {
       "id": "ev35",
@@ -2970,7 +3209,14 @@
       "consequences": [
         "Plus de plieur de réalité en Asie"
       ],
-      "tension": -3
+      "tension": -3,
+      "icone": "plieur-mort",
+      "lieux": [
+        [
+          107.3,
+          24.9
+        ]
+      ]
     },
     {
       "id": "ev36",
@@ -2988,7 +3234,14 @@
         "3,2 millions de cultistes tués, 35 millions restants",
         "500 000 régulières tués"
       ],
-      "tension": -2
+      "tension": -2,
+      "icone": "front",
+      "lieux": [
+        [
+          -60,
+          -32
+        ]
+      ]
     },
     {
       "id": "ev37",
@@ -3003,7 +3256,14 @@
       "consequences": [
         "Plus de plieur de réalité en Amérique du Sud"
       ],
-      "tension": -3
+      "tension": -3,
+      "icone": "plieur-mort",
+      "lieux": [
+        [
+          -57.5,
+          -14.5
+        ]
+      ]
     },
     {
       "id": "ev38",
@@ -3019,7 +3279,18 @@
         "Poches de Colombie et d'Haïti reprises",
         "District Mexicain repassé sous contrôle"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "reprise",
+      "lieux": [
+        [
+          -74.5,
+          4.5
+        ],
+        [
+          -72.4,
+          18.9
+        ]
+      ]
     },
     {
       "id": "ev39",
@@ -3036,7 +3307,18 @@
         "Évacuation de l'Asie vers l'Europe et de l'Amérique du Sud vers Ganzir",
         "136 millions de morts dans le monde"
       ],
-      "tension": 1
+      "tension": 1,
+      "icone": "evacuation",
+      "lieux": [
+        [
+          -44,
+          33
+        ],
+        [
+          10,
+          50
+        ]
+      ]
     },
     {
       "id": "ev40",
@@ -3053,7 +3335,14 @@
         "Rosario contestée, Phoenix en renfort",
         "3 millions de cultistes tués, 7,2 millions de convertis, 39,2 millions au total"
       ],
-      "tension": 3
+      "tension": 3,
+      "icone": "percee",
+      "lieux": [
+        [
+          -62,
+          -30
+        ]
+      ]
     },
     {
       "id": "ev41",
@@ -3070,7 +3359,8 @@
         "12 millions de civils morts",
         "2,5 millions de renforts, 4,18 millions de militaires au front"
       ],
-      "tension": 1
+      "tension": 1,
+      "icone": "bilan"
     },
     {
       "id": "ev42",
@@ -3088,7 +3378,14 @@
         "20 millions de civils et 600 000 régulières tués",
         "1,5 million de renforts"
       ],
-      "tension": 2
+      "tension": 2,
+      "icone": "percee",
+      "lieux": [
+        [
+          113,
+          30.5
+        ]
+      ]
     },
     {
       "id": "ev43",
@@ -3106,7 +3403,14 @@
         "20 millions de civils et 600 000 régulières tués",
         "1,5 million de renforts"
       ],
-      "tension": 2
+      "tension": 2,
+      "icone": "percee",
+      "lieux": [
+        [
+          118.8,
+          32.05
+        ]
+      ]
     },
     {
       "id": "ev44",
@@ -3123,7 +3427,14 @@
         "Rosario encerclée, Buenos Aires menacée",
         "3 millions de cultistes tués, 4,8 millions de convertis, 41 millions au total"
       ],
-      "tension": 1
+      "tension": 1,
+      "icone": "ville",
+      "lieux": [
+        [
+          -56.2,
+          -34.9
+        ]
+      ]
     },
     {
       "id": "ev45",
@@ -3141,7 +3452,14 @@
         "2 millions de renforts, 5,43 millions de militaires au front",
         "193,67 millions de morts dans le monde"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "fortification",
+      "lieux": [
+        [
+          -70.65,
+          -33.45
+        ]
+      ]
     },
     {
       "id": "ev46",
@@ -3161,7 +3479,14 @@
         "85 millions de civils évacués vers l'Europe",
         "200 millions de civils restants près du front"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "percee",
+      "lieux": [
+        [
+          108.9,
+          34.3
+        ]
+      ]
     },
     {
       "id": "ev47",
@@ -3177,7 +3502,18 @@
         "Santiago, Buenos Aires et toute la Patagonie tombent",
         "6 millions de cultistes tués, 33 millions de convertis, 68 millions au total"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "ville",
+      "lieux": [
+        [
+          -58.4,
+          -34.6
+        ],
+        [
+          -70.65,
+          -33.45
+        ]
+      ]
     },
     {
       "id": "ev48",
@@ -3195,7 +3531,8 @@
         "50 millions de civils évacués vers Ganzir",
         "5 millions de civils restants en Amérique du Sud"
       ],
-      "tension": 0
+      "tension": 0,
+      "icone": "bilan"
     },
     {
       "id": "ev49",
@@ -3211,7 +3548,14 @@
         "Sud du domaine d'Izala repris, Canton et Hong Kong compris",
         "3 millions de cultistes tués pour 100 000 confédérés"
       ],
-      "tension": -4
+      "tension": -4,
+      "icone": "contre",
+      "lieux": [
+        [
+          110,
+          24
+        ]
+      ]
     },
     {
       "id": "ev50",
@@ -3229,7 +3573,14 @@
         "500 000 militaires et 4 millions de civils tués",
         "3,5 millions de renforts, 6 millions de militaires au front"
       ],
-      "tension": 1
+      "tension": 1,
+      "icone": "percee",
+      "lieux": [
+        [
+          118.5,
+          36
+        ]
+      ]
     },
     {
       "id": "ev51",
@@ -3246,7 +3597,14 @@
         "1 million de militaires tués",
         "4,6 millions de civils morts, 5,6 millions de pertes au total"
       ],
-      "tension": -1
+      "tension": -1,
+      "icone": "reprise",
+      "lieux": [
+        [
+          -58,
+          -6
+        ]
+      ]
     }
   ],
   "historique": [
@@ -3487,7 +3845,447 @@
         "rosario": 99,
         "canberra": 100,
         "le-cap": 98
-      }
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 353000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1493000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1199000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 600
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 662000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1497000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1578000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2072000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            }
+          ],
+          "cultistes": []
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5599000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 14854000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 14000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 5000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1536000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3905000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1250000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": []
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1744000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": []
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1762000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2734000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 800
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5413000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1218000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 200
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
+      },
+      "forcesEstimees": true
     },
     {
       "date": "10 sept. 2075",
@@ -3726,7 +4524,447 @@
         "rosario": 97,
         "canberra": 99,
         "le-cap": 98
-      }
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 353000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1493000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1199000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 600
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 662000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1497000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1578000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2072000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            }
+          ],
+          "cultistes": []
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5599000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 14854000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 14000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 5000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1536000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3905000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1250000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": []
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1744000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": []
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1762000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2734000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 800
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5413000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1218000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 200
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
+      },
+      "forcesEstimees": true
     },
     {
       "date": "12 sept. 2075",
@@ -3967,7 +5205,447 @@
         "rosario": 95,
         "canberra": 99,
         "le-cap": 97
-      }
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 353000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1493000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1199000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 600
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 662000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1497000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1578000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2072000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            }
+          ],
+          "cultistes": []
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5599000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 14854000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 14000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 5000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1536000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3905000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1250000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": []
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": []
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1744000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": []
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1762000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2734000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 800
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5413000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1218000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 200
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
+      },
+      "forcesEstimees": true
     },
     {
       "date": "20 sept. 2075",
@@ -4273,6 +5951,548 @@
         "gouvernement": 100,
         "armee": 100,
         "population": 80
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 353000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1493000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1199000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 600
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 662000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1497000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1578000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2072000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 400
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5599000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 14854000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 14000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 5000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~30000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            },
+            {
+              "nom": "Izala \"la Déesse\" (plieuse de réalité)",
+              "effectif": 1
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1536000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3905000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1250000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1744000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1762000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~400000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2734000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 800
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5413000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~26000000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            },
+            {
+              "nom": "Arthur \"le Bon\" (plieur de réalité)",
+              "effectif": 1
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1218000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 200
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~4000000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -4616,6 +6836,528 @@
         "milices": 799200,
         "speciales": 33000,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 14039000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~30000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            },
+            {
+              "nom": "Izala \"la Déesse\" (plieuse de réalité, blessée)",
+              "effectif": 1
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~120000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2420000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 63000
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 4532000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 120000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~26000000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            },
+            {
+              "nom": "Arthur \"le Bon\" (plieur de réalité)",
+              "effectif": 1
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1096000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 25000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~4000000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -5102,6 +7844,528 @@
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 11639000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~33000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            },
+            {
+              "nom": "Izala \"la Déesse\" (plieuse de réalité, blessée)",
+              "effectif": 1
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~120000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2220000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 62700
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~9500000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3832000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 118400
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~21000000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            },
+            {
+              "nom": "Arthur \"le Bon\" (plieur de réalité)",
+              "effectif": 1
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 596000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 24300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~7700000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -5564,6 +8828,520 @@
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 11139000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~22000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2170000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 62700
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~9000000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3582000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 118400
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~19000000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 396000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 24300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~7000000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -6070,6 +9848,524 @@
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 12039000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~25000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2470000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 62700
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10200000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3462000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 118400
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 4300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~19500000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1996000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 24300
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~9500000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -6608,6 +10904,524 @@
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 12939000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~28000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2820000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 62700
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10800000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3412000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 118400
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 4300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~18300000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 2946000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 24300
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~11900000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -7273,6 +12087,524 @@
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3948700
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~28000000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 566000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 62700
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~18300000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 685000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 118400
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 4300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~22800000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 592000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 24300
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~26900000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     },
     {
@@ -7993,6 +13325,524 @@
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5948700
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~14600000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 259000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 62700
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~18300000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 313000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 118400
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 4300
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~22800000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 271000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 24300
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~26900000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
       }
     }
   ],
@@ -12488,6 +18338,540 @@
       "rayon": 1.0,
       "date": "18 oct. 2075",
       "info": "Terrain disputé rue par rue, où la division sud-américaine de Phoenix est venue en renfort."
+    }
+  ],
+  "axes": [
+    {
+      "id": "a1",
+      "date": "20 sept. 2075",
+      "camp": "cult",
+      "nom": "Avancée d'Arthur",
+      "trace": [
+        [
+          -57.5,
+          -14.5
+        ],
+        [
+          -62,
+          -12.5
+        ],
+        [
+          -66.5,
+          -10.5
+        ]
+      ]
+    },
+    {
+      "id": "a2",
+      "date": "20 sept. 2075",
+      "camp": "cult",
+      "nom": "Sortie d'Izala",
+      "trace": [
+        [
+          107.3,
+          24.9
+        ],
+        [
+          110.5,
+          25.8
+        ],
+        [
+          113,
+          26.3
+        ]
+      ]
+    },
+    {
+      "id": "a3",
+      "date": "27 sept. 2075",
+      "camp": "cc",
+      "nom": "Libération de Mexico",
+      "trace": [
+        [
+          -95.5,
+          22.5
+        ],
+        [
+          -98.9,
+          19.8
+        ]
+      ]
+    },
+    {
+      "id": "a4",
+      "date": "27 sept. 2075",
+      "camp": "cc",
+      "nom": "Débarquement à Haïti",
+      "trace": [
+        [
+          -72.6,
+          16.2
+        ],
+        [
+          -72.4,
+          18.4
+        ]
+      ]
+    },
+    {
+      "id": "a5",
+      "date": "27 sept. 2075",
+      "camp": "cc",
+      "nom": "Reprise de Hainan",
+      "trace": [
+        [
+          111.5,
+          21.8
+        ],
+        [
+          110.1,
+          19.7
+        ]
+      ]
+    },
+    {
+      "id": "a6",
+      "date": "27 sept. 2075",
+      "camp": "cc",
+      "nom": "Phoenix vers Izala",
+      "trace": [
+        [
+          104,
+          22.4
+        ],
+        [
+          106.7,
+          24.4
+        ]
+      ]
+    },
+    {
+      "id": "a7",
+      "date": "4 oct. 2075",
+      "camp": "cult",
+      "nom": "Ruée vers la côte",
+      "trace": [
+        [
+          109.5,
+          25.6
+        ],
+        [
+          113,
+          25.9
+        ],
+        [
+          116.5,
+          25.6
+        ],
+        [
+          119.3,
+          26.8
+        ]
+      ]
+    },
+    {
+      "id": "a8",
+      "date": "4 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers Canton",
+      "trace": [
+        [
+          110.5,
+          24.5
+        ],
+        [
+          113.2,
+          23.2
+        ]
+      ]
+    },
+    {
+      "id": "a9",
+      "date": "4 oct. 2075",
+      "camp": "cult",
+      "nom": "Percée du sud",
+      "trace": [
+        [
+          -57.5,
+          -20.5
+        ],
+        [
+          -57.8,
+          -24.5
+        ],
+        [
+          -58.6,
+          -28.5
+        ]
+      ]
+    },
+    {
+      "id": "a10",
+      "date": "4 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers l'Atacama",
+      "trace": [
+        [
+          -61,
+          -20
+        ],
+        [
+          -65.5,
+          -23.5
+        ],
+        [
+          -68.5,
+          -24.5
+        ]
+      ]
+    },
+    {
+      "id": "a11",
+      "date": "11 oct. 2075",
+      "camp": "cc",
+      "nom": "Reprise de Leizhou",
+      "trace": [
+        [
+          108.6,
+          22.6
+        ],
+        [
+          110.1,
+          21.3
+        ]
+      ]
+    },
+    {
+      "id": "a12",
+      "date": "18 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers le Yangzi",
+      "trace": [
+        [
+          113,
+          28.3
+        ],
+        [
+          113.6,
+          30.4
+        ]
+      ]
+    },
+    {
+      "id": "a13",
+      "date": "18 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers le Pacifique",
+      "trace": [
+        [
+          -65.5,
+          -24
+        ],
+        [
+          -69.8,
+          -25.3
+        ]
+      ]
+    },
+    {
+      "id": "a14",
+      "date": "18 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers le Rio Grande do Sul",
+      "trace": [
+        [
+          -52.5,
+          -26.8
+        ],
+        [
+          -50,
+          -29.6
+        ]
+      ]
+    },
+    {
+      "id": "a15",
+      "date": "18 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers Rosario",
+      "trace": [
+        [
+          -60.4,
+          -29
+        ],
+        [
+          -60.6,
+          -31.9
+        ]
+      ]
+    },
+    {
+      "id": "a16",
+      "date": "18 oct. 2075",
+      "camp": "cc",
+      "nom": "Phoenix à Rosario",
+      "trace": [
+        [
+          -62.5,
+          -36
+        ],
+        [
+          -60.9,
+          -33.6
+        ]
+      ]
+    },
+    {
+      "id": "a17",
+      "date": "25 oct. 2075",
+      "camp": "cult",
+      "nom": "Passage du Yangzi",
+      "trace": [
+        [
+          116,
+          30.2
+        ],
+        [
+          118.4,
+          32.1
+        ]
+      ]
+    },
+    {
+      "id": "a18",
+      "date": "25 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers Wuhan",
+      "trace": [
+        [
+          112.6,
+          29.6
+        ],
+        [
+          114.2,
+          30.9
+        ]
+      ]
+    },
+    {
+      "id": "a19",
+      "date": "25 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers Montevideo",
+      "trace": [
+        [
+          -54.8,
+          -30.5
+        ],
+        [
+          -56,
+          -34.2
+        ]
+      ]
+    },
+    {
+      "id": "a20",
+      "date": "25 oct. 2075",
+      "camp": "cult",
+      "nom": "Vers le Chili central",
+      "trace": [
+        [
+          -69,
+          -29.5
+        ],
+        [
+          -70.6,
+          -32.2
+        ]
+      ]
+    },
+    {
+      "id": "a21",
+      "date": "1 nov. 2075",
+      "camp": "cult",
+      "nom": "Vers Xi'an",
+      "trace": [
+        [
+          108.2,
+          30.2
+        ],
+        [
+          108.9,
+          33.9
+        ]
+      ]
+    },
+    {
+      "id": "a22",
+      "date": "1 nov. 2075",
+      "camp": "cult",
+      "nom": "Vers Zhengzhou",
+      "trace": [
+        [
+          111,
+          30.8
+        ],
+        [
+          113.5,
+          34.4
+        ]
+      ]
+    },
+    {
+      "id": "a23",
+      "date": "1 nov. 2075",
+      "camp": "cult",
+      "nom": "Vers le Sichuan",
+      "trace": [
+        [
+          106.3,
+          28.6
+        ],
+        [
+          104,
+          30.5
+        ]
+      ]
+    },
+    {
+      "id": "a24",
+      "date": "1 nov. 2075",
+      "camp": "cult",
+      "nom": "Chute de Santiago",
+      "trace": [
+        [
+          -69.5,
+          -31.6
+        ],
+        [
+          -70.6,
+          -33.3
+        ]
+      ]
+    },
+    {
+      "id": "a25",
+      "date": "1 nov. 2075",
+      "camp": "cult",
+      "nom": "Vers Buenos Aires",
+      "trace": [
+        [
+          -59.8,
+          -33.8
+        ],
+        [
+          -58.6,
+          -34.5
+        ]
+      ]
+    },
+    {
+      "id": "a26",
+      "date": "1 nov. 2075",
+      "camp": "cult",
+      "nom": "Vers la Patagonie",
+      "trace": [
+        [
+          -65,
+          -35.5
+        ],
+        [
+          -66.5,
+          -41
+        ],
+        [
+          -69,
+          -48
+        ]
+      ]
+    },
+    {
+      "id": "a27",
+      "date": "8 nov. 2075",
+      "camp": "cc",
+      "nom": "Contre-offensive du sud",
+      "trace": [
+        [
+          105.5,
+          22.3
+        ],
+        [
+          107.6,
+          24.3
+        ],
+        [
+          110.8,
+          25.6
+        ]
+      ]
+    },
+    {
+      "id": "a28",
+      "date": "8 nov. 2075",
+      "camp": "cc",
+      "nom": "Vers Canton",
+      "trace": [
+        [
+          112.3,
+          21.6
+        ],
+        [
+          113.3,
+          23.2
+        ]
+      ]
+    },
+    {
+      "id": "a29",
+      "date": "8 nov. 2075",
+      "camp": "cult",
+      "nom": "Vers le Shandong",
+      "trace": [
+        [
+          116.2,
+          33.4
+        ],
+        [
+          117.6,
+          35.6
+        ],
+        [
+          119,
+          36.8
+        ]
+      ]
+    },
+    {
+      "id": "a30",
+      "date": "8 nov. 2075",
+      "camp": "cc",
+      "nom": "Reprise du nord de Nargal",
+      "trace": [
+        [
+          -58,
+          -2.5
+        ],
+        [
+          -58,
+          -8.5
+        ]
+      ]
+    },
+    {
+      "id": "a31",
+      "date": "8 nov. 2075",
+      "camp": "cc",
+      "nom": "Reprise du nord de Nargal",
+      "trace": [
+        [
+          -66.5,
+          -5
+        ],
+        [
+          -62.5,
+          -9
+        ]
+      ]
     }
   ]
 }

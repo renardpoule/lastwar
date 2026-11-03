@@ -65,7 +65,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'explosions', 'avions', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'explosions', 'avions', 'sites', 'villes', 'axes', 'unites', 'evts', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -443,7 +443,7 @@
 
     // Marqueurs des événements récents (statiques : aucune animation continue)
     const pts = new Map();
-    for (const ev of evenementsAff().slice(-6)) {
+    for (const ev of evenementsTour().filter(ev => !ev.lieux)) {
       const o = ev.portee.type === 'district' ? parId[ev.portee.id] : ev.portee.type === 'secteur' ? secteurParId[ev.portee.id] : null;
       if (!o) continue;
       const p = ancre(o);
@@ -463,6 +463,8 @@
       .attr('class', m => 'marker ' + m.ev.gravite)
       .on('click', (e, m) => { e.stopPropagation(); allerPortee(m.ev.portee); })
       .each(function (m) { d3.select(this).select('title').text(`${m.ev.date} : ${m.ev.titre}`); });
+    rendrePictos();
+    rendreAxes();
 
     echelleLabels();
     zoomSur(cadreVue(), anime);
@@ -473,6 +475,81 @@
     rendreArchive();
     rendreBandeau();
     rendreEnergie();
+  }
+
+  // ---------- Événements du tour : pictogrammes posés sur la carte, axes d'attaque ----------
+  // Fenêtre d'un tour : les événements survenus depuis l'instantané précédent
+  function evenementsTour() {
+    const h = data.historique, ev = data.evenements;
+    if (etat.replay !== null) return ev.slice(etat.replay > 0 ? h[etat.replay - 1].evenements : 0, h[etat.replay].evenements);
+    const der = h[h.length - 1];
+    const debut = !der ? 0 : der.date === data.meta.dateRP ? (h.length > 1 ? h[h.length - 2].evenements : 0) : der.evenements;
+    return ev.slice(debut);
+  }
+  const PICTOS = {
+    percee: ['cult', 'Percée cultiste', 'M4 12h12M11 6l6 6-6 6'],
+    contre: ['cc', 'Contre-offensive', 'M3 12h9M8 7l5 5-5 5M13 7l5 5-5 5'],
+    reprise: ['cc', 'Reprise', 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6zM9 12l2 2 4-4'],
+    nucleaire: ['feu', 'Frappe nucléaire', 'M12 12m-1.8 0a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0-3.6 0M10.2 9.2L7.6 4.8a8.5 8.5 0 0 1 8.8 0L13.8 9.2M15 13.6h5a8.5 8.5 0 0 1-4.4 7.4L13 16.7M9 13.6H4a8.5 8.5 0 0 0 4.4 7.4L11 16.7'],
+    plieur: ['cult', 'Plieur de réalité', 'M12 12m-1 0a1 1 0 1 1 2 0a3 3 0 1 1-6 0a5 5 0 1 1 10 0a7 7 0 1 1-14 0'],
+    'plieur-mort': ['cc', 'Plieur de réalité tué', 'M12 3a7 7 0 0 0-7 7c0 2.6 1.3 4.2 3 5.2V19h8v-3.8c1.7-1 3-2.6 3-5.2a7 7 0 0 0-7-7zM9.5 10.5h.01M14.5 10.5h.01M10.5 19v2M13.5 19v2'],
+    entite: ['cult', 'Entité', 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0'],
+    maladie: ['cult', 'Épidémie', 'M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11zM10 14a2 2 0 0 0 2 2'],
+    phoenix: ['cc', 'Division Phoenix', 'M12 3c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6.5 1.2 1 2 2.4 2 4 1.3-2 1.3-4.7 1-7.5z'],
+    quarantaine: ['cc', 'Quarantaine', 'M3 8h18v5H3zM6 13v7M18 13v7M7 8l4 5M13 8l4 5'],
+    fortification: ['cc', 'Fortification', 'M4 20V9h3V6h3v3h4V6h3v3h3v11zM10 20v-4h4v4'],
+    front: ['neutre', 'Front', 'M5 5l9 9M19 5l-9 9M7 17l3-3M17 17l-3-3M4 20l2-2M20 20l-2-2'],
+    combat: ['neutre', 'Combat', 'M5 5l9 9M19 5l-9 9M7 17l3-3M17 17l-3-3M4 20l2-2M20 20l-2-2'],
+    foule: ['neutre', 'Foules', 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3 3-5 6-5s6 2 6 5M12 20c.4-2.6 2.2-5 4-5 3 0 6 2 6 5'],
+    evacuation: ['cc', 'Évacuation', 'M3 15h18l-3 5H6zM6 15V9h8l3 6M9 9V5h3v4'],
+    renfort: ['cc', 'Renforts', 'M5 20l7-5 7 5M5 15l7-5 7 5M5 10l7-5 7 5'],
+    commando: ['neutre', 'Commando', 'M12 2l2 4v9h-4V6zM8 15h8M11 17h2v4h-2z'],
+    signal: ['neutre', 'Signal', 'M12 12m-1.5 0a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9.2 9.2 0 0 0 0 13M18.5 5.5a9.2 9.2 0 0 1 0 13'],
+    machine: ['neutre', 'HCP', 'M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4'],
+    science: ['neutre', 'Recherche', 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3'],
+    rail: ['cc', 'Voie ferrée', 'M6 4h12v11H6zM6 10h12M9 18l-2 3M15 18l2 3M9 13h.01M15 13h.01'],
+    ville: ['cult', 'Ville tombée', 'M4 21V8l6-4v17M10 21V10h6l4 4v7M13 14l2 2M16 13l-1 4']
+  };
+  const campPicto = ev => ev.camp || (PICTOS[ev.icone] || ['neutre'])[0];
+  function rendrePictos() {
+    const pts = [], vus = new Map();
+    for (const ev of evenementsTour()) for (const [i, c] of (ev.lieux || []).entries()) {
+      const p = projection(c);
+      if (!p) continue;
+      // Pictogrammes au même endroit : décalés en éventail
+      const cle = Math.round(p[0] / 6) + ':' + Math.round(p[1] / 6), n = vus.get(cle) || 0;
+      vus.set(cle, n + 1);
+      pts.push({ id: ev.id + ':' + i, ev, p, n });
+    }
+    L.evts.selectAll('g.picto').data(pts, x => x.id).join(en => {
+      const g = en.append('g');
+      g.append('circle').attr('class', 'pi-halo').attr('r', 15);
+      g.append('circle').attr('class', 'pi-fond').attr('r', 11.5);
+      g.append('path').attr('class', 'pi-glyphe').attr('transform', 'translate(-8.4,-8.4) scale(0.7)');
+      return g;
+    }).attr('class', x => `picto ${campPicto(x.ev)} ${x.ev.gravite}`)
+      .each(function (x) { d3.select(this).select('.pi-glyphe').attr('d', (PICTOS[x.ev.icone] || PICTOS.signal)[2]); })
+      .on('mousemove', survolPicto).on('mouseleave', finSurvol)
+      .on('click', (e, x) => { e.stopPropagation(); allerPortee(x.ev.portee); });
+  }
+  function rendreAxes() {
+    const axes = (data.axes || []).filter(a => a.date === dateAff()).map(a => {
+      const pts = a.trace.map(c => projection(c));
+      const n = pts.length, b = pts[n - 1], q = pts[n - 2];
+      return { ...a, pts, bout: b, angle: Math.atan2(b[1] - q[1], b[0] - q[0]) * 180 / Math.PI };
+    });
+    const ligne = d3.line().curve(d3.curveCatmullRom.alpha(0.5));
+    L.axes.selectAll('g.axe').data(axes, a => a.id).join(en => {
+      const g = en.append('g');
+      g.append('path').attr('class', 'ax-fond'); g.append('path').attr('class', 'ax-trait'); g.append('path').attr('class', 'ax-pointe');
+      return g;
+    }).attr('class', a => 'axe ' + a.camp)
+      .each(function (a) {
+        const g = d3.select(this), dd = ligne(a.pts);
+        g.select('.ax-fond').attr('d', dd); g.select('.ax-trait').attr('d', dd);
+        g.select('.ax-pointe').attr('d', 'M-3,-9L11,0L-3,9L0,0Z').datum(a);
+      })
+      .on('mousemove', survolAxe).on('mouseleave', finSurvol);
   }
 
   // Tache organique autour d'un centre (forme stable : dérivée de l'identifiant de la zone)
@@ -827,6 +904,16 @@
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(TYPES_LIGNE[x.type] || 'Ligne de front')}</strong>${esc(x.nom || '')}${x.date ? ', depuis le ' + esc(x.date) : ''}${x.info ? '<br>' + esc(x.info) : ''}`; }
     placerTip(e);
   }
+  function survolPicto(e, x) {
+    const cle = 'p:' + x.id;
+    if (cle !== survolCle) { survolCle = cle; const T = PICTOS[x.ev.icone]; tip.innerHTML = `<strong>${esc(x.ev.titre)}</strong>${esc(x.ev.date)}${T ? ' · ' + esc(T[1]) : ''}<br>${esc(x.ev.description.length > 220 ? x.ev.description.slice(0, 217) + '…' : x.ev.description)}<br><span class="ds-supporting">Cliquer pour y aller</span>`; }
+    placerTip(e);
+  }
+  function survolAxe(e, a) {
+    const cle = 'a:' + a.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(a.nom)}</strong>${a.camp === 'cc' ? 'Offensive de la Confédération' : 'Offensive cultiste'}, semaine du ${esc(a.date)}`; }
+    placerTip(e);
+  }
   function survolContestation(e, x) {
     const cle = 'k:' + x.id;
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>Zone de contestation</strong>${esc(x.nom || '')}${x.date ? ', depuis le ' + esc(x.date) : ''}${x.info ? '<br>' + esc(x.info) : ''}`; }
@@ -861,15 +948,18 @@
       .map(x => ({ x, dist: d3.geoDistance(x.centre, projection.invert(ancre(d))) })).sort((a, b) => a.dist - b.dist)[0]?.x;
     return z ? z.couleur : null;
   };
+  // Effectifs du district : ceux de l'archive pendant la relecture (instantané.forces), sinon les actuels
+  const forcesDe = d => etat.replay !== null ? ((data.historique[etat.replay].forces || {})[d.id] || { confederation: [], cultistes: [] }) : d.forces;
+  const archiveForces = () => etat.replay === null || !!data.historique[etat.replay].forces;
   function unitesDe(d) {
     const out = [];
     for (const [cle, T] of Object.entries(TYPES_UNITE)) {
       if (!T.re) continue;
-      const u = (d.forces.confederation || []).find(x => T.re.test(x.nom));
+      const u = (forcesDe(d).confederation || []).find(x => T.re.test(x.nom));
       const n = u ? C.parse(u.effectif).n : 0;
       if (n > 0) out.push({ type: cle, n, v: u.effectif });
     }
-    const cult = (d.forces.cultistes || []).filter(u => !/survivants/i.test(u.nom));
+    const cult = (forcesDe(d).cultistes || []).filter(u => !/survivants/i.test(u.nom));
     if (cult.length) {
       const tot = C.somme(cult.map(u => u.effectif));
       out.push({ type: 'cult', n: tot.n, v: tot, inconnu: !tot.n, couleur: couleurZoneDe(d) });
@@ -898,17 +988,17 @@
   const MORCEAUX = { reg: [1.5e6, 4e6, 8e6], fs: [6000], ph: [], cult: [3e6, 1.2e7] };
   function rendreUnites() {
     const sel = etat.niveau === 'monde' ? null : etat.secteur;
-    // Pas d'effectifs archivés : les pions ne s'affichent qu'en direct, et seulement dans le secteur sélectionné
-    const visibles = etat.replay !== null || !sel ? [] : districts.filter(d => d._geo && d._secteur === sel);
+    // En relecture, les pions suivent les effectifs archivés de l'instantané (s'il y en a)
+    const visibles = !archiveForces() || !sel ? [] : districts.filter(d => d._geo && d._secteur === sel);
     const foyers = zonesAff().filter(z => (+z.rayon || 0) >= 2);
     const pions = [];
     // Vue monde : un pion par camp et par district, qui résume l'ensemble de ses troupes
-    if (!sel && etat.replay === null) for (const d of districts) {
+    if (!sel && archiveForces()) for (const d of districts) {
       const a = d._geo && ancre(d);
       if (!a) continue;
       // Militaires seulement : les milices citoyennes (civils armés) écraseraient tout le reste
-      const cc = (d.forces.confederation || []).filter(u => u.effectif !== undefined && u.effectif !== '' && !/milice/i.test(u.nom));
-      const cult = (d.forces.cultistes || []).filter(u => !/survivants/i.test(u.nom));
+      const cc = (forcesDe(d).confederation || []).filter(u => u.effectif !== undefined && u.effectif !== '' && !/milice/i.test(u.nom));
+      const cult = (forcesDe(d).cultistes || []).filter(u => !/survivants/i.test(u.nom));
       const camps = [];
       if (cc.length) camps.push({ type: 'cc', liste: cc });
       if (cult.length) camps.push({ type: 'cult', liste: cult, couleur: couleurZoneDe(d) });
@@ -1067,6 +1157,9 @@
       + (detruitesAff().some(z => z.type === 'feu') ? '<li><i class="sw detruite feu"></i>Destruction forte par le feu nucléaire</li>' : '')
       + (frappesAff().some(z => z.type === 'napalm') ? '<li><svg class="sw-avion napalm" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.napalm + '"/></svg>Chasseurs au napalm</li>' : '')
       + (frappesAff().some(z => z.type !== 'napalm') ? '<li><svg class="sw-avion missiles" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Bombardiers et missiles</li>' : '')
+      + ((data.axes || []).some(a => a.date === dateAff() && a.camp === 'cult') ? '<li><svg class="sw-rail" viewBox="0 0 24 10" aria-hidden="true"><path class="ax-trait" style="stroke:var(--cult)" d="M1,5H17"/><path d="M15,1L23,5L15,9Z" style="fill:var(--cult)"/></svg>Offensive cultiste de la semaine</li>' : '')
+      + ((data.axes || []).some(a => a.date === dateAff() && a.camp === 'cc') ? '<li><svg class="sw-rail" viewBox="0 0 24 10" aria-hidden="true"><path class="ax-trait" style="stroke:var(--axe-cc)" d="M1,5H17"/><path d="M15,1L23,5L15,9Z" style="fill:var(--axe-cc)"/></svg>Offensive de la CC de la semaine</li>' : '')
+      + (evenementsTour().some(ev => ev.lieux) ? '<li><svg class="sw-picto" viewBox="-13 -13 26 26" aria-hidden="true"><circle class="pi-fond cult" r="11.5"/><path class="pi-glyphe" transform="translate(-8.4,-8.4) scale(0.7)" d="' + PICTOS.percee[2] + '"/></svg>Événement de la semaine (rouge : cultistes, bleu : CC)</li>' : '')
       + (contestationsAff().length ? '<li><i class="sw contestation"></i>Zone de contestation (renforts)</li>' : '')
       + (lignesAff().some(x => x.type === 'renforcee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23" style="stroke-width:8"/><path class="lf-trait renf" d="M1,4H23"/></svg>Ligne fortement fortifiée</li>' : '')
       + (lignesAff().some(x => x.type === 'stabilisee' || !x.type) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
@@ -1121,6 +1214,8 @@
     majFlottes();
     majTrains();
     L.mark.selectAll('g.marker').attr('transform', m => `translate(${m.p[0]},${m.p[1] + m.off / k})`);
+    L.evts.selectAll('g.picto').attr('transform', x => { const a = x.n * 2.2, r = x.n ? 20 : 0; return `translate(${x.p[0] + r * Math.cos(a) * ech / k},${x.p[1] + r * Math.sin(a) * ech / k}) scale(${0.95 * ech / k})`; });
+    L.axes.selectAll('.ax-pointe').attr('transform', a => `translate(${a.bout[0]},${a.bout[1]}) rotate(${a.angle.toFixed(1)}) scale(${ech / k})`);
     L.mark.selectAll('.ring').attr('r', 7 / k);
     L.mark.selectAll('.dot').attr('r', 4 / k);
   }
