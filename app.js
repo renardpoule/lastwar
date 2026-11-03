@@ -50,10 +50,16 @@
       <rect width="1.6" height="5" style="fill:var(--st-quarantaine)" fill-opacity=".6"/>
     </pattern>
     <radialGradient id="brulure"><stop offset="0" style="stop-color:var(--detruit-coeur)"/><stop offset=".6" style="stop-color:var(--detruit)"/><stop offset="1" style="stop-color:var(--detruit)" stop-opacity=".55"/></radialGradient>
+    <pattern id="napalm" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+      <rect width="6" height="6" style="fill:var(--napalm)" fill-opacity=".18"/><rect width="2.4" height="6" style="fill:var(--napalm)" fill-opacity=".75"/>
+    </pattern>
+    <pattern id="missiles" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <rect width="7" height="7" style="fill:var(--missiles)" fill-opacity=".14"/><rect width="1.6" height="7" style="fill:var(--missiles)" fill-opacity=".8"/><rect y="3" width="7" height="1.2" style="fill:var(--missiles)" fill-opacity=".45"/>
+    </pattern>
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'detruites', 'bords', 'sel', 'fronts', 'postes', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -114,7 +120,7 @@
     g.append('text').attr('class', 'label nom-site').attr('x', x => x.glitch ? 38 : 13).attr('dy', '0.35em').text(x => x.nom);
     // Zones détruites (frappes, rasages) : taches brûlées découpées sur les terres
     L.detruites.attr('clip-path', 'url(#clipTerres)');
-    L.detruites.selectAll('path').data(data.detruites || [], z => z.id).join('path').attr('class', 'detruite')
+    L.detruites.selectAll('path').data((data.detruites || []).slice().sort((a, b) => (+b.rayon || 0) - (+a.rayon || 0)), z => z.id).join('path').attr('class', z => 'detruite' + (z.type === 'feu' ? ' feu' : ''))
       .attr('d', z => path(tache(z)))
       .on('mousemove', survolDetruite).on('mouseleave', finSurvol)
       .on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
@@ -259,6 +265,9 @@
   const MOIS = { janv: 1, févr: 2, fevr: 2, mars: 3, avr: 4, mai: 5, juin: 6, juil: 7, août: 8, aout: 8, sept: 9, oct: 10, nov: 11, déc: 12, dec: 12 };
   const dateVal = t => { const m = /(\d+)\s+([a-zéû]+)\.?\s+(\d{4})/i.exec(t || ''); return m ? +m[3] * 1e4 + (MOIS[m[2].toLowerCase()] || 0) * 100 + +m[1] : Infinity; };
   const dateAff = () => etat.replay !== null ? data.historique[etat.replay].date : data.meta.dateRP;
+  // Bombardements : visibles de leur date jusqu'à "jusqu" (le tour où ils ont eu lieu) ; lignes de front : à partir de leur date
+  const frappesAff = () => (data.bombardements || []).filter(z => dateVal(z.date) <= dateVal(dateAff()) && (!z.jusqu || dateVal(dateAff()) <= dateVal(z.jusqu)));
+  const lignesAff = () => (data.lignes || []).filter(x => dateVal(x.date) <= dateVal(dateAff()) && (!x.jusqu || dateVal(dateAff()) <= dateVal(x.jusqu)));
   const detruitesAff = () => (data.detruites || []).filter(z => !z.date || dateVal(z.date) <= dateVal(dateAff()));
   // État des villes : celui de l'archive pendant la relecture, sinon l'état actuel
   const villesAff = () => {
@@ -303,7 +312,7 @@
 
     // Bordure contestée autour de chaque zone cultiste (étroite : ~1/3 du rayon, entre 0,4° et 2°)
     const zs = zonesAff();
-    const halos = zs.map(z => ({ ...z, id: z.id + '-c', rayon: (+z.rayon || 1) + Math.max(0.4, Math.min(2, (+z.rayon || 1) * 0.35)), halo: true }));
+    const halos = zs.map(haloDe);
     L.zones.attr('clip-path', 'url(#clipTerres)');
     const gH = L.zones.selectAll('g.halos').data([0]).join('g').attr('class', 'halos');
     const gZ = L.zones.selectAll('g.coeurs').data([0]).join('g').attr('class', 'coeurs');
@@ -314,7 +323,7 @@
       .attr('class', 'zone').attr('d', z => path(tache(z))).style('fill', z => z.couleur)
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
     // Symbole du chaos, semi-transparent, sur les zones cultistes principales
-    const sceaux = zs.filter(z => (+z.rayon || 0) >= 2).map(z => {
+    const sceaux = zs.filter(z => (+z.rayon || 0) >= 2 && !z.contour).map(z => {
       const c = projection(z.centre), b = projection([z.centre[0] + z.rayon * 0.8, z.centre[1]]);
       return { id: z.id, c, r: Math.hypot(b[0] - c[0], b[1] - c[1]) };
     });
@@ -322,7 +331,7 @@
       .attr('d', CHAOS).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`);
     // Cordons de quarantaine : barrière (double fil, poteaux, postes de contrôle) qui épouse la zone contestée
     // avec une marge, tracée seulement sur les terres (la marine tient les côtes)
-    const cordons = zs.filter(z => z.cordon).map(z => ({ ...z, ring: ringCordon(z) }));
+    const cordons = zs.filter(z => z.cordon && !z.contour).map(z => ({ ...z, ring: ringCordon(z) }));
     L.cordons.attr('clip-path', 'url(#clipTerres)');
     L.cordons.selectAll('g.cordon').data(cordons, z => z.id).join(en => {
       const g = en.append('g').attr('class', 'cordon');
@@ -340,6 +349,22 @@
       return g;
     }).on('mousemove', survolCordon).on('mouseleave', finSurvol);
     majPostes();
+    // Bombardements du tour (napalm, missiles) : anneaux hachurés, sur les terres seulement
+    L.frappes.attr('clip-path', 'url(#clipTerres)');
+    L.frappes.selectAll('path').data(frappesAff(), z => z.id).join('path')
+      .attr('class', z => 'frappe ' + (z.type || 'missiles')).attr('d', z => {
+        const ext = path(tache({ id: z.graine || z.id, centre: z.centre, rayon: z.rayon }));
+        return z.rayonInt ? ext + path(tache({ id: z.graineInt || z.graine || z.id, centre: z.centre, rayon: z.rayonInt })) : ext;
+      })
+      .on('mousemove', survolFrappe).on('mouseleave', finSurvol);
+    // Lignes de front tenues par la CC : stabilisées (trait bleu) ou fortifiées (trait vert à créneaux)
+    L.lignes.selectAll('g.ligne-front').data(lignesAff(), x => x.id).join(en => {
+      const g = en.append('g');
+      g.append('path').attr('class', 'lf-fond'); g.append('path').attr('class', 'lf-trait');
+      return g;
+    }).attr('class', x => 'ligne-front ' + (x.type || 'stabilisee'))
+      .each(function (x) { const dd = path({ type: 'LineString', coordinates: x.trace }); d3.select(this).selectAll('path').attr('d', dd); })
+      .on('mousemove', survolLigne).on('mouseleave', finSurvol);
     rendreUnites();
     const etats = new Map(villesAff().map(v => [v.id, v.etat]));
     L.villes.selectAll('g.ville').attr('class', v => 'ville ' + VILLES.niveau(etats.get(v.id) ?? v.etat)[1]);
@@ -407,6 +432,7 @@
 
   // Tache organique autour d'un centre (forme stable : dérivée de l'identifiant de la zone)
   function tache(z) {
+    if (Array.isArray(z.contour)) return contourZone(z);
     let h = 0;
     for (const c of z.id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
     const a = (h % 628) / 100, b = ((h >> 8) % 628) / 100, c2 = ((h >> 16) % 628) / 100;
@@ -422,6 +448,25 @@
     if (d3.geoArea(poly) > 2 * Math.PI) poly = { type: 'Polygon', coordinates: [ring.slice().reverse()] };
     return poly;
   }
+
+  // Zone tracée à la main (percée) : polygone [lon, lat], élargi de z.marge degrés pour la bordure contestée
+  function contourZone(z) {
+    const pts = z.contour, m = +z.marge || 0;
+    const cx = d3.mean(pts, p => p[0]), cy = d3.mean(pts, p => p[1]), cos = Math.max(0.2, Math.cos(cy * RAD));
+    const ring = pts.map(([x, y]) => {
+      if (!m) return [x, y];
+      const dx = (x - cx) * cos, dy = y - cy, n = Math.hypot(dx, dy) || 1;
+      return [x + m * dx / n / cos, y + m * dy / n];
+    });
+    ring.push(ring[0]);
+    let poly = { type: 'Polygon', coordinates: [ring] };
+    if (d3.geoArea(poly) > 2 * Math.PI) poly = { type: 'Polygon', coordinates: [ring.slice().reverse()] };
+    return poly;
+  }
+  // Bordure contestée d'une zone : tache agrandie, ou contour élargi pour une percée
+  const haloDe = z => Array.isArray(z.contour)
+    ? { ...z, id: z.id + '-c', marge: 0.6, halo: true }
+    : { ...z, id: z.id + '-c', rayon: (+z.rayon || 1) + Math.max(0.4, Math.min(2, (+z.rayon || 1) * 0.35)), halo: true };
 
   // Étoile du chaos (8 flèches), dessinée dans un cercle de rayon 1
   const CHAOS = (() => {
@@ -553,7 +598,7 @@
       for (let j = 1; j <= n; j++) pts.push(f(j / n));
     }
     const dangers = [...(data.zones || []), ...detruitesAff()];
-    const pres = (m, z, f) => d3.geoDistance(m, z.centre) / RAD < (+z.rayon || 1) * f;
+    const pres = (m, z, f) => z.contour ? d3.geoContains(tache(f > 1 ? haloDe(z) : z), m) : d3.geoDistance(m, z.centre) / RAD < (+z.rayon || 1) * f;
     const etatSeg = (a, b) => {
       const m = d3.geoInterpolate(a, b)(0.5);
       return dangers.some(z => pres(m, z, 1.1)) ? 'coupe' : (r.travaux || []).some(z => pres(m, z, 1)) ? 'travaux' : '';
@@ -663,9 +708,21 @@
     }
     placerTip(e);
   }
+  const TYPES_FRAPPE = { napalm: 'Bombardement rapproché au napalm', missiles: 'Bombardement intensif (missiles, bombardiers stratégiques)' };
+  function survolFrappe(e, z) {
+    const cle = 'f:' + z.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(TYPES_FRAPPE[z.type] || 'Bombardement')}</strong>${esc(z.nom || '')}${z.date ? ', ' + esc(z.date) : ''}${z.info ? '<br>' + esc(z.info) : ''}`; }
+    placerTip(e);
+  }
+  const TYPES_LIGNE = { stabilisee: 'Front stabilisé', fortifiee: 'Ligne fortifiée' };
+  function survolLigne(e, x) {
+    const cle = 'l:' + x.id;
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(TYPES_LIGNE[x.type] || 'Ligne de front')}</strong>${esc(x.nom || '')}${x.date ? ', depuis le ' + esc(x.date) : ''}${x.info ? '<br>' + esc(x.info) : ''}`; }
+    placerTip(e);
+  }
   function survolDetruite(e, z) {
     const cle = 'x:' + z.id;
-    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>Zone détruite</strong>${esc(z.nom)}${z.date ? ', ' + esc(z.date) : ''}<br>${esc(z.info || '')}`; }
+    if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${z.type === 'feu' ? 'Feu nucléaire' : 'Zone détruite'}</strong>${esc(z.nom)}${z.date ? ', ' + esc(z.date) : ''}<br>${esc(z.info || '')}`; }
     placerTip(e);
   }
 
@@ -894,7 +951,12 @@
       + [...vus].map(([n, c]) => `<li><i class="sw" style="background:${esc(c)}"></i>${esc(n)}</li>`).join('')
       + (q ? '<li><i class="sw quarantaine"></i>Quarantaine</li>' : '')
       + (zonesAff().some(z => z.cordon) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="cordon-fond" d="M1,4H23"/><path class="cordon-fils" d="M1,4H23"/><path class="cordon-entre" d="M1,4H23"/><path class="cordon-poteaux" d="M1,4H23"/></svg>Cordon de quarantaine</li>' : '')
-      + (detruitesAff().length ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
+      + (detruitesAff().some(z => z.type !== 'feu') ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
+      + (detruitesAff().some(z => z.type === 'feu') ? '<li><i class="sw detruite feu"></i>Destruction forte par le feu nucléaire</li>' : '')
+      + (frappesAff().some(z => z.type === 'napalm') ? '<li><i class="sw frappe napalm"></i>Bombardement au napalm</li>' : '')
+      + (frappesAff().some(z => z.type !== 'napalm') ? '<li><i class="sw frappe missiles"></i>Bombardement par missiles et bombardiers</li>' : '')
+      + (lignesAff().some(x => x.type !== 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
+      + (lignesAff().some(x => x.type === 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait fort" d="M1,4H23"/></svg>Ligne fortifiée</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
       + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
       + (villesAff().some(v => v.capitale) ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + etoileBrisee(24) + '</svg>Capitale de secteur</li>' : '')

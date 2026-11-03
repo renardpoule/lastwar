@@ -2,9 +2,9 @@
   "meta": {
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
-    "dateRP": "27 sept. 2075",
+    "dateRP": "11 oct. 2075",
     "derniereMaj": "2026-09-27T18:45:47.871Z",
-    "distorsion": 55,
+    "distorsion": 52,
     "energie": {
       "unite": "TW",
       "production": 64,
@@ -14,18 +14,18 @@
     },
     "stabilite": {
       "gouvernement": 100,
-      "armee": 100,
-      "population": 80
+      "armee": 96,
+      "population": 60
     },
     "tuesParCorps": {
-      "regulieres": 2500000,
+      "regulieres": 7300000,
       "milices": 799200,
-      "speciales": 33000,
+      "speciales": 35600,
       "phoenix": 800
     }
   },
   "tension": {
-    "valeur": 55,
+    "valeur": 54,
     "paliers": [
       {
         "min": 0,
@@ -643,20 +643,20 @@
             "Sibérie"
           ],
           "statut": "conteste",
-          "influence": 21,
-          "tendance": "baisse",
+          "influence": 34,
+          "tendance": "stable",
           "civils": {
             "population": 1490000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~180000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "CLASSIFIÉ"
+            "deces": "~15000000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 14039000
+                "effectif": 11139000
               },
               {
                 "nom": "Forces spéciales",
@@ -678,7 +678,7 @@
             "cultistes": [
               {
                 "nom": "Cultistes d'Izala",
-                "effectif": "~30000000"
+                "effectif": "~22000000"
               },
               {
                 "nom": "Soldats organisés",
@@ -691,21 +691,17 @@
               {
                 "nom": "Garde d'entités",
                 "effectif": "?"
-              },
-              {
-                "nom": "Izala \"la Déesse\" (plieuse de réalité, blessée)",
-                "effectif": 1
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~1069500",
+              "tues": "~3969500",
               "blesses": "~2454590",
               "disparus": "~666246"
             },
             "cultistes": {
-              "tues": 900000,
+              "tues": 15900000,
               "blesses": "?",
               "disparus": "?"
             }
@@ -718,7 +714,7 @@
           "quarantaine": false,
           "air": {
             "niveau": "contestee",
-            "note": "Les cultistes pillent les réserves d'armes et cherchent à remettre des arsenaux en service, pendant que la tempête et le brouillage laissés par le rituel d'Izala gênent tout le reste."
+            "note": "Les cultistes ont mis la main sur les arsenaux du littoral, fusils, armes antichars et antiaériennes, blindés légers, et la tempête laissée par le rituel d'Izala gêne toujours le reste."
           }
         },
         {
@@ -1536,8 +1532,8 @@
             "St-Barthélemy",
             "Antilles françaises"
           ],
-          "statut": "reconquete",
-          "influence": 6,
+          "statut": "controle",
+          "influence": 1,
           "tendance": "baisse",
           "civils": {
             "population": 220000000,
@@ -1564,7 +1560,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~120000"
+                "effectif": "~10000"
               }
             ]
           },
@@ -1605,17 +1601,17 @@
             "impliques": "~70000000",
             "deplaces": "~20000000",
             "disparus": "~4000000",
-            "deces": "~8500000"
+            "deces": "~11500000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2420000
+                "effectif": 2170000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 63000
+                "effectif": 62700
               },
               {
                 "nom": "Milices citoyennes",
@@ -1629,7 +1625,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~10000000"
+                "effectif": "~9000000"
               },
               {
                 "nom": "Faune mutée",
@@ -1639,12 +1635,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~420000",
+              "tues": "~670300",
               "blesses": "~704516",
               "disparus": "~121935"
             },
             "cultistes": {
-              "tues": "~650000",
+              "tues": "~3650000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1667,24 +1663,24 @@
             "Guyane"
           ],
           "statut": "conteste",
-          "influence": 45,
+          "influence": 46,
           "tendance": "stable",
           "civils": {
             "population": 250000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~60000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~21360000"
+            "deces": "~33360000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 4532000
+                "effectif": 3582000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 120000
+                "effectif": 118400
               },
               {
                 "nom": "Division Phoenix",
@@ -1698,7 +1694,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~26000000"
+                "effectif": "~19000000"
               },
               {
                 "nom": "Chimères",
@@ -1711,21 +1707,17 @@
               {
                 "nom": "Entités",
                 "effectif": "?"
-              },
-              {
-                "nom": "Arthur \"le Bon\" (plieur de réalité)",
-                "effectif": 1
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~1180000",
+              "tues": "~2131600",
               "blesses": "~1609091",
               "disparus": "~804545"
             },
             "cultistes": {
-              "tues": "~1915600",
+              "tues": "~14915600",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1747,24 +1739,24 @@
             "Falkland Is."
           ],
           "statut": "conteste",
-          "influence": 17,
+          "influence": 38,
           "tendance": "stable",
           "civils": {
             "population": 55000000,
             "impliques": "~14000000",
             "deplaces": "~5000000",
             "disparus": "~600000",
-            "deces": "~2800000"
+            "deces": "~9800000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1096000
+                "effectif": 396000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 25000
+                "effectif": 24300
               },
               {
                 "nom": "Milices citoyennes",
@@ -1774,18 +1766,18 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~4000000"
+                "effectif": "~7000000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~160000",
+              "tues": "~860700",
               "blesses": "~266667",
               "disparus": "~35556"
             },
             "cultistes": {
-              "tues": "~250000",
+              "tues": "~2450000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1793,8 +1785,8 @@
           "note": "L'infection remontait les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter, jusqu'à ce que le cordon de quarantaine la bloque, au moins sur la carte.",
           "quarantaine": false,
           "air": {
-            "niveau": "nette",
-            "note": "Incursions ponctuelles d'appareils volés."
+            "niveau": "contestee",
+            "note": "Les appareils volés passent maintenant par la percée du sud, et le ciel du Paraguay est contesté."
           }
         }
       ],
@@ -2947,6 +2939,188 @@
         "Forces spéciales portées à 350 000"
       ],
       "tension": 2
+    },
+    {
+      "id": "ev29",
+      "date": "4 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "Izala perce vers la côte",
+      "description": "Suite à une semaine de combats, les régulières finirent par céder devant les cultistes d'Izala, qui avancèrent en priorité vers l'est et les grandes métropoles chinoises, jusqu'au littoral, de Canton au Zhejiang. Les pertes furent lourdes à l'approche de la côte, et la question se pose, à vrai dire, de savoir si la Confédération ne tira pas sur ses propres villes, ce qui expliquerait à la fois les morts civils, les 7 millions de convertis et les armes saisies.",
+      "consequences": [
+        "Le sud-est de la Chine tombe, de Canton au Zhejiang",
+        "15 millions de civils et 2,4 millions de régulières tués",
+        "5 millions de cultistes tués, 7 millions de civils convertis",
+        "33 millions de cultistes en Asie"
+      ],
+      "tension": 4
+    },
+    {
+      "id": "ev30",
+      "date": "4 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "majeur",
+      "titre": "Les grandes entités tombent",
+      "description": "Alors que la percée occupait tout le monde, la plupart des grandes entités d'Asie furent vaincues, si bien que les cultistes perdent le soutien sur lequel ils comptaient, ce qui devrait se sentir dès leur prochaine offensive.",
+      "consequences": [
+        "-10 au prochain jet d'offensive cultiste en Asie"
+      ],
+      "tension": -2
+    },
+    {
+      "id": "ev31",
+      "date": "4 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "critique",
+      "titre": "Feu nucléaire sur Nargal",
+      "description": "Sur ordre de Ganzir, le cœur du foyer de Nargal fut frappé au feu nucléaire, pendant que les missiles et les bombardiers stratégiques pilonnaient l'intérieur de la bulle et que le napalm brûlait ses bords, au contact des lignes. Les cultistes y perdirent 15 millions des leurs, et la Confédération 1,4 million de régulières, 2 600 hommes des forces spéciales et 22 millions de civils, ce qui fait cher payé, même pour un foyer comme celui-là.",
+      "consequences": [
+        "15 millions de cultistes tués",
+        "1,4 million de régulières et 2 600 forces spéciales tués",
+        "22 millions de civils morts"
+      ],
+      "tension": 3
+    },
+    {
+      "id": "ev32",
+      "date": "4 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-austral"
+      },
+      "gravite": "critique",
+      "titre": "La percée du sud",
+      "description": "Malgré tout, les cultistes percèrent le cordon par le sud, du désert d'Atacama jusqu'aux portes de São Paulo, en passant par le Paraguay et le nord de l'Argentine, portés par leur nombre, la maladie, les entités encore actives et leur plieur de réalité. Avec 13,2 millions de civils convertis, ils sont maintenant 38,2 millions en Amérique du Sud, ce qui fait beaucoup, même pour Phoenix.",
+      "consequences": [
+        "Cordon percé au sud",
+        "13,2 millions de civils convertis",
+        "38,2 millions de cultistes en Amérique du Sud"
+      ],
+      "tension": 2
+    },
+    {
+      "id": "ev33",
+      "date": "4 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-mexicain"
+      },
+      "gravite": "mineur",
+      "titre": "Le Panaméricain rouvert",
+      "description": "Pendant ce temps, la poche du Venezuela, qui coupait le Panaméricain, fut reprise, et la voie fut réparée au Mexique, si bien que les convois roulent de nouveau sur la ligne, ou presque.",
+      "consequences": [
+        "Poche du Venezuela reprise",
+        "Voie réparée au Mexique"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev34",
+      "date": "11 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "majeur",
+      "titre": "Le front tient en Chine",
+      "description": "Suite à leur percée, les cultistes d'Izala se heurtèrent à des lignes qui ne bougèrent plus, et y perdirent 10 millions des leurs, pour 500 000 militaires confédérés. Ils ne sont plus que 22 millions, et la Confédération en profita pour reprendre la péninsule de Leizhou et fortifier la frontière du nord du Viêt Nam.",
+      "consequences": [
+        "Front inchangé",
+        "10 millions de cultistes tués, 22 millions restants",
+        "500 000 militaires confédérés tués",
+        "Leizhou reprise, frontière vietnamienne fortifiée"
+      ],
+      "tension": -2
+    },
+    {
+      "id": "ev35",
+      "date": "11 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "Izala est morte",
+      "description": "Alors que le front se figeait, Izala, la plieuse de réalité que ses fidèles appelaient la Déesse, déjà blessée, fut tuée.",
+      "consequences": [
+        "Plus de plieur de réalité en Asie"
+      ],
+      "tension": -3
+    },
+    {
+      "id": "ev36",
+      "date": "11 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-austral"
+      },
+      "gravite": "majeur",
+      "titre": "Le sud stabilisé",
+      "description": "Pendant ce temps, en Amérique du Sud, la percée s'arrêta, le front fut stabilisé tout autour, des Andes à la côte, et une ligne fortifiée fut dressée au nord de Rosario. Les cultistes perdirent 3,2 millions des leurs, ce qui les ramène à 35 millions, et les régulières 500 000 hommes.",
+      "consequences": [
+        "Front stabilisé autour de la percée",
+        "Ligne fortifiée au nord de Rosario",
+        "3,2 millions de cultistes tués, 35 millions restants",
+        "500 000 régulières tués"
+      ],
+      "tension": -2
+    },
+    {
+      "id": "ev37",
+      "date": "11 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "critique",
+      "titre": "Arthur le Bon est mort",
+      "description": "La même semaine, Arthur, le plieur de réalité de Nargal que ses fidèles appelaient le Bon, fut tué à son tour, si bien que, pour la première fois depuis le début de la guerre, les cultistes n'ont plus aucun plieur de réalité, du moins à notre connaissance.",
+      "consequences": [
+        "Plus de plieur de réalité en Amérique du Sud"
+      ],
+      "tension": -3
+    },
+    {
+      "id": "ev38",
+      "date": "11 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-andin"
+      },
+      "gravite": "mineur",
+      "titre": "Les poches du nord reprises",
+      "description": "Après celle du Venezuela, les dernières poches d'infection du nord du continent, en Colombie et en Haïti, furent reprises.",
+      "consequences": [
+        "Poches de Colombie et d'Haïti reprises",
+        "District Mexicain repassé sous contrôle"
+      ],
+      "tension": -1
+    },
+    {
+      "id": "ev39",
+      "date": "11 oct. 2075",
+      "portee": {
+        "type": "monde"
+      },
+      "gravite": "majeur",
+      "titre": "Former, contrer, évacuer",
+      "description": "Maintenant, concernant le reste du monde, la Confédération ouvrit beaucoup plus de centres de formation, déploya un contre-mème et commença d'évacuer les populations, celles d'Asie vers l'Europe et celles d'Amérique du Sud vers Ganzir, ce qui, va savoir, finira peut-être par vider des continents entiers. Le bilan mondial atteint 136 millions de morts.",
+      "consequences": [
+        "Centres de formation multipliés",
+        "Contre-mème déployé",
+        "Évacuation de l'Asie vers l'Europe et de l'Amérique du Sud vers Ganzir",
+        "136 millions de morts dans le monde"
+      ],
+      "tension": 1
     }
   ],
   "historique": [
@@ -4317,6 +4491,952 @@
         "speciales": 33000,
         "phoenix": 800
       }
+    },
+    {
+      "date": "4 oct. 2075",
+      "tension": 58,
+      "distorsion": 57,
+      "evenements": 33,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2,
+          "quarantaine": false
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 16,
+          "quarantaine": false
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9,
+          "quarantaine": false
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 34,
+          "quarantaine": false
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
+          "quarantaine": true
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5,
+          "quarantaine": false
+        },
+        "am-mexicain": {
+          "statut": "reconquete",
+          "influence": 6,
+          "quarantaine": false
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 26,
+          "quarantaine": false
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 47,
+          "quarantaine": false
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 38,
+          "quarantaine": false
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5,
+          "cordon": true,
+          "cordonDepuis": "22 sept. 2075",
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+        },
+        {
+          "id": "z-poche-haiti",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-mexicain",
+          "centre": [
+            -72.4,
+            18.9
+          ],
+          "rayon": 0.7
+        },
+        {
+          "id": "z-poche-colombie",
+          "nom": "Poche d'infection",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-andin",
+          "centre": [
+            -74.5,
+            4.5
+          ],
+          "rayon": 0.7
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.3,
+            24.9
+          ],
+          "rayon": 3.2
+        },
+        {
+          "id": "z-percee-chine",
+          "nom": "Percée d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            115.5,
+            25.5
+          ],
+          "rayon": 2.5,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              109.6,
+              27.2
+            ],
+            [
+              111,
+              28.4
+            ],
+            [
+              113,
+              29.2
+            ],
+            [
+              115.5,
+              29.4
+            ],
+            [
+              118,
+              29.4
+            ],
+            [
+              120.6,
+              29.7
+            ],
+            [
+              122.4,
+              30.0
+            ],
+            [
+              122.6,
+              28.4
+            ],
+            [
+              121.2,
+              26.4
+            ],
+            [
+              119.6,
+              24.4
+            ],
+            [
+              117.5,
+              22.5
+            ],
+            [
+              115,
+              21.7
+            ],
+            [
+              113.5,
+              21.5
+            ],
+            [
+              112.4,
+              21.7
+            ],
+            [
+              111.4,
+              22.3
+            ],
+            [
+              110.8,
+              23.3
+            ],
+            [
+              110.2,
+              25.1
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-sud",
+          "nom": "Percée du sud",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-austral",
+          "centre": [
+            -58,
+            -27
+          ],
+          "rayon": 3,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              -69.3,
+              -21.5
+            ],
+            [
+              -63,
+              -22.3
+            ],
+            [
+              -57.5,
+              -23.6
+            ],
+            [
+              -52,
+              -23.4
+            ],
+            [
+              -48,
+              -23.8
+            ],
+            [
+              -46.9,
+              -24.1
+            ],
+            [
+              -46.3,
+              -25.5
+            ],
+            [
+              -49,
+              -26.6
+            ],
+            [
+              -52.5,
+              -29.5
+            ],
+            [
+              -56.4,
+              -31
+            ],
+            [
+              -62.4,
+              -31.4
+            ],
+            [
+              -66.2,
+              -32.1
+            ],
+            [
+              -68.6,
+              -31.3
+            ],
+            [
+              -68.7,
+              -26
+            ]
+          ]
+        }
+      ],
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "magnitogorsk": 84,
+        "sapporo": 94,
+        "tianjin": 85,
+        "norilsk": 94,
+        "port-klang": 90,
+        "bandar-abbas": 92,
+        "ludhiana": 91,
+        "sydney": 99,
+        "nouvelle-detroit": 92,
+        "chicago": 90,
+        "mexico": 60,
+        "brasilia": 5,
+        "rosario": 60,
+        "canberra": 98,
+        "le-cap": 97
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 7135600,
+          "blesses": 6128584,
+          "disparus": 1769889
+        },
+        "cultistes": {
+          "tues": 24600000,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 87000000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 64,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 96,
+        "population": 74
+      },
+      "tuesParCorps": {
+        "regulieres": 6300000,
+        "milices": 799200,
+        "speciales": 35600,
+        "phoenix": 800
+      }
+    },
+    {
+      "date": "11 oct. 2075",
+      "tension": 54,
+      "distorsion": 52,
+      "evenements": 39,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2,
+          "quarantaine": false
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 16,
+          "quarantaine": false
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9,
+          "quarantaine": false
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 34,
+          "quarantaine": false
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
+          "quarantaine": true
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5,
+          "quarantaine": false
+        },
+        "am-mexicain": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 24,
+          "quarantaine": false
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 46,
+          "quarantaine": false
+        },
+        "am-austral": {
+          "statut": "conteste",
+          "influence": 38,
+          "quarantaine": false
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5,
+          "cordon": true,
+          "cordonDepuis": "22 sept. 2075",
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.3,
+            24.9
+          ],
+          "rayon": 3.2
+        },
+        {
+          "id": "z-percee-chine",
+          "nom": "Percée d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            115.5,
+            25.5
+          ],
+          "rayon": 2.5,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              109.6,
+              27.2
+            ],
+            [
+              111,
+              28.4
+            ],
+            [
+              113,
+              29.2
+            ],
+            [
+              115.5,
+              29.4
+            ],
+            [
+              118,
+              29.4
+            ],
+            [
+              120.6,
+              29.7
+            ],
+            [
+              122.4,
+              30.0
+            ],
+            [
+              122.6,
+              28.4
+            ],
+            [
+              121.2,
+              26.4
+            ],
+            [
+              119.6,
+              24.4
+            ],
+            [
+              117.5,
+              22.5
+            ],
+            [
+              115,
+              21.7
+            ],
+            [
+              113.5,
+              21.5
+            ],
+            [
+              112.4,
+              21.7
+            ],
+            [
+              111.4,
+              22.3
+            ],
+            [
+              110.8,
+              23.3
+            ],
+            [
+              110.2,
+              25.1
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-sud",
+          "nom": "Percée du sud",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-austral",
+          "centre": [
+            -58,
+            -27
+          ],
+          "rayon": 3,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              -69.3,
+              -21.5
+            ],
+            [
+              -63,
+              -22.3
+            ],
+            [
+              -57.5,
+              -23.6
+            ],
+            [
+              -52,
+              -23.4
+            ],
+            [
+              -48,
+              -23.8
+            ],
+            [
+              -46.9,
+              -24.1
+            ],
+            [
+              -46.3,
+              -25.5
+            ],
+            [
+              -49,
+              -26.6
+            ],
+            [
+              -52.5,
+              -29.5
+            ],
+            [
+              -56.4,
+              -31
+            ],
+            [
+              -62.4,
+              -31.4
+            ],
+            [
+              -66.2,
+              -32.1
+            ],
+            [
+              -68.6,
+              -31.3
+            ],
+            [
+              -68.7,
+              -26
+            ]
+          ]
+        }
+      ],
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "magnitogorsk": 84,
+        "sapporo": 94,
+        "tianjin": 85,
+        "norilsk": 94,
+        "port-klang": 90,
+        "bandar-abbas": 92,
+        "ludhiana": 91,
+        "sydney": 99,
+        "nouvelle-detroit": 92,
+        "chicago": 90,
+        "mexico": 60,
+        "brasilia": 5,
+        "rosario": 60,
+        "canberra": 98,
+        "le-cap": 97
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 8135600,
+          "blesses": 6128584,
+          "disparus": 1769889
+        },
+        "cultistes": {
+          "tues": 37800000,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 87000000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 64,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 96,
+        "population": 60
+      },
+      "tuesParCorps": {
+        "regulieres": 7300000,
+        "milices": 799200,
+        "speciales": 35600,
+        "phoenix": 800
+      }
     }
   ],
   "zones": [
@@ -4333,43 +5453,7 @@
       "rayon": 8.5,
       "cordon": true,
       "cordonDepuis": "22 sept. 2075",
-      "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer."
-    },
-    {
-      "id": "z-poche-haiti",
-      "nom": "Poche d'infection",
-      "dieu": "Nargal",
-      "couleur": "#2fbf5b",
-      "district": "am-mexicain",
-      "centre": [
-        -72.4,
-        18.9
-      ],
-      "rayon": 0.7
-    },
-    {
-      "id": "z-poche-colombie",
-      "nom": "Poche d'infection",
-      "dieu": "Nargal",
-      "couleur": "#2fbf5b",
-      "district": "am-andin",
-      "centre": [
-        -74.5,
-        4.5
-      ],
-      "rayon": 0.7
-    },
-    {
-      "id": "z-poche-venezuela",
-      "nom": "Poche d'infection",
-      "dieu": "Nargal",
-      "couleur": "#2fbf5b",
-      "district": "am-amazonien",
-      "centre": [
-        -65.5,
-        7
-      ],
-      "rayon": 0.6
+      "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
     },
     {
       "id": "z-izala",
@@ -4382,6 +5466,160 @@
         24.9
       ],
       "rayon": 3.2
+    },
+    {
+      "id": "z-percee-chine",
+      "nom": "Percée d'Izala",
+      "dieu": "Izala",
+      "couleur": "#b45bd6",
+      "district": "as-sinorusse",
+      "centre": [
+        115.5,
+        25.5
+      ],
+      "rayon": 2.5,
+      "depuis": "4 oct. 2075",
+      "contour": [
+        [
+          109.6,
+          27.2
+        ],
+        [
+          111,
+          28.4
+        ],
+        [
+          113,
+          29.2
+        ],
+        [
+          115.5,
+          29.4
+        ],
+        [
+          118,
+          29.4
+        ],
+        [
+          120.6,
+          29.7
+        ],
+        [
+          122.4,
+          30.0
+        ],
+        [
+          122.6,
+          28.4
+        ],
+        [
+          121.2,
+          26.4
+        ],
+        [
+          119.6,
+          24.4
+        ],
+        [
+          117.5,
+          22.5
+        ],
+        [
+          115,
+          21.7
+        ],
+        [
+          113.5,
+          21.5
+        ],
+        [
+          112.4,
+          21.7
+        ],
+        [
+          111.4,
+          22.3
+        ],
+        [
+          110.8,
+          23.3
+        ],
+        [
+          110.2,
+          25.1
+        ]
+      ]
+    },
+    {
+      "id": "z-percee-sud",
+      "nom": "Percée du sud",
+      "dieu": "Nargal",
+      "couleur": "#2fbf5b",
+      "district": "am-austral",
+      "centre": [
+        -58,
+        -27
+      ],
+      "rayon": 3,
+      "depuis": "4 oct. 2075",
+      "contour": [
+        [
+          -69.3,
+          -21.5
+        ],
+        [
+          -63,
+          -22.3
+        ],
+        [
+          -57.5,
+          -23.6
+        ],
+        [
+          -52,
+          -23.4
+        ],
+        [
+          -48,
+          -23.8
+        ],
+        [
+          -46.9,
+          -24.1
+        ],
+        [
+          -46.3,
+          -25.5
+        ],
+        [
+          -49,
+          -26.6
+        ],
+        [
+          -52.5,
+          -29.5
+        ],
+        [
+          -56.4,
+          -31
+        ],
+        [
+          -62.4,
+          -31.4
+        ],
+        [
+          -66.2,
+          -32.1
+        ],
+        [
+          -68.6,
+          -31.3
+        ],
+        [
+          -68.7,
+          -26
+        ]
+      ]
     }
   ],
   "sites": [
@@ -6478,7 +7716,7 @@
         -15.79
       ],
       "district": "am-amazonien",
-      "etat": 8,
+      "etat": 5,
       "image": "infectee",
       "garnison": [
         {
@@ -6496,7 +7734,7 @@
         -32.95
       ],
       "district": "am-austral",
-      "etat": 90,
+      "etat": 60,
       "image": "port",
       "garnison": [
         {
@@ -6621,6 +7859,31 @@
       "district": "af-experimental",
       "date": "11 sept. 2075",
       "info": "Plateaux éthiopiens, dont le survol est interdit."
+    },
+    {
+      "id": "d-nargal-feu",
+      "type": "feu",
+      "nom": "Feu nucléaire sur le foyer de Nargal",
+      "centre": [
+        -57.8,
+        -14
+      ],
+      "rayon": 3.9,
+      "district": "am-amazonien",
+      "date": "4 oct. 2075",
+      "info": "Couronne de destruction forte autour du point d'impact, où le feu a tout pris."
+    },
+    {
+      "id": "d-nargal",
+      "nom": "Frappe du foyer de Nargal",
+      "centre": [
+        -57.8,
+        -14
+      ],
+      "rayon": 2.2,
+      "district": "am-amazonien",
+      "date": "4 oct. 2075",
+      "info": "Cœur de la bulle de Nargal, rasé par le feu nucléaire sur ordre de Ganzir."
     }
   ],
   "flottes": [
@@ -7454,6 +8717,26 @@
       "date": "27 sept. 2075",
       "source": "EUCRYNOMOS",
       "texte": "Chantier de l'ancre ouvert. Livraison dans vingt-cinq semaines."
+    },
+    {
+      "date": "4 oct. 2075",
+      "source": "Ganzir",
+      "texte": "Feu autorisé sur le foyer de Nargal."
+    },
+    {
+      "date": "4 oct. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Le Panaméricain est rouvert jusqu'au sud."
+    },
+    {
+      "date": "11 oct. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Les deux plieurs de réalité sont morts. Le front tient."
+    },
+    {
+      "date": "11 oct. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Évacuation ouverte vers l'Europe et Ganzir. Présentez-vous au centre de formation le plus proche."
     }
   ],
   "traverseurs": [
@@ -7905,15 +9188,6 @@
           "Particularité",
           "Coupée près de Bogotá, en reconstruction à Mexico depuis le 23 sept."
         ]
-      ],
-      "travaux": [
-        {
-          "centre": [
-            -99.1,
-            19.4
-          ],
-          "rayon": 1.4
-        }
       ]
     },
     {
@@ -8002,6 +9276,180 @@
           "Ravitaillement du District Sud-Est asiatique et des troupes qui tiennent la quarantaine de l'archipel"
         ]
       ]
+    }
+  ],
+  "bombardements": [
+    {
+      "id": "b-nargal-napalm",
+      "type": "napalm",
+      "nom": "Bords du foyer de Nargal",
+      "centre": [
+        -57.5,
+        -14.5
+      ],
+      "graine": "z-nargal-c",
+      "rayon": 10.6,
+      "graineInt": "z-nargal",
+      "rayonInt": 7.6,
+      "district": "am-amazonien",
+      "date": "4 oct. 2075",
+      "jusqu": "11 oct. 2075",
+      "info": "Napalm largué au contact des lignes, sur toute la bordure de la bulle."
+    },
+    {
+      "id": "b-nargal-missiles",
+      "type": "missiles",
+      "nom": "Intérieur du foyer de Nargal",
+      "centre": [
+        -57.5,
+        -14.5
+      ],
+      "graine": "z-nargal",
+      "rayon": 6.9,
+      "graineInt": "d-nargal-feu",
+      "rayonInt": 3.8,
+      "district": "am-amazonien",
+      "date": "4 oct. 2075",
+      "jusqu": "11 oct. 2075",
+      "info": "Missiles et bombardiers stratégiques sur l'intérieur de la bulle, autour du point d'impact."
+    }
+  ],
+  "lignes": [
+    {
+      "id": "l-vietnam",
+      "type": "fortifiee",
+      "nom": "Frontière du nord du Viêt Nam",
+      "district": "as-sudest",
+      "date": "11 oct. 2075",
+      "trace": [
+        [
+          101.9,
+          22.2
+        ],
+        [
+          103,
+          21.7
+        ],
+        [
+          104.3,
+          21.4
+        ],
+        [
+          105.5,
+          21.1
+        ],
+        [
+          106.6,
+          20.8
+        ]
+      ],
+      "info": "Ligne fortifiée par la Confédération au sud-ouest du domaine d'Izala."
+    },
+    {
+      "id": "l-leizhou",
+      "type": "fortifiee",
+      "nom": "Péninsule de Leizhou",
+      "district": "as-sinorusse",
+      "date": "11 oct. 2075",
+      "trace": [
+        [
+          109.6,
+          21.7
+        ],
+        [
+          110.2,
+          21.6
+        ],
+        [
+          110.9,
+          21.4
+        ]
+      ],
+      "info": "Péninsule reprise par la Confédération, et tenue depuis."
+    },
+    {
+      "id": "l-sud-stab",
+      "type": "stabilisee",
+      "nom": "Front de la percée du sud",
+      "district": "am-austral",
+      "date": "11 oct. 2075",
+      "trace": [
+        [
+          -71,
+          -21
+        ],
+        [
+          -69.5,
+          -23.5
+        ],
+        [
+          -69.3,
+          -26.5
+        ],
+        [
+          -69.2,
+          -29.5
+        ],
+        [
+          -68.9,
+          -32.4
+        ],
+        [
+          -66.5,
+          -32.7
+        ],
+        [
+          -63,
+          -32.4
+        ],
+        [
+          -59.5,
+          -32
+        ],
+        [
+          -55.5,
+          -31.4
+        ],
+        [
+          -52.2,
+          -29.7
+        ],
+        [
+          -49.4,
+          -27.2
+        ],
+        [
+          -47.4,
+          -25.8
+        ]
+      ],
+      "info": "Front stabilisé autour de la percée, des Andes à la côte de Santa Catarina."
+    },
+    {
+      "id": "l-rosario",
+      "type": "fortifiee",
+      "nom": "Ligne de Rosario",
+      "district": "am-austral",
+      "date": "11 oct. 2075",
+      "trace": [
+        [
+          -61.6,
+          -32
+        ],
+        [
+          -60.5,
+          -32.2
+        ],
+        [
+          -59.7,
+          -32.6
+        ],
+        [
+          -59.4,
+          -33.1
+        ]
+      ],
+      "info": "Ligne fortifiée au nord de Rosario."
     }
   ]
 }
