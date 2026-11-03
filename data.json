@@ -2,9 +2,9 @@
   "meta": {
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
-    "dateRP": "1 nov. 2075",
+    "dateRP": "8 nov. 2075",
     "derniereMaj": "2026-09-27T18:45:47.871Z",
-    "distorsion": 54,
+    "distorsion": 52,
     "energie": {
       "unite": "TW",
       "production": 64,
@@ -18,14 +18,14 @@
       "population": 60
     },
     "tuesParCorps": {
-      "regulieres": 15300000,
+      "regulieres": 15900000,
       "milices": 799200,
       "speciales": 35600,
       "phoenix": 800
     }
   },
   "tension": {
-    "valeur": 64,
+    "valeur": 61,
     "paliers": [
       {
         "min": 0,
@@ -611,21 +611,21 @@
             "Sibérie"
           ],
           "statut": "conteste",
-          "influence": 55,
-          "tendance": "hausse",
+          "influence": 52,
+          "tendance": "baisse",
           "civils": {
             "population": 200000000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~265000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~75000000",
+            "deces": "~79000000",
             "populationAvant": 1490000000
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 3948700
+                "effectif": 5948700
               },
               {
                 "nom": "Forces spéciales",
@@ -643,7 +643,7 @@
             "cultistes": [
               {
                 "nom": "Cultistes d'Izala",
-                "effectif": "~28000000"
+                "effectif": "~14600000"
               },
               {
                 "nom": "Soldats organisés",
@@ -661,12 +661,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~7169500",
+              "tues": "~7769500",
               "blesses": "~2454590",
               "disparus": "~666246"
             },
             "cultistes": {
-              "tues": 31900000,
+              "tues": 40900000,
               "blesses": "?",
               "disparus": "?"
             }
@@ -3196,6 +3196,40 @@
         "5 millions de civils restants en Amérique du Sud"
       ],
       "tension": 0
+    },
+    {
+      "id": "ev49",
+      "date": "8 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "La contre-offensive du sud",
+      "description": "Suite à des semaines de recul, la Confédération lança enfin 5 millions d'hommes à l'assaut du sud de la Chine, contre 3 millions de cultistes, et reprit tout le cœur du domaine d'Izala, du Guizhou jusqu'à Canton et Hong Kong, pour 3 millions de cultistes tués et 100 000 confédérés seulement, ce qui, pour une fois, ressemble presque à une victoire.",
+      "consequences": [
+        "Sud du domaine d'Izala repris, Canton et Hong Kong compris",
+        "3 millions de cultistes tués pour 100 000 confédérés"
+      ],
+      "tension": -4
+    },
+    {
+      "id": "ev50",
+      "date": "8 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "majeur",
+      "titre": "Le Shandong tombe",
+      "description": "Alors que le sud était repris, les cultistes poussèrent au nord-est et prirent le Shandong jusqu'au golfe de Bohai, à moins de deux cents kilomètres de Tianjin. Ils perdirent pourtant 9 millions des leurs sur l'ensemble du front, pour 1,6 million de convertis seulement, si bien qu'ils ne sont plus que 14,6 millions, et la Confédération 500 000 militaires et 4 millions de civils, ce que 3,5 millions de renforts compensent largement, avec 6 millions de militaires sur le front chinois.",
+      "consequences": [
+        "Shandong tombé, Tianjin menacée",
+        "9 millions de cultistes tués, 1,6 million de convertis, 14,6 millions au total",
+        "500 000 militaires et 4 millions de civils tués",
+        "3,5 millions de renforts, 6 millions de militaires au front"
+      ],
+      "tension": 1
     }
   ],
   "historique": [
@@ -7223,6 +7257,726 @@
         "speciales": 35600,
         "phoenix": 800
       }
+    },
+    {
+      "date": "8 nov. 2075",
+      "tension": 61,
+      "distorsion": 52,
+      "evenements": 50,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2,
+          "quarantaine": false
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 16,
+          "quarantaine": false
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9,
+          "quarantaine": false
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 52,
+          "quarantaine": false
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
+          "quarantaine": true
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5,
+          "quarantaine": false
+        },
+        "am-mexicain": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 56,
+          "quarantaine": false
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 55,
+          "quarantaine": false
+        },
+        "am-austral": {
+          "statut": "perdu",
+          "influence": 97,
+          "quarantaine": false
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5,
+          "cordon": true,
+          "cordonDepuis": "22 sept. 2075",
+          "cordonInfo": "Barrière continue tenue par les régulières, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé.",
+          "pleine": true
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.3,
+            24.9
+          ],
+          "rayon": 3.2
+        },
+        {
+          "id": "z-percee-chine",
+          "nom": "Percée d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            115.5,
+            26.5
+          ],
+          "rayon": 2.5,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              109.6,
+              27.2
+            ],
+            [
+              109.0,
+              30.5
+            ],
+            [
+              110.9,
+              31.0
+            ],
+            [
+              112.8,
+              31.3
+            ],
+            [
+              114.6,
+              31.6
+            ],
+            [
+              116.5,
+              32.0
+            ],
+            [
+              118.5,
+              32.5
+            ],
+            [
+              120.0,
+              32.8
+            ],
+            [
+              121.5,
+              32.9
+            ],
+            [
+              122.8,
+              32.6
+            ],
+            [
+              122.7,
+              30.8
+            ],
+            [
+              122.6,
+              28.4
+            ],
+            [
+              121.2,
+              26.4
+            ],
+            [
+              119.6,
+              24.4
+            ],
+            [
+              117.5,
+              22.5
+            ],
+            [
+              115,
+              21.7
+            ],
+            [
+              113.5,
+              21.5
+            ],
+            [
+              112.4,
+              21.7
+            ],
+            [
+              111.4,
+              22.3
+            ],
+            [
+              110.8,
+              23.3
+            ],
+            [
+              110.2,
+              25.1
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-sud",
+          "nom": "Percée du sud",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-austral",
+          "centre": [
+            -63,
+            -35
+          ],
+          "rayon": 3,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              -70.8,
+              -21.0
+            ],
+            [
+              -69.3,
+              -21.5
+            ],
+            [
+              -63,
+              -22.3
+            ],
+            [
+              -57.5,
+              -23.4
+            ],
+            [
+              -52,
+              -21.8
+            ],
+            [
+              -49,
+              -22.2
+            ],
+            [
+              -47.0,
+              -22.9
+            ],
+            [
+              -46.9,
+              -23.4
+            ],
+            [
+              -46.9,
+              -24.1
+            ],
+            [
+              -46,
+              -25.5
+            ],
+            [
+              -47.5,
+              -27.5
+            ],
+            [
+              -49.5,
+              -30
+            ],
+            [
+              -51.5,
+              -32.5
+            ],
+            [
+              -53.0,
+              -34.3
+            ],
+            [
+              -54.3,
+              -35.1
+            ],
+            [
+              -56.2,
+              -35.1
+            ],
+            [
+              -57.0,
+              -35.6
+            ],
+            [
+              -56.6,
+              -36.6
+            ],
+            [
+              -57.6,
+              -38.6
+            ],
+            [
+              -61.6,
+              -39.4
+            ],
+            [
+              -62.6,
+              -41.0
+            ],
+            [
+              -64.0,
+              -43.0
+            ],
+            [
+              -65.0,
+              -46.0
+            ],
+            [
+              -67.0,
+              -50.0
+            ],
+            [
+              -67.5,
+              -53.5
+            ],
+            [
+              -65.0,
+              -55.0
+            ],
+            [
+              -67.0,
+              -56.3
+            ],
+            [
+              -71.0,
+              -56.0
+            ],
+            [
+              -75.8,
+              -53.0
+            ],
+            [
+              -76.0,
+              -48.0
+            ],
+            [
+              -75.2,
+              -43.0
+            ],
+            [
+              -74.5,
+              -39.0
+            ],
+            [
+              -73.6,
+              -36.0
+            ],
+            [
+              -72.4,
+              -33.5
+            ],
+            [
+              -71.8,
+              -31.0
+            ],
+            [
+              -71.6,
+              -28
+            ],
+            [
+              -71.3,
+              -24
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-nord",
+          "nom": "Percée du nord",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            109.5,
+            33
+          ],
+          "rayon": 2.5,
+          "depuis": "1 nov. 2075",
+          "contour": [
+            [
+              105.2,
+              26.4
+            ],
+            [
+              103.4,
+              28.0
+            ],
+            [
+              102.7,
+              30.25
+            ],
+            [
+              103.2,
+              31.8
+            ],
+            [
+              104.0,
+              32.9
+            ],
+            [
+              106.3,
+              35.0
+            ],
+            [
+              109.7,
+              36.2
+            ],
+            [
+              113,
+              36.8
+            ],
+            [
+              116.3,
+              37.0
+            ],
+            [
+              117.4,
+              35.8
+            ],
+            [
+              117.3,
+              34.5
+            ],
+            [
+              117.0,
+              32.9
+            ],
+            [
+              116.5,
+              32.0
+            ],
+            [
+              114.6,
+              31.6
+            ],
+            [
+              112.8,
+              31.3
+            ],
+            [
+              110.9,
+              31.0
+            ],
+            [
+              109.0,
+              30.5
+            ],
+            [
+              109.4,
+              28.0
+            ],
+            [
+              108.0,
+              27.0
+            ],
+            [
+              106.5,
+              26.6
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-shandong",
+          "nom": "Percée du Shandong",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            118.5,
+            35.3
+          ],
+          "rayon": 1.5,
+          "depuis": "8 nov. 2075",
+          "contour": [
+            [
+              117.0,
+              32.4
+            ],
+            [
+              115.9,
+              33.5
+            ],
+            [
+              116.0,
+              35.5
+            ],
+            [
+              116.6,
+              37.4
+            ],
+            [
+              118.5,
+              37.7
+            ],
+            [
+              121.0,
+              37.6
+            ],
+            [
+              120.9,
+              35.5
+            ],
+            [
+              120.8,
+              34.5
+            ],
+            [
+              120.5,
+              33.0
+            ],
+            [
+              118.5,
+              32.5
+            ]
+          ]
+        }
+      ],
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "magnitogorsk": 84,
+        "sapporo": 94,
+        "tianjin": 50,
+        "norilsk": 94,
+        "port-klang": 90,
+        "bandar-abbas": 92,
+        "ludhiana": 91,
+        "sydney": 99,
+        "nouvelle-detroit": 92,
+        "chicago": 90,
+        "mexico": 60,
+        "brasilia": 5,
+        "rosario": 15,
+        "canberra": 98,
+        "le-cap": 97
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 16735600,
+          "blesses": 6128584,
+          "disparus": 1769889
+        },
+        "cultistes": {
+          "tues": 74800000,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 226000000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 64,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 96,
+        "population": 60
+      },
+      "tuesParCorps": {
+        "regulieres": 15900000,
+        "milices": 799200,
+        "speciales": 35600,
+        "phoenix": 800
+      }
     }
   ],
   "zones": [
@@ -7608,6 +8362,61 @@
         [
           106.5,
           26.6
+        ]
+      ]
+    },
+    {
+      "id": "z-percee-shandong",
+      "nom": "Percée du Shandong",
+      "dieu": "Izala",
+      "couleur": "#b45bd6",
+      "district": "as-sinorusse",
+      "centre": [
+        118.5,
+        35.3
+      ],
+      "rayon": 1.5,
+      "depuis": "8 nov. 2075",
+      "contour": [
+        [
+          117.0,
+          32.4
+        ],
+        [
+          115.9,
+          33.5
+        ],
+        [
+          116.0,
+          35.5
+        ],
+        [
+          116.6,
+          37.4
+        ],
+        [
+          118.5,
+          37.7
+        ],
+        [
+          121.0,
+          37.6
+        ],
+        [
+          120.9,
+          35.5
+        ],
+        [
+          120.8,
+          34.5
+        ],
+        [
+          120.5,
+          33.0
+        ],
+        [
+          118.5,
+          32.5
         ]
       ]
     }
@@ -9480,7 +10289,7 @@
         39.13
       ],
       "district": "as-sinorusse",
-      "etat": 65,
+      "etat": 50,
       "image": "usines",
       "garnison": [
         {
@@ -10727,6 +11536,11 @@
       "date": "1 nov. 2075",
       "source": "Ganzir",
       "texte": "Palier Ganzir atteint. Le commandement passe à Ganzir."
+    },
+    {
+      "date": "8 nov. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Canton est reprise. Hong Kong est reprise."
     }
   ],
   "traverseurs": [
@@ -11536,6 +12350,70 @@
         [
           109.0,
           20.1
+        ]
+      ]
+    },
+    {
+      "id": "r-chine-sud",
+      "nom": "Sud du domaine d'Izala",
+      "district": "as-sinorusse",
+      "date": "8 nov. 2075",
+      "contour": [
+        [
+          102.3,
+          21.6
+        ],
+        [
+          102.3,
+          26.5
+        ],
+        [
+          103.5,
+          27.4
+        ],
+        [
+          105.2,
+          26.9
+        ],
+        [
+          108.5,
+          26.8
+        ],
+        [
+          112.0,
+          26.3
+        ],
+        [
+          114.0,
+          25.0
+        ],
+        [
+          116.2,
+          23.3
+        ],
+        [
+          116.8,
+          22.8
+        ],
+        [
+          115.0,
+          21.8
+        ],
+        [
+          112.0,
+          21.2
+        ],
+        [
+          109.5,
+          21.3
+        ],
+        [
+          107.5,
+          21.0
+        ],
+        [
+          105.5,
+          20.9
         ]
       ]
     }

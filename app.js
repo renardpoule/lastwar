@@ -351,6 +351,7 @@
     // Les terres reprises par la CC sont retirées des zones et des bombardements
     svg.select('#trousReprises').selectAll('path').data(reprisesAff(), x => x.id).join('path').attr('fill', '#000').attr('d', x => path(tache({ ...x, contour: x.contour })));
     L.zones.attr('mask', 'url(#masqueReprises)');
+    L.sceaux.attr('mask', 'url(#masqueReprises)');
     L.frappes.attr('mask', 'url(#masqueReprises)');
     gZ.selectAll('path').data(zs, z => z.id).join('path')
       .attr('class', 'zone').attr('d', z => path(coeur(z))).style('fill', z => z.couleur)
