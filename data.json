@@ -18,7 +18,7 @@
       "population": 60
     },
     "tuesParCorps": {
-      "regulieres": 9220000,
+      "regulieres": 9970000,
       "milices": 799200,
       "speciales": 35600,
       "phoenix": 800
@@ -1594,20 +1594,20 @@
             "Chile"
           ],
           "statut": "conteste",
-          "influence": 30,
+          "influence": 33,
           "tendance": "hausse",
           "civils": {
             "population": 130000000,
             "impliques": "~70000000",
             "deplaces": "~20000000",
             "disparus": "~4000000",
-            "deces": "~13500000"
+            "deces": "~15500000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 2470000
+                "effectif": 2820000
               },
               {
                 "nom": "Forces spéciales",
@@ -1625,7 +1625,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~10200000"
+                "effectif": "~10800000"
               },
               {
                 "nom": "Faune mutée",
@@ -1635,12 +1635,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~870300",
+              "tues": "~1120300",
               "blesses": "~704516",
               "disparus": "~121935"
             },
             "cultistes": {
-              "tues": "~4150000",
+              "tues": "~4750000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1676,7 +1676,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 3462000
+                "effectif": 3412000
               },
               {
                 "nom": "Forces spéciales",
@@ -1694,7 +1694,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~19500000"
+                "effectif": "~18300000"
               },
               {
                 "nom": "Chimères",
@@ -1712,12 +1712,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~2251600",
+              "tues": "~2301600",
               "blesses": "~1609091",
               "disparus": "~804545"
             },
             "cultistes": {
-              "tues": "~16415600",
+              "tues": "~17615600",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1739,20 +1739,20 @@
             "Falkland Is."
           ],
           "statut": "conteste",
-          "influence": 52,
+          "influence": 60,
           "tendance": "stable",
           "civils": {
             "population": 55000000,
             "impliques": "~14000000",
             "deplaces": "~5000000",
             "disparus": "~600000",
-            "deces": "~16800000"
+            "deces": "~22800000"
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 1996000
+                "effectif": 2946000
               },
               {
                 "nom": "Forces spéciales",
@@ -1770,18 +1770,18 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~9500000"
+                "effectif": "~11900000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~1260700",
+              "tues": "~1710700",
               "blesses": "~266667",
               "disparus": "~35556"
             },
             "cultistes": {
-              "tues": "~3450000",
+              "tues": "~4650000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -3195,6 +3195,41 @@
         "1,5 million de renforts"
       ],
       "tension": 2
+    },
+    {
+      "id": "ev44",
+      "date": "25 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-austral"
+      },
+      "gravite": "critique",
+      "titre": "Montevideo tombe",
+      "description": "Pendant ce temps, en Amérique du Sud, la percée descendit encore au sud, du Chili central jusqu'à l'Uruguay, Montevideo comprise, et ne s'arrêta qu'aux portes de Buenos Aires, alors que Rosario, encerclée, tient toujours, va savoir comment. Les cultistes y perdirent 3 millions des leurs pour 4,8 millions de convertis, ce qui les porte à 41 millions.",
+      "consequences": [
+        "L'Uruguay et le sud de la pampa tombent",
+        "Rosario encerclée, Buenos Aires menacée",
+        "3 millions de cultistes tués, 4,8 millions de convertis, 41 millions au total"
+      ],
+      "tension": 1
+    },
+    {
+      "id": "ev45",
+      "date": "25 oct. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-andin"
+      },
+      "gravite": "majeur",
+      "titre": "Le bastion de Santiago",
+      "description": "Suite à la chute du nord du Chili, la Confédération fortifia lourdement les abords de Santiago, au nord et à l'est, et y perdit, avec le reste du front, 750 000 militaires et 8 millions de civils, soit 8,75 millions de morts. Avec 2 millions d'hommes en renfort, le front sud-américain compte 5,43 millions de militaires, et le bilan mondial atteint 193,67 millions de morts.",
+      "consequences": [
+        "Santiago fortement fortifiée",
+        "750 000 militaires et 8 millions de civils tués",
+        "2 millions de renforts, 5,43 millions de militaires au front",
+        "193,67 millions de morts dans le monde"
+      ],
+      "tension": 0
     }
   ],
   "historique": [
@@ -6024,7 +6059,7 @@
       "date": "25 oct. 2075",
       "tension": 59,
       "distorsion": 54,
-      "evenements": 43,
+      "evenements": 45,
       "districts": {
         "eu-nord": {
           "statut": "controle",
@@ -6138,7 +6173,7 @@
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 30,
+          "influence": 33,
           "quarantaine": false
         },
         "am-amazonien": {
@@ -6148,7 +6183,7 @@
         },
         "am-austral": {
           "statut": "conteste",
-          "influence": 52,
+          "influence": 60,
           "quarantaine": false
         },
         "rd-civil": {
@@ -6378,7 +6413,7 @@
           "district": "am-austral",
           "centre": [
             -59,
-            -27.5
+            -28.5
           ],
           "rayon": 3,
           "depuis": "4 oct. 2075",
@@ -6432,36 +6467,64 @@
               -30
             ],
             [
-              -51,
-              -31.6
-            ],
-            [
-              -54.5,
-              -32
-            ],
-            [
-              -57.5,
-              -32.3
-            ],
-            [
-              -59.6,
-              -32.6
-            ],
-            [
-              -61.5,
-              -33.0
-            ],
-            [
-              -64,
-              -33.2
-            ],
-            [
-              -67,
+              -51.5,
               -32.5
             ],
             [
-              -70,
-              -30.8
+              -53.0,
+              -34.3
+            ],
+            [
+              -54.3,
+              -35.1
+            ],
+            [
+              -56.2,
+              -35.1
+            ],
+            [
+              -57.6,
+              -34.6
+            ],
+            [
+              -58.0,
+              -34.2
+            ],
+            [
+              -59.2,
+              -34.2
+            ],
+            [
+              -60.3,
+              -34.6
+            ],
+            [
+              -61.6,
+              -34.7
+            ],
+            [
+              -63.5,
+              -34.4
+            ],
+            [
+              -65,
+              -34.2
+            ],
+            [
+              -67.9,
+              -33.5
+            ],
+            [
+              -69.5,
+              -32.8
+            ],
+            [
+              -70.9,
+              -31.8
+            ],
+            [
+              -71.8,
+              -31.0
             ],
             [
               -71.6,
@@ -6491,23 +6554,23 @@
         "chicago": 90,
         "mexico": 60,
         "brasilia": 5,
-        "rosario": 30,
+        "rosario": 20,
         "canberra": 98,
         "le-cap": 97
       },
       "pertes": {
         "confederation": {
-          "tues": 10055600,
+          "tues": 10805600,
           "blesses": 6128584,
           "disparus": 1769889
         },
         "cultistes": {
-          "tues": 50800000,
+          "tues": 53800000,
           "blesses": 0,
           "disparus": 0
         },
         "civils": {
-          "deces": 139000000,
+          "deces": 147000000,
           "disparus": 8980000
         }
       },
@@ -6524,7 +6587,7 @@
         "population": 60
       },
       "tuesParCorps": {
-        "regulieres": 9220000,
+        "regulieres": 9970000,
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
@@ -6667,7 +6730,7 @@
       "district": "am-austral",
       "centre": [
         -59,
-        -27.5
+        -28.5
       ],
       "rayon": 3,
       "depuis": "4 oct. 2075",
@@ -6721,36 +6784,64 @@
           -30
         ],
         [
-          -51,
-          -31.6
-        ],
-        [
-          -54.5,
-          -32
-        ],
-        [
-          -57.5,
-          -32.3
-        ],
-        [
-          -59.6,
-          -32.6
-        ],
-        [
-          -61.5,
-          -33.0
-        ],
-        [
-          -64,
-          -33.2
-        ],
-        [
-          -67,
+          -51.5,
           -32.5
         ],
         [
-          -70,
-          -30.8
+          -53.0,
+          -34.3
+        ],
+        [
+          -54.3,
+          -35.1
+        ],
+        [
+          -56.2,
+          -35.1
+        ],
+        [
+          -57.6,
+          -34.6
+        ],
+        [
+          -58.0,
+          -34.2
+        ],
+        [
+          -59.2,
+          -34.2
+        ],
+        [
+          -60.3,
+          -34.6
+        ],
+        [
+          -61.6,
+          -34.7
+        ],
+        [
+          -63.5,
+          -34.4
+        ],
+        [
+          -65,
+          -34.2
+        ],
+        [
+          -67.9,
+          -33.5
+        ],
+        [
+          -69.5,
+          -32.8
+        ],
+        [
+          -70.9,
+          -31.8
+        ],
+        [
+          -71.8,
+          -31.0
         ],
         [
           -71.6,
@@ -8908,7 +8999,7 @@
         -32.95
       ],
       "district": "am-austral",
-      "etat": 30,
+      "etat": 20,
       "image": "port",
       "garnison": [
         {
@@ -9926,6 +10017,11 @@
       "date": "25 oct. 2075",
       "source": "Diffusion confédérée",
       "texte": "Évacuez la rive nord du Yangzi. Les trains partent toutes les heures."
+    },
+    {
+      "date": "25 oct. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Santiago tient. Buenos Aires, préparez l'évacuation."
     }
   ],
   "traverseurs": [
@@ -10672,6 +10768,40 @@
       ],
       "info": "Ligne fortifiée au nord de Rosario.",
       "jusqu": "11 oct. 2075"
+    },
+    {
+      "id": "l-santiago",
+      "type": "renforcee",
+      "nom": "Bastion de Santiago",
+      "district": "am-andin",
+      "date": "25 oct. 2075",
+      "trace": [
+        [
+          -71.8,
+          -32.0
+        ],
+        [
+          -70.5,
+          -32.9
+        ],
+        [
+          -69.2,
+          -33.7
+        ],
+        [
+          -69.6,
+          -34.4
+        ],
+        [
+          -71.2,
+          -35.0
+        ],
+        [
+          -72.2,
+          -35.3
+        ]
+      ],
+      "info": "Ligne fortement fortifiée qui couvre Santiago et la centrale à fusion par le nord et l'est."
     }
   ],
   "reprises": [

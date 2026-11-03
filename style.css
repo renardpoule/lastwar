@@ -261,6 +261,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .ligne-front.stabilisee .lf-trait{stroke:var(--ligne-stab)}
 .ligne-front.fortifiee .lf-trait,.lf-trait.fort{stroke:var(--ligne-fort);stroke-width:4;stroke-dasharray:5 2.5;stroke-linecap:butt}
 .ligne-front.fortifiee .lf-fond{stroke-width:7}
+.ligne-front.renforcee .lf-trait,.lf-trait.renf{stroke:oklch(0.66 0.19 262);stroke-width:5.5;stroke-dasharray:6 2;stroke-linecap:butt}
+.ligne-front.renforcee .lf-fond{stroke-width:9.5}
 .sw.detruite{background:radial-gradient(circle,var(--detruit-coeur),var(--detruit));box-shadow:inset 0 0 0 0.0625rem var(--detruit-coeur)}
 /* Villes "Too young to die" : la couleur du point suit l'état */
 .ville{cursor:pointer;--vc:var(--texte-ok)}

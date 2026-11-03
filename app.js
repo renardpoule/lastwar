@@ -819,7 +819,7 @@
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(TYPES_FRAPPE[z.type] || 'Bombardement')}</strong>${esc(z.nom || '')}${z.date ? ', ' + esc(z.date) : ''}${z.info ? '<br>' + esc(z.info) : ''}`; }
     placerTip(e);
   }
-  const TYPES_LIGNE = { stabilisee: 'Front stabilisé', fortifiee: 'Ligne fortifiée' };
+  const TYPES_LIGNE = { stabilisee: 'Front stabilisé', fortifiee: 'Ligne fortifiée', renforcee: 'Ligne fortement fortifiée' };
   function survolLigne(e, x) {
     const cle = 'l:' + x.id;
     if (cle !== survolCle) { survolCle = cle; tip.innerHTML = `<strong>${esc(TYPES_LIGNE[x.type] || 'Ligne de front')}</strong>${esc(x.nom || '')}${x.date ? ', depuis le ' + esc(x.date) : ''}${x.info ? '<br>' + esc(x.info) : ''}`; }
@@ -1066,7 +1066,8 @@
       + (frappesAff().some(z => z.type === 'napalm') ? '<li><svg class="sw-avion napalm" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.napalm + '"/></svg>Chasseurs au napalm</li>' : '')
       + (frappesAff().some(z => z.type !== 'napalm') ? '<li><svg class="sw-avion missiles" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Bombardiers et missiles</li>' : '')
       + (contestationsAff().length ? '<li><i class="sw contestation"></i>Zone de contestation (renforts)</li>' : '')
-      + (lignesAff().some(x => x.type !== 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
+      + (lignesAff().some(x => x.type === 'renforcee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23" style="stroke-width:8"/><path class="lf-trait renf" d="M1,4H23"/></svg>Ligne fortement fortifiée</li>' : '')
+      + (lignesAff().some(x => x.type === 'stabilisee' || !x.type) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
       + (lignesAff().some(x => x.type === 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait fort" d="M1,4H23"/></svg>Ligne fortifiée</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
       + (villesAff().length ? '<li><i class="sw ville"></i>Ville "Too young to die"</li>' : '')
