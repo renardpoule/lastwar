@@ -616,9 +616,10 @@
           "civils": {
             "population": 200000000,
             "impliques": "CLASSIFIÉ",
-            "deplaces": "~255000000",
+            "deplaces": "~265000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~75000000"
+            "deces": "~75000000",
+            "populationAvant": 1490000000
           },
           "forces": {
             "confederation": [
@@ -1514,14 +1515,15 @@
             "Chile"
           ],
           "statut": "conteste",
-          "influence": 50,
+          "influence": 56,
           "tendance": "hausse",
           "civils": {
             "population": 1000000,
             "impliques": "~70000000",
             "deplaces": "~30000000",
             "disparus": "~4000000",
-            "deces": "~30500000"
+            "deces": "~30500000",
+            "populationAvant": 130000000
           },
           "forces": {
             "confederation": [
@@ -1586,7 +1588,8 @@
             "impliques": "CLASSIFIÉ",
             "deplaces": "~85000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~46360000"
+            "deces": "~46360000",
+            "populationAvant": 250000000
           },
           "forces": {
             "confederation": [
@@ -1651,14 +1654,15 @@
             "Falkland Is."
           ],
           "statut": "perdu",
-          "influence": 80,
+          "influence": 97,
           "tendance": "hausse",
           "civils": {
             "population": 1500000,
             "impliques": "~14000000",
             "deplaces": "~20000000",
             "disparus": "~600000",
-            "deces": "~52800000"
+            "deces": "~52800000",
+            "populationAvant": 55000000
           },
           "forces": {
             "confederation": [
@@ -3148,13 +3152,13 @@
       },
       "gravite": "critique",
       "titre": "Izala remonte vers le nord",
-      "description": "Suite à leur passage du Yangzi, les cultistes d'Izala se tournèrent vers le nord et l'ouest, et prirent en une semaine le Sichuan, Chongqing, Xi'an et la plaine du fleuve Jaune jusqu'à Zhengzhou, ce qui les met maintenant à moins de trois cents kilomètres de Tianjin. Ils y perdirent 6 millions des leurs, remplacés par 8 millions de convertis, et la Confédération 2 millions de militaires et 20 millions de civils, ce que les 2 millions d'hommes envoyés en renfort compensent à peine, si bien que le front chinois compte 4 millions de militaires. Dans le même temps, 75 millions de civils furent évacués vers l'Europe, et il n'en reste plus que 200 millions dans les régions proches du front.",
+      "description": "Suite à leur passage du Yangzi, les cultistes d'Izala se tournèrent vers le nord et l'ouest, et prirent en une semaine le Sichuan, Chongqing, Xi'an et la plaine du fleuve Jaune jusqu'à Zhengzhou, ce qui les met maintenant à moins de trois cents kilomètres de Tianjin. Ils y perdirent 6 millions des leurs, remplacés par 8 millions de convertis, et la Confédération 2 millions de militaires et 20 millions de civils, ce que les 2 millions d'hommes envoyés en renfort compensent à peine, si bien que le front chinois compte 4 millions de militaires. Dans le même temps, 85 millions de civils furent évacués vers l'Europe, et il n'en reste plus que 200 millions dans les régions proches du front.",
       "consequences": [
         "Sichuan, Chongqing, Xi'an et Zhengzhou tombés",
         "6 millions de cultistes tués, 8 millions de convertis, 28 millions au total",
         "2 millions de militaires et 20 millions de civils tués",
         "2 millions de renforts, 4 millions de militaires au front",
-        "75 millions de civils évacués vers l'Europe",
+        "85 millions de civils évacués vers l'Europe",
         "200 millions de civils restants près du front"
       ],
       "tension": 0
@@ -3167,10 +3171,10 @@
         "id": "am-austral"
       },
       "gravite": "critique",
-      "titre": "Santiago et Buenos Aires tombent",
-      "description": "Pendant ce temps, en Amérique du Sud, la percée emporta tout le centre du continent, du bastion de Santiago, qui ne tint pas, jusqu'à Buenos Aires et au nord de la Patagonie, alors que Rosario, perdue au milieu, résiste encore. Les cultistes y perdirent 6 millions des leurs mais convertirent 33 millions de civils, si bien qu'ils sont maintenant 68 millions, presque le double de la semaine dernière.",
+      "titre": "Le sud du continent tombe",
+      "description": "Pendant ce temps, en Amérique du Sud, la percée emporta tout le centre du continent, du bastion de Santiago, qui ne tint pas, jusqu'à Buenos Aires, et toute la Patagonie avec, jusqu'à la Terre de Feu, alors que Rosario, perdue au milieu, résiste encore. Les cultistes y perdirent 6 millions des leurs mais convertirent 33 millions de civils, si bien qu'ils sont maintenant 68 millions, presque le double de la semaine dernière.",
       "consequences": [
-        "Santiago, Buenos Aires et le nord de la Patagonie tombent",
+        "Santiago, Buenos Aires et toute la Patagonie tombent",
         "6 millions de cultistes tués, 33 millions de convertis, 68 millions au total"
       ],
       "tension": 0
@@ -6673,7 +6677,7 @@
         },
         "am-andin": {
           "statut": "conteste",
-          "influence": 50,
+          "influence": 56,
           "quarantaine": false
         },
         "am-amazonien": {
@@ -6683,7 +6687,7 @@
         },
         "am-austral": {
           "statut": "perdu",
-          "influence": 80,
+          "influence": 97,
           "quarantaine": false
         },
         "rd-civil": {
@@ -6912,8 +6916,8 @@
           "couleur": "#2fbf5b",
           "district": "am-austral",
           "centre": [
-            -62,
-            -32
+            -63,
+            -35
           ],
           "rayon": 3,
           "depuis": "4 oct. 2075",
@@ -7003,27 +7007,51 @@
               -41.0
             ],
             [
-              -64.6,
-              -42.6
+              -64.0,
+              -43.0
             ],
             [
-              -65.5,
-              -43.3
+              -65.0,
+              -46.0
             ],
             [
-              -70.0,
-              -43.3
+              -67.0,
+              -50.0
             ],
             [
-              -71.4,
-              -41.0
+              -67.5,
+              -53.5
             ],
             [
-              -72.0,
+              -65.0,
+              -55.0
+            ],
+            [
+              -67.0,
+              -56.3
+            ],
+            [
+              -71.0,
+              -56.0
+            ],
+            [
+              -75.8,
+              -53.0
+            ],
+            [
+              -76.0,
+              -48.0
+            ],
+            [
+              -75.2,
+              -43.0
+            ],
+            [
+              -74.5,
               -39.0
             ],
             [
-              -72.2,
+              -73.6,
               -36.0
             ],
             [
@@ -7332,8 +7360,8 @@
       "couleur": "#2fbf5b",
       "district": "am-austral",
       "centre": [
-        -62,
-        -32
+        -63,
+        -35
       ],
       "rayon": 3,
       "depuis": "4 oct. 2075",
@@ -7423,27 +7451,51 @@
           -41.0
         ],
         [
-          -64.6,
-          -42.6
+          -64.0,
+          -43.0
         ],
         [
-          -65.5,
-          -43.3
+          -65.0,
+          -46.0
         ],
         [
-          -70.0,
-          -43.3
+          -67.0,
+          -50.0
         ],
         [
-          -71.4,
-          -41.0
+          -67.5,
+          -53.5
         ],
         [
-          -72.0,
+          -65.0,
+          -55.0
+        ],
+        [
+          -67.0,
+          -56.3
+        ],
+        [
+          -71.0,
+          -56.0
+        ],
+        [
+          -75.8,
+          -53.0
+        ],
+        [
+          -76.0,
+          -48.0
+        ],
+        [
+          -75.2,
+          -43.0
+        ],
+        [
+          -74.5,
           -39.0
         ],
         [
-          -72.2,
+          -73.6,
           -36.0
         ],
         [

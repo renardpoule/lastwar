@@ -306,7 +306,8 @@
   function influenceMoy(list) {
     let num = 0, den = 0;
     for (const d of list) {
-      const pop = C.parse(d.civils && d.civils.population).n || 1;
+      // Pondération par la population d'avant les évacuations, sinon un district vidé ne compterait plus
+      const pop = C.parse(d.civils && (d.civils.populationAvant || d.civils.population)).n || 1;
       num += statutDe(d).influence * pop; den += pop;
     }
     return den ? num / den : 0;
