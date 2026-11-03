@@ -18,14 +18,14 @@
       "population": 60
     },
     "tuesParCorps": {
-      "regulieres": 15900000,
+      "regulieres": 16900000,
       "milices": 799200,
       "speciales": 35600,
       "phoenix": 800
     }
   },
   "tension": {
-    "valeur": 61,
+    "valeur": 60,
     "paliers": [
       {
         "min": 0,
@@ -1518,18 +1518,18 @@
           "influence": 56,
           "tendance": "hausse",
           "civils": {
-            "population": 1000000,
+            "population": 100000,
             "impliques": "~70000000",
             "deplaces": "~30000000",
             "disparus": "~4000000",
-            "deces": "~30500000",
+            "deces": "~31400000",
             "populationAvant": 130000000
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 566000
+                "effectif": 259000
               },
               {
                 "nom": "Forces spéciales",
@@ -1553,7 +1553,7 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~2320300",
+              "tues": "~2570300",
               "blesses": "~704516",
               "disparus": "~121935"
             },
@@ -1581,21 +1581,21 @@
             "Guyane"
           ],
           "statut": "conteste",
-          "influence": 55,
-          "tendance": "hausse",
+          "influence": 40,
+          "tendance": "baisse",
           "civils": {
-            "population": 2500000,
+            "population": 200000,
             "impliques": "CLASSIFIÉ",
             "deplaces": "~85000000",
             "disparus": "CLASSIFIÉ",
-            "deces": "~46360000",
+            "deces": "~48660000",
             "populationAvant": 250000000
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 685000
+                "effectif": 313000
               },
               {
                 "nom": "Forces spéciales",
@@ -1627,7 +1627,7 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~2831600",
+              "tues": "~3331600",
               "blesses": "~1609091",
               "disparus": "~804545"
             },
@@ -1657,18 +1657,18 @@
           "influence": 97,
           "tendance": "hausse",
           "civils": {
-            "population": 1500000,
+            "population": 100000,
             "impliques": "~14000000",
             "deplaces": "~20000000",
             "disparus": "~600000",
-            "deces": "~52800000",
+            "deces": "~54200000",
             "populationAvant": 55000000
           },
           "forces": {
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 592000
+                "effectif": 271000
               },
               {
                 "nom": "Forces spéciales",
@@ -1688,7 +1688,7 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~3310700",
+              "tues": "~3560700",
               "blesses": "~266667",
               "disparus": "~35556"
             },
@@ -3230,6 +3230,23 @@
         "3,5 millions de renforts, 6 millions de militaires au front"
       ],
       "tension": 1
+    },
+    {
+      "id": "ev51",
+      "date": "8 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "critique",
+      "titre": "Le nord de Nargal repris",
+      "description": "Pendant ce temps, en Amérique du Sud, la Confédération reprit tout le nord du foyer de Nargal, à l'intérieur du cordon, jusqu'aux abords du point d'impact, et y perdit un million de militaires, si bien que, pour la première fois depuis la frappe, la bulle recule, même si le reste du continent, lui, ne bouge pas. Avec les 4,6 millions de civils morts dans la semaine, les pertes atteignent 5,6 millions, et il ne reste presque plus personne sur place.",
+      "consequences": [
+        "Nord du foyer de Nargal repris",
+        "1 million de militaires tués",
+        "4,6 millions de civils morts, 5,6 millions de pertes au total"
+      ],
+      "tension": -1
     }
   ],
   "historique": [
@@ -7260,9 +7277,9 @@
     },
     {
       "date": "8 nov. 2075",
-      "tension": 61,
+      "tension": 60,
       "distorsion": 52,
-      "evenements": 50,
+      "evenements": 51,
       "districts": {
         "eu-nord": {
           "statut": "controle",
@@ -7381,7 +7398,7 @@
         },
         "am-amazonien": {
           "statut": "conteste",
-          "influence": 55,
+          "influence": 40,
           "quarantaine": false
         },
         "am-austral": {
@@ -7945,7 +7962,7 @@
       },
       "pertes": {
         "confederation": {
-          "tues": 16735600,
+          "tues": 17735600,
           "blesses": 6128584,
           "disparus": 1769889
         },
@@ -7955,7 +7972,7 @@
           "disparus": 0
         },
         "civils": {
-          "deces": 226000000,
+          "deces": 230600000,
           "disparus": 8980000
         }
       },
@@ -7972,7 +7989,7 @@
         "population": 60
       },
       "tuesParCorps": {
-        "regulieres": 15900000,
+        "regulieres": 16900000,
         "milices": 799200,
         "speciales": 35600,
         "phoenix": 800
@@ -11541,6 +11558,11 @@
       "date": "8 nov. 2075",
       "source": "Diffusion confédérée",
       "texte": "Canton est reprise. Hong Kong est reprise."
+    },
+    {
+      "date": "8 nov. 2075",
+      "source": "Phoenix",
+      "texte": "Le nord du foyer est à nous. Le cordon tient."
     }
   ],
   "traverseurs": [
@@ -12414,6 +12436,42 @@
         [
           105.5,
           20.9
+        ]
+      ]
+    },
+    {
+      "id": "r-nargal-nord",
+      "nom": "Nord du foyer de Nargal",
+      "district": "am-amazonien",
+      "date": "8 nov. 2075",
+      "contour": [
+        [
+          -71,
+          -10.9
+        ],
+        [
+          -71,
+          1
+        ],
+        [
+          -43,
+          1
+        ],
+        [
+          -43,
+          -10.9
+        ],
+        [
+          -50,
+          -11.1
+        ],
+        [
+          -57,
+          -10.7
+        ],
+        [
+          -64,
+          -11.1
         ]
       ]
     }
