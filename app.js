@@ -50,16 +50,19 @@
       <rect width="1.6" height="5" style="fill:var(--st-quarantaine)" fill-opacity=".6"/>
     </pattern>
     <radialGradient id="brulure"><stop offset="0" style="stop-color:var(--detruit-coeur)"/><stop offset=".6" style="stop-color:var(--detruit)"/><stop offset="1" style="stop-color:var(--detruit)" stop-opacity=".55"/></radialGradient>
-    <pattern id="napalm" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
-      <rect width="6" height="6" style="fill:var(--napalm)" fill-opacity=".18"/><rect width="2.4" height="6" style="fill:var(--napalm)" fill-opacity=".75"/>
+    <pattern id="napalm" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+      <rect width="1.8" height="7" style="fill:var(--napalm)" fill-opacity=".8"/>
     </pattern>
-    <pattern id="missiles" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
-      <rect width="7" height="7" style="fill:var(--missiles)" fill-opacity=".14"/><rect width="1.6" height="7" style="fill:var(--missiles)" fill-opacity=".8"/><rect y="3" width="7" height="1.2" style="fill:var(--missiles)" fill-opacity=".45"/>
+    <pattern id="missiles" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <rect width="1.4" height="7" style="fill:var(--missiles)" fill-opacity=".85"/>
     </pattern>
+    <mask id="masqueReprises" maskUnits="userSpaceOnUse" x="-100000" y="-100000" width="200000" height="200000">
+      <rect x="-100000" y="-100000" width="200000" height="200000" fill="#fff"/><g id="trousReprises"></g>
+    </mask>
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'explosions', 'avions', 'sites', 'villes', 'unites', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -267,6 +270,7 @@
   const dateAff = () => etat.replay !== null ? data.historique[etat.replay].date : data.meta.dateRP;
   // Bombardements : visibles de leur date jusqu'à "jusqu" (le tour où ils ont eu lieu) ; lignes de front : à partir de leur date
   const frappesAff = () => (data.bombardements || []).filter(z => dateVal(z.date) <= dateVal(dateAff()) && (!z.jusqu || dateVal(dateAff()) <= dateVal(z.jusqu)));
+  const reprisesAff = () => (data.reprises || []).filter(x => dateVal(x.date) <= dateVal(dateAff()));
   const lignesAff = () => (data.lignes || []).filter(x => dateVal(x.date) <= dateVal(dateAff()) && (!x.jusqu || dateVal(dateAff()) <= dateVal(x.jusqu)));
   const detruitesAff = () => (data.detruites || []).filter(z => !z.date || dateVal(z.date) <= dateVal(dateAff()));
   // État des villes : celui de l'archive pendant la relecture, sinon l'état actuel
@@ -319,9 +323,16 @@
     gH.selectAll('path').data(halos, z => z.id).join('path')
       .attr('class', 'zone-contestee').attr('d', z => path(tache(z)))
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
+    // Les terres reprises par la CC sont retirées des zones et des bombardements
+    svg.select('#trousReprises').selectAll('path').data(reprisesAff(), x => x.id).join('path').attr('fill', '#000').attr('d', x => path(tache({ ...x, contour: x.contour })));
+    L.zones.attr('mask', 'url(#masqueReprises)');
+    L.frappes.attr('mask', 'url(#masqueReprises)');
     gZ.selectAll('path').data(zs, z => z.id).join('path')
       .attr('class', 'zone').attr('d', z => path(tache(z))).style('fill', z => z.couleur)
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
+    // Une percée prolonge sa bulle : remplissages repassés sans trait, pour une seule tache d'une seule couleur
+    const gU = L.zones.selectAll('g.unies').data([0]).join('g').attr('class', 'unies');
+    gU.selectAll('path').data(zs, z => z.id).join('path').attr('class', 'zone-unie').attr('d', z => path(tache(z))).style('fill', z => z.couleur);
     // Symbole du chaos, semi-transparent, sur les zones cultistes principales
     const sceaux = zs.filter(z => (+z.rayon || 0) >= 2 && !z.contour).map(z => {
       const c = projection(z.centre), b = projection([z.centre[0] + z.rayon * 0.8, z.centre[1]]);
@@ -586,6 +597,61 @@
     L.flottes.selectAll('g.flotte').attr('transform', f => f._p ? `translate(${f._p[0].toFixed(1)},${f._p[1].toFixed(1)}) scale(${ech / k})` : null)
       .select('.f-navire').attr('transform', f => `rotate(${(f._angle || 0).toFixed(0)})`);
   }
+  // ---------- Avions en mission au-dessus des bombardements ----------
+  // Chasseurs au napalm sur l'anneau extérieur, bombardiers sur l'intérieur ; tout passe par la boucle à 4 images/s
+  const AVION = {
+    napalm: 'M7,0L4.5,-0.9L0.5,-0.9L-2.5,-5.2H-4.1L-2.3,-0.9H-5.4L-6.6,-2.4H-7.6L-6.8,0L-7.6,2.4H-6.6L-5.4,0.9H-2.3L-4.1,5.2H-2.5L0.5,0.9L4.5,0.9Z',
+    missiles: 'M8,0L6,-1.1H1.5L-1.5,-7.6H-3.6L-2.2,-1.1H-6L-7.6,-3.4H-8.8L-8,0L-8.8,3.4H-7.6L-6,1.1H-2.2L-3.6,7.6H-1.5L1.5,1.1H6Z'
+  };
+  const N_AVIONS = { napalm: 4, missiles: 3 };
+  let explosions = [];
+  function avionsDe(f) {
+    const n = N_AVIONS[f.type] || 2, R = (+f.rayon + (+f.rayonInt || 0)) / 2;
+    return d3.range(n).map(i => ({ f, i, id: f.id + ':' + i, R: R * (0.88 + 0.24 * ((i * 37) % 10) / 10), periode: f.type === 'napalm' ? 70 : 110, sens: i % 2 ? -1 : 1, phase: i / n }));
+  }
+  function majAvions() {
+    if (!L.avions) return;
+    const replay = etat.replay !== null;
+    const avions = replay ? [] : frappesAff().flatMap(avionsDe);
+    const t = (performance.now() - t0) / 1000, cos = c => Math.max(0.2, Math.cos(c * RAD));
+    const posA = (a, u) => {
+      const th = a.sens * 2 * Math.PI * (u / a.periode + a.phase), c = a.f.centre;
+      // Boucle légèrement aplatie, un peu différente pour chaque appareil
+      const r = a.R * (1 + 0.12 * Math.sin(3 * th + a.i));
+      return [c[0] + r * Math.cos(th) / cos(c[1]), c[1] + r * Math.sin(th)];
+    };
+    for (const a of avions) {
+      const p = projection(posA(a, t)), q = projection(posA(a, t + 0.6));
+      a.p = p; a.angle = Math.atan2(q[1] - p[1], q[0] - p[0]) * 180 / Math.PI;
+      // Largage : une explosion derrière l'appareil, de temps en temps
+      if (Math.random() < (a.f.type === 'napalm' ? 0.6 : 0.45)) {
+        const g = posA(a, t - 1.5 - Math.random() * 2), j = a.f.type === 'napalm' ? 0.35 : 0.8;
+        explosions.push({ id: Math.random().toString(36).slice(2), c: [g[0] + (Math.random() - 0.5) * j, g[1] + (Math.random() - 0.5) * j], age: 0, type: a.f.type });
+      }
+    }
+    explosions = explosions.filter(x => ++x.age <= 5).slice(-60);
+    if (replay) explosions = [];
+    L.explosions.selectAll('g.explosion').data(explosions, x => x.id).join(en => {
+      const g = en.append('g').attr('class', x => 'explosion ' + x.type);
+      g.append('circle').attr('class', 'ex-onde'); g.append('circle').attr('class', 'ex-feu');
+      return g;
+    }).attr('transform', x => { const p = projection(x.c); return `translate(${p[0].toFixed(1)},${p[1].toFixed(1)}) scale(${ech / k})`; })
+      .each(function (x) {
+        const v = x.age / 5, g = d3.select(this), big = x.type === 'missiles' ? 1.4 : 1;
+        g.select('.ex-feu').attr('r', (3.4 + 3.6 * Math.sin(Math.min(1, v * 1.6) * Math.PI)) * big).attr('opacity', (1 - v).toFixed(2));
+        g.select('.ex-onde').attr('r', (4 + 13 * v) * big).attr('opacity', (0.8 * (1 - v)).toFixed(2));
+      });
+    L.avions.selectAll('g.avion').data(avions, a => a.id).join(en => {
+      const g = en.append('g').attr('class', a => 'avion ' + a.f.type);
+      g.append('path').attr('class', 'av-ombre'); g.append('path').attr('class', 'av-corps');
+      return g;
+    }).attr('transform', a => `translate(${a.p[0].toFixed(1)},${a.p[1].toFixed(1)}) scale(${(1.35 * ech / k).toFixed(3)}) rotate(${a.angle.toFixed(0)})`)
+      .each(function (a) {
+        const g = d3.select(this);
+        g.select('.av-ombre').attr('d', AVION[a.f.type] || AVION.missiles).attr('transform', 'translate(2.5,3.5)');
+        g.select('.av-corps').attr('d', AVION[a.f.type] || AVION.missiles);
+      });
+  }
   // ---------- Traverseurs ----------
   const TRAIN = 'M-12,-2.4H-5V2.4H-12ZM-4,-2.4H3V2.4H-4ZM4,-2.4H9.5L12,0L9.5,2.4H4Z';
   // Découpe la voie en tronçons de ~0,5°, coupés quand ils passent dans une bulle cultiste ou une zone frappée,
@@ -675,7 +741,7 @@
   // 4 images par seconde suffisent pour un mouvement aussi lent ; arrêt si l'onglet est masqué
   let dernierSat = 0;
   (function boucleSat(ts) {
-    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 250) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); majTrains(); majSpheres(); } }
+    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 250) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); majTrains(); majSpheres(); majAvions(); } }
     requestAnimationFrame(boucleSat);
   })(0);
   // Sphères des laboratoires d'exclusion : méridien qui tourne, et soubresauts toutes les 3,4 s
@@ -941,7 +1007,7 @@
     placerTip(e);
   }
 
-  const nomZone = z => ['Cultistes', 'Entité'].includes(z.dieu) ? z.nom : 'Zone de ' + z.dieu;
+  const nomZone = z => ['Cultistes', 'Entité'].includes(z.dieu) ? z.nom : (/^[aeiouyéèêàâîïôûh]/i.test(z.dieu) ? "Zone d'" : 'Zone de ') + z.dieu;
   function rendreLegende() {
     const vus = new Map();
     for (const z of zonesAff()) { const n = nomZone(z); if (!vus.has(n)) vus.set(n, z.couleur); }
@@ -955,6 +1021,7 @@
       + (detruitesAff().some(z => z.type === 'feu') ? '<li><i class="sw detruite feu"></i>Destruction forte par le feu nucléaire</li>' : '')
       + (frappesAff().some(z => z.type === 'napalm') ? '<li><i class="sw frappe napalm"></i>Bombardement au napalm</li>' : '')
       + (frappesAff().some(z => z.type !== 'napalm') ? '<li><i class="sw frappe missiles"></i>Bombardement par missiles et bombardiers</li>' : '')
+      + (etat.replay === null && frappesAff().length ? '<li><svg class="sw-avion" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Appareils en mission de bombardement</li>' : '')
       + (lignesAff().some(x => x.type !== 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
       + (lignesAff().some(x => x.type === 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait fort" d="M1,4H23"/></svg>Ligne fortifiée</li>' : '')
       + ((data.sites || []).some(x => x.icone !== 'labo') ? '<li><svg class="sw-etoile" viewBox="-14 -14 28 28" aria-hidden="true">' + EMBLEME + '</svg>Site stratégique</li>' : '')
@@ -993,6 +1060,8 @@
     L.flottes.classed('loin', k < 2);
     L.rails.classed('loin', k < 2).classed('proche', k >= 3);
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
+    svg.select('#napalm').attr('patternTransform', `rotate(-35) scale(${1 / k})`);
+    svg.select('#missiles').attr('patternTransform', `rotate(35) scale(${1 / k})`);
     const el = ech < 1 ? 0.8 : 1;
     L.lab.selectAll('text').style('font-size', l => (l.taille * el / k) + 'px').style('stroke-width', (3.2 * el / k) + 'px');
     L.lab.selectAll('.l0').style('font-size', (12 * 0.62 * el / k) + 'px');

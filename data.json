@@ -9290,7 +9290,7 @@
       "graine": "z-nargal-c",
       "rayon": 10.6,
       "graineInt": "z-nargal",
-      "rayonInt": 7.6,
+      "rayonInt": 6.9,
       "district": "am-amazonien",
       "date": "4 oct. 2075",
       "jusqu": "11 oct. 2075",
@@ -9450,6 +9450,36 @@
         ]
       ],
       "info": "Ligne fortifiée au nord de Rosario."
+    }
+  ],
+  "reprises": [
+    {
+      "id": "r-leizhou",
+      "nom": "Péninsule de Leizhou",
+      "district": "as-sinorusse",
+      "date": "11 oct. 2075",
+      "contour": [
+        [
+          109.2,
+          21.8
+        ],
+        [
+          110.2,
+          21.68
+        ],
+        [
+          111.3,
+          21.45
+        ],
+        [
+          111.4,
+          20.1
+        ],
+        [
+          109.0,
+          20.1
+        ]
+      ]
     }
   ]
 }
