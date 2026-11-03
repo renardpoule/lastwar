@@ -25,7 +25,7 @@
     }
   },
   "tension": {
-    "valeur": 59,
+    "valeur": 64,
     "paliers": [
       {
         "min": 0,
@@ -1650,9 +1650,9 @@
             "Paraguay",
             "Falkland Is."
           ],
-          "statut": "conteste",
+          "statut": "perdu",
           "influence": 80,
-          "tendance": "stable",
+          "tendance": "hausse",
           "civils": {
             "population": 1500000,
             "impliques": "~14000000",
@@ -1697,8 +1697,8 @@
           "note": "L'infection remontait les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter, jusqu'à ce que le cordon de quarantaine la bloque, au moins sur la carte.",
           "quarantaine": false,
           "air": {
-            "niveau": "contestee",
-            "note": "Les appareils volés passent maintenant par la percée du sud, et le ciel du Paraguay est contesté."
+            "niveau": "perdue",
+            "note": "Les aérodromes de la pampa sont tombés avec Buenos Aires, et seul le ciel de Rosario est encore disputé."
           }
         }
       ],
@@ -6557,7 +6557,7 @@
     },
     {
       "date": "1 nov. 2075",
-      "tension": 59,
+      "tension": 64,
       "distorsion": 54,
       "evenements": 48,
       "districts": {
@@ -6682,7 +6682,7 @@
           "quarantaine": false
         },
         "am-austral": {
-          "statut": "conteste",
+          "statut": "perdu",
           "influence": 80,
           "quarantaine": false
         },
@@ -10670,6 +10670,11 @@
       "date": "1 nov. 2075",
       "source": "Diffusion confédérée",
       "texte": "Santiago est tombée. Évacuation vers Ganzir par tous les ports encore ouverts."
+    },
+    {
+      "date": "1 nov. 2075",
+      "source": "Ganzir",
+      "texte": "Palier Ganzir atteint. Le commandement passe à Ganzir."
     }
   ],
   "traverseurs": [

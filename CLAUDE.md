@@ -31,9 +31,9 @@ Après toute modification des `pays` d'un district, vérifier que chaque nom exi
 ## Règles de cohérence du RP
 
 - Un tour de RP = une semaine. Nouveau tour : changer `meta.dateRP`, ajouter les événements, puis un instantané dans `historique[]` (mêmes champs que celui de l'admin à la publication).
-- Tension : au plus au palier Crépuscule (moins de 60) sur toute la chronologie, à ce stade.
+- Tension : palier Crépuscule (moins de 60) jusqu'au 25 oct. ; le palier Ganzir est atteint le 1er nov. 2075 (64). Foxy laisse Claude régler la tension et les statuts des districts.
 - Chronologie : la guerre éclate le **8 sept. 2075** (tout a commencé en mai à Baguio). Rien de daté avant ne doit contredire ça. Date actuelle du RP : voir `meta.dateRP`.
-- L'influence cultiste d'un district doit correspondre à la **surface réellement couverte par les bulles** (`zones`). Aucun district n'est "perdu" à ce stade.
+- L'influence cultiste d'un district doit correspondre à la **surface réellement couverte par les bulles** (`zones`). Le District Austral est "perdu" depuis le 1er nov. 2075 (80 %) ; les autres restent contestés tant que les cultistes n'en tiennent pas l'essentiel.
 - L'état d'une ville doit correspondre à sa distance aux bulles.
 - Effectifs mondiaux (27 sept.) : plus de milices depuis le 25 oct. (elles ont compté ~4,9 Md), régulière 47,5 M, forces spéciales 350 000 (majorité en Amérique du Sud), **Division Phoenix 12 600 au total**, en deux divisions de 6 300 (Amérique du Sud contre les entités faibles, Asie contre les fortes). Tués confédérés par corps : `meta.tuesParCorps`. Marine : 15 divisions, ~78 000 marins, placées face aux bulles cultistes et autour de Ganzir.
 - Carte : en vue monde, un seul pion par camp et par district (total des troupes militaires, sans les milices citoyennes) ; le détail des pions n'apparaît qu'une fois le secteur ouvert.
