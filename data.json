@@ -614,9 +614,9 @@
           "influence": 55,
           "tendance": "hausse",
           "civils": {
-            "population": 1490000000,
+            "population": 200000000,
             "impliques": "CLASSIFIÉ",
-            "deplaces": "~180000000",
+            "deplaces": "~255000000",
             "disparus": "CLASSIFIÉ",
             "deces": "~75000000"
           },
@@ -3148,12 +3148,14 @@
       },
       "gravite": "critique",
       "titre": "Izala remonte vers le nord",
-      "description": "Suite à leur passage du Yangzi, les cultistes d'Izala se tournèrent vers le nord et l'ouest, et prirent en une semaine le Sichuan, Chongqing, Xi'an et la plaine du fleuve Jaune jusqu'à Zhengzhou, ce qui les met maintenant à moins de trois cents kilomètres de Tianjin. Ils y perdirent 6 millions des leurs, remplacés par 8 millions de convertis, et la Confédération 2 millions de militaires et 20 millions de civils, ce que les 2 millions d'hommes envoyés en renfort compensent à peine, si bien que le front chinois compte 4 millions de militaires.",
+      "description": "Suite à leur passage du Yangzi, les cultistes d'Izala se tournèrent vers le nord et l'ouest, et prirent en une semaine le Sichuan, Chongqing, Xi'an et la plaine du fleuve Jaune jusqu'à Zhengzhou, ce qui les met maintenant à moins de trois cents kilomètres de Tianjin. Ils y perdirent 6 millions des leurs, remplacés par 8 millions de convertis, et la Confédération 2 millions de militaires et 20 millions de civils, ce que les 2 millions d'hommes envoyés en renfort compensent à peine, si bien que le front chinois compte 4 millions de militaires. Dans le même temps, 75 millions de civils furent évacués vers l'Europe, et il n'en reste plus que 200 millions dans les régions proches du front.",
       "consequences": [
         "Sichuan, Chongqing, Xi'an et Zhengzhou tombés",
         "6 millions de cultistes tués, 8 millions de convertis, 28 millions au total",
         "2 millions de militaires et 20 millions de civils tués",
-        "2 millions de renforts, 4 millions de militaires au front"
+        "2 millions de renforts, 4 millions de militaires au front",
+        "75 millions de civils évacués vers l'Europe",
+        "200 millions de civils restants près du front"
       ],
       "tension": 0
     },
