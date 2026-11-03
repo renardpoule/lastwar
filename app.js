@@ -56,6 +56,9 @@
     <pattern id="missiles" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
       <rect width="1.4" height="7" style="fill:var(--missiles)" fill-opacity=".85"/>
     </pattern>
+    <mask id="masqueCordons" maskUnits="userSpaceOnUse" x="-100000" y="-100000" width="200000" height="200000">
+      <rect x="-100000" y="-100000" width="200000" height="200000" fill="#fff"/><g id="trousCordons"></g>
+    </mask>
     <mask id="masqueReprises" maskUnits="userSpaceOnUse" x="-100000" y="-100000" width="200000" height="200000">
       <rect x="-100000" y="-100000" width="200000" height="200000" fill="#fff"/><g id="trousReprises"></g>
     </mask>
@@ -363,6 +366,10 @@
     // avec une marge, tracée seulement sur les terres (la marine tient les côtes)
     const cordons = zs.filter(z => z.cordon && !z.contour).map(z => ({ ...z, ring: ringCordon(z) }));
     L.cordons.attr('clip-path', 'url(#clipTerres)');
+    // Tronçons de cordon tombés aux mains des cultistes : effacés là où passe une percée
+    const percees = zs.filter(z => z.contour).map(z => tache({ ...z, marge: 0.35 }));
+    svg.select('#trousCordons').selectAll('path').data(percees).join('path').attr('fill', '#000').attr('d', g => path(g));
+    L.cordons.attr('mask', 'url(#masqueCordons)');
     L.cordons.selectAll('g.cordon').data(cordons, z => z.id).join(en => {
       const g = en.append('g').attr('class', 'cordon');
       for (const c of ['cordon-zone', 'cordon-fond', 'cordon-fils', 'cordon-entre', 'cordon-poteaux']) g.append('path').attr('class', c);
@@ -370,7 +377,7 @@
     }).each(function (z) { d3.select(this).selectAll('path').attr('d', path(z.ring)); })
       .on('mousemove', survolCordon).on('mouseleave', finSurvol);
     // Postes de contrôle : un tous les quatre points du tracé, s'il tombe sur terre
-    const postes = cordons.flatMap(z => z.ring.coordinates[0].slice(0, -1).filter((c, i) => i % 4 === 0 && d3.geoContains(terres, c))
+    const postes = cordons.flatMap(z => z.ring.coordinates[0].slice(0, -1).filter((c, i) => i % 4 === 0 && d3.geoContains(terres, c) && !percees.some(g => d3.geoContains(g, c)))
       .map((c, i) => ({ ...z, pid: z.id + ':' + i, p: projection(c) })));
     L.postes.selectAll('g.poste').data(postes, x => x.pid).join(en => {
       const g = en.append('g').attr('class', 'poste');
@@ -642,7 +649,7 @@
   function majAvions() {
     if (!L.avions) return;
     const replay = etat.replay !== null;
-    const avions = replay ? [] : frappesAff().flatMap(avionsDe);
+    const avions = frappesAff().flatMap(avionsDe);
     const t = (performance.now() - t0) / 1000, cos = c => Math.max(0.2, Math.cos(c * RAD));
     const posA = (a, u) => {
       let x = ((a.sens * (u / a.periode + a.phase)) % 1 + 1) % 1 * a.r.lg;
@@ -661,7 +668,6 @@
       }
     }
     explosions = explosions.filter(x => ++x.age <= 5).slice(-60);
-    if (replay) explosions = [];
     L.explosions.selectAll('g.explosion').data(explosions, x => x.id).join(en => {
       const g = en.append('g').attr('class', x => 'explosion ' + x.type);
       g.append('circle').attr('class', 'ex-onde'); g.append('circle').attr('class', 'ex-feu');
@@ -1055,9 +1061,8 @@
       + (zonesAff().some(z => z.cordon) ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="cordon-fond" d="M1,4H23"/><path class="cordon-fils" d="M1,4H23"/><path class="cordon-entre" d="M1,4H23"/><path class="cordon-poteaux" d="M1,4H23"/></svg>Cordon de quarantaine</li>' : '')
       + (detruitesAff().some(z => z.type !== 'feu') ? '<li><i class="sw detruite"></i>Zone détruite</li>' : '')
       + (detruitesAff().some(z => z.type === 'feu') ? '<li><i class="sw detruite feu"></i>Destruction forte par le feu nucléaire</li>' : '')
-      + (frappesAff().some(z => z.type === 'napalm') ? '<li><i class="sw frappe napalm"></i>Bombardement au napalm</li>' : '')
-      + (frappesAff().some(z => z.type !== 'napalm') ? '<li><i class="sw frappe missiles"></i>Bombardement par missiles et bombardiers</li>' : '')
-      + (etat.replay === null && frappesAff().length ? '<li><svg class="sw-avion" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Appareils en mission de bombardement</li>' : '')
+      + (frappesAff().some(z => z.type === 'napalm') ? '<li><svg class="sw-avion napalm" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.napalm + '"/></svg>Chasseurs au napalm</li>' : '')
+      + (frappesAff().some(z => z.type !== 'napalm') ? '<li><svg class="sw-avion missiles" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Bombardiers et missiles</li>' : '')
       + (contestationsAff().length ? '<li><i class="sw contestation"></i>Zone de contestation (renforts)</li>' : '')
       + (lignesAff().some(x => x.type !== 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait" d="M1,4H23" style="stroke:var(--ligne-stab)"/></svg>Front stabilisé</li>' : '')
       + (lignesAff().some(x => x.type === 'fortifiee') ? '<li><svg class="sw-rail" viewBox="0 0 24 8" aria-hidden="true"><path class="lf-fond" d="M1,4H23"/><path class="lf-trait fort" d="M1,4H23"/></svg>Ligne fortifiée</li>' : '')
