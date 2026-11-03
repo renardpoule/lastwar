@@ -1663,7 +1663,7 @@
             "Guyane"
           ],
           "statut": "conteste",
-          "influence": 48,
+          "influence": 52,
           "tendance": "hausse",
           "civils": {
             "population": 250000000,
@@ -4784,7 +4784,8 @@
           "rayon": 8.5,
           "cordon": true,
           "cordonDepuis": "22 sept. 2075",
-          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé.",
+          "pleine": true
         },
         {
           "id": "z-poche-haiti",
@@ -5269,7 +5270,8 @@
           "rayon": 8.5,
           "cordon": true,
           "cordonDepuis": "22 sept. 2075",
-          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé.",
+          "pleine": true
         },
         {
           "id": "z-izala",
@@ -5617,7 +5619,7 @@
         },
         "am-amazonien": {
           "statut": "conteste",
-          "influence": 48,
+          "influence": 52,
           "quarantaine": false
         },
         "am-austral": {
@@ -5730,7 +5732,8 @@
           "rayon": 8.5,
           "cordon": true,
           "cordonDepuis": "22 sept. 2075",
-          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+          "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé.",
+          "pleine": true
         },
         {
           "id": "z-izala",
@@ -5866,15 +5869,23 @@
             ],
             [
               -57.5,
-              -23.6
-            ],
-            [
-              -52,
               -23.4
             ],
             [
-              -48,
-              -23.8
+              -52,
+              -21.8
+            ],
+            [
+              -49,
+              -22.2
+            ],
+            [
+              -47.0,
+              -22.9
+            ],
+            [
+              -46.9,
+              -23.4
             ],
             [
               -46.9,
@@ -6006,7 +6017,8 @@
       "rayon": 8.5,
       "cordon": true,
       "cordonDepuis": "22 sept. 2075",
-      "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé."
+      "cordonInfo": "Barrière continue tenue par les régulières et les milices, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé.",
+      "pleine": true
     },
     {
       "id": "z-izala",
@@ -6142,15 +6154,23 @@
         ],
         [
           -57.5,
-          -23.6
-        ],
-        [
-          -52,
           -23.4
         ],
         [
-          -48,
-          -23.8
+          -52,
+          -21.8
+        ],
+        [
+          -49,
+          -22.2
+        ],
+        [
+          -47.0,
+          -22.9
+        ],
+        [
+          -46.9,
+          -23.4
         ],
         [
           -46.9,

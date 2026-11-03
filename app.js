@@ -338,7 +338,9 @@
 
     // Bordure contestée autour de chaque zone cultiste (étroite : ~1/3 du rayon, entre 0,4° et 2°)
     const zs = zonesAff();
-    const halos = zs.map(haloDe);
+    // Zone "pleine" : sa bordure contestée est tombée, la couleur du dieu va jusqu'au bord
+    const coeur = z => tache(z.pleine ? { ...haloDe(z), halo: false } : z);
+    const halos = zs.filter(z => !z.pleine).map(haloDe);
     L.zones.attr('clip-path', 'url(#clipTerres)');
     const gH = L.zones.selectAll('g.halos').data([0]).join('g').attr('class', 'halos');
     const gZ = L.zones.selectAll('g.coeurs').data([0]).join('g').attr('class', 'coeurs');
@@ -350,11 +352,11 @@
     L.zones.attr('mask', 'url(#masqueReprises)');
     L.frappes.attr('mask', 'url(#masqueReprises)');
     gZ.selectAll('path').data(zs, z => z.id).join('path')
-      .attr('class', 'zone').attr('d', z => path(tache(z))).style('fill', z => z.couleur)
+      .attr('class', 'zone').attr('d', z => path(coeur(z))).style('fill', z => z.couleur)
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
     // Une percée prolonge sa bulle : remplissages repassés sans trait, pour une seule tache d'une seule couleur
     const gU = L.zones.selectAll('g.unies').data([0]).join('g').attr('class', 'unies');
-    gU.selectAll('path').data(zs, z => z.id).join('path').attr('class', 'zone-unie').attr('d', z => path(tache(z))).style('fill', z => z.couleur);
+    gU.selectAll('path').data(zs, z => z.id).join('path').attr('class', 'zone-unie').attr('d', z => path(coeur(z))).style('fill', z => z.couleur);
     // Symbole du chaos, semi-transparent, sur les zones cultistes principales
     const sceaux = zs.filter(z => (+z.rayon || 0) >= 2 && !z.contour).map(z => {
       const c = projection(z.centre), b = projection([z.centre[0] + z.rayon * 0.8, z.centre[1]]);
