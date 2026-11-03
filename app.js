@@ -62,6 +62,24 @@
     <mask id="masqueReprises" maskUnits="userSpaceOnUse" x="-100000" y="-100000" width="200000" height="200000">
       <rect x="-100000" y="-100000" width="200000" height="200000" fill="#fff"/><g id="trousReprises"></g>
     </mask>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r=".7" fill="#000" fill-opacity=".22"/><circle cx="5" cy="4.8" r=".55" fill="#000" fill-opacity=".16"/><circle cx="5.4" cy="1" r=".4" fill="#fff" fill-opacity=".07"/>
+    </pattern>
+    <pattern id="hachConteste" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <rect width="6" height="6" style="fill:var(--st-conteste)" fill-opacity=".22"/><rect width="1.3" height="6" style="fill:var(--st-conteste)" fill-opacity=".75"/>
+    </pattern>
+    <pattern id="hachBleu" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" style="fill:var(--ligne-stab)" fill-opacity=".2"/><rect width="1.3" height="6" style="fill:oklch(0.78 0.13 262)" fill-opacity=".8"/>
+    </pattern>
+    <radialGradient id="brulure2">
+      <stop offset="0" style="stop-color:oklch(0.86 0.15 80)"/><stop offset=".1" style="stop-color:oklch(0.62 0.2 45)"/>
+      <stop offset=".32" style="stop-color:oklch(0.28 0.07 35)"/><stop offset=".8" style="stop-color:oklch(0.14 0.02 285)"/>
+      <stop offset="1" style="stop-color:oklch(0.17 0.02 285)" stop-opacity=".88"/>
+    </radialGradient>
+    <radialGradient id="feuNuc">
+      <stop offset="0" style="stop-color:oklch(0.3 0.13 25)"/><stop offset=".62" style="stop-color:oklch(0.42 0.18 28)" stop-opacity=".92"/>
+      <stop offset=".86" style="stop-color:oklch(0.56 0.2 40)" stop-opacity=".6"/><stop offset="1" style="stop-color:oklch(0.66 0.19 55)" stop-opacity=".18"/>
+    </radialGradient>
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
@@ -126,10 +144,19 @@
     g.append('text').attr('class', 'label nom-site').attr('x', x => x.glitch ? 38 : 13).attr('dy', '0.35em').text(x => x.nom);
     // Zones détruites (frappes, rasages) : taches brûlées découpées sur les terres
     L.detruites.attr('clip-path', 'url(#clipTerres)');
-    L.detruites.selectAll('path').data((data.detruites || []).slice().sort((a, b) => (+b.rayon || 0) - (+a.rayon || 0)), z => z.id).join('path').attr('class', z => 'detruite' + (z.type === 'feu' ? ' feu' : ''))
-      .attr('d', z => path(tache(z)))
+    const dts = (data.detruites || []).slice().sort((a, b) => (+b.rayon || 0) - (+a.rayon || 0));
+    const gd = L.detruites.selectAll('g.detr').data(dts, z => z.id).join('g').attr('class', z => 'detr' + (z.type === 'feu' ? ' feu' : ''))
       .on('mousemove', survolDetruite).on('mouseleave', finSurvol)
       .on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
+    // Anneau d'exclusion pointillé autour de chaque frappe (autour de la couronne de feu quand il y en a une)
+    const avecFeu = new Set(dts.filter(z => z.type === 'feu').map(z => z.centre.join()));
+    gd.filter(z => z.type === 'feu' || !avecFeu.has(z.centre.join())).append('path').attr('class', 'exclusion')
+      .attr('d', z => path(tache({ ...z, id: z.id + '-x', rayon: (+z.rayon || 1) * (z.type === 'feu' ? 1.12 : 1.3) })));
+    gd.append('path').attr('class', z => 'detruite' + (z.type === 'feu' ? ' feu' : '')).attr('d', z => path(tache(z)));
+    gd.filter(z => z.type !== 'feu').append('path').attr('class', 'cendres').attr('d', z => path(tache(z)));
+    // Trèfle de radioactivité au point d'impact, à l'échelle de la frappe
+    gd.filter(z => z.type !== 'feu').append('path').attr('class', 'trefle').attr('d', TREFLE)
+      .attr('transform', z => { const c = projection(z.centre), b = projection([z.centre[0] + (+z.rayon || 1) * 0.42, z.centre[1]]); return `translate(${c[0]},${c[1]}) scale(${Math.hypot(b[0] - c[0], b[1] - c[1])})`; });
 
     // Villes "Too young to die"
     const villes = (data.villes || []).filter(v => parId[v.district]).map(v => ({ ...v, p: projection(v.coord) }));
@@ -345,6 +372,10 @@
     L.zones.attr('clip-path', 'url(#clipTerres)');
     const gH = L.zones.selectAll('g.halos').data([0]).join('g').attr('class', 'halos');
     const gZ = L.zones.selectAll('g.coeurs').data([0]).join('g').attr('class', 'coeurs');
+    // Par dieu, un seul tracé pour toutes ses taches : pas de double hachure ni de couture là où elles se chevauchent
+    const parDieu = (liste, f) => [...d3.group(liste, z => z.couleur)].map(([c, l]) => ({ id: c, couleur: c, d: l.map(z => path(f(z)) || '').join('') }));
+    const gHu = L.zones.selectAll('g.halos-unis').data([0]).join('g').attr('class', 'halos-unis');
+    gHu.selectAll('path').data(parDieu(halos, z => tache(z)), x => x.id).join('path').attr('class', 'zone-contestee-unie').attr('d', x => x.d);
     gH.selectAll('path').data(halos, z => z.id).join('path')
       .attr('class', 'zone-contestee').attr('d', z => path(tache(z)))
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
@@ -353,19 +384,35 @@
     L.zones.attr('mask', 'url(#masqueReprises)');
     L.sceaux.attr('mask', 'url(#masqueReprises)');
     L.frappes.attr('mask', 'url(#masqueReprises)');
+    // Ombre portée du front : large trait sombre sous les cœurs, dont seule la moitié extérieure dépasse
+    const gO = L.zones.selectAll('g.ombres').data([0]).join('g').attr('class', 'ombres');
+    gO.lower(); gHu.lower(); gH.lower();
+    gO.selectAll('path').data(zs, z => z.id).join('path').attr('class', 'zone-ombre').attr('d', z => path(coeur(z)));
     gZ.selectAll('path').data(zs, z => z.id).join('path')
-      .attr('class', 'zone').attr('d', z => path(coeur(z))).style('fill', z => z.couleur)
+      .attr('class', 'zone').attr('d', z => path(coeur(z))).style('fill', z => teinte(z.couleur)).style('stroke', z => `color-mix(in oklab, ${z.couleur} 55%, white)`)
       .on('mousemove', survolZone).on('mouseleave', finSurvol).on('click', (e, z) => { e.stopPropagation(); if (parId[z.district]) naviguer(parId[z.district]._secteur, z.district); });
     // Une percée prolonge sa bulle : remplissages repassés sans trait, pour une seule tache d'une seule couleur
     const gU = L.zones.selectAll('g.unies').data([0]).join('g').attr('class', 'unies');
-    gU.selectAll('path').data(zs, z => z.id).join('path').attr('class', 'zone-unie').attr('d', z => path(coeur(z))).style('fill', z => z.couleur);
+    gU.selectAll('path').data(parDieu(zs, coeur), x => x.id).join('path').attr('class', 'zone-unie').attr('d', x => x.d).style('fill', x => teinte(x.couleur));
+    // Grain léger, identique partout, pour que la zone ne fasse pas aplat de feutre
+    const gG = L.zones.selectAll('g.grains').data([0]).join('g').attr('class', 'grains');
+    gG.selectAll('path').data(parDieu(zs, coeur), x => x.id).join('path').attr('class', 'zone-grain').attr('d', x => x.d);
     // Symbole du chaos, semi-transparent, sur les zones cultistes principales
     const sceaux = zs.filter(z => (+z.rayon || 0) >= 2 && !z.contour).map(z => {
-      const c = projection(z.centre), b = projection([z.centre[0] + z.rayon * 0.8, z.centre[1]]);
-      return { id: z.id, c, r: Math.hypot(b[0] - c[0], b[1] - c[1]) };
+      const c = projection(z.centre), b = projection([z.centre[0] + z.rayon * 0.62, z.centre[1]]);
+      return { id: z.id, c, r: Math.hypot(b[0] - c[0], b[1] - c[1]), couleur: z.couleur, nom: (z.dieu || '').toUpperCase() };
     });
-    L.sceaux.selectAll('path').data(sceaux, x => x.id).join('path').attr('class', 'sceau-chaos')
-      .attr('d', CHAOS).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`);
+    L.sceaux.selectAll('g.sceau').data(sceaux, x => x.id).join(en => {
+      const g = en.append('g').attr('class', 'sceau');
+      g.append('path').attr('class', 'sceau-chaos').attr('d', CHAOS);
+      g.append('text').attr('class', 'sceau-nom').attr('y', 1.42).attr('text-anchor', 'middle');
+      return g;
+    }).attr('transform', x => `translate(${x.c[0]},${x.c[1]}) scale(${x.r})`)
+      .each(function (x) {
+        const g = d3.select(this);
+        g.select('.sceau-chaos').style('fill', `color-mix(in oklab, ${x.couleur} 35%, black)`);
+        g.select('.sceau-nom').text(x.nom).style('fill', `color-mix(in oklab, ${x.couleur} 30%, black)`);
+      });
     // Cordons de quarantaine : barrière (double fil, poteaux, postes de contrôle) qui épouse la zone contestée
     // avec une marge, tracée seulement sur les terres (la marine tient les côtes)
     const cordons = zs.filter(z => z.cordon && !z.contour).map(z => ({ ...z, ring: ringCordon(z) }));
@@ -405,7 +452,7 @@
     // Lignes de front tenues par la CC : stabilisées (trait bleu) ou fortifiées (trait vert à créneaux)
     L.lignes.selectAll('g.ligne-front').data(lignesAff(), x => x.id).join(en => {
       const g = en.append('g');
-      g.append('path').attr('class', 'lf-fond'); g.append('path').attr('class', 'lf-trait');
+      g.append('path').attr('class', 'lf-fond'); g.append('path').attr('class', 'lf-dents'); g.append('path').attr('class', 'lf-trait');
       return g;
     }).attr('class', x => 'ligne-front ' + (x.type || 'stabilisee'))
       .each(function (x) { const dd = path({ type: 'LineString', coordinates: x.trace }); d3.select(this).selectAll('path').attr('d', dd); })
@@ -414,7 +461,7 @@
     const etats = new Map(villesAff().map(v => [v.id, v.etat]));
     L.villes.selectAll('g.ville').attr('class', v => 'ville ' + VILLES.niveau(etats.get(v.id) ?? v.etat)[1]);
     const dVis = new Set(detruitesAff().map(z => z.id));
-    L.detruites.selectAll('path').attr('display', z => dVis.has(z.id) ? null : 'none');
+    L.detruites.selectAll('g.detr').attr('display', z => dVis.has(z.id) ? null : 'none');
     L.villes.selectAll('g.ville').classed('sel', v => v.id === etat.ville).classed('sans-nom', etat.niveau === 'monde');
     rendreLegende();
     appliquerDistorsion();
@@ -591,15 +638,29 @@
     : { ...z, id: z.id + '-c', rayon: (+z.rayon || 1) + Math.max(0.4, Math.min(2, (+z.rayon || 1) * 0.35)), halo: true };
 
   // Étoile du chaos (8 flèches), dessinée dans un cercle de rayon 1
+  // Huit flèches fines qui partent d'un anneau central, dans un double cercle (rendu en pair-impair)
+  const anneau = (r, e) => `M${r},0A${r},${r} 0 1 1 ${-r},0A${r},${r} 0 1 1 ${r},0ZM${r - e},0A${r - e},${r - e} 0 1 0 ${-(r - e)},0A${r - e},${r - e} 0 1 0 ${r - e},0Z`;
   const CHAOS = (() => {
-    const w = 0.06, forme = [[0, -w], [0.74, -w], [0.6, -0.2], [1, 0], [0.6, 0.2], [0.74, w], [0, w]];
+    const w = 0.028, forme = [[0.27, -w], [0.8, -w], [0.76, -0.085], [1, 0], [0.76, 0.085], [0.8, w], [0.27, w]];
     let d = '';
     for (let i = 0; i < 8; i++) {
-      const a = i * Math.PI / 4, ca = Math.cos(a), sa = Math.sin(a);
-      d += forme.map(([x, y], j) => (j ? 'L' : 'M') + (x * ca - y * sa).toFixed(3) + ',' + (x * sa + y * ca).toFixed(3)).join('') + 'Z';
+      const a = i * Math.PI / 4 + Math.PI / 8, ca = Math.cos(a), sa = Math.sin(a), f = i % 2 ? 0.82 : 1;
+      d += forme.map(([x, y], j) => (j ? 'L' : 'M') + (x * f * ca - y * sa).toFixed(3) + ',' + (x * f * sa + y * ca).toFixed(3)).join('') + 'Z';
     }
-    return d + 'M0.14,0A0.14,0.14 0 1 1 -0.14,0A0.14,0.14 0 1 1 0.14,0Z';
+    return d + anneau(0.21, 0.05) + anneau(1.12, 0.025) + anneau(1.2, 0.012);
   })();
+  // Trèfle de radioactivité, dans un cercle de rayon 1
+  const TREFLE = (() => {
+    let d = '';
+    for (let i = 0; i < 3; i++) {
+      const a0 = (-90 + 120 * i - 30) * Math.PI / 180, a1 = a0 + Math.PI / 3, r1 = 0.26, r2 = 0.95;
+      const P = (r, a) => (r * Math.cos(a)).toFixed(3) + ',' + (r * Math.sin(a)).toFixed(3);
+      d += `M${P(r1, a0)}L${P(r2, a0)}A${r2},${r2} 0 0 1 ${P(r2, a1)}L${P(r1, a1)}A${r1},${r1} 0 0 0 ${P(r1, a0)}Z`;
+    }
+    return d + 'M0.15,0A0.15,0.15 0 1 1 -0.15,0A0.15,0.15 0 1 1 0.15,0Z';
+  })();
+  // Teinte d'une zone : la couleur du dieu, un peu assombrie, pour un rendu moins criard
+  const teinte = c => `color-mix(in oklab, ${c} 80%, oklch(0.16 0.04 285))`;
 
   // ---------- Distorsion (façon The Fire Rises) ----------
   // Intensité 0–100 réglée dans l'administration, enregistrée à chaque point de chronologie.
@@ -1202,6 +1263,9 @@
     svg.select('#hachures').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     svg.select('#napalm').attr('patternTransform', `rotate(-35) scale(${1 / k})`);
     svg.select('#missiles').attr('patternTransform', `rotate(35) scale(${1 / k})`);
+    svg.select('#grain').attr('patternTransform', `scale(${1 / k})`);
+    svg.select('#hachConteste').attr('patternTransform', `rotate(-45) scale(${1 / k})`);
+    svg.select('#hachBleu').attr('patternTransform', `rotate(45) scale(${1 / k})`);
     const el = ech < 1 ? 0.8 : 1;
     L.lab.selectAll('text').style('font-size', l => (l.taille * el / k) + 'px').style('stroke-width', (3.2 * el / k) + 'px');
     L.lab.selectAll('.l0').style('font-size', (12 * 0.62 * el / k) + 'px');

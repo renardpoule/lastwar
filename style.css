@@ -216,10 +216,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .district.hover{filter:brightness(1.3)}
 .district.sel{filter:brightness(1.4)}
 .hatch-over{fill:url(#hachures);pointer-events:none}
-.halos{opacity:.55}
-.zone-contestee{fill:var(--st-conteste);stroke:none;cursor:pointer}
+.zone-contestee{fill:transparent;stroke:none;cursor:pointer}
+.zone-contestee-unie{fill:url(#hachConteste);stroke:none;pointer-events:none}
+.zone-ombre{fill:none;stroke:oklch(0.1 0.03 285 / .55);stroke-width:9;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.zone-grain{fill:url(#grain);stroke:none;pointer-events:none}
 .zone-unie{fill-opacity:1;stroke:none;pointer-events:none}
-.zone{fill-opacity:1;stroke:oklch(0.22 0.06 15 / .9);stroke-width:2.4;stroke-linejoin:round;vector-effect:non-scaling-stroke;cursor:pointer}
+.zone{fill-opacity:1;stroke-width:3.4;stroke-linejoin:round;vector-effect:non-scaling-stroke;cursor:pointer}
 
 .b-pays{fill:none;stroke:var(--ocean);stroke-opacity:.6;stroke-width:.5;vector-effect:non-scaling-stroke;pointer-events:none}
 .b-district{fill:none;stroke:color-mix(in oklab,var(--foreground) 45%,transparent);stroke-width:.8;stroke-dasharray:3 3;vector-effect:non-scaling-stroke;pointer-events:none}
@@ -232,13 +234,16 @@ button{font:inherit;color:inherit;cursor:pointer}
 .embleme .em-trait,.sw-etoile .em-trait{fill:oklch(0.58 0.16 255);stroke:oklch(0.97 0.01 250);stroke-width:26;paint-order:stroke;stroke-linejoin:round}
 .site .embleme{filter:drop-shadow(0 0 0.3rem oklch(0.7 0.14 255 / .55))}
 .embleme.petit{transform:scale(.72)}
-.detruite{fill:url(#brulure);stroke:var(--detruit-coeur);stroke-width:1;stroke-dasharray:2 2;vector-effect:non-scaling-stroke;cursor:pointer}
-.detruite.feu{fill:var(--feu);fill-opacity:.92;stroke:oklch(0.5 0.17 30)}
-.detruite:not(.feu){fill-opacity:1}
-.sw.detruite.feu{background:var(--feu);box-shadow:inset 0 0 0 0.0625rem oklch(0.5 0.17 30)}
+.detr{cursor:pointer}
+.detruite{fill:url(#brulure2);stroke:oklch(0.72 0.15 60 / .8);stroke-width:1.2;stroke-dasharray:1 3;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.detruite.feu{fill:url(#feuNuc);stroke:none}
+.cendres{fill:url(#grain);pointer-events:none}
+.exclusion{fill:none;stroke:oklch(0.8 0.15 80 / .7);stroke-width:1.2;stroke-dasharray:6 4;vector-effect:non-scaling-stroke;pointer-events:none}
+.trefle{fill:oklch(0.82 0.16 85 / .78);stroke:oklch(0.15 0.03 285 / .8);stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none}
+.sw.detruite.feu{background:radial-gradient(circle,oklch(0.3 0.13 25),oklch(0.56 0.2 40));box-shadow:inset 0 0 0 0.0625rem oklch(0.5 0.17 30)}
 .frappe{fill:none!important;stroke:none;pointer-events:none}
 .avion{pointer-events:none}
-.contestation{fill:var(--ligne-stab);fill-opacity:.45;stroke:oklch(0.78 0.13 262);stroke-width:1.6;stroke-dasharray:4 3;vector-effect:non-scaling-stroke;cursor:help}
+.contestation{fill:url(#hachBleu);stroke:oklch(0.8 0.13 262);stroke-width:1.8;stroke-dasharray:1 3.5;stroke-linecap:round;vector-effect:non-scaling-stroke;cursor:help}
 .sw.contestation{background:color-mix(in oklab,var(--ligne-stab) 55%,transparent);box-shadow:inset 0 0 0 0.0625rem oklch(0.78 0.13 262)}
 .av-corps{stroke:oklch(0.2 0.02 280);stroke-width:.6;stroke-linejoin:round}
 .av-ombre{fill:oklch(0.1 0.02 280 / .45)}
@@ -259,10 +264,15 @@ button{font:inherit;color:inherit;cursor:pointer}
 .lf-fond{fill:none;stroke:oklch(0.15 0.03 280 / .8);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .lf-trait{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .ligne-front{cursor:help}
+.lf-dents{fill:none;stroke-linecap:butt;vector-effect:non-scaling-stroke}
+.ligne-front.stabilisee .lf-dents{stroke:var(--ligne-stab);stroke-width:10;stroke-dasharray:1.6 9}
+.ligne-front.fortifiee .lf-dents{stroke:var(--ligne-fort);stroke-width:12;stroke-dasharray:3.5 5.5}
+.ligne-front.renforcee .lf-dents{stroke:oklch(0.66 0.19 262);stroke-width:16;stroke-dasharray:4 4}
 .ligne-front.stabilisee .lf-trait{stroke:var(--ligne-stab)}
-.ligne-front.fortifiee .lf-trait,.lf-trait.fort{stroke:var(--ligne-fort);stroke-width:4;stroke-dasharray:5 2.5;stroke-linecap:butt}
+.ligne-front.fortifiee .lf-trait,.lf-trait.fort{stroke:var(--ligne-fort);stroke-width:4}
 .ligne-front.fortifiee .lf-fond{stroke-width:7}
-.ligne-front.renforcee .lf-trait,.lf-trait.renf{stroke:oklch(0.66 0.19 262);stroke-width:5.5;stroke-dasharray:6 2;stroke-linecap:butt}
+.ligne-front.renforcee .lf-trait,.lf-trait.renf{stroke:oklch(0.66 0.19 262);stroke-width:5.5;stroke-linecap:butt}
+.ligne-front.renforcee .lf-fond{stroke:oklch(0.15 0.03 280 / .85)}
 .ligne-front.renforcee .lf-fond{stroke-width:9.5}
 .sw.detruite{background:radial-gradient(circle,var(--detruit-coeur),var(--detruit));box-shadow:inset 0 0 0 0.0625rem var(--detruit-coeur)}
 /* Villes "Too young to die" : la couleur du point suit l'état */
@@ -313,7 +323,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .marker.mineur .ring{stroke:var(--g-mineur)}.marker.mineur .dot{fill:var(--g-mineur)}
 .marker.majeur .ring{stroke:var(--g-majeur)}.marker.majeur .dot{fill:var(--g-majeur)}
 .marker.critique .ring{stroke:var(--g-critique)}.marker.critique .dot{fill:var(--g-critique)}
-.sceau-chaos{fill:var(--ocean);fill-opacity:.45;pointer-events:none}
+.sceau{pointer-events:none}
+.sceau-chaos{fill-rule:evenodd;fill-opacity:.62}
+.sceau-nom{font-size:.2px;font-weight:700;letter-spacing:.09px;fill-opacity:.7}
 
 /* Distorsion : calques composités (transform/opacité seulement), intensité --dist de 0 à 1 */
 .mapzone{--dist:0;--gx:0px;--gy:50%;--gh:8%}
