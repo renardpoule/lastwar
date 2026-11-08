@@ -2,12 +2,12 @@
   "meta": {
     "titre": "Confédération des Cendres",
     "sousTitre": "Réseau tactique confédéré · Alea jacta est",
-    "dateRP": "8 nov. 2075",
-    "derniereMaj": "2026-09-27T18:45:47.871Z",
-    "distorsion": 52,
+    "dateRP": "15 nov. 2075",
+    "derniereMaj": "2026-11-08T12:00:00.000Z",
+    "distorsion": 53,
     "energie": {
       "unite": "TW",
-      "production": 64,
+      "production": 61.6,
       "consommation": 51,
       "detruite": 7,
       "detournee": 2.5
@@ -18,10 +18,10 @@
       "population": 60
     },
     "tuesParCorps": {
-      "regulieres": 16900000,
+      "regulieres": 19350000,
       "milices": 799200,
-      "speciales": 35600,
-      "phoenix": 800
+      "speciales": 85300,
+      "phoenix": 1100
     }
   },
   "tension": {
@@ -611,7 +611,7 @@
             "Sibérie"
           ],
           "statut": "conteste",
-          "influence": 52,
+          "influence": 30,
           "tendance": "baisse",
           "civils": {
             "population": 200000000,
@@ -625,7 +625,7 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 5948700
+                "effectif": 5448700
               },
               {
                 "nom": "Forces spéciales",
@@ -643,7 +643,7 @@
             "cultistes": [
               {
                 "nom": "Cultistes d'Izala",
-                "effectif": "~14600000"
+                "effectif": "~8600000"
               },
               {
                 "nom": "Soldats organisés",
@@ -661,12 +661,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~7769500",
+              "tues": "~8269500",
               "blesses": "~2454590",
               "disparus": "~666246"
             },
             "cultistes": {
-              "tues": 40900000,
+              "tues": 47900000,
               "blesses": "?",
               "disparus": "?"
             }
@@ -1529,11 +1529,11 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 259000
+                "effectif": 1450000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 62700
+                "effectif": 60000
               },
               {
                 "nom": "Brigade exotique",
@@ -1543,7 +1543,7 @@
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~18300000"
+                "effectif": "~18000000"
               },
               {
                 "nom": "Faune mutée",
@@ -1553,12 +1553,12 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~2570300",
+              "tues": "~2870300",
               "blesses": "~704516",
               "disparus": "~121935"
             },
             "cultistes": {
-              "tues": "~6250000",
+              "tues": "~6550000",
               "blesses": "?",
               "disparus": "?"
             }
@@ -1581,7 +1581,7 @@
             "Guyane"
           ],
           "statut": "conteste",
-          "influence": 40,
+          "influence": 35,
           "tendance": "baisse",
           "civils": {
             "population": 200000,
@@ -1595,21 +1595,21 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 313000
+                "effectif": 3200000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 118400
+                "effectif": 180000
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 4300
+                "effectif": 4100
               }
             ],
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~22800000"
+                "effectif": "~22000000"
               },
               {
                 "nom": "Chimères",
@@ -1627,17 +1627,17 @@
           },
           "pertes": {
             "confederation": {
-              "tues": "~3331600",
+              "tues": "~4531600",
               "blesses": "~1609091",
               "disparus": "~804545"
             },
             "cultistes": {
-              "tues": "~19115600",
+              "tues": "~20315600",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "Sous l'effet des pathogènes, la jungle vire au marécage, et depuis que des aérodromes sont tombés, les cultistes font voler nos propres appareils. Depuis le 22 sept., un cordon de quarantaine ceinture le foyer de Nargal, et la bulle ne gagne plus un mètre, pour l'instant du moins.",
+          "note": "Sous l'effet des pathogènes, la jungle vire au marécage, et depuis que des aérodromes sont tombés, les cultistes font voler nos propres appareils. Depuis le 15 nov., le cordon de quarantaine s'est resserré sur les terres reprises et prend le nom de ligne AMAZONE, une défense minime, tenue plus solidement à l'est qu'au nord et à l'ouest, alors que Brasília se dispute encore rue par rue.",
           "quarantaine": false,
           "air": {
             "niveau": "perdue",
@@ -1654,7 +1654,7 @@
             "Falkland Is."
           ],
           "statut": "perdu",
-          "influence": 97,
+          "influence": 99,
           "tendance": "hausse",
           "civils": {
             "population": 100000,
@@ -1668,37 +1668,37 @@
             "confederation": [
               {
                 "nom": "Forces régulières",
-                "effectif": 271000
+                "effectif": 600000
               },
               {
                 "nom": "Forces spéciales",
-                "effectif": 24300
+                "effectif": 40000
               },
               {
                 "nom": "Division Phoenix",
-                "effectif": 2000
+                "effectif": 1900
               }
             ],
             "cultistes": [
               {
                 "nom": "Infectés",
-                "effectif": "~26900000"
+                "effectif": "~31000000"
               }
             ]
           },
           "pertes": {
             "confederation": {
-              "tues": "~3560700",
+              "tues": "~4060700",
               "blesses": "~266667",
               "disparus": "~35556"
             },
             "cultistes": {
-              "tues": "~7650000",
+              "tues": "~8150000",
               "blesses": "?",
               "disparus": "?"
             }
           },
-          "note": "L'infection remontait les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter, jusqu'à ce que le cordon de quarantaine la bloque, au moins sur la carte.",
+          "note": "L'infection remontait les cours d'eau depuis le bassin amazonien, lentement, mais sans jamais s'arrêter, et depuis la chute de Rosario, le 15 nov., il ne reste plus rien de confédéré dans le district, sinon les navires qui le bombardent depuis la côte.",
           "quarantaine": false,
           "air": {
             "niveau": "perdue",
@@ -3603,6 +3603,187 @@
         [
           -58,
           -6
+        ]
+      ]
+    },
+    {
+      "id": "ev52",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "as-sinorusse"
+      },
+      "gravite": "critique",
+      "titre": "La reprise du Yangzi",
+      "description": "Suite à la contre-offensive du sud, la Confédération poussa vers le nord sur toute la largeur du front, et reprit en une semaine le Sichuan, Chongqing, le Hunan, Wuhan et toute la côte du Zhejiang jusqu'à l'embouchure du Yangzi, si bien que les cultistes d'Izala ne tiennent plus que le nord, entre le fleuve Jaune et le Shandong. Ils y perdirent 7 millions des leurs, et avec le million de convertis, va savoir lesquels, ils ne sont plus que 8,6 millions, alors que la Confédération perdit 500 000 militaires et en garde 5,5 millions sur le front chinois.",
+      "consequences": [
+        "Sichuan, Chongqing, Wuhan et le Zhejiang repris",
+        "7 millions de cultistes tués, 8,6 millions restants",
+        "500 000 militaires tués, 5,5 millions au front"
+      ],
+      "tension": -3,
+      "icone": "contre",
+      "lieux": [
+        [
+          112.5,
+          29.5
+        ]
+      ],
+      "camp": "cc"
+    },
+    {
+      "id": "ev53",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "critique",
+      "titre": "L'assaut s'arrête",
+      "description": "Pendant ce temps, en Amérique du Sud, la poussée vers le sud s'arrêta au bord du point d'impact, alors que, sur le flanc est, la Confédération reprit toute la bande qui va de Brasília aux abords de São Paulo, et Brasília, d'ailleurs, n'est pas reprise pour autant, puisqu'on s'y bat encore. La semaine coûta 2 millions de militaires, si bien qu'il en reste 5,6 millions sur le continent, et 2 millions de cultistes, remplacés presque à moitié par un million de soldats corrompus ou de corps relevés, ce qui les laisse à 71 millions. Phoenix y laissa quelques hommes, mais aussi plusieurs entités cultistes derrière elle.",
+      "consequences": [
+        "Est du foyer de Nargal repris, Brasília contestée",
+        "Assaut vers le sud stoppé au bord du point d'impact",
+        "2 millions de militaires tués, 5,6 millions restants",
+        "2 millions de cultistes tués, 1 million relevés, 71 millions au total",
+        "Pertes légères pour Phoenix, plusieurs entités abattues"
+      ],
+      "tension": 0,
+      "icone": "reprise",
+      "lieux": [
+        [
+          -46,
+          -18.5
+        ],
+        [
+          -56,
+          -11.3
+        ]
+      ],
+      "camp": "cc"
+    },
+    {
+      "id": "ev54",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "majeur",
+      "titre": "La ligne AMAZONE",
+      "description": "Alors que le front se fixait, le cordon de quarantaine, devenu trop large pour ce qu'il reste de troupes, fut abandonné au profit d'une ligne resserrée sur les terres reprises, la ligne AMAZONE, une défense minime, presque improvisée, plus solide à l'est, là où l'on tient Brasília, qu'au nord et à l'ouest, où elle n'est qu'à peine fortifiée.",
+      "consequences": [
+        "Le cordon de Nargal est abandonné",
+        "La ligne AMAZONE tient les terres reprises",
+        "Fortifiée à l'est, faiblement au nord et à l'ouest"
+      ],
+      "tension": 0,
+      "icone": "fortification",
+      "lieux": [
+        [
+          -48,
+          -17
+        ]
+      ],
+      "camp": "cc"
+    },
+    {
+      "id": "ev55",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-austral"
+      },
+      "gravite": "majeur",
+      "titre": "Rosario tombe",
+      "description": "Plus au sud, Rosario, qui tenait depuis plus d'un mois au milieu d'un territoire perdu, finit par tomber, et la tour de décarbonisation avec, si bien qu'il ne reste plus rien de confédéré entre les Andes et l'Atlantique sous le vingt-deuxième parallèle, ou presque.",
+      "consequences": [
+        "Rosario tombée",
+        "TDA Rosario sous contrôle cultiste"
+      ],
+      "tension": 1,
+      "icone": "ville",
+      "lieux": [
+        [
+          -60.64,
+          -32.95
+        ]
+      ],
+      "camp": "cult"
+    },
+    {
+      "id": "ev56",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-andin"
+      },
+      "gravite": "majeur",
+      "titre": "Le réacteur de Santiago éteint",
+      "description": "Le réacteur à fusion de Santiago, resté intact dans la ville tombée, fut désactivé à distance, pour que les cultistes ne s'en servent pas, ce qui prive la Confédération de 2,4 gigawatts, ce qui revient probablement au même que de les perdre.",
+      "consequences": [
+        "Fusion Santiago désactivée à distance",
+        "2,4 GW retirés du réseau"
+      ],
+      "tension": 1,
+      "icone": "machine",
+      "lieux": [
+        [
+          -70.6,
+          -33.4
+        ]
+      ],
+      "camp": "cc"
+    },
+    {
+      "id": "ev57",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "am-amazonien"
+      },
+      "gravite": "majeur",
+      "titre": "Toute la marine autour du continent",
+      "description": "Suite à la reprise du centre de la Chine, les quinze divisions de la marine furent rassemblées autour de l'Amérique du Sud, du Chili à l'Argentine et jusqu'aux côtes du foyer de Nargal, et bombardent depuis sans interruption, de jour comme de nuit, la percée du sud et ce qui reste du foyer.",
+      "consequences": [
+        "Les 15 divisions navales autour de l'Amérique du Sud",
+        "Bombardement naval continu du Chili, de l'Argentine et de Nargal"
+      ],
+      "tension": 0,
+      "icone": "renfort",
+      "lieux": [
+        [
+          -57,
+          -42
+        ],
+        [
+          -77,
+          -35
+        ]
+      ],
+      "camp": "cc"
+    },
+    {
+      "id": "ev58",
+      "date": "15 nov. 2075",
+      "portee": {
+        "type": "district",
+        "id": "rd-anormal"
+      },
+      "gravite": "majeur",
+      "titre": "ARCOLOGY en état d'urgence",
+      "description": "Le laboratoire d'exclusion ARCOLOGY, au Chili, passa en état d'urgence, avec ses défenses automatisées actives en permanence et ses ancres de réalité toujours allumées, alors que le front n'est plus très loin. Dans le même temps, au nord de la Norvège, le chantier de l'ancre d'EUCRYNOMOS en est à sa huitième semaine sur vingt-cinq.",
+      "consequences": [
+        "ARCOLOGY en état d'urgence, défenses automatisées actives",
+        "Ancres de réalité d'ARCOLOGY actives",
+        "Ancre d'EUCRYNOMOS : semaine 8 sur 25"
+      ],
+      "tension": 0,
+      "icone": "science",
+      "lieux": [
+        [
+          -69.4165,
+          -27.9937
         ]
       ]
     }
@@ -13848,6 +14029,1249 @@
           "cultistes": []
         }
       }
+    },
+    {
+      "date": "15 nov. 2075",
+      "tension": 60,
+      "distorsion": 53,
+      "evenements": 58,
+      "districts": {
+        "eu-nord": {
+          "statut": "controle",
+          "influence": 2,
+          "quarantaine": false
+        },
+        "eu-est": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-central": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "eu-sud": {
+          "statut": "controle",
+          "influence": 3,
+          "quarantaine": false
+        },
+        "eu-ouest": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "as-moyen-orient": {
+          "statut": "controle",
+          "influence": 4,
+          "quarantaine": false
+        },
+        "as-centre": {
+          "statut": "conteste",
+          "influence": 16,
+          "quarantaine": false
+        },
+        "as-indopak": {
+          "statut": "controle",
+          "influence": 9,
+          "quarantaine": false
+        },
+        "as-sinorusse": {
+          "statut": "conteste",
+          "influence": 30,
+          "quarantaine": false
+        },
+        "as-japon": {
+          "statut": "controle",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-sudest": {
+          "statut": "conteste",
+          "influence": 11,
+          "quarantaine": false
+        },
+        "as-philippines": {
+          "statut": "conteste",
+          "influence": 14,
+          "quarantaine": true
+        },
+        "oc-australasie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-nz": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-melanesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-micronesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "oc-polynesie": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-cote": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "af-experimental": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": true
+        },
+        "am-canada": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-usa": {
+          "statut": "controle",
+          "influence": 5,
+          "quarantaine": false
+        },
+        "am-mexicain": {
+          "statut": "controle",
+          "influence": 1,
+          "quarantaine": false
+        },
+        "am-andin": {
+          "statut": "conteste",
+          "influence": 56,
+          "quarantaine": false
+        },
+        "am-amazonien": {
+          "statut": "conteste",
+          "influence": 35,
+          "quarantaine": false
+        },
+        "am-austral": {
+          "statut": "perdu",
+          "influence": 99,
+          "quarantaine": false
+        },
+        "rd-civil": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-anormal": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-hcp": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "rd-bismarck": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-smc": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "re-commandos": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-d2cl": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-judiciaire": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-economique": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ju-administratif": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ganzir": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-phoenix": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ligue": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ar-ordre": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-sydney": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-mush": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "sa-krasnoiarsk": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        },
+        "ad-detroit": {
+          "statut": "controle",
+          "influence": 0,
+          "quarantaine": false
+        }
+      },
+      "zones": [
+        {
+          "id": "z-nargal",
+          "nom": "Foyer de Nargal",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-amazonien",
+          "centre": [
+            -57.5,
+            -14.5
+          ],
+          "rayon": 8.5,
+          "cordon": false,
+          "cordonDepuis": "22 sept. 2075",
+          "cordonInfo": "Barrière continue tenue par les régulières, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé. Le 15 nov., il fut abandonné au profit de la ligne AMAZONE, resserrée sur les terres reprises.",
+          "pleine": true,
+          "cordonJusqu": "15 nov. 2075"
+        },
+        {
+          "id": "z-izala",
+          "nom": "Domaine d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            107.3,
+            24.9
+          ],
+          "rayon": 3.2
+        },
+        {
+          "id": "z-percee-chine",
+          "nom": "Percée d'Izala",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            115.5,
+            26.5
+          ],
+          "rayon": 2.5,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              109.6,
+              27.2
+            ],
+            [
+              109.0,
+              30.5
+            ],
+            [
+              110.9,
+              31.0
+            ],
+            [
+              112.8,
+              31.3
+            ],
+            [
+              114.6,
+              31.6
+            ],
+            [
+              116.5,
+              32.0
+            ],
+            [
+              118.5,
+              32.5
+            ],
+            [
+              120.0,
+              32.8
+            ],
+            [
+              121.5,
+              32.9
+            ],
+            [
+              122.8,
+              32.6
+            ],
+            [
+              122.7,
+              30.8
+            ],
+            [
+              122.6,
+              28.4
+            ],
+            [
+              121.2,
+              26.4
+            ],
+            [
+              119.6,
+              24.4
+            ],
+            [
+              117.5,
+              22.5
+            ],
+            [
+              115,
+              21.7
+            ],
+            [
+              113.5,
+              21.5
+            ],
+            [
+              112.4,
+              21.7
+            ],
+            [
+              111.4,
+              22.3
+            ],
+            [
+              110.8,
+              23.3
+            ],
+            [
+              110.2,
+              25.1
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-sud",
+          "nom": "Percée du sud",
+          "dieu": "Nargal",
+          "couleur": "#2fbf5b",
+          "district": "am-austral",
+          "centre": [
+            -63,
+            -35
+          ],
+          "rayon": 3,
+          "depuis": "4 oct. 2075",
+          "contour": [
+            [
+              -70.8,
+              -21.0
+            ],
+            [
+              -69.3,
+              -21.5
+            ],
+            [
+              -63,
+              -22.3
+            ],
+            [
+              -57.5,
+              -23.4
+            ],
+            [
+              -52,
+              -21.8
+            ],
+            [
+              -49,
+              -22.2
+            ],
+            [
+              -47.0,
+              -22.9
+            ],
+            [
+              -46.9,
+              -23.4
+            ],
+            [
+              -46.9,
+              -24.1
+            ],
+            [
+              -46,
+              -25.5
+            ],
+            [
+              -47.5,
+              -27.5
+            ],
+            [
+              -49.5,
+              -30
+            ],
+            [
+              -51.5,
+              -32.5
+            ],
+            [
+              -53.0,
+              -34.3
+            ],
+            [
+              -54.3,
+              -35.1
+            ],
+            [
+              -56.2,
+              -35.1
+            ],
+            [
+              -57.0,
+              -35.6
+            ],
+            [
+              -56.6,
+              -36.6
+            ],
+            [
+              -57.6,
+              -38.6
+            ],
+            [
+              -61.6,
+              -39.4
+            ],
+            [
+              -62.6,
+              -41.0
+            ],
+            [
+              -64.0,
+              -43.0
+            ],
+            [
+              -65.0,
+              -46.0
+            ],
+            [
+              -67.0,
+              -50.0
+            ],
+            [
+              -67.5,
+              -53.5
+            ],
+            [
+              -65.0,
+              -55.0
+            ],
+            [
+              -67.0,
+              -56.3
+            ],
+            [
+              -71.0,
+              -56.0
+            ],
+            [
+              -75.8,
+              -53.0
+            ],
+            [
+              -76.0,
+              -48.0
+            ],
+            [
+              -75.2,
+              -43.0
+            ],
+            [
+              -74.5,
+              -39.0
+            ],
+            [
+              -73.6,
+              -36.0
+            ],
+            [
+              -72.4,
+              -33.5
+            ],
+            [
+              -71.8,
+              -31.0
+            ],
+            [
+              -71.6,
+              -28
+            ],
+            [
+              -71.3,
+              -24
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-nord",
+          "nom": "Percée du nord",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            109.5,
+            33
+          ],
+          "rayon": 2.5,
+          "depuis": "1 nov. 2075",
+          "contour": [
+            [
+              105.2,
+              26.4
+            ],
+            [
+              103.4,
+              28.0
+            ],
+            [
+              102.7,
+              30.25
+            ],
+            [
+              103.2,
+              31.8
+            ],
+            [
+              104.0,
+              32.9
+            ],
+            [
+              106.3,
+              35.0
+            ],
+            [
+              109.7,
+              36.2
+            ],
+            [
+              113,
+              36.8
+            ],
+            [
+              116.3,
+              37.0
+            ],
+            [
+              117.4,
+              35.8
+            ],
+            [
+              117.3,
+              34.5
+            ],
+            [
+              117.0,
+              32.9
+            ],
+            [
+              116.5,
+              31.5
+            ],
+            [
+              114.6,
+              31.1
+            ],
+            [
+              112.8,
+              30.8
+            ],
+            [
+              110.9,
+              30.5
+            ],
+            [
+              109.5,
+              30.0
+            ],
+            [
+              109.9,
+              28.0
+            ],
+            [
+              108.0,
+              27.0
+            ],
+            [
+              106.5,
+              26.6
+            ]
+          ]
+        },
+        {
+          "id": "z-percee-shandong",
+          "nom": "Percée du Shandong",
+          "dieu": "Izala",
+          "couleur": "#b45bd6",
+          "district": "as-sinorusse",
+          "centre": [
+            118.5,
+            35.3
+          ],
+          "rayon": 1.5,
+          "depuis": "8 nov. 2075",
+          "contour": [
+            [
+              117.0,
+              31.9
+            ],
+            [
+              115.9,
+              33.5
+            ],
+            [
+              116.0,
+              35.5
+            ],
+            [
+              116.6,
+              37.4
+            ],
+            [
+              118.5,
+              37.7
+            ],
+            [
+              121.0,
+              37.6
+            ],
+            [
+              120.9,
+              35.5
+            ],
+            [
+              121.6,
+              34.6
+            ],
+            [
+              121.8,
+              33.2
+            ],
+            [
+              120.5,
+              32.4
+            ],
+            [
+              118.5,
+              32.0
+            ]
+          ]
+        }
+      ],
+      "villes": {
+        "zeebrugge": 93,
+        "nouvelle-luxembourg": 97,
+        "zurich": 95,
+        "kiel": 94,
+        "magnitogorsk": 84,
+        "sapporo": 94,
+        "tianjin": 50,
+        "norilsk": 94,
+        "port-klang": 90,
+        "bandar-abbas": 92,
+        "ludhiana": 91,
+        "sydney": 99,
+        "nouvelle-detroit": 92,
+        "chicago": 90,
+        "mexico": 60,
+        "brasilia": 25,
+        "rosario": 4,
+        "canberra": 98,
+        "le-cap": 97
+      },
+      "pertes": {
+        "confederation": {
+          "tues": 20235600,
+          "blesses": 6128584,
+          "disparus": 1769889
+        },
+        "cultistes": {
+          "tues": 83800000,
+          "blesses": 0,
+          "disparus": 0
+        },
+        "civils": {
+          "deces": 230600000,
+          "disparus": 8980000
+        }
+      },
+      "energie": {
+        "unite": "TW",
+        "production": 61.6,
+        "consommation": 51,
+        "detruite": 7,
+        "detournee": 2.5
+      },
+      "stabilite": {
+        "gouvernement": 100,
+        "armee": 96,
+        "population": 60
+      },
+      "tuesParCorps": {
+        "regulieres": 19350000,
+        "milices": 799200,
+        "speciales": 85300,
+        "phoenix": 1100
+      },
+      "forces": {
+        "eu-nord": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 352000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-est": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1490000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 8000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-central": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1197000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-sud": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 661000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 3000
+            }
+          ],
+          "cultistes": []
+        },
+        "eu-ouest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1496000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 5000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "as-moyen-orient": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1576000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 2000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~500000"
+            }
+          ]
+        },
+        "as-centre": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1987000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 12000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~7000000"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-indopak": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5593000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            }
+          ]
+        },
+        "as-sinorusse": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 5448700
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 45000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 6300
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes d'Izala",
+              "effectif": "~8600000"
+            },
+            {
+              "nom": "Soldats organisés",
+              "effectif": 30000
+            },
+            {
+              "nom": "Exosquelettes",
+              "effectif": 5000
+            },
+            {
+              "nom": "Garde d'entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-japon": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1529000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 6000
+            },
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~1500000"
+            }
+          ]
+        },
+        "as-sudest": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3835000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 15000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~5000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "as-philippines": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1215000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 7000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cultistes convertis",
+              "effectif": "~3000000"
+            },
+            {
+              "nom": "Commando des lignes arrières",
+              "effectif": "?"
+            }
+          ]
+        },
+        "oc-australasie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 320000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-nz": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 119000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-melanesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 206000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-micronesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 31000
+            }
+          ],
+          "cultistes": []
+        },
+        "oc-polynesie": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 34000
+            }
+          ],
+          "cultistes": []
+        },
+        "af-cote": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~200"
+            }
+          ]
+        },
+        "af-experimental": {
+          "confederation": [],
+          "cultistes": [
+            {
+              "nom": "Survivants irradiés",
+              "effectif": "~400"
+            }
+          ]
+        },
+        "am-canada": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 421000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 1000
+            }
+          ],
+          "cultistes": []
+        },
+        "am-usa": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1741000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 4000
+            },
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "3rd Liberty division (robots)",
+              "effectif": 100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Cellules cultistes",
+              "effectif": "~1000"
+            }
+          ]
+        },
+        "am-mexicain": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1610000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 20000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~10000"
+            }
+          ]
+        },
+        "am-andin": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 1450000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 60000
+            },
+            {
+              "nom": "Brigade exotique",
+              "effectif": 45000
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~18000000"
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-amazonien": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 3200000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 180000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 4100
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~22000000"
+            },
+            {
+              "nom": "Chimères",
+              "effectif": 35000
+            },
+            {
+              "nom": "Faune mutée",
+              "effectif": "?"
+            },
+            {
+              "nom": "Entités",
+              "effectif": "?"
+            }
+          ]
+        },
+        "am-austral": {
+          "confederation": [
+            {
+              "nom": "Forces régulières",
+              "effectif": 600000
+            },
+            {
+              "nom": "Forces spéciales",
+              "effectif": 40000
+            },
+            {
+              "nom": "Division Phoenix",
+              "effectif": 1900
+            }
+          ],
+          "cultistes": [
+            {
+              "nom": "Infectés",
+              "effectif": "~31000000"
+            }
+          ]
+        },
+        "rd-hcp": {
+          "confederation": [
+            {
+              "nom": "Unités sous commandement HCP",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "rd-bismarck": {
+          "confederation": [
+            {
+              "nom": "Bismarck (navire-amiral)",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Tirpitz, Gneisenau",
+              "effectif": "CLASSIFIÉ"
+            },
+            {
+              "nom": "Scharnhorst, Graf Zeppelin, Prinz Eugen",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "re-commandos": {
+          "confederation": [
+            {
+              "nom": "Commandos",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ganzir": {
+          "confederation": [
+            {
+              "nom": "Garnison",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-phoenix": {
+          "confederation": [
+            {
+              "nom": "Plieurs de réalité",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ligue": {
+          "confederation": [
+            {
+              "nom": "Ligue Noire",
+              "effectif": "CLASSIFIÉ"
+            }
+          ],
+          "cultistes": []
+        },
+        "ar-ordre": {
+          "confederation": [
+            {
+              "nom": "Thaumaturges",
+              "effectif": "~1000"
+            }
+          ],
+          "cultistes": []
+        }
+      }
     }
   ],
   "zones": [
@@ -13862,10 +15286,11 @@
         -14.5
       ],
       "rayon": 8.5,
-      "cordon": true,
+      "cordon": false,
       "cordonDepuis": "22 sept. 2075",
-      "cordonInfo": "Barrière continue tenue par les régulières, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé.",
-      "pleine": true
+      "cordonInfo": "Barrière continue tenue par les régulières, avec des postes de contrôle sur chaque route et chaque cours d'eau, qui arrête la propagation de la bulle sans la faire reculer. Le 4 oct., les cultistes la percèrent pourtant par le sud, si bien qu'elle ne tient plus que sur le reste du tracé. Le 15 nov., il fut abandonné au profit de la ligne AMAZONE, resserrée sur les terres reprises.",
+      "pleine": true,
+      "cordonJusqu": "15 nov. 2075"
     },
     {
       "id": "z-izala",
@@ -14343,7 +15768,7 @@
       "icone": "labo",
       "glitch": true,
       "dossier": "rd/arcology",
-      "info": "Laboratoire d'exclusion de la Confédération, consacré à l'étude des matières extrêmes et des forces venues d'autres Univers.",
+      "info": "Laboratoire d'exclusion de la Confédération, consacré à l'étude des matières extrêmes et des forces venues d'autres Univers, en état d'urgence depuis le 15 nov. 2075.",
       "fiche": [
         [
           "Personnel",
@@ -14360,8 +15785,21 @@
         [
           "Ailes",
           "administrative, recherche, armée, annexe"
+        ],
+        [
+          "État",
+          "urgence depuis le 15 nov. 2075"
+        ],
+        [
+          "Défenses automatisées",
+          "actives en permanence"
+        ],
+        [
+          "Ancres de réalité",
+          "actives"
         ]
-      ]
+      ],
+      "etat": "État d'urgence"
     },
     {
       "id": "eucrynomos",
@@ -14389,7 +15827,7 @@
         ],
         [
           "Projet",
-          "ancre de réalité gigantesque, semaine 1 sur 25"
+          "ancre de réalité gigantesque, semaine 8 sur 25"
         ],
         [
           "Achèvement prévu",
@@ -15210,13 +16648,13 @@
         -33
       ],
       "icone": "tda",
-      "info": "Tour de Décarbonisation Atmosphérique, près de Rosario, qui recycle environ 50 000 tonnes de CO2 par an.",
+      "info": "Tour de Décarbonisation Atmosphérique, près de Rosario, tombée aux mains des cultistes avec la ville, le 15 nov. 2075.",
       "dossier": "rd/tda",
-      "etat": "Installé",
+      "etat": "Perdu",
       "fiche": [
         [
           "Personnel",
-          "12 techniciens"
+          "évacué"
         ],
         [
           "Hauteur",
@@ -15224,15 +16662,11 @@
         ],
         [
           "Recyclage",
-          "50 000 t de CO2 par an (atmosphère à 0,05 %)"
+          "interrompu"
         ],
         [
-          "Équivalent",
-          "2,5 millions d'arbres"
-        ],
-        [
-          "Consommation",
-          "quasi nulle"
+          "Contrôle",
+          "cultiste depuis le 15 nov."
         ]
       ]
     },
@@ -15536,23 +16970,23 @@
         -33.4
       ],
       "icone": "fusion",
-      "info": "Réacteur à fusion nucléaire de Santiago, raccordé au réseau énergétique de la Confédération.",
+      "info": "Réacteur à fusion nucléaire de Santiago, désactivé à distance le 15 nov. 2075, la ville étant tombée aux mains des cultistes.",
       "fiche": [
         [
           "Personnel",
-          "720"
+          "évacué"
         ],
         [
           "Puissance",
-          "2,4 GW"
+          "2,4 GW (hors réseau)"
         ],
         [
           "Disponibilité",
-          "94 %"
+          "0 %, désactivé à distance le 15 nov."
         ]
       ],
       "dossier": "rd/fusion",
-      "etat": "Installé"
+      "etat": "Désactivé"
     },
     {
       "id": "fusion-8",
@@ -15775,7 +17209,7 @@
         {
           "id": "overview",
           "titre": "Vue d'ensemble",
-          "contenu": "![Haine : \"Je pense donc je suis ?\"](img/haine.webp)\n\n## Direction\n![Gotland, capitale du secteur](img/gotland.webp)\n\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Projets technologiques\nProjets de la R&D, classés selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne, et depuis le 27 sept., l'ancre de réalité gigantesque d'EUCRYNOMOS, prévue pour le 20 mars 2076, au bout de vingt-cinq semaines de chantier.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
+          "contenu": "![Haine : \"Je pense donc je suis ?\"](img/haine.webp)\n\n## Direction\n![Gotland, capitale du secteur](img/gotland.webp)\n\nConseillère : Mlle Sally Weirman. Le secteur est dirigé depuis Gotland, alors que le district civil l'est depuis Zurich et le district anormal depuis l'île d'Okinotori-shima.\n\n## Rôle dans le conflit\n- HCP, rattaché à la R&D, planifie les opérations terrestres depuis le 8 septembre.\n- La flotte Bismarck teste l'armement nouveau, et revient se faire entretenir à Zeebrugge.\n- La station EUREKA reste en orbite, hors de portée des cultes, ce qui n'est pas le cas de grand-chose en ce moment.\n\n## Projets technologiques\nProjets de la R&D, classés selon leur avancement.\n- Installé : CLS, GGP, RESS, Télescope \"Stockholm\", TDA.\n- En fabrication : Station Arachne, et depuis le 27 sept., l'ancre de réalité gigantesque d'EUCRYNOMOS, prévue pour le 20 mars 2076, au bout de vingt-cinq semaines de chantier, dont huit écoulées au 15 nov.\n- En recherche (prototype) : Projet Singularité, Production à antimatière (très peu avancée), Production de matière quasi négative."
         },
         {
           "id": "anormal",
@@ -15864,7 +17298,7 @@
         {
           "id": "arcology",
           "titre": "Laboratoire ARCOLOGY",
-          "contenu": "![Le Laboratoire ARCOLOGY](img/arcology.webp)\n\n**Localisation :** 27°59'37.3\"S, 69°24'59.3\"W, Chili, Secteur Amérique, Confédération des Cendres\n\n**Classement :** laboratoire d'exclusion\n\n*Le Laboratoire ARCOLOGY est un laboratoire de la Confédération des Cendres, qui s'est spécialisée dans l'étude des forces fondamentales et dans la recherche sur les différents types de matières.*\n\n*Comme sous-entendu, la fonction principale du laboratoire est l'étude de nouvelles matières, cela peut se schématiser avec, comme exemple mais non limité : la Matière Noire, la Matière exotique (avec la matière quasi négative), la Lumière, la Matière étrange et tout autre composé extrême de notre Univers.*\n\n*Cependant, l'autre fonction principale de ce laboratoire est l'étude des forces et des matériaux fondamentaux d'autres Univers, on pourra par exemple mentionner les cristaux énergétiques de l'Empire du Dragon ou encore l'énergie se baladant au sein des Cultistes.*\n\n## Organisation\n*Le Laboratoire est organisé en 4 ailes bien distinctes. La première est l'aile administrative, des blocs administratifs de plusieurs centaines de mètres de haut comprenant des logements, des ailes de repos et tout autre centre d'activités pour le personnel embauché. Le tout est situé à la surface, permettant à la fois une couverture et des bâtiments de fonction pour une autonomie.*\n\n*La seconde aile, la plus intéressante, est l'aile de recherche, un complexe d'1,3 km² se situant au-dessus de l'aile administrative. Des laboratoires, des salles d'expériences, des bureaux de chercheurs, tout se situe dans cet endroit même, et 90 % de l'activité cérébrale se trouve justement dans cette zone (des recherches sont en cours pour optimiser l'utilisation de cette capacité cérébrale).*\n\n*La troisième aile, la branche armée. Des secteurs à la surface et sous terre regroupant des baraquements de forces de la Confédération et certains détachements de robots de maintenance. En cas de problème, ce sont eux qui s'occupent de la neutralisation et de l'évacuation du personnel de recherche.*\n\n*La dernière aile est l'aile annexe, on y retrouve notamment le Générateur à Fusion Nucléaire et certains prototypes de générateurs énergétiques de nouvelle génération.*\n\n## Statistiques annexes\n- **Nombre de personnel :** 27 000\n- **Budget annuel :** 5,7 milliards de Cens\n- **Date de mise en fonction :** 04/03/2075"
+          "contenu": "![Le Laboratoire ARCOLOGY](img/arcology.webp)\n\n**Localisation :** 27°59'37.3\"S, 69°24'59.3\"W, Chili, Secteur Amérique, Confédération des Cendres\n\n**Classement :** laboratoire d'exclusion\n\n*Le Laboratoire ARCOLOGY est un laboratoire de la Confédération des Cendres, qui s'est spécialisée dans l'étude des forces fondamentales et dans la recherche sur les différents types de matières.*\n\n*Comme sous-entendu, la fonction principale du laboratoire est l'étude de nouvelles matières, cela peut se schématiser avec, comme exemple mais non limité : la Matière Noire, la Matière exotique (avec la matière quasi négative), la Lumière, la Matière étrange et tout autre composé extrême de notre Univers.*\n\n*Cependant, l'autre fonction principale de ce laboratoire est l'étude des forces et des matériaux fondamentaux d'autres Univers, on pourra par exemple mentionner les cristaux énergétiques de l'Empire du Dragon ou encore l'énergie se baladant au sein des Cultistes.*\n\n## Organisation\n*Le Laboratoire est organisé en 4 ailes bien distinctes. La première est l'aile administrative, des blocs administratifs de plusieurs centaines de mètres de haut comprenant des logements, des ailes de repos et tout autre centre d'activités pour le personnel embauché. Le tout est situé à la surface, permettant à la fois une couverture et des bâtiments de fonction pour une autonomie.*\n\n*La seconde aile, la plus intéressante, est l'aile de recherche, un complexe d'1,3 km² se situant au-dessus de l'aile administrative. Des laboratoires, des salles d'expériences, des bureaux de chercheurs, tout se situe dans cet endroit même, et 90 % de l'activité cérébrale se trouve justement dans cette zone (des recherches sont en cours pour optimiser l'utilisation de cette capacité cérébrale).*\n\n*La troisième aile, la branche armée. Des secteurs à la surface et sous terre regroupant des baraquements de forces de la Confédération et certains détachements de robots de maintenance. En cas de problème, ce sont eux qui s'occupent de la neutralisation et de l'évacuation du personnel de recherche.*\n\n*La dernière aile est l'aile annexe, on y retrouve notamment le Générateur à Fusion Nucléaire et certains prototypes de générateurs énergétiques de nouvelle génération.*\n\n## Statistiques annexes\n- **Nombre de personnel :** 27 000\n- **Budget annuel :** 5,7 milliards de Cens\n- **Date de mise en fonction :** 04/03/2075\n\n## État d'urgence\n*Depuis le 15 nov. 2075, alors que le front de la percée du sud n'est plus qu'à quelques centaines de kilomètres, le Laboratoire est placé en état d'urgence, avec ses défenses automatisées actives en permanence et ses ancres de réalité toujours allumées, ce qui, pour un endroit qui étudie justement ce qui vient d'ailleurs, n'a rien de rassurant.*"
         },
         {
           "id": "cls",
@@ -16363,15 +17797,19 @@
         -15.79
       ],
       "district": "am-amazonien",
-      "etat": 5,
+      "etat": 25,
       "image": "infectee",
       "garnison": [
         {
-          "nom": "Arrière-garde (dernier contact)",
-          "effectif": "?"
+          "nom": "Forces régulières",
+          "effectif": 140000
+        },
+        {
+          "nom": "Forces spéciales",
+          "effectif": 6000
         }
       ],
-      "description": "Choisie parmi les \"Too young to die\", et tombée quand même, quand le front de Nargal a franchi l'axe monumental à la mi-septembre. Veilleur-Sud montre encore des lumières dans la cathédrale, et on ignore qui les allume."
+      "description": "Choisie parmi les \"Too young to die\", tombée à la mi-septembre quand le front de Nargal franchit l'axe monumental, puis atteinte de nouveau par la Confédération le 15 nov., au bout de la reprise de l'est du foyer. On s'y bat encore rue par rue, et les lumières de la cathédrale, que Veilleur-Sud voyait toujours, se sont éteintes la veille de l'assaut, va savoir pourquoi."
     },
     {
       "id": "rosario",
@@ -16381,19 +17819,15 @@
         -32.95
       ],
       "district": "am-austral",
-      "etat": 15,
+      "etat": 4,
       "image": "port",
       "garnison": [
         {
-          "nom": "Forces régulières",
-          "effectif": 290000
-        },
-        {
-          "nom": "Forces spéciales",
-          "effectif": 1300
+          "nom": "Dernier contact",
+          "effectif": "?"
         }
       ],
-      "description": "Dernier grand port du sud du continent, sur le Paraná, loin du foyer de Nargal mais en aval de tout ce qu'il charrie, où les réfugiés du bassin amazonien arrivent par le fleuve, par centaines de milliers. La ville filtre chaque barge, en cherchant la mousse verte sous les ongles et derrière les oreilles, et les tests positifs ne remontent pas à bord."
+      "description": "Dernier grand port du sud du continent, sur le Paraná, qui tint plus d'un mois, rue par rue, au milieu d'un territoire déjà perdu, avant de tomber le 15 nov. Les barges de réfugiés ne descendent plus le fleuve, et ce qui le descend maintenant, personne ne cherche plus à le filtrer."
     },
     {
       "id": "canberra",
@@ -16595,40 +18029,32 @@
       "periode": 320,
       "trajet": [
         [
-          -40.18,
-          33
+          -62,
+          -44
         ],
         [
-          -41.3,
-          35.26
+          -63,
+          -47
         ],
         [
-          -44,
-          36.2
+          -64,
+          -49
         ],
         [
-          -46.7,
-          35.26
+          -62,
+          -50
         ],
         [
-          -47.82,
-          33
+          -60,
+          -47
         ],
         [
-          -46.7,
-          30.74
-        ],
-        [
-          -44,
-          29.8
-        ],
-        [
-          -41.3,
-          30.74
+          -60,
+          -44.5
         ]
       ],
-      "zone": "Atlantique, autour de Ganzir",
-      "info": "Deux porte-avions et leur escorte tournent autour de la forteresse, dont ils assurent la couverture aérienne, ce qui fait de Ganzir l'endroit le mieux gardé de l'Atlantique.",
+      "zone": "Atlantique, au large de la Patagonie",
+      "info": "Les deux porte-avions de Ganzir furent envoyés au large de la Patagonie, d'où leurs appareils bombardent l'intérieur sans interruption, ce qui laisse la forteresse sous la seule garde de ses propres défenses.",
       "fiche": [
         [
           "Bâtiments",
@@ -16643,7 +18069,8 @@
           "~14 000"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "ganzir-rideau",
@@ -16652,48 +18079,36 @@
       "periode": 720,
       "trajet": [
         [
-          -36.6,
-          34.92
+          -69,
+          -57.4
         ],
         [
-          -39.36,
-          38.2
+          -66,
+          -57.1
         ],
         [
-          -43.89,
-          39.5
+          -62.5,
+          -56.5
         ],
         [
-          -48.47,
-          38.31
+          -60.4,
+          -55.2
         ],
         [
-          -51.34,
-          35.1
+          -62.2,
+          -55.5
         ],
         [
-          -51.4,
-          31.08
+          -65.6,
+          -56.2
         ],
         [
-          -48.64,
-          27.8
-        ],
-        [
-          -44.11,
-          26.5
-        ],
-        [
-          -39.53,
-          27.69
-        ],
-        [
-          -36.66,
-          30.9
+          -68.5,
+          -56.5
         ]
       ],
-      "zone": "Atlantique, autour de Ganzir",
-      "info": "Une couronne de sous-marins d'attaque ferme les approches de Ganzir, à une journée de mer de la forteresse.",
+      "zone": "Passage de Drake, autour du cap Horn",
+      "info": "Retirés des approches de Ganzir, les sous-marins ferment le passage de Drake et le cap Horn, pour qu'aucune embarcation ne quitte le continent par le sud.",
       "fiche": [
         [
           "Bâtiments",
@@ -16704,7 +18119,8 @@
           "~2 500"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "atlantique",
@@ -16713,28 +18129,28 @@
       "periode": 520,
       "trajet": [
         [
-          -41.5,
-          35.8
+          -49,
+          -31
         ],
         [
-          -35.5,
-          38.2
+          -50.6,
+          -33.5
         ],
         [
-          -31.5,
-          36.2
+          -52.8,
+          -35.6
         ],
         [
-          -35,
-          34.3
+          -51.5,
+          -35.2
         ],
         [
-          -40.5,
-          32.2
+          -49.3,
+          -33
         ]
       ],
-      "zone": "Atlantique, entre Ganzir et les Açores",
-      "info": "L'escadre tient la route entre Ganzir et les Açores, par où passent les renforts et le ravitaillement de la forteresse.",
+      "zone": "Atlantique, côte de l'Uruguay et du Rio Grande do Sul",
+      "info": "L'escadre descendit des Açores pour bombarder la côte de l'Uruguay et du Rio Grande do Sul.",
       "fiche": [
         [
           "Bâtiments",
@@ -16745,7 +18161,8 @@
           "~6 000"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "caraibes",
@@ -16754,32 +18171,28 @@
       "periode": 460,
       "trajet": [
         [
-          -77,
-          14.5
+          -76,
+          -39
         ],
         [
-          -72.5,
-          16.8
+          -77.5,
+          -42
         ],
         [
-          -67.5,
-          16.2
+          -77.2,
+          -45
         ],
         [
-          -64.5,
-          13.5
+          -76.2,
+          -42.5
         ],
         [
-          -70,
-          12.9
-        ],
-        [
-          -74.5,
-          12.2
+          -75.6,
+          -40
         ]
       ],
-      "zone": "Mer des Caraïbes",
-      "info": "La division surveille les côtes d'Haïti, du Venezuela et de la Colombie, où des poches d'infection sont apparues, et appuie depuis la mer les forces spéciales débarquées à Haïti.",
+      "zone": "Pacifique, au large de Valdivia et de Chiloé",
+      "info": "La division quitta les Caraïbes pour la côte de Valdivia et de Chiloé, qu'elle pilonne sans arrêt.",
       "fiche": [
         [
           "Bâtiments",
@@ -16790,7 +18203,8 @@
           "~5 500"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "golfe",
@@ -16799,32 +18213,28 @@
       "periode": 420,
       "trajet": [
         [
-          115.2,
-          21.6
+          -77.2,
+          -47.5
         ],
         [
-          116.4,
-          22.2
+          -78.6,
+          -50
         ],
         [
-          117.4,
-          22.7
+          -78.2,
+          -53.5
         ],
         [
-          117.9,
-          22
+          -76.8,
+          -55
         ],
         [
-          116.9,
-          21.2
-        ],
-        [
-          115.7,
-          20.9
+          -77.2,
+          -51
         ]
       ],
-      "zone": "Mer de Chine méridionale, côte de Shantou",
-      "info": "Suite à la destruction de la poche de Mexico, la division quitta le golfe du Mexique pour le littoral chinois, où elle tient la côte entre Shantou et Hong Kong.",
+      "zone": "Pacifique, fjords de Patagonie",
+      "info": "Partie du littoral chinois, la division bombarde les fjords de Patagonie, là où les cultistes descendent vers la mer.",
       "fiche": [
         [
           "Bâtiments",
@@ -16835,7 +18245,8 @@
           "~3 800"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "amazone",
@@ -16844,40 +18255,28 @@
       "periode": 480,
       "trajet": [
         [
-          -48.5,
-          2.8
-        ],
-        [
-          -44,
-          0.8
-        ],
-        [
-          -39,
-          -1.8
-        ],
-        [
-          -34.3,
-          -5
-        ],
-        [
-          -33.4,
-          -7.5
-        ],
-        [
-          -32.5,
-          -4.2
-        ],
-        [
           -37.5,
-          -0.2
+          -16.5
         ],
         [
-          -44.5,
-          3
+          -36.5,
+          -19.5
+        ],
+        [
+          -38.5,
+          -22.6
+        ],
+        [
+          -39.2,
+          -21
+        ],
+        [
+          -38.2,
+          -18.5
         ]
       ],
-      "zone": "Atlantique, embouchure de l'Amazone",
-      "info": "Face au foyer de Nargal, la division ferme l'embouchure de l'Amazone et appuie les troupes du district Amazonien depuis la côte, là où les chimères ne vont pas.",
+      "zone": "Atlantique, côte d'Espírito Santo",
+      "info": "La division quitta l'embouchure de l'Amazone pour la côte d'Espírito Santo, d'où elle appuie la reprise de l'est du foyer de Nargal et la ligne AMAZONE.",
       "fiche": [
         [
           "Bâtiments",
@@ -16888,7 +18287,8 @@
           "~9 000"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-nargal"
     },
     {
       "id": "atlantique-sud",
@@ -16898,43 +18298,27 @@
       "trajet": [
         [
           -44,
-          -25.3
+          -25.5
         ],
         [
-          -40,
-          -23.6
+          -46,
+          -26.5
         ],
         [
-          -37.5,
-          -20.5
+          -47.2,
+          -28
         ],
         [
-          -36,
-          -16
+          -45.5,
+          -28
         ],
         [
-          -35.3,
-          -12.5
-        ],
-        [
-          -33.8,
-          -14
-        ],
-        [
-          -35.3,
-          -19
-        ],
-        [
-          -38.5,
-          -24.8
-        ],
-        [
-          -43,
+          -43.5,
           -26.8
         ]
       ],
-      "zone": "Atlantique Sud, côte brésilienne",
-      "info": "Les sous-marins longent la côte brésilienne, au plus près du foyer de Nargal, et surveillent les ports tombés sous l'influence des infectés.",
+      "zone": "Atlantique, côte de Santos et de Santa Catarina",
+      "info": "Les sous-marins longent la côte de Santos et de Santa Catarina, et tirent sur la percée du sud là où elle touche la mer.",
       "fiche": [
         [
           "Bâtiments",
@@ -16945,7 +18329,8 @@
           "~1 700"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "plata",
@@ -16954,36 +18339,28 @@
       "periode": 640,
       "trajet": [
         [
-          -71.1,
-          -18.4
-        ],
-        [
-          -70.9,
-          -20.3
-        ],
-        [
-          -71,
-          -22.4
-        ],
-        [
-          -71.5,
-          -24.3
-        ],
-        [
-          -72.5,
-          -23.2
-        ],
-        [
-          -72.3,
-          -20.6
-        ],
-        [
-          -72.4,
+          -72.6,
           -18.6
+        ],
+        [
+          -73.6,
+          -21
+        ],
+        [
+          -73.1,
+          -24.5
+        ],
+        [
+          -71.9,
+          -23
+        ],
+        [
+          -71.8,
+          -20
         ]
       ],
       "zone": "Pacifique, côte d'Arica et d'Antofagasta",
-      "info": "Suite à la pose du cordon autour de Nargal, les sous-marins quittèrent l'estuaire de la Plata pour la côte d'Arica et d'Antofagasta, là où la barrière vient buter contre le Pacifique, et ferment désormais le côté mer de la quarantaine.",
+      "info": "Les sous-marins tiennent toujours la côte d'Arica et d'Antofagasta, et tirent leurs missiles de croisière sur le nord du Chili.",
       "fiche": [
         [
           "Bâtiments",
@@ -16994,7 +18371,8 @@
           "~1 100"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "pacifique-sud",
@@ -17003,48 +18381,32 @@
       "periode": 520,
       "trajet": [
         [
-          -79.3,
-          4.5
+          -76,
+          -28
         ],
         [
-          -82,
-          1
+          -78,
+          -30
         ],
         [
-          -83,
-          -4
+          -78.5,
+          -34
         ],
         [
-          -81.5,
-          -8.5
+          -77,
+          -37
         ],
         [
-          -78.8,
-          -14.2
+          -75.5,
+          -34
         ],
         [
-          -76.2,
-          -17
-        ],
-        [
-          -74.3,
-          -18.2
-        ],
-        [
-          -77.6,
-          -13.4
-        ],
-        [
-          -81.5,
-          -6.5
-        ],
-        [
-          -81.3,
-          -2.3
+          -74.5,
+          -30
         ]
       ],
-      "zone": "Pacifique, de la côte andine au sud du Pérou",
-      "info": "Le porte-avions appuie la brigade exotique sur le front andin, où dix millions d'infectés tiennent les vallées, avec des avions qui font l'aller-retour plusieurs fois par jour, et depuis la pose du cordon de Nargal, ses patrouilles descendent jusqu'au sud du Pérou.",
+      "zone": "Pacifique, au large de Valparaíso",
+      "info": "Le porte-avions croise devant Valparaíso et Santiago, d'où ses avions font l'aller-retour toute la journée au-dessus de la percée du sud.",
       "fiche": [
         [
           "Bâtiments",
@@ -17059,7 +18421,8 @@
           "~6 500"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "mer-chine-sud",
@@ -17068,36 +18431,28 @@
       "periode": 420,
       "trajet": [
         [
-          113,
-          20.7
+          -53,
+          -36
         ],
         [
-          116.3,
-          21.4
+          -54.5,
+          -38.5
         ],
         [
-          117.8,
-          19
+          -56,
+          -40
         ],
         [
-          114.5,
-          17.2
+          -58,
+          -39.9
         ],
         [
-          111.5,
-          16.8
-        ],
-        [
-          110.2,
-          17.4
-        ],
-        [
-          111.4,
-          19.8
+          -56.5,
+          -37.6
         ]
       ],
-      "zone": "Mer de Chine méridionale",
-      "info": "Au large du domaine d'Izala, le groupe aéronaval frappe la côte du Guangdong et coupe la route de Hong Kong, que les cultistes ne peuvent plus prendre par la mer.",
+      "zone": "Atlantique, au large de Mar del Plata",
+      "info": "Le groupe aéronaval quitta la mer de Chine pour le large de Mar del Plata, d'où il frappe Buenos Aires et la pampa.",
       "fiche": [
         [
           "Bâtiments",
@@ -17112,7 +18467,8 @@
           "~16 000"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "tonkin",
@@ -17121,28 +18477,28 @@
       "periode": 560,
       "trajet": [
         [
-          107.4,
-          20.3
+          -74,
+          -26
         ],
         [
-          108.3,
-          19.3
+          -75.5,
+          -28
         ],
         [
-          107.9,
-          17.9
+          -74.6,
+          -31
         ],
         [
-          107.2,
-          17.8
+          -73.2,
+          -29
         ],
         [
-          106.9,
-          19.2
+          -72.9,
+          -26.8
         ]
       ],
-      "zone": "Golfe du Tonkin",
-      "info": "Les sous-marins du golfe du Tonkin bombardent sans relâche la côte vietnamienne et le flanc sud du domaine d'Izala, à coups de missiles de croisière, entre Haïphong et Hainan.",
+      "zone": "Pacifique, côte d'Atacama",
+      "info": "Rappelée du golfe du Tonkin après la reprise du centre de la Chine, la flottille tire ses missiles de croisière sur la côte d'Atacama, au plus près d'ARCOLOGY.",
       "fiche": [
         [
           "Bâtiments",
@@ -17153,7 +18509,8 @@
           "~1 100"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "mer-jaune",
@@ -17162,28 +18519,24 @@
       "periode": 620,
       "trajet": [
         [
-          122,
-          35.3
+          -60,
+          -40.6
         ],
         [
-          123.8,
-          36.6
+          -61,
+          -42.5
         ],
         [
-          124.9,
-          35
+          -62.8,
+          -43.6
         ],
         [
-          123.8,
-          33.3
-        ],
-        [
-          121.8,
-          33.6
+          -62,
+          -41.6
         ]
       ],
-      "zone": "Mer Jaune",
-      "info": "Entre la Chine et la Corée, la flottille empêche les cultistes du district Sino-Russe de gagner le Japon par la mer.",
+      "zone": "Atlantique, golfe San Matías",
+      "info": "La flottille, rappelée de la mer Jaune, tire sur la péninsule Valdés et le golfe San Matías.",
       "fiche": [
         [
           "Bâtiments",
@@ -17194,7 +18547,8 @@
           "~1 400"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "andaman",
@@ -17203,28 +18557,24 @@
       "periode": 440,
       "trajet": [
         [
-          110.9,
-          20.5
+          -36,
+          -11.5
         ],
         [
-          111.8,
-          21.1
+          -35,
+          -14
         ],
         [
-          112.8,
-          21.4
+          -36.5,
+          -15.6
         ],
         [
-          112.9,
-          20.6
-        ],
-        [
-          111.9,
-          20.1
+          -37.3,
+          -13.5
         ]
       ],
-      "zone": "Détroit de Hainan, côte de Zhanjiang",
-      "info": "Rappelée de la mer d'Andaman, la division couvre Hainan, reprise le 25 sept., et la côte de Zhanjiang, là où l'on espère voir les cultistes descendre.",
+      "zone": "Atlantique, côte de Bahia",
+      "info": "Partie du détroit de Hainan, la division croise devant Bahia et bombarde le flanc est du foyer de Nargal.",
       "fiche": [
         [
           "Bâtiments",
@@ -17235,7 +18585,8 @@
           "~3 900"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-nargal"
     },
     {
       "id": "bengale",
@@ -17244,28 +18595,24 @@
       "periode": 480,
       "trajet": [
         [
-          121.9,
-          27.3
+          -57,
+          -41.5
         ],
         [
-          122.7,
-          28.4
+          -58,
+          -44
         ],
         [
-          123.4,
-          27.9
+          -60.5,
+          -45.5
         ],
         [
-          123,
-          26.6
-        ],
-        [
-          122.2,
-          26.2
+          -59.5,
+          -42.5
         ]
       ],
-      "zone": "Mer de Chine orientale, côte du Zhejiang",
-      "info": "Venue du golfe du Bengale, la division ferme la côte du Zhejiang et du Fujian, au nord du détroit de Taïwan.",
+      "zone": "Atlantique, au large du golfe San Jorge",
+      "info": "Venue de la mer de Chine orientale, la division pilonne la côte du golfe San Jorge.",
       "fiche": [
         [
           "Bâtiments",
@@ -17276,7 +18623,8 @@
           "~4 800"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     },
     {
       "id": "mer-arabie",
@@ -17285,24 +18633,24 @@
       "periode": 700,
       "trajet": [
         [
-          113.5,
-          21.6
+          -66,
+          -50.6
         ],
         [
-          114.5,
-          21.9
+          -66.5,
+          -52.3
         ],
         [
-          115,
-          21.3
+          -64.6,
+          -52.8
         ],
         [
-          114,
-          21
+          -64.2,
+          -51.2
         ]
       ],
-      "zone": "Bouches de la rivière des Perles",
-      "info": "Les sous-marins, retirés de la mer d'Arabie, gardent les bouches de la rivière des Perles, au large de Hong Kong.",
+      "zone": "Atlantique, bouches du détroit de Magellan",
+      "info": "Les sous-marins gardent les bouches du détroit de Magellan, et frappent la côte de Río Gallegos.",
       "fiche": [
         [
           "Bâtiments",
@@ -17313,7 +18661,8 @@
           "~1 300"
         ]
       ],
-      "dossier": "armee/marine"
+      "dossier": "armee/marine",
+      "tir": "b-naval-sud"
     }
   ],
   "communiques": [
@@ -17421,6 +18770,26 @@
       "date": "8 nov. 2075",
       "source": "Phoenix",
       "texte": "Le nord du foyer est à nous. Le cordon tient."
+    },
+    {
+      "date": "15 nov. 2075",
+      "source": "Diffusion confédérée",
+      "texte": "Wuhan est reprise. Le Yangzi est à nous, de Chengdu jusqu'à la mer."
+    },
+    {
+      "date": "15 nov. 2075",
+      "source": "Phoenix",
+      "texte": "Assaut stoppé au point d'impact. On tient la ligne AMAZONE."
+    },
+    {
+      "date": "15 nov. 2075",
+      "source": "Marine confédérée",
+      "texte": "Toutes les divisions en position. Feu à volonté sur le Chili et l'Argentine."
+    },
+    {
+      "date": "15 nov. 2075",
+      "source": "ARCOLOGY",
+      "texte": "État d'urgence. Défenses automatisées actives. Ancres de réalité maintenues."
     }
   ],
   "traverseurs": [
@@ -18027,6 +19396,36 @@
       "date": "18 oct. 2075",
       "jusqu": "18 oct. 2075",
       "info": "Missiles et bombardiers stratégiques sur l'intérieur de la percée."
+    },
+    {
+      "id": "b-naval-sud",
+      "type": "missiles",
+      "nom": "Bombardement naval du sud du continent",
+      "zone": "z-percee-sud",
+      "marge": -0.3,
+      "centre": [
+        -63,
+        -38
+      ],
+      "district": "am-austral",
+      "date": "15 nov. 2075",
+      "info": "Les quinze divisions de la marine, rassemblées autour du Chili et de l'Argentine, bombardent la percée du sud sans interruption, de jour comme de nuit."
+    },
+    {
+      "id": "b-naval-nargal",
+      "type": "missiles",
+      "nom": "Bombardement naval du foyer de Nargal",
+      "centre": [
+        -57.5,
+        -14.5
+      ],
+      "graine": "z-nargal",
+      "rayon": 8.5,
+      "graineInt": "d-nargal-feu",
+      "rayonInt": 3.8,
+      "district": "am-amazonien",
+      "date": "15 nov. 2075",
+      "info": "Missiles de croisière et appareils embarqués sur ce qui reste du foyer de Nargal, au sud de la ligne AMAZONE."
     }
   ],
   "lignes": [
@@ -18202,6 +19601,120 @@
       ],
       "info": "Ligne fortement fortifiée qui couvre Santiago et la centrale à fusion par le nord et l'est.",
       "jusqu": "25 oct. 2075"
+    },
+    {
+      "id": "l-amazone-ouest",
+      "type": "fortifiee",
+      "nom": "Ligne AMAZONE, secteur ouest",
+      "district": "am-amazonien",
+      "date": "15 nov. 2075",
+      "trace": [
+        [
+          -71.5,
+          -10.9
+        ],
+        [
+          -69,
+          -11.0
+        ],
+        [
+          -66.5,
+          -11.2
+        ],
+        [
+          -64,
+          -11.3
+        ],
+        [
+          -62,
+          -11.4
+        ]
+      ],
+      "info": "Tronçon ouest de la ligne AMAZONE, qui remplace le cordon de quarantaine, faiblement fortifié, au pied des Andes."
+    },
+    {
+      "id": "l-amazone-nord",
+      "type": "fortifiee",
+      "nom": "Ligne AMAZONE, secteur nord",
+      "district": "am-amazonien",
+      "date": "15 nov. 2075",
+      "trace": [
+        [
+          -62,
+          -11.4
+        ],
+        [
+          -59,
+          -11.4
+        ],
+        [
+          -56,
+          -11.2
+        ],
+        [
+          -53,
+          -11.25
+        ],
+        [
+          -50,
+          -11.2
+        ],
+        [
+          -46.5,
+          -11.2
+        ],
+        [
+          -43,
+          -11.1
+        ]
+      ],
+      "info": "Là où l'assaut vers le sud s'arrêta, au bord du point d'impact, un tronçon faiblement fortifié, tenu par ce qui reste des régulières."
+    },
+    {
+      "id": "l-amazone-est",
+      "type": "renforcee",
+      "nom": "Ligne AMAZONE, secteur est",
+      "district": "am-amazonien",
+      "date": "15 nov. 2075",
+      "trace": [
+        [
+          -41.5,
+          -14.9
+        ],
+        [
+          -43.5,
+          -15.0
+        ],
+        [
+          -45.5,
+          -15.1
+        ],
+        [
+          -47.4,
+          -15.4
+        ],
+        [
+          -48.1,
+          -16.2
+        ],
+        [
+          -48.1,
+          -18.4
+        ],
+        [
+          -48.05,
+          -20.5
+        ],
+        [
+          -47.85,
+          -22.8
+        ],
+        [
+          -46.9,
+          -23.1
+        ]
+      ],
+      "info": "Tronçon est de la ligne AMAZONE, le plus solide, qui tient les terres reprises à l'est du foyer, de Brasília jusqu'aux abords de São Paulo."
     }
   ],
   "reprises": [
@@ -18332,6 +19845,114 @@
           -11.1
         ]
       ]
+    },
+    {
+      "id": "r-chine-centre",
+      "nom": "Centre du domaine d'Izala",
+      "district": "as-sinorusse",
+      "date": "15 nov. 2075",
+      "contour": [
+        [
+          103.4,
+          32.5
+        ],
+        [
+          103.9,
+          31.4
+        ],
+        [
+          102.8,
+          30.0
+        ],
+        [
+          103.8,
+          29.3
+        ],
+        [
+          103.8,
+          27.9
+        ],
+        [
+          105.4,
+          27.8
+        ],
+        [
+          107.6,
+          28.7
+        ],
+        [
+          111.6,
+          29.6
+        ],
+        [
+          115.7,
+          30.9
+        ],
+        [
+          118.6,
+          32.2
+        ],
+        [
+          121.9,
+          32.8
+        ],
+        [
+          123.5,
+          32.8
+        ],
+        [
+          123.5,
+          21.0
+        ],
+        [
+          101.5,
+          21.0
+        ],
+        [
+          101.5,
+          32.5
+        ]
+      ]
+    },
+    {
+      "id": "r-nargal-est",
+      "nom": "Est du foyer de Nargal",
+      "district": "am-amazonien",
+      "date": "15 nov. 2075",
+      "contour": [
+        [
+          -47.6,
+          -15.6
+        ],
+        [
+          -45.5,
+          -15.0
+        ],
+        [
+          -40.0,
+          -14.8
+        ],
+        [
+          -40.0,
+          -23.0
+        ],
+        [
+          -44.9,
+          -22.4
+        ],
+        [
+          -47.7,
+          -22.7
+        ],
+        [
+          -47.95,
+          -20.5
+        ],
+        [
+          -47.95,
+          -18.4
+        ]
+      ]
     }
   ],
   "contestations": [
@@ -18345,7 +19966,20 @@
       ],
       "rayon": 1.0,
       "date": "18 oct. 2075",
-      "info": "Terrain disputé rue par rue, où la division sud-américaine de Phoenix est venue en renfort."
+      "info": "Terrain disputé rue par rue, où la division sud-américaine de Phoenix est venue en renfort.",
+      "jusqu": "8 nov. 2075"
+    },
+    {
+      "id": "k-brasilia",
+      "nom": "Brasília",
+      "district": "am-amazonien",
+      "centre": [
+        -47.88,
+        -15.79
+      ],
+      "rayon": 0.9,
+      "date": "15 nov. 2075",
+      "info": "Ville disputée rue par rue, à la pointe des terres reprises à l'est du foyer, où les combats continuent."
     }
   ],
   "axes": [
@@ -18878,6 +20512,106 @@
         [
           -62.5,
           -9
+        ]
+      ]
+    },
+    {
+      "id": "a32",
+      "date": "15 nov. 2075",
+      "camp": "cc",
+      "nom": "Reprise du Sichuan",
+      "trace": [
+        [
+          105.6,
+          26.9
+        ],
+        [
+          105.9,
+          28.4
+        ],
+        [
+          105.4,
+          30.0
+        ]
+      ]
+    },
+    {
+      "id": "a33",
+      "date": "15 nov. 2075",
+      "camp": "cc",
+      "nom": "Reprise du Hunan et du Hubei",
+      "trace": [
+        [
+          112.6,
+          26.6
+        ],
+        [
+          113.2,
+          28.4
+        ],
+        [
+          113.8,
+          30.1
+        ]
+      ]
+    },
+    {
+      "id": "a34",
+      "date": "15 nov. 2075",
+      "camp": "cc",
+      "nom": "Reprise du Zhejiang",
+      "trace": [
+        [
+          118.6,
+          26.4
+        ],
+        [
+          119.6,
+          28.6
+        ],
+        [
+          120.3,
+          30.6
+        ]
+      ]
+    },
+    {
+      "id": "a35",
+      "date": "15 nov. 2075",
+      "camp": "cc",
+      "nom": "Reprise de l'est du foyer",
+      "trace": [
+        [
+          -40.8,
+          -19.6
+        ],
+        [
+          -43.6,
+          -18.9
+        ],
+        [
+          -46.3,
+          -17.6
+        ]
+      ]
+    },
+    {
+      "id": "a36",
+      "date": "15 nov. 2075",
+      "camp": "cult",
+      "nom": "Chute de Rosario",
+      "trace": [
+        [
+          -62.6,
+          -30.6
+        ],
+        [
+          -61.5,
+          -31.9
+        ],
+        [
+          -60.8,
+          -32.8
         ]
       ]
     }

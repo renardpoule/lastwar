@@ -776,7 +776,7 @@
     missiles: 'M8,0L6,-1.1H1.5L-1.5,-7.6H-3.6L-2.2,-1.1H-6L-7.6,-3.4H-8.8L-8,0L-8.8,3.4H-7.6L-6,1.1H-2.2L-3.6,7.6H-1.5L1.5,1.1H6Z'
   };
   const N_AVIONS = { napalm: 4, missiles: 3 };
-  let explosions = [];
+  let explosions = [], salves = [];
   const routes = new Map();
   function avionsDe(f) {
     const n = N_AVIONS[f.type] || 2;
@@ -809,6 +809,33 @@
         explosions.push({ id: Math.random().toString(36).slice(2), c: [g[0] + (Math.random() - 0.5) * j, g[1] + (Math.random() - 0.5) * j], age: 0, type: a.f.type });
       }
     }
+    // Tirs de la marine : salves des navires (f.tir = bombardement visé) qui retombent en explosions dans la zone
+    const frappes = new Map(frappesAff().map(z => [z.id, z]));
+    if (replay) salves = [];
+    else for (const f of (data.flottes || [])) {
+      const z = f.tir && frappes.get(f.tir);
+      if (!z || !f._p || Math.random() > 0.3) continue;
+      const fac = [0.55, 0.75, 0.95][Math.floor(Math.random() * 3)], cle = 'tir:' + z.id + ':' + fac + '|' + dateAff();
+      if (!routes.has(cle)) routes.set(cle, routeFrappe(z, fac));
+      const rg = routes.get(cle).ring;
+      // Cible : le plus proche de quelques points tirés au hasard sur l'anneau, pour que le navire tire vers la côte
+      let best = null, dmin = Infinity;
+      for (let i = 0; i < 6; i++) {
+        const c = rg[Math.floor(Math.random() * (rg.length - 1))], q = projection(c), dd = Math.hypot(q[0] - f._p[0], q[1] - f._p[1]);
+        if (dd < dmin) { dmin = dd; best = c; }
+      }
+      if (best) salves.push({ id: Math.random().toString(36).slice(2), a: f._p.slice(), c: best, age: 0 });
+    }
+    salves = salves.filter(x => {
+      if (++x.age === 3) explosions.push({ id: x.id, c: x.c, age: 0, type: 'missiles' });
+      return x.age <= 3;
+    }).slice(-40);
+    L.explosions.selectAll('path.salve').data(salves, x => x.id).join('path').attr('class', 'salve')
+      .attr('d', x => {
+        const b = projection(x.c), mx = (x.a[0] + b[0]) / 2, my = (x.a[1] + b[1]) / 2 - Math.hypot(b[0] - x.a[0], b[1] - x.a[1]) * 0.25;
+        return `M${x.a[0].toFixed(1)},${x.a[1].toFixed(1)}Q${mx.toFixed(1)},${my.toFixed(1)} ${b[0].toFixed(1)},${b[1].toFixed(1)}`;
+      })
+      .attr('opacity', x => (1 - x.age / 4).toFixed(2)).attr('stroke-dashoffset', x => -x.age * 6);
     explosions = explosions.filter(x => ++x.age <= 5).slice(-60);
     L.explosions.selectAll('g.explosion').data(explosions, x => x.id).join(en => {
       const g = en.append('g').attr('class', x => 'explosion ' + x.type);
