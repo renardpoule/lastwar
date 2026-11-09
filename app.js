@@ -83,7 +83,7 @@
     <clipPath id="clipTerres"><path id="clipTerresPath"/></clipPath>`);
   const gZoom = svg.append('g');
   const L = {};
-  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'explosions', 'avions', 'sites', 'villes', 'axes', 'unites', 'evts', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
+  for (const n of ['fond', 'dist', 'zones', 'sceaux', 'hatch', 'cordons', 'frappes', 'detruites', 'bords', 'sel', 'fronts', 'lignes', 'postes', 'rails', 'flottes', 'sites', 'villes', 'axes', 'unites', 'evts', 'mark', 'lab', 'orbites']) L[n] = gZoom.append('g');
 
   const projection = d3.geoNaturalEarth1();
   const path = d3.geoPath(projection);
@@ -91,6 +91,8 @@
 
   const zoom = d3.zoom().scaleExtent([1, 16]).on('zoom', e => {
     gZoom.attr('transform', e.transform);
+    // Le ciel (canvas) glisse avec la carte jusqu'à sa prochaine peinture, sans être redessiné
+    if (trCiel) { const s = e.transform.k / trCiel.k; ciel.style.transform = `translate(${(e.transform.x - s * trCiel.x).toFixed(1)}px,${(e.transform.y - s * trCiel.y).toFixed(1)}px) scale(${s.toFixed(4)})`; }
     // Les étiquettes et symboles ne sont recalculés qu'une fois par image, pas à chaque événement de molette
     if (e.transform.k !== k) { k = e.transform.k; if (!echelleDemandee) { echelleDemandee = true; requestAnimationFrame(() => { echelleDemandee = false; echelleLabels(); }); } }
   });
@@ -809,40 +811,47 @@
     }
     return liste;
   }
+  // Le ciel (avions, salves, explosions) est peint sur un canvas posé au-dessus de la carte : il se redessine
+  // à chaque image sans toucher au SVG. La simulation (largages, salves) reste dans la boucle à 4 images/s.
+  const ciel = d3.select('#map').append('canvas').attr('class', 'ciel').attr('aria-hidden', 'true').node();
+  const cx = ciel.getContext('2d');
+  const FORMES = {}, formeAv = m => FORMES[m] || (FORMES[m] = new Path2D(AVION[m] || AVION.missiles));
+  const COUL = {
+    napalm: '#f2ead6', missiles: '#bcc4d2', bombardier: '#95a2b5', chasseur: '#d9ecf8', trait: '#1d1a29', ombre: 'rgba(10,8,20,.45)',
+    feu: { napalm: '#f5c13d', missiles: '#f07a2e' }, onde: { napalm: '#f6d98a', missiles: '#f79a6a' }, salve: '#f2c75a'
+  };
+  const VIE_EX = 1.25, VIE_SALVE = 1;
+  let avionsCiel = [], cielVide = true, trCiel = null;
+  const posA = (a, u) => {
+    let x = ((a.sens * (u / a.periode + a.phase)) % 1 + 1) % 1 * a.r.lg;
+    const c = a.r.cum, rg = a.r.ring;
+    let j = d3.bisectRight(c, x) - 1; j = Math.max(0, Math.min(rg.length - 2, j));
+    const v = (x - c[j]) / ((c[j + 1] - c[j]) || 1);
+    return [rg[j][0] + (rg[j + 1][0] - rg[j][0]) * v, rg[j][1] + (rg[j + 1][1] - rg[j][1]) * v];
+  };
+  // Position à l'écran (pixels), décalée selon la place de l'appareil dans sa formation
+  const ecranA = (a, u, tr) => {
+    const p = tr.apply(projection(posA(a, u))), q = tr.apply(projection(posA(a, u + 0.4)));
+    const ang = Math.atan2(q[1] - p[1], q[0] - p[0]), dx = Math.cos(ang), dy = Math.sin(ang), e = 1.35 * ech * 13;
+    return { p: [p[0] - dy * a.rang * e - dx * a.file * e * 0.7, p[1] + dx * a.rang * e - dy * a.file * e * 0.7], ang };
+  };
+  const solA = (a, u, tr) => { const p = ecranA(a, u, tr).p; return projection.invert(tr.invert(p)); };
   function majAvions() {
-    if (!L.avions) return;
     const replay = etat.replay !== null;
-    const avions = frappesAff().flatMap(avionsDe);
-    const t = (performance.now() - t0) / 1000;
-    const posA = (a, u) => {
-      let x = ((a.sens * (u / a.periode + a.phase)) % 1 + 1) % 1 * a.r.lg;
-      const c = a.r.cum, rg = a.r.ring;
-      let j = d3.bisectRight(c, x) - 1; j = Math.max(0, Math.min(rg.length - 2, j));
-      const v = (x - c[j]) / ((c[j + 1] - c[j]) || 1);
-      return [rg[j][0] + (rg[j + 1][0] - rg[j][0]) * v, rg[j][1] + (rg[j + 1][1] - rg[j][1]) * v];
-    };
-    const ecart = 1.35 * ech / k * 13;
-    // Position à l'écran, décalée selon la place de l'appareil dans sa formation
-    const ecran = (a, u) => {
-      const p = projection(posA(a, u)), q = projection(posA(a, u + 0.4));
-      const ang = Math.atan2(q[1] - p[1], q[0] - p[0]), dx = Math.cos(ang), dy = Math.sin(ang);
-      return { p: [p[0] - dy * a.rang * ecart - dx * a.file * ecart * 0.7, p[1] + dx * a.rang * ecart - dy * a.file * ecart * 0.7], ang };
-    };
+    const avions = avionsCiel = frappesAff().flatMap(avionsDe);
+    const t = (performance.now() - t0) / 1000, tr = d3.zoomTransform(svg.node()), id = () => Math.random().toString(36).slice(2);
     for (const a of avions) {
-      const e = ecran(a, t);
-      a.p = e.p; a.angle = e.ang * 180 / Math.PI;
       if (a.rapide) {
         // Passe d'attaque : roquettes tirées un peu devant le chasseur
-        if (Math.random() < 0.25) { const g = projection.invert(ecran(a, t + 0.5).p); if (g) explosions.push({ id: Math.random().toString(36).slice(2), c: g, age: 0, type: 'napalm' }); }
+        if (Math.random() < 0.25) { const g = solA(a, t + 0.5, tr); if (g) explosions.push({ id: id(), c: g, ne: t, type: 'napalm' }); }
         continue;
       }
       // Largage : une explosion derrière l'appareil, de temps en temps ; les bombardiers en formation tapissent le sol
-      const proba = a.tapis ? 0.7 : a.f.type === 'napalm' ? 0.6 : 0.45;
-      if (Math.random() < proba) {
+      if (Math.random() < (a.tapis ? 0.7 : a.f.type === 'napalm' ? 0.6 : 0.45)) {
         const u = t - (a.tapis ? 0.8 + Math.random() * 2.5 : 1.5 + Math.random() * 2);
-        if (a.tapis) { const g = projection.invert(ecran(a, u).p); if (g) explosions.push({ id: Math.random().toString(36).slice(2), c: g, age: 0, type: 'missiles' }); continue; }
+        if (a.tapis) { const g = solA(a, u, tr); if (g) explosions.push({ id: id(), c: g, ne: t, type: 'missiles' }); continue; }
         const g = posA(a, u), j = a.f.type === 'napalm' ? 0.35 : 0.8;
-        explosions.push({ id: Math.random().toString(36).slice(2), c: [g[0] + (Math.random() - 0.5) * j, g[1] + (Math.random() - 0.5) * j], age: 0, type: a.f.type });
+        explosions.push({ id: id(), c: [g[0] + (Math.random() - 0.5) * j, g[1] + (Math.random() - 0.5) * j], ne: t, type: a.f.type });
       }
     }
     // Tirs de la marine : salves des navires (f.tir = bombardement visé) qui retombent en explosions dans la zone
@@ -851,46 +860,66 @@
     else for (const f of (data.flottes || [])) {
       const z = f.tir && frappes.get(f.tir);
       if (!z || !f._p || Math.random() > 0.3) continue;
-      const fac = [0.55, 0.75, 0.95][Math.floor(Math.random() * 3)], cle = 'tir:' + z.id + ':' + fac + '|' + dateAff();
-      if (!routes.has(cle)) routes.set(cle, routeFrappe(z, fac));
-      const rg = routes.get(cle).ring;
+      const fac = [0.55, 0.75, 0.95][Math.floor(Math.random() * 3)], rg = routeDe(z, fac, 'tir:' + z.id).ring;
       // Cible : le plus proche de quelques points tirés au hasard sur l'anneau, pour que le navire tire vers la côte
       let best = null, dmin = Infinity;
       for (let i = 0; i < 6; i++) {
         const c = rg[Math.floor(Math.random() * (rg.length - 1))], q = projection(c), dd = Math.hypot(q[0] - f._p[0], q[1] - f._p[1]);
         if (dd < dmin) { dmin = dd; best = c; }
       }
-      if (best) salves.push({ id: Math.random().toString(36).slice(2), a: f._p.slice(), c: best, age: 0 });
+      if (best) salves.push({ id: id(), a: f._p.slice(), c: best, ne: t });
     }
     salves = salves.filter(x => {
-      if (++x.age === 3) explosions.push({ id: x.id, c: x.c, age: 0, type: 'missiles' });
-      return x.age <= 3;
+      if (!x.touche && t - x.ne >= VIE_SALVE * 0.75) { x.touche = true; explosions.push({ id: x.id, c: x.c, ne: t, type: 'missiles' }); }
+      return t - x.ne <= VIE_SALVE;
     }).slice(-40);
-    L.explosions.selectAll('path.salve').data(salves, x => x.id).join('path').attr('class', 'salve')
-      .attr('d', x => {
-        const b = projection(x.c), mx = (x.a[0] + b[0]) / 2, my = (x.a[1] + b[1]) / 2 - Math.hypot(b[0] - x.a[0], b[1] - x.a[1]) * 0.25;
-        return `M${x.a[0].toFixed(1)},${x.a[1].toFixed(1)}Q${mx.toFixed(1)},${my.toFixed(1)} ${b[0].toFixed(1)},${b[1].toFixed(1)}`;
-      })
-      .attr('opacity', x => (1 - x.age / 4).toFixed(2)).attr('stroke-dashoffset', x => -x.age * 6);
-    explosions = explosions.filter(x => ++x.age <= 5).slice(-260);
-    L.explosions.selectAll('g.explosion').data(explosions, x => x.id).join(en => {
-      const g = en.append('g').attr('class', x => 'explosion ' + x.type);
-      g.append('circle').attr('class', 'ex-onde'); g.append('circle').attr('class', 'ex-feu');
-      return g;
-    }).attr('transform', x => { const p = projection(x.c); return `translate(${p[0].toFixed(1)},${p[1].toFixed(1)}) scale(${ech / k})`; })
-      .each(function (x) {
-        const v = x.age / 5, g = d3.select(this), big = x.type === 'missiles' ? 1.4 : 1;
-        g.select('.ex-feu').attr('r', (3.4 + 3.6 * Math.sin(Math.min(1, v * 1.6) * Math.PI)) * big).attr('opacity', (1 - v).toFixed(2));
-        g.select('.ex-onde').attr('r', (4 + 13 * v) * big).attr('opacity', (0.8 * (1 - v)).toFixed(2));
-      });
-    L.avions.selectAll('g.avion').data(avions, a => a.id).join(en => {
-      const g = en.append('g').attr('class', a => 'avion ' + a.modele);
-      g.filter(a => a.rapide).append('path').attr('class', 'av-trainee').attr('d', 'M-6,0H-34');
-      g.filter(a => a.tapis).append('path').attr('class', 'av-trainee lourde').attr('d', 'M-7,-4.5H-22M-7,4.5H-22');
-      g.append('path').attr('class', 'av-ombre').attr('d', a => AVION[a.modele] || AVION.missiles).attr('transform', a => a.rapide ? 'translate(4,5.5)' : 'translate(2.5,3.5)');
-      g.append('path').attr('class', 'av-corps').attr('d', a => AVION[a.modele] || AVION.missiles);
-      return g;
-    }).attr('transform', a => `translate(${a.p[0].toFixed(1)},${a.p[1].toFixed(1)}) scale(${((a.tapis ? 1.5 : a.rapide ? 1.05 : 1.35) * ech / k).toFixed(3)}) rotate(${a.angle.toFixed(0)})`);
+    explosions = explosions.filter(x => t - x.ne <= VIE_EX).slice(-260);
+  }
+  // Peinture du ciel, à chaque image (limitée à ~30 par seconde)
+  function peindreCiel() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1), w = Math.round(W * dpr), h = Math.round(H * dpr);
+    if (ciel.width !== w || ciel.height !== h) { ciel.width = w; ciel.height = h; }
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx.clearRect(0, 0, W, H);
+    trCiel = d3.zoomTransform(svg.node()); ciel.style.transform = '';
+    if (!avionsCiel.length && !explosions.length && !salves.length) { cielVide = true; return; }
+    cielVide = false;
+    const t = (performance.now() - t0) / 1000, tr = trCiel;
+    // Salves de la marine : arcs en pointillés qui s'effacent
+    cx.save(); cx.strokeStyle = COUL.salve; cx.lineWidth = 1.3; cx.lineCap = 'round'; cx.setLineDash([3, 4]);
+    for (const x of salves) {
+      const v = (t - x.ne) / VIE_SALVE, a = tr.apply(x.a), b = tr.apply(projection(x.c));
+      cx.globalAlpha = Math.max(0, 1 - v); cx.lineDashOffset = -v * 24;
+      cx.beginPath(); cx.moveTo(a[0], a[1]);
+      cx.quadraticCurveTo((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.25, b[0], b[1]); cx.stroke();
+    }
+    cx.restore();
+    // Explosions : boule de feu qui gonfle puis retombe, onde de choc qui s'élargit
+    for (const x of explosions) {
+      const v = Math.min(1, (t - x.ne) / VIE_EX), p = tr.apply(projection(x.c)), big = (x.type === 'missiles' ? 1.4 : 1) * ech;
+      cx.globalAlpha = 0.8 * (1 - v); cx.strokeStyle = COUL.onde[x.type]; cx.lineWidth = 1.2 * ech;
+      cx.beginPath(); cx.arc(p[0], p[1], (4 + 13 * v) * big, 0, 2 * Math.PI); cx.stroke();
+      cx.globalAlpha = 1 - v; cx.fillStyle = COUL.feu[x.type];
+      cx.beginPath(); cx.arc(p[0], p[1], (3.4 + 3.6 * Math.sin(Math.min(1, v * 1.6) * Math.PI)) * big, 0, 2 * Math.PI); cx.fill();
+    }
+    cx.globalAlpha = 1;
+    // Appareils, avec leur ombre portée et, pour les chasseurs et les bombardiers en formation, des traînées
+    cx.lineJoin = 'round'; cx.lineCap = 'round';
+    for (const a of avionsCiel) {
+      const e = ecranA(a, t, tr), sc = (a.tapis ? 1.5 : a.rapide ? 1.05 : 1.35) * ech, forme = formeAv(a.modele);
+      cx.setTransform(dpr * sc, 0, 0, dpr * sc, dpr * e.p[0], dpr * e.p[1]); cx.rotate(e.ang);
+      if (a.rapide || a.tapis) {
+        cx.strokeStyle = a.rapide ? 'rgba(235,240,250,.55)' : 'rgba(225,232,245,.3)'; cx.lineWidth = a.rapide ? 1.4 : 1.1;
+        cx.beginPath();
+        if (a.rapide) { cx.moveTo(-6, 0); cx.lineTo(-34, 0); } else { cx.moveTo(-7, -4.5); cx.lineTo(-22, -4.5); cx.moveTo(-7, 4.5); cx.lineTo(-22, 4.5); }
+        cx.stroke();
+      }
+      const o = a.rapide ? [4, 5.5] : [2.5, 3.5];
+      cx.translate(o[0], o[1]); cx.fillStyle = COUL.ombre; cx.fill(forme); cx.translate(-o[0], -o[1]);
+      cx.fillStyle = COUL[a.modele] || COUL.missiles; cx.fill(forme);
+      cx.strokeStyle = COUL.trait; cx.lineWidth = 0.6; cx.stroke(forme);
+    }
+    cx.setTransform(1, 0, 0, 1, 0, 0);
   }
   // ---------- Traverseurs ----------
   const TRAIN = 'M-12,-2.4H-5V2.4H-12ZM-4,-2.4H3V2.4H-4ZM4,-2.4H9.5L12,0L9.5,2.4H4Z';
@@ -979,9 +1008,10 @@
     });
   }
   // 4 images par seconde suffisent pour un mouvement aussi lent ; arrêt si l'onglet est masqué
-  let dernierSat = 0;
+  let dernierSat = 0, dernierCiel = 0;
   (function boucleSat(ts) {
     if (!document.hidden && !mouvementReduitSat.matches && ts - dernierSat > 250) { dernierSat = ts; if (W) { majSatellites(); majFlottes(); majTrains(); majSpheres(); majAvions(); } }
+    if (!document.hidden && !mouvementReduitSat.matches && ts - dernierCiel > 125 && W && !(cielVide && !avionsCiel.length)) { dernierCiel = ts; peindreCiel(); }
     requestAnimationFrame(boucleSat);
   })(0);
   // Sphères des laboratoires d'exclusion : méridien qui tourne, et soubresauts toutes les 3,4 s
