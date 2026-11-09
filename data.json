@@ -19409,7 +19409,12 @@
       ],
       "district": "am-austral",
       "date": "15 nov. 2075",
-      "info": "Les quinze divisions de la marine, rassemblées autour du Chili et de l'Argentine, bombardent la percée du sud sans interruption, de jour comme de nuit."
+      "info": "Les quinze divisions de la marine, rassemblées autour du Chili et de l'Argentine, bombardent la percée du sud sans interruption, de jour comme de nuit, alors que des formations entières de bombardiers lourds passent en ligne au-dessus des positions cultistes et que les chasseurs d'attaque, beaucoup plus rapides, reviennent sans arrêt finir ce qui tient encore debout.",
+      "escadrilles": {
+        "formations": 4,
+        "parFormation": 5,
+        "chasseurs": 12
+      }
     },
     {
       "id": "b-naval-nargal",
@@ -19425,7 +19430,12 @@
       "rayonInt": 3.8,
       "district": "am-amazonien",
       "date": "15 nov. 2075",
-      "info": "Missiles de croisière et appareils embarqués sur ce qui reste du foyer de Nargal, au sud de la ligne AMAZONE."
+      "info": "Missiles de croisière et appareils embarqués sur ce qui reste du foyer de Nargal, au sud de la ligne AMAZONE, avec des vagues de bombardiers lourds qui tapissent le sol en formation et des chasseurs qui enchaînent les passes à basse altitude, si bien qu'il ne se passe presque pas une minute sans qu'une explosion se fasse entendre.",
+      "escadrilles": {
+        "formations": 3,
+        "parFormation": 5,
+        "chasseurs": 10
+      }
     }
   ],
   "lignes": [

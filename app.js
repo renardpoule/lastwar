@@ -775,24 +775,45 @@
     napalm: 'M7,0L4.5,-0.9L0.5,-0.9L-2.5,-5.2H-4.1L-2.3,-0.9H-5.4L-6.6,-2.4H-7.6L-6.8,0L-7.6,2.4H-6.6L-5.4,0.9H-2.3L-4.1,5.2H-2.5L0.5,0.9L4.5,0.9Z',
     missiles: 'M8,0L6,-1.1H1.5L-1.5,-7.6H-3.6L-2.2,-1.1H-6L-7.6,-3.4H-8.8L-8,0L-8.8,3.4H-7.6L-6,1.1H-2.2L-3.6,7.6H-1.5L1.5,1.1H6Z'
   };
+  // Appareils des raids massifs (f.escadrilles) : bombardiers lourds en formation, chasseurs rapides
+  AVION.bombardier = 'M6.5,0L5.2,-1.3H2L-0.8,-9.4H-2.6L-1.6,-1.3H-5.2L-6.8,-3.6H-8.2L-7.6,0L-8.2,3.6H-6.8L-5.2,1.3H-1.6L-2.6,9.4H-0.8L2,1.3H5.2Z';
+  AVION.chasseur = 'M7.5,0L3,-1L-2.5,-4.6H-4L-3.2,-1H-5.6L-6.8,-2.4H-7.4L-6.9,0L-7.4,2.4H-6.8L-5.6,1H-3.2L-4,4.6H-2.5L3,1Z';
   const N_AVIONS = { napalm: 4, missiles: 3 };
   let explosions = [], salves = [];
   const routes = new Map();
+  const routeDe = (f, fac, id) => { const cle = id + '|' + fac.toFixed(3) + '|' + dateAff(); if (!routes.has(cle)) routes.set(cle, routeFrappe(f, fac)); return routes.get(cle); };
   function avionsDe(f) {
     const n = N_AVIONS[f.type] || 2;
-    return d3.range(n).map(i => {
-      const id = f.id + ':' + i, fac = 0.88 + 0.24 * ((i * 37) % 10) / 10, cle = id + '|' + dateAff();
-      if (!routes.has(cle)) routes.set(cle, routeFrappe(f, fac));
-      const r = routes.get(cle);
+    const liste = d3.range(n).map(i => {
+      const id = f.id + ':' + i, fac = 0.88 + 0.24 * ((i * 37) % 10) / 10, r = routeDe(f, fac, id);
       // Vitesse au sol à peu près constante : la période suit la longueur du parcours
-      return { f, i, id, r, periode: r.lg * (f.type === 'napalm' ? 1.6 : 2.4), sens: i % 2 ? -1 : 1, phase: i / n };
+      return { f, i, id, r, modele: f.type, periode: r.lg * (f.type === 'napalm' ? 1.6 : 2.4), sens: i % 2 ? -1 : 1, phase: i / n, rang: 0, file: 0 };
     });
+    const e = f.escadrilles;
+    if (!e) return liste;
+    // Formations de bombardiers : appareils de front, en léger échelon, qui tapissent le sol derrière eux
+    const nf = +e.formations || 3, pf = +e.parFormation || 5;
+    for (let j = 0; j < nf; j++) {
+      const fac = 0.62 + 0.5 * j / Math.max(1, nf - 1), r = routeDe(f, fac, f.id + ':form' + j), sens = j % 2 ? -1 : 1;
+      for (let m = 0; m < pf; m++) {
+        const rang = m - (pf - 1) / 2;
+        liste.push({ f, id: f.id + ':b' + j + '-' + m, r, modele: 'bombardier', periode: r.lg * 3.2, sens, phase: j / nf + 0.17, rang, file: Math.abs(rang), tapis: true });
+      }
+    }
+    // Chasseurs d'escorte et d'attaque au sol, par paires, beaucoup plus rapides
+    const nc = +e.chasseurs || 10;
+    for (let c = 0; c < nc; c++) {
+      const paire = Math.floor(c / 2), np = Math.ceil(nc / 2), fac = 0.5 + 0.8 * ((paire * 7) % np) / Math.max(1, np - 1);
+      const r = routeDe(f, fac, f.id + ':ch' + paire);
+      liste.push({ f, id: f.id + ':c' + c, r, modele: 'chasseur', periode: r.lg * 0.75, sens: paire % 2 ? 1 : -1, phase: paire / np, rang: c % 2 ? 0.9 : 0, file: c % 2 ? 1 : 0, rapide: true });
+    }
+    return liste;
   }
   function majAvions() {
     if (!L.avions) return;
     const replay = etat.replay !== null;
     const avions = frappesAff().flatMap(avionsDe);
-    const t = (performance.now() - t0) / 1000, cos = c => Math.max(0.2, Math.cos(c * RAD));
+    const t = (performance.now() - t0) / 1000;
     const posA = (a, u) => {
       let x = ((a.sens * (u / a.periode + a.phase)) % 1 + 1) % 1 * a.r.lg;
       const c = a.r.cum, rg = a.r.ring;
@@ -800,12 +821,27 @@
       const v = (x - c[j]) / ((c[j + 1] - c[j]) || 1);
       return [rg[j][0] + (rg[j + 1][0] - rg[j][0]) * v, rg[j][1] + (rg[j + 1][1] - rg[j][1]) * v];
     };
+    const ecart = 1.35 * ech / k * 13;
+    // Position à l'écran, décalée selon la place de l'appareil dans sa formation
+    const ecran = (a, u) => {
+      const p = projection(posA(a, u)), q = projection(posA(a, u + 0.4));
+      const ang = Math.atan2(q[1] - p[1], q[0] - p[0]), dx = Math.cos(ang), dy = Math.sin(ang);
+      return { p: [p[0] - dy * a.rang * ecart - dx * a.file * ecart * 0.7, p[1] + dx * a.rang * ecart - dy * a.file * ecart * 0.7], ang };
+    };
     for (const a of avions) {
-      const p = projection(posA(a, t)), q = projection(posA(a, t + 0.6));
-      a.p = p; a.angle = Math.atan2(q[1] - p[1], q[0] - p[0]) * 180 / Math.PI;
-      // Largage : une explosion derrière l'appareil, de temps en temps
-      if (Math.random() < (a.f.type === 'napalm' ? 0.6 : 0.45)) {
-        const g = posA(a, t - 1.5 - Math.random() * 2), j = a.f.type === 'napalm' ? 0.35 : 0.8;
+      const e = ecran(a, t);
+      a.p = e.p; a.angle = e.ang * 180 / Math.PI;
+      if (a.rapide) {
+        // Passe d'attaque : roquettes tirées un peu devant le chasseur
+        if (Math.random() < 0.25) { const g = projection.invert(ecran(a, t + 0.5).p); if (g) explosions.push({ id: Math.random().toString(36).slice(2), c: g, age: 0, type: 'napalm' }); }
+        continue;
+      }
+      // Largage : une explosion derrière l'appareil, de temps en temps ; les bombardiers en formation tapissent le sol
+      const proba = a.tapis ? 0.7 : a.f.type === 'napalm' ? 0.6 : 0.45;
+      if (Math.random() < proba) {
+        const u = t - (a.tapis ? 0.8 + Math.random() * 2.5 : 1.5 + Math.random() * 2);
+        if (a.tapis) { const g = projection.invert(ecran(a, u).p); if (g) explosions.push({ id: Math.random().toString(36).slice(2), c: g, age: 0, type: 'missiles' }); continue; }
+        const g = posA(a, u), j = a.f.type === 'napalm' ? 0.35 : 0.8;
         explosions.push({ id: Math.random().toString(36).slice(2), c: [g[0] + (Math.random() - 0.5) * j, g[1] + (Math.random() - 0.5) * j], age: 0, type: a.f.type });
       }
     }
@@ -836,7 +872,7 @@
         return `M${x.a[0].toFixed(1)},${x.a[1].toFixed(1)}Q${mx.toFixed(1)},${my.toFixed(1)} ${b[0].toFixed(1)},${b[1].toFixed(1)}`;
       })
       .attr('opacity', x => (1 - x.age / 4).toFixed(2)).attr('stroke-dashoffset', x => -x.age * 6);
-    explosions = explosions.filter(x => ++x.age <= 5).slice(-60);
+    explosions = explosions.filter(x => ++x.age <= 5).slice(-260);
     L.explosions.selectAll('g.explosion').data(explosions, x => x.id).join(en => {
       const g = en.append('g').attr('class', x => 'explosion ' + x.type);
       g.append('circle').attr('class', 'ex-onde'); g.append('circle').attr('class', 'ex-feu');
@@ -848,15 +884,13 @@
         g.select('.ex-onde').attr('r', (4 + 13 * v) * big).attr('opacity', (0.8 * (1 - v)).toFixed(2));
       });
     L.avions.selectAll('g.avion').data(avions, a => a.id).join(en => {
-      const g = en.append('g').attr('class', a => 'avion ' + a.f.type);
-      g.append('path').attr('class', 'av-ombre'); g.append('path').attr('class', 'av-corps');
+      const g = en.append('g').attr('class', a => 'avion ' + a.modele);
+      g.filter(a => a.rapide).append('path').attr('class', 'av-trainee').attr('d', 'M-6,0H-34');
+      g.filter(a => a.tapis).append('path').attr('class', 'av-trainee lourde').attr('d', 'M-7,-4.5H-22M-7,4.5H-22');
+      g.append('path').attr('class', 'av-ombre').attr('d', a => AVION[a.modele] || AVION.missiles).attr('transform', a => a.rapide ? 'translate(4,5.5)' : 'translate(2.5,3.5)');
+      g.append('path').attr('class', 'av-corps').attr('d', a => AVION[a.modele] || AVION.missiles);
       return g;
-    }).attr('transform', a => `translate(${a.p[0].toFixed(1)},${a.p[1].toFixed(1)}) scale(${(1.35 * ech / k).toFixed(3)}) rotate(${a.angle.toFixed(0)})`)
-      .each(function (a) {
-        const g = d3.select(this);
-        g.select('.av-ombre').attr('d', AVION[a.f.type] || AVION.missiles).attr('transform', 'translate(2.5,3.5)');
-        g.select('.av-corps').attr('d', AVION[a.f.type] || AVION.missiles);
-      });
+    }).attr('transform', a => `translate(${a.p[0].toFixed(1)},${a.p[1].toFixed(1)}) scale(${((a.tapis ? 1.5 : a.rapide ? 1.05 : 1.35) * ech / k).toFixed(3)}) rotate(${a.angle.toFixed(0)})`);
   }
   // ---------- Traverseurs ----------
   const TRAIN = 'M-12,-2.4H-5V2.4H-12ZM-4,-2.4H3V2.4H-4ZM4,-2.4H9.5L12,0L9.5,2.4H4Z';
@@ -1245,6 +1279,7 @@
       + (detruitesAff().some(z => z.type === 'feu') ? '<li><i class="sw detruite feu"></i>Destruction forte par le feu nucléaire</li>' : '')
       + (frappesAff().some(z => z.type === 'napalm') ? '<li><svg class="sw-avion napalm" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.napalm + '"/></svg>Chasseurs au napalm</li>' : '')
       + (frappesAff().some(z => z.type !== 'napalm') ? '<li><svg class="sw-avion missiles" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.missiles + '"/></svg>Bombardiers et missiles</li>' : '')
+      + (frappesAff().some(z => z.escadrilles) ? '<li><svg class="sw-avion bombardier" viewBox="-11 -11 22 22" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.bombardier + '"/></svg>Formations de bombardiers lourds</li><li><svg class="sw-avion chasseur" viewBox="-9 -9 18 18" aria-hidden="true"><path class="av-corps" transform="rotate(-90)" d="' + AVION.chasseur + '"/></svg>Chasseurs d\'attaque</li>' : '')
       + ((data.axes || []).some(a => a.date === dateAff() && a.camp === 'cult') ? '<li><svg class="sw-rail" viewBox="0 0 24 10" aria-hidden="true"><path class="ax-trait" style="stroke:var(--cult)" d="M1,5H17"/><path d="M15,1L23,5L15,9Z" style="fill:var(--cult)"/></svg>Offensive cultiste de la semaine</li>' : '')
       + ((data.axes || []).some(a => a.date === dateAff() && a.camp === 'cc') ? '<li><svg class="sw-rail" viewBox="0 0 24 10" aria-hidden="true"><path class="ax-trait" style="stroke:var(--axe-cc)" d="M1,5H17"/><path d="M15,1L23,5L15,9Z" style="fill:var(--axe-cc)"/></svg>Offensive de la CC de la semaine</li>' : '')
       + (evenementsTour().some(ev => ev.lieux) ? '<li><svg class="sw-picto" viewBox="-13 -13 26 26" aria-hidden="true"><circle class="pi-fond cult" r="11.5"/><path class="pi-glyphe" transform="translate(-8.4,-8.4) scale(0.7)" d="' + PICTOS.percee[2] + '"/></svg>Événement de la semaine (rouge : cultistes, bleu : CC)</li>' : '')
