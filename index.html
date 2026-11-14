@@ -5,85 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Front des Cendres</title>
 <meta name="description" content="Situation du conflit entre la Confédération des Cendres et les Cultistes.">
-<meta name="theme-color" content="#16131f">
+<meta name="theme-color" content="#07060e">
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="preload" href="countries.json" as="fetch" crossorigin>
-<link rel="stylesheet" href="style.css?v=27">
+<link rel="preload" href="countries.json?v=3" as="fetch" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="pulse.css?v=1">
+<link rel="stylesheet" href="carte.css?v=1">
 </head>
-<body class="ds">
-<header class="topbar">
-  <div class="identite">
-    <img class="logo" src="logo.png" width="44" height="44" alt="Sceau de la Confédération des Cendres">
-    <div>
-      <h1 id="titre">Confédération des Cendres</h1>
-      <p id="soustitre" class="ds-supporting"></p>
-    </div>
+<body class="ds ops">
+<main class="scene" aria-label="Carte du conflit">
+  <div id="map" class="carte"></div>
+  <div id="voile" class="voile" aria-hidden="true"></div>
+  <div id="rideau" class="rideau" hidden>
+    <span class="rideau-date g" id="rideauG"></span><span class="rideau-date d" id="rideauD"></span>
+    <button class="rideau-poignee" id="rideauPoignee" type="button" aria-label="Déplacer le rideau de comparaison"><span aria-hidden="true">◂ ▸</span></button>
   </div>
-  <div class="daterp">
+</main>
+
+<header class="barre verre">
+  <a class="sceau" href="./" aria-label="Retour à la vue monde"><img src="logo.png" width="38" height="38" alt="Sceau de la Confédération des Cendres"></a>
+  <div class="ident">
+    <h1 id="titre">Confédération des Cendres</h1>
+    <p id="soustitre"></p>
+  </div>
+  <nav class="nav-ops" aria-label="Site"><span aria-current="page">Carte</span><a href="secteurs.html">Secteurs</a><a href="admin.html">Administratif</a></nav>
+  <button id="btnRecherche" class="recherche-btn" type="button" aria-haspopup="dialog"><span class="i" aria-hidden="true"></span><span class="lib">Rechercher</span><kbd class="ds-kbd" aria-hidden="true">/</kbd></button>
+  <div class="horodatage">
     <strong id="daterp">—</strong>
-    <span id="maj" class="ds-supporting"></span>
+    <span id="maj"></span>
   </div>
-  <nav class="nav-site" aria-label="Site"><span class="ds-btn ds-btn-ghost actif" aria-current="page">Carte</span><a class="ds-btn ds-btn-ghost" href="secteurs.html">Secteurs</a><a class="ds-btn ds-btn-ghost" href="admin.html">Administratif</a></nav>
-  <button id="tensionBtn" class="tension-mini" type="button" aria-haspopup="dialog">
+  <button id="tensionBtn" class="tension" type="button" aria-haspopup="dialog">
     <svg id="miniClock" viewBox="0 0 100 100" aria-hidden="true"></svg>
-    <span class="tm-txt">
-      <span class="tm-val"><strong id="tensionVal">—</strong> <span class="ds-supporting">Tension</span></span>
-      <span id="tensionPalier" class="ds-badge"></span>
-    </span>
+    <span class="t-txt"><span class="t-val"><strong id="tensionVal">—</strong><small>tension</small></span><span id="tensionPalier" class="t-palier"></span></span>
   </button>
 </header>
 
-<div id="alerte" class="alerte" role="status" hidden></div>
-<div class="bandeau">
-  <button id="pertesBtn" class="pertes" type="button" aria-haspopup="dialog"></button>
-  <button id="energieBtn" class="energie" type="button" aria-haspopup="dialog"></button>
-  <section class="communiques" aria-label="Communiqués officiels">
-    <span class="c-titre">Communiqués</span>
-    <div class="c-piste" id="cPiste" tabindex="0"><div class="c-defil" id="cDefil"></div></div>
+<div class="ruban verre">
+  <button id="pertesBtn" class="r-bloc" type="button" aria-haspopup="dialog"></button>
+  <button id="energieBtn" class="r-bloc" type="button" aria-haspopup="dialog"></button>
+  <section class="transmissions" aria-label="Transmissions">
+    <span class="r-titre">Transmissions</span>
+    <div class="t-piste" id="cPiste" tabindex="0"><div class="t-defil" id="cDefil"></div></div>
   </section>
 </div>
 
-<main class="layout">
-  <section class="mapzone" aria-label="Carte du conflit">
-    <div id="map" class="map"></div>
-    <div id="distorsion" class="distorsion" aria-hidden="true" hidden><div class="d-bruit"></div><div class="d-lignes"></div><div class="d-vignette"></div><div class="d-coupure"></div></div>
-    <div class="map-ui">
-      <nav id="fil" class="fil" aria-label="Fil d'Ariane"></nav>
-    </div>
-    <div class="tiroir-legende" id="tiroirLegende">
-      <button id="btnLegende" class="onglet-legende" type="button" aria-expanded="false" aria-controls="legende"><span>Légende</span></button>
-      <ul class="legende" id="legende" aria-label="Légende"></ul>
-    </div>
-    <div id="archive" class="archive" role="status" hidden></div>
-    <div class="timeline">
-      <button id="play" class="ds-btn ds-btn-secondary ds-btn-sm" type="button" aria-label="Rejouer le conflit"></button>
-      <label class="sr" for="slider">Chronologie du conflit</label>
-      <input id="slider" type="range" min="0" max="0" value="0">
-      <span id="sliderLbl" class="slider-lbl">En direct</span>
-    </div>
-    <div id="tip" class="tip" hidden></div>
-  </section>
+<nav id="fil" class="fil" aria-label="Fil d'Ariane"></nav>
+<div id="archive" class="archive verre" role="status" hidden></div>
 
-  <aside id="panel" class="panel" aria-live="polite"></aside>
-</main>
+<div class="outils verre" role="toolbar" aria-label="Outils de la carte">
+  <button type="button" id="oPlus" aria-label="Zoomer"></button>
+  <button type="button" id="oMoins" aria-label="Dézoomer"></button>
+  <span class="sep" aria-hidden="true"></span>
+  <button type="button" id="oGlobe" aria-pressed="false" aria-label="Globe ou planisphère"></button>
+  <button type="button" id="oCalques" aria-expanded="false" aria-controls="tiroir" aria-label="Calques et légende"></button>
+  <span class="sep" aria-hidden="true"></span>
+  <button type="button" id="oBrief" aria-label="Briefing de la semaine"></button>
+  <button type="button" id="oComparer" aria-pressed="false" aria-label="Comparer deux dates"></button>
+  <button type="button" id="oCourbes" aria-expanded="false" aria-controls="courbes" aria-label="Courbes de la guerre"></button>
+  <span id="altitude" class="altitude" title="Altitude de la vue : stratégique, opérative ou tactique"></span>
+</div>
 
+<section id="tiroir" class="tiroir verre" aria-label="Calques et légende" hidden></section>
+
+<aside id="volet" class="volet verre">
+  <button id="voletPoignee" class="volet-poignee" type="button" aria-expanded="true" aria-controls="panel"><span class="barre-p" aria-hidden="true"></span><span class="sr">Replier ou déplier le rapport</span></button>
+  <div id="panel" class="panel" aria-live="polite"></div>
+</aside>
+
+<section id="courbes" class="courbes verre" aria-label="Courbes de la guerre" hidden></section>
+
+<div id="carton" class="carton verre" role="status" hidden></div>
+
+<div class="dock verre">
+  <button id="play" class="film" type="button"></button>
+  <div class="frise" id="frise">
+    <div class="frise-crans" id="friseCrans" aria-hidden="true"></div>
+    <label class="sr" for="slider">Chronologie du conflit</label>
+    <input id="slider" type="range" min="0" max="0" value="0">
+  </div>
+  <span id="sliderLbl" class="frise-lbl">En direct</span>
+</div>
+
+<div id="tip" class="fiche" hidden></div>
+<div id="flash" class="flash" aria-hidden="true" hidden></div>
+
+<dialog id="rechercheDlg" class="dlg recherche" aria-label="Recherche">
+  <div class="rech-champ"><span class="invite" aria-hidden="true">&gt;</span><input id="rechercheChamp" type="search" autocomplete="off" spellcheck="false" placeholder="Ville, site, unité, district, événement…" aria-label="Rechercher sur la carte" aria-controls="rechercheListe"></div>
+  <ul id="rechercheListe" class="rech-liste" role="listbox" aria-label="Résultats"></ul>
+  <p class="rech-aide"><kbd class="ds-kbd">↑</kbd> <kbd class="ds-kbd">↓</kbd> pour choisir, <kbd class="ds-kbd">Entrée</kbd> pour y aller, <kbd class="ds-kbd">Échap</kbd> pour fermer</p>
+</dialog>
 <dialog id="energieDlg" class="dlg" aria-labelledby="energieTitre">
-  <button class="ds-btn ds-btn-ghost ds-btn-sm fermer" type="button" aria-label="Fermer" onclick="this.closest('dialog').close()"></button>
+  <button class="fermer" type="button" aria-label="Fermer"></button>
   <div id="energieDetail"></div>
 </dialog>
 <dialog id="pertesDlg" class="dlg" aria-labelledby="pertesTitre">
-  <button class="ds-btn ds-btn-ghost ds-btn-sm fermer" type="button" aria-label="Fermer" onclick="this.closest('dialog').close()"></button>
+  <button class="fermer" type="button" aria-label="Fermer"></button>
   <div id="pertesDetail"></div>
 </dialog>
 <dialog id="tensionDlg" class="dlg" aria-labelledby="tensionTitre">
-  <button class="ds-btn ds-btn-ghost ds-btn-sm fermer" type="button" aria-label="Fermer" onclick="this.closest('dialog').close()"></button>
+  <button class="fermer" type="button" aria-label="Fermer"></button>
   <div id="tensionDetail"></div>
 </dialog>
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/topojson-client.min.js"></script>
-<script src="common.js?v=15"></script>
+<script src="lib/topojson-simplify.min.js"></script>
+<script src="common.js?v=16"></script>
 <script src="villes.js?v=14"></script>
-<script src="app.js?v=32"></script>
+<script src="glyphes.js?v=1"></script>
+<script src="moteur.js?v=1"></script>
+<script src="calques.js?v=1"></script>
+<script src="symboles.js?v=1"></script>
+<script src="animations.js?v=1"></script>
+<script src="app.js?v=33"></script>
+<script src="modes.js?v=1"></script>
 </body>
 </html>
