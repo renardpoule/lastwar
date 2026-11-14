@@ -4,7 +4,7 @@
    ========================================================================== */
 [hidden]{display:none!important}
 html,body{margin:0;height:100%}
-body.ops{--mono:"JetBrains Mono",ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;--verre:oklch(0.185 0.03 285 / .8);--verre-bord:oklch(1 0 0 / .1);--ligne:oklch(1 0 0 / .08);
+body.ops{--mono:"JetBrains Mono",ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;--verre:oklch(0.165 0.03 285 / .97);--verre-bord:oklch(1 0 0 / .1);--ligne:oklch(1 0 0 / .08);
   --cc:oklch(0.76 0.12 255);--cult:oklch(0.68 0.2 20);--accent:oklch(0.8 0.11 293);--pale:oklch(0.72 0.03 287);
   --m:0.75rem;--h-barre:3.5rem;--h-ruban:2.25rem;--haut:calc(var(--m)*2 + var(--h-barre) + var(--h-ruban) + 0.5rem);--h-dock:4rem;--l-volet:26.5rem;
   background:#07060e;color:var(--foreground);font-size:0.875rem;overflow:hidden;height:100dvh;overscroll-behavior:none}
@@ -14,7 +14,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .num,.v,.tot,.n{font-variant-numeric:tabular-nums}
 :focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .pale{color:var(--pale)}
-.verre{background:var(--verre);border:1px solid var(--verre-bord);box-shadow:0 0.75rem 2rem -0.75rem oklch(0 0 0 / .7),inset 0 1px 0 oklch(1 0 0 / .06);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3)}
+.verre{background:var(--verre);border:1px solid var(--verre-bord);box-shadow:0 0.75rem 2rem -0.75rem oklch(0 0 0 / .7),inset 0 1px 0 oklch(1 0 0 / .06)}
 .cartouche{margin:0;font:500 0.6875rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pale)}
 .cartouche::before{content:"// ";color:var(--accent)}
 .texte{margin:0;font-size:0.9rem;line-height:1.6;max-width:65ch}
@@ -78,7 +78,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .transmissions{display:flex;align-items:center;gap:0.75rem;min-width:0;flex:1;padding-left:0.875rem}
 .transmissions .r-titre{color:var(--or);flex:none}
 .t-piste{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 2rem,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(90deg,transparent,#000 2rem,#000 calc(100% - 2rem),transparent)}
-.t-defil{display:flex;width:max-content;white-space:nowrap}
+.t-defil{display:flex;width:max-content;white-space:nowrap;will-change:transform}
 .t-defil.anime{animation:defile var(--duree,60s) linear infinite}
 .t-piste:hover .t-defil,.t-piste:focus .t-defil{animation-play-state:paused}
 @keyframes defile{to{transform:translateX(-50%)}}
@@ -416,7 +416,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---------- Dialogues ---------- */
 .dlg{width:min(36rem,calc(100vw - 1.5rem));max-height:calc(100dvh - 3rem);padding:1.25rem;border-radius:1rem;border:1px solid var(--verre-bord);background:oklch(0.16 0.026 285 / .98);color:var(--foreground);box-shadow:0 2rem 4rem -1rem #000}
-.dlg::backdrop{background:oklch(0.05 0.02 285 / .7);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.dlg::backdrop{background:oklch(0.05 0.02 285 / .78)}
 .dlg .fermer{position:absolute;top:0.75rem;right:0.75rem}
 .dlg h2{margin:0.25rem 0 0.75rem;font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
 .t-top{display:flex;align-items:center;gap:1.25rem}

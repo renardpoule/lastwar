@@ -133,6 +133,16 @@ const CARTE = (() => {
   })();
   const cam = I.cam = { mode: 'plan', rot: [30, -12, 0], kg: 1, t: { k: 1, x: 0, y: 0 }, a: 1, ver: 0, bouge: false, anim: null, prefGlobe: false, clip: Math.PI, centreGeo: [0, 0], R: 100, c: [0, 0] };
   let W = 0, H = 0, dpr = 1, bornes = [[0, 0], [1, 1]];
+  // Résolution de rendu : celle de l'écran tant que la machine suit, réduite par paliers quand les images tardent
+  // (au repos, jamais sous la résolution CSS ; pendant un mouvement, un peu plus bas, le temps du geste)
+  const PALIERS_Q = [1, 0.8, 0.65, 0.5];
+  let dprEcran = 1, nqRepos = 0, nqMouv = 0;
+  const dprDe = mouv => { const n = mouv ? Math.max(nqRepos, nqMouv) : nqRepos; return n ? Math.max(Math.min(dprEcran, mouv ? 0.75 : 1), dprEcran * PALIERS_Q[n]) : dprEcran; };
+  function taillerCanvas(d) {
+    dpr = d;
+    for (const n of ['base', 'vie', 'sym', 'fx']) { const c = I.cv[n]; c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
+    invalider('vue'); I.sale.fx = true;
+  }
   const sauf = () => { const m = I.marges; return { x: m.g, y: m.h, w: Math.max(80, W - m.g - m.d), h: Math.max(80, H - m.h - m.b), cx: m.g + Math.max(80, W - m.g - m.d) / 2, cy: m.h + Math.max(80, H - m.h - m.b) / 2 }; };
   I.sauf = sauf;
 
@@ -169,8 +179,16 @@ const CARTE = (() => {
   I.vue = ctx => { if (cam.mode === 'plan') ctx.setTransform(dpr * cam.t.k, 0, 0, dpr * cam.t.k, dpr * cam.t.x, dpr * cam.t.y); else ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
   I.ecran = ctx => ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   I.dim = () => ({ W, H, dpr });
-  // Géométrie fine sur le planisphère, simplifiée sur le globe (reprojeté à chaque image)
-  I.g = (o, cle) => o && (cam.mode === 'plan' ? o[cle] : (I.mobile && o[cle + 'M']) || o[cle + 'S']);
+  // Niveau de détail : sur le planisphère, la géométrie suit le zoom (les points plus fins qu'un pixel ne sont pas tracés) ;
+  // sur le globe, reprojeté à chaque image, elle reste simplifiée, et allégée pendant le mouvement
+  I.niv = (plus = 0) => {
+    if (cam.mode !== 'plan') return I.mobile ? 'M' : 'S';
+    const e = pPlan.scale() * RAD * cam.t.k, n = (e <= 8 ? 2 : e <= 22 ? 1 : 0) + plus;
+    return n >= 2 ? 'S' : n === 1 ? 'N' : '';
+  };
+  I.g = (o, cle, niv = I.niv()) => o && (niv === 'M' ? o[cle + 'M'] || o[cle + 'S'] : o[cle + niv]);
+  // Tracé d'un objet au niveau de détail courant (ou un cran plus grossier : halos larges)
+  I.fg = (cle, o, champ, plus) => { const niv = I.niv(plus); return I.forme(cle + '~' + niv, () => I.g(o, champ, niv)); };
 
   // Cache des tracés : en planisphère la projection est fixe (le zoom passe par la transformation du canvas)
   const formes = new Map(); let verFormes = -1;
@@ -191,8 +209,8 @@ const CARTE = (() => {
     const r = I.el.getBoundingClientRect();
     if (!r.width || !r.height) return;
     const avant = vueGardee && vueGardee.c ? vueGardee : releverVue();
-    W = r.width; H = r.height; dpr = Math.min(2, window.devicePixelRatio || 1);
-    for (const n of ['base', 'vie', 'sym', 'fx']) { const c = I.cv[n]; c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
+    W = r.width; H = r.height; dprEcran = Math.min(2, window.devicePixelRatio || 1);
+    taillerCanvas(dprDe(false)); regul.pause = Math.max(regul.pause, performance.now() + 600);
     const s = sauf();
     pPlan.fitExtent([[s.x, s.y], [s.x + s.w, s.y + s.h]], CADRE_MONDE);
     bornes = d3.geoPath(pPlan).bounds(CADRE_MONDE);
@@ -222,21 +240,60 @@ const CARTE = (() => {
     const k = Math.max(1, Math.min(kMax, 0.86 / Math.max((x1 - x0) / s.w, (y1 - y0) / s.h)));
     return contraindre({ k, x: s.cx - k * (x0 + x1) / 2, y: s.cy - k * (y0 + y1) / 2 });
   }
-  const invalider = I.invalider = (quoi) => { if (!quoi || quoi === 'tout') I.sale.base = I.sale.vie = I.sale.sym = true; else I.sale[quoi] = true; };
+  // 'vue' : seule la caméra a bougé (le contenu des calques est le même, les tampons de mouvement restent valables)
+  I.verCont = 0;
+  const invalider = I.invalider = (quoi) => { if (quoi !== 'vue') I.verCont++; if (!quoi || quoi === 'tout' || quoi === 'vue') I.sale.base = I.sale.vie = I.sale.sym = true; else I.sale[quoi] = true; };
+
+  // ---------- Tampons de mouvement ----------
+  // Pendant un glissement ou un zoom sur le planisphère, un calque est peint une fois dans un canvas hors écran un peu plus
+  // grand que la vue, puis recopié décalé à chaque image ; il n'est repeint que si la vue sort du tampon, si le zoom s'en
+  // écarte trop, ou passé un certain âge (calque vivant). Dès que le geste s'arrête, le calque est retracé directement.
+  const tampons = {};
+  I.viaTampon = (nom, dessiner, { ageMax = 0, rMin = 0.72, rMax = 1.45 } = {}) => {
+    if (cam.mode !== 'plan' || !I.mobile || I.rideau || I.mix) return false;
+    const T = tampons[nom] || (tampons[nom] = { cv: document.createElement('canvas'), ver: -1, vu: -1 });
+    // Contenu qui change à chaque image (film, fondu entre deux dates) : dessin direct
+    const stable = T.vu === I.verCont; T.vu = I.verCont;
+    if (!stable) { T.ver = -1; return false; }
+    const t = cam.t, now = performance.now(), ecran = I.cx[nom];
+    const budget = 7e6, pxE = W * H * dpr * dpr, f = Math.max(1.2, Math.min(1.5, Math.sqrt(budget / pxE))), dT = dpr * Math.min(1, Math.sqrt(budget / (pxE * f * f)));
+    const mx = Math.round(W * (f - 1) / 2), my = Math.round(H * (f - 1) / 2), TW = W + 2 * mx, TH = H + 2 * my;
+    let ok = T.ver === I.verCont && T.dpr === dT && T.W === TW && T.H === TH && (!ageMax || now - T.date < ageMax);
+    if (ok) {
+      const r = t.k / T.t.k, x0 = (0 - t.x) / r + T.t.x, x1 = (W - t.x) / r + T.t.x, y0 = (0 - t.y) / r + T.t.y, y1 = (H - t.y) / r + T.t.y;
+      ok = r >= rMin && r <= rMax && x0 >= 0 && y0 >= 0 && x1 <= TW && y1 <= TH;
+    }
+    if (!ok) {
+      const lw = Math.round(TW * dT), lh = Math.round(TH * dT);
+      if (T.cv.width !== lw || T.cv.height !== lh) { T.cv.width = lw; T.cv.height = lh; T.cx = T.cv.getContext('2d'); }
+      const sauve = [W, H, dpr];
+      T.t = { k: t.k, x: t.x + mx, y: t.y + my };
+      W = TW; H = TH; dpr = dT; cam.t = T.t; I.cx[nom] = T.cx;
+      try { dessiner(); } finally { [W, H, dpr] = sauve; cam.t = t; I.cx[nom] = ecran; }
+      Object.assign(T, { ver: I.verCont, dpr: dT, W: TW, H: TH, date: now });
+    }
+    const r = t.k / T.t.k;
+    let x = (t.x - T.t.x * r) * dpr, y = (t.y - T.t.y * r) * dpr;
+    if (Math.abs(r - 1) < 1e-9 && T.dpr === dpr) { x = Math.round(x); y = Math.round(y); }
+    ecran.setTransform(1, 0, 0, 1, 0, 0); ecran.globalAlpha = 1; ecran.globalCompositeOperation = 'source-over';
+    if (nom !== 'base') ecran.clearRect(0, 0, W * dpr, H * dpr);
+    ecran.drawImage(T.cv, x, y, TW * r * dpr, TH * r * dpr);
+    return true;
+  };
 
   // ---------- Mouvements de caméra ----------
   const ease = d3.easeCubicInOut;
   function arreter() { cam.anim = null; }
   function volerPlan(t1, ms, fin) {
     t1 = contraindre(t1);
-    if (I.reduit() || ms === 0) { cam.t = t1; cam.anim = null; invalider(); fin && fin(); return; }
+    if (I.reduit() || ms === 0) { cam.t = t1; cam.anim = null; invalider('vue'); fin && fin(); return; }
     const iz = d3.interpolateZoom(vuePlan(cam.t), vuePlan(t1));
     cam.anim = { ms: ms || Math.max(500, Math.min(1500, iz.duration * 0.75)), t0: performance.now(), pas: e => { cam.t = transformVue(iz(e)); }, fin: () => { cam.t = t1; fin && fin(); } };
   }
   function tournerGlobe(rot1, kg1, ms, fin) {
     const r0 = cam.rot.slice(), k0 = cam.kg;
     let dl = ((rot1[0] - r0[0] + 540) % 360) - 180;
-    if (I.reduit() || ms === 0) { cam.rot = [r0[0] + dl, rot1[1], 0]; cam.kg = kg1; majProj(); invalider(); fin && fin(); return; }
+    if (I.reduit() || ms === 0) { cam.rot = [r0[0] + dl, rot1[1], 0]; cam.kg = kg1; majProj(); invalider('vue'); fin && fin(); return; }
     cam.anim = { ms: ms || 900, t0: performance.now(), pas: e => { cam.rot = [r0[0] + dl * e, r0[1] + (rot1[1] - r0[1]) * e, 0]; cam.kg = k0 + (kg1 - k0) * e; majProj(); }, fin };
   }
   // Dépliage du globe vers le planisphère (et l'inverse) : mélange des deux projections
@@ -258,7 +315,7 @@ const CARTE = (() => {
     const u = Math.min(1, (ts - an.t0) / an.ms);
     an.pas(ease(u));
     if (u >= 1) { cam.anim = null; an.fin && an.fin(); }
-    invalider();
+    invalider('vue');
     return true;
   }
 
@@ -359,14 +416,14 @@ const CARTE = (() => {
         const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]), m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
         if (cam.mode === 'plan') { const k = Math.max(1, Math.min(48, pince.k * d / pince.d)); cam.t = contraindre({ k, x: m[0] - (m[0] - cam.t.x - dx / 2) * k / cam.t.k, y: m[1] - (m[1] - cam.t.y - dy / 2) * k / cam.t.k }); }
         else { cam.kg = Math.max(0.85, Math.min(3.2, pince.k * d / pince.d)); majProj(); }
-        cam.bouge = true; invalider(); if (depart) depart.bouge = true;
+        cam.bouge = true; invalider('vue'); if (depart) depart.bouge = true;
         return;
       }
       if (depart && !depart.bouge && Math.hypot(p[0] - depart.p[0], p[1] - depart.p[1]) < 5) return;
       if (depart) depart.bouge = true;
       if (cam.mode === 'plan') cam.t = contraindre({ k: cam.t.k, x: cam.t.x + dx, y: cam.t.y + dy });
       else { const s = 1 / (cam.R * cam.kg) / RAD; cam.rot = [cam.rot[0] + dx * s, Math.max(-75, Math.min(75, cam.rot[1] - dy * s)), 0]; majProj(); }
-      cam.bouge = true; invalider();
+      cam.bouge = true; invalider('vue');
       I.hooks.surSurvol && I.hooks.surSurvol(null);
     });
     const fin = e => {
@@ -375,7 +432,7 @@ const CARTE = (() => {
       pts.delete(e.pointerId);
       if (pts.size < 2) pince = null;
       if (!pts.size) {
-        if (cam.bouge) { cam.bouge = false; invalider(); }
+        if (cam.bouge) { cam.bouge = false; invalider('vue'); }
         if (depart && !depart.bouge && e.type === 'pointerup' && performance.now() - depart.t < 600) {
           const now = performance.now();
           if (now - dernierTap < 320) { dernierTap = 0; if (cam.mode === 'globe') globeVersPlan(p); else zoomSur(p, 2.2, true); }
@@ -400,8 +457,8 @@ const CARTE = (() => {
         if (cam.t.k <= 1.001 && f < 1 && cam.prefGlobe && !cadreNav()) { versGlobe(); return; }
         zoomSur(p, f, false);
       }
-      cam.bouge = true; invalider();
-      clearTimeout(finMolette); finMolette = setTimeout(() => { cam.bouge = false; invalider(); I.hooks.surVue && I.hooks.surVue(); }, 160);
+      cam.bouge = true; invalider('vue');
+      clearTimeout(finMolette); finMolette = setTimeout(() => { cam.bouge = false; invalider('vue'); I.hooks.surVue && I.hooks.surVue(); }, 160);
     }, { passive: false });
     c.addEventListener('keydown', e => {
       const pas = 60, t = cam.t;
@@ -466,38 +523,39 @@ const CARTE = (() => {
 
   // ---------- Initialisation ----------
   M.init = ({ el, data, topo, relief, hooks, globe }) => {
+    regul.pause = performance.now() + 2500;
     Object.assign(I, { el, data, topo, relief: relief || null, hooks: hooks || {} });
     cam.prefGlobe = !!globe;
     I.districts = C.tousDistricts(data);
     I.parId = Object.fromEntries(I.districts.map(d => [d.id, d]));
     I.secteurParId = Object.fromEntries(data.secteurs.map(s => [s.id, s]));
     // Topologie simplifiée pour le globe et les tests de survol
-    let topoS = topo;
-    try { const pre = topojson.presimplify(topo); topoS = topojson.simplify(pre, topojson.quantile(pre, 0.2)); } catch (e) { console.warn('Simplification indisponible', e); }
-    const geoms = topo.objects.countries.geometries, geomsS = topoS.objects.countries.geometries;
+    let topoS = topo, topoN = topo;
+    try { const pre = topojson.presimplify(topo); topoS = topojson.simplify(pre, topojson.quantile(pre, 0.2)); topoN = topojson.simplify(pre, topojson.quantile(pre, 0.5)); } catch (e) { console.warn('Simplification indisponible', e); }
+    const geoms = topo.objects.countries.geometries, geomsS = topoS.objects.countries.geometries, geomsN = topoN.objects.countries.geometries;
     const dPays = new Map();
     for (const d of I.districts) for (const p of d.pays || []) dPays.set(p, d);
     const dist = g => dPays.get(g.properties.name), sect = g => (dist(g) || {})._secteur;
     const fusion = (f) => {
-      const a = geoms.filter(f), b = geomsS.filter(f);
-      return a.length ? [topojson.merge(topo, a), topojson.merge(topoS, b)] : [null, null];
+      const a = geoms.filter(f), b = geomsS.filter(f), c = geomsN.filter(f);
+      return a.length ? [topojson.merge(topo, a), topojson.merge(topoS, b), topojson.merge(topoN, c)] : [null, null, null];
     };
     // Pendant un mouvement du globe : sans les petites îles, pour reprojeter moins de points
     const allege = g => { if (!g) return null; const polys = g.type === 'MultiPolygon' ? g.coordinates : [g.coordinates], gros = polys.filter(c => d3.geoArea({ type: 'Polygon', coordinates: c }) > 3e-5); return { type: 'MultiPolygon', coordinates: gros.length ? gros : polys.slice(0, 1) }; };
-    for (const d of I.districts) { [d._geo, d._geoS] = fusion(g => dist(g) === d); d._geoM = allege(d._geoS); }
-    for (const s of data.secteurs) [s._geo, s._geoS] = fusion(g => sect(g) === s.id);
+    for (const d of I.districts) { [d._geo, d._geoS, d._geoN] = fusion(g => dist(g) === d); d._geoM = allege(d._geoS); }
+    for (const s of data.secteurs) [s._geo, s._geoS, s._geoN] = fusion(g => sect(g) === s.id);
     I.monde = {};
-    [I.monde.terres, I.monde.terresS] = fusion(() => true);
-    [I.monde.libres, I.monde.libresS] = fusion(g => !dist(g));
+    [I.monde.terres, I.monde.terresS, I.monde.terresN] = fusion(() => true);
+    [I.monde.libres, I.monde.libresS, I.monde.libresN] = fusion(g => !dist(g));
     const maille = (t, f) => topojson.mesh(t, t.objects.countries, f);
     const fd = (a, b) => a !== b && dist(a) !== dist(b) && sect(a) === sect(b), fs = (a, b) => a !== b && sect(a) !== sect(b), fc = (a, b) => a === b;
-    Object.assign(I.monde, { bDist: maille(topo, fd), bDistS: maille(topoS, fd), bSect: maille(topo, fs), bSectS: maille(topoS, fs), cotes: maille(topo, fc), cotesS: maille(topoS, fc) });
+    Object.assign(I.monde, { bDist: maille(topo, fd), bDistS: maille(topoS, fd), bDistN: maille(topoN, fd), bSect: maille(topo, fs), bSectS: maille(topoS, fs), bSectN: maille(topoN, fs), cotes: maille(topo, fc), cotesS: maille(topoS, fc), cotesN: maille(topoN, fc) });
     I.monde.cotesM = { type: 'MultiLineString', coordinates: I.monde.cotesS.coordinates.filter(l => l.length > 12) };
     // Canvas empilés
     I.cv = {}; I.cx = {};
     for (const n of ['base', 'vie', 'sym', 'fx']) {
       const c = document.createElement('canvas'); c.className = 'cv cv-' + n; c.setAttribute('aria-hidden', 'true');
-      el.appendChild(c); I.cv[n] = c; I.cx[n] = c.getContext('2d');
+      el.appendChild(c); I.cv[n] = c; I.cx[n] = c.getContext('2d', n === 'base' ? { alpha: false } : undefined);
     }
     const haut = I.cv.fx;
     haut.removeAttribute('aria-hidden'); haut.setAttribute('role', 'application'); haut.setAttribute('tabindex', '0');
@@ -533,13 +591,43 @@ const CARTE = (() => {
   };
 
   // ---------- Boucle ----------
+  // Régulateur : mesure la cadence réelle et descend d'un palier de résolution quand elle reste trop basse
+  const regul = { pause: 0, prec: 0, mobile: false, n: 0, ms: 0, mauvais: 0, bons: 0, plafondR: 0, plafondM: 0, essaiR: 0, essaiM: 0 };
+  function reguler(ts, mobile) {
+    const dt = ts - regul.prec; regul.prec = ts;
+    if (mobile !== regul.mobile) { regul.mobile = mobile; regul.n = regul.ms = regul.mauvais = 0; regul.pause = Math.max(regul.pause, ts + 120); }
+    if (ts < regul.pause || dt > 400 || dt <= 0) return;
+    regul.n++; regul.ms += dt;
+    if (regul.ms < (mobile ? 450 : 1400) || regul.n < 5) return;
+    const moy = regul.ms / regul.n, max = PALIERS_Q.length - 1;
+    regul.n = regul.ms = 0;
+    if (mobile) {
+      // Deux fenêtres lentes de suite : les caches froids d'un premier survol ne comptent pas
+      if (moy > 27) { if (++regul.mauvais >= 2 && nqMouv < max) { if (regul.essaiM && ts - regul.essaiM < 15000) regul.plafondM = nqMouv + 1; nqMouv++; regul.mauvais = 0; } }
+      else regul.mauvais = 0;
+    } else if (moy > 34) {
+      regul.bons = 0;
+      if (++regul.mauvais >= 2 && nqRepos < max) { if (regul.essaiR && ts - regul.essaiR < 15000) regul.plafondR = nqRepos + 1; nqRepos++; regul.mauvais = 0; regul.pause = ts + 500; }
+    } else {
+      regul.mauvais = 0;
+      // Vingt secondes fluides : on retente le palier du dessus, une seule fois s'il ne tient pas
+      if (moy < 19 && ++regul.bons >= 14) {
+        regul.bons = 0;
+        if (nqRepos > regul.plafondR) { nqRepos--; regul.essaiR = ts; regul.pause = ts + 500; }
+        else if (nqMouv > Math.max(nqRepos, regul.plafondM)) { nqMouv--; regul.essaiM = ts; }
+      }
+    }
+  }
+  I.resolution = () => ({ dpr, ecran: dprEcran, repos: PALIERS_Q[nqRepos], mouvement: PALIERS_Q[Math.max(nqRepos, nqMouv)] });
   let dernierVie = 0, etaitMobile = false;
   function boucle(ts) {
     requestAnimationFrame(boucle);
-    if (document.hidden || !W || !I.dessin) return;
+    if (document.hidden || !W || !I.dessin) { regul.prec = ts; return; }
     const mobile = animer(ts) || cam.bouge;
     I.mobile = mobile;
-    if (etaitMobile && !mobile) { invalider(); I.hooks.surVue && I.hooks.surVue(); }
+    reguler(ts, mobile);
+    if (Math.abs(dprDe(mobile) - dpr) > 0.01) taillerCanvas(dprDe(mobile));
+    if (etaitMobile && !mobile) { invalider('vue'); I.hooks.surVue && I.hooks.surVue(); }
     etaitMobile = mobile;
     // La matière des zones respire : quelques images par seconde suffisent
     if (!I.sale.vie && !I.reduit() && ts - dernierVie > (mobile ? 0 : 90) && I.zonesVisibles) I.sale.vie = true;

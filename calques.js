@@ -88,8 +88,8 @@
   }
 
   // Terres : tracé fusionné sur le planisphère ; ailleurs, assemblage des districts déjà projetés (pas de second passage)
-  I.terres = () => I.cam.mode === 'plan' ? I.forme('terres', I.monde.terres)
-    : I.formeCalc('terres*', () => { const p = new Path2D(); for (const d of I.districts) if (d._geo) p.addPath(I.forme('d:' + d.id, I.g(d, '_geo'))); return p; });
+  I.terres = plus => I.cam.mode === 'plan' ? I.fg('terres', I.monde, 'terres', plus)
+    : I.formeCalc('terres*' + I.niv(), () => { const p = new Path2D(); for (const d of I.districts) if (d._geo) p.addPath(I.fg('d:' + d.id, d, '_geo')); return p; });
 
   const etoiles = (() => { const r = G.graine('ciel'); return d3.range(170).map(() => [r(), r(), 0.3 + r() * 0.9, 0.15 + r() * 0.55]); })();
 
@@ -118,12 +118,13 @@
 
   function monde(ctx, sc) {
     const cam = I.cam, nav = I.nav, detail = cam.mode === 'plan' || !I.mobile, z = I.zl();
-    const px = I.px, plan = cam.mode === 'plan', terres = I.terres(), fd = d => I.forme('d:' + d.id, I.g(d, '_geo'));
+    const px = I.px, plan = cam.mode === 'plan', terres = I.terres(), fd = d => I.fg('d:' + d.id, d, '_geo');
     // Sur le globe, la côte vient du maillage des rivages (les terres y sont l'assemblage des districts)
-    const cote = plan ? terres : I.forme('cotes', I.g(I.monde, 'cotes'));
+    const cote = plan ? terres : I.fg('cotes', I.monde, 'cotes');
     I.vue(ctx);
     ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.setLineDash([]);
-    if (plan || !I.mobile) { ctx.strokeStyle = COL.coteHalo; ctx.lineWidth = px(6); ctx.stroke(cote); }
+    // Halo du rivage : large et diffus, un cran de détail en dessous suffit
+    if (plan || !I.mobile) { ctx.strokeStyle = COL.coteHalo; ctx.lineWidth = px(6); ctx.lineJoin = 'bevel'; ctx.lineCap = 'butt'; ctx.stroke(plan ? I.terres(1) : cote); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; }
     ctx.fillStyle = COL.terre; ctx.fill(terres);
     const sSel = nav.niveau !== 'monde' && I.secteurParId[nav.secteur], sel = sSel && sSel._geo ? nav.secteur : null;
     for (const d of I.districts) {
@@ -153,20 +154,20 @@
       if (z >= 3.5) { ctx.lineWidth = px(0.6); ctx.stroke(I.forme('fl2', R.gFleuves[2])); }
     }
     // Quarantaine : hachures jaunes
-    if (I.couches.civil) for (const d of I.districts) if (d._geo && sc.enQuarantaine(d) && !(sel && d._secteur !== sel)) { ctx.fillStyle = motif('quarantaine'); ctx.fill(I.forme('d:' + d.id, I.g(d, '_geo'))); }
+    if (I.couches.civil) for (const d of I.districts) if (d._geo && sc.enQuarantaine(d) && !(sel && d._secteur !== sel)) { ctx.fillStyle = motif('quarantaine'); ctx.fill(fd(d)); }
     // Nuit et pénombre
     const cleN = 'nuit:' + sc.date + ':' + Math.floor(Date.now() / 6e5), as = antisolaire(sc);
     ctx.fillStyle = 'rgba(3,3,14,.2)'; ctx.fill(I.forme(cleN + 'a', () => d3.geoCircle().center(as).radius(90).precision(3)()));
     ctx.fillStyle = 'rgba(3,3,14,.14)'; ctx.fill(I.forme(cleN + 'b', () => d3.geoCircle().center(as).radius(81).precision(3)()));
     // Frontières
-    ctx.strokeStyle = COL.bDist; ctx.lineWidth = px(0.7); ctx.setLineDash([px(3), px(3)]); ctx.stroke(I.forme('bDist', I.g(I.monde, 'bDist')));
+    ctx.strokeStyle = COL.bDist; ctx.lineWidth = px(0.7); ctx.setLineDash([px(3), px(3)]); ctx.stroke(I.fg('bDist', I.monde, 'bDist'));
     ctx.setLineDash([]);
-    ctx.strokeStyle = COL.bSect; ctx.lineWidth = px(1.15); ctx.stroke(I.forme('bSect', I.g(I.monde, 'bSect')));
+    ctx.strokeStyle = COL.bSect; ctx.lineWidth = px(1.15); ctx.stroke(I.fg('bSect', I.monde, 'bSect'));
     ctx.strokeStyle = COL.cote; ctx.lineWidth = px(0.9); ctx.stroke(cote);
     // Sélection : contour du secteur ou du district ouvert
     const cible = nav.niveau === 'district' ? I.parId[nav.district] : nav.niveau === 'secteur' ? sSel : null;
     if (cible && cible._geo) {
-      const f = I.forme('sel:' + cible.id, I.g(cible, '_geo'));
+      const f = I.fg('sel:' + cible.id, cible, '_geo');
       ctx.strokeStyle = alpha(COL.sel, 0.16); ctx.lineWidth = px(4); ctx.stroke(f);
       ctx.strokeStyle = alpha(COL.sel, 0.85); ctx.lineWidth = px(1.2); ctx.stroke(f);
     }
@@ -196,8 +197,8 @@
   I.avecRideau = avecRideau;
 
   function base() {
-    const ctx = I.cx.base;
-    avecRideau(ctx, sc => { fond(ctx); monde(ctx, sc); });
+    const peindre = () => { const ctx = I.cx.base; avecRideau(ctx, sc => { fond(ctx); monde(ctx, sc); }); };
+    if (!I.viaTampon('base', peindre)) peindre();
   }
 
   // =====================================================================================================
@@ -487,6 +488,10 @@
   }
 
   function vie() {
+    // En mouvement, les zones gardent la cadence du repos (une dizaine d'images par seconde) et glissent entre deux
+    if (!I.viaTampon('vie', peindreVie, { ageMax: 90 })) peindreVie();
+  }
+  function peindreVie() {
     const ctx = I.cx.vie, t = I.temps(), { W, H } = I.dim();
     I.zonesVisibles = false;
     avecRideau(ctx, sc => {

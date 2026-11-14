@@ -279,8 +279,8 @@
   }
 
   function fx(ts) {
-    if (!I.mobile && ts - dernier < 24) return;
-    dernier = ts;
+    if (!I.mobile && !I.sale.fx && ts - dernier < 24) return;
+    dernier = ts; I.sale.fx = false;
     const ctx = I.cx.fx, { W, H, dpr } = I.dim(), t = I.temps(), sc = I.sceneA, pal = I.palier();
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W * dpr, H * dpr);
     I.ecran(ctx); ctx.globalAlpha = 1; ctx.setLineDash([]);

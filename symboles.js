@@ -563,7 +563,7 @@
     const monde = I.nav.niveau === 'monde' || s.obj._secteur !== I.nav.secteur, o = monde ? I.secteurParId[s.obj._secteur] : s.obj;
     if (!o || !o._geo) return;
     I.vue(ctx);
-    const f = I.forme((monde ? 'sel:' : 'd:') + o.id, I.g(o, '_geo'));
+    const f = I.fg((monde ? 'sel:' : 'd:') + o.id, o, '_geo');
     ctx.fillStyle = 'rgba(190,200,255,.07)'; ctx.fill(f);
     ctx.strokeStyle = 'rgba(210,216,255,.75)'; ctx.lineWidth = I.px(1.2); ctx.stroke(f);
   }
