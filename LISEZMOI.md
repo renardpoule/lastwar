@@ -76,3 +76,16 @@ Tant que vous n'avez pas publié, votre travail est gardé comme brouillon dans 
 **Dossiers** : dans les textes, `**gras**`, `*italique*`, `## Titre`, `- puce` et `![légende](img/fichier.webp)` pour une image (déposée dans le dossier `img/`).
 
 **Sans jeton GitHub** : cliquez sur "Télécharger data.json" dans l'admin, puis dans le dépôt GitHub utilisez **Add file → Upload files** pour remplacer `data.json`.
+
+## Se servir de la carte
+
+La carte s'ouvre sur un globe qu'on fait tourner à la main, et qui se déplie en planisphère dès qu'on ouvre un secteur ou qu'on zoome assez (le bouton en forme de globe, à gauche, permet de rester en planisphère, ce que la carte fait d'elle-même sur téléphone).
+
+- **Film** (en bas à gauche) : rejoue tout le conflit, semaine par semaine, la caméra volant d'un événement à l'autre.
+- **Briefing** : raconte la semaine affichée en quelques étapes. Le lien `index.html?briefing` l'ouvre directement, ce qui est pratique à coller sur Discord.
+- **Comparer** : un rideau qu'on fait glisser, avec une autre date à droite.
+- **Courbes** : tension, influence cultiste, tués et énergie sur toute la chronologie, et un clic sur une courbe amène à cette date.
+- **Recherche** : la touche `/` (ou la loupe), pour trouver une ville, un site, une flotte, un district ou un événement.
+- **Calques** : coupe le militaire, l'anormal, l'infrastructure ou le civil, et déroule la légende.
+
+Deux champs facultatifs de `data.json`, que le poste de commandement n'édite pas encore, sont lus par la carte : `depeches` (un texte par date de tour, affiché en tête du rapport à la place du relevé automatique) et `"camp": "cult"` sur un communiqué (il défile alors comme une interception cultiste, brouillée).

@@ -59,20 +59,20 @@ APP.pret.then(() => {
       if (moi.stop) break;
       APP.allerA(i);
       const s = CARTE.scene(i), pal = C.palier(s.tension, P);
-      montrerCarton({ cls: 'film date', sur: `Semaine ${i + 1} sur ${nH} · tension ${Math.round(s.tension)} · ${esc(P[pal].nom)}`, titre: s.date, boutons: boutons() });
+      montrerCarton({ cls: 'cine date', sur: `Semaine ${i + 1} sur ${nH} · tension ${Math.round(s.tension)} · ${esc(P[pal].nom)}`, titre: s.date, boutons: boutons() });
       await pause(1300);
       const evs = s.evtsTour.filter(e => e.lieux && e.lieux.length).sort((a, b) => RANG[b.gravite] - RANG[a.gravite]).slice(0, 2);
       for (const ev of evs) {
         if (moi.stop) break;
         await vol(ev.lieux[0], 3.6, 1250);
         if (moi.stop) break;
-        montrerCarton({ cls: 'film ' + ev.gravite, sur: `${esc(dateCourte(ev.date))} · ${esc(C.GRAVITES[ev.gravite])} · ${esc(APP.nomPortee(ev.portee))}`, titre: ev.titre, texte: esc(coupe(ev.description, 210)), boutons: boutons() });
+        montrerCarton({ cls: 'cine ' + ev.gravite, sur: `${esc(dateCourte(ev.date))} · ${esc(C.GRAVITES[ev.gravite])} · ${esc(APP.nomPortee(ev.portee))}`, titre: ev.titre, texte: esc(coupe(ev.description, 210)), boutons: boutons() });
         await pause(2900);
       }
       if (moi.stop) break;
       if (CARTE.mode() === 'plan') { CARTE.cadrer(true); await pause(900); }
     }
-    if (!moi.stop) { APP.allerA(null); montrerCarton({ cls: 'film date', sur: 'Fin de la relecture', titre: 'En direct · ' + data.meta.dateRP, boutons: [['stop', 'Fermer', true]] }); await pause(2200); }
+    if (!moi.stop) { APP.allerA(null); montrerCarton({ cls: 'cine date', sur: 'Fin de la relecture', titre: 'En direct · ' + data.meta.dateRP, boutons: [['stop', 'Fermer', true]] }); await pause(2200); }
     if (film === moi) arreterFilm();
   }
   play.addEventListener('click', jouerFilm);

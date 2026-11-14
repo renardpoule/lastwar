@@ -254,6 +254,7 @@
       if (!I.couches.infrastructure) continue;
       const coul = perdu || brume ? COL.cult : FAMILLE[T.famille] || COL.science;
       if (T.mineur && pal === 0) continue;
+      if (pal === 0 && I.dim().W < 600 && !s.ile) continue;
       if ((T.mineur && pal === 1) || (!T.mineur && pal === 0 && !s.ile)) {
         ctx.fillStyle = 'rgba(8,7,16,.85)'; ctx.beginPath(); ctx.arc(p[0], p[1], 3.6 * e, 0, 7); ctx.fill();
         ctx.fillStyle = coul; ctx.beginPath(); ctx.arc(p[0], p[1], 2.2 * e, 0, 7); ctx.fill();
@@ -284,6 +285,7 @@
     for (const v of sc.villes) {
       const p = I.P(v.coord);
       if (!p || !I.parId[v.district]) continue;
+      if (pal === 0 && I.dim().W < 600 && !v.capitale && v.etat >= 85) continue;
       const [, cls] = VILLES.niveau(v.etat), coul = COL.etat[cls], s = [0.82, 1.08, 1.45][pal] * e, S = G.silhouette(v), sel = I.nav.ville === v.id, survol = I.survol && I.survol.type === 'ville' && I.survol.obj.id === v.id;
       ctx.save(); ctx.translate(p[0], p[1] + 4 * s); ctx.scale(s, s);
       if (sel || survol) { ctx.strokeStyle = alpha(coul, 0.9); ctx.lineWidth = 1.2 / s; ctx.beginPath(); ctx.ellipse(0, -4, 17, 12, 0, 0, 7); ctx.stroke(); }
@@ -466,7 +468,9 @@
   }
   function pions(ctx, sc) {
     I.ecran(ctx);
-    const e = I.ech, liste = pionsDe(sc).map(u => ({ u, p: I.P(u.c) })).filter(o => o.p);
+    // Petit écran, vue stratégique : seuls les districts touchés gardent leurs pions
+    const e = I.ech, dense = I.dim().W < 600 && I.palier() === 0;
+    const liste = pionsDe(sc).filter(u => !dense || u.type === 'cult' || sc.statut(u.d).statut !== 'controle').map(u => ({ u, p: I.P(u.c) })).filter(o => o.p);
     // Écarte les groupes qui se chevauchent à l'écran
     const groupes = new Map();
     for (const o of liste) {
@@ -574,7 +578,7 @@
       eclairer(ctx);
       if (I.couches.infrastructure && sc.direct && !leger) { orbites(ctx); voies(ctx, pal); }
       if (I.couches.militaire) {
-        if (sc.direct && pal >= 1 && !leger) routes(ctx);
+        if (sc.direct && pal >= 2 && !leger) routes(ctx);
         lignes(ctx, sc); axes(ctx, sc);
       }
       sites(ctx, sc, pal);

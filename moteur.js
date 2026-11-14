@@ -187,10 +187,10 @@ const CARTE = (() => {
   I.oublier = prefixe => { for (const k of formes.keys()) if (k.startsWith(prefixe)) formes.delete(k); };
 
   // ---------- Dimensions ----------
-  function ajuster() {
+  function ajuster(vueGardee) {
     const r = I.el.getBoundingClientRect();
     if (!r.width || !r.height) return;
-    const avant = cam.mode === 'plan' && W ? vuePlan() : null;
+    const avant = vueGardee && vueGardee.c ? vueGardee : releverVue();
     W = r.width; H = r.height; dpr = Math.min(2, window.devicePixelRatio || 1);
     for (const n of ['base', 'vie', 'sym', 'fx']) { const c = I.cv[n]; c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
     const s = sauf();
@@ -199,9 +199,15 @@ const CARTE = (() => {
     cam.R = Math.max(60, Math.min(s.w, s.h) / 2 * 0.92); cam.c = [s.cx, s.cy];
     I.ech = W < 600 ? 0.78 : 1;
     cam.ver++; formes.clear();
-    if (avant) cam.t = contraindre(transformVue(avant));
+    // La vue est replacée d'après son centre géographique : le planisphère vient d'être recalé sur la nouvelle zone utile
+    if (avant && cam.mode === 'plan') {
+      if (avant.monde) cam.t = contraindre({ k: 1, x: 0, y: 0 });
+      else { const k = Math.max(1, avant.ech / pPlan.scale()), p = pPlan(avant.c); cam.t = contraindre({ k, x: s.cx - p[0] * k, y: s.cy - p[1] * k }); }
+    }
     majProj(); invalider();
   }
+  // Vue relevée indépendamment de la projection : centre géographique et échelle absolue
+  const releverVue = () => { if (cam.mode !== 'plan' || !W) return null; const s = sauf(); return { c: pPlan.invert([(s.cx - cam.t.x) / cam.t.k, (s.cy - cam.t.y) / cam.t.k]), ech: pPlan.scale() * cam.t.k, monde: cam.t.k <= 1.001 }; };
   // Vue du planisphère : [x, y] au centre de la zone utile (coordonnées du plan) et largeur visible
   const vuePlan = (t = cam.t) => { const s = sauf(); return [(s.cx - t.x) / t.k, (s.cy - t.y) / t.k, s.w / t.k]; };
   const transformVue = v => { const s = sauf(), k = s.w / v[2]; return { k, x: s.cx - v[0] * k, y: s.cy - v[1] * k }; };
@@ -310,7 +316,7 @@ const CARTE = (() => {
     if (cam.mode === 'globe') { const kg = cam.kg * f; if (kg > 3.1) return globeVersPlan(cam.c); tournerGlobe(cam.rot, Math.max(0.85, kg), 300); return; }
     if (cam.mode !== 'plan') return;
     const s = sauf(), k = Math.max(1, Math.min(48, cam.t.k * f));
-    if (k <= 1.001 && f < 1 && cam.prefGlobe && I.nav.niveau === 'monde') return versGlobe();
+    if (k <= 1.001 && f < 1 && cam.prefGlobe && !cadreNav()) return versGlobe();
     volerPlan({ k, x: s.cx - (s.cx - cam.t.x) * k / cam.t.k, y: s.cy - (s.cy - cam.t.y) * k / cam.t.k }, 300);
   };
   // Le globe trop zoomé se déplie autour du point visé
@@ -320,12 +326,14 @@ const CARTE = (() => {
   }
   M.globe = (actif, anime = true) => {
     cam.prefGlobe = !!actif;
-    if (I.nav.niveau !== 'monde') return;
+    if (cadreNav()) return;
     arreter();
     if (actif && cam.mode === 'plan') versGlobe(anime ? undefined : 0);
     else if (!actif && cam.mode !== 'plan') morph(true, contraindre({ k: 1, x: 0, y: 0 }), cam.rot, cam.kg, anime ? undefined : 0);
   };
   M.mode = () => cam.mode;
+  // Vrai si la navigation courante cadre une région de la carte (secteur géographique, district, ville)
+  M.aCadre = () => !!cadreNav();
   M.enMouvement = () => !!cam.anim;
 
   // ---------- Pointeur : glisser, molette, pincement, clic, survol ----------
@@ -389,7 +397,7 @@ const CARTE = (() => {
         if (kg > 3.1 && f > 1) { globeVersPlan(p); return; }
         cam.kg = Math.max(0.85, Math.min(3.2, kg)); majProj();
       } else {
-        if (cam.t.k <= 1.001 && f < 1 && cam.prefGlobe && I.nav.niveau === 'monde') { versGlobe(); return; }
+        if (cam.t.k <= 1.001 && f < 1 && cam.prefGlobe && !cadreNav()) { versGlobe(); return; }
         zoomSur(p, f, false);
       }
       cam.bouge = true; invalider();
@@ -502,7 +510,8 @@ const CARTE = (() => {
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => invalider());
     requestAnimationFrame(boucle);
   };
-  M.definirMarges = m => { I.marges = { ...I.marges, ...m }; if (W) { ajuster(); } };
+  // La vue (centre et largeur visible) est relevée avec les anciennes marges, puis replacée dans la nouvelle zone utile
+  M.definirMarges = m => { const v = releverVue(), enVol = !!cam.anim && cam.mode === 'plan'; I.marges = { ...I.marges, ...m }; if (W) { ajuster(v); if (enVol) cadrer(true); } };
   M.definirScene = (i, j, u) => {
     I.sceneA = scene(i);
     I.mix = j != null && u != null && u > 0 && u < 1 ? { b: scene(j), u } : null;

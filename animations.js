@@ -16,7 +16,7 @@
   // ---------- Flottes ----------
   const COUL_FLOTTE = { surface: '#b9d2ff', 'porte-avions': '#e9c46a', 'sous-marins': '#7fd6c8', recherche: '#e879f9' };
   function flottes(ctx, t, pal) {
-    const e = I.ech, s = [0.6, 0.9, 1.15][pal] * e;
+    const e = I.ech, s = [0.55, 0.75, 1.1][pal] * e;
     for (const f of I.data.flottes || []) {
       const m = I.routeFlotte(f), d = ((t / (f.periode || 480)) % 1) * m.lg, c = I.posSur(m, d), c2 = I.posSur(m, (d + m.lg * 0.012) % m.lg);
       f._c = c;
@@ -149,7 +149,7 @@
       let R = raids.get(f.id);
       if (!R) raids.set(f.id, R = { vagues: [], prochain: t + Math.random() * 1.5 });
       R.vagues = R.vagues.filter(v => (t - v.t0) * v.vit < v.m.lg);
-      const max = pal === 0 ? 1 : f.escadrilles ? Math.min(4, +f.escadrilles.formations || 3) : 2;
+      const max = pal === 0 ? 1 : f.escadrilles ? (pal === 1 ? 2 : Math.min(4, +f.escadrilles.formations || 3)) : pal === 1 ? 1 : 2;
       if (t >= R.prochain && R.vagues.length < max) { R.vagues.push(lancerVague(sc, f, t, pal)); R.prochain = t + (pal === 0 ? 4 + Math.random() * 4 : f.escadrilles ? 1.6 + Math.random() * 1.6 : 3 + Math.random() * 3); }
     }
     for (const id of raids.keys()) if (!sc.frappes.some(f => f.id === id)) raids.delete(id);
@@ -210,7 +210,7 @@
     }).slice(-220);
     crateres = crateres.slice(-160);
     // Appareils en formation, avec ombre portée et traînées
-    const s = [0.62, 0.95, 1.25][pal] * e;
+    const s = [0.62, 0.8, 1.25][pal] * e;
     ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     for (const R of raids.values()) for (const v of R.vagues) {
       const d = (t - v.t0) * v.vit, p = I.P(I.posSur(v.m, d)), q = I.P(I.posSur(v.m, d + 0.35));

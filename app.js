@@ -86,10 +86,11 @@ APP.pret = (async function () {
       else { etat.niveau = 'secteur'; etat.district = null; }
     } else { etat.niveau = 'monde'; etat.secteur = null; etat.district = null; }
     cacherTip();
+    // Sur téléphone, la fiche d'une ville s'ouvre d'elle-même : la feuille est dépliée avant de cadrer la carte
+    if (etat.ville && tel() && etat.volet !== 'ouvert') definirVolet('ouvert');
     CARTE.naviguer({ niveau: etat.niveau, secteur: etat.secteur, district: etat.district, ville: etat.ville }, anime);
     rendrePanel(); rendreFil();
     $('#panel').scrollTop = 0;
-    if (etat.ville && tel()) definirVolet('ouvert');
   }
   window.addEventListener('hashchange', () => lireHash());
   function remonter() {
@@ -589,7 +590,7 @@ APP.pret = (async function () {
   $('#oMoins').addEventListener('click', () => CARTE.zoomer(1 / 1.7));
   $('#oGlobe').addEventListener('click', () => {
     prefs.globe = CARTE.mode() === 'plan'; garder();
-    if (prefs.globe && etat.niveau !== 'monde') { CARTE._.cam.prefGlobe = true; naviguer(); } else CARTE.globe(prefs.globe);
+    if (prefs.globe && CARTE.aCadre()) { CARTE._.cam.prefGlobe = true; naviguer(); } else CARTE.globe(prefs.globe);
     $('#oGlobe').setAttribute('aria-pressed', prefs.globe);
   });
   document.querySelector('.sceau').addEventListener('click', e => { e.preventDefault(); naviguer(); });
